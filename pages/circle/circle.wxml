@@ -1,7 +1,7 @@
 <view class='content'>
  <view class='nav-list clear'>
         <view class='list list-one' wx:for="{{ico}}">
-        <navigator url="/pages/index/index?title=index">  
+        <navigator url="/pages/mine/mine?title=mine">  
             <view class='ico'>
                <image src='{{item.nav_ico}}'></image>
             </view>
