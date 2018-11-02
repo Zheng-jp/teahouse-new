@@ -1,0 +1,5 @@
+<view class="all-content">
+  <view class='nav'>
+        <view class='img'><image src='img/u3885.png'></image></view>
+  </view>
+</view>
