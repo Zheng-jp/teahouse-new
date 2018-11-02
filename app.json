@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/mine/mine",
+    "pages/circle/circle"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F9F9F9",
+    "navigationBarTitleText": "智慧茶仓",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#8A8A8A",
+    "selectedColor": "#821006",
+    "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "images/index-select.png",
+        "iconPath": "images/index.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/icob.png",
+        "iconPath": "images/icoa.png",
+        "pagePath": "pages/index/index",
+        "text": "茶仓"
+      },
+      {
+        "selectedIconPath": "images/icod.png",
+        "iconPath": "images/icoc.png",
+        "pagePath": "pages/circle/circle",
+        "text": "茶圈"
+      },
+      {
+        "selectedIconPath": "images/icof.png",
+        "iconPath": "images/icoe.png",
+        "pagePath": "pages/index/index",
+        "text": "直播"
+      },
+      {
+        "selectedIconPath": "images/icoh.png",
+        "iconPath": "images/icog.png",
+        "pagePath": "pages/index/index",
+        "text": "我的"
+      }
+    ]
+  }
+}

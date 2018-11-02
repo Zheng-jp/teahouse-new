@@ -1,0 +1,38 @@
+<view class='content'>
+ <view class='nav-list clear'>
+        <view class='list list-one' wx:for="{{ico}}">
+        <navigator url="/pages/index/index?title=index">  
+            <view class='ico'>
+               <image src='{{item.nav_ico}}'></image>
+            </view>
+            <text class='text'>{{item.ico_text}}</text>
+            </navigator>
+        </view>
+         
+    </view>
+   <view class='share'>
+     <view class='shares-content'>
+          <view class="share-grids">
+            <view class="share-grid" wx:for="{{share}}" wx:key="name">
+                    <view class='weui-grid__bg'>
+                        <view class="share_icon">
+                            <image src=" {{item.icon}}" mode="scaleToFill" />
+                        </view>
+                        <view style='border-bottom:#C9C9C9 solid 1px;' class='clear aaa'>
+                          <button class="share_name">{{item.name}} </button>
+                          <text class='hot'>{{item.hot}}</text>
+                          <text class='classification'>{{item.classification}}</text>
+                          <text class='share-content'>{{item.share_content}}</text>
+                        </view>
+                        <view class='share-xia'>
+                            <text class="share-kuchun">库存{{item.code}}片</text>
+                            <text class="validity">有效期：{{item.validity}}</text>
+                        </view>
+                    </view>
+              </view>
+    </view>
+      </view>
+  
+  
+</view>
+</view>

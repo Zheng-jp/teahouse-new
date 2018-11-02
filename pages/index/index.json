@@ -1,0 +1,30 @@
+{
+    "tabBar": {
+      "selectedColor": "#FF4411",
+      "backgroundColor": "#FFFFFF",
+      "position": "button",
+      "list": [
+        {
+          "selectedColor": "#e70012",
+          "pagePath": "pages/index/index",
+          "text": "首页",
+          "iconPath": "images/home.png",
+          "selectedIconPath": "images/home_sel.png"
+        },
+        {
+          "selectedColor": "#e70012",
+          "pagePath": "pages/discover/discover",
+          "text": "发现",
+          "iconPath": "images/discover.png",
+          "selectedIconPath": "images/discover_sel.png"
+        },
+        {
+          "selectedColor": "#e70012",
+          "pagePath": "pages/my/my",
+          "text": "我的",
+          "iconPath": "images/my.png",
+          "selectedIconPath": "images/my_sel.png"
+        }
+      ]
+    }
+}
