@@ -13,7 +13,7 @@
    </view>
     <view class='home_banner'>
          <swiper indicator-dots="{{indicatorDots}}"
-              autoplay="{{autoplay}}" interval="6000" duration="{{duration}}" indicator-dots="true" autoplay="true" circular="{{circular}}" >
+              autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" >
               <block wx:for="{{image}}"  wx:key="{{index}}">
                 <swiper-item>
                   <image src="{{item}}" class="slide-image" />

@@ -241,8 +241,8 @@ margin-top:28rpx;
 }
  
 .weui-grid__icon {
-  width:368rpx;
-height:252rpx;
+  width:344rpx;
+height:344rpx;
 margin:0 auto;
 
 }

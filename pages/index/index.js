@@ -5,26 +5,28 @@ Page({
   data: {
     // 全局变量的获取
     test: app.data.test,
-    motto: 'Hello World',
+    // 轮播图图片地址数据
     image: [
       app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
       app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
       app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
     ],
+    circular: 'true',
+    indicatorDots: 'true',
+    interval:'2000',
+    autoplay:'true',
+    // 小喇叭图片地址
     laba:'img/u206.png',
-    circular:'true',
+    // 关闭图片地址
     close:'img/close.png',
+    // 更多图片地址
     more:'img/more.png',
-    array: [{
-      message: 'foo',
-    }, {
-      message: 'bar'
-    }],
+  // 商品信息
     routers: [
       {
         name: '双骄',
         url: '/pages/Course/course',
-        icon: 'img/u150.png',
+        icon: 'img/u160.jpg',
         code: '10',
         selling:[
           '新益号',
@@ -36,7 +38,7 @@ Page({
       {
         name: '双骄',
         url: '/pages/Course/course',
-        icon: 'img/u150.png',
+        icon: 'img/u160.jpg',
         code: '10',
         selling: [
           '新益号',
@@ -48,7 +50,7 @@ Page({
       {
         name: '双骄',
         url: '/pages/Course/course',
-        icon: 'img/u150.png',
+        icon: 'img/u160.jpg',
         code: '10',
         selling: [
           '新益号',
@@ -61,7 +63,7 @@ Page({
       {
         name: 'Python',
         url: '/pages/Course/course',
-        icon: 'img/u150.png',
+        icon: 'img/u160.jpg',
         code: '10',
         selling: [
           '新益号',
@@ -72,6 +74,7 @@ Page({
       },
     
     ],
+    // 分享信息
     share: [
       {
         name: '双骄',
