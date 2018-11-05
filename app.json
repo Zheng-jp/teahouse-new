@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/mine/mine",
     "pages/circle/circle",
-     "pages/meeting/meeting"
+     "pages/meeting/meeting",
+     "component/list/list"
 
   ],
   "window": {
