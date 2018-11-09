@@ -10,6 +10,7 @@ Page({
    
     // 头部导航
    tab:0,
+   
   nav:[
     {
       tab:'0',
@@ -39,6 +40,7 @@ Page({
         classification: '特点活动',
         share_content: "20180809马连道茶话会报名参加中马连道进......",
         validity: '长期',
+       
 
       },{
         name: '2双骄',

@@ -20,11 +20,13 @@ Component({
       type: Array,
       value: [],
     },
+  
   },
 
   /**
    * 组件的初始数据
    */
+  
  
   
 
@@ -33,7 +35,6 @@ Component({
    */
   methods: {
     data: {
-
     },
     
     tab_slide: function (e) {//滑动切换tab 

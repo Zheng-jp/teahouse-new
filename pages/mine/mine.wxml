@@ -1,7 +1,26 @@
- <view >
-  <button  class="hide{{showView?'show':''}}" bindtap="onChangeShowState">{{showView?'隐藏':'显示'}}</button>
-  <button class="hide{{showView?'':'show'}}" bindtap="onChangeShowState">{{showView?'隐藏':'显示'}}</button>
- </view>
- <view class="hide{{showView?'show':''}}">
- <text class="text">我是被显示被隐藏控件</text>
- </view>
+<scroll-view class="news_banner">
+    <!-- wx:for类似于el表达式 -->
+    <view wx:for="{{selections}}" wx:for-index="idx" data-idx="{{idx}}" class="news_banner_text {{item.show?'select':''}}" data-cid="{{item.cateid}}" bindtap="bannerClick" >
+        <text>{{item.catename}}</text>
+    </view>
+</scroll-view>
+<view class="news">
+    <!-- data-* 保存数据的属性,组件触发事件时,会将数据发送给事件处理函数-->
+    <!-- bind* 组件的事件,bindtap="newsClick"点击事件-->
+    <view wx:for="{{newsList}}" class="news_list" data-nid="{{item.NewsId}}" data-ntitle="{{item.Title}}" data-nimg="{{item.Pic}}" data-nsource="{{item.Source}}" bindtap="newsClick">
+        <view class="news_left">
+            <image mode="scaleToFill" src="http://static.iyuba.com/cms/news/image/{{item.Pic}}"></image>
+            <text class="news_date">{{item.CreatTime}}</text>
+        </view>
+        <view class="news_right">
+            <text class="news_title news_text">{{item.Title}}</text>
+            <text class="news_subTitle news_text">{{item.Title_cn}}({{item.WordCount}} words)</text>
+            <view class="news_data">
+                <text>难度:{{item.HardWeight}}|</text>            
+                <text>阅读:{{item.ReadCount}}|</text>         
+                <text>{{item.UserName}}|</text>         
+                <text>来源:{{item.Source}}</text>         
+            </view>
+        </view>
+    </view>
+</view>

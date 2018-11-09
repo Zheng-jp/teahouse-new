@@ -1,4 +1,4 @@
 <view class="all-content">
-    <my-component tab="{{tab}}" nav="{{nav}}" share="{{share}}" seach_list="{{seach_list}}">
+    <my-component tab="{{tab}}" nav="{{nav}}" share="{{share}}" seach_list="{{seach_list}}" >
   </my-component>
   </view> 

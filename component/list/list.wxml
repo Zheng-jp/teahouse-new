@@ -15,7 +15,7 @@
             <view class="share-grid" wx:for="{{share}}" wx:key="name">
                     <view class='weui-grid__bg'>
                         <view class="share_icon">
-                            <image src="img/u150.png" mode="scaleToFill" />
+                            <image src="http://teahouse.siring.com.cn/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png" mode="scaleToFill" />
                         </view>
                         <view style='border-bottom:#C9C9C9 solid 1px;' class='clear aaa'>
                           <button class="share_name">{{item.name}} </button>
