@@ -1,12 +1,16 @@
 // pages/meeting/meeting.js
+import templates from '../../utils/template'
+const app = getApp();
 Page({
-
+  // 全局变量的获取
+  test: app.data.test,
   /**
    * 页面的初始数据
    */
   data: {
     // 头部导航
    tab:0,
+   
   nav:[
     {
       tab:'0',
@@ -25,20 +29,88 @@ Page({
       text: '定制茶会'
     },
   ],
-  // 分享
-    share: [
+  shares:[
+    {
+       share: [
       {
         name: '双骄',
         url: '/pages/Course/course',
-        icon: 'img/u150.png',
+        icon: app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
         code: '10',
         hot: 'HOT',
         classification: '特点活动',
-        share_content: "20180809马连道茶话会报名参加中马连道进......",
+           share_content: "20180809马连道茶话话会报名参加中马连道201参加中马连道中马连道中马连道进......",
         validity: '长期',
 
-      }
+
+      },
+       
     ],
+    },
+    {
+      share: [
+        {
+          name: '双骄',
+          url: '/pages/Course/course',
+          icon: app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
+          code: '10',
+          hot: 'HOT',
+          classification: '特点活动',
+          share_content: "20180809马连道茶话话会报名参加中马连道201参加中马连道中马连道中马连道进......",
+          validity: '长期',
+
+
+        },
+      ],
+    },
+    {
+      share: [
+        {
+          name: '双骄',
+          url: '/pages/Course/course',
+          icon: app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
+          code: '10',
+          hot: 'HOT',
+          classification: '特点活动',
+          share_content: "20180809马连道茶话话会报名参加中马连道201参加中马连道中马连道中马连道进......",
+          validity: '长期',
+
+
+        },
+      ],
+    },
+    {
+      share: [
+        {
+          name: '双骄',
+          url: '/pages/Course/course',
+          icon: app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
+          code: '10',
+          hot: 'HOT',
+          classification: '特点活动',
+          share_content: "20180809马连道茶话话会报名参加中马连道201参加中马连道中马连道中马连道进......",
+          validity: '长期',
+
+
+        },
+      ],
+    },
+  ],
+  // 分享
+    // share: [
+    //   {
+    //     name: '双骄',
+    //     url: '/pages/Course/course',
+    //     icon: app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
+    //     code: '10',
+    //     hot: 'HOT',
+    //     classification: '特点活动',
+    //     share_content: "20180809马连道茶话会报名参加中马连道进......",
+    //     validity: '长期',
+       
+
+    //   }
+    // ],
     // 搜索列表
     showView: true,
     seach_list:[
@@ -53,7 +125,7 @@ Page({
   },
   tab_click: function (e) {//点击tab切换
     var that = this;
-  //  点击添加类
+    //  点击添加类
     if (that.data.nav.tab === e.target.dataset.current) {
       return false;
     } else {
@@ -62,21 +134,55 @@ Page({
       })
     }
   },
-// 点击搜索
-    onChangeShowState: function () {
+  // 点击搜索
+  onChangeShowState: function () {
     var that = this;
     that.setData({
       showView: (!that.data.showView)
     })
-    },
-  
-  
+  },
+  bindViewTap: function (event) {
+    console.log("nihao////" + event)
+    var item = event.currentTarget.dataset.item;
+    wx.navigateTo({
+      url: '../detail/detail?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
+
+    })
+  },
+ 
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res )
+        console.log("屏幕的高和宽：" + res.windowHeight + "===" + res.windowWidth, )
+        that.setData({
+          winWidth: res.windowWidth,
+          winHeight: res.windowHeight
+        });
+      }
+    });
     showView: (options.showView == "true" ? true : false)
+    // var counter = 0;
+    // for (var e in user) {
+    //   counter++;
+    // }
   },
 
   /**
@@ -90,7 +196,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   console.log(111);
   },
 
   /**

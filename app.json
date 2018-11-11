@@ -5,7 +5,7 @@
     "pages/mine/mine",
     "pages/circle/circle",
      "pages/meeting/meeting",
-     "pages/query/query"
+     "pages/detail/detail"
 
   ],
   "window": {

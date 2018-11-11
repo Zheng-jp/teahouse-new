@@ -1,7 +1,0 @@
- <view >
-  <button  class="hide{{showView?'show':''}}" bindtap="onChangeShowState">{{showView?'隐藏':'显示'}}</button>
-  <button class="hide{{showView?'':'show'}}" bindtap="onChangeShowState">{{showView?'隐藏':'显示'}}</button>
- </view>
- <view class="hide{{showView?'show':''}}">
- <text class="text">我是被显示被隐藏控件</text>
- </view>

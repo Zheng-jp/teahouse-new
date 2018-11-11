@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+   
     ico:[
       {
         nav_ico:'img/u4859.png',

@@ -83,7 +83,7 @@ Page({
         code: '10',
         hot:'HOT',
         classification: '特点活动',
-        share_content:"20180809马连道茶话会报名参加中马连道进......",
+        share_content:"20180809马连道茶话会报名参加中马2018080中20180809马连道茶话会报名参加中连道进......",
         validity:'长期',
 
       }

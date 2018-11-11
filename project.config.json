@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -55,6 +55,17 @@
 					"name": "22",
 					"pathName": "pages/mine/mine",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "111",
+					"pathName": "component/list/list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详细信息",
+					"pathName": "pages/detail/detail"
 				}
 			]
 		}

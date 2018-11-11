@@ -1,0 +1,230 @@
+/* pages/detail/detail.wxss */
+image{
+  width: 100%;
+  height: 100%;
+}
+.title{
+  width: 94%;
+  margin: 16rpx auto;
+ 
+}
+text{
+   display: inline-block;
+}
+.title_title{
+   height: 34rpx;
+   line-height: 34rpx;
+  font-size: 26rpx;
+  padding-left: 10rpx;
+   border-left: solid 6rpx #169BD5;
+}
+.Label{
+  display: inline-block;
+  width: 106rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 20rpx;
+  border: solid 1px;
+  text-align: center;
+  border-radius: 10rpx;
+  margin-left: 20rpx;
+}
+.list_contents{
+  width: 94%;
+  margin: 16rpx auto;
+}
+.ico_img{
+  display: inline-block;
+width: 38rpx;
+height: 38rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+.list_content{
+  display: inline-block;
+  width: 600rpx;
+  font-size: 24rpx;
+  color: #169BD5;
+}
+.list{
+  margin-bottom: 20rpx;
+}
+.lista_content{
+  vertical-align: -20rpx;
+}
+.listb_content{
+  vertical-align: 10rpx;
+}
+.listc_content{
+  vertical-align: 10rpx;
+}
+.listc_content text{
+margin-right: 20rpx;
+}
+.listd_content{
+  vertical-align: -20rpx;
+}
+.active_information{
+  padding-bottom: 10rpx;
+  border-bottom: solid 1px #169BD5;
+}
+.text text{
+ font-size: 26rpx;
+}
+.comment_title{
+width: 652rpx;
+margin: 20rpx auto;
+}
+.text{
+  margin-top: 20rpx;
+}
+
+.xian{
+  width: 246rpx;
+  height: 2px;
+  background: #BCBCBC;
+}
+.ping{
+  vertical-align: -10rpx;
+  font-size: 30rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  color: #169BD5;
+}
+.reward{
+width: 652rpx;
+margin: 0 auto;
+
+}
+.reward text{
+  font-size: 24rpx;
+}
+.comment_list{
+  margin-bottom: 70rpx;
+}
+.comment_ico{
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+}
+.comment_name{
+  display: inline-block;
+}
+.zhan{
+  float: right;
+}
+.zhan_text{
+  float: left;
+}
+.comment_img{
+  float: left;
+  width: 40rpx;
+  height: 40rpx;
+}
+.comment_repay{
+  width: 96%;
+  margin: 20rpx auto;
+}
+.repay_content{
+  margin-left: 40rpx;
+  font-size: 24rpx;
+  color: #333333;
+}
+.comment_name{
+  margin-left: 10rpx;
+  font-size: 28rpx
+}
+.zhan_text{
+  color: #8A8A8A;
+  font-size: 24rpx;
+ margin-top: 10rpx;
+}
+.repay_list text{
+font-size: 26rpx;
+color: #949494;
+margin-left: 80rpx;
+}
+.buttom_nav{
+display:flex;
+position:fixed;
+bottom:0;
+z-index:9999;
+background:#fff;
+padding-bottom: 10rpx;
+
+}
+.star{
+  margin-left:10rpx; 
+  width: 50rpx;
+  height: 50rpx;
+}
+.input{
+  width: 220rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #F2F2F2;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  color: #797979;
+  padding-left: 10rpx;
+  margin-left: 20rpx;
+
+}
+.share{
+  margin-left: 20rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+.monly{
+  color: #CF3A0E;
+  margin-left: 20rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.buttons{
+width: 170rpx;
+height: 60rpx;
+color: #fff;
+background: #FF6700;
+border-radius: 30rpx;
+font-size: 26rpx;
+border: 0;
+margin-left: 42rpx;
+}
+.input_null{
+color: #C9C9C9;
+}
+ 
+.release{
+display: flex;
+align-items: flex-end; /*底部对齐*/
+justify-content: space-between; /*两端对齐*/
+box-sizing: border-box;
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+padding: 18rpx 0 18rpx 30rpx;
+background-color: #F7F8F7;
+font-size: 28rpx;
+z-index: 9999999;
+}
+.release .text{
+width: 604rpx;
+min-height: 34rpx;
+max-height: 102rpx; /*最多显示三行*/
+border-width: 15rpx 20rpx; /*使用padding与预期留白不一致，故使用border*/
+border-style: solid;
+border-color: #ffffff;
+line-height: 34rpx;
+font-size: 28rpx;
+background-color: #ffffff;
+border-radius: 4rpx;
+}
+.release .submit{
+width: 116rpx;
+height: 64rpx;
+line-height: 64rpx;
+text-align: center;
+color: #66CC00;
+}
