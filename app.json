@@ -46,7 +46,7 @@
       {
         "selectedIconPath": "images/icoh.png",
         "iconPath": "images/icog.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/mine/mine",
         "text": "我的"
       }
     ]

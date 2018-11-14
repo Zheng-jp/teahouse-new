@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -52,20 +52,15 @@
 				},
 				{
 					"id": -1,
-					"name": "22",
+					"name": "详细信息",
+					"pathName": "pages/detail/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
 					"pathName": "pages/mine/mine",
 					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "111",
-					"pathName": "component/list/list",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "详细信息",
-					"pathName": "pages/detail/detail"
 				}
 			]
 		}
