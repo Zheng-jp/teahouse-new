@@ -1,36 +1,76 @@
 <!--my.wxml-->
-<view style='background-color:#ebebeb;width:100%;height:{{height}}px;'>
+<view style='background-color:#ebebeb;'>
   <view class='information' >
-  <view class='list balance'>
-         <view>1111</view>
-         <view>1111</view>
-         <view>1111</view>
-  </view>
-    <view class='list'>
-      <view class='username'>
-          <open-data type="userNickName"></open-data>
+      <view class='list balance'>
+            <view>1111</view>
+            <view>1111</view>
+            <view>1111</view>
+      </view>
+        <view class='list'>
+          <view class='username'>
+              <open-data type="userNickName"></open-data>
+            </view>
+            <view class='head_portrait'>
+              <open-data type="userAvatarUrl"></open-data>
+            </view> 
+            <view class='phone_num'>
+              139****0809
+            </view>
         </view>
-        <view class='head_portrait'>
-          <open-data type="userAvatarUrl"></open-data>
-        </view> 
-        <view class='phone_num'>
-          139****0809
-        </view>
-    </view>
-      <view class='list'>
-         <view>1111</view>
-         <view>1111</view>
-         <view>1111</view>
+          <view class='list'>
+            <view>1111</view>
+            <view>1111</view>
+            <view>1111</view>
+      </view>
   </view>
+  <view class='bg1'>
+  <view class='bd_img'><image src='img/u6501.png'></image></view>
+  <view class='huiyuan'  bindtap="bindnume"> 贵宾会员</view>
+  </view>
+  <view class='order'>
+     <view class='order_title'>我的订单</view>
+     <view class='order_content'>
+     <view wx:for="{{order_nav}}" class='nav_list'>
+       <view class='nav_img'><image src='{{item.src}}'></image></view>
+       <view>{{item.text}}</view>
+     </view >
+    
+     </view>
   </view>
   <!-- 我的收藏 -->
-   <!-- <view  bindtap="mycollect" style='width:100%;flex-direction:row; display:flex;float:left;flex:1;background-color:#fff;margin-top:15px;padding-top:10px;padding-bottom:10px;'>
-    <view style='align-items:center;height:20px;'>
-  
-    </view>
-    <view>
-      <text style='padding-left:15px;color:#000;font-size: 16px;'>我的收藏</text>
-    </view>
-  </view> -->
+   <view  bindtap="mycollect"  class='list-content'>
+   <view wx:for='{{list}}' class='ifor_list'>
+      <view class='left'>
+        <view class='list-ico'>
+          <image src='{{item.url}}'></image>
+        </view>
+        <view>
+          <text class='list-text'>{{item.text}}</text>
+        </view>
+      </view>
+      <view class='right'>
+        <view style='align-items:center;height:20px;'>
+          <image style='width:20px;height:20px;padding-left:25px;' src='http://teahouse.siring.com.cn/upload/20181115/15de55bb02733689b58f584f8e075c81.png'></image>
+        </view>
+      </view>
+      </view>
+  </view>
+     <view  bindtap="mycollect"  class='list-content'>
+   <view wx:for='{{lista}}' class='ifor_list'>
+      <view class='left'>
+        <view class='list-ico'>
+          <image src='{{item.url}}'></image>
+        </view>
+        <view>
+          <text class='list-text'>{{item.text}}</text>
+        </view>
+      </view>
+      <view class='right'>
+        <view style='align-items:center;height:20px;'>
+          <image style='width:20px;height:20px;padding-left:25px;' src='http://teahouse.siring.com.cn/upload/20181115/15de55bb02733689b58f584f8e075c81.png'></image>
+        </view>
+      </view>
+      </view>
+  </view>
  
 </view>

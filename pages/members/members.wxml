@@ -1,0 +1,54 @@
+<!--pages/members/members.wxml-->
+<view class='all'>
+  <view class='card'>  
+      <view class='card_a'>
+        <view class='img_cir'>
+              <view class='card_img'>
+                  <image src='img/u6501.png'></image>
+              </view>
+        </view>
+        <view class='user_infor'>
+          <view class='use_num'>
+              <view>会员码</view>
+              <view>2367</view>
+          </view>
+          <view class='code'><image src='img/u8531.png'></image></view>
+        </view>
+    </view>
+    <view class='name'> 贵宾会员</view>
+    <view class='card_c'>
+    <view class='data'>
+    <text>生效日期：20180810</text>
+    </view>
+    <view class='max-data'>有效期：24个月</view>
+    </view>
+  </view>
+  <view class='level'>
+     <view class='level_title'>
+     <view>等级名</view>
+      <view>等级图标</view>
+       <view>有效期</view>
+        <view>消费满</view>
+     </view>
+     <view class='level_content'>
+     <radio-group class="radio-group" bindchange="radioChange">
+     <view class='content_list'> 
+        <view>
+          <radio value="111" checked="true" />
+          <text class='radio_text'>贵宾</text>
+        </view>
+        <view >
+        <view class='level_img'> <image src='img/u6501.png'></image></view>
+      
+        </view>
+        <view>
+        <text>12个月</text>
+        </view>
+        <view>
+        <text>5万/年</text>
+        </view>
+     </view>
+      </radio-group>
+     </view>
+  </view>
+</view>

@@ -1,3 +1,4 @@
+
 //my.js
 // import '../../utils/util.js';
 var util = require('../../utils/util.js')
@@ -5,11 +6,68 @@ var util = require('../../utils/util.js')
 var app = getApp()
 Page({
   data: {
+    test: app.data.test,
     collects: [],
     // item2:{}
     // cacheRes:{},
     cacheNumStr: "0 KB",
-    height: 500
+    height: 500,
+    order_nav: [
+      {
+        src: app.globalData.url + '/upload/20181115/eb46c126533c9c51a19b9baea16f8523.png',
+        text: '待付款'
+      },
+      {
+        src: app.globalData.url + '/upload/20181115/0a2b1ad83a3cb195b5367943f208e667.png',
+        text: '待发货'
+      },
+      {
+        src: app.globalData.url + '/upload/20181115/eb46c126533c9c51a19b9baea16f8523.png',
+        text: '待收货'
+      }, {
+        src: app.globalData.url + '/upload/20181115/ab9f934b82ab3e9d2ba77b9616501d6a.png',
+        text: '待评价'
+      }, {
+        src: app.globalData.url + '/upload/20181115/fa73c90513036e142b64e3ef2c948a87.png',
+        text: '售后/退款'
+      }
+    ],
+    list: [
+      {
+        url: app.globalData.url + '/upload/20181115/62e312cd467c5c263505f288f2e15957.png',
+        text: '会员中心'
+      },
+      {
+        url: app.globalData.url + '/upload/20181115/872ba6211e755c12088c2e5f92fad232.png',
+        text: '消息中心'
+      },
+      {
+        url: app.globalData.url + '/upload/20181115/f052e232cf2c7629080cacbb20522b50.png',
+        text: '地址管理'
+      },
+      {
+        url: app.globalData.url + '/upload/20181115/81c85d2133879add7c6f8ed268410616.png',
+        text: '我的收藏'
+      },
+      {
+        url: app.globalData.url + '/upload/20181115/d0221a688c6699297a1092cec2e1a322.png',
+        text: '我的账户'
+      },
+    ],
+    lista: [
+      {
+        url: app.globalData.url + '/upload/20181115/38b70a3b147560518f3c46c5294ec19f.png',
+        text: '常见问题'
+      },
+      {
+        url: app.globalData.url + '/upload/20181115/2505a16ba762f14d5d88d1ddecf2b755.png',
+        text: '协议合同'
+      },
+      {
+        url: app.globalData.url + '/upload/20181115/575a600f599df7b52b16cd3aa5b48d1c.png',
+        text: '关于我们'
+      }
+    ]
   },
   onLoad: function () {
     var that = this;
@@ -274,7 +332,38 @@ Page({
       }
     })
   },
-  
+  /**
+   * 点击版本更新信息
+   */
+  clickVersion: function () {
+    wx.navigateTo({
+      url: "../about/about?title=版本信息&content="
+        + "当前版本：v0.0.388\n\n"
+        + "历次版本信息：\n\n"
+        + "· v0.0.388版本（2018年7月12日发布）\n\n"
+        + "本次版本更新内容如下：\n"
+        + "1.新增我的收藏页面；（上版本中我的页面改成收藏页面）\n"
+        + "2.修改我的页面内容：新增：我的头像，显示内存，显示我的收藏；清除内存；\n"
+        + "3.将小程序中人物头像改成圆形；\n"
+        + "4.所有页面添加转发功能；\n"
+        + "5.首页，详情页面，收藏页面，收藏详情页面； 点击收藏按钮时数据、页面联动处理；\n"
+        + "6.优化详情页面的界面显示；\n\n"
+        + "· v0.0.328版本（2018年7月5日发布）\n\n"
+        + "本次版本更新内容如下：\n"
+        + "1.搭建微信小程序的框架；\n"
+        + "2.新建首页四页签；\n"
+        + "3.新建收藏页面；\n",
+      success: function (res) {
+        // success
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    })
+  },
   /**
    * 用户点击右上角分享
    */
@@ -289,6 +378,27 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
-  }
+  },
+  bindnume: function (event) {
+    console.log("nihao////" + event)
+    var item = event.currentTarget.dataset.item;
+    wx.navigateTo({
+      url: '../members/members?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
+
+    })
+  },
+
 })
 

@@ -5,7 +5,8 @@
     "pages/mine/mine",
     "pages/circle/circle",
      "pages/meeting/meeting",
-     "pages/detail/detail"
+     "pages/detail/detail",
+     "pages/members/members"
 
   ],
   "window": {
