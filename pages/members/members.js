@@ -5,6 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
+    level:[
+      {
+        name:'贵宾',
+        photo: 'img/u6501.png',
+        time:'12',
+        monyle:'5'
+      },
+      {
+        name: '贵宾',
+        photo: 'img/u6501.png',
+        time: '12',
+        monyle: '5'
+      }, {
+        name: '贵宾',
+        photo: 'img/u6501.png',
+        time: '12',
+        monyle: '5'
+      }
+    ]
 
   },
 

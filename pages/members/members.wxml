@@ -23,6 +23,7 @@
     <view class='max-data'>有效期：24个月</view>
     </view>
   </view>
+   
   <view class='level'>
      <view class='level_title'>
      <view>等级名</view>
@@ -32,23 +33,40 @@
      </view>
      <view class='level_content'>
      <radio-group class="radio-group" bindchange="radioChange">
-     <view class='content_list'> 
+     <view class='content_list' wx:for="{{level}}"> 
         <view>
           <radio value="111" checked="true" />
-          <text class='radio_text'>贵宾</text>
+          <text class='radio_text'>{{item.name}}</text>
         </view>
         <view >
-        <view class='level_img'> <image src='img/u6501.png'></image></view>
+        <view class='level_img'> <image src='{{item.photo}}'></image></view>
       
         </view>
         <view>
-        <text>12个月</text>
+        <text>{{item.time}}个月</text>
         </view>
         <view>
-        <text>5万/年</text>
+        <text>{{iten.monly}}万/年</text>
         </view>
      </view>
       </radio-group>
      </view>
-  </view>
+
+ </view>
+      <view class='tips'>
+       <view class="tip_img"><image src='img/u8340.png'></image></view>
+       <view class='tip_text'>
+            <view>1.当消费达到以上等级，即可成员该等级会员并享受等级会员服务；</view>
+            <view> 2.您还可以直接等级会员充值，成为会员，充值有赠送哦~；</view>
+            <view> 3.更多服务，了解会员权益，请查阅</view>
+            <view style='color:#6B6B6B;'> <radio value="111" checked="true" />我已阅读并同意《会员权益协议》
+</view>
+     </view>
+     </view>
+    <view class="num_button">
+    <view><text>充值</text> <text style='color: red; font-size:40rpx;padding-right:10rpx;'>￥40000</text><text>送积分</text><text style='color:red'>8000</text> </view>
+    <view>
+    <button type='button' class='naext'> 下一步</button>
+    </view>
+    </view>
 </view>

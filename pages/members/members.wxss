@@ -112,3 +112,42 @@ align-items: center;
   vertical-align: -6rpx;
   color: #FF9975;
 }
+.tip_img{
+  width: 30rpx;
+  height: 34rpx;
+}
+.tip_text{
+  margin-left: 20rpx;
+  font-size: 20rpx;
+  color: red;
+}
+.tips{
+  padding: 30rpx;
+  height: 400rpx;
+  display: flex;
+}
+.tip_text>view{
+   line-height: 40rpx;
+}
+.num_button{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20rpx;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  background: #fff;
+  height: 100rpx;
+  justify-content: space-between;
+  font-size: 24rpx;
+}
+.naext{
+  width: 160rpx;
+  font-size: 20rpx;
+background: #FF6700;
+color: #ffF;
+height: 50rpx;
+}
