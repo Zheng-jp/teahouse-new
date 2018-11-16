@@ -50,7 +50,7 @@ image{
   width: 750rpx;
   z-index: 999;
   height: 125rpx;
-  margin-top: -27rpx;
+  margin-top: -29rpx;
   background: url(http://teahouse.siring.com.cn/upload/20181115/a7be6b19771d831c4edb0d75032f6daa.png) no-repeat;
   background-size: 100% 100%;
 
