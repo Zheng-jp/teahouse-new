@@ -62,7 +62,7 @@ swiper{
   height: 400rpx;
 }
 .text{
-   font-size: 26rpx;
+   font-size: 20rpx;
    color: #333;
 }
 .list{
@@ -74,30 +74,10 @@ swiper{
   height: 161rpx;
   background: #fff
 }
-.ico{
-  background:url(http://teahouse.siring.com.cn/upload/20181101/e3d6a7159f8e63e43ba4afb158bb356f.png) no-repeat;
-  background-size:300rpx 300rpx ;
-}
 .nav_ico{
-  width:71rpx;
-height:92rpx;
-margin:0 auto;
-
-}
-.ico-one{
- background-position:10rpx 10rpx;
-}
-.ico-two{
- background-position:0rpx -75rpx;
-}
-.ico-three{
- background-position:-77rpx 10rpx;
-}
-.ico-four{
- background-position:-171rpx 10rpx;
-}
-.ico-five{
- background-position:-234rpx 10rpx;
+  width: 44rpx;
+  height: 44rpx;
+  margin: 40rpx auto 0rpx auto;
 }
 .new{
 height:50rpx;

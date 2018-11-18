@@ -21,6 +21,29 @@ Page({
     close:'img/close.png',
     // 更多图片地址
     more:'img/more.png',
+    nav:[
+      {
+        url:'img/u103.png',
+        text:'商品分类'
+      },
+      {
+        url: 'img/u266.png',
+        text: '我的消息'
+      },
+      {
+        url: 'img/u105.png',
+        text: '买茶入仓'
+      },
+      {
+        url: 'img/u107.png',
+        text: '出仓提货'
+      },
+      {
+        url: 'img/u242.png',
+        text: '茶山走势'
+      },
+
+    ],
   // 商品信息
     routers: [
       {

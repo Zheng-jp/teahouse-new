@@ -24,26 +24,11 @@
 
     </view>
     <view class='nav-list clear'>
-        <view class='list list-one' >
-            <view class='ico nav_ico ico-one'></view>
-            <text class='text'>商品分类</text>
+        <view class='list list-one' wx:for="{{nav}}">
+            <view class='ico nav_ico ico-one'><image src='{{item.url}}'></image></view>
+            <text class='text' >{{item.text}}</text>
         </view>
-         <view class='list list-one' >
-            <view class='ico nav_ico ico-two'></view>
-            <text class='text'>我的消息</text>
-        </view>
-         <view class='list list-one' >
-            <view class='ico nav_ico ico-three'></view>
-            <text class='text'>买茶入仓</text>
-        </view>
-         <view class='list list-one' >
-            <view class='ico nav_ico ico-four'></view>
-            <text class='text'>出仓提货</text>
-        </view>
-         <view class='list list-one' >
-            <view class='ico nav_ico ico-five'></view>
-            <text class='text'>茶山走势</text>
-        </view>
+         
     </view>
     <view class='new clear' >
          <image src='{{laba}}' class='news-img'></image>

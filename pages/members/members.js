@@ -10,21 +10,30 @@ Page({
         name:'贵宾',
         photo: 'img/u6501.png',
         time:'12',
-        monyle:'5'
+        monyle:'5',
+        checked:'true'
       },
       {
-        name: '贵宾',
+        name: '黄金',
         photo: 'img/u6501.png',
         time: '12',
-        monyle: '5'
+        monyle: '5',
+        checked:''
       }, {
-        name: '贵宾',
+        name: '白金',
         photo: 'img/u6501.png',
         time: '12',
-        monyle: '5'
+        monyle: '5',
+        checked: ''
       }
     ]
 
+  },
+  /**
+ * radio监听事件
+ */
+  radioChange: function (e) {
+    console.log(e.detail.value);
   },
   pay: function () {
     var ordercode = this.data.txtOrderCode;

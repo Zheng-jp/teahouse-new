@@ -35,7 +35,7 @@
      <radio-group class="radio-group" bindchange="radioChange">
      <view class='content_list' wx:for="{{level}}"> 
         <view>
-          <radio value="111" checked="true" />
+          <radio value="111" checked="{{item.checked}}"  color='#fff'/>
           <text class='radio_text'>{{item.name}}</text>
         </view>
         <view >
@@ -59,7 +59,7 @@
             <view>1.当消费达到以上等级，即可成员该等级会员并享受等级会员服务；</view>
             <view> 2.您还可以直接等级会员充值，成为会员，充值有赠送哦~；</view>
             <view> 3.更多服务，了解会员权益，请查阅</view>
-            <view style='color:#6B6B6B;'> <radio value="111" checked="true" />我已阅读并同意《会员权益协议》
+            <view style='color:#6B6B6B;'> <checkbox  value="111">我已阅读并同意《会员权益协议》</checkbox> 
 </view>
      </view>
      </view>
