@@ -11,6 +11,7 @@ Page({
       app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
       app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
     ],
+   
     circular: 'true',
     indicatorDots: 'true',
     interval:'2000',
@@ -113,6 +114,8 @@ Page({
     ]
 
     },
+
+
 
     
 

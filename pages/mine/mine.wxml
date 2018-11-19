@@ -1,5 +1,6 @@
 <!--my.wxml-->
 <view style='background-color:#ebebeb;'>
+<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
   <view class='information' >
       <view class='list balance'>
             <view>1111</view>

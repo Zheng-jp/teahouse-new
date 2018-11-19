@@ -6,6 +6,7 @@ var util = require('../../utils/util.js')
 var app = getApp()
 Page({
   data: {
+  
     test: app.data.test,
     collects: [],
     // item2:{}
@@ -69,34 +70,7 @@ Page({
       }
     ]
   },
-  onLoad: function () {
-    var that = this;
-    var mheight = 500;
-    wx.getSystemInfo({
-      success: function (res) {
-        mheight = res.windowHeight;
-      }
-    })
-    wx.getStorageInfo({
-      success: function (res) {
-        console.log(res.keys) //当前storage中所有的key
-        console.log(res.currentSize) //当前占用的空间大小, 单位kb
-        console.log(res.limitSize) //限制的空间大小，单位kb
-        var cacheData = res.currentSize;
-        var cacheStr = "0 KB";
-        if (cacheData >= 1024) {
-          cacheStr = (cacheData / 1024).toFixed(2) + " MB";
-        } else {
-          cacheStr = cacheData + " KB";
-        }
-        that.setData({
-          // cacheRes:res
-          cacheNumStr: cacheStr,
-          height: mheight
-        });
-      }
-    })
-  },
+ 
   /**
   * 生命周期函数--监听页面显示
   */

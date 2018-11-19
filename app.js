@@ -35,7 +35,7 @@ App({
   //   })
   // },
   data: {
-
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     winMask_if: true,
 
   },
