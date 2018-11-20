@@ -8,31 +8,8 @@ Page({
    */
   data: {
     test: app.data.test,
-   
-    ico:[
-      {
-        nav_ico:'img/u4859.png',
-        ico_text:'茶会',
-        ico_url:"/pages/meeting/meeting?title=meeting"
-      },{
-        nav_ico: 'img/u4871.png',
-        ico_text: '养生',
-        ico_url: "/pages/mine/mine?title=mine"
-      }, {
-        nav_ico: 'img/u4869.png',
-        ico_text: '国学',
-        ico_url: "/pages/mine/mine?title=mine"
-      }, {
-        nav_ico: 'img/u4873.png',
-        ico_text: '特权',
-        ico_url: "/pages/mine/mine?title=mine"
-      }, {
-        nav_ico: 'img/u4867.png',
-        ico_text: '茶山行',
-        ico_url: "/pages/mine/mine?title=mine"
-      },
-
-    ],
+    url: app.globalData.tiltes,
+    ico:[],
     share: [
       {
         name: '双骄',
@@ -70,18 +47,19 @@ Page({
   onShow: function () {
     var that = this;
     wx.request({
-      url: app.globalData.tiltes+'',
+      url: app.globalData.tiltes +'teacenter_data',
       data: {
       },
-      method: "GET",
+      method: "post",
       header: {
         "Content-Type": "json" // 默认值
 
       },
       success: function (res) {
-        // that.setData({
-        //   ico: res,
-        // });
+        console.log(res.data.data);
+        that.setData({
+          ico: res.data.data,
+        });
 
        },
       fail: function () {
