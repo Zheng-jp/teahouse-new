@@ -43,5 +43,6 @@ App({
   globalData: {
     userInfo: null,
     url:'http://teahouse.siring.com.cn',
+    tiltes:'http://localhost/teahouse/public/',
   }
 })

@@ -1,29 +1,32 @@
 <!--pages/members/members.wxml-->
 <view class='all'>
-  <view class='card'>  
-      <view class='card_a'>
-        <view class='img_cir'>
-              <view class='card_img'>
-                  <image src='img/u6501.png'></image>
+ <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide"  bindchange="tab_slide" style="height:{{winHeight}}px">
+    <swiper-item  wx:for="{{cards}}">
+            <view class='card'>  
+                <view class='card_a'>
+                  <view class='img_cir'>
+                        <view class='card_img'>
+                            <image src='img/u6501.png'></image>
+                        </view>
+                  </view>
+                  <view class='user_infor'>
+                    <view class='use_num'>
+                        <view>会员码</view>
+                        <view>2367</view>
+                    </view>
+                    <view class='code'><image src='img/u8531.png'></image></view>
+                  </view>
               </view>
-        </view>
-        <view class='user_infor'>
-          <view class='use_num'>
-              <view>会员码</view>
-              <view>2367</view>
-          </view>
-          <view class='code'><image src='img/u8531.png'></image></view>
-        </view>
-    </view>
-    <view class='name'> 贵宾会员</view>
-    <view class='card_c'>
-    <view class='data'>
-    <text>生效日期：20180810</text>
-    </view>
-    <view class='max-data'>有效期：24个月</view>
-    </view>
-  </view>
-   
+              <view class='name'>{{item.name}}</view>
+              <view class='card_c'>
+              <view class='data'>
+              <text>生效日期：20180810</text>
+              </view>
+              <view class='max-data'>有效期：24个月</view>
+              </view>
+            </view>
+    </swiper-item>
+  </swiper> 
   <view class='level'>
      <view class='level_title'>
      <view>等级名</view>

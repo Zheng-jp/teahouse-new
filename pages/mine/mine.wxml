@@ -3,9 +3,9 @@
 <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
   <view class='information' >
       <view class='list balance'>
-            <view>1111</view>
-            <view>1111</view>
-            <view>1111</view>
+            <view class='balance bbla' >余额</view>
+            <view class='balance_num nnum'>￥0.00</view>
+            <view class='balance_btn bbtn'><button>充值</button></view>
       </view>
         <view class='list'>
           <view class='username'>
@@ -19,9 +19,9 @@
             </view>
         </view>
           <view class='list'>
-            <view>1111</view>
-            <view>1111</view>
-            <view>1111</view>
+            <view class='bbla'>积分</view>
+            <view class='nnum'>0</view>
+            <view class='bbtn'><button>兑换</button>  </view>
       </view>
   </view>
   <view class='bg1'>

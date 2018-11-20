@@ -33,7 +33,7 @@ image{
   height: 110rpx;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto;
+  margin: 10rpx auto;
 }
 .information{
   align-items:center;
@@ -125,8 +125,27 @@ image{
   background: #fff;
   color: #CBAA00;
   text-align: center;
-  margin: 0 auto;
+  margin: 10rpx auto;
   line-height: 40rpx;
   border-radius:20rpx; 
   font-weight: bold;
+}
+.list view{
+  margin-bottom: 10rpx;
+}
+.bbla{
+  font-size: 26rpx;
+}
+.nnum{
+  font-weight: bold;
+}
+.bbtn button{
+ width:100rpx;
+ height:40rpx;
+ line-height:40rpx;
+ font-size:20rpx;
+ background:#93291E;
+ color:#fff;
+ border:solid 1px #fff;
+ border-radius:20rpx; 
 }

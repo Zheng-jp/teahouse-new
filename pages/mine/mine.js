@@ -68,7 +68,12 @@ Page({
         url: app.globalData.url + '/upload/20181115/575a600f599df7b52b16cd3aa5b48d1c.png',
         text: '关于我们'
       }
-    ]
+    ],
+  /**
+   * 会员卡
+   */
+
+  
   },
  
   /**
@@ -236,108 +241,29 @@ Page({
       complete: function (res) { },
     })
   },
-  cleancache: function () {
-    var that = this;
-    wx.showModal({
-      title: '提示',
-      content: '确定清除缓存数据',
-      success: function (res) {
-        if (res.confirm) {
-          wx.removeStorage({
-            key: 'logs',
-            success: function (res) {
-              console.log(res.data)
-            }
-          }),
-            wx.removeStorage({
-              key: 'collects',
-              success: function (res) {
-                console.log(res.data)
-                that.setData({
-                  // cacheRes: {},
-                  cacheNumStr: "0 KB"
-                });
-                wx.showToast({
-                  title: '缓存清除成功',
-                  icon: 'success',
-                  duration: 2000
-                })
-              }
-            })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
-  mycollect: function () {
-    console.log('收藏---')
-    // wx.navigateTo({
-    wx.switchTab({
-      url: '../collects/collects',
-      success: function (res) {
-        // success
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
-      }
-    })
-  },
-  clickabout: function () {
+
+  mycollect: function (event) {
+    console.log(event);
+    var item = event.currentTarget.dataset.item;
     wx.navigateTo({
-      url: '../about/about?title=' + "关于·感谢&content=" + "感谢：有梦想的程序丶猿" +
-        "提供的免费开放接口API;\n具体地址为： https://www.jianshu.com/p/e6f072839282" + "\n\n"
-        + "声明：\n"
-        + "本次版本不支持视频播放（下次版本争取添加上），微信说明如下：\n"
-        + "你的小程序“娱乐休闲看看”代码发布审核未通过，原因如下：\n"
-        + "1: 服务类目“工具-图片/音频/视频_”与你提交代码审核时设置的功能页面内容不一致:\n"
-        + "(1):小程序服务提供的内容涉及在线观看视频，属个人未开放类目，建议选择企业主体小程序。\n",
+      url: '../members/members?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
       success: function (res) {
         // success
+        console.log("nihao////跳转成功")
       },
       fail: function () {
         // fail
+        console.log("nihao////跳转失败")
       },
       complete: function () {
         // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
       }
+
     })
   },
-  /**
-   * 点击版本更新信息
-   */
-  clickVersion: function () {
-    wx.navigateTo({
-      url: "../about/about?title=版本信息&content="
-        + "当前版本：v0.0.388\n\n"
-        + "历次版本信息：\n\n"
-        + "· v0.0.388版本（2018年7月12日发布）\n\n"
-        + "本次版本更新内容如下：\n"
-        + "1.新增我的收藏页面；（上版本中我的页面改成收藏页面）\n"
-        + "2.修改我的页面内容：新增：我的头像，显示内存，显示我的收藏；清除内存；\n"
-        + "3.将小程序中人物头像改成圆形；\n"
-        + "4.所有页面添加转发功能；\n"
-        + "5.首页，详情页面，收藏页面，收藏详情页面； 点击收藏按钮时数据、页面联动处理；\n"
-        + "6.优化详情页面的界面显示；\n\n"
-        + "· v0.0.328版本（2018年7月5日发布）\n\n"
-        + "本次版本更新内容如下：\n"
-        + "1.搭建微信小程序的框架；\n"
-        + "2.新建首页四页签；\n"
-        + "3.新建收藏页面；\n",
-      success: function (res) {
-        // success
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
-      }
-    })
-  },
+
+
   /**
    * 用户点击右上角分享
    */

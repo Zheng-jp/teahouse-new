@@ -1,10 +1,13 @@
 // pages/circle/circle.js
+//获取应用实例
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    test: app.data.test,
    
     ico:[
       {
@@ -65,6 +68,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this;
+    wx.request({
+      url: app.globalData.tiltes+'',
+      data: {
+      },
+      method: "GET",
+      header: {
+        "Content-Type": "json" // 默认值
+
+      },
+      success: function (res) {
+        // that.setData({
+        //   ico: res,
+        // });
+
+       },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
 
   },
 

@@ -1,5 +1,7 @@
 // pages/members/members.js
+var app = getApp();
 Page({
+  test: app.data.test,
 
   /**
    * 页面的初始数据
@@ -26,6 +28,18 @@ Page({
         monyle: '5',
         checked: ''
       }
+    ],
+    cards:[
+      {
+        name:'贵宾会员'
+      },
+      {
+        name: '黄金会员'
+      },
+      {
+        name: '白金会员'
+      }
+
     ]
 
   },
@@ -33,55 +47,14 @@ Page({
  * radio监听事件
  */
   radioChange: function (e) {
-    console.log(e.detail.value);
+    var that = this;
+    console.log(that);
   },
-  pay: function () {
-    var ordercode = this.data.txtOrderCode;
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          wx.request({
-            url: 'https://www.yourdomain.com/pay',
-            data: {
-              code: res.code,//要去换取openid的登录凭证
-              ordercode: ordercode
-            },
-            method: 'GET',
-            success: function (res) {
-              console.log(res.data)
-              wx.requestPayment({
-                timeStamp: res.data.timeStamp,
-                nonceStr: res.data.nonceStr,
-                package: res.data.package,
-                signType: 'MD5',
-                paySign: res.data.paySign,
-                success: function (res) {
-                  // success
-                  console.log(res);
-                },
-                fail: function (res) {
-                  // fail
-                  console.log(res);
-                },
-                complete: function (res) {
-                  // complete
-                  console.log(res);
-                }
-              })
-            }
-          })
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      }
-    });
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -95,6 +68,31 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this;
+    wx.request({
+      url: app.globalData.tiltes + 'aaa',
+      data: {
+      },
+      method: "GET",
+      header: {
+        "Content-Type": "json" // 默认值
+
+      },
+      success: function (res) {
+        console.log(res);
+        // that.setData({
+        //   ico: res,
+        // });
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
 
   },
 

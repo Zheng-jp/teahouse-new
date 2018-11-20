@@ -17,7 +17,5 @@
              <template  is="{{item.type == '29' ? 'joy-text' : (item.type == '10' ? 'joy-pic' : (item.type == '41' ? 'joy-video' : 'joy-pic'))}}" data="{{item}}"     bindtap></template>
     </view> 
       </view>
-  
-  
 </view>
 </view>
