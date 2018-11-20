@@ -8,7 +8,7 @@ Page({
    */
   data: {
     test: app.data.test,
-    url: app.globalData.tiltes,
+    url: app.globalData.img_url,
     ico:[],
     share: [
       {
