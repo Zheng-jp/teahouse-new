@@ -13,20 +13,23 @@ Page({
         photo: 'img/u6501.png',
         time:'12',
         monyle:'5',
-        checked:'true'
+        checked:'true',
+        tab:'0',
       },
       {
         name: '黄金',
         photo: 'img/u6501.png',
         time: '12',
         monyle: '5',
-        checked:''
+        checked:'',
+         tab: '1',
       }, {
         name: '白金',
         photo: 'img/u6501.png',
         time: '12',
         monyle: '5',
-        checked: ''
+        checked: '',
+        tab: '2',
       }
     ],
     cards:[
@@ -46,9 +49,20 @@ Page({
   /**
  * radio监听事件
  */
+
+ 
   radioChange: function (e) {
     var that = this;
-    console.log(that);
+     console.log(that)
+    //  点击添加类
+    if (that.data.level.tab === e.detail.value) {
+      return false;
+    } else {
+      that.setData({
+        tab: e.detail.value
+      })
+    }
+   
   },
   /**
    * 生命周期函数--监听页面加载
@@ -68,12 +82,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var gmemberid=app.globalData.gmemberid
     var that = this;
+
     wx.request({
-      url: app.globalData.tiltes + 'aaa',
+      url: app.globalData.tiltes + 'my_show_grade',
       data: {
+        open_id: gmemberid
       },
-      method: "GET",
+      method: "POST",
       header: {
         "Content-Type": "json" // 默认值
 

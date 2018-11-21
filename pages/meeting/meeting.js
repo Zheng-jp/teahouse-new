@@ -125,6 +125,7 @@ Page({
   },
   tab_click: function (e) {//点击tab切换
     var that = this;
+    console.log(e);
     //  点击添加类
     if (that.data.nav.tab === e.target.dataset.current) {
       return false;

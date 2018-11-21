@@ -38,13 +38,15 @@ Page({
                     'content-type': 'application/json'
                   }, // 设置请求的 header
                   success: function (res) {
-                    console.log(res);
+                    console.log(res)
+                    console.log(res.data.data.openId);
+                    console.log(app.globalData.gmemberid)
+                    app.globalData.gmemberid = res.data.data.openId;
                     wx.hideToast();
                     if (res) {
                       wx.switchTab({
                         url: '../index/index'
                       })
-                      console.log(res);
                     }
                     else {
                       console.log("kong")
@@ -92,9 +94,68 @@ Page({
           wx.getUserInfo({
             success: function (res) {
               //用户已经授权过
-              wx.switchTab({
-                url: '../index/index'
-              })
+              wx.login({//login流程
+                success: function (res) {//登录成功
+                  if (res.code) {
+                    var code = res.code;
+                    wx.getUserInfo({//getUserInfo流程
+                      success: function (res2) {//获取userinfo成功
+                        var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码
+                        var iv = res2.iv;
+                        //请求自己的服务器
+                        wx.showToast({
+                          title: '正在登录...',
+                          icon: 'loading',
+                          duration: 10000
+
+                        });
+                        wx.request({
+                          url: app.globalData.tiltes + 'wechatlogin',
+                          data: {
+                            code: code,
+                            encryptedData: encryptedData,
+                            iv: iv
+                          },
+                          method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                          header: {
+                            'content-type': 'application/json'
+                          }, // 设置请求的 header
+                          success: function (res) {
+                            console.log(res);
+                            // console.log(res.data.data.openId);
+                            // console.log(app.globalData.gmemberid)
+                            app.globalData.gmemberid = res.data.data;
+                            wx.hideToast();
+                            if (res) {
+                              wx.switchTab({
+                                url: '../index/index'
+                              })
+                            }
+                            else {
+                              console.log("kong")
+                            }
+
+
+                          },
+                          fail: function () {
+                            // fail
+                            // wx.hideToast();
+                          },
+                          complete: function () {
+                            // complete
+                          }
+                        })
+
+                      }
+                    })
+                  } else {
+                    console.log('获取用户登录态失败！' + res.errMsg)
+                  }
+                }
+              });
+              // wx.switchTab({
+              //   url: '../index/index'
+              // })
             }
           });
         }

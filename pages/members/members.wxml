@@ -38,7 +38,7 @@
      <radio-group class="radio-group" bindchange="radioChange">
      <view class='content_list' wx:for="{{level}}"> 
         <view>
-          <radio value="111" checked="{{item.checked}}"  color='#fff'/>
+          <radio value="{{item.tab}}" checked="{{item.checked}}"  color='#fff'/>
           <text class='radio_text'>{{item.name}}</text>
         </view>
         <view >
