@@ -1,28 +1,28 @@
 <!--pages/members/members.wxml-->
 <view class='all'>
  <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide"  bindchange="tab_slide" style="height:{{winHeight}}px">
-    <swiper-item  wx:for="{{cards}}">
-            <view class='card'>  
+    <swiper-item  wx:for="{{level}}">
+            <view class='card' style='backgroud:{{item.member_background_color}}'>  
                 <view class='card_a'>
                   <view class='img_cir'>
                         <view class='card_img'>
-                            <image src='img/u6501.png'></image>
+                            <image src='{{url}}{{item.member_grade_img}}'></image>
                         </view>
                   </view>
                   <view class='user_infor'>
                     <view class='use_num'>
                         <view>会员码</view>
-                        <view>2367</view>
+                        <view>{{information.member_id}}</view>
                     </view>
                     <view class='code'><image src='img/u8531.png'></image></view>
                   </view>
               </view>
-              <view class='name'>{{item.name}}</view>
+              <view class='name'>{{item.member_grade_name}}</view>
               <view class='card_c'>
               <view class='data'>
               <text>生效日期：20180810</text>
               </view>
-              <view class='max-data'>有效期：24个月</view>
+              <view class='max-data'>有效期：{{item.member_finite_period}}年</view>
               </view>
             </view>
     </swiper-item>
@@ -37,8 +37,8 @@
      <view class='level_content'>
      <radio-group class="radio-group" bindchange="radioChange">
      <view class='content_list' wx:for="{{level}}"> 
-        <view>
-          <radio value="{{item.member_grade_id}}" checked="{{item.checked}}"  color='#fff'/>
+        <view class='radio'>
+          <radio value="{{item.tab}}" checked="{{item.checked}}"  color='#fff'/>
           <text class='radio_text'>{{item.member_grade_name}}</text>
         </view>
         <view >

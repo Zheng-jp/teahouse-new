@@ -9,24 +9,17 @@ Page({
   data: {
     url: app.globalData.img_url,
     level:[],
-    cards:[
-      {
-        name:'贵宾会员'
-      },
-      {
-        name: '黄金会员'
-      },
-      {
-        name: '白金会员'
-      }
-
-    ]
+    information:[ ]
 
   },
   /**
  * radio监听事件
  */
 
+  // tab_slide: function (e) {//滑动切换tab 
+  //   var that = this;
+  //   that.setData({ tab: e.detail.value });
+  // },
  
   radioChange: function (e) {
    
@@ -78,19 +71,20 @@ Page({
       // },
       success: function (res) {
         console.log(res);
-        // console.log(res.data.data.member_grade)
         that.setData({
           level: res.data.data.member_grade,
+          information: res.data.data.information
+          
         });
+        //  添加字段到等级数组
         for (var index in that.data.level) {
-          var sexParam = "that.data.level[" + index + "].tab";
-        
+          var sexParam = "level[" + index + "].tab";
           that.setData({
-            sexParam: "111",
+            [sexParam]: index,
           })
 
         }
-        console.log(that.data.level);
+        console.log(that)
        
   
 

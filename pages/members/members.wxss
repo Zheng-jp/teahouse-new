@@ -30,7 +30,6 @@ radio .wx-radio-input{
   padding: 30rpx;
   width: 98%;
   height: 320rpx;
-  background: #CCCC00;
   margin: 0 auto;
   border-radius: 20rpx;
 box-sizing: border-box
@@ -174,4 +173,7 @@ align-items: center;
 background: #FF6700;
 color: #ffF;
 height: 50rpx;
+}
+.radio{
+  text-align: left !important;
 }

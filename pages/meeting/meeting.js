@@ -168,6 +168,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options.title);
+    wx.request({
+      url: app.globalData.tiltes + 'teacenter_display',
+      data: {
+        $id: options.title
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+       
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -180,10 +204,7 @@ Page({
       }
     });
     showView: (options.showView == "true" ? true : false)
-    // var counter = 0;
-    // for (var e in user) {
-    //   counter++;
-    // }
+    
   },
 
   /**
