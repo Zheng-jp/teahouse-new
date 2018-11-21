@@ -38,18 +38,18 @@
      <radio-group class="radio-group" bindchange="radioChange">
      <view class='content_list' wx:for="{{level}}"> 
         <view>
-          <radio value="{{item.tab}}" checked="{{item.checked}}"  color='#fff'/>
+          <radio value="{{item.member_grade_id}}" checked="{{item.checked}}"  color='#fff'/>
           <text class='radio_text'>{{item.member_grade_name}}</text>
         </view>
         <view >
-        <view class='level_img'> <image src='{{item.member_grade_img}}'></image></view>
+        <view class='level_img'> <image src='{{url}}{{item.member_grade_img}}'></image></view>
       
         </view>
         <view>
-        <text>{{item.member_finite_period}}个年</text>
+        <text>{{item.member_finite_period}}年</text>
         </view>
         <view>
-        <text>{{iten.first_year_pay_full}}万/年</text>
+        <text>{{item.first_year_pay_full}}万/年</text>
         </view>
      </view>
       </radio-group>

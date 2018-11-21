@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    url: app.globalData.img_url,
     level:[],
     cards:[
       {
@@ -29,6 +29,7 @@ Page({
 
  
   radioChange: function (e) {
+   
     var that = this;
      console.log(that)
     //  点击添加类
@@ -45,6 +46,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+   
     
   },
 
@@ -53,12 +55,14 @@ Page({
    */
   onReady: function () {
 
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+  
     var gmemberid=app.globalData.gmemberid;
     console.log(gmemberid);
     var that = this;
@@ -73,8 +77,8 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
-        console.log(res.data.data.member_grade)
+        // console.log(res);
+        // console.log(res.data.data.member_grade)
         that.setData({
           level: res.data.data.member_grade,
         });
@@ -88,6 +92,14 @@ Page({
       }
 
     });
+    
+    for (var index in that.data.level) {
+      var sexParam = "that.data.level[" + index + "].tab"
+      that.setData({
+        [sexParam]:index,
+      })
+    }
+    console.log(that.data.level);
 
   },
 
