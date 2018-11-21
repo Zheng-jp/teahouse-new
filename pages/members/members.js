@@ -77,11 +77,23 @@ Page({
 
       // },
       success: function (res) {
-        // console.log(res);
+        console.log(res);
         // console.log(res.data.data.member_grade)
         that.setData({
           level: res.data.data.member_grade,
         });
+        for (var index in that.data.level) {
+          var sexParam = "that.data.level[" + index + "].tab";
+        
+          that.setData({
+            sexParam: "111",
+          })
+
+        }
+        console.log(that.data.level);
+       
+  
+
 
       },
       fail: function () {
@@ -92,15 +104,9 @@ Page({
       }
 
     });
+     
     
-    for (var index in that.data.level) {
-      var sexParam = "that.data.level[" + index + "].tab"
-      that.setData({
-        [sexParam]:index,
-      })
-    }
-    console.log(that.data.level);
-
+  
   },
 
   /**
