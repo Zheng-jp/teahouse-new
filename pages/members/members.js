@@ -7,31 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    level:[
-      {
-        name:'贵宾',
-        photo: 'img/u6501.png',
-        time:'12',
-        monyle:'5',
-        checked:'true',
-        tab:'0',
-      },
-      {
-        name: '黄金',
-        photo: 'img/u6501.png',
-        time: '12',
-        monyle: '5',
-        checked:'',
-         tab: '1',
-      }, {
-        name: '白金',
-        photo: 'img/u6501.png',
-        time: '12',
-        monyle: '5',
-        checked: '',
-        tab: '2',
-      }
-    ],
+    
+    level:[],
     cards:[
       {
         name:'贵宾会员'
@@ -82,24 +59,25 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var gmemberid=app.globalData.gmemberid
+    var gmemberid=app.globalData.gmemberid;
+    console.log(gmemberid);
     var that = this;
-
     wx.request({
       url: app.globalData.tiltes + 'my_show_grade',
       data: {
         open_id: gmemberid
       },
       method: "POST",
-      header: {
-        "Content-Type": "json" // 默认值
+      // header: {
+      //   "Content-Type": "json" // 默认值
 
-      },
+      // },
       success: function (res) {
         console.log(res);
-        // that.setData({
-        //   ico: res,
-        // });
+        console.log(res.data.data.member_grade)
+        that.setData({
+          level: res.data.data.member_grade,
+        });
 
       },
       fail: function () {

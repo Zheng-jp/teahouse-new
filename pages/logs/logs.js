@@ -8,7 +8,6 @@ Page({
   },
  
   bindGetUserInfo: function (e) {
-    console.log(e.detail.code);
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       wx.login({//login流程
@@ -38,9 +37,6 @@ Page({
                     'content-type': 'application/json'
                   }, // 设置请求的 header
                   success: function (res) {
-                    console.log(res)
-                    console.log(res.data.data.openId);
-                    console.log(app.globalData.gmemberid)
                     app.globalData.gmemberid = res.data.data.openId;
                     wx.hideToast();
                     if (res) {
@@ -121,9 +117,6 @@ Page({
                             'content-type': 'application/json'
                           }, // 设置请求的 header
                           success: function (res) {
-                            console.log(res);
-                            // console.log(res.data.data.openId);
-                            // console.log(app.globalData.gmemberid)
                             app.globalData.gmemberid = res.data.data;
                             wx.hideToast();
                             if (res) {
