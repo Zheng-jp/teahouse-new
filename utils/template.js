@@ -11,6 +11,7 @@ var temp = {
     console.log(item.image0);
     var picsrc = item.image0;
     var imgArr = [];
+    
     imgArr.push(picsrc);
     wx.previewImage({
       current: imgArr[0],     //当前图片地址

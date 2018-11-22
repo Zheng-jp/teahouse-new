@@ -1,50 +1,36 @@
-// pages/detail/detail.js
-const app = getApp();
+// pages/code/code.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    releaseFocus: false,
-    Label:[
-     {
-        name:'仅限会员',
-        color:'#93291E'
-     },
-      {
-        name: '需要预约',
-        color: '#669900'
-      }
-    ],
-    information:[]
+    height:'',
+    information:[],
+  
   },
-  /**
-* 点击回复
-*/
-  bindReply: function (e) {
-    this.setData({
-      releaseFocus: true
-    })
-  },
-  close:function(e) {
-    this.setData({
-      releaseFocus: false
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    var title = options.title;
-    console.log(title);
+
+    var that = this;
+    var gmemberid = app.globalData.gmemberid;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          height: res.windowHeight
+        });
+      }
+    });
     wx.request({
-      url: app.globalData.tiltes + 'teacenter_detailed',
+      url: app.globalData.tiltes + 'my_show_grade',
       data: {
-        id: options.title
+        open_id: gmemberid
       },
-      method: "post",
+      method: "POST",
       // header: {
       //   "Content-Type": "json" // 默认值
 
@@ -52,11 +38,10 @@ Page({
       success: function (res) {
         console.log(res);
         that.setData({
-          information: res.data.data[0],
+          information: res.data.data.information
+
         });
-        
-
-
+     
       },
       fail: function () {
 
@@ -66,7 +51,7 @@ Page({
       }
 
     });
-  
+
   },
 
   /**

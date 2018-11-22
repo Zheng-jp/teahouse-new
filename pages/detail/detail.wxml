@@ -7,29 +7,27 @@
     <view class='list_contents'>
         <view class='list_a list'>
           <view class='ico_img'><image  src='img/u4997.png' ></image></view>
-          <view class='list_content lista_content'>地址：北京本地宝频道提供北京马连道茶城即将疏解买茶叶再也不能去那了(图)有关的信息,</view>
+          <view class='list_content lista_content'>地址：{{information.address}}</view>
 
         </view>
         <view class='list_a list'>
           <view class='ico_img'><image  src='img/u5001.png' ></image></view>
-          <view class='list_content listb_content' style='color:#5E5E5E'>2018/11/11 下午12:57:27</view>
+          <view class='list_content listb_content' style='color:#5E5E5E'>{{information.start_time}}</view>
         </view>
         <view class='list_a list'>
           <view class='ico_img'><image  src='img/u5005.png' ></image></view>
-          <view class='list_content listc_content' ><text style='color:#5E5E5E'>每天10人</text><text>已报名10人</text></view>
+          <view class='list_content listc_content' ><text style='color:#5E5E5E'>每天{{information.participats}}人</text><text>已报名{{information.start_time}}人</text></view>
         </view>
         <view class='list_a list'>
           <view class='ico_img'><image  src='img/u5017.png' ></image></view>
-          <view class='list_content listd_content'>主题：北京本地宝频道提供北京马连道茶城即将疏解买茶叶再也不能去那了(图)有关的信息,</view>
+          <view class='list_content listd_content'>主题：{{information.activity_name}}</view>
         </view>
     </view>
 </view>
 <view class='text'>
-<text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;香港像一座“生长在岩石上”的城市。就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感 \n</text>
-<text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;香港像一座“生长在岩石上”的城市。就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感 \n</text>
-<text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;香港像一座“生长在岩石上”的城市。就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感 \n</text>
+{{information.commodity}}
 </view>
-<view class='comment'>
+<!-- <view class='comment'>
    <view class='comment_list'>
       <view class='comment_title'>
        <text class='xian'></text>
@@ -75,13 +73,13 @@
           <view class='repay_list'> <text >潮州</text><text>刚刚</text><text>回复</text></view>
       </view>
    </view>
-</view>
+</view> -->
 
 
 <view class='buttom_nav'>
 <view class='star'><image src='img/u5053.png'></image></view>
 <input class='input' type='text' placeholder='写评论'></input>
 <view class='share'><image src='img/u5055.png'></image></view>
-<view class='monly'>¥792.0</view>
+<view class='monly'>¥{{information.cost_moneny}}</view>
 <button class='buttons'>立即报名</button>
 </view>

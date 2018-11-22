@@ -8,9 +8,9 @@
    </scroll-view>
   </view> 
    <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide"  bindchange="tab_slide" style="height:{{winHeight}}px">
-    <swiper-item  wx:for="{{shares}}" wx:for-item="items">
+    <swiper-item  wx:for="{{nav}}" wx:for-item="items">
           <scroll-view scroll-y="{{true}}" bindscroll="scroll"  style="height:{{winHeight}}px" >
-          <view class='listview' wx:for="{{items.share}}" wx:for-item="item"  bindtap="bindViewTap" wx:key="*this">
+          <view class='listview' wx:for="{{shares}}" wx:for-item="item"  wx:key="*this">
              <template  is="{{item.type == '29' ? 'joy-text' : (item.type == '10' ? 'joy-pic' : (item.type == '41' ? 'joy-video' : 'joy-pic'))}}" data="{{item}}"   bindtap></template>
     </view> 
     </scroll-view>

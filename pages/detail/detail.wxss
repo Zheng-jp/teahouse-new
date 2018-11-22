@@ -50,7 +50,7 @@ height: 38rpx;
   margin-bottom: 20rpx;
 }
 .lista_content{
-  vertical-align: -20rpx;
+  vertical-align: 10px;
 }
 .listb_content{
   vertical-align: 10rpx;
@@ -62,7 +62,7 @@ height: 38rpx;
 margin-right: 20rpx;
 }
 .listd_content{
-  vertical-align: -20rpx;
+  vertical-align: 10rpx;
 }
 .active_information{
   padding-bottom: 10rpx;

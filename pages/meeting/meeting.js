@@ -13,88 +13,8 @@ Page({
    tab:0,
    
   nav:[],
-  shares:[
-    {
-       share: [
-      {
-        name: '双骄',
-        url: '/pages/Course/course',
-        icon: app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
-        code: '10',
-        hot: 'HOT',
-        classification: '特点活动',
-           share_content: "20180809马连道茶话话会报名参加中马连道201参加中马连道中马连道中马连道进......",
-        validity: '长期',
+  shares:[],
 
-
-      }
-       
-    ],
-    },
-    {
-      share: [
-        {
-          name: '双骄',
-          url: '/pages/Course/course',
-          icon: app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
-          code: '10',
-          hot: 'HOT',
-          classification: '特点活动',
-          share_content: "20180809马连道茶话话会报名参加中马连道201参加中马连道中马连道中马连道进......",
-          validity: '长期',
-
-
-        },
-      ],
-    },
-    {
-      share: [
-        {
-          name: '双骄',
-          url: '/pages/Course/course',
-          icon: app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
-          code: '10',
-          hot: 'HOT',
-          classification: '特点活动',
-          share_content: "20180809马连道茶话话会报名参加中马连道201参加中马连道中马连道中马连道进......",
-          validity: '长期',
-
-
-        },
-      ],
-    },
-    {
-      share: [
-        {
-          name: '双骄',
-          url: '/pages/Course/course',
-          icon: app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
-          code: '10',
-          hot: 'HOT',
-          classification: '特点活动',
-          share_content: "20180809马连道茶话话会报名参加中马连道201参加中马连道中马连道中马连道进......",
-          validity: '长期',
-
-
-        },
-      ],
-    },
-  ],
-  // 分享
-    // share: [
-    //   {
-    //     name: '双骄',
-    //     url: '/pages/Course/course',
-    //     icon: app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
-    //     code: '10',
-    //     hot: 'HOT',
-    //     classification: '特点活动',
-    //     share_content: "20180809马连道茶话会报名参加中马连道进......",
-    //     validity: '长期',
-       
-
-    //   }
-    // ],
     // 搜索列表
     showView: true,
     seach_list:[
@@ -106,6 +26,34 @@ Page({
   tab_slide: function (e) {//滑动切换tab 
     var that = this;
     that.setData({ tab: e.detail.current });
+    var id = that.data.nav[that.data.tab].id;
+    wx.request({
+      url: app.globalData.tiltes + 'teacenter_activity',
+      data: {
+        id: id
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          shares: res.data.data,
+        });
+       
+
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
   },
   tab_click: function (e) {//点击tab切换
     var that = this;
@@ -117,7 +65,35 @@ Page({
       that.setData({
         tab: e.target.dataset.current
       })
+      var id = that.data.nav[that.data.tab].id;
+      wx.request({
+        url: app.globalData.tiltes + 'teacenter_activity',
+        data: {
+          id: id
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+
+        // },
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            shares: res.data.data,
+          });
+
+
+        },
+        fail: function () {
+
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+
+      });
     }
+   
   },
   // 点击搜索
   onChangeShowState: function () {
@@ -127,10 +103,11 @@ Page({
     })
   },
   bindViewTap: function (event) {
-    console.log("nihao////" + event)
+    var that=this;
+    console.log()
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
-      url: '../detail/detail?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
+      url: '../detail/detail?title='+ event.currentTarget.id ,
       success: function (res) {
         // success
         console.log("nihao////跳转成功")
@@ -152,6 +129,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(this);
     console.log(options.title);
     wx.request({
       url: app.globalData.tiltes + 'teacenter_display',
@@ -190,7 +168,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_activity',
       data: {
-        // id: options.title
+        id: options.title
       },
       method: "post",
       // header: {
@@ -199,17 +177,10 @@ Page({
       // },
       success: function (res) {
         console.log(res);
-        // that.setData({
-        //   nav: res.data.data,
-        // });
-        //  添加字段到等级数组
-        // for (var index in that.data.nav) {
-        //   var sexParam = "nav[" + index + "].tab";
-        //   that.setData({
-        //     [sexParam]: index,
-        //   })
-
-        // }
+        that.setData({
+          shares: res.data.data,
+        });
+   
 
 
       },
