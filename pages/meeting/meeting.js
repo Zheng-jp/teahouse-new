@@ -2,6 +2,7 @@
 import templates from '../../utils/template'
 const app = getApp();
 Page({
+
   // 全局变量的获取
   test: app.data.test,
   /**
@@ -11,24 +12,7 @@ Page({
     // 头部导航
    tab:0,
    
-  nav:[
-    {
-      tab:'0',
-      text:'例行茶会'
-    },
-    {
-      tab: '1',
-      text: '年度茶会'
-    },
-       {
-      tab: '2',
-      text: '定制茶会'
-    },
-    {
-      tab: '3',
-      text: '定制茶会'
-    },
-  ],
+  nav:[],
   shares:[
     {
        share: [
@@ -43,7 +27,7 @@ Page({
         validity: '长期',
 
 
-      },
+      }
        
     ],
     },
@@ -172,7 +156,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_display',
       data: {
-        $id: options.title
+        id: options.title
       },
       method: "post",
       // header: {
@@ -181,6 +165,17 @@ Page({
       // },
       success: function (res) {
         console.log(res);
+        that.setData({
+          nav: res.data.data,
+        });
+        //  添加字段到等级数组
+        for (var index in that.data.nav) {
+          var sexParam = "nav[" + index + "].tab";
+          that.setData({
+            [sexParam]: index,
+          })
+
+        }
        
 
       },

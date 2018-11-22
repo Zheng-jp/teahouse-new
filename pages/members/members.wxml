@@ -1,8 +1,8 @@
 <!--pages/members/members.wxml-->
 <view class='all'>
- <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide"  bindchange="tab_slide" style="height:{{winHeight}}px">
+ <swiper current="{{tab}}" class="swiper-box" duration="300"  bindchange="tab_slide" catchtouchmove="stopTouchMove">
     <swiper-item  wx:for="{{level}}">
-            <view class='card' style='backgroud:{{item.member_background_color}}'>  
+            <view class='card' style='background:{{item.member_background_color}}'>  
                 <view class='card_a'>
                   <view class='img_cir'>
                         <view class='card_img'>

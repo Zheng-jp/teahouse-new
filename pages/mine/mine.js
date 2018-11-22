@@ -80,8 +80,32 @@ Page({
   * 生命周期函数--监听页面显示
   */
   onShow: function () {
+    var gmemberid = app.globalData.gmemberid;
     console.log("我显示了")
     this.requesLocalData();
+    wx.request({
+      url: app.globalData.tiltes + 'my_show_grade',
+      data: {
+        open_id: gmemberid
+      },
+      method: "POST",
+     
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          level: res.data.data.member_grade,
+          information: res.data.data.information
+
+        });
+           },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
   },
   bindViewTap: function (event) {
     // console.log("nihao////" + event.currentTarget.dataset.item)

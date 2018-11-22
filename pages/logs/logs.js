@@ -87,6 +87,12 @@ Page({
     wx.getSetting({
       success: function (res) {
         if (res.authSetting['scope.userInfo']) {
+          wx.showToast({
+            title: '正在登录...',
+            icon: 'loading',
+            duration: 10000
+
+          });
           wx.getUserInfo({
             success: function (res) {
               //用户已经授权过
@@ -99,12 +105,7 @@ Page({
                         var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码
                         var iv = res2.iv;
                         //请求自己的服务器
-                        wx.showToast({
-                          title: '正在登录...',
-                          icon: 'loading',
-                          duration: 10000
-
-                        });
+                      
                         wx.request({
                           url: app.globalData.tiltes + 'wechatlogin',
                           data: {

@@ -2,7 +2,7 @@
 <view class='content'>
  <view class='nav-list clear'>
         <view class='list list-one' wx:for="{{ico}}">
-        <navigator url="../meeting/meeting?title={{item.name}}">  
+        <navigator url="../meeting/meeting?title={{item.id}}">  
             <view class='ico'>
                <image src='{{url}}{{item.icon_image}}'></image>
             </view>

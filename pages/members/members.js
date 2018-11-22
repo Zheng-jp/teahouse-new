@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    tab: '0',
     url: app.globalData.img_url,
     level:[],
     information:[ ]
@@ -18,11 +19,12 @@ Page({
 
   // tab_slide: function (e) {//滑动切换tab 
   //   var that = this;
-  //   that.setData({ tab: e.detail.value });
+   
+  //   that.setData({ tab: e.detail.current });
+  //   console.log(that);
   // },
  
   radioChange: function (e) {
-   
     var that = this;
      console.log(that)
     //  点击添加类
@@ -34,6 +36,10 @@ Page({
       })
     }
    
+  },
+  stopTouchMove: function () {
+    console.log(111);
+    return false;
   },
   /**
    * 生命周期函数--监听页面加载
@@ -55,7 +61,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
     var gmemberid=app.globalData.gmemberid;
     console.log(gmemberid);
     var that = this;
