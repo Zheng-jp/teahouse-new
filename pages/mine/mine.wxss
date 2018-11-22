@@ -23,7 +23,6 @@ image{
 .information{
   display: flex;
   height: 245rpx;
-  background: #93291E;
 }
 .username{
   font-size: 30rpx;
@@ -51,9 +50,6 @@ image{
   z-index: 999;
   height: 125rpx;
   margin-top: -29rpx;
-  background: url(http://teahouse.siring.com.cn/upload/20181115/a7be6b19771d831c4edb0d75032f6daa.png) no-repeat;
-  background-size: 100% 100%;
-
 }
 .order{
   background: #fff;
@@ -144,8 +140,12 @@ image{
  height:40rpx;
  line-height:40rpx;
  font-size:20rpx;
- background:#93291E;
  color:#fff;
  border:solid 1px #fff;
  border-radius:20rpx; 
+}
+.bdd_img{
+  width: 750rpx;
+  height: 20rpx;
+  position: fixed;
 }

@@ -187,6 +187,40 @@ Page({
       }
 
     });
+    wx.request({
+      url: app.globalData.tiltes + 'teacenter_activity',
+      data: {
+        // id: options.title
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+        // that.setData({
+        //   nav: res.data.data,
+        // });
+        //  添加字段到等级数组
+        // for (var index in that.data.nav) {
+        //   var sexParam = "nav[" + index + "].tab";
+        //   that.setData({
+        //     [sexParam]: index,
+        //   })
+
+        // }
+
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
     var that = this;
     wx.getSystemInfo({
       success: function (res) {

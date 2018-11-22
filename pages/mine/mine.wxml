@@ -1,11 +1,12 @@
 <!--my.wxml-->
 <view style='background-color:#ebebeb;'>
 <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+<view style='background:{{information.member_background_color}}'>
   <view class='information' >
       <view class='list balance'>
             <view class='balance bbla' >余额</view>
-            <view class='balance_num nnum'>￥0.00</view>
-            <view class='balance_btn bbtn'><button>充值</button></view>
+            <view class='balance_num nnum'>￥{{information.member_wallet}}</view>
+            <view class='balance_btn bbtn'><button style='background:{{information.member_background_color}}'>充值</button></view>
       </view>
         <view class='list'>
           <view class='username'>
@@ -15,18 +16,19 @@
               <open-data type="userAvatarUrl"></open-data>
             </view> 
             <view class='phone_num'>
-              139****0809
+            {{information.member_phone_num}}
             </view>
         </view>
           <view class='list'>
             <view class='bbla'>积分</view>
-            <view class='nnum'>0</view>
-            <view class='bbtn'><button>兑换</button>  </view>
-      </view>
-  </view>
-  <view class='bg1'>
-  <view class='bd_img'><image src='img/u6501.png'></image></view>
-  <view class='huiyuan'  bindtap="bindnume"> 贵宾会员</view>
+            <view class='nnum'>{{information.member_integral_wallet}}</view>
+            <view class='bbtn'><button style='background:{{information.member_background_color}}'>兑换</button>  </view>
+         </view>
+    </view>
+    <view class='bg1'>
+    <view class='bd_img'><image src='{{url}}{{information.member_grade_img}}'></image></view>
+    <view class='huiyuan'  bindtap="bindnume"> {{information.member_grade_name}}</view>
+    </view>
   </view>
   <view class='order'>
      <view class='order_title'>我的订单</view>

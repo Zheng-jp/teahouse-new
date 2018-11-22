@@ -1,4 +1,3 @@
-
 //my.js
 // import '../../utils/util.js';
 var util = require('../../utils/util.js')
@@ -6,12 +5,10 @@ var util = require('../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-  
+    url: app.globalData.img_url,
     test: app.data.test,
     collects: [],
-    // item2:{}
-    // cacheRes:{},
-    cacheNumStr: "0 KB",
+   information:[],
     height: 500,
     order_nav: [
       {
@@ -75,13 +72,14 @@ Page({
 
   
   },
- 
   /**
-  * 生命周期函数--监听页面显示
-  */
+ * 生命周期函数--监听页面加载
+ */
   onShow: function () {
+    var that = this;
     var gmemberid = app.globalData.gmemberid;
-    console.log("我显示了")
+    console.log(that);
+    console.log("我显示了");
     this.requesLocalData();
     wx.request({
       url: app.globalData.tiltes + 'my_index',
@@ -89,15 +87,12 @@ Page({
         open_id: gmemberid
       },
       method: "POST",
-     
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          level: res.data.data.member_grade,
-          information: res.data.data.information
 
+      success: function (res) {
+        that.setData({
+          information: res.data.data,
         });
-           },
+      },
       fail: function () {
 
       },
@@ -106,7 +101,10 @@ Page({
       }
 
     });
+
   },
+  
+ 
   bindViewTap: function (event) {
     // console.log("nihao////" + event.currentTarget.dataset.item)
     var item = event.currentTarget.dataset.item;
@@ -155,93 +153,7 @@ Page({
       // item2:item
     })
   },
-  //收藏功能
-  bindvideo_collect: function (event) {
-    var that = this;
-    var itemArr = [];
-    var item = event.currentTarget.dataset.item;
-    var collectFlag = ""; //"":默认状态；"1":收藏成功状态；"0":取消收藏成功状态；
-    try {
-      var value = wx.getStorageSync('collects');
-      if (value) {
-        itemArr = JSON.parse(value);
-        if (itemArr && itemArr.length > 0) {
-          for (var i = 0; i < itemArr.length; i++) {
-            var itemOne = itemArr[i];
-            if ((itemOne.user_id + itemOne.t) == (item.user_id + item.t)) {
-              // 取消收藏。
-              itemArr.splice(i, 1);
-              collectFlag = "0";
-              break;
-            }
-            if (i == itemArr.length - 1) {
-              item.isCollect = true;
-              itemArr.unshift(item); //向数组插入一个元素成为第一个元素
-              collectFlag = "1";
-              break;
-            }
-          }
-        } else {
-          item.isCollect = false;
-          itemArr = [item];
-          collectFlag = "1";
-        }
-      } else {
-        item.isCollect = false;
-        itemArr = [item];
-        collectFlag = "1";
-      }
-    } catch (e) {
-      // Do something when catch error
-      wx.showToast({
-        title: '获取缓存数据出错',
-        icon: 'fail'
-      })
-    }
 
-    if (collectFlag != "") {
-      wx.setStorage({
-        key: "collects", //以用户id和用户创建该数据的时间作为唯一的key
-        data: JSON.stringify(itemArr),
-        success: function () {
-          if (collectFlag == "0") {
-            wx.showToast({
-              title: '取消收藏成功',
-              icon: 'success',
-              duration: 2000,
-              success: function () {
-                that.setData({
-                  collects: itemArr
-                });
-              }
-            })
-
-          } else if (collectFlag == "1") {
-            that.setData({
-              collects: itemArr
-            });
-            wx.showToast({
-              title: '收藏成功',
-              icon: 'success',
-              duration: 2000,
-              fail: function () {
-                that.setData({
-                  collects: itemArr
-                });
-              }
-            })
-          }
-        },
-        fail: function () {
-          wx.showToast({
-            title: '收藏失败',
-            icon: 'none'
-          })
-        }
-      })
-      return;
-    }
-  },
   //视频播放功能
   bindvideo_play: function (event) {
     this.bindViewTap(event);

@@ -41,6 +41,9 @@ Page({
     console.log(111);
     return false;
   },
+  bindViewTap: function () {
+    console.log(111);
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -62,8 +65,8 @@ Page({
    */
   onShow: function () {
     var gmemberid=app.globalData.gmemberid;
-    console.log(gmemberid);
     var that = this;
+    console.log(that);
     wx.request({
       url: app.globalData.tiltes + 'my_show_grade',
       data: {

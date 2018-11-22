@@ -12,15 +12,15 @@
                   <view class='user_infor'>
                     <view class='use_num'>
                         <view>会员码</view>
-                        <view>{{information.member_id}}</view>
+                        <view >{{information.member_id}}</view>
                     </view>
-                    <view class='code'><image src='img/u8531.png'></image></view>
+                    <view class='code' bindtap="bindViewTap"><image src='img/u8531.png'></image></view>
                   </view>
               </view>
               <view class='name'>{{item.member_grade_name}}</view>
               <view class='card_c'>
               <view class='data'>
-              <text>生效日期：20180810</text>
+              <text>生效日期：{{information.member_grade_create_time}}</text>
               </view>
               <view class='max-data'>有效期：{{item.member_finite_period}}年</view>
               </view>
