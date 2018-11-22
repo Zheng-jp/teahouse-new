@@ -84,7 +84,7 @@ Page({
     console.log("我显示了")
     this.requesLocalData();
     wx.request({
-      url: app.globalData.tiltes + 'my_show_grade',
+      url: app.globalData.tiltes + 'my_index',
       data: {
         open_id: gmemberid
       },
