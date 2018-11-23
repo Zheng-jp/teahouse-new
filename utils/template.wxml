@@ -1,13 +1,11 @@
 <template name="joy-pic">
   <view class='weui-grid__bg' bindtap="bindViewTap" id="{{item.id}}">
         <view class="share_icon">
-            <!-- <image src=" http://localhost/teahouse/public/uploads/{{item.classify_image}}" mode="scaleToFill" /> -->
-             <image src="{{item.url}}{{item.classify_image}}" mode="scaleToFill" />
-           
+            <image src=" http://localhost/teahouse/public/uploads/{{item.classify_image}}" mode="scaleToFill" />
         </view>
         <view style='border-bottom:#C9C9C9 solid 1px;' class='clear aaa'>
-          <button class="share_name">{{item.named}} </button>
-          <text class='share-content'>{{item.activity_name}}</text>
+          <button class="share_name">{{item.activity_name}} </button>
+          <text class='share-content'>{{item.address}}</text>
         </view>
         <view class='share-xia'>
             <text class="share-kuchun">{{item.names}}</text>

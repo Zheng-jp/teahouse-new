@@ -1,6 +1,5 @@
 // pages/detail/detail.js
 const app = getApp();
-var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
@@ -33,61 +32,6 @@ Page({
       releaseFocus: false
     })
   },
-  
-  pay: function () {
-    var that=this;
-    console.log(that.data.information.cost_moneny);
-    wx.request({
-      url: app.globalData.tiltes + 'aaa',
-      data: {
-        open_id:app.globalData.gmemberid,
-        cost_moneny: that.data.information.cost_moneny,
-        activity_name: that.data.information.activity_name
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "application/json" // 默认值
-      // },
-      success: function (res) {
-        if (result.data) {
-          //out_trade_no=res.data['out_trade_no'];
-          wx.requestPayment({
-            timeStamp: result.data['timeStamp'],
-            nonceStr: result.data['nonceStr'],
-            package: result.data['package'],
-            signType: 'MD5',
-            paySign: result.data['paySign'],
-            'success': function (successret) {
-              console.log('支付成功');
-              //获取支付用户的信息
-              wx.getStorage({
-                key: 'userInfo',
-                success: function (getuser) {
-                  //加入订单表做记录
-                  wx.request({
-                    url: url + 'Wx_AddOrder',
-                    data: {
-                      uname: getuser.data.nickName,
-                      goods: that.data.goodsList[0].goods_name,
-                      price: that.data.totalPrice,
-                      openid: app.globalData.gmemberid,
-                    },
-                    success: function (lastreturn) {
-                      console.log("存取成功");
-                    }
-                  })
-                },
-              })
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
-      }
-    });
-
-  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -101,19 +45,15 @@ Page({
         id: options.title
       },
       method: "post",
-      header: {
-        "Content-Type": "application/json" // 默认值
+      // header: {
+      //   "Content-Type": "json" // 默认值
 
-      },
+      // },
       success: function (res) {
-   
         console.log(res);
         that.setData({
           information: res.data.data[0],
-          
         });
-        var article = res.data.data[0].commodity;
-        WxParse.wxParse('article', 'html', article, that, 5);
         
 
 

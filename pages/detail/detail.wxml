@@ -1,5 +1,3 @@
-<import src="../../wxParse/wxParse.wxml"/>
-
 <view class="active_information">
     <view class='title'>
     <text class='title_title'>活动信息</text>
@@ -27,7 +25,7 @@
     </view>
 </view>
 <view class='text'>
-<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+{{information.commodity}}
 </view>
 <!-- <view class='comment'>
    <view class='comment_list'>
@@ -83,5 +81,5 @@
 <input class='input' type='text' placeholder='写评论'></input>
 <view class='share'><image src='img/u5055.png'></image></view>
 <view class='monly'>¥{{information.cost_moneny}}</view>
-<button class='buttons' bindtap='pay'>立即报名</button>
+<button class='buttons'>立即报名</button>
 </view>

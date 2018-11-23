@@ -1,5 +1,4 @@
 // 这种方式完全没有必要
-
 var temp = {
   onclick: function (event) {
     console.log("点击了" + event.currentTarget.dataset.item)
