@@ -48,7 +48,39 @@ Page({
         //   "Content-Type": "application/json" // 默认值
         // },
         success: function (res) {
-        console.log(res)
+        console.log(res);
+          if (result.data) {
+            wx.requestPayment({
+              timeStamp: result.data['timeStamp'],
+              nonceStr: result.data['nonceStr'],
+              package: result.data['package'],
+              signType: 'MD5',
+              paySign: result.data['paySign'],
+              'success': function (successret) {
+                console.log('支付成功');
+                //获取支付用户的信息
+                wx.getStorage({
+                  key: 'userInfo',
+                  success: function (getuser) {
+                    //加入订单表做记录
+                    wx.request({
+                      url: url + 'Wx_AddOrder',
+                      data: {
+                        uname: getuser.data.nickName,
+                        goods: that.data.goodsList[0].goods_name,
+                        price: that.data.totalPrice,
+                        openid: res.data,
+                      },
+                      success: function (lastreturn) {
+                        console.log("存取成功");
+                      }
+                    })
+                  },
+                })
+              },
+              'fail': function (res) { }
+            })
+          }
         },
               fail: function () {
 
