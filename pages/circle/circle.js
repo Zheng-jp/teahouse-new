@@ -10,20 +10,29 @@ Page({
     test: app.data.test,
     url: app.globalData.img_url,
     ico:[],
-    share: [
-      {
-        name: '双骄',
-        url: '/pages/Course/course',
-        icon: 'img/u150.png',
-        code: '10',
-        hot: 'HOT',
-        classification: '特点活动',
-        share_content: "20180809马连道茶话会报名参加中马连道进......",
-        validity: '长期',
+    share: [],
 
+  },
+  bindViewTap: function (event) {
+    var that = this;
+    console.log()
+    var item = event.currentTarget.dataset.item;
+    wx.navigateTo({
+      url: '../detail/detail?title=' + event.currentTarget.id,
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
       }
-    ],
 
+    })
   },
  
 
@@ -70,8 +79,41 @@ Page({
       }
 
     });
+    wx.request({
+      url: app.globalData.tiltes + 'teacenter_alls',
+      data: {
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          share: res.data.data,
+        });
+        //  添加字段到等级数组
+        for (var index in that.data.share) {
+          var sexParam = "share[" + index + "].url";
+          that.setData({
+            [sexParam]: app.globalData.img_url,
+          })
+
+        }
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
 
   },
+
 
   /**
    * 生命周期函数--监听页面隐藏

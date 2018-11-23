@@ -1,5 +1,6 @@
 // pages/detail/detail.js
 const app = getApp();
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
@@ -32,6 +33,32 @@ Page({
       releaseFocus: false
     })
   },
+    pay: function () {
+      var that = this;
+      console.log(that.data.information.cost_moneny);
+      wx.request({
+        url: app.globalData.tiltes + 'wxpay',
+        data: {
+          open_id: app.globalData.gmemberid,
+          cost_moneny: that.data.information.cost_moneny,
+          activity_name: that.data.information.activity_name
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "application/json" // 默认值
+        // },
+        success: function (res) {
+        console.log(res)
+        },
+              fail: function () {
+
+              },
+              complete: function () {
+                wx.hideLoading()
+              }
+            });     
+
+},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -45,15 +72,19 @@ Page({
         id: options.title
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
+      header: {
+        "Content-Type": "application/json" // 默认值
 
-      // },
+      },
       success: function (res) {
+   
         console.log(res);
         that.setData({
           information: res.data.data[0],
+          
         });
+        var article = res.data.data[0].commodity;
+        WxParse.wxParse('article', 'html', article, that, 5);
         
 
 

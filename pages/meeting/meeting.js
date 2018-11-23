@@ -42,6 +42,14 @@ Page({
         that.setData({
           shares: res.data.data,
         });
+        //  添加字段到等级数组
+        for (var index in that.data.shares) {
+          var sexParam = "shares[" + index + "].url";
+          that.setData({
+            [sexParam]: app.globalData.img_url,
+          })
+
+        }
        
 
 
@@ -81,6 +89,14 @@ Page({
           that.setData({
             shares: res.data.data,
           });
+          //  添加字段到等级数组
+          for (var index in that.data.shares) {
+            var sexParam = "shares[" + index + "].url";
+            that.setData({
+              [sexParam]: app.globalData.img_url,
+            })
+
+          }
 
 
         },
@@ -97,7 +113,9 @@ Page({
   },
   // 点击搜索
   onChangeShowState: function () {
+    
     var that = this;
+    console.log(that);
     that.setData({
       showView: (!that.data.showView)
     })
