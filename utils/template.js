@@ -1,4 +1,5 @@
 // 这种方式完全没有必要
+
 var temp = {
   onclick: function (event) {
     console.log("点击了" + event.currentTarget.dataset.item)
@@ -11,6 +12,7 @@ var temp = {
     console.log(item.image0);
     var picsrc = item.image0;
     var imgArr = [];
+    
     imgArr.push(picsrc);
     wx.previewImage({
       current: imgArr[0],     //当前图片地址
