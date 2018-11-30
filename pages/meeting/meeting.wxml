@@ -3,9 +3,10 @@
  <view class='nav'>
  <view  class="img hide{{showView?'show':''}}" bindtap="onChangeShowState"><image src='img/u3885.png'></image></view>
   <view  class="img hide{{showView?'':'show'}}" bindtap="onChangeShowState"><image src='img/u3885.png'></image></view>
-     <scroll-view  class="swiper-tab" scroll-x="true">
+     <scroll-view  class="swiper-tab" scroll-x="true" >
       <view wx:for="{{nav}}"  class="bre swiper-tab-list {{item.tab==tab? 'on' : ''}}" data-current="{{item.tab}}" bindtap="tab_click" >{{item.name}}</view>  
    </scroll-view>
+   <view class='right'><image src='{{url}}/upload/20181130/68e7485fcacc0bcce1eec769a7cf55df.png'    ></image></view>
   </view> 
    <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide"  bindchange="tab_slide" style="height:{{winHeight}}px">
     <swiper-item  wx:for="{{nav}}" wx:for-item="items">
@@ -20,7 +21,7 @@
   </swiper>
   <view class="mask hide{{showView?'':'show'}}" >
         <view class='all_seach'>
-          <text class='all_seach_text'  bindtap="onChangeShowState">全部 </text>         
+          <text class='all_seach_text'  bindtap="onChangeShowState">全部 </text>         s
         </view>
         <view class='other_seach'>
             <view class='seach_list' wx:for="{{seach_list}}" >

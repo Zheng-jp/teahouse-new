@@ -11,7 +11,7 @@ Page({
   data: {
     // 头部导航
    tab:0,
-   
+    url: app.globalData.url,
   nav:[],
   shares:[],
 
