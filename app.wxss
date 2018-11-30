@@ -3,4 +3,14 @@
 .clear{
   overflow: hidden;
 }
+.share-content{
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+overflow:hidden;
+-webkit-box-orient: vertical;
+line-height:42rpx;
+margin:10rpx;
+
+}
 

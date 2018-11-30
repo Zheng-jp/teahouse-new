@@ -20,7 +20,7 @@ Page({
         text: '待发货'
       },
       {
-        src: app.globalData.url + '/upload/20181115/eb46c126533c9c51a19b9baea16f8523.png',
+        src: app.globalData.url + '/upload/20181115/9dd5f4a52c2a77653c7ea3ef05ef7226.png',
         text: '待收货'
       }, {
         src: app.globalData.url + '/upload/20181115/ab9f934b82ab3e9d2ba77b9616501d6a.png',

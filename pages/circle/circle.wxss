@@ -119,3 +119,24 @@ padding: 10rpx;
 .share-xia{
   padding-bottom: 10rpx;
 }
+
+.share-xia{
+  padding-bottom: 10rpx;
+}
+.listview{
+  width: 720rpx;
+  border-radius:10rpx;
+  overflow: hidden;
+  margin: 15rpx auto;
+  background: #fff;
+   box-shadow: 0rpx 6rpx #E5E5E5;
+}
+.share_icon {
+  overflow: hidden;
+}
+.share-xia{
+  overflow: hidden;
+}
+.shares-content{
+   background: #F9F9F9;
+}

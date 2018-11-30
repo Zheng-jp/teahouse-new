@@ -40,6 +40,7 @@ padding: 28rpx
   margin: 0 auto 20rpx auto;
   background: #fff;
   border-radius:20rpx; 
+   box-shadow: 0rpx 6rpx #E5E5E5;
 }
 .swiper-tab{  
     width: 81.3%;  
@@ -205,4 +206,24 @@ border-bottom: 1px #333 solid;
 }
 .weui-grid__bg{
   margin-bottom: 20px;
+}
+
+.share-xia{
+  padding-bottom: 10rpx;
+}
+.listview{
+  width: 720rpx;
+  border-radius:10rpx;
+  overflow: hidden;
+  margin: 15rpx auto;
+  background: #fff;
+}
+.share_icon {
+  overflow: hidden;
+}
+.share-xia{
+  overflow: hidden;
+}
+.shares-content{
+   background: #F9F9F9;
 }

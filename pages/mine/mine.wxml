@@ -26,10 +26,18 @@
          </view>
     </view>
     <view class='bg1'>
-    <view class='bd_img'><image src='{{url}}{{information.member_grade_img}}'></image></view>
-    <view class='huiyuan'  bindtap="bindnume"> {{information.member_grade_name}}</view>
+    <view class='big-img'>
+     <view class='bd_img'>
+     <image src='{{url}}{{information.member_grade_img}}'></image></view></view>
+   
     </view>
+
   </view>
+  <view style='background:#fff;'>
+      <view class='cir' style='background:{{information.member_background_color}}'>
+     <view class='huiyuan'  bindtap="bindnume"> {{information.member_grade_name}}</view>
+    </view>
+    </view>
   <view class='order'>
      <view class='order_title'>我的订单</view>
      <view class='order_content'>
@@ -53,7 +61,7 @@
       </view>
       <view class='right'>
         <view style='align-items:center;height:20px;'>
-          <image style='width:20px;height:20px;padding-left:25px;' src='http://teahouse.siring.com.cn/upload/20181115/15de55bb02733689b58f584f8e075c81.png'></image>
+          <image style='width:20px;height:20px;padding-left:25px;' src='http://teahouse.siring.com.cn/upload/20181129/f95ab6bf449933fe54fbcce047b87c3d.png'></image>
         </view>
       </view>
       </view>
@@ -70,7 +78,7 @@
       </view>
       <view class='right'>
         <view style='align-items:center;height:20px;'>
-          <image style='width:20px;height:20px;padding-left:25px;' src='http://teahouse.siring.com.cn/upload/20181115/15de55bb02733689b58f584f8e075c81.png'></image>
+          <image style='width:20px;height:20px;padding-left:25px;' src='http://teahouse.siring.com.cn/upload/20181129/f95ab6bf449933fe54fbcce047b87c3d.png'></image>
         </view>
       </view>
       </view>

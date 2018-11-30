@@ -38,7 +38,7 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         that.setData({
           shares: res.data.data,
         });
@@ -65,7 +65,7 @@ Page({
   },
   tab_click: function (e) {//点击tab切换
     var that = this;
-    console.log(e);
+    // console.log(e);
     //  点击添加类
     if (that.data.nav.tab === e.target.dataset.current) {
       return false;
@@ -85,7 +85,7 @@ Page({
 
         // },
         success: function (res) {
-          console.log(res);
+          // console.log(res);
           that.setData({
             shares: res.data.data,
           });
@@ -115,14 +115,14 @@ Page({
   onChangeShowState: function () {
     
     var that = this;
-    console.log(that);
+    // console.log(that);
     that.setData({
       showView: (!that.data.showView)
     })
   },
   bindViewTap: function (event) {
     var that=this;
-    console.log()
+    // console.log()
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
       url: '../detail/detail?title='+ event.currentTarget.id ,
@@ -147,8 +147,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this);
-    console.log(options.title);
     wx.request({
       url: app.globalData.tiltes + 'teacenter_display',
       data: {
@@ -160,7 +158,6 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
         that.setData({
           nav: res.data.data,
         });
@@ -186,7 +183,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_activity',
       data: {
-        id: options.title
+        id: options.tid
       },
       method: "post",
       // header: {
@@ -194,10 +191,17 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
         that.setData({
           shares: res.data.data,
         });
+        //  添加字段到等级数组
+        for (var index in that.data.shares) {
+          var sexParam = "shares[" + index + "].url";
+          that.setData({
+            [sexParam]: app.globalData.img_url,
+          })
+
+        }
    
 
 
@@ -213,8 +217,6 @@ Page({
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res )
-        console.log("屏幕的高和宽：" + res.windowHeight + "===" + res.windowWidth, )
         that.setData({
           winWidth: res.windowWidth,
           winHeight: res.windowHeight

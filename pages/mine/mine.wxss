@@ -9,7 +9,28 @@ image{
   align-items: center;
   background-color: #ff5
 }
+.big-img{
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius:50%;
+  overflow: hidden; 
+  width: 60rpx;
+  height: 60rpx;
+  margin: 10rpx auto;
+  padding: 5rpx;
 
+}
+.cir{
+height:124rpx;
+width:750rpx;
+border-radius:50%;
+overflow:hidden;
+margin-top:-57rpx;
+
+
+}
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
@@ -46,10 +67,14 @@ image{
   text-align: center;
 }
 .bg1{
-  width: 750rpx;
-  z-index: 999;
-  height: 125rpx;
-  margin-top: -29rpx;
+  width:750rpx;
+z-index:999;
+height:80rpx;
+margin-top:-29rpx;
+background:url(https://teahouse.siring.com.cn/upload/20181128/a2b8caa669ed9bf0a717e687b9d4333e.png) no-repeat;
+background-position:50% 55%;
+background-size:80%;
+
 }
 .order{
   background: #fff;
@@ -115,16 +140,18 @@ image{
   margin: 0 auto
 }
 .huiyuan{
-  width: 200rpx;
-  height: 40rpx;
-  font-size: 30rpx;
-  background: #fff;
-  color: #CBAA00;
-  text-align: center;
-  margin: 10rpx auto;
-  line-height: 40rpx;
-  border-radius:20rpx; 
-  font-weight: bold;
+  width:200rpx;
+height:40rpx;
+font-size:30rpx;
+background:#fff;
+color:#CBAA00;
+text-align:center;
+margin:68rpx auto;
+line-height:40rpx;
+border-radius:20rpx;
+font-weight:bold;
+
+ 
 }
 .list view{
   margin-bottom: 10rpx;
