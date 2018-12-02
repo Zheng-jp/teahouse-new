@@ -13,4 +13,9 @@ line-height:42rpx;
 margin:10rpx;
 
 }
+.aaa{
+  display: flex;
+  align-items: center;
+  
+}
 
