@@ -37,17 +37,18 @@ Page({
                     'content-type': 'application/json'
                   }, // 设置请求的 header
                   success: function (res) {
-                    app.globalData.gmemberid = res.data.data.openId;
+                    app.globalData.gmemberid = res.data.data;
                     wx.hideToast();
                     if (res) {
                       wx.switchTab({
                         url: '../index/index'
                       })
+                      
                     }
                     else {
                       console.log("kong")
                     }
-
+                  
 
                   },
                   fail: function () {

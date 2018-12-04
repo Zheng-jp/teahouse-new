@@ -27,7 +27,7 @@ Page({
  
   radioChange: function (e) {
     var that = this;
-     console.log(that)
+   console.log(e);
     //  点击添加类
     if (that.data.level.tab === e.detail.value) {
       return false;
@@ -36,27 +36,34 @@ Page({
         tab: e.detail.value
       })
     }
-   
+    var member_grade_name = that.data.information.member_grade_name;
+    var tab=that.data.tab;
+    console.log(tab);
+    if (member_grade_name == that.data.level[tab].member_grade_name) {    
+        that.setData({
+          is: true,
+        })
+      }
+      else{
+        that.setData({
+          is: false,
+        })
+      }
+    
+    console.log(that);
   },
   stopTouchMove: function () {
-    console.log(111);
     return false;
   },
   bindViewTap: function () {
     var that = this;
-    console.log()
     wx.navigateTo({
       url: '../code/code?title=' + app.globalData.gmemberid,
       success: function (res) {
-        console.log("nihao////跳转成功")
       },
       fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
       },
       complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
       }
 
     })
@@ -83,7 +90,6 @@ Page({
   onShow: function () {
     var gmemberid=app.globalData.gmemberid;
     var that = this;
-    console.log(that);
     wx.request({
       url: app.globalData.tiltes + 'my_show_grade',
       data: {
@@ -95,7 +101,6 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
         that.setData({
           level: res.data.data.member_grade,
           information: res.data.data.information
@@ -109,7 +114,27 @@ Page({
           })
 
         }
-        console.log(that)
+        for (var index in that.data.level) {
+          var sexParam = "level[" + index + "].check";
+          that.setData({
+            [sexParam]: false,
+          })
+
+        }
+        var member_grade_name = that.data.information.member_grade_name;
+        for (var index in that.data.level){
+          if (member_grade_name == that.data.level[index].member_grade_name){
+            var check = "level[" + index + "].check";
+           
+            that.setData({
+              tab: that.data.level[index].tab,
+              [check]:true,
+            })
+          }
+        }
+        
+
+     
        
   
 

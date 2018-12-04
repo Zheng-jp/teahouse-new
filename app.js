@@ -6,7 +6,6 @@ App({
     winMask_if: true,
 
   },
-
   globalData: {
     userInfo: null,
     gmemberid:null,

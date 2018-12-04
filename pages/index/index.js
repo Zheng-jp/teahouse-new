@@ -104,8 +104,9 @@ Page({
 
     },
   go_good: function (event) {
+
     var that = this;
-    // console.log()
+    console.log(event);
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
       url: '../good/good',
@@ -146,6 +147,7 @@ Page({
   },
   onShow: function () {
     var that = this;
+    
   wx.request({
     url: app.globalData.tiltes + 'teacenter_recommend',
     data: {

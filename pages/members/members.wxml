@@ -36,9 +36,9 @@
      </view>
      <view class='level_content'>
      <radio-group class="radio-group" bindchange="radioChange">
-     <view class='content_list' wx:for="{{level}}"> 
-        <view class='radio'>
-          <radio value="{{item.tab}}" checked="{{item.checked}}"  color='#fff'/>
+     <view class='content_list' wx:for="{{level}}" > 
+        <view class='radio' >
+          <radio value="{{item.tab}}" checked="{{item.check}}"  color='#fff' />
           <text class='radio_text'>{{item.member_grade_name}}</text>
         </view>
         <view >
