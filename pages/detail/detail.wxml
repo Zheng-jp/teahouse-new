@@ -18,7 +18,7 @@
         </view>
         <view class='list_a list'>
           <view class='ico_img'><image  src='img/u5005.png' ></image></view>
-          <view class='list_content listc_content' ><text style='color:#5E5E5E'>每天{{information.participats}}人</text><text>已报名{{information.start_time}}人</text></view>
+          <view class='list_content listc_content' ><text style='color:#5E5E5E'>每天{{information.participats}}人</text><text>已报名0人</text></view>
         </view>
         <view class='list_a list'>
           <view class='ico_img'><image  src='img/u5017.png' ></image></view>

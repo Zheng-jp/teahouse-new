@@ -18,4 +18,7 @@ margin:10rpx;
   align-items: center;
   
 }
+.share-content{
+  width: 600rpx;
+}
 

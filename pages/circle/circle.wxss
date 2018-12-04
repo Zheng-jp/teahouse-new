@@ -137,7 +137,7 @@ padding: 10rpx;
   overflow: hidden;
   margin: 15rpx auto;
   background: #fff;
-  box-shadow: 0rpx 6rpx #E5E5E5;
+  box-shadow: 4rpx 6rpx #E5E5E5;
 }
 .share_icon {
   overflow: hidden;

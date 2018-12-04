@@ -20,7 +20,7 @@
               <view class='name'>{{item.member_grade_name}}</view>
               <view class='card_c'>
               <view class='data'>
-              <text>生效日期：{{information.member_grade_create_time}}</text>
+              <text  wx:if="{{is}}">生效日期：{{information.member_grade_create_time}}</text>
               </view>
               <view class='max-data'>有效期：{{item.member_finite_period}}年</view>
               </view>

@@ -8,6 +8,7 @@ Page({
    */
   data: {
     tab: '0',
+    is: true, 
     url: app.globalData.img_url,
     level:[],
     information:[ ]
