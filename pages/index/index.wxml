@@ -39,7 +39,7 @@
     <view class='goods '>
       <view class='goods-title clear'>
           <text class='goods-title-text'>商品</text>
-          <view class='more-all'>
+          <view class='more-all' bindtap="go_good">
               <text class='more'>更多</text>
               <image src='{{more}}' style='float:right; ' class='more-img'></image>
           </view>
@@ -72,7 +72,7 @@
  <view class='share'>
       <view class='share-title clear'>
           <text class='goods-title-text'>推荐</text>
-          <view class='more-all'>
+          <view class='more-all' bindtap="go_meeting">
               <text class='more'>更多</text>
               <image src='{{more}}' style='float:right; ' class='more-img'></image>
           </view>

@@ -1,0 +1,104 @@
+/* 轮播图 */
+.all{
+  background: #F2F2F2;
+}
+.home_banner{
+  height: 526rpx;
+}
+swiper{
+  height: 526rpx;
+}
+.text{
+   font-size: 20rpx;
+   color: #333;
+}
+.list{
+  text-align: center;
+  float: left;
+  width: 20%;
+}
+.nav-list{
+  height: 161rpx;
+  background: #fff
+}
+.nav_ico{
+  width:65rpx;
+height:65rpx;
+margin:24rpx auto 0rpx auto;
+
+}
+.through{
+  text-decoration: line-through;
+  color: #6B6B6B;
+  margin-left: 30rpx;
+  font-size: 30rpx;
+}
+.level_images{
+  width: 46rpx;
+  height: 40rpx;
+}
+.goods_cont{
+  background: #fff;
+  padding: 16rpx;
+}
+.good_name{
+  font-size: 31rpx;
+  font-weight: bold;
+  margin-top: 6rpx;
+  margin-bottom: 14rpx;
+  
+}
+.selling-point{
+  color: #949494;
+  font-size: 26rpx;
+}
+.price_cont{
+  margin-top: 20rpx;
+
+}
+.sale{
+  color: red;
+  font-size: 50rpx;
+  margin-left: 26rpx;
+}
+.other_info{
+  display: flex;
+  height: 94rpx;
+  align-items: center;
+  
+}
+.other_info view{
+  flex: 1;
+  font-size: 26rpx;
+  color: #949494;
+  
+}
+.inventory{
+  text-align: center;
+}
+.sales{
+  text-align: right;
+}
+.ser-type{
+  padding: 20rpx;
+  margin: 10rpx 0 10rpx 0;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  height: 60rpx;
+  align-items: center;
+  font-size: 30rpx;
+}
+.more{
+  width: 43rpx;
+  height: 40rpx;
+  overflow: hidden;
+}
+.type{
+  color: #868686;
+}
+.nav{width:100%;height:100rpx;display:flex;flex-direction:row;}
+.default{line-height:100rpx;text-align:center;flex:1;border-right:1px solid gainsboro;color:#000;font-weight:bold;font-size:28rpx;}
+.red{line-height:100rpx;text-align:center;color:#fc5558;flex:1;border-right:1px solid gainsboro;font-weight:bold;font-size:28rpx;}
+.show{display:block;text-align:center;line-height:200rpx;}
+.hidden{display:none;text-align:center;line-height:200px;}

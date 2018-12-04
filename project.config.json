@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -71,7 +71,19 @@
 				{
 					"id": -1,
 					"name": "code",
-					"pathName": "pages/code/code"
+					"pathName": "pages/code/code",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商品",
+					"pathName": "pages/good/good",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商品详情",
+					"pathName": "pages/goods_detail/goods_detail"
 				}
 			]
 		}

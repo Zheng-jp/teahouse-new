@@ -7,7 +7,9 @@
      "pages/meeting/meeting",
      "pages/detail/detail",
      "pages/members/members",
-      "pages/code/code"
+      "pages/code/code",
+      "pages/good/good",
+      "pages/goods_detail/goods_detail"
 
 
   ],
