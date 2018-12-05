@@ -9,14 +9,15 @@
      "pages/members/members",
       "pages/code/code",
       "pages/good/good",
-      "pages/goods_detail/goods_detail"
+      "pages/goods_detail/goods_detail",
+      "pages/add_address/add_address"
 
 
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F9F9F9",
-    "navigationBarTitleText": "智慧茶仓",
+    "navigationBarTitleText": "滴金茶业",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

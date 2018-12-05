@@ -38,6 +38,7 @@ Page({
                   }, // 设置请求的 header
                   success: function (res) {
                     app.globalData.gmemberid = res.data.data;
+                    console.log(res);
                     wx.hideToast();
                     if (res) {
                       wx.switchTab({

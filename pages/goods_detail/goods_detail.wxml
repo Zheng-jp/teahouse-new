@@ -1,52 +1,148 @@
-  <view class='all'>
-        <view class='home_banner'>
-              <swiper indicator-dots="{{indicatorDots}}"
-                    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" >
-                    <block wx:for="{{image}}"  wx:key="{{index}}">
-                      <swiper-item>
-                        <image src="{{item}}" class="slide-image" />
-                      </swiper-item>
-                    </block>
-              </swiper>
+<view class='all'>
+	<view class='mask' wx:if="{{mask_show}}">
+		<view class='select-ser-pop'>
+			<image src='img/x.png' mode="widthFix" class='close-select-pop' bindtap='hideFlag'></image>
 
-          </view>
-          <view class='goods_cont'>
-              <view class='good_name'>商品名称</view>
-              <view class='selling-point'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点</view>
-              <view class='price_cont'> 
-                  <view class='level_images'><image src='https://teahouse.siring.com.cn/uploads/20181121/40f3fba9c9ff0b65540a4eacbca7ff65.png'></image></view>
-                  <view class='sale'>￥90.0/片</view>
-                  <view class='through'>￥190.0/片</view>
-          </view>
-                <view class='other_info'>
-                    <view class='freight'>
-                    运费：免费
-                    </view>
-                    <view class='inventory'>
-                    库存888片
-                    </view>
-                    <view class='sales'>
-                    销量213片
-                    </view>
-                </view>
-            
-          </view>
-          <view class='ser-type'>
-           <view>
-                <text>选择：</text>
-                <text class='type'>规格</text>
-           </view>
-           <image  class='more' src='https://teahouse.siring.com.cn/upload/20181129/f95ab6bf449933fe54fbcce047b87c3d.png'></image>
-           
-          </view>
-         <view class='tab-box'>
-             <view class="body">
-                <view class="nav bc_white">
-                  <view class="{{selected?'red':'default'}}" bindtap="selected">系统提醒</view>
-                  <view class="{{selected1?'red':'default'}}" bindtap="selected1">优惠活动</view>
-                </view>
-                <view class="{{selected?'show':'hidden'}}">for system</view>
-                <view class="{{selected1?'show':'hidden'}}">for activity</view>
-                </view>
-         </view>
-    </view>
+			<view class='select-goods-wrap'>
+				<view class='select-goods-img'>
+					<image src='img/u1715.png' mode="widthFix"></image>
+				</view>
+
+				<view class="select-goods-info">
+					<view class='select-goods-price'>
+						<view class='new_select-goods-price'>￥90.0/片</view>
+						<view class='old_select-goods-price'>￥190.0/片</view>
+					</view>
+					<view class='select-goods-spec'>
+						<view class='select-goods-stock'>库存213片</view>
+						<view class='select-goods-sells'>销量213片</view>
+					</view>
+				</view>
+			</view>
+			<view class='spec-wrap'>
+				<view class='spec-box' wx:for="{{specifications}}">
+					<view class='spec_title'> {{item.specifications_name}}</view>
+					<view class='spec_content_all'>
+						<view class='spec_content' wx:for="{{item.specifications_num}}">
+							<view class='spec_content_text'>{{item}}</view>
+						</view>
+					</view>
+				</view>
+				<view class='select-quantity'>
+					<view class='select-quantity_text'>购买数量</view>
+					<view class='select_calculator_num'>
+						<view class="select-minus">-</view>
+						<view class='select-calculator_val'><input type='number' value='1'></input>
+						</view>
+						<view class="select-increase">+</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class='home_banner'>
+		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}">
+			<block wx:for="{{image}}" wx:key="{{index}}">
+				<swiper-item>
+					<image src="{{item}}" class="slide-image" />
+				</swiper-item>
+			</block>
+		</swiper>
+
+	</view>
+	<view class='goods_cont'>
+		<view class='good_name'>商品名称</view>
+		<view class='selling-point'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点</view>
+		<view class='price_cont'>
+			<view class='level_images'>
+				<image src='https://teahouse.siring.com.cn/uploads/20181121/40f3fba9c9ff0b65540a4eacbca7ff65.png'></image>
+			</view>
+			<view class='sale'>￥90.0/片</view>
+			<view class='through'>￥190.0/片</view>
+		</view>
+		<view class='other_info'>
+			<view class='freight'>
+				运费：免费
+			</view>
+			<view class='inventory'>
+				库存888片
+			</view>
+			<view class='sales'>
+				销量213片
+			</view>
+		</view>
+
+	</view>
+	<view class='ser-type' bindtap='showFlag'>
+		<view>
+			<text>选择：</text>
+			<text class='type'>规格</text>
+		</view>
+		<image class='more' src='https://teahouse.siring.com.cn/upload/20181129/f95ab6bf449933fe54fbcce047b87c3d.png'></image>
+
+	</view>
+	<view class='tab-box'>
+		<view class="nav bc_white">
+			<view>
+				<view class="{{selected?'red':'default'}}" bindtap="selected">商品详情</view>
+			</view>
+			<view>
+				<view class="{{selected1?'red':'default'}}" bindtap="selected1">评价</view>
+			</view>
+		</view>
+		<view class="{{selected?'show':'hidden'}}">for system</view>
+		<view class="{{selected1?'show':'hidden'}}">
+			<view class='comment'>
+				<view class='comment_list'>
+					<view class='comment_repay'>
+						<view class='comment_ico'>
+							<image src='img/photo.png' ></image>
+						</view>
+				            <view class='comment_right'>
+				                <view class='comment_name'>瑞川</view>
+				                <view class='repay_content'>香港就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感。 但在这个全球最密集的城市，“死后能住进棺材”纯属是妄念。
+				                </view>
+                        <view class='comment_img_all'>
+                              <view class='comment_imgs'>
+                                  <image src='img/u2811.png'></image>
+                              </view>
+                               <view class='comment_imgs'>
+                                  <image src='img/u2811.png'></image>
+                              </view>
+                               <view class='comment_imgs'>
+                                  <image src='img/u2811.png'></image>
+                              </view>
+                        </view>
+                        <view class='time'>2018-10-06</view>
+                        <view class='repays_content'>
+                          <text class='repay_content_title'>官方回复：</text>
+                          <text>香港就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感。 但在这个全球最密集的城市，“死后能住进棺材”纯属是妄念。</text>
+                        </view>
+							</view>
+					  </view>
+						
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class='footbar'>
+		<view class='ico_view'>
+			<view class='service'>
+				<image src='img/u1510.png' class='footbar_ico'></image>
+				<view class='footbar_text'>客服</view>
+			</view>
+			<view class='share'>
+				<image src='img/u1492.png' class='footbar_ico'></image>
+				<view class='footbar_text'>分享</view>
+			</view>
+			<view class='shopping_cart'>
+				<image src='img/u1494.png' class='footbar_ico'></image>
+				<view class='footbar_text'>购物车</view>
+			</view>
+		</view>
+		<view class='trade'>
+			<view class='add-cart'>加入购物车</view>
+			<view class='buy' bindtap="showPopup">立即购买</view>
+		</view>
+	</view>
+</view>

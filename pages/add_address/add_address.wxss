@@ -1,0 +1,16 @@
+/* pages/add_address/add_address.wxss */
+.section{
+  width: 750rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  
+}
+.section__title{
+  width: 200rpx;
+  text-align: center;
+}
+.section input{
+width: 550rpx;
+
+}

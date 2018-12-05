@@ -1,0 +1,21 @@
+<form bindsubmit="formSubmit" bindreset="formReset">
+ <view class="section">
+    <view class="section__title">姓名</view>
+    <input name="input" placeholder="真实姓名" />
+  </view>
+  <view class="section">
+    <view class="section__title">电话</view>
+    <input name="input" placeholder="手机号码" />
+  </view>
+  <view class="section">
+    <view class="section__title">地区信息</view>
+    <input name="input" placeholder="真实姓名" />
+  </view>
+  <view class="section">
+    <view class="section__title">详细地址</view>
+    <input name="input" placeholder="街道门牌、楼层房间号等信息" />
+  </view>
+  <view class="btn-area">
+    <button form-type="submit">Submit</button>
+  </view>
+</form>

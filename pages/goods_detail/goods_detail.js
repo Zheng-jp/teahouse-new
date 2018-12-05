@@ -6,11 +6,51 @@ Page({
    * 页面的初始数据
    */
   data: {
+    add_address:true,
     tab: 0,
     image: [
       app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
       app.globalData.url + '/upload/20181128/eb9826b6cbef8a7a581d7cd55726612f.jpg',
       app.globalData.url + '/upload/20181128/31d02b855e58a946d5c8dddbb278376b.jpg',
+    ],
+    specifications:[{
+      specifications_name: '选择尺寸',
+      specifications_num:[
+        '16寸',
+        '16寸',
+        '16寸',
+        '16寸',
+        '16寸', 
+        '16寸',
+        '16寸',
+        '16寸',
+        '16寸',
+        '16寸',
+        '16寸',
+        '16寸',
+        '16寸',
+      ]
+    },
+      {
+        specifications_name: '选择尺寸',
+        specifications_num: [
+          '16寸',
+          '16寸',
+          '16寸',
+          '16寸',
+          '16寸',
+          '16寸',
+          '16寸',
+          '16寸',
+          '16寸',
+          '16寸',
+          '16寸',
+          '16寸',
+          '16寸',
+        ]
+      }
+      
+
     ],
     circular: 'true',
     indicatorDots: 'true',
@@ -18,6 +58,7 @@ Page({
     autoplay: 'true',
     selected: true,
     selected1: false,
+    mask_show:false,
    
   },
   selected: function (e) {
@@ -32,6 +73,56 @@ Page({
       selected1: true
     })
   },
+    showFlag: function (e) {
+      this.setData({
+        mask_show:true,
+      })
+      
+    
+  },
+  
+  hideFlag: function (e) {
+    this.setData({
+      mask_show: false,
+    })
+  },
+ 
+ 
+  showPopup: function (e) {
+    var that=this;
+    if (that.data.add_address){
+      wx.showModal({
+        title: '提示',
+        content: '请先添加收货地址',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../add_address/add_address',
+              success: function (res) {
+                // success
+                console.log("nihao////跳转成功")
+              },
+              fail: function () {
+                // fail
+                console.log("nihao////跳转失败")
+              },
+              complete: function () {
+                // complete
+                console.log("nihao////跳转行为结束，未知成功失败")
+              }
+
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+
+  },
+
+
+
 
   /**
    * 生命周期函数--监听页面加载
