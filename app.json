@@ -10,7 +10,8 @@
       "pages/code/code",
       "pages/good/good",
       "pages/goods_detail/goods_detail",
-      "pages/add_address/add_address"
+      "pages/add_address/add_address",
+      "pages/select_address/select_address"
 
 
   ],

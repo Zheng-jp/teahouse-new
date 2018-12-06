@@ -1,22 +1,11 @@
-// pages/add_address/add_address.js
+// pages/select_address/select_address.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    region: ['省', '市', '区'],
-    customItem: "全部"
 
-  },
-  bindRegionChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      region: e.detail.value
-    })
-  },
-  formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
   },
 
   /**

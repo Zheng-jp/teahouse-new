@@ -33,7 +33,6 @@ radio .wx-radio-input{
   margin: 0 auto;
   border-radius: 20rpx;
 box-sizing: border-box;
-background: 
 }
 image{
   width: 100%;
