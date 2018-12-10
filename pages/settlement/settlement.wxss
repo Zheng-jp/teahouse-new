@@ -1,0 +1,172 @@
+/* pages/settlement/settlement.wxss */
+.titles{
+  background: #fff;
+  padding: 25rpx; 
+  margin-top: 10rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.order-goods-info{
+  display: flex;
+  align-items: center;
+}
+.order-goods-img{
+  background: #fff;
+  width: 278rpx;
+    height: 170rpx;
+    margin: 14rpx;
+}
+.order-info-title{
+  font-size: 30rpx;
+
+}
+.order-goods-p{
+  color: #949494;
+  font-size: 26rpx;
+  line-height:42rpx;
+}
+.unit-price-img{
+  width: 30rpx;
+  height: 36rpx;
+}
+.unit-price-quantity{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.unit-price{
+  display: flex;
+}
+.order-info-box{
+  padding: 14rpx;
+}
+.unit-price-p{
+  font-size: 34rpx;
+}
+.quantity-p{
+  font-size: 34rpx;
+}
+.order-goods-info{
+  background: #FAFAFA;
+}
+.radio-group{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.radio-group label{
+  padding: 20rpx;
+  width: 33.33%;
+  display: flex;
+  align-items: center;
+}
+.text_radio{
+  color: #5E5E5E;
+  margin-left: 32rpx;
+  font-size: 24rpx;
+}
+.way{
+  margin-top: 30rpx;
+  background: #fff;
+ 
+}
+.way_select{
+ border-bottom:1rpx solid  #E4E4E4;
+}
+
+.direct_mail{
+  font-size: 28rpx;
+  padding: 26rpx;
+  line-height: 42rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.more_img{
+  width: 30rpx;
+  height: 30rpx;
+}
+.direct_mail_infor_all{
+  width: 80%;
+}
+.direct_mail_infor text{
+  margin-right: 20rpx;
+
+}
+.invoice{
+ background: #fff;
+  margin-top: 30rpx;
+}
+.is_invoice{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26rpx;
+ 
+ border-bottom:solid 1rpx #E4E4E4; 
+}
+.checkbox{
+  font-size: 30rpx;
+  color: #5E5E5E;
+}
+.go_invoice_information{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+  height: 60rpx;
+  font-size: 30rpx;
+
+}
+.more_imgs{
+  width: 30rpx;
+  height: 38rpx;
+}
+.sundry{
+  background: #fff;
+  margin-top: 30rpx;
+  margin-bottom:100rpx;
+
+}
+.sundry-li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx;
+  font-size: 26rpx;
+
+ 
+}
+.buts{
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+  background: #FF6700;
+  position: fixed;
+  bottom: 0;
+}
+.hidden{
+  display:none; 
+}
+.no_select_box{
+  width: 300rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border: dashed 1px #8AD0FF;
+  color: #8AD0FF;
+  margin-left: 100rpx;
+}
+.select_box{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.is_insurance{
+  margin-top: 30rpx;
+  background: #fff;
+}
+
+

@@ -11,7 +11,11 @@
       "pages/good/good",
       "pages/goods_detail/goods_detail",
       "pages/add_address/add_address",
-      "pages/select_address/select_address"
+      "pages/select_address/select_address",
+      "pages/settlement/settlement",
+      "pages/select_shop_address/select_shop_address",
+      "pages/select_save_address/select_save_address"
+      
 
 
   ],

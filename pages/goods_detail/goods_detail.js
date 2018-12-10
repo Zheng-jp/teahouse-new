@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    add_address:true,
+    add_address:false,
     tab: 0,
     image: [
       app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
@@ -116,6 +116,24 @@ Page({
             console.log('用户点击取消')
           }
         }
+      })
+    }
+    else{
+      wx.navigateTo({
+        url: '../settlement/settlement',
+        success: function (res) {
+          // success
+          console.log("nihao////跳转成功")
+        },
+        fail: function () {
+          // fail
+          console.log("nihao////跳转失败")
+        },
+        complete: function () {
+          // complete
+          console.log("nihao////跳转行为结束，未知成功失败")
+        }
+
       })
     }
 
