@@ -14,7 +14,8 @@
       "pages/select_address/select_address",
       "pages/settlement/settlement",
       "pages/select_shop_address/select_shop_address",
-      "pages/select_save_address/select_save_address"
+      "pages/select_save_address/select_save_address",
+      "pages/buy/buy"
       
 
 

@@ -1,0 +1,13 @@
+<!--pages/buy/buy.wxml-->
+<view class='goods_wrap'>
+   <view class='goods_info_wrap'>
+       <radio-group class="radio-group" bindchange="radioChange">
+         <view class='content_list'> 
+        <view class='radio' >
+          <radio value=""  color='#fff'/>
+            </view>
+        </view>
+       
+      </radio-group>
+   </view>
+</view>
