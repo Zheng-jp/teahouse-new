@@ -73,7 +73,7 @@ swiper-item{
 .swiper-tab-list{  
  font-size:32rpx;
 display:inline-block;
-width:33.333% !important;
+width:30% !important;
 color:#333;
 
 }

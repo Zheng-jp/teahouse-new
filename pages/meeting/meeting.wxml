@@ -21,7 +21,7 @@
   </swiper>
   <view class="mask hide{{showView?'':'show'}}" >
         <view class='all_seach'>
-          <text class='all_seach_text'  bindtap="onChangeShowState">全部 </text>         s
+          <text class='all_seach_text'  bindtap="onChangeShowState">全部 </text>         
         </view>
         <view class='other_seach'>
             <view class='seach_list' wx:for="{{seach_list}}" >

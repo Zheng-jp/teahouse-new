@@ -14,6 +14,9 @@ Page({
     information:[ ]
 
   },
+    catchTouchMove:function(res){
+    return false
+  },
   /**
  * radio监听事件
  */
