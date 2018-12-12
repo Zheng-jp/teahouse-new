@@ -1,4 +1,24 @@
 <!--pages/settlement/settlement.wxml-->
+<!-- 弹窗 -->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<!--content-->
+<!--使用animation属性指定需要执行的动画-->
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+ 
+  <!--drawer content-->
+  <view class="drawer_title">提示</view>
+  <view class="drawer_content">
+   <view class='tip'>请选择年限</view>
+     <view class='calculate'>
+     <view class='subtract' bindtap="bindMinus">-</view>
+     <input type='text' value='{{num}}' class='calculate_text' ></input>
+     <view class='add' bindtap="bindPlus">+</view>
+     </view>
+  </view>
+  <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>
+</view>
+
+<!-- 弹窗 -->
 <view class='all'>
 	<view class='titles'>
 		购物清单
@@ -95,7 +115,7 @@
 			<view>
 				请选择保险年限
 			</view>
-			<view class='more_imgs'>
+			<view class='more_imgs' bindtap="powerDrawer" data-statu="open">
 				<image src='img/u1959.png' mode="scaleToFill"></image>
 			</view>
 		</view>

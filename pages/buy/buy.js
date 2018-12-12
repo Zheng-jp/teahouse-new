@@ -5,6 +5,60 @@ Page({
    * 页面的初始数据
    */
   data: {
+    heght:'',
+    // 商品信息
+    routers: [
+      {
+        name: '双骄',
+        url: '/pages/Course/course',
+        icon: 'img/u160.jpg',
+        code: '10',
+        selling:[
+          '新益号',
+          '普洱茶'
+        ],
+        price_img: 'img/u300.png',
+        
+      },
+      {
+        name: '双骄',
+        url: '/pages/Course/course',
+        icon: 'img/u160.jpg',
+        code: '10',
+        selling: [
+          '新益号',
+          '普洱茶'
+        ],
+        price_img: 'img/u300.png',
+        jiage: '￥120.0/片'
+      },
+      {
+        name: '双骄',
+        url: '/pages/Course/course',
+        icon: 'img/u160.jpg',
+        code: '10',
+        selling: [
+          '新益号',
+          '普洱茶'
+        ],
+        price_img: 'img/u300.png',
+        jiage: '￥120.0/片'
+      },
+     
+      {
+        name: 'Python',
+        url: '/pages/Course/course',
+        icon: 'img/u160.jpg',
+        code: '10',
+        selling: [
+          '新益号',
+          '普洱茶'
+        ],
+        price_img: 'img/u300.png',
+        jiage: '￥120.0/片'
+      },
+    
+    ],
 
   },
 
@@ -12,7 +66,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      heght: wx.getSystemInfoSync().windowHeight,
+    })
   },
 
   /**
