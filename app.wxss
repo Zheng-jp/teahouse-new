@@ -1,5 +1,8 @@
 /**app.wxss**/
 @import "/wxParse/wxParse.wxss";
+view{
+  box-sizing: border-box;
+}
 .clear{
   overflow: hidden;
 }
@@ -33,3 +36,69 @@ overflow:hidden;
   align-items: center;
 }
 
+
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color:transparent; 
+}
+.text_red{
+  color: red;
+}
+.form_all{
+  width: 100%;
+  height: 100%;
+  background: #F9F9F9;
+  overflow: hidden;
+}
+radio .wx-radio-input.wx-radio-input-checked::before{
+   border-radius: 50%;
+   width: 20rpx; 
+   height: 20rpx; 
+   text-align: center;
+   font-size:0rpx; /* 对勾大小 去掉 */
+   background-color: #02A0E6; 
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+radio{
+  border-radius: 50%;
+  width: 40rpx;/* 最好是4的倍数，不然会不在中间 */
+  height: 40rpx;
+  border: 2rpx solid #C4C4C4;/* 设置边框（外圆） */
+  font-size: 0;/* 让边框重合 */
+}
+radio .wx-radio-input{
+   border-radius: 50%;
+   width: 40rpx;
+   height: 40rpx; 
+   border: none;/* 替换边框（隐藏原有边框） */
+}
+.all{
+  background: #EBEBEB;
+}
+/*  重写 checkbox 样式  */
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx; /* 背景的宽 */
+   height: 40rpx; /* 背景的高 */
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   border: none;
+   background: #0099FF;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 40rpx;
+   text-align: center;
+   font-size:30rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}

@@ -29,7 +29,7 @@
 <view class='text'>
 <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 </view>
-<!-- <view class='comment'>
+<view class='comment'>
    <view class='comment_list'>
       <view class='comment_title'>
        <text class='xian'></text>
@@ -75,7 +75,7 @@
           <view class='repay_list'> <text >潮州</text><text>刚刚</text><text>回复</text></view>
       </view>
    </view>
-</view> -->
+</view>
 
 
 <view class='buttom_nav'>

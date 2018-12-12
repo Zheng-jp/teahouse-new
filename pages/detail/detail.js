@@ -33,7 +33,7 @@ Page({
       releaseFocus: false
     })
   },
-    pay: function () {
+    pay: function (e) {
       var that = this;
       console.log(that.data.information.cost_moneny);
       wx.request({
@@ -59,24 +59,24 @@ Page({
               'success': function (successret) {
                 console.log('支付成功');
                 //获取支付用户的信息
-                wx.getStorage({
-                  key: 'userInfo',
-                  success: function (getuser) {
-                    //加入订单表做记录
-                    wx.request({
-                      url: url + 'Wx_AddOrder',
-                      data: {
-                        uname: getuser.data.nickName,
-                        goods: that.data.goodsList[0].goods_name,
-                        price: that.data.totalPrice,
-                        openid: res.data,
-                      },
-                      success: function (lastreturn) {
-                        console.log("存取成功");
-                      }
-                    })
-                  },
-                })
+                // wx.getStorage({
+                //   key: 'userInfo',
+                //   success: function (getuser) {
+                //     //加入订单表做记录
+                //     wx.request({
+                //       url: url + 'Wx_AddOrder',
+                //       data: {
+                //         uname: getuser.data.nickName,
+                //         goods: that.data.goodsList[0].goods_name,
+                //         price: that.data.totalPrice,
+                //         openid: res.data,
+                //       },
+                //       success: function (lastreturn) {
+                //         console.log("存取成功");
+                //       }
+                //     })
+                //   },
+                // })
               },
               'fail': function (res) { }
             })

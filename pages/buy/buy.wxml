@@ -1,0 +1,57 @@
+<!--pages/buy/buy.wxml-->
+<view class='all' style='height:{{heght}}px'>
+<view class='goods_wrap'>
+   <view class='goods_info_wrap'>
+       <checkbox-group bindchange="checkboxChange">
+         <view class='content_list'> 
+            <view class='radio' >
+              <checkbox  value=""  color='#fff'/>
+            </view>
+            <view class='content_list_img' style='width:220rpx;'><image src='img/u936.png' mode='widthFix'></image></view>
+            <view class='good_infors'>
+                <view class='good_name'>商品名称</view>
+                <view class='good_infor'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点                     </view>
+                <view class='good_price'>
+                        <view class='price'>
+                            <image src='img/u300.png' mode='widthFix' style='width:40rpx;'></image>
+                            <view class='text_red'>￥90.0/片</view>
+                        </view>     
+                         <view class='good_num text_red'>×1</view>
+                </view>
+            </view>
+        </view>
+       
+      </checkbox-group>
+   </view>
+</view>
+<view class='good_like'>
+     <view class='goods '>
+   
+      <view class='goods-content'>
+            <view class="weui-grids">
+        
+        <view class="weui-grid" wx:for="{{routers}}" wx:key="name">
+                <view class='weui-grid__bg'>
+                    <view class="weui-grid__icon">
+                        <image src=" {{item.icon}}" mode="scaleToFill" />
+                    </view>
+                    <text class="weui-grid_name">{{item.name}}</text>
+                     <text class="weui-grid_kuchun">库存{{item.code}}片</text>
+                     <view class='selling_point'  >
+                     <text class="sell-list" wx:for="{{item.selling}}">{{item}}</text>
+                     </view>
+                     <view class='price'>
+                          <view class='price_img'><image src='{{item.price_img}}'></image></view>
+                           <text class="price_text">{{item.name}}</text>
+                           <text class="price_line">{{item.name}}</text>
+                     </view>
+
+                </view>
+        </view>
+    </view>
+      </view>
+  
+</view>
+   
+</view>
+</view>
