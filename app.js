@@ -7,6 +7,7 @@ App({
 
   },
   globalData: {
+    
     userInfo: null,
     gmemberid:null,
     url:'https://teahouse.siring.com.cn',

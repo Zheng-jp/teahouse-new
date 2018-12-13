@@ -43,11 +43,33 @@
   padding: 20rpx;
   box-sizing: border-box;
 }
+.cartList{
+  height: 600rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   flex-direction:column;
+}
 .good_like{
   margin-top: 30rpx;
   background: #fff;
   min-height: 600rpx;
+  margin-bottom: 100rpx;
 
+}
+.no_good_text{
+  color: #A1A1A1;
+  font-size: 30rpx;
+}
+.buton_to{
+  color: #fff;
+  width: 578rpx;
+  height: 80rpx;
+  border-radius:60rpx;
+  line-height: 80rpx;
+  text-align: center; 
+  background: #FF6700;
+  margin-top: 100rpx
 }
 /* 猜你喜欢 */
 .goods-title{
@@ -228,5 +250,113 @@ height:33rpx;
 }
 .selling_point{
   margin-left:13rpx; 
+}
+.like_img{
+ width:500rpx;
+margin:20rpx auto;
+
+}
+/*******底部********************************************  */
+.delect_btn{
+  width: 150rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #fff;
+  background: #FE9900;
+  text-align: center;
+  font-size: 30rpx;
+  border-top-left-radius:40rpx;
+    border-bottom-left-radius:40rpx;
+}
+.go_buy{
+  
+  width: 150rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #fff;
+  background: #FF2401;
+  text-align: center;
+  font-size: 30rpx;
+    border-top-right-radius:40rpx;
+    border-bottom-right-radius:40rpx;
+}
+.section-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  z-index: 99;
+}
+
+.section-bottom .btn {
+  width: 160rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #fdfffd;
+  background-color: #fbb304;
+}
+
+.section-bottom .btn-default {
+  color: #363636;
+  background-color: #eee;
+}
+
+.section-bottom .btn-primary {
+  color: #fdfffd;
+  background-color: #e83632;
+}
+
+.section-bottom .checkbox-allcheck {
+  display: inline-block;
+  margin-left: 30rpx;
+  vertical-align: top;
+  font-size: 0px;
+}
+
+.section-bottom .check-all-text {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 10rpx;
+  height: 23px;
+  line-height: 23px;
+  font-size: 28rpx;
+}
+
+.section-bottom .total {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+}
+
+.total .totalCount {
+  font-size: 26rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.total .totalPrice {
+  display: inline-block;
+  font-size: 36rpx;
+  margin-left: 20rpx;
+  vertical-align: middle;
+}
+
+.total .totalCount text {
+  color: #e4452a;
+  vertical-align: middle;
+}
+
+.total .totalPrice text {
+  color: #e4452a;
+  font-size: 36rpx;
+  vertical-align: middle;
 }
 
