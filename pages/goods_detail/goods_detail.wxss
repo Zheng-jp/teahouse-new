@@ -249,12 +249,17 @@
     bottom: 0;
     background: #fff;
   }
+  .swiper-item{
+    width: 750rpx;
+    height: 8850rpx;
+  }
   .close-select-pop{
     
-    position: absolute;
-    right: 10rpx;
-    top: 10rpx;
-    width: 16rpx;
+    position:absolute;
+    right:6rpx;
+    top:6rpx;
+    width:42rpx;
+
   }
   .select-goods-img{
     width: 260rpx;
@@ -334,6 +339,7 @@ padding:0 16rpx;
     justify-content: space-between;
     padding: 20rpx;
     margin-top: 20rpx;
+    padding-bottom: 40rpx;
   }
   .select_calculator_num{
     border: solid #DCDCDC 1px;
@@ -353,11 +359,11 @@ padding:0 16rpx;
   }
   .select-minus{
     text-align: center;
-    width: 30rpx;
+    width: 60rpx;
   }
   .select-increase{
      text-align: center;
-    width: 30rpx;
+    width: 60rpx;
   }
   .select-quantity_text{
     font-size: 30rpx;

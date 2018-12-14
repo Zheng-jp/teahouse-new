@@ -1,7 +1,7 @@
 <view class='all'>
 	<view class='mask' wx:if="{{mask_show}}">
 		<view class='select-ser-pop'>
-			<image src='img/x.png' mode="widthFix" class='close-select-pop' bindtap='hideFlag'></image>
+			<image src='img/x.png' mode="widthFix" class='close-select-pop' bindtap='hideFlag' style='hight:44rpx'></image>
 
 			<view class='select-goods-wrap'>
 				<view class='select-goods-img'>
@@ -43,7 +43,7 @@
 	<view class='home_banner'>
 		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}">
 			<block wx:for="{{image}}" wx:key="{{index}}">
-				<swiper-item>
+				<swiper-item class='swiper-item'>
 					<image src="{{item}}" class="slide-image" />
 				</swiper-item>
 			</block>
