@@ -6,11 +6,11 @@
 	}
 	
 	.home_banner {
-		height: 526rpx;
+		height: 750rpx;
 	}
 	
 	swiper {
-		height: 526rpx;
+		height: 750rpx;
 	}
 	
 	.text {

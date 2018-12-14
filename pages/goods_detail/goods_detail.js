@@ -9,9 +9,9 @@ Page({
     add_address:false,
     tab: 0,
     image: [
-      app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
-      app.globalData.url + '/upload/20181128/eb9826b6cbef8a7a581d7cd55726612f.jpg',
-      app.globalData.url + '/upload/20181128/31d02b855e58a946d5c8dddbb278376b.jpg',
+      app.globalData.url + '/upload/20181214/0f239af319db5f140a63db2cc355be51.jpg',
+      app.globalData.url + '/upload/20181214/22ba3e05fd1990f6542ca5aa803a5f49.jpg',
+      app.globalData.url + '/upload/20181214/c605c0cdedce37ee149c6e6970c54e68.jpg',
     ],
     specifications:[{
       specifications_name: '选择尺寸',
