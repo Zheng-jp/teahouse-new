@@ -128,6 +128,7 @@ Page({
 
     })
   },
+  
   requesLocalData: function () {
     var list = [];
     // var itemOne = {};
@@ -183,6 +184,26 @@ Page({
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
       url: '../members/members?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
+
+    })
+  },
+  go_order: function (event) {
+    console.log(event);
+    var item = event.currentTarget.dataset.item;
+    wx.navigateTo({
+      url: '../order/order?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
       success: function (res) {
         // success
         console.log("nihao////跳转成功")

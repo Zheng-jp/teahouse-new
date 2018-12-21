@@ -16,7 +16,8 @@
       "pages/select_shop_address/select_shop_address",
       "pages/select_save_address/select_save_address",
       "pages/buy/buy",
-      "pages/query/query"
+      "pages/query/query",
+      "pages/order/order"
       
 
 
