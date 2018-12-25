@@ -117,6 +117,7 @@ Page({
     },
   
   hideFlag: function (e) {
+    console.log(111);
     this.setData({
       mask_show: false,
     })
@@ -181,7 +182,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this;
+    var s_height = wx.getSystemInfoSync().windowHeight;
   },
 
   /**

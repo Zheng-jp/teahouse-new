@@ -2,9 +2,9 @@
 <view class='all'>
 	<view class='mask' wx:if="{{mask_show}}">
 		<view class='select-ser-pop'>
-			<image src='img/x.png' mode="widthFix" class='close-select-pop' bindtap='hideFlag' style='hight:44rpx'></image>
+			<image src='img/x.png' mode="widthFix" class='close-select-pop' bindtap="hideFlag" style='hight:44rpx'></image>
 
-			<view class='select-goods-wrap'>
+			<view class='select-goods-wrap'> 
 				<view class='select-goods-img'>
 					<image src='img/u1715.png' mode="widthFix"></image>
 				</view>

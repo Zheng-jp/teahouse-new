@@ -1,5 +1,9 @@
 /* 轮播图 */
-	
+
+	view{
+    overflow:visible;
+
+  }
 	.all {
 		background: #F2F2F2;
     margin-bottom: 100rpx;
@@ -254,22 +258,23 @@
     height: 8850rpx;
   }
   .close-select-pop{
-    
     position:absolute;
     right:6rpx;
     top:6rpx;
     width:42rpx;
-
+    z-index: 999999;
   }
   .select-goods-img{
     width: 260rpx;
-    position: fixed;
-    top: 240rpx;
+    position: absolute;
+    top: -100rpx;
     left: 30rpx;
     z-index: 999999;
   }
   .select-goods-wrap{
+    position: relative;
     padding-bottom: 50rpx;
+    height:150rpx;
     border-bottom: solid 1px #EBEBEB;
   }
   .select-goods-info{
@@ -328,6 +333,9 @@ padding:0 16rpx;
     border-radius:10rpx; 
     font-size: 26rpx;
     padding: 12rpx 24rpx;
+    background: #949494;
+    color: #555;
+    background-color: #f5f5f5;
     
   }
 
