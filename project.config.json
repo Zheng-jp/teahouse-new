@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 16,
 			"list": [
 				{
 					"id": -1,
@@ -119,7 +119,25 @@
 				{
 					"id": -1,
 					"name": "dd",
-					"pathName": "pages/query/query"
+					"pathName": "pages/query/query",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ewqrdwe",
+					"pathName": "pages/query/query",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/buy/buy",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test/test"
 				}
 			]
 		}

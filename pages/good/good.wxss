@@ -23,7 +23,6 @@
 .good_box{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 .nav_goods_box{
  width:33.33%;

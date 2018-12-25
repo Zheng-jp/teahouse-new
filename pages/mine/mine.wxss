@@ -32,6 +32,7 @@ margin-top:-57rpx;
 
 }
 .userinfo-avatar {
+  
   width: 128rpx;
   height: 128rpx;
   margin: 20rpx;
@@ -82,7 +83,19 @@ background-size:80%;
 .order_title{
   padding: 20rpx;
   font-size: 36rpx;
+ 
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order_title_content{
   font-weight: bold;
+ letter-spacing: 1rpx;
+}
+.order_title_more{
+  font-size:20rpx;
+  color:#999;
+  letter-spacing: 1rpx;
 }
 
 .nav_img{

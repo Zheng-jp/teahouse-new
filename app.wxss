@@ -4,6 +4,16 @@
 .clear{
   overflow: hidden;
 }
+.listview {
+width:720rpx;
+border-radius:10rpx;
+overflow:hidden;
+margin:42rpx auto !important;
+background:#fff;
+box-shadow:9rpx 9rpx 5rpx 3rpx #E5E5E5 !important;
+
+}
+
 .share-content{
 text-overflow: ellipsis;
 display: -webkit-box;

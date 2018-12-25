@@ -1,57 +1,44 @@
 // pages/goods_detail/goods_detail.js
-const app = getApp()
+const app = getApp();
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    goods:[],
     add_address:false,
+    selecteds: true,
     tab: 0,
+    num:'1',
     image: [
-      app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
-      app.globalData.url + '/upload/20181128/eb9826b6cbef8a7a581d7cd55726612f.jpg',
-      app.globalData.url + '/upload/20181128/31d02b855e58a946d5c8dddbb278376b.jpg',
+      app.globalData.url + '/upload/20181214/0f239af319db5f140a63db2cc355be51.jpg',
+      app.globalData.url + '/upload/20181214/22ba3e05fd1990f6542ca5aa803a5f49.jpg',
+      app.globalData.url + '/upload/20181214/c605c0cdedce37ee149c6e6970c54e68.jpg',
     ],
-    specifications:[{
-      specifications_name: '选择尺寸',
-      specifications_num:[
-        '16寸',
-        '16寸',
-        '16寸',
-        '16寸',
-        '16寸', 
-        '16寸',
-        '16寸',
-        '16寸',
-        '16寸',
-        '16寸',
-        '16寸',
-        '16寸',
-        '16寸',
-      ]
-    },
+      specifications_num:[{
+       name: '普通胎245/45R18',
+       tab:0,
+      },
       {
-        specifications_name: '选择尺寸',
-        specifications_num: [
-          '16寸',
-          '16寸',
-          '16寸',
-          '16寸',
-          '16寸',
-          '16寸',
-          '16寸',
-          '16寸',
-          '16寸',
-          '16寸',
-          '16寸',
-          '16寸',
-          '16寸',
-        ]
-      }
-      
+        name: '普通胎245/45R18',
+        tab:1,
+       },
+       {
+        name: '普通胎245/45R18',
+        tab:2,
+       },
+       {
+        name: '普通胎245/45R18',
+        tab:3,
+       },
+       {
+        name: '普通胎245/45R18',
+        tab:4,
+       },
+      ],
 
-    ],
     circular: 'true',
     indicatorDots: 'true',
     interval: '2000',
@@ -61,7 +48,20 @@ Page({
     mask_show:false,
    
   },
+  labelItemTap: function (e) {
+    var that=this;
+   //  点击添加类
+   console.log(that.data.specifications_num );
+   if (that.data.specifications_num.tab === e.target.dataset.current) {
+    return false;
+  } else {
+    that.setData({
+      tab: e.target.dataset.current
+    })
+  }
+  },
   selected: function (e) {
+    console.log(111);
     this.setData({
       selected1: false,
       selected: true
@@ -80,8 +80,45 @@ Page({
       
     
   },
+   /* 点击减号 */
+   bindMinus: function () {
+    var num = this.data.num;
+    // 如果大于1时，才可以减  
+    if (num > 1) {
+      num--;
+    }
+    // 只有大于一件的时候，才能normal状态，否则disable状态  
+    var minusStatus = num <= 1 ? 'disabled' : 'normal';
+    // 将数值与状态写回  
+    this.setData({
+      num: num,
+      minusStatus: minusStatus
+    });
+  },
+  /* 点击加号 */
+  bindPlus: function () {
+    var num = this.data.num;
+    // 不作过多考虑自增1  
+    num++;
+    // 只有大于一件的时候，才能normal状态，否则disable状态  
+    var minusStatus = num < 1 ? 'disabled' : 'normal';
+    // 将数值与状态写回  
+    this.setData({
+      num: num,
+      minusStatus: minusStatus
+    });
+  },
+    /* 输入框事件 */
+    bindManual: function (e) {
+      var num = e.detail.value;
+      // 将数值与状态写回  
+      this.setData({
+        num: num
+      });
+    },
   
   hideFlag: function (e) {
+    console.log(111);
     this.setData({
       mask_show: false,
     })
@@ -146,7 +183,44 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    var s_height = wx.getSystemInfoSync().windowHeight;
+    var title = options.title;
+    wx.request({
+      url: app.globalData.tiltes + 'commodity_detail',
+      data: {
+        id: options.title
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
 
+      // },
+      success: function (res) {
+
+        console.log(res);
+        that.setData({
+          goods: res.data.data[0],
+        });
+        //  添加字段到等级数组
+        // for (var index in that.data.nav) {
+        //   var sexParam = "nav[" + index + "].tab";
+        //   that.setData({
+        //     [sexParam]: index,
+        //   })
+
+        // }
+
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
   },
 
   /**

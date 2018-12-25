@@ -6,7 +6,7 @@
      <scroll-view  class="swiper-tab" scroll-x="true" >
       <view wx:for="{{nav}}"  class="bre swiper-tab-list {{item.tab==tab? 'on' : ''}}" data-current="{{item.tab}}" bindtap="tab_click" >{{item.name}}</view>  
    </scroll-view>
-   <view class='right'><image src='{{url}}/upload/20181130/68e7485fcacc0bcce1eec769a7cf55df.png'    ></image></view>
+ 
   </view> 
    <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide"  bindchange="tab_slide" style="height:{{winHeight}}px">
     <swiper-item  wx:for="{{nav}}" wx:for-item="items">

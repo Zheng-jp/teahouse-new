@@ -9,8 +9,8 @@ view{
   background: #F9F9F9;
 }
 .title{
- padding:0 20rpx;
-height:105rpx;
+padding:0 20rpx;
+height:81rpx;
 line-height:71rpx;
 overflow:hidden;
 
@@ -21,37 +21,37 @@ image {
 
 }
 .nfc{
-width:60rpx;
-height:60rpx;
-margin: 0 auto;
+width:50rpx;
+height:50rpx;
+margin:0 auto;
 overflow:hidden;
+
 }
 .clear{
   overflow: hidden
 }
 .fangwei{
-  color:#5E5E5E;
-font-size:24rpx;
+color:#5E5E5E;
+font-size:20rpx;
 font-weight:bold;
-margin-top:-19rpx;
-
-
+margin-top:-23rpx;
 }
 .seach{
 float:left;
-width:515rpx;
-height:84rpx;
+width:550rpx;
+height:68rpx;
 background:#fff;
 border-radius:36rpx;
 border:solid #E9E9E9 1px;
 margin:1rpx 10rpx;
-padding-left: 50rpx;
-box-sizing: border-box;
+padding-left:50rpx;
+box-sizing:border-box;
+
 
 }
 .ma{
-width:60rpx;
-height:60rpx;
+width:50rpx;
+height:50rpx;
 margin:0 auto;
 overflow:hidden;
 

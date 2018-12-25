@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    url: app.globalData.img_url,
     scrollTop: 0,
     last_scrollTop: 0,
     toView: 0,
@@ -12,24 +13,16 @@ Page({
     s_height: '',
     height_arr: [],
     category: [
-      { categoryName: '普洱一' },
-      { categoryName: '普洱二' },
-      { categoryName: '普洱三' },
-      { categoryName: '普洱四' }
     ],
-    detail: [
-      [{ goodsName: '1普洱', goodsPrice: '3.8' }, { goodsName: '1普洱', goodsPrice: '10.8' }, { goodsName: '1普洱', goodsPrice: '8.0' }, { goodsName: '1普洱', goodsPrice: '1.0' }, { goodsName: '1普洱', goodsPrice: '8.0' }, { goodsName: '1普洱', goodsPrice: '1.0' }],
-      [{ goodsName: '1普洱', goodsPrice: '3.8' }, { goodsName: '1普洱', goodsPrice: '10.8' }, { goodsName: '1普洱', goodsPrice: '8.0' }, { goodsName: '1普洱', goodsPrice: '1.0' }, { goodsName: '1普洱', goodsPrice: '8.0' }, { goodsName: '1普洱', goodsPrice: '1.0' }],
-      [{ goodsName: '1普洱', goodsPrice: '3.8' }, { goodsName: '1普洱', goodsPrice: '10.8' }, { goodsName: '1普洱', goodsPrice: '8.0' }, { goodsName: '1普洱', goodsPrice: '1.0' }, { goodsName: '1普洱', goodsPrice: '8.0' }, { goodsName: '1普洱', goodsPrice: '1.0' }],
-      [{ goodsName: '1普洱', goodsPrice: '3.8' }, { goodsName: '1普洱', goodsPrice: '10.8' }, { goodsName: '1普洱', goodsPrice: '8.0' }, { goodsName: '1普洱', goodsPrice: '1.0' }, { goodsName: '1普洱', goodsPrice: '8.0' }, { goodsName: '1普洱', goodsPrice: '1.0' }],
-     
-    ]
+   
   },
   go_gooddetail: function (event) {
+
     var that = this;
     var item = event.currentTarget.dataset.item;
+    console.log(event.currentTarget.dataset.id);
     wx.navigateTo({
-      url: '../goods_detail/goods_detail',
+      url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
       success: function (res) {
         // success
         console.log("nihao////跳转成功")
@@ -99,12 +92,47 @@ Page({
     }
   },
   onLoad: function () {
+    var that=this;
     var s_height = wx.getSystemInfoSync().windowHeight;
     this.setData({ s_height: s_height });
     this.getHeightArr(this);
+    wx.request({
+      url: app.globalData.tiltes + 'commodity_index',
+      data: {
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+      
+        console.log(res);
+        that.setData({
+          category: res.data.data.goods_type,
+        });
+        //  添加字段到等级数组
+        // for (var index in that.data.nav) {
+        //   var sexParam = "nav[" + index + "].tab";
+        //   that.setData({
+        //     [sexParam]: index,
+        //   })
+
+        // }
+       
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
   },
   getHeightArr: function (self) {
-    var height = 0, height_arr = [], details = self.data.detail, s_height = self.data.s_height;
+    var height = 0, height_arr = [], details = self.data.category, s_height = self.data.s_height;
     for (var i = 0; i < details.length; i++) {
       var last_height = 30 + details[i].length /3* 90;
       if (i == details.length - 1) {
@@ -118,4 +146,6 @@ Page({
       height_arr: height_arr
     });
   }
+  
+  
 })
