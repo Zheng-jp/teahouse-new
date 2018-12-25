@@ -20,6 +20,7 @@ Page({
 
     var that = this;
     var item = event.currentTarget.dataset.item;
+
     console.log(event.currentTarget.dataset.id);
     wx.navigateTo({
       url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
@@ -35,6 +36,7 @@ Page({
         // complete
         console.log("nihao////跳转行为结束，未知成功失败")
       }
+
 
     })
   },

@@ -10,7 +10,8 @@ App({
     
     userInfo: null,
     gmemberid:null,
-    // url:'https://teahouse.siring.com.cn',
+
+    url:'https://teahouse.siring.com.cn',
     // tiltes: 'https://teahouse.siring.com.cn/',
     // img_url: 'https://teahouse.siring.com.cn/uploads/'
     tiltes:'http://localhost/teahouse/public/',
