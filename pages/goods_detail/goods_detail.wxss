@@ -138,7 +138,7 @@
 	
 	.red {
     line-height: 92rpx;
-	 color:red;
+	  color:red;
     font-weight:bold;
     font-size:28rpx;
     width:141rpx;
@@ -146,7 +146,7 @@
     border-bottom: solid 3px red;
 
 	}
-	
+
 	.show {
 	}
 	
@@ -315,21 +315,22 @@ padding:0 16rpx;
     margin-bottom: 20rpx;
   }
   .spec_content{
-    flex-basis:25%;
      line-height: 50rpx;
      box-sizing: border-box;
     padding: 10rpx;
     
   }
   .spec_content_text{
-     background: #E4E4E4;
-
-    
+    display:flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     border-radius:10rpx; 
-    font-size: 24rpx;
-    color: #333;
+    font-size: 26rpx;
+    padding: 12rpx 24rpx;
+    
   }
+
   .select{
       color: #fff;
       background: red;
@@ -418,6 +419,11 @@ overflow:hidden;
 
 
 }
+.on{
+  background-color: #FF0036;
+  color: #fff;
+}
+
 .comment_name{
   display: inline-block;
 }
