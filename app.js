@@ -1,3 +1,4 @@
+
 //app.js
 App({
 
@@ -19,4 +20,5 @@ App({
     img_url:' http://localhost/teahouse/public/uploads/'
 
   }
+
 })
