@@ -12,7 +12,11 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
+
+//	"appid": "wxaa091b014a6fa464",
+
 	"appid": "wx301c1368929fdba8",
+
 	"projectname": "4685456",
 	"debugOptions": {
 		"hidedInDevtools": []
