@@ -23,7 +23,6 @@ Page({
                   title: '正在登录...',
                   icon: 'loading',
                   duration: 10000
-
                 });
                 wx.request({
                   url: app.globalData.tiltes+'wechatlogin',
@@ -107,7 +106,6 @@ Page({
                         var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码
                         var iv = res2.iv;
                         //请求自己的服务器
-                      
                         wx.request({
                           url: app.globalData.tiltes + 'wechatlogin',
                           data: {

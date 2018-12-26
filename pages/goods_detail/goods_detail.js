@@ -214,7 +214,6 @@ Page({
           stock: res.data.data[0].goods_standard[0].stock,
         });
         var article = res.data.data[0].goods_text;
-        console.log(article);
         WxParse.wxParse('article', 'html', article, that, 5);
         //  添加字段到等级数组
         // for (var index in that.data.goods.goods_standard) {

@@ -1,17 +1,61 @@
 // pages/select_address/select_address.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+     addresss:[],
+  },
+  add_address: function (event) {
+    wx.navigateTo({
+      url: '../add_address/add_address',
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
 
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    var s_height = wx.getSystemInfoSync().windowHeight;
+    var title = options.title;
+    wx.request({
+      url: app.globalData.tiltes + 'member_address_information',
+      data: {
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          address: res.data.data[0],
+        });
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
 
   },
 

@@ -4,11 +4,11 @@
         <view class='list_a'>
         <view class="section section_top">
             <view class="section_title">姓名</view>
-            <input name="inputb" placeholder="真实姓名" />
+            <input name="harvester" placeholder="真实姓名" />
           </view>
           <view class="section">
             <view class="section_title">电话</view>
-            <input name="inputa" placeholder="手机号码" />
+            <input name="harvester_phone_num" placeholder="手机号码" />
           </view>
           </view>
           <view class='list_b'>
@@ -19,11 +19,11 @@
               <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
                       <view class="picker">{{region[0]}}/{{region[1]}}/{{region[2]}}
                       </view>
-                  </picker>
+              </picker>
           </view>
           <view class="section">
             <view class="section_title">详细地址</view>
-            <input name="input" placeholder="街道门牌、楼层房间号等信息" />
+            <input name="harvester_real_address" placeholder="街道门牌、楼层房间号等信息" />
           </view>
           </view>
       

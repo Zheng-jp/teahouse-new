@@ -19,9 +19,6 @@
       "pages/query/query",
       "pages/order/order",
       "pages/test/test"
-      
-
-
   ],
   "window": {
     "backgroundTextStyle": "light",
