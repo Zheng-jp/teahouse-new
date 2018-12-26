@@ -52,8 +52,8 @@
      </view>
   </view>
   <!-- 我的收藏 -->
-   <view  bindtap="mycollect"  class='list-content'>
-   <view wx:for='{{list}}' class='ifor_list'>
+   <view   class='list-content'>
+   <view wx:for='{{list}}' class='ifor_list' data-url="{{item.src}}" bindtap="mycollect" >
       <view class='left'>
         <view class='list-ico'>
           <image src='{{item.url}}'></image>
@@ -69,8 +69,8 @@
       </view>
       </view>
   </view>
-     <view  bindtap="mycollect"  class='list-content'>
-   <view wx:for='{{lista}}' class='ifor_list'>
+     <view  class='list-content' >
+   <view wx:for='{{lista}}' class='ifor_list' >
       <view class='left'>
         <view class='list-ico'>
           <image src='{{item.url}}'></image>
