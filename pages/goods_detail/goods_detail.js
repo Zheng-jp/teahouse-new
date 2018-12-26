@@ -22,9 +22,6 @@ Page({
     id: 0,
     num:'1',
     image: [
-      app.globalData.url + '/upload/20181214/0f239af319db5f140a63db2cc355be51.jpg',
-      app.globalData.url + '/upload/20181214/22ba3e05fd1990f6542ca5aa803a5f49.jpg',
-      app.globalData.url + '/upload/20181214/c605c0cdedce37ee149c6e6970c54e68.jpg',
     ],
      
     url:app.globalData.img_url,
@@ -212,6 +209,7 @@ Page({
           images: res.data.data[0].goods_standard[0].images,
           price: res.data.data[0].goods_standard[0].price,
           stock: res.data.data[0].goods_standard[0].stock,
+          image:res.data.data[0].goods_show_images
         });
         var article = res.data.data[0].goods_text;
         WxParse.wxParse('article', 'html', article, that, 5);

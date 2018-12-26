@@ -27,6 +27,54 @@ Page({
 
     })
   },
+  go_change_address: function (event) {
+    wx.navigateTo({
+      url: '../change_address/change_address?title=' + event.currentTarget.dataset.id,
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
+
+    })
+  },
+  radioChange: function (e) {
+    var that = this;
+     console.log(e.detail.value);
+     wx.request({
+      url: app.globalData.tiltes + 'member_address_status',
+      data: {
+        open_id: app.globalData.gmemberid,
+        id: e.detail.value,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+        wx.showToast({
+          title:'修改成功',
+          icon: 'none'
+        })
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+
+  },
 
   /**
    * 生命周期函数--监听页面加载
