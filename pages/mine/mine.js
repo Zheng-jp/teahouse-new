@@ -41,7 +41,8 @@ Page({
       },
       {
         url: app.globalData.url + '/upload/20181115/f052e232cf2c7629080cacbb20522b50.png',
-        text: '地址管理'
+        text: '地址管理',
+        src:'../add_address/add_address',
       },
       {
         url: app.globalData.url + '/upload/20181115/81c85d2133879add7c6f8ed268410616.png',
@@ -182,8 +183,9 @@ Page({
   mycollect: function (event) {
     console.log(event);
     var item = event.currentTarget.dataset.item;
+    var src=event.currentTarget.dataset.url;
     wx.navigateTo({
-      url: '../members/members?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
+      url: src+'?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
       success: function (res) {
         // success
         console.log("nihao////跳转成功")

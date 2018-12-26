@@ -1,3 +1,4 @@
+
 //app.js
 App({
 
@@ -10,11 +11,14 @@ App({
     
     userInfo: null,
     gmemberid:null,
-    //url:'http://teahouse.siring.com.cn',
-    url: 'http://localhost/teahouse/public/',
-    // tiltes: 'http://teahouse.siring.com.cn/',
-    // img_url: 'http://teahouse.siring.com.cn/uploads/'
+
+    // url:'https://teahouse.siring.com.cn',
+    // tiltes: 'https://teahouse.siring.com.cn/',
+    // img_url: 'https://teahouse.siring.com.cn/uploads/',
+    url:'http://localhost/teahouse.siring.com.cn',
     tiltes:'http://localhost/teahouse/public/',
     img_url:' http://localhost/teahouse/public/uploads/'
+
   }
+
 })

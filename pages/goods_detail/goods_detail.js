@@ -8,37 +8,26 @@ Page({
    */
   data: {
     goods:[],
+     //  商品价格
+    price:'',
+    // 商品库存
+    stock:'',
+    // 商品销量
+    // var current=e.target.dataset.current;
+    // 商品图片
+    images:'',
+    select:'规格',
     add_address:false,
     selecteds: true,
-    tab: 0,
+    id: 0,
     num:'1',
     image: [
       app.globalData.url + '/upload/20181214/0f239af319db5f140a63db2cc355be51.jpg',
       app.globalData.url + '/upload/20181214/22ba3e05fd1990f6542ca5aa803a5f49.jpg',
       app.globalData.url + '/upload/20181214/c605c0cdedce37ee149c6e6970c54e68.jpg',
     ],
-      specifications_num:[{
-       name: '普通胎245/45R18',
-       tab:0,
-      },
-      {
-        name: '普通胎245/45R18',
-        tab:1,
-       },
-       {
-        name: '普通胎245/45R18',
-        tab:2,
-       },
-       {
-        name: '普通胎245/45R18',
-        tab:3,
-       },
-       {
-        name: '普通胎245/45R18',
-        tab:4,
-       },
-      ],
-
+     
+    url:app.globalData.img_url,
     circular: 'true',
     indicatorDots: 'true',
     interval: '2000',
@@ -50,13 +39,32 @@ Page({
   },
   labelItemTap: function (e) {
     var that=this;
+    console.log(e);
    //  点击添加类
-   console.log(that.data.specifications_num );
-   if (that.data.specifications_num.tab === e.target.dataset.current) {
+  // 商品id
+   var current=e.target.dataset.current;
+  //  商品价格
+  var price=e.target.dataset.price;
+  // 商品库存
+  var stock=e.target.dataset.stock;
+  // 商品销量
+  // var current=e.target.dataset.current;
+  // 商品图片
+  var images=e.target.dataset.images;
+    // 商品名字
+    var value=e.target.dataset.value;
+    console.log(e.target.dataset);
+   if (that.data.goods.goods_standard.id === e.target.dataset.current) {
     return false;
+
   } else {
     that.setData({
-      tab: e.target.dataset.current
+      id: e.target.dataset.current,
+      current: current,
+      price:price,
+      stock:stock,
+      images:images,
+      select:value,
     })
   }
   },
@@ -197,21 +205,26 @@ Page({
 
       // },
       success: function (res) {
-
         console.log(res);
         that.setData({
           goods: res.data.data[0],
+          id: res.data.data[0].goods_standard[0].id,
+          images: res.data.data[0].goods_standard[0].images,
+          price: res.data.data[0].goods_standard[0].price,
+          stock: res.data.data[0].goods_standard[0].stock,
         });
+        var article = res.data.data[0].goods_text;
+        console.log(article);
+        WxParse.wxParse('article', 'html', article, that, 5);
         //  添加字段到等级数组
-        // for (var index in that.data.nav) {
-        //   var sexParam = "nav[" + index + "].tab";
+        // for (var index in that.data.goods.goods_standard) {
+        //   var sexParam = "goods_standard[" + index + "].tab";
         //   that.setData({
         //     [sexParam]: index,
         //   })
 
         // }
-
-
+     
       },
       fail: function () {
 

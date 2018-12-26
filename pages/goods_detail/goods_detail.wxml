@@ -6,26 +6,25 @@
 
 			<view class='select-goods-wrap'> 
 				<view class='select-goods-img'>
-					<image src='img/u1715.png' mode="widthFix"></image>
+					<image src='{{url}}{{images}}' mode="widthFix"></image>
 				</view>
 
 				<view class="select-goods-info">
 					<view class='select-goods-price'>
-						<view class='new_select-goods-price'>￥90.0/片</view>
-						<view class='old_select-goods-price'>￥190.0/片</view>
+						<view class='new_select-goods-price'>￥{{price}}/片</view>
 					</view>
 					<view class='select-goods-spec'>
-						<view class='select-goods-stock'>库存213片</view>
+						<view class='select-goods-stock'>库存{{stock}}片</view>
 						<view class='select-goods-sells'>销量213片</view>
 					</view>
 				</view>
 			</view>
-			<view class='spec-wrap'>
-				<view class='spec-box'>
+			<view class='spec-wrap' >
+				<view class='spec-box' >
 					<view class='spec_title'>选择规格</view>
 					<view class='spec_content_all'>
-						<view class='spec_content' wx:for="{{specifications_num}}">
-							<view  class="spec_content_text {{item.tab==tab? 'on' : ''}}"  bindtap="labelItemTap"  data-current="{{item.tab}}"> {{item.name}}  </view>
+						<view class='spec_content' wx:for="{{goods.goods_standard}}">
+							<view  class="spec_content_text {{item.id==id? 'on' : ''}}"  bindtap="labelItemTap"  data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}"  data-value="{{item.name}}"> {{item.name}}  </view>
 						</view>
 					</view>
 				</view>
@@ -58,8 +57,12 @@
 			<view class='level_images'>
 				<image src='https://teahouse.siring.com.cn/uploads/20181121/40f3fba9c9ff0b65540a4eacbca7ff65.png'></image>
 			</view>
-			<view class='sale'>￥90.0/片</view>
-			<view class='through'>￥190.0/片</view>
+			<view wx:if="{{goods.goods_standard==0}}">
+				<view class='sale'>￥90.0/片</view>
+			</view>
+			<view wx:else>
+				<view class='sale'>￥{{goods.min_price}}~￥{{goods.max_price}}</view>
+			</view>
 		</view>
 		<view class='other_info'>
 			<view class='freight'>
@@ -74,10 +77,10 @@
 		</view>
 
 	</view>
-	<view class='ser-type' bindtap='showFlag'>
+	<view class='ser-type' bindtap='showFlag'  wx:if="{{goods.goods_standard!=0}}" >
 		<view>
 			<text>选择：</text>
-			<text class='type'>规格</text>
+			<text class='type'>{{select}}</text>
 		</view>
 		<image class='more' src='https://teahouse.siring.com.cn/upload/20181129/f95ab6bf449933fe54fbcce047b87c3d.png'></image>
 
@@ -92,7 +95,7 @@
 			</view>
 		</view>
 		<view class="{{selected?'show':'hidden'}}">
-		<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+		   <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 		</view>
 		<view class="{{selected1?'show':'hidden'}}">
 			<view class='comment'>
@@ -108,7 +111,7 @@
                         <view class='comment_img_all'>
                               <view class='comment_imgs'>
                                   <image src='img/u2811.png'></image>
-                              </view>
+                              </view>`
                                <view class='comment_imgs'>
                                   <image src='img/u2811.png'></image>
                               </view>
