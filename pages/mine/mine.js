@@ -42,7 +42,7 @@ Page({
       {
         url: app.globalData.url + '/upload/20181115/f052e232cf2c7629080cacbb20522b50.png',
         text: '地址管理',
-        src:'../add_address/add_address',
+        src:'../select_address/select_address',
       },
       {
         url: app.globalData.url + '/upload/20181115/81c85d2133879add7c6f8ed268410616.png',
