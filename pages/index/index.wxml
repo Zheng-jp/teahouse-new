@@ -4,12 +4,12 @@
    <view class='title'>
       <view style='float: left;'>
           <view class="nfc"><image  src="img/u270.png"> </image> </view>
-          <text class='fangwei'>防伪溯源</text>
+          <view class='fangwei' >防伪溯源</view>
       </view>
       <input type='text' class='seach'></input>
        <view style='float: left;'>
           <view class="ma"><image  src="img/u180.png"> </image> </view>
-          <text class='fangwei'>会员码</text>
+          <view class='fangwei'>会员码</view>
       </view>
    </view>
     <view class='home_banner'>
@@ -23,7 +23,7 @@
          </swiper>
 
     </view>
-    <view class='nav-list clear'>
+    <!-- <view class='nav-list clear'>
         <view class='list list-one' wx:for="{{nav}}">
             <view class='ico nav_ico ico-one'><image src='{{item.url}}'></image></view>
             <text class='text' >{{item.text}}</text>
@@ -35,11 +35,11 @@
       <text style='color:#fff; font-size:24rpx;vertical-align:6rpx;margin-left:37rpx; float:left;'>通知：</text>
       <view class='news-text'>111111</view>
       <image src='{{close}}' class='close'></image>
-    </view>
+    </view> -->
     <view class='goods '>
       <view class='goods-title clear'>
           <text class='goods-title-text'>商品</text>
-          <view class='more-all'>
+          <view class='more-all' bindtap="go_good">
               <text class='more'>更多</text>
               <image src='{{more}}' style='float:right; ' class='more-img'></image>
           </view>
@@ -72,7 +72,7 @@
  <view class='share'>
       <view class='share-title clear'>
           <text class='goods-title-text'>推荐</text>
-          <view class='more-all'>
+          <view class='more-all' bindtap="go_meeting">
               <text class='more'>更多</text>
               <image src='{{more}}' style='float:right; ' class='more-img'></image>
           </view>

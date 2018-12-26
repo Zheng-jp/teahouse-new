@@ -6,8 +6,8 @@ App({
     winMask_if: true,
 
   },
-
   globalData: {
+    
     userInfo: null,
     gmemberid:null,
     //url:'http://teahouse.siring.com.cn',

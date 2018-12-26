@@ -1,0 +1,83 @@
+<!--pages/buy/buy.wxml-->
+<view class='all' style='height:{{heght}}px'>
+<view class='goods_wrap'>
+   <view class='goods_info_wrap'>
+   <!--如果购物车内没有数据，就显示没有数据-->  
+      <view class="cartList" hidden="{{!iscart}}">  
+          <image src="img/u2890.png" mode='widthFix' style='width:200rpx;' />  
+          <view class='no_good_text'>哎呦，购物车空空如也~</view> 
+          <view class='buton_to'>到商城随便逛逛</view> 
+      </view> 
+       <checkbox-group bindchange="checkboxChange">
+         <view class='content_list' wx:for='{{goodList}}'> 
+            <view class='radio' >
+              <checkbox  value="{{item.isbn}}"  color='#fff' checked="{{item.checked}}"/>
+            </view>
+            <view class='content_list_img' style='width:220rpx;'><image src='{{item.cover}}' mode='widthFix'></image></view>
+            <view class='good_infors'>
+                <view class='good_name'>商品名称</view>
+                <view class='good_infor'>{{item.desc}}                    </view>
+                <view class='good_price'>
+                        <view class='price'>
+                            <image src='img/u300.png' mode='widthFix' style='width:40rpx;'></image>
+                            <view class='text_red'>￥{{item.price}}</view>
+                        </view>     
+                         <view class='good_num text_red'>×1</view>
+                </view>
+            </view>
+        </view>
+       
+      </checkbox-group>
+   </view>
+</view>
+<view class='good_like'>
+     <view class='goods '>
+   <view class='like_img'><image src='img/u600.png' mode='widthFix'></image></view>
+      <view class='goods-content'>
+            <view class="weui-grids">
+        
+        <view class="weui-grid" wx:for="{{routers}}" wx:key="name">
+                <view class='weui-grid__bg'>
+                    <view class="weui-grid__icon">
+                        <image src=" {{item.icon}}" mode="scaleToFill" />
+                    </view>
+                    <text class="weui-grid_name">{{item.name}}</text>
+                     <text class="weui-grid_kuchun">库存{{item.code}}片</text>
+                     <view class='selling_point'  >
+                     <text class="sell-list" wx:for="{{item.selling}}">{{item}}</text>
+                     </view>
+                     <view class='price'>
+                          <view class='price_img'><image src='{{item.price_img}}'></image></view>
+                           <text class="price_text">{{item.name}}</text>
+                           <text class="price_line">{{item.name}}</text>
+                     </view>
+
+                </view>
+        </view>
+    </view>
+      </view>
+  
+</view>
+   
+</view>
+  <view class='section-bottom'>
+        <checkbox-group bindchange="selectalltap">
+          <label class='checkbox-allcheck'>
+            <checkbox value="{{!checkAll}}" checked="{{checkAll}}"  />
+            <text class='check-all-text'>全选</text>
+          </label>
+        </checkbox-group>
+        <view class="total">
+         
+          <view class='totalPrice'>合计：
+            <text>¥{{totalPrice}}</text>
+          </view>
+        </view>
+        <view>
+           <view class='delect_btn'   bindtap="deleteList" data-ihdex='1'>删除</view>
+        </view>
+        <navigator url='../settlement/settlement'>
+          <view class='go_buy'>结算({{totalCount}})</view>
+        </navigator>
+      </view>
+</view>

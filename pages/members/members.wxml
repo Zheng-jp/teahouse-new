@@ -1,7 +1,7 @@
 <!--pages/members/members.wxml-->
 <view class='all'>
  <swiper current="{{tab}}" class="swiper-box" duration="300"  bindchange="tab_slide" catchtouchmove="stopTouchMove">
-    <swiper-item  wx:for="{{level}}">
+    <swiper-item  wx:for="{{level}}" catchtouchmove='catchTouchMove'>
             <view class='card' style='background:{{item.member_background_color}}'>  
                 <view class='card_a'>
                   <view class='img_cir'>
@@ -20,7 +20,7 @@
               <view class='name'>{{item.member_grade_name}}</view>
               <view class='card_c'>
               <view class='data'>
-              <text>生效日期：{{information.member_grade_create_time}}</text>
+              <text  wx:if="{{is}}">生效日期：{{information.member_grade_create_time}}</text>
               </view>
               <view class='max-data'>有效期：{{item.member_finite_period}}年</view>
               </view>
@@ -36,9 +36,9 @@
      </view>
      <view class='level_content'>
      <radio-group class="radio-group" bindchange="radioChange">
-     <view class='content_list' wx:for="{{level}}"> 
-        <view class='radio'>
-          <radio value="{{item.tab}}" checked="{{item.checked}}"  color='#fff'/>
+     <view class='content_list' wx:for="{{level}}" > 
+        <view class='radio' >
+          <radio value="{{item.tab}}" checked="{{item.check}}"  color='#fff'/>
           <text class='radio_text'>{{item.member_grade_name}}</text>
         </view>
         <view >

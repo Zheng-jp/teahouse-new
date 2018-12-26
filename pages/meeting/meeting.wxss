@@ -20,11 +20,14 @@ image{
 
 }
 .nav{
-  width: 100%;
-  height: 86rpx;
-  background: #fff;
-  position: fixed;
-  z-index: 999;
+      width:100%;
+      height:86rpx;
+      background:#fff;
+      position:fixed;
+      z-index:999;
+      display:flex;
+      align-items: center;
+
 }
 .img{
 width:46rpx;
@@ -40,17 +43,24 @@ padding: 28rpx
   margin: 0 auto 20rpx auto;
   background: #fff;
   border-radius:20rpx; 
+   box-shadow: 0rpx 6rpx #E5E5E5;
+}
+.right{
+  width:17rpx;
+height:38rpx;
+float: right;
+
 }
 .swiper-tab{  
-    width: 81.3%;  
+    width: 83%;  
     border-bottom: 2rpx solid #eee;  
     text-align: center;  
     line-height: 80rpx;
     background: #fff;
     font-size: 14px;
-    float: right;
+    float: left;
     height: 84rpx;
-   white-space:nowrap;
+    white-space:nowrap;
     box-sizing: border-box;
 }  
 .on{ 
@@ -63,7 +73,7 @@ swiper-item{
 .swiper-tab-list{  
  font-size:32rpx;
 display:inline-block;
-width:33.333% !important;
+width:30% !important;
 color:#333;
 
 }
@@ -205,4 +215,24 @@ border-bottom: 1px #333 solid;
 }
 .weui-grid__bg{
   margin-bottom: 20px;
+}
+
+.share-xia{
+  padding-bottom: 10rpx;
+}
+.listview{
+  width: 720rpx;
+  border-radius:10rpx;
+  overflow: hidden;
+  margin: 15rpx auto;
+  background: #fff;
+}
+.share_icon {
+  overflow: hidden;
+}
+.share-xia{
+  overflow: hidden;
+}
+.shares-content{
+   background: #F9F9F9;
 }

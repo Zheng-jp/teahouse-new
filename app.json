@@ -7,14 +7,26 @@
      "pages/meeting/meeting",
      "pages/detail/detail",
      "pages/members/members",
-      "pages/code/code"
+      "pages/code/code",
+      "pages/good/good",
+      "pages/goods_detail/goods_detail",
+      "pages/add_address/add_address",
+      "pages/select_address/select_address",
+      "pages/settlement/settlement",
+      "pages/select_shop_address/select_shop_address",
+      "pages/select_save_address/select_save_address",
+      "pages/buy/buy",
+      "pages/query/query",
+      "pages/order/order",
+      "pages/test/test"
+      
 
 
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F9F9F9",
-    "navigationBarTitleText": "智慧茶仓",
+    "navigationBarTitleText": "滴金茶业",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -29,23 +41,12 @@
         "text": "首页"
       },
       {
-        "selectedIconPath": "images/icob.png",
-        "iconPath": "images/icoa.png",
-        "pagePath": "pages/index/index",
-        "text": "茶仓"
-      },
-      {
         "selectedIconPath": "images/icod.png",
         "iconPath": "images/icoc.png",
         "pagePath": "pages/circle/circle",
         "text": "茶圈"
       },
-      {
-        "selectedIconPath": "images/icof.png",
-        "iconPath": "images/icoe.png",
-        "pagePath": "pages/index/index",
-        "text": "直播"
-      },
+     
       {
         "selectedIconPath": "images/icoh.png",
         "iconPath": "images/icog.png",

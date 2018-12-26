@@ -33,7 +33,6 @@ radio .wx-radio-input{
   margin: 0 auto;
   border-radius: 20rpx;
 box-sizing: border-box;
-background: 
 }
 image{
   width: 100%;
@@ -51,7 +50,10 @@ image{
   height: 88rpx;
   background: #fff;
   border-radius:50%;
-  overflow: hidden; 
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
 }
 .code{
   width: 110rpx;
@@ -130,6 +132,7 @@ align-items: center;
   width: 60rpx;
   height: 60rpx;
   margin: 0 auto;
+  overflow: hidden;
 }
 .radio_text{
   margin-left: 20rpx;
@@ -177,4 +180,6 @@ height: 50rpx;
 }
 .radio{
   text-align: left !important;
+  display: flex;
+  align-items: center;
 }

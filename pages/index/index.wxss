@@ -9,9 +9,10 @@ view{
   background: #F9F9F9;
 }
 .title{
-  padding: 20rpx;
-  height: 105rpx;
-  line-height: 71rpx;
+padding:0 20rpx;
+height:81rpx;
+line-height:71rpx;
+overflow:hidden;
 
 }
 image {
@@ -20,38 +21,40 @@ image {
 
 }
 .nfc{
- 
-  width:42rpx;
-height:42rpx;
-margin-left:23rpx;
-
-
+width:50rpx;
+height:50rpx;
+margin:0 auto;
+overflow:hidden;
 
 }
 .clear{
   overflow: hidden
 }
 .fangwei{
-  color:#5E5E5E;
-font-size:26rpx;
+color:#5E5E5E;
+font-size:20rpx;
 font-weight:bold;
-
+margin-top:-23rpx;
 }
 .seach{
-float: left;
-width:480rpx;
-height:63rpx;
+float:left;
+width:550rpx;
+height:68rpx;
 background:#fff;
 border-radius:36rpx;
-border: solid #5E5E5E 1px;
-margin: 10rpx
+border:solid #E9E9E9 1px;
+margin:1rpx 10rpx;
+padding-left:50rpx;
+box-sizing:border-box;
 
 
 }
 .ma{
-  width:42rpx;
-height:42rpx;
-margin-left:23rpx;
+width:50rpx;
+height:50rpx;
+margin:0 auto;
+overflow:hidden;
+
 
 }
 /* 轮播图 */
@@ -75,9 +78,10 @@ swiper{
   background: #fff
 }
 .nav_ico{
-  width: 44rpx;
-  height: 44rpx;
-  margin: 40rpx auto 0rpx auto;
+  width:65rpx;
+height:65rpx;
+margin:24rpx auto 0rpx auto;
+
 }
 .new{
 height:50rpx;
@@ -329,8 +333,8 @@ box-sizing:border-box;
   margin-top: 40rpx;
     padding-left:40rpx; 
   padding-right:40rpx; 
-  height: 100rpx;
-  line-height: 100rpx;
+height:84rpx;
+line-height:84rpx;
   background: #fff;
 }
 .share-grids{
@@ -391,4 +395,21 @@ padding: 10rpx;
 
 .share-xia{
   padding-bottom: 10rpx;
+}
+.listview{
+  width: 720rpx;
+  border-radius:10rpx;
+  overflow: hidden;
+  margin: 15rpx auto;
+  background: #fff;
+  box-shadow: 0rpx 6rpx #E5E5E5;
+}
+.share_icon {
+  overflow: hidden;
+}
+.share-xia{
+  overflow: hidden;
+}
+.shares-content{
+   background: #F9F9F9;
 }

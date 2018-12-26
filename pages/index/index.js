@@ -8,8 +8,8 @@ Page({
     // 轮播图图片地址数据
     image: [
       app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
-      app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
-      app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
+      app.globalData.url + '/upload/20181128/eb9826b6cbef8a7a581d7cd55726612f.jpg',
+      app.globalData.url + '/upload/20181128/31d02b855e58a946d5c8dddbb278376b.jpg',
     ],
    
     circular: 'true',
@@ -100,24 +100,89 @@ Page({
     ],
     // 分享信息
     share: [
-      {
-        name: '双骄',
-        url: '/pages/Course/course',
-        icon: 'img/u150.png',
-        code: '10',
-        hot:'HOT',
-        classification: '特点活动',
-        share_content:"20180809马连道茶话会报名参加中马2018080中20180809马连道茶话会报名参加中连道进......",
-        validity:'长期',
-
-      }
     ]
 
     },
+  go_good: function (event) {
+
+    var that = this;
+    console.log(event);
+    var item = event.currentTarget.dataset.item;
+    wx.navigateTo({
+      url: '../good/good',
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
+
+    })
+  },
+  go_meeting: function (event) {
+    var that = this;
+    var item = event.currentTarget.dataset.item;
+    wx.switchTab ({
+      url: '../circle/circle',
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
+
+    })
+  },
+  onShow: function () {
+    var that = this;
+    
+  wx.request({
+    url: app.globalData.tiltes + 'teacenter_recommend',
+    data: {
+    },
+    method: "post",
+    // header: {
+    //   "Content-Type": "json" // 默认值
+
+    // },
+    success: function (res) {
+      console.log(res);
+      that.setData({
+        share: res.data.data,
+      });
+      //  添加字段到等级数组
+      for (var index in that.data.share) {
+        var sexParam = "share[" + index + "].url";
+        that.setData({
+          [sexParam]: app.globalData.img_url,
+        })
+
+      }
 
 
+    },
+    fail: function () {
+
+    },
+    complete: function () {
+      wx.hideLoading()
+    }
+
+  });
 
     
-
+  }
  
 })
