@@ -11,6 +11,7 @@ Page({
   add_address: function (event) {
     wx.navigateTo({
       url: '../add_address/add_address',
+    
       success: function (res) {
         // success
         console.log("nihao////跳转成功")
@@ -37,6 +38,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'member_address_information',
       data: {
+        open_id: app.globalData.gmemberid,
       },
       method: "post",
       // header: {
@@ -46,7 +48,7 @@ Page({
       success: function (res) {
         console.log(res);
         that.setData({
-          address: res.data.data[0],
+          address: res.data.data,
         });
       },
       fail: function () {

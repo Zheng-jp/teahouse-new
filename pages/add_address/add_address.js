@@ -18,10 +18,7 @@ Page({
   },
   formSubmit: function (e) {
     var that=this;
-    console.log(that);
-    console.log('form发生了submit事件，携带数据为：', e.detail.value);
-    console.log(e.detail.value.harvester_phone_num);
-    console.log(e.detail.value.harvester_real_address);
+   
     wx.request({
       url: app.globalData.tiltes + 'member_address_adds',
       data: {
@@ -30,6 +27,7 @@ Page({
         address_name: that.data.region,
         harvester_real_address : e.detail.value.harvester_real_address,
         status : 1,
+        open_id: app.globalData.gmemberid,
       },
       method: "post",
       // header: {
