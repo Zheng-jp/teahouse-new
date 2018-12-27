@@ -245,6 +245,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'commodity_detail',
       data: {
+        open_id: app.globalData.gmemberid,
         id: options.title
       },
       method: "post",
@@ -255,7 +256,7 @@ Page({
       success: function (res) {
         console.log(res);
         that.setData({
-          open_id: app.globalData.gmemberid,
+         
           goods: res.data.data[0],
           id: res.data.data[0].goods_standard[0].id,
           good_id:res.data.data[0].id,
