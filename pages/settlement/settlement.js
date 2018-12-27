@@ -274,6 +274,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'order_return',
       data: {
+        open_id: app.globalData.gmemberid,
         goods_id: good_id,
         guige:guige,
         num:num,
