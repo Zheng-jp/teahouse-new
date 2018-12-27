@@ -1,4 +1,5 @@
 // pages/buy/buy.js
+const app = getApp();
 Page({
 
   /**
@@ -11,39 +12,39 @@ Page({
     totalCount: 0,
     
     goodList: [
-      {
-        'cover': 'img/u936.png',
-        'isbn': '9787535482051',
-        'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
-        'price': 25.9,
-        'checked': false,
-        'count': 1,
-        'index': 1,
-        'num': 1,
-        'tab':1,
+      // {
+      //   'cover': 'img/u936.png',
+      //   'isbn': '9787535482051',
+      //   'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
+      //   'price': 25.9,
+      //   'checked': false,
+      //   'count': 1,
+      //   'index': 1,
+      //   'num': 1,
+      //   'tab':0,
        
-      },
-      {
-        'cover': 'img/u936.png',
-        'isbn': '9787535482051',
-        'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
-        'price': 25.9,
-        'checked': false,
-        'count': 1,
-        'index': 1,
-        'num': 1,
-        'tab':2,
-      }, {
-        'cover': 'img/u936.png',
-        'isbn': '9787535482051',
-        'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
-        'price': 25.9,
-        'checked': false,
-        'count': 1,
-        'index': 1,
-        'num': 1,
-        'tab':3,
-      }
+      // },
+      // {
+      //   'cover': 'img/u936.png',
+      //   'isbn': '9787535482052',
+      //   'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
+      //   'price': 25.9,
+      //   'checked': false,
+      //   'count': 1,
+      //   'index': 2,
+      //   'num': 1,
+      //   'tab':1,
+      // }, {
+      //   'cover': 'img/u936.png',
+      //   'isbn': '9787535482053',
+      //   'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
+      //   'price': 25.9,
+      //   'checked': false,
+      //   'count': 1,
+      //   'index': 3,
+      //   'num': 1,
+      //   'tab':2,
+      // }
       ],
     // 商品信息
     routers: [
@@ -104,44 +105,44 @@ Page({
    bindMinus: function (e) {
     var that=this;
     var tab=e.currentTarget.dataset.id;
-    // console.log(that.data.goodList);
-    // if (num > 1) {
     for (var index in that.data.goodList) {
-      var nums=that.data.goodList[tab].num;
-      var num = 'goodList['+index+'].num'
-      console.log(nums);
+      var nums = that.data.goodList[tab].goods_unit;
+      var num = 'goodList[' + index +'].goods_unit'
       if(index==tab){
-        console.log(num);
+        if (nums>1){
+          nums--;
           that.setData({
-            [num]:nums--
+            [num]: nums
           });
+        }
+        
       }
 
     }
-  // }
-    // 如果大于1时，才可以减  
-    // if (num > 1) {
-    //   num--;
-    //   that.setData({
-    //     [num]:goodList['+tab+'].num
-    //   });
-    // }
+ 
     
    
   },
   /* 点击加号 */
   bindPlus: function (e) {
-    var that=this;
-    var tab=e.currentTarget.dataset.id;
-    var num = 'goodList['+tab+'].num'
-    // 不作过多考虑自增1  
-    num++;
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num < 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    that.setData({
-      [num]:goodList['+tab+'].num
-    });
+    var that = this;
+    var tab = e.currentTarget.dataset.id;
+    for (var index in that.data.goodList) {
+      var nums = that.data.goodList[tab].goods_unit;
+      var num = 'goodList[' + index + '].goods_unit'
+      if (index == tab) {
+     
+          nums++;
+          that.setData({
+            [num]: nums
+          });
+        
+
+      }
+
+    }
+
+   
   },
   /* 输入框事件 */
   bindManual: function (e) {
@@ -176,6 +177,7 @@ Page({
     });
     this.calculateTotal();
   },
+  // 全选
   selectalltap: function (e) {
     // console.log('用户点击全选，携带value值为：', e.detail.value);
     var value = e.detail.value;
@@ -241,9 +243,43 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
     this.setData({
       heght: wx.getSystemInfoSync().windowHeight,
     })
+    wx.request({
+      url: app.globalData.tiltes + 'shopping_index',
+      data: {
+        open_id: app.globalData.gmemberid,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          goodList: res.data.data,
+        });
+           //  添加字段到等级数组
+        for (var index in that.data.goodList) {
+          var sexParam = "goodList[" + index + "].tab";
+          that.setData({
+            [sexParam]: index,
+          })
+
+        }
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
+    
   },
 
   /**

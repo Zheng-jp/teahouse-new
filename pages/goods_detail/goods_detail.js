@@ -89,12 +89,21 @@ Page({
   // 点击加入购物车
   add_car: function (event) {
     var that=this;
+    console.log(that);
+    if (that.data.goods.goods_standard == 0)
+    {
+      var goods_standard_id = '';
+    }
+    else{
+      var goods_standard_id = that.data.select;
+    }
     wx.request({
-      url: app.globalData.tiltes + 'aaa',
+      url: app.globalData.tiltes + 'get_goods_id_to_shopping',
       data: {
-        ida: that.data.num,
-        idb: that.data.select,
-        idc: that.data.id
+        open_id: app.globalData.gmemberid,
+        goods_unit: that.data.num,
+        goods_standard_id: goods_standard_id,
+        goods_id: that.data.id
       },
       method: "post",
       // header: {
@@ -102,8 +111,9 @@ Page({
 
       // },
       success: function (res) {
+        console.log(res);
         wx.showToast({
-          title:'添加成功',
+          title: res.data.info,
           icon:'none',
         })
 
@@ -256,9 +266,8 @@ Page({
       success: function (res) {
         console.log(res);
         that.setData({
-         
           goods: res.data.data[0],
-          id: res.data.data[0].goods_standard[0].id,
+          id: options.title,
           good_id:res.data.data[0].id,
           images: res.data.data[0].goods_standard[0].images,
           price: res.data.data[0].goods_standard[0].price,
