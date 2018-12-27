@@ -1,18 +1,28 @@
 // pages/settlement/settlement.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    // 是否有收货地址
     selected:true,
+    // 是否有店铺地址
     selected1: false,
+  
     selected2: false,
+     // 是否有存茶地址
     warehouse:true,
-    showModalStatus: true,
+    //  选择保险年限
+    showModalStatus: false,
+    // 加减框里面的值
     num:'1',
+    // 手机号码
     tel:'',
+    // 名字
     name:'',
+    // 地址
     address:''
     
     
@@ -186,7 +196,62 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var good_id = options.good_id;
+    var guige = options.guige;
+    var num = options.num;
+    wx.request({
+      url: app.globalData.tiltes + 'member_default_address_return',
+      data: {
+        open_id: app.globalData.gmemberid,
+        address_id:''
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res)
+        // that.setData({
+        //   address: res.data.data,
+        // });
+       
+       
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+    wx.request({
+      url: app.globalData.tiltes + 'order_return',
+      data: {
+        goods_id: good_id,
+        guige:guige,
+        num:num,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res)
+        // that.setData({
+        //   address: res.data.data,
+        // });
+       
+       
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
 
   },
 
@@ -210,7 +275,6 @@ Page({
       name:name,
       address:address,
     });
-    console.log(tel);
   },
 
   /**

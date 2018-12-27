@@ -1,6 +1,6 @@
 <!--pages/select_address/select_address.wxml-->
 <view class='all'>
-	<radio-group class="radio-group" bindchange="radioChange" wx:if="{{address.length!=0}}" >
+	<radio-group class="radio-group" bindchange="radioChange" wx:if="{{address.info!='没有填写地址记录'}}" >
 		<view class='content_list' wx:for='{{address}}'>
 			<view class='radio'>
 				<radio value="{{item.id}}" color='#fff' />

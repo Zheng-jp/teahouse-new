@@ -103,8 +103,9 @@ Page({
        console.log(res);
        that.setData({
         address:res.data.data,
-        region:res.data.data.address_name,
+        region:res.data.data.address_name.split(","),
        })
+  
       },
       fail: function () {
 

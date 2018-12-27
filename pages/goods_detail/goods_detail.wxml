@@ -3,7 +3,6 @@
 	<view class='mask' wx:if="{{mask_show}}">
 		<view class='select-ser-pop'>
 			<image src='img/x.png' mode="widthFix" class='close-select-pop' bindtap="hideFlag" style='hight:44rpx'></image>
-
 			<view class='select-goods-wrap'> 
 				<view class='select-goods-img'>
 					<image src='{{url}}{{images}}' mode="widthFix"></image>
@@ -141,13 +140,13 @@
 				<image src='img/u1492.png' class='footbar_ico'></image>
 				<view class='footbar_text'>分享</view>
 			</view>
-			<view class='shopping_cart'>
+			<view class='shopping_cart'  bindtap="go_car">
 				<image src='img/u1494.png' class='footbar_ico'></image>
 				<view class='footbar_text'>购物车</view>
 			</view>
 		</view>
 		<view class='trade'>
-			<view class='add-cart'>加入购物车</view>
+			<view class='add-cart' bindtap="add_car"  >加入购物车</view>
 			<view class='buy' bindtap="showPopup">立即购买</view>
 		</view>
 	</view>

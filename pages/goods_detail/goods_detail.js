@@ -16,13 +16,14 @@ Page({
     // var current=e.target.dataset.current;
     // 商品图片
     images:'',
+    // 规格值
     select:'规格',
     add_address:false,
     selecteds: true,
     id: 0,
+    // 商品数量
     num:'1',
     image: [ ],
-     
     url:app.globalData.img_url,
     circular: 'true',
     indicatorDots: 'true',
@@ -31,6 +32,7 @@ Page({
     selected: true,
     selected1: false,
     mask_show:false,
+    good_id:'0',
    
   },
   labelItemTap: function (e) {
@@ -84,6 +86,56 @@ Page({
       
     
   },
+  // 点击加入购物车
+  add_car: function (event) {
+    var that=this;
+    wx.request({
+      url: app.globalData.tiltes + 'aaa',
+      data: {
+        ida: that.data.num,
+        idb: that.data.select,
+        idc: that.data.id
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        wx.showToast({
+          title:'添加成功',
+          icon:'none',
+        })
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
+    },
+    // 点击购物车
+    go_car: function (e) {
+      wx.navigateTo({
+        url: '../buy/buy',
+        success: function (res) {
+          // success
+          console.log("nihao////跳转成功")
+        },
+        fail: function () {
+          // fail
+          console.log("nihao////跳转失败")
+        },
+        complete: function () {
+          // complete
+          console.log("nihao////跳转行为结束，未知成功失败")
+        }
+
+      })
+    },
    /* 点击减号 */
    bindMinus: function () {
     var num = this.data.num;
@@ -161,7 +213,7 @@ Page({
     }
     else{
       wx.navigateTo({
-        url: '../settlement/settlement',
+        url: '../settlement/settlement?good_id=' +  that.data.good_id+"&guige="+that.data.id+"&num="+that.data.num,
         success: function (res) {
           // success
           console.log("nihao////跳转成功")
@@ -205,6 +257,7 @@ Page({
         that.setData({
           goods: res.data.data[0],
           id: res.data.data[0].goods_standard[0].id,
+          good_id:res.data.data[0].id,
           images: res.data.data[0].goods_standard[0].images,
           price: res.data.data[0].goods_standard[0].price,
           stock: res.data.data[0].goods_standard[0].stock,

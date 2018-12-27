@@ -105,7 +105,6 @@ Page({
     that.setData({
       is_select_address: 'select',
     });
-    console.log(that)
    }
     wx.request({
       url: app.globalData.tiltes + 'member_address_information',
@@ -118,10 +117,17 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
         that.setData({
           address: res.data.data,
         });
+        for (var index in that.data.address) {
+          var address_names=that.data.address[index].address_name.split(",").join("");
+          var price = 'address['+index+'].address_name'
+          that.setData({
+            [price]:address_names
+          });
+        }
+       
       },
       fail: function () {
 
