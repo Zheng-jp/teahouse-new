@@ -9,6 +9,7 @@ Page({
     region: ['省', '市', '区'],
     customItem: "全部",
     address:[],
+    title:'',
 
   },
   bindRegionChange: function (e) {
@@ -19,9 +20,10 @@ Page({
   },
   formSubmit: function (e) {
     var that=this;
-   
+    var id=that.data.title
+    console.log(id);
     wx.request({
-      url: app.globalData.tiltes + 'member_address_adds',
+      url: app.globalData.tiltes + 'member_address_edit',
       data: {
         harvester: e.detail.value.harvester,
         harvester_phone_num : e.detail.value.harvester_phone_num,
@@ -29,6 +31,7 @@ Page({
         harvester_real_address : e.detail.value.harvester_real_address,
         status : 1,
         open_id: app.globalData.gmemberid,
+        id:id
       },
       method: "post",
       // header: {
@@ -83,6 +86,9 @@ Page({
   onLoad: function (options) {
     var that=this;
     var title = options.title;
+    that.setData({
+      title: title,
+    });
     wx.request({
       url: app.globalData.tiltes + 'member_address_edit_information',
       data: {

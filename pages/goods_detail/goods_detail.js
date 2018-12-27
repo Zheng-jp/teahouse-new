@@ -21,8 +21,7 @@ Page({
     selecteds: true,
     id: 0,
     num:'1',
-    image: [
-    ],
+    image: [ ],
      
     url:app.globalData.img_url,
     circular: 'true',

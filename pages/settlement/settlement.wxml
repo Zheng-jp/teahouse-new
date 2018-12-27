@@ -59,11 +59,11 @@
 			<view class="direct_mail {{selected?'show':'hidden'}}">
 				<view class='direct_mail_infor_all'>
 					<view class='direct_mail_infor'>
-						<text>1858822282 </text>
-						<text>刘德华</text>
+						<text>{{tel}} </text>
+						<text>{{name}}</text>
 						<text>收</text>
 					</view>
-					<view class='direct_mail_add'>北京市朝阳区天鹅湾小区5号楼3单元201北京市朝阳区天鹅湾小区5号楼3单元201</view>
+					<view class='direct_mail_add'>{{address}}</view>
 				</view>
 				<view class='more_img' bindtap='go_direct_mail_address'>
 					<image src='img/u1959.png'></image>

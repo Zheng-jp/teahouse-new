@@ -10,7 +10,10 @@ Page({
     selected2: false,
     warehouse:true,
     showModalStatus: true,
-    num:'1'
+    num:'1',
+    tel:'',
+    name:'',
+    address:''
     
     
   },
@@ -183,6 +186,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  
 
   },
 
@@ -197,7 +201,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that=this;
+    var tel=wx.getStorageSync('tel');
+    var name=wx.getStorageSync('name');
+    var address=wx.getStorageSync('address');
+    that.setData({
+      tel: tel,
+      name:name,
+      address:address,
+    });
+    console.log(tel);
   },
 
   /**

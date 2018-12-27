@@ -7,6 +7,8 @@ Page({
    */
   data: {
      addresss:[],
+     is_select_address:'',
+   
   },
   add_address: function (event) {
     wx.navigateTo({
@@ -75,6 +77,18 @@ Page({
     });
 
   },
+  // 当从结算页面进来时触发的事件
+  select:function(event){
+    var tel=event.currentTarget.dataset.tel;
+    var name=event.currentTarget.dataset.name;
+    var address=event.currentTarget.dataset.address;
+    wx.setStorageSync('tel', tel);
+    wx.setStorageSync('name', name);
+    wx.setStorageSync('address', address);
+     wx.navigateBack({
+      delta: 1
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -83,6 +97,16 @@ Page({
     var that=this;
     var s_height = wx.getSystemInfoSync().windowHeight;
     var title = options.title;
+    // 判读从哪个页面进来
+    var  pages = getCurrentPages();
+    var  prevpage = pages[pages.length - 2];
+    console.log(prevpage.route)
+   if(prevpage.route=='pages/settlement/settlement'){
+    that.setData({
+      is_select_address: 'select',
+    });
+    console.log(that)
+   }
     wx.request({
       url: app.globalData.tiltes + 'member_address_information',
       data: {
