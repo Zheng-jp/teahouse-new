@@ -19,6 +19,8 @@ Page({
         'checked': false,
         'count': 1,
         'index': 1,
+        'num': 1,
+        'tab':1,
        
       },
       {
@@ -29,6 +31,8 @@ Page({
         'checked': false,
         'count': 1,
         'index': 1,
+        'num': 1,
+        'tab':2,
       }, {
         'cover': 'img/u936.png',
         'isbn': '9787535482051',
@@ -37,6 +41,8 @@ Page({
         'checked': false,
         'count': 1,
         'index': 1,
+        'num': 1,
+        'tab':3,
       }
       ],
     // 商品信息
@@ -93,6 +99,57 @@ Page({
     
     ],
 
+  },
+   /* 点击减号 */
+   bindMinus: function (e) {
+    var that=this;
+    var tab=e.currentTarget.dataset.id;
+    // console.log(that.data.goodList);
+    // if (num > 1) {
+    for (var index in that.data.goodList) {
+      var nums=that.data.goodList[tab].num;
+      var num = 'goodList['+index+'].num'
+      console.log(nums);
+      if(index==tab){
+        console.log(num);
+          that.setData({
+            [num]:nums--
+          });
+      }
+
+    }
+  // }
+    // 如果大于1时，才可以减  
+    // if (num > 1) {
+    //   num--;
+    //   that.setData({
+    //     [num]:goodList['+tab+'].num
+    //   });
+    // }
+    
+   
+  },
+  /* 点击加号 */
+  bindPlus: function (e) {
+    var that=this;
+    var tab=e.currentTarget.dataset.id;
+    var num = 'goodList['+tab+'].num'
+    // 不作过多考虑自增1  
+    num++;
+    // 只有大于一件的时候，才能normal状态，否则disable状态  
+    var minusStatus = num < 1 ? 'disabled' : 'normal';
+    // 将数值与状态写回  
+    that.setData({
+      [num]:goodList['+tab+'].num
+    });
+  },
+  /* 输入框事件 */
+  bindManual: function (e) {
+    var num = e.detail.value;
+    // 将数值与状态写回  
+    this.setData({
+      num: num
+    });
   },
   checkboxChange: function (e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value);

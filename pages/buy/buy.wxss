@@ -359,4 +359,42 @@ margin:20rpx auto;
   font-size: 36rpx;
   vertical-align: middle;
 }
+/* 购买数量 */
+.quantity{
+  display: flex;
+  width: 750rpx;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.purchase_quantity{
+  font-size: 30rpx;
+}
+.select_quantity{
+  display: flex;
+  align-items: center;
+}
+.num input{
+width: 60rpx;
+font-size: 30rpx;
+color: #333;
+text-align: center;
+}
+.subtract{
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  background: #F2F2F2;
+}
+.add{
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  background: #F2F2F2;
+}
+
 

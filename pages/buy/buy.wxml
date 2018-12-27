@@ -9,8 +9,9 @@
           <view class='buton_to'>到商城随便逛逛</view> 
       </view> 
        <checkbox-group bindchange="checkboxChange">
-         <view class='content_list' wx:for='{{goodList}}'> 
-            <view class='radio' >
+         <view  wx:for='{{goodList}}'> 
+         <view class='content_list'>
+           <view class='radio' >
               <checkbox  value="{{item.isbn}}"  color='#fff' checked="{{item.checked}}"/>
             </view>
             <view class='content_list_img' style='width:220rpx;'><image src='{{item.cover}}' mode='widthFix'></image></view>
@@ -25,7 +26,17 @@
                          <view class='good_num text_red'>×1</view>
                 </view>
             </view>
+         </view>
+               <view class='quantity'>
+                  <view class='purchase_quantity'>购买数量</view>
+                <view class='select_quantity'>
+                  <view class='subtract' catchtap="bindMinus" data-id="{{item.tab}}">-</view>
+                        <view class='num'><input type="number" placeholder=""  value="{{item.num}}" /></view>
+                  <view class='add'  catchtap="bindPlus" data-id="{{item.tab}}">+</view>
+                </view>
+              </view>	
         </view>
+        
        
       </checkbox-group>
    </view>
