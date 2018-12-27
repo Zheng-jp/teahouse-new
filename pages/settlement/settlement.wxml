@@ -23,24 +23,38 @@
 	<view class='titles'>
 		购物清单
 	</view>
-	<view class='order-goods-info'>
-		<view class='order-goods-img'>
-			<image src='img/u852.png' mode="scaleToFill"></image>
-		</view>
-		<view class='order-info-box'>
-			<view class='order-info-title'>商品名称</view>
-			<view class='order-goods-p'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点</view>
-			<view class='unit-price-quantity'>
-				<view class='unit-price'>
-					<view class='unit-price-img'>
-						<image src='img/u216.png' mode="scaleToFill"></image>
-					</view>
-					<view class='unit-price-p text_red'> ￥90.0/片</view>
-				</view>
-				<view class='quantity-p text_red'>×1</view>
+	<view wx:for="{{goods}}">
+		<view class='order-goods-info'>
+			<view class='order-goods-img'>
+				<image src='img/u852.png' mode="scaleToFill"></image>
 			</view>
+			<view class='order-info-box'>
+				<view class='order-info-title'>{{item.goods_info.goods_name}}</view>
+				<view class='order-goods-p'>{{item.goods_info.goods_selling}}</view>
+				<view class='unit-price-quantity'>
+					<view class='unit-price'>
+						<view class='unit-price-img'>
+							<image src='img/u216.png' mode="scaleToFill"></image>
+						</view>
+
+						<view class='unit-price-p text_red' wx:if="{{item.goods_info.goods_standard==0}}"> ￥{{item.goods_info.goods_new_money}}/片</view>
+						<view class='unit-price-p text_red' wx:else> ￥{{item.special_info.price}}/片</view>
+					</view>
+					<view class='quantity-p text_red'>×1</view>
+				</view>
+			</view>
+			
 		</view>
+	    <view class='quantity'>
+	    	<view class='purchase_quantity'>购买数量</view>
+			<view class='select_quantity'>
+			   <view class='subtract' bindtap="bindMinus">-</view>
+               <view class='num'><input type="number" placeholder=""  value="{{num}}" /></view>
+			   <view class='add'  bindtap="bindPlus">+</view>
+			</view>
+		</view>	
 	</view>
+	
 	<view class='way'>
 		<view class='way_select'>
 			<radio-group class="radio-group" bindchange="radioChange">

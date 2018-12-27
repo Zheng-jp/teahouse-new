@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -83,7 +83,13 @@
 				{
 					"id": -1,
 					"name": "购物车",
-					"pathName": "pages/buy/buy"
+					"pathName": "pages/buy/buy",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "结算",
+					"pathName": "pages/settlement/settlement"
 				}
 			]
 		}

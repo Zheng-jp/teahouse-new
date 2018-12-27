@@ -23,7 +23,10 @@ Page({
     // 名字
     name:'',
     // 地址
-    address:''
+    address:'',
+    // 数量里面的值
+    num:'1',
+    goods:[],
     
     
   },
@@ -191,13 +194,56 @@ Page({
     }
         // 弹窗
   },
+     /* 点击减号 */
+     bindMinus: function () {
+      var num = this.data.num;
+      // 如果大于1时，才可以减  
+      if (num > 1) {
+        num--;
+      }
+      // 只有大于一件的时候，才能normal状态，否则disable状态  
+      var minusStatus = num <= 1 ? 'disabled' : 'normal';
+      // 将数值与状态写回  
+      this.setData({
+        num: num,
+        minusStatus: minusStatus
+      });
+    },
+    /* 点击加号 */
+    bindPlus: function () {
+      var num = this.data.num;
+      // 不作过多考虑自增1  
+      num++;
+      // 只有大于一件的时候，才能normal状态，否则disable状态  
+      var minusStatus = num < 1 ? 'disabled' : 'normal';
+      // 将数值与状态写回  
+      this.setData({
+        num: num,
+        minusStatus: minusStatus
+      });
+    },
+      /* 输入框事件 */
+      bindManual: function (e) {
+        var num = e.detail.value;
+        // 将数值与状态写回  
+        this.setData({
+          num: num
+        });
+      },
+    
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+
     var good_id = options.good_id;
     var guige = options.guige;
+    if(guige=='undefined'){
+      guige='';
+    }
+ 
     var num = options.num;
     wx.request({
       url: app.globalData.tiltes + 'member_default_address_return',
@@ -239,9 +285,9 @@ Page({
       // },
       success: function (res) {
         console.log(res)
-        // that.setData({
-        //   address: res.data.data,
-        // });
+        that.setData({
+          goods: res.data.data,
+        });
        
        
       },

@@ -255,6 +255,7 @@ Page({
       success: function (res) {
         console.log(res);
         that.setData({
+          open_id: app.globalData.gmemberid,
           goods: res.data.data[0],
           id: res.data.data[0].goods_standard[0].id,
           good_id:res.data.data[0].id,

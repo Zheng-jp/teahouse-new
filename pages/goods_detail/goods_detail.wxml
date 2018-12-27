@@ -38,6 +38,7 @@
 				</view>
 			</view>
 		</view>
+		
 	</view>
 	<view class='home_banner'>
 		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}">
