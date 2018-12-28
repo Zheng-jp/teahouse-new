@@ -15,6 +15,7 @@
 .good_price{
    display: flex;
    justify-content: space-between;
+   width: 474rpx;
 }
 .price{
   display: flex;

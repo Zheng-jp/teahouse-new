@@ -34,7 +34,6 @@
   height: 120px;
   overflow-y: scroll; /*超出父盒子高度可滚动*/
 }
- 
 .btn_ok{
  padding:15px;
 font:17px "microsoft yahei";

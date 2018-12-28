@@ -33,6 +33,7 @@ Page({
     selected1: false,
     mask_show:false,
     good_id:'0',
+    goods_standard_id:'0',
    
   },
   labelItemTap: function (e) {
@@ -49,6 +50,8 @@ Page({
   // var current=e.target.dataset.current;
   // 商品图片
   var images=e.target.dataset.images;
+  // 规格id
+  // var goods_standard_id=e.target.dataset.id;
     // 商品名字
     var value=e.target.dataset.value;
     console.log(e.target.dataset);
@@ -95,7 +98,7 @@ Page({
       var goods_standard_id = '';
     }
     else{
-      var goods_standard_id = that.data.select;
+      var goods_standard_id = that.data.id;
     }
     wx.request({
       url: app.globalData.tiltes + 'get_goods_id_to_shopping',
@@ -103,7 +106,7 @@ Page({
         open_id: app.globalData.gmemberid,
         goods_unit: that.data.num,
         goods_standard_id: goods_standard_id,
-        goods_id: that.data.id
+        goods_id: that.data.good_id
       },
       method: "post",
       // header: {

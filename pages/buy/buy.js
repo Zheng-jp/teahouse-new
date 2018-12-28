@@ -10,7 +10,7 @@ Page({
     heght:'',
     totalPrice: 0,
     totalCount: 0,
-    
+    url:app.globalData.img_url,
     goodList: [
       // {
       //   'cover': 'img/u936.png',
@@ -159,7 +159,7 @@ Page({
     for (var i = 0; i < checkboxItems.length; ++i) {
       checkboxItems[i].checked = false;
       for (var j = 0; j < values.length; ++j) {
-        if (checkboxItems[i].isbn == values[j]) {
+        if (checkboxItems[i].id == values[j]) {
           checkboxItems[i].checked = true;
           break;
         }
@@ -270,6 +270,23 @@ Page({
           })
 
         }
+           //  添加字段到等级数组
+           for (var index in that.data.goodList) {
+            var sexParam = "goodList[" + index + "].desc";
+            that.setData({
+              [sexParam]: '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
+            })
+  
+          }
+           //  添加字段到等级数组
+           for (var index in that.data.goodList) {
+            var sexParam = "goodList[" + index + "].check";
+            that.setData({
+              [sexParam]: false,
+            })
+  
+          }
+
       },
       fail: function () {
 
