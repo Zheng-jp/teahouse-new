@@ -57,10 +57,10 @@
                      <view class='selling_point'>{{item.goods_selling}}
                      </view>
                      <view class='price'>
-                          <view class='price_img'><image src='{{item.price_img}}'></image></view>
+                          <view class='price_img'><image src='img/u182.png'></image></view>
                           
-                          <text class="price_text" wx:if="{{item.goods_standard==0}}">{{item.goods_new_money}}</text>
-                           <text class="price_text" wx:else>{{item.goods_new_money}}</text>
+                          <text class="price_text" wx:if="{{item.goods_standard==0}}">￥{{item.goods_new_money}}</text>
+                           <text class="price_text" wx:else>￥{{item.min_price}}-￥{{item.max_price}}</text>
                            <text class="price_line">{{item.name}}</text>
                      </view>
 

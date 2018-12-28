@@ -146,6 +146,30 @@ Page({
 
     })
   },
+  go_gooddetail: function (event) {
+
+    var that = this;
+    var item = event.currentTarget.dataset.item;
+
+    console.log(event.currentTarget.dataset.id);
+    wx.navigateTo({
+      url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
+
+
+    })
+  },
   onShow: function () {
     var that = this;
     

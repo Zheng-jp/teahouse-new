@@ -199,6 +199,8 @@ margin-top:28rpx;
     width: 50%;
     box-sizing: border-box;
     margin-bottom:50rpx;
+    height: 500rpx;
+    overflow: hidden;
 
 }
  
@@ -258,8 +260,9 @@ margin:0 auto;
 }
  .price_img{
    float: left;
-width:35rpx;
-height:33rpx;
+   align-items: center;
+    width:35rpx;
+    height:35rpx;
 
  }
  .price_text{
