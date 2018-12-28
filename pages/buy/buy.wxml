@@ -30,9 +30,9 @@
                <view class='quantity'>
                   <view class='purchase_quantity'>购买数量</view>
                 <view class='select_quantity'>
-                  <view class='subtract' catchtap="bindMinus" data-id="{{item.tab}}">-</view>
+                  <view class='subtract' catchtap="bindMinus" data-id="{{item.tab}}" data-shopid="{{item.id}}">-</view>
                         <view class='num'><input type="number" placeholder=""  value="{{item.goods_unit}}" /></view>
-                  <view class='add'  catchtap="bindPlus" data-id="{{item.tab}}">+</view>
+                  <view class='add'  catchtap="bindPlus" data-id="{{item.tab}}"  data-shopid="{{item.id}}">+</view>
                 </view>
               </view>	
         </view>

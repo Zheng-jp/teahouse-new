@@ -33,7 +33,6 @@ Page({
     selected1: false,
     mask_show:false,
     good_id:'0',
-    goods_standard_id:'0',
    
   },
   labelItemTap: function (e) {
@@ -61,11 +60,13 @@ Page({
   } else {
     that.setData({
       id: e.target.dataset.current,
+      good_id: e.target.dataset.current,
       current: current,
       price:price,
       stock:stock,
       images:images,
       select:value,
+
     })
   }
   },
@@ -100,35 +101,47 @@ Page({
     else{
       var goods_standard_id = that.data.id;
     }
-    wx.request({
-      url: app.globalData.tiltes + 'get_goods_id_to_shopping',
-      data: {
-        open_id: app.globalData.gmemberid,
-        goods_unit: that.data.num,
-        goods_standard_id: goods_standard_id,
-        goods_id: that.data.good_id
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
+    if(that.data.select=='规格'){
+      wx.showToast({
+        title: '请选择规格',
+        icon:'none',
+      })
+    }
+    else{
+      wx.request({
+        url: app.globalData.tiltes + 'get_goods_id_to_shopping',
+        data: {
+          open_id: app.globalData.gmemberid,
+          goods_unit: that.data.num,
+          // 规格id
+          goods_standard_id: goods_standard_id,
+          // 商品id
+          goods_id: that.data.id
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+  
+        // },
+        success: function (res) {
+          console.log(res);
+          wx.showToast({
+            title: res.data.info,
+            icon:'none',
+          })
+  
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
 
-      // },
-      success: function (res) {
-        console.log(res);
-        wx.showToast({
-          title: res.data.info,
-          icon:'none',
-        })
-
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
-      }
-
-    });
+    }
+    
     },
     // 点击购物车
     go_car: function (e) {
@@ -271,7 +284,6 @@ Page({
         that.setData({
           goods: res.data.data[0],
           id: options.title,
-          good_id:res.data.data[0].id,
           images: res.data.data[0].goods_standard[0].images,
           price: res.data.data[0].goods_standard[0].price,
           stock: res.data.data[0].goods_standard[0].stock,

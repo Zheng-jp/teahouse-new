@@ -114,6 +114,32 @@ Page({
           that.setData({
             [num]: nums
           });
+          wx.request({
+            url: app.globalData.tiltes + 'shopping_information_del',
+            data: {
+              open_id: app.globalData.gmemberid,
+              goods_unit:1,
+              shopping_id:e.currentTarget.dataset.shopid,
+              
+            },
+            method: "post",
+            // header: {
+            //   "Content-Type": "json" // 默认值
+      
+            // },
+            success: function (res) {
+              console.log(res);
+              
+            },
+            fail: function () {
+      
+            },
+            complete: function () {
+              wx.hideLoading()
+            }
+      
+          });
+         
         }
         
       }
@@ -136,6 +162,31 @@ Page({
           that.setData({
             [num]: nums
           });
+          wx.request({
+            url: app.globalData.tiltes + 'shopping_information_add',
+            data: {
+              open_id: app.globalData.gmemberid,
+              goods_unit:1,
+              shopping_id:e.currentTarget.dataset.shopid,
+              
+            },
+            method: "post",
+            // header: {
+            //   "Content-Type": "json" // 默认值
+      
+            // },
+            success: function (res) {
+              console.log(res);
+              
+            },
+            fail: function () {
+      
+            },
+            complete: function () {
+              wx.hideLoading()
+            }
+      
+          });
         
 
       }
@@ -144,14 +195,7 @@ Page({
 
    
   },
-  /* 输入框事件 */
-  bindManual: function (e) {
-    var num = e.detail.value;
-    // 将数值与状态写回  
-    this.setData({
-      num: num
-    });
-  },
+ 
   checkboxChange: function (e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value);
     var checkboxItems = this.data.goodList;
@@ -202,21 +246,50 @@ Page({
  * 删除购物车当前商品
  */
   deleteList(e) {
-    console.log(e);
-    const index = e.currentTarget.dataset.index;
-    console.log(index);
-    let goodList = this.data.goodList;
-    goodList.splice(index, 1);
-    this.setData({
-      goodList: goodList
-    });
-    if (!goodList.length) {
-      this.setData({
-        iscart: true
-      });
-    } else {
-      this.calculateTotal();
+ 
+    var checkboxItems = this.data.goodList;
+    console.log(checkboxItems);
+    for (var i = 0; i < checkboxItems.length; ++i) {
+      if(checkboxItems[i].checked == true){
+        const index = checkboxItems[i].tab;
+        wx.request({
+          url: app.globalData.tiltes + 'shopping_del',
+          data: {
+            // open_id: app.globalData.gmemberid,
+            shopping_id:checkboxItems[i].id,
+          },
+          method: "post",
+          // header: {
+          //   "Content-Type": "json" // 默认值
+    
+          // },
+          success: function (res) {
+            this.data.goodList.splice(index, 1);
+            
+            this.setData({
+              goodList: goodList
+            });
+            if (!goodList.length) {
+              this.setData({
+                iscart: true
+              });
+            } else {
+              this.calculateTotal();
+            }
+            
+          },
+          fail: function () {
+    
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+    
+        });
+      }
+      
     }
+  
   },
   /**
    * 计算商品总数
@@ -228,8 +301,8 @@ Page({
     for (var i = 0; i < goodList.length; i++) {
       var good = goodList[i];
       if (good.checked) {
-        totalCount += good.count;
-        totalPrice += good.count * good.price;
+        totalCount += good.goods_unit;
+        totalPrice += good.goods_unit * good.money;
       }
     }
     totalPrice = totalPrice.toFixed(2);
