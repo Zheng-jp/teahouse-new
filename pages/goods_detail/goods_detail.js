@@ -33,6 +33,7 @@ Page({
     selected1: false,
     mask_show:false,
     good_id:'0',
+    
    
   },
   labelItemTap: function (e) {
@@ -240,8 +241,27 @@ Page({
       })
     }
     else{
+      var chars=[];
+      // var char = {};
+      var good_ids = {}
+      var ids = {}
+      var nums = {}
+      var good_id=new Array();
+      var id=new Array();
+      var num=new Array();
+         //  添加good_id字段到传值数组
+         good_id.push(that.data.good_id);
+         good_ids['good_id']=good_id;
+         id.push(that.data.id);
+         ids['guige']=id;
+         num.push(that.data.num);
+         nums['num']=num;
+       chars.push(good_ids);
+       chars.push(ids);
+       chars.push(nums);
+       let userStr=JSON.stringify(chars);
       wx.navigateTo({
-        url: '../settlement/settlement?good_id=' +  that.data.good_id+"&guige="+that.data.id+"&num="+that.data.num,
+        url: '../settlement/settlement?title=' + userStr,
         success: function (res) {
           // success
           console.log("nihao////跳转成功")

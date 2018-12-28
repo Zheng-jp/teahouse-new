@@ -237,14 +237,9 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-
-    var good_id = options.good_id;
-    var guige = options.guige;
-    if(guige=='undefined'){
-      guige='';
-    }
- 
-    var num = options.num;
+    var good_id = options.title;
+    let user = JSON.parse(options.title);
+    console.log(user);
     wx.request({
       url: app.globalData.tiltes + 'member_default_address_return',
       data: {
@@ -274,10 +269,10 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'order_return',
       data: {
-        open_id: app.globalData.gmemberid,
-        goods_id: good_id,
-        guige:guige,
-        num:num,
+        'open_id': app.globalData.gmemberid,
+        'goods_id': user[0].good_id,
+        'guige':user[1].guige,
+        'num':user[2].num,
       },
       method: "post",
       // header: {
