@@ -246,12 +246,12 @@ Page({
  * 删除购物车当前商品
  */
   deleteList(e) {
- 
+     var that=this;
     var checkboxItems = this.data.goodList;
-    console.log(checkboxItems);
     for (var i = 0; i < checkboxItems.length; ++i) {
       if(checkboxItems[i].checked == true){
         const index = checkboxItems[i].tab;
+      
         wx.request({
           url: app.globalData.tiltes + 'shopping_del',
           data: {
@@ -264,17 +264,17 @@ Page({
     
           // },
           success: function (res) {
-            this.data.goodList.splice(index, 1);
-            
-            this.setData({
-              goodList: goodList
+            checkboxItems.splice(index, 1);
+            console.log(checkboxItems);
+            that.setData({
+              goodList: checkboxItems
             });
-            if (!goodList.length) {
-              this.setData({
+            if (!checkboxItems.length) {
+              that.setData({
                 iscart: true
               });
             } else {
-              this.calculateTotal();
+              that.calculateTotal();
             }
             
           },
@@ -359,6 +359,11 @@ Page({
             })
   
           }
+          // if(!that.data.goodList.length){
+          //   that.setData({
+          //     iscart: true
+          //   });
+          // }
 
       },
       fail: function () {
