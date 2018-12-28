@@ -20,7 +20,7 @@ Page({
     select:'规格',
     add_address:false,
     selecteds: true,
-    id: 0,
+    id: '0',
     // 商品数量
     num:'1',
     image: [ ],
@@ -60,7 +60,6 @@ Page({
   } else {
     that.setData({
       id: e.target.dataset.current,
-      good_id: e.target.dataset.current,
       current: current,
       price:price,
       stock:stock,
@@ -97,6 +96,9 @@ Page({
     if (that.data.goods.goods_standard == 0)
     {
       var goods_standard_id = '';
+      that.setData({
+        select:'',
+      });
     }
     else{
       var goods_standard_id = that.data.id;
@@ -116,7 +118,7 @@ Page({
           // 规格id
           goods_standard_id: goods_standard_id,
           // 商品id
-          goods_id: that.data.id
+          goods_id: that.data.good_id
         },
         method: "post",
         // header: {
@@ -283,7 +285,7 @@ Page({
         console.log(res);
         that.setData({
           goods: res.data.data[0],
-          id: options.title,
+          good_id: options.title,
           images: res.data.data[0].goods_standard[0].images,
           price: res.data.data[0].goods_standard[0].price,
           stock: res.data.data[0].goods_standard[0].stock,
