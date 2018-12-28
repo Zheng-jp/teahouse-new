@@ -12,6 +12,7 @@ Page({
     selected1: false,
   
     selected2: false,
+    isnum:false,
      // 是否有存茶地址
     warehouse:true,
     //  选择保险年限
@@ -24,8 +25,7 @@ Page({
     name:'',
     // 地址
     address:'',
-    // 数量里面的值
-    num:'1',
+    
     goods:[],
     
     
@@ -294,6 +294,20 @@ Page({
       }
 
     });
+    // 判读从哪个页面进来
+    var  pages = getCurrentPages();
+    var  prevpage = pages[pages.length - 2];
+    console.log(prevpage.route)
+    if(prevpage.route=='pages/goods_detail/goods_detail'){
+    that.setData({
+      isnum: true,
+    });
+    }
+    else{
+      that.setData({
+        isnum: false,
+      });
+    }
 
   },
 
