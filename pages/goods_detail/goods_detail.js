@@ -255,14 +255,14 @@ Page({
          //  添加good_id字段到传值数组
          good_id.push(that.data.good_id);
          if(that.data.id==0 || that.data.id==''){
-             id.push('');
+             id.push(null);
          }
          else{
           id.push(that.data.id);
          }
         
          num.push(that.data.num);
-         shop_id.push('');
+         shop_id.push(null);
          shop_ids['shop_id']=shop_id;
          good_ids['good_id']=good_id;
          ids['guige']=id;

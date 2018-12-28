@@ -272,7 +272,7 @@ Page({
         'goods_id': user[1].good_id,
         'guige':user[2].guige,
         'num':user[3].num,
-        'shop_id':user[0].shop_id,
+        'shopping_id':user[0].shop_id,
       },
       method: "post",
       // header: {

@@ -310,7 +310,7 @@ Page({
            if(goodList[index].checked==true){
             good_id.push(goodList[index].goods_id);
             if(goodList[index].goods_standard_id==0 || goodList[index].goods_standard_id==''){
-            id.push('');
+            id.push(null);
             }
             else{
               id.push(goodList[index].goods_standard_id);
