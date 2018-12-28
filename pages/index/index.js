@@ -5,6 +5,7 @@ Page({
   data: {
     // 全局变量的获取
     test: app.data.test,
+    url: app.globalData.img_url,
     // 轮播图图片地址数据
     image: [
       app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
@@ -47,55 +48,55 @@ Page({
     ],
   // 商品信息
     routers: [
-      {
-        name: '双骄',
-        url: '/pages/Course/course',
-        icon: 'img/u160.jpg',
-        code: '10',
-        selling:[
-          '新益号',
-          '普洱茶'
-        ],
-        price_img: 'img/u182.png'
+      // {
+      //   name: '双骄',
+      //   url: '/pages/Course/course',
+      //   icon: 'img/u160.jpg',
+      //   code: '10',
+      //   selling:[
+      //     '新益号',
+      //     '普洱茶'
+      //   ],
+      //   price_img: 'img/u182.png'
         
-      },
-      {
-        name: '双骄',
-        url: '/pages/Course/course',
-        icon: 'img/u160.jpg',
-        code: '10',
-        selling: [
-          '新益号',
-          '普洱茶'
-        ],
-        price_img: 'img/u182.png',
-        jiage: '￥120.0/片'
-      },
-      {
-        name: '双骄',
-        url: '/pages/Course/course',
-        icon: 'img/u160.jpg',
-        code: '10',
-        selling: [
-          '新益号',
-          '普洱茶'
-        ],
-        price_img: 'img/u182.png',
-        jiage: '￥120.0/片'
-      },
+      // },
+      // {
+      //   name: '双骄',
+      //   url: '/pages/Course/course',
+      //   icon: 'img/u160.jpg',
+      //   code: '10',
+      //   selling: [
+      //     '新益号',
+      //     '普洱茶'
+      //   ],
+      //   price_img: 'img/u182.png',
+      //   jiage: '￥120.0/片'
+      // },
+      // {
+      //   name: '双骄',
+      //   url: '/pages/Course/course',
+      //   icon: 'img/u160.jpg',
+      //   code: '10',
+      //   selling: [
+      //     '新益号',
+      //     '普洱茶'
+      //   ],
+      //   price_img: 'img/u182.png',
+      //   jiage: '￥120.0/片'
+      // },
      
-      {
-        name: 'Python',
-        url: '/pages/Course/course',
-        icon: 'img/u160.jpg',
-        code: '10',
-        selling: [
-          '新益号',
-          '普洱茶'
-        ],
-        price_img: 'img/u182.png',
-        jiage: '￥120.0/片'
-      },
+      // {
+      //   name: 'Python',
+      //   url: '/pages/Course/course',
+      //   icon: 'img/u160.jpg',
+      //   code: '10',
+      //   selling: [
+      //     '新益号',
+      //     '普洱茶'
+      //   ],
+      //   price_img: 'img/u182.png',
+      //   jiage: '￥120.0/片'
+      // },
     
     ],
     // 分享信息
@@ -181,7 +182,40 @@ Page({
     }
 
   });
+  // 商品列表请求
+  wx.request({
+    url: app.globalData.tiltes + 'commodity_recommend',
+    data: {
+      'open_id': app.globalData.gmemberid,
+    },
+    method: "post",
+    // header: {
+    //   "Content-Type": "json" // 默认值
 
+    // },
+    success: function (res) {
+      that.setData({
+        routers: res.data.data,
+      });
+      //  添加字段到等级数组
+      for (var index in that.data.share) {
+        var sexParam = "share[" + index + "].url";
+        that.setData({
+          [sexParam]: app.globalData.img_url,
+        })
+
+      }
+
+
+    },
+    fail: function () {
+
+    },
+    complete: function () {
+      wx.hideLoading()
+    }
+
+  });
     
   }
  

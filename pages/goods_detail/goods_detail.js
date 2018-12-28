@@ -241,6 +241,23 @@ Page({
       })
     }
     else{
+      if (that.data.goods.goods_standard == 0)
+      {
+        var goods_standard_id = '';
+        that.setData({
+          select:'',
+        });
+      }
+      else{
+        var goods_standard_id = that.data.id;
+      }
+      if(that.data.select=='规格'){
+        wx.showToast({
+          title: '请选择规格',
+          icon:'none',
+        })
+      }
+      else{
       var chars=[];
       // var char = {};
       var shop_ids = {}
@@ -255,14 +272,14 @@ Page({
          //  添加good_id字段到传值数组
          good_id.push(that.data.good_id);
          if(that.data.id==0 || that.data.id==''){
-             id.push(null);
+             id.push(0);
          }
          else{
           id.push(that.data.id);
          }
         
          num.push(that.data.num);
-         shop_id.push(null);
+         shop_id.push(0);
          shop_ids['shop_id']=shop_id;
          good_ids['good_id']=good_id;
          ids['guige']=id;
@@ -289,6 +306,7 @@ Page({
 
       })
     }
+  }
 
   },
 
