@@ -238,7 +238,7 @@ Page({
   onLoad: function (options) {
     var that=this;
     let user = JSON.parse(options.title);
-    console.log(user[0].shop_id);
+    console.log(user);
     wx.request({
       url: app.globalData.tiltes + 'member_default_address_return',
       data: {

@@ -244,20 +244,30 @@ Page({
       var chars=[];
       // var char = {};
       var shop_ids = {}
+      var good_ids = {}
       var ids = {}
       var nums = {}
       var shop_ids={}
+      var shop_id=new Array();
       var good_id=new Array();
       var id=new Array();
       var num=new Array();
          //  添加good_id字段到传值数组
-         shop_ids.push('');
-         good_ids['good_id']=good_id;
-         id.push(that.data.id);
-         ids['guige']=id;
+         good_id.push(that.data.good_id);
+         if(that.data.id==0 || that.data.id==''){
+             id.push('');
+         }
+         else{
+          id.push(that.data.id);
+         }
+        
          num.push(that.data.num);
+         shop_id.push('');
+         shop_ids['shop_id']=shop_id;
+         good_ids['good_id']=good_id;
+         ids['guige']=id;
          nums['num']=num;
-         chars.push(good_ids);
+       chars.push(shop_ids);
        chars.push(good_ids);
        chars.push(ids);
        chars.push(nums);
