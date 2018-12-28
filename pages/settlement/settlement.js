@@ -237,9 +237,8 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    var good_id = options.title;
     let user = JSON.parse(options.title);
-    console.log(user);
+    console.log(user[0].shop_id);
     wx.request({
       url: app.globalData.tiltes + 'member_default_address_return',
       data: {
@@ -270,9 +269,10 @@ Page({
       url: app.globalData.tiltes + 'order_return',
       data: {
         'open_id': app.globalData.gmemberid,
-        'goods_id': user[0].good_id,
-        'guige':user[1].guige,
-        'num':user[2].num,
+        'goods_id': user[1].good_id,
+        'guige':user[2].guige,
+        'num':user[3].num,
+        'shop_id':user[0].shop_id,
       },
       method: "post",
       // header: {

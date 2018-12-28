@@ -243,19 +243,21 @@ Page({
     else{
       var chars=[];
       // var char = {};
-      var good_ids = {}
+      var shop_ids = {}
       var ids = {}
       var nums = {}
+      var shop_ids={}
       var good_id=new Array();
       var id=new Array();
       var num=new Array();
          //  添加good_id字段到传值数组
-         good_id.push(that.data.good_id);
+         shop_ids.push('');
          good_ids['good_id']=good_id;
          id.push(that.data.id);
          ids['guige']=id;
          num.push(that.data.num);
          nums['num']=num;
+         chars.push(good_ids);
        chars.push(good_ids);
        chars.push(ids);
        chars.push(nums);

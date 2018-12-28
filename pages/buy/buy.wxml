@@ -87,8 +87,8 @@
         <view>
            <view class='delect_btn'   bindtap="deleteList" data-ihdex='1'>删除</view>
         </view>
-        <navigator url='../settlement/settlement'>
+        
           <view class='go_buy' bindtap="showPopup">结算({{totalCount}})</view>
-        </navigator>
+       
       </view>
 </view>
