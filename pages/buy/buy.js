@@ -309,7 +309,12 @@ Page({
          for(var index in goodList){
            if(goodList[index].checked==true){
             good_id.push(goodList[index].goods_id);
-            id.push(goodList[index].goods_standard_id);
+            if(goodList[index].goods_standard_id==0 || goodList[index].goods_standard_id==''){
+            id.push('');
+            }
+            else{
+              id.push(goodList[index].goods_standard_id);
+            }
             num.push(goodList[index].goods_unit);
             shop_id.push(goodList[index].id);
            }
