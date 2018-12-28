@@ -58,7 +58,7 @@
 				<image src='https://teahouse.siring.com.cn/uploads/20181121/40f3fba9c9ff0b65540a4eacbca7ff65.png'></image>
 			</view>
 			<view wx:if="{{goods.goods_standard==0}}">
-				<view class='sale'>￥90.0/片</view>
+				<view class='sale'>￥{{goods.goods_new_money}}/片</view>
 			</view>
 			<view wx:else>
 				<view class='sale'>￥{{goods.min_price}}~￥{{goods.max_price}}</view>
