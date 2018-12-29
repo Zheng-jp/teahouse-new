@@ -47,10 +47,11 @@ color:#5E5E5E;
 font-size:20rpx;
 font-weight:bold;
 margin-top:-23rpx;
+text-align: center;
 }
 .seach{
 float:left;
-width:550rpx;
+width:578rpx;
 height:68rpx;
 background:#fff;
 border-radius:36rpx;

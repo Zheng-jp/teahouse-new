@@ -4,7 +4,7 @@
    <view class='title'>
       <view style='float: left;'>
           <view class="nfc"><image  src="img/u270.png"> </image> </view>
-          <view class='fangwei' >防伪溯源</view>
+          <view class='fangwei' >溯源</view>
       </view>
       <input type='text' class='seach'></input>
        <view style='float: left;'>

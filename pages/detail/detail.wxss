@@ -37,7 +37,7 @@ text{
 .ico_img{
   display: inline-block;
 width: 38rpx;
-height: 38rpx;
+height: 41rpx;
   padding-left: 10rpx;
   padding-right: 10rpx;
 }
