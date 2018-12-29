@@ -252,10 +252,20 @@ Page({
       // },
       success: function (res) {
         console.log(res)
-        // that.setData({
-        //   address: res.data.data,
-        // });
-       
+        var tel=res.data.data.harvester_phone_num;
+        var name=res.data.data.harvester;
+        var address=res.data.data.address_name+res.data.data.harvester_real_address;
+        that.setData({
+          tel: tel,
+          name:name,
+          address:address,
+        });
+        for (var index in address) {
+          var address_names=address.split(",").join("");
+          that.setData({
+            address:address_names,
+          });
+        }
        
       },
       fail: function () {
