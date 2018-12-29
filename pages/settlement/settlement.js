@@ -29,7 +29,7 @@ Page({
     from_buy:false,
     all_money:0,
     user:[],
-    address_id:'',
+    address_id:0,
     
     
   },
@@ -149,6 +149,7 @@ Page({
       goods_id: that.data.user[1].good_id,
       guige: that.data.user[2].guige,
       num: num,
+      address_id:that.data.address_id,
       all_money: that.data.all_money,
 
       },
@@ -297,7 +298,7 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res)
+        console.log(res.data.data.id);
         var tel=res.data.data.harvester_phone_num;
         var name=res.data.data.harvester;
         var address=res.data.data.address_name+res.data.data.harvester_real_address;
@@ -305,14 +306,14 @@ Page({
         that.setData({
           tel: tel,
           name:name,
-          address:address,
-          address_id:address_id,
+          address:address, 
 
         });
         for (var index in address) {
           var address_names=address.split(",").join("");
           that.setData({
             address:address_names,
+            address_id:address_id,
           });
         }
        
@@ -332,7 +333,6 @@ Page({
         'guige':user[2].guige,
         'num':user[3].num,
         'shopping_id':user[0].shop_id,
-        'address_id':that.data.address_id,
       },
       method: "post",
       // header: {
