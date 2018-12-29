@@ -182,7 +182,7 @@ Page({
     var that=this;
  
     wx.request({
-      url: app.globalData.tiltes + 'order_places',
+      url: app.globalData.tiltes + 'order_place_by_shopping',
       data: {
       open_id: app.globalData.gmemberid,
       shopping_id: that.data.user[0].shop_id,
