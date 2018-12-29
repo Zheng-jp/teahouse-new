@@ -20,9 +20,9 @@ Page({
     select:'规格',
     add_address:false,
     selecteds: true,
-    id: '0',
+    id:0,
     // 商品数量
-    num:'1',
+    num:1,
     image: [ ],
     url:app.globalData.img_url,
     circular: 'true',
@@ -32,7 +32,7 @@ Page({
     selected: true,
     selected1: false,
     mask_show:false,
-    good_id:'0',
+    good_id:0,
     
    
   },
@@ -335,7 +335,7 @@ Page({
         console.log(res);
         that.setData({
           goods: res.data.data[0],
-          good_id: options.title,
+          good_id: parseInt(options.title),
           images: res.data.data[0].goods_standard[0].images,
           price: res.data.data[0].goods_standard[0].price,
           stock: res.data.data[0].goods_standard[0].stock,

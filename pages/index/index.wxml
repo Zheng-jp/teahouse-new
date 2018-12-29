@@ -14,7 +14,7 @@
    </view>
     <view class='home_banner'>
          <swiper indicator-dots="{{indicatorDots}}"
-              autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" >
+              autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" duration="1000">
               <block wx:for="{{image}}"  wx:key="{{index}}">
                 <swiper-item>
                   <image src="{{item}}" class="slide-image" />

@@ -14,6 +14,7 @@ Page({
     height_arr: [],
     category: [
     ],
+    index:0,
    
   },
   go_gooddetail: function (event) {
@@ -52,7 +53,6 @@ Page({
     var self = this;
     // var last_scrollTop=0;
     self.setData({ scrollTop: e.detail.scrollTop });
-    console.log("sd:", self.data.scrollTop);
     // if(self.data.is_true){
 
     setTimeout(function () {
@@ -60,7 +60,6 @@ Page({
       //   is_true:false
       // });
       if (self.data.last_scrollTop != self.data.scrollTop) {
-        console.log(self.data.last_scrollTop);
         self.setData({ last_scrollTop: self.data.scrollTop });
         self.scrollmove(self, e, self.data.scrollTop);
       }
@@ -69,6 +68,7 @@ Page({
 
   },
   scrollmove: function (self, e, scrollTop) {
+
     // last_scrollTop=scrollTop;
     var scrollArr = self.data.height_arr;
     if (scrollTop > scrollArr[scrollArr.length - 1] - self.data.s_height) {

@@ -15,7 +15,7 @@ Page({
    
     circular: 'true',
     indicatorDots: 'true',
-    interval:'2000',
+    interval:'4000',
     autoplay:'true',
     // 小喇叭图片地址
     laba:'img/u206.png',

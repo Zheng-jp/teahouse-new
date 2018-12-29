@@ -11,41 +11,7 @@ Page({
     totalPrice: 0,
     totalCount: 0,
     url:app.globalData.img_url,
-    goodList: [
-      // {
-      //   'cover': 'img/u936.png',
-      //   'isbn': '9787535482051',
-      //   'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
-      //   'price': 25.9,
-      //   'checked': false,
-      //   'count': 1,
-      //   'index': 1,
-      //   'num': 1,
-      //   'tab':0,
-       
-      // },
-      // {
-      //   'cover': 'img/u936.png',
-      //   'isbn': '9787535482052',
-      //   'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
-      //   'price': 25.9,
-      //   'checked': false,
-      //   'count': 1,
-      //   'index': 2,
-      //   'num': 1,
-      //   'tab':1,
-      // }, {
-      //   'cover': 'img/u936.png',
-      //   'isbn': '9787535482053',
-      //   'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
-      //   'price': 25.9,
-      //   'checked': false,
-      //   'count': 1,
-      //   'index': 3,
-      //   'num': 1,
-      //   'tab':2,
-      // }
-      ],
+    goodList: [],
     // 商品信息
     routers: [
       {

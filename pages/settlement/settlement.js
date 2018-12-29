@@ -18,18 +18,18 @@ Page({
     //  选择保险年限
     showModalStatus: false,
     // 加减框里面的值
-    num:'1',
+    num:1,
     // 手机号码
     tel:'',
     // 名字
     name:'',
     // 地址
     address:'',
-    
     goods:[],
     from_buy:false,
-    all_money:'0',
+    all_money:0,
     user:[],
+    address_id:'',
     
     
   },
@@ -138,14 +138,19 @@ Page({
   },
   repay:function(){
     var that=this;
+    console.log(that.data.user);
+    var num=new Array();
+    num=[that.data.num];
+    console.log(num);
     wx.request({
       url: app.globalData.tiltes + 'order_place',
       data: {
-        'open_id': app.globalData.gmemberid,
-        'goods_id': that.data.user[1].good_id,
-        'guige': that.data.user[2].guige,
-        'num':that.data.num,
-        'all_money': that.data.all_money,
+      open_id: app.globalData.gmemberid,
+      goods_id: that.data.user[1].good_id,
+      guige: that.data.user[2].guige,
+      num: num,
+      all_money: that.data.all_money,
+
       },
       method: "post",
       // header: {
@@ -162,15 +167,15 @@ Page({
       }
 
     });
-    // wx.showActionSheet({
-    //   itemList: ['账户支付', '微信支付',],
-    //   success: function (res) {
-    //     console.log(res.tapIndex)
-    //   },
-    //   fail: function (res) {
-    //     console.log(res.errMsg)
-    //   }
-    // })
+    wx.showActionSheet({
+      itemList: ['账户支付', '微信支付',],
+      success: function (res) {
+        console.log(res.tapIndex)
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
   buyrepay:function(){
     wx.showActionSheet({
@@ -296,10 +301,13 @@ Page({
         var tel=res.data.data.harvester_phone_num;
         var name=res.data.data.harvester;
         var address=res.data.data.address_name+res.data.data.harvester_real_address;
+        var address_id=res.data.data.id;
         that.setData({
           tel: tel,
           name:name,
           address:address,
+          address_id:address_id,
+
         });
         for (var index in address) {
           var address_names=address.split(",").join("");
@@ -324,6 +332,7 @@ Page({
         'guige':user[2].guige,
         'num':user[3].num,
         'shopping_id':user[0].shop_id,
+        'address_id':that.data.address_id,
       },
       method: "post",
       // header: {
