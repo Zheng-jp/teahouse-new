@@ -182,5 +182,6 @@
 			<view><text style='color:#FF7E4A;'>23元</text></view>
 		</view>
 	</view>
-	<view class='buts' bindtap='repay'>立即支付</view>
+	<view class='buts' bindtap='repay' wx:if="{{from_buy}}">立即支付</view>
+	<view class='buts' bindtap='buyrepay' wx:else>立即支付</view>
 </view>

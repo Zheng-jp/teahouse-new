@@ -6,8 +6,12 @@ Page({
    */
   data: {
       height:'',
+      tab:'1',
+      static:'3',
   },
-
+  tab_click:function (e) {
+      this.setData({ tab: e.currentTarget.dataset.current });
+  },
   /**
    * 生命周期函数--监听页面加载
    */

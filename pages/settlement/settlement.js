@@ -27,6 +27,9 @@ Page({
     address:'',
     
     goods:[],
+    from_buy:false,
+    all_money:'0',
+    user:[],
     
     
   },
@@ -134,6 +137,42 @@ Page({
     })
   },
   repay:function(){
+    var that=this;
+    wx.request({
+      url: app.globalData.tiltes + 'order_place',
+      data: {
+        'open_id': app.globalData.gmemberid,
+        'goods_id': that.data.user[1].good_id,
+        'guige': that.data.user[2].guige,
+        'num':that.data.num,
+        'all_money': that.data.all_money,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+    // wx.showActionSheet({
+    //   itemList: ['账户支付', '微信支付',],
+    //   success: function (res) {
+    //     console.log(res.tapIndex)
+    //   },
+    //   fail: function (res) {
+    //     console.log(res.errMsg)
+    //   }
+    // })
+  },
+  buyrepay:function(){
     wx.showActionSheet({
       itemList: ['账户支付', '微信支付',],
       success: function (res) {
@@ -238,7 +277,9 @@ Page({
   onLoad: function (options) {
     var that=this;
     let user = JSON.parse(options.title);
-    console.log(user);
+    that.setData({
+      user: user,
+    });
     wx.request({
       url: app.globalData.tiltes + 'member_default_address_return',
       data: {
@@ -311,11 +352,14 @@ Page({
     if(prevpage.route=='pages/goods_detail/goods_detail'){
     that.setData({
       isnum: true,
+      from_buy:true,
+     
     });
     }
     else{
       that.setData({
         isnum: false,
+        from_buy:false,
       });
     }
 

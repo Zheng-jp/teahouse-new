@@ -1,4 +1,24 @@
 /* pages/order/order.wxss */
+.on{
+  color: #821006 !important;
+  border-bottom: 1rpx #821006 solid !important;
+
+}
+.flex{
+  width: 670rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.courier{
+color: #333;
+font-size: 26rpx;
+}
+.type_button{
+  color: #333 !important;
+  border-color:#333 !important; 
+}
 .title{
   display: flex;
   align-items: center;
@@ -95,7 +115,7 @@
   border: solid 1px #999;
   color: #999;
   font-size: 26rpx;
-  border-radius:20rpx;
+  border-radius:50rpx;
   margin-right:40rpx;
 }
 .payment{
@@ -103,5 +123,5 @@
   border: solid 1px #821006;
   color: #821006;
   font-size: 26rpx;
-  border-radius:20rpx;
+  border-radius:50rpx;
 }

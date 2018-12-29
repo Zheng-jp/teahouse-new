@@ -8,6 +8,10 @@ height: 0;
 color: transparent;
 
 }
+.on{
+   color: #821006;
+
+}
 .all-content{
   width: 100%;
   height: 100%;
