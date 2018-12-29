@@ -14,7 +14,6 @@ Page({
     height_arr: [],
     category: [
     ],
-    index:0,
    
   },
   go_gooddetail: function (event) {

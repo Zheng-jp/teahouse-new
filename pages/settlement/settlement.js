@@ -147,10 +147,10 @@ Page({
       data: {
       open_id: app.globalData.gmemberid,
       goods_id: that.data.user[1].good_id,
-      guige: that.data.user[2].guige,
-      num: num,
+      goods_standard_id: that.data.user[2].guige,
+      order_quantity : num,
       address_id:that.data.address_id,
-      all_money: that.data.all_money,
+      order_amount: that.data.all_money,
 
       },
       method: "post",
@@ -179,6 +179,35 @@ Page({
     })
   },
   buyrepay:function(){
+    var that=this;
+ 
+    wx.request({
+      url: app.globalData.tiltes + 'order_places',
+      data: {
+      open_id: app.globalData.gmemberid,
+      shopping_id: that.data.user[0].shop_id,
+      goods_id: that.data.user[1].good_id,
+      goods_standard_id: that.data.user[2].guige,
+      order_quantity: that.data.user[3].num,
+      address_id:that.data.address_id,
+      order_amount: that.data.all_money,
+
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
     wx.showActionSheet({
       itemList: ['账户支付', '微信支付',],
       success: function (res) {
@@ -343,6 +372,13 @@ Page({
         console.log(res)
         that.setData({
           goods: res.data.data,
+        });
+        var all_moneys=0;
+        for(var i=0;i<that.data.goods.length;i++){
+          all_moneys+=that.data.goods[i].grade_price*that.data.goods[i].number;
+        }
+        that.setData({
+          all_money: all_moneys,
         });
        
        
