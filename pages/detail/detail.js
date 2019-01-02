@@ -97,7 +97,6 @@ Page({
   onLoad: function (options) {
     var that=this;
     var title = options.title;
-    console.log(title);
     wx.request({
       url: app.globalData.tiltes + 'teacenter_detailed',
       data: {

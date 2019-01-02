@@ -83,5 +83,5 @@
 <input class='input' type='text' placeholder='写评论'></input>
 <view class='share'><image src='img/u5055.png'></image></view>
 <view class='monly'>¥{{information.cost_moneny}}</view>
-<button class='buttons' bindtap='pay'>立即报名</button>
+<view class='buttons' bindtap='pay'>立即报名</view>
 </view>

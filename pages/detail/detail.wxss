@@ -147,10 +147,12 @@ margin-left: 80rpx;
 .buttom_nav{
 display:flex;
 position:fixed;
+align-items: center;
 bottom:0;
 z-index:9999;
 background:#fff;
 padding-bottom: 10rpx;
+padding-top: 10rpx;
 
 }
 .star{
@@ -186,10 +188,11 @@ overflow:hidden;
 }
 .buttons{
 width: 170rpx;
+text-align: center;
+line-height: 60rpx;
 height: 60rpx;
 color: #fff;
 background: #FF6700;
-border-radius: 30rpx;
 font-size: 26rpx;
 border: 0;
 margin-left: 42rpx;

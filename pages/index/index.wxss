@@ -4,7 +4,9 @@ view{
   padding: 0;
   margin: 0;
 }
-
+.seach{
+  font-size: 26rpx;
+}
 .container{
   background: #F9F9F9;
 }
@@ -57,10 +59,19 @@ background:#fff;
 border-radius:36rpx;
 border:solid #E9E9E9 1px;
 margin:1rpx 10rpx;
-padding-left:50rpx;
+padding-left:80rpx;
 box-sizing:border-box;
 
 
+}
+.seach_img{
+  position:absolute;
+  width:37rpx;
+  height:36rpx;
+  top:19rpx;
+  left:109rpx;
+  
+  
 }
 .ma{
 width:50rpx;

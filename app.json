@@ -19,7 +19,8 @@
       "pages/buy/buy",
       "pages/query/query",
       "pages/order/order",
-      "pages/test/test"
+      "pages/test/test",
+      "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
