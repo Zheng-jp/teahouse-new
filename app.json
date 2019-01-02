@@ -20,7 +20,9 @@
       "pages/query/query",
       "pages/order/order",
       "pages/test/test",
-      "pages/about/about"
+      "pages/about/about",
+      "pages/contract/contract"
+      
   ],
   "window": {
     "backgroundTextStyle": "light",

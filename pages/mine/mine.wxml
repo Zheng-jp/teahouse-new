@@ -70,7 +70,7 @@
       </view>
   </view>
      <view  class='list-content' >
-   <view wx:for='{{lista}}' class='ifor_list' >
+   <view wx:for='{{lista}}' class='ifor_list'   data-url="{{item.src}}" bindtap="mycollect">
       <view class='left'>
         <view class='list-ico'>
           <image src='{{item.url}}'></image>
