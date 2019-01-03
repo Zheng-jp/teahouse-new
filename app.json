@@ -21,7 +21,12 @@
       "pages/order/order",
       "pages/test/test",
       "pages/about/about",
-      "pages/contract/contract"
+      "pages/contract/contract",
+      "pages/contract_detail/contract_detail",
+      "pages/problement/problement",
+      "pages/news/news",
+      "pages/account/account"
+      
       
   ],
   "window": {

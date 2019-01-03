@@ -104,6 +104,22 @@ Page({
     ]
 
     },
+    bindViewTap: function (event) {
+      var that=this;
+      var item = event.currentTarget.dataset.item;
+      wx.navigateTo({
+        url: '../detail/detail?title='+ event.currentTarget.id ,
+        success: function (res) {
+        },
+        fail: function () {
+      
+        },
+        complete: function () {
+       
+        }
+  
+      })
+    },
   go_good: function (event) {
 
     var that = this;

@@ -1,4 +1,5 @@
-// pages/contract/contract.js
+// pages/contract_detail/contract_detail.js
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
@@ -7,35 +8,45 @@ Page({
   data: {
 
   },
-  go_contract_detail: function (event) {
 
-    var that = this;
-    var item = event.currentTarget.dataset.item;
-
-    console.log(event.currentTarget.dataset.id);
-    wx.navigateTo({
-      url: '../contract_detail/contract_detail?title=' + event.currentTarget.dataset.id,
-      success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
-      },
-      fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
-      },
-      complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
-      }
-
-
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    var title = options.title;
+    wx.request({
+      url: app.globalData.tiltes + '',
+      data: {
+        id: options.title
+      },
+      method: "post",
+      header: {
+        "Content-Type": "application/json" // 默认值
 
+      },
+      success: function (res) {
+   
+        console.log(res);
+        that.setData({
+          information: res.data.data[0],
+          
+        });
+        var article = res.data.data[0].commodity;
+        WxParse.wxParse('article', 'html', article, that, 5);
+        
+
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
+ 
   },
 
   /**

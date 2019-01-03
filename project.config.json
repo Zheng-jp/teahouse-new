@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 14,
 			"list": [
 				{
 					"id": -1,
@@ -107,7 +107,25 @@
 				{
 					"id": -1,
 					"name": "关于我们",
-					"pathName": "pages/about/about"
+					"pathName": "pages/about/about",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "hetong",
+					"pathName": "pages/contract/contract",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "hetong",
+					"pathName": "pages/problement/problement",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的账户",
+					"pathName": "pages/account/account"
 				}
 			]
 		}

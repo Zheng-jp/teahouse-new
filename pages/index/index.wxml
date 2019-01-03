@@ -37,7 +37,7 @@
       <view class='news-text'>111111</view>
       <image src='{{close}}' class='close'></image>
     </view> -->
-    <view class='goods '>
+    <!--<view class='goods '>
       <view class='goods-title clear'>
           <text class='goods-title-text'>商品</text>
           <view class='more-all' bindtap="go_good">
@@ -66,9 +66,9 @@
                             </view>
                     </view>
     </view>
-      </view>
+      </view>-->
   
-</view>
+
  <view class='share'>
       <view class='share-title clear'>
           <text class='goods-title-text'>推荐</text>
@@ -78,7 +78,7 @@
           </view>
       </view>
       <view class='shares-content'>
-      <view class='listview' wx:for="{{share}}" wx:for-item="item"  bindtap="bindViewTap" wx:key="*this">
+      <view class='listview' wx:for="{{share}}" wx:for-item="item"   wx:key="*this">
              <template  is="{{item.type == '29' ? 'joy-text' : (item.type == '10' ? 'joy-pic' : (item.type == '41' ? 'joy-video' : 'joy-pic'))}}" data="{{item}}"     bindtap></template>
     </view> 
       </view>

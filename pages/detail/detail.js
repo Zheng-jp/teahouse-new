@@ -108,11 +108,8 @@ Page({
 
       },
       success: function (res) {
-   
-        console.log(res);
         that.setData({
           information: res.data.data[0],
-          
         });
         var article = res.data.data[0].commodity;
         WxParse.wxParse('article', 'html', article, that, 5);
