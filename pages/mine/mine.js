@@ -32,7 +32,7 @@ Page({
     ],
     list: [
       {
-        url: app.globalData.url + '/upload/20181115/62e312cd467c5c263505f288f2e15957.png',
+        url: app.globalData.url + '/upload/20190104/94debd1c9f7b4c11a58b90b7dd83b402.png',
         text: '会员中心',
         src:'../members/members',
       },
