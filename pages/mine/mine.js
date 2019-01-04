@@ -50,7 +50,8 @@ Page({
       },
       {
         url: app.globalData.url + '/upload/20181115/d0221a688c6699297a1092cec2e1a322.png',
-        text: '我的账户'
+        text: '我的账户',
+        src:'../account/account',
       },
     ],
     lista: [
