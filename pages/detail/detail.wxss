@@ -58,8 +58,8 @@ overflow:hidden;
   align-items: center;
 }
 
-.listc_content text{
-margin-right: 20rpx;
+.listc_content .padding{
+margin-left: 20rpx;
 }
 .listd_content{
   vertical-align: 10rpx;
@@ -151,8 +151,7 @@ align-items: center;
 bottom:0;
 z-index:9999;
 background:#fff;
-padding-bottom: 10rpx;
-padding-top: 10rpx;
+width: 750rpx;
 
 }
 .star{
@@ -195,7 +194,7 @@ color: #fff;
 background: #FF6700;
 font-size: 26rpx;
 border: 0;
-margin-left: 42rpx;
+margin-left: 52rpx;
 }
 .input_null{
 color: #C9C9C9;

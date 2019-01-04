@@ -33,7 +33,8 @@ Page({
     list: [
       {
         url: app.globalData.url + '/upload/20181115/62e312cd467c5c263505f288f2e15957.png',
-        text: '会员中心'
+        text: '会员中心',
+        src:'../members/members',
       },
       {
         url: app.globalData.url + '/upload/20181115/872ba6211e755c12088c2e5f92fad232.png',

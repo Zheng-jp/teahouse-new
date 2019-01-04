@@ -67,7 +67,6 @@ box-sizing:border-box;
 .seach_img{
   position:absolute;
   width:37rpx;
-  height:36rpx;
   top:19rpx;
   left:109rpx;
   
