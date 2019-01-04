@@ -1,0 +1,20 @@
+/* pages/about/about.wxss */
+.all{
+    background: #fff;
+}
+.list{
+    padding: 30rpx;
+    display: flex;
+    border-bottom:1rpx solid  #C9C9C9;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+.list_left{
+    color: #0DBEFF;
+    font-size: 26rpx;
+
+}
+.list_right{
+    font-size: 24rpx;
+}

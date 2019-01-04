@@ -60,11 +60,14 @@ Page({
       },
       {
         url: app.globalData.url + '/upload/20181115/2505a16ba762f14d5d88d1ddecf2b755.png',
-        text: '协议合同'
+        text: '协议合同',
+        src:'../contract/contract',
+        
       },
       {
         url: app.globalData.url + '/upload/20181115/575a600f599df7b52b16cd3aa5b48d1c.png',
-        text: '关于我们'
+        text: '关于我们',
+        src:'../about/about',
       }
     ],
   /**

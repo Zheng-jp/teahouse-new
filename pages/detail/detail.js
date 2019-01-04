@@ -98,7 +98,6 @@ Page({
   onLoad: function (options) {
     var that=this;
     var title = options.title;
-    console.log(title);
     wx.request({
       url: app.globalData.tiltes + 'teacenter_detailed',
       data: {
@@ -110,11 +109,8 @@ Page({
 
       },
       success: function (res) {
-   
-        console.log(res);
         that.setData({
           information: res.data.data[0],
-          
         });
         var article = res.data.data[0].commodity;
         WxParse.wxParse('article', 'html', article, that, 5);
