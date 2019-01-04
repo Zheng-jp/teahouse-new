@@ -43,6 +43,7 @@ Page({
           cost_moneny: that.data.information.cost_moneny,
           activity_name: that.data.information.activity_name
         },
+        dataTypr: 'json',
         method: "post",
         // header: {
         //   "Content-Type": "application/json" // 默认值
