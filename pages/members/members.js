@@ -25,12 +25,10 @@ Page({
   //   var that = this;
    
   //   that.setData({ tab: e.detail.current });
-  //   console.log(that);
   // },
  
   radioChange: function (e) {
     var that = this;
-   console.log(e);
     //  点击添加类
     if (that.data.level.tab === e.detail.value) {
       return false;
@@ -39,10 +37,9 @@ Page({
         tab: e.detail.value
       })
     }
-    var member_grade_name = that.data.information.member_grade_name;
+    var member_grade_id = that.data.information.member_grade_id;
     var tab=that.data.tab;
-    console.log(tab);
-    if (member_grade_name == that.data.level[tab].member_grade_name) {    
+    if (member_grade_id == that.data.level[tab].member_grade_id) {    
         that.setData({
           is: true,
         })
@@ -53,7 +50,6 @@ Page({
         })
       }
     
-    console.log(that);
   },
   stopTouchMove: function () {
     return false;
@@ -124,9 +120,12 @@ Page({
           })
 
         }
-        var member_grade_name = that.data.information.member_grade_name;
+        var member_grade_id = that.data.information.member_grade_id;
+        console.log(member_grade_id);
+        console.log(that.data.level);
         for (var index in that.data.level){
-          if (member_grade_name == that.data.level[index].member_grade_name){
+        
+          if (member_grade_id == that.data.level[index].member_grade_id){
             var check = "level[" + index + "].check";
            
             that.setData({

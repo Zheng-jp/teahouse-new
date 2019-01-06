@@ -13,7 +13,7 @@
     </view>
    <view class='share'>
      <view class='shares-content'>
-           <view class='listview' wx:for="{{share}}" wx:for-item="item"  bindtap="bindViewTap" wx:key="*this">
+           <view class='listview' wx:for="{{share}}" wx:for-item="item"   wx:key="*this">
              <template  is="{{item.type == '29' ? 'joy-text' : (item.type == '10' ? 'joy-pic' : (item.type == '41' ? 'joy-video' : 'joy-pic'))}}" data="{{item}}"     bindtap></template>
     </view> 
       </view>

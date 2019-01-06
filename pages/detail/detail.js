@@ -43,19 +43,21 @@ Page({
           cost_moneny: that.data.information.cost_moneny,
           activity_name: that.data.information.activity_name
         },
+        dataTypr: 'json',
         method: "post",
         // header: {
         //   "Content-Type": "application/json" // 默认值
         // },
         success: function (res) {
-        console.log(res);
+          var result=res.data;
+          console.log(result.data.timestamp);
           if (result.data) {
             wx.requestPayment({
-              timeStamp: result.data['timeStamp'],
-              nonceStr: result.data['nonceStr'],
-              package: result.data['package'],
+              timeStamp: String(result.data.timestamp),
+              nonceStr: result.data.noncestr,
+              package: result.data.package,
               signType: 'MD5',
-              paySign: result.data['paySign'],
+              paySign:  result.data.sign,
               'success': function (successret) {
                 console.log('支付成功');
                 //获取支付用户的信息
@@ -78,7 +80,9 @@ Page({
                 //   },
                 // })
               },
-              'fail': function (res) { }
+              'fail': function (res) {
+                console.log(res);
+               }
             })
           }
         },
@@ -97,7 +101,6 @@ Page({
   onLoad: function (options) {
     var that=this;
     var title = options.title;
-    console.log(title);
     wx.request({
       url: app.globalData.tiltes + 'teacenter_detailed',
       data: {
@@ -109,11 +112,8 @@ Page({
 
       },
       success: function (res) {
-   
-        console.log(res);
         that.setData({
           information: res.data.data[0],
-          
         });
         var article = res.data.data[0].commodity;
         WxParse.wxParse('article', 'html', article, that, 5);

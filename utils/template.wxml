@@ -12,7 +12,8 @@
         </view>
         <view class='share-xia'>
             <text class="share-kuchun" style='color:{{item.color}}'>{{item.names}}</text>
-            <text class="validity">日期：{{item.start_time}}</text>
+            <text class="validity">上限20人,已报名10人</text>
+            <text class="validity">活动日期：{{item.start_time}}</text>
         </view>
     </view>
 </template>

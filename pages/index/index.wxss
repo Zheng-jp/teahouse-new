@@ -4,7 +4,9 @@ view{
   padding: 0;
   margin: 0;
 }
-
+.seach{
+  font-size: 26rpx;
+}
 .container{
   background: #F9F9F9;
 }
@@ -57,10 +59,18 @@ background:#fff;
 border-radius:36rpx;
 border:solid #E9E9E9 1px;
 margin:1rpx 10rpx;
-padding-left:50rpx;
+padding-left:80rpx;
 box-sizing:border-box;
 
 
+}
+.seach_img{
+  position:absolute;
+  width:37rpx;
+  top:19rpx;
+  left:109rpx;
+  
+  
 }
 .ma{
 width:50rpx;
@@ -377,13 +387,11 @@ line-height:42rpx;
 }
 .share-kuchun{
   color: #821006;
-  padding: 30rpx;
   font-size: 24rpx;
 }
 .validity{
-  padding: 15rpx;
   float: right;
-   font-size: 24rpx;
+   font-size: 20rpx;
   color: #363636;
 }
 .share-content{
@@ -410,7 +418,11 @@ padding: 10rpx;
 }
 
 .share-xia{
-  padding-bottom: 10rpx;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20rpx 3rpx;
+  
 }
 .listview{
   width: 720rpx;

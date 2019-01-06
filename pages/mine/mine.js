@@ -32,8 +32,9 @@ Page({
     ],
     list: [
       {
-        url: app.globalData.url + '/upload/20181115/62e312cd467c5c263505f288f2e15957.png',
-        text: '会员中心'
+        url: app.globalData.url + '/upload/20190104/94debd1c9f7b4c11a58b90b7dd83b402.png',
+        text: '会员中心',
+        src:'../members/members',
       },
       {
         url: app.globalData.url + '/upload/20181115/872ba6211e755c12088c2e5f92fad232.png',
@@ -50,7 +51,8 @@ Page({
       },
       {
         url: app.globalData.url + '/upload/20181115/d0221a688c6699297a1092cec2e1a322.png',
-        text: '我的账户'
+        text: '我的账户',
+        src:'../account/account',
       },
     ],
     lista: [
@@ -60,11 +62,14 @@ Page({
       },
       {
         url: app.globalData.url + '/upload/20181115/2505a16ba762f14d5d88d1ddecf2b755.png',
-        text: '协议合同'
+        text: '协议合同',
+        src:'../contract/contract',
+        
       },
       {
         url: app.globalData.url + '/upload/20181115/575a600f599df7b52b16cd3aa5b48d1c.png',
-        text: '关于我们'
+        text: '关于我们',
+        src:'../about/about',
       }
     ],
   /**
