@@ -37,7 +37,8 @@ Page({
       var that = this;
       console.log(that.data.information.cost_moneny);
       wx.request({
-        url: app.globalData.tiltes + 'wxpay',
+        // url: app.globalData.tiltes + 'wxpay',
+        url: app.globalData.tiltes + 'wx_index',
         data: {
           open_id: app.globalData.gmemberid,
           cost_moneny: that.data.information.cost_moneny,
