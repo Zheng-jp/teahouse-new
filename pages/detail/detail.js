@@ -50,15 +50,15 @@ Page({
         //   "Content-Type": "application/json" // 默认值
         // },
         success: function (res) {
-          var result=res.data;
-          console.log(result.data.timestamp);
-          if (result.data) {
+          var result=res;
+          console.log(result.data.paySign);
+          if (result) {
             wx.requestPayment({
-              timeStamp: String(result.data.timestamp),
-              nonceStr: result.data.noncestr,
+              timeStamp: String(result.data.timeStamp),
+              nonceStr: result.data.nonceStr,
               package: result.data.package,
-              signType: 'MD5',
-              paySign:  result.data.sign,
+              signType: result.data.signType,
+              paySign:  result.data.paySign,
               'success': function (successret) {
                 console.log('支付成功');
                 //获取支付用户的信息
