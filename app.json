@@ -25,7 +25,9 @@
       "pages/contract_detail/contract_detail",
       "pages/problement/problement",
       "pages/news/news",
-      "pages/account/account"
+      "pages/account/account",
+      "pages/identity_authentication/identity_authentication",
+      "pages/recharge/recharge"
       
       
   ],

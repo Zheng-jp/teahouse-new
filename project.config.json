@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 15,
 			"list": [
 				{
 					"id": -1,
@@ -125,7 +125,13 @@
 				{
 					"id": -1,
 					"name": "我的账户",
-					"pathName": "pages/account/account"
+					"pathName": "pages/account/account",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "充值",
+					"pathName": "pages/recharge/recharge"
 				}
 			]
 		}

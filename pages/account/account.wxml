@@ -13,35 +13,35 @@
     <view class="assets_management">
           <view class="assets_management_title"> 资产管理</view>
           <view class="table" >
-              <view class="box">
+              <view class="box" bindtap="go"  data-src="../identity_authentication/identity_authentication">
                 <image src="img/u9491.png"  class="ico" />
                 <text class="text">身份认证</text>
               </view>
-                <view class="box">
+                <view class="box"  bindtap="go"  data-src="">
                 <image src="img/u9479.png"  class="ico" />
                 <text class="text">银行卡管理</text>
               </view>
-                <view class="box">
+                <view class="box"  bindtap="go"  data-src="../recharge/recharge" >
                 <image src="img/u9489.png"  class="ico" />
                 <text class="text">充值</text>
               </view>
-                <view class="box">
+                <view class="box"  bindtap="go"  data-src="">
                 <image src="img/u9493.png"  class="ico" />
                 <text class="text">提现</text>
               </view>
-              <view class="box">
+              <view class="box"  bindtap="go"  data-src="">
                 <image src="img/u9483.png"  class="ico" />
                 <text class="text">账单</text>
               </view>
-                <view class="box">
+                <view class="box"  bindtap="go_identity_authentication"  data-src="">
                 <image src="img/u9499.png"  class="ico" />
                 <text class="text">积分</text>
               </view>
-                  <view class="box">
+                  <view class="box"  bindtap="go_identity_authentication"  data-src="">
                 <image src="img/u9495.png"  class="ico" />
                 <text class="text">积分商城</text>
               </view>
-              <view class="box">
+              <view class="box"  bindtap="go_identity_authentication"   data-src="">
                 <image src="img/u9517.png"  class="ico" />
                 <text class="text">优惠券</text>
               </view>
