@@ -38,7 +38,8 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'activity_order',
         data: {
-          id: options.title
+          open_id: app.globalData.gmemberid,
+          activity_id:that.data.information.id,
         },
         method: "post",
         header: {
@@ -46,14 +47,65 @@ Page({
   
         },
         success: function (res) {
-          that.setData({
-            information: res.data.data[0],
-          });
-          var article = res.data.data[0].commodity;
-          WxParse.wxParse('article', 'html', article, that, 5);
-          
-  
-  
+          wx.request({
+            // url: app.globalData.tiltes + 'wxpay',
+            url: app.globalData.tiltes + 'wx_index',
+            data: {
+              open_id: app.globalData.gmemberid,
+              cost_moneny: that.data.information.cost_moneny,
+              activity_name: that.data.information.activity_name
+            },
+            dataTypr: 'json',
+            method: "post",
+            // header: {
+            //   "Content-Type": "application/json" // 默认值
+            // },
+            success: function (res) {
+              var result=res;
+    
+              console.log(result.data.paySign);
+              if (result) {
+                wx.requestPayment({
+                  timeStamp: String(result.data.timeStamp),
+                  nonceStr: result.data.nonceStr,
+                  package: result.data.package,
+                  signType: result.data.signType,
+                  paySign:  result.data.paySign,
+                  'success': function (successret) {
+                    console.log('支付成功');
+                    //获取支付用户的信息
+                    // wx.getStorage({
+                    //   key: 'userInfo',
+                    //   success: function (getuser) {
+                    //     //加入订单表做记录
+                    //     wx.request({
+                    //       url: url + 'Wx_AddOrder',
+                    //       data: {
+                    //         uname: getuser.data.nickName,
+                    //         goods: that.data.goodsList[0].goods_name,
+                    //         price: that.data.totalPrice,
+                    //         openid: res.data,
+                    //       },
+                    //       success: function (lastreturn) {
+                    //         console.log("存取成功");
+                    //       }
+                    //     })
+                    //   },
+                    // })
+                  },
+                  'fail': function (res) {
+                    console.log(res);
+                   }
+                })
+              }
+            },
+                  fail: function () {
+    
+                  },
+                  complete: function () {
+                    wx.hideLoading()
+                  }
+                });   
         },
         fail: function () {
   
@@ -63,65 +115,7 @@ Page({
         }
   
       });
-      wx.request({
-        // url: app.globalData.tiltes + 'wxpay',
-        url: app.globalData.tiltes + 'wx_index',
-        data: {
-          open_id: app.globalData.gmemberid,
-          cost_moneny: that.data.information.cost_moneny,
-          activity_name: that.data.information.activity_name
-        },
-        dataTypr: 'json',
-        method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-        // },
-        success: function (res) {
-          var result=res;
-
-          console.log(result.data.paySign);
-          if (result) {
-            wx.requestPayment({
-              timeStamp: String(result.data.timeStamp),
-              nonceStr: result.data.nonceStr,
-              package: result.data.package,
-              signType: result.data.signType,
-              paySign:  result.data.paySign,
-              'success': function (successret) {
-                console.log('支付成功');
-                //获取支付用户的信息
-                // wx.getStorage({
-                //   key: 'userInfo',
-                //   success: function (getuser) {
-                //     //加入订单表做记录
-                //     wx.request({
-                //       url: url + 'Wx_AddOrder',
-                //       data: {
-                //         uname: getuser.data.nickName,
-                //         goods: that.data.goodsList[0].goods_name,
-                //         price: that.data.totalPrice,
-                //         openid: res.data,
-                //       },
-                //       success: function (lastreturn) {
-                //         console.log("存取成功");
-                //       }
-                //     })
-                //   },
-                // })
-              },
-              'fail': function (res) {
-                console.log(res);
-               }
-            })
-          }
-        },
-              fail: function () {
-
-              },
-              complete: function () {
-                wx.hideLoading()
-              }
-            });     
+    
 
     },
   /**
