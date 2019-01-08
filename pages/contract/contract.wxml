@@ -1,0 +1,10 @@
+<!--pages/contract/contract.wxml-->
+<view class="all">
+    <view class="list" bindtap="go_contract_detail">
+        <view>
+            <text class="contract_num">C1.</text>
+            <text class="contract_name">《服务合同》</text>
+        </view>
+        <image class="more" src="img/more.png" mode="aspectFill" ></image>
+    </view>
+</view>

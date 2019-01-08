@@ -12,21 +12,24 @@ Page({
     selected1: false,
   
     selected2: false,
+    isnum:false,
      // 是否有存茶地址
     warehouse:true,
     //  选择保险年限
     showModalStatus: false,
     // 加减框里面的值
-    num:'1',
+    num:1,
     // 手机号码
     tel:'',
     // 名字
     name:'',
     // 地址
     address:'',
-    // 数量里面的值
-    num:'1',
     goods:[],
+    from_buy:false,
+    all_money:0,
+    user:[],
+    address_id:0,
     
     
   },
@@ -134,10 +137,83 @@ Page({
     })
   },
   repay:function(){
+    var that=this;
+    console.log(that.data.user);
+    var num=new Array();
+    num=[that.data.num];
+    console.log(num);
+    wx.request({
+      url: app.globalData.tiltes + 'order_place',
+      data: {
+      open_id: app.globalData.gmemberid,
+      goods_id: that.data.user[1].good_id,
+      goods_standard_id: that.data.user[2].guige,
+      order_quantity : num,
+      address_id:that.data.address_id,
+      order_amount: that.data.all_money,
+
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
     wx.showActionSheet({
       itemList: ['账户支付', '微信支付',],
       success: function (res) {
         console.log(res.tapIndex)
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  buyrepay:function(){
+    var that=this;
+ 
+    wx.request({
+      url: app.globalData.tiltes + 'order_place_by_shopping',
+      data: {
+      open_id: app.globalData.gmemberid,
+      shopping_id: that.data.user[0].shop_id,
+      goods_id: that.data.user[1].good_id,
+      goods_standard_id: that.data.user[2].guige,
+      order_quantity: that.data.user[3].num,
+      address_id:that.data.address_id,
+      order_amount: that.data.all_money,
+
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+    wx.showActionSheet({
+      itemList: ['账户支付', '微信支付',],
+      success: function (res) {
+        if(res.tapIndex==1){
+          
+        }
       },
       fail: function (res) {
         console.log(res.errMsg)
@@ -237,9 +313,10 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    var good_id = options.title;
     let user = JSON.parse(options.title);
-    console.log(user);
+    that.setData({
+      user: user,
+    });
     wx.request({
       url: app.globalData.tiltes + 'member_default_address_return',
       data: {
@@ -252,10 +329,33 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res)
-        // that.setData({
-        //   address: res.data.data,
-        // });
+        console.log(res.data.status);
+        if(res.data.status==1){
+          var tel=res.data.data.harvester_phone_num;
+          var name=res.data.data.harvester;
+          var address=res.data.data.address_name+res.data.data.harvester_real_address;
+          var address_id=res.data.data.id;
+          that.setData({
+            tel: tel,
+            name:name,
+            address:address, 
+  
+          });
+          for (var index in address) {
+            var address_names=address.split(",").join("");
+            that.setData({
+              address:address_names,
+              address_id:address_id,
+            });
+          }
+
+        }
+        else if(res.data.status==0){
+          that.setData({
+            selected:false,
+          });
+          
+        }
        
        
       },
@@ -270,9 +370,10 @@ Page({
       url: app.globalData.tiltes + 'order_return',
       data: {
         'open_id': app.globalData.gmemberid,
-        'goods_id': user[0].good_id,
-        'guige':user[1].guige,
-        'num':user[2].num,
+        'goods_id': user[1].good_id,
+        'guige':user[2].guige,
+        'num':user[3].num,
+        'shopping_id':user[0].shop_id,
       },
       method: "post",
       // header: {
@@ -284,6 +385,13 @@ Page({
         that.setData({
           goods: res.data.data,
         });
+        var all_moneys=0;
+        for(var i=0;i<that.data.goods.length;i++){
+          all_moneys+=that.data.goods[i].grade_price*that.data.goods[i].number;
+        }
+        that.setData({
+          all_money: all_moneys,
+        });
        
        
       },
@@ -294,6 +402,23 @@ Page({
       }
 
     });
+    // 判读从哪个页面进来
+    var  pages = getCurrentPages();
+    var  prevpage = pages[pages.length - 2];
+    console.log(prevpage.route)
+    if(prevpage.route=='pages/goods_detail/goods_detail'){
+    that.setData({
+      isnum: true,
+      from_buy:true,
+     
+    });
+    }
+    else{
+      that.setData({
+        isnum: false,
+        from_buy:false,
+      });
+    }
 
   },
 

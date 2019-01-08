@@ -1,0 +1,74 @@
+/* pages/recharge/recharge.wxss */
+
+.input_text{
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 30rpx;
+}
+.input_monye{
+    width: 600rpx;
+    font-size: 24rpx;
+}
+.unit{
+    color: #00BBFF;
+    font-size: 36rpx;
+}
+.big_box{
+    padding: 30rpx;
+    margin-top: 4rpx;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+
+}
+.box:nth-of-type(odd){
+    flex-basis:48%;
+    margin-right: 10rpx;
+    margin-bottom: 20rpx;
+    color: #00BBFF;
+    border-color:#00BBFF; 
+    border: solid 1rpx;
+    flex-direction:column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 180rpx;
+    border-radius:10rpx; 
+}
+.box:nth-of-type(even){
+    flex-basis:46%;
+    margin-bottom: 10rpx;
+    color: #00BBFF;
+    border-color:#00BBFF; 
+    border: solid 1rpx;
+    flex-direction:column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 180rpx;
+    margin-left: 20rpx;
+    border-radius:10rpx; 
+}
+.monye_box{
+    font-size: 36rpx;
+}
+.integral{
+    font-size: 24rpx;
+}
+.button{
+background: #fff;
+padding-top: 200rpx;
+}
+.submit{
+    font-size: 36rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    width: 700rpx;
+    margin: 0 auto;
+    color: #fff;
+    background: #00BBFF;
+    border: 0;
+
+}

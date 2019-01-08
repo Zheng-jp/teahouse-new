@@ -11,41 +11,7 @@ Page({
     totalPrice: 0,
     totalCount: 0,
     url:app.globalData.img_url,
-    goodList: [
-      // {
-      //   'cover': 'img/u936.png',
-      //   'isbn': '9787535482051',
-      //   'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
-      //   'price': 25.9,
-      //   'checked': false,
-      //   'count': 1,
-      //   'index': 1,
-      //   'num': 1,
-      //   'tab':0,
-       
-      // },
-      // {
-      //   'cover': 'img/u936.png',
-      //   'isbn': '9787535482052',
-      //   'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
-      //   'price': 25.9,
-      //   'checked': false,
-      //   'count': 1,
-      //   'index': 2,
-      //   'num': 1,
-      //   'tab':1,
-      // }, {
-      //   'cover': 'img/u936.png',
-      //   'isbn': '9787535482053',
-      //   'desc': '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
-      //   'price': 25.9,
-      //   'checked': false,
-      //   'count': 1,
-      //   'index': 3,
-      //   'num': 1,
-      //   'tab':2,
-      // }
-      ],
+    goodList: [],
     // 商品信息
     routers: [
       {
@@ -293,26 +259,38 @@ Page({
   },
   showPopup: function (e) {
     var that=this;
+    var goodList=that.data.goodList;
+    console.log(that);
       var chars=[];
-      // var char = {};
-      var good_ids = {}
-      var ids = {}
-      var nums = {}
+      var shop_ids = {};
+      var good_ids = {};
+      var ids = {};
+      var nums = {};
+      var shop_id=new Array();
       var good_id=new Array();
       var id=new Array();
       var num=new Array();
+      console.log(goodList);
          //  添加good_id字段到传值数组
-        //  for(var index in goodList){
-        //    if(goodList[index].checked=='true'){
-
-        //    }
-        //  }
-         good_id.push(that.data.good_id);
+         for(var index in goodList){
+           if(goodList[index].checked==true){
+            good_id.push(goodList[index].goods_id);
+            if(goodList[index].goods_standard_id==0 || goodList[index].goods_standard_id==''){
+            id.push(0);
+            }
+            else{
+              id.push(goodList[index].goods_standard_id);
+            }
+            num.push(goodList[index].goods_unit);
+            shop_id.push(goodList[index].id);
+           }
+         }
+        
          good_ids['good_id']=good_id;
-         id.push(that.data.id);
+         shop_ids['shop_id']=shop_id;
          ids['guige']=id;
-         num.push(that.data.num);
          nums['num']=num;
+       chars.push(shop_ids);
        chars.push(good_ids);
        chars.push(ids);
        chars.push(nums);

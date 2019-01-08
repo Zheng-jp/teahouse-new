@@ -8,6 +8,7 @@ height: 0;
 color: transparent;
 
 }
+
 .all-content{
   width: 100%;
   height: 100%;
@@ -121,11 +122,9 @@ line-height:42rpx;
 }
 .share-kuchun{
   color: #821006;
-  padding: 30rpx;
   font-size: 24rpx;
 }
 .validity{
-  padding: 15rpx;
   float: right;
    font-size: 24rpx;
   color: #363636;
@@ -152,9 +151,12 @@ font-size: 20rpx;
 border-radius: 10rpx;
 padding: 10rpx;
 }
-
 .share-xia{
-  padding-bottom: 10rpx;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20rpx 3rpx;
+  
 }
 /* 点击搜索按钮 */
 .mask{

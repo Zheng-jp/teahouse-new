@@ -1,0 +1,23 @@
+/* pages/contract/contract.wxss */
+.list{
+    padding: 30rpx;
+    box-sizing: border-box;
+    width: 750rpx;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid #EEEEF3 1rpx;
+}
+.more{
+    width:19rpx;
+    height:42rpx;
+}
+.contract_num{
+   font-size: 38rpx;
+}
+.contract_name{
+    margin-left: 20rpx;
+    font-size: 26rpx;
+    color: #0DBEFF;
+}

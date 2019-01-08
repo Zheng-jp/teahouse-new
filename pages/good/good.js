@@ -20,21 +20,16 @@ Page({
 
     var that = this;
     var item = event.currentTarget.dataset.item;
-
-    console.log(event.currentTarget.dataset.id);
     wx.navigateTo({
       url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
       success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
+      
       },
       fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
+       
       },
       complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
+      
       }
 
 
@@ -52,7 +47,6 @@ Page({
     var self = this;
     // var last_scrollTop=0;
     self.setData({ scrollTop: e.detail.scrollTop });
-    console.log("sd:", self.data.scrollTop);
     // if(self.data.is_true){
 
     setTimeout(function () {
@@ -60,7 +54,6 @@ Page({
       //   is_true:false
       // });
       if (self.data.last_scrollTop != self.data.scrollTop) {
-        console.log(self.data.last_scrollTop);
         self.setData({ last_scrollTop: self.data.scrollTop });
         self.scrollmove(self, e, self.data.scrollTop);
       }
@@ -69,6 +62,7 @@ Page({
 
   },
   scrollmove: function (self, e, scrollTop) {
+
     // last_scrollTop=scrollTop;
     var scrollArr = self.data.height_arr;
     if (scrollTop > scrollArr[scrollArr.length - 1] - self.data.s_height) {

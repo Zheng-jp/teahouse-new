@@ -159,7 +159,7 @@ align-items: center;
 .num_button{
   box-sizing: border-box;
   width: 100%;
-  padding: 20rpx;
+  padding-left: 20rpx;
   display: flex;
   align-content: center;
   align-items: center;
@@ -172,11 +172,14 @@ align-items: center;
   font-size: 24rpx;
 }
 .naext{
-  width: 160rpx;
-  font-size: 20rpx;
-background: #FF6700;
-color: #ffF;
-height: 50rpx;
+  width:160rpx;
+  font-size:28rpx;
+  background:#FF6700;
+  color:#ffF;
+  height:100rpx;
+  text-align:center;
+  line-height:100rpx;
+  
 }
 .radio{
   text-align: left !important;

@@ -18,86 +18,185 @@ Page({
         color: '#669900'
       }
     ],
-    information:[]
+    information:[],
+    // 输入框内容
+    repay_content:'',
+    // 唤起输入框的事件变量
+    opaction:''
   },
   /**
 * 点击回复
 */
   bindReply: function (e) {
     this.setData({
+      opaction:e.currentTarget.dataset.id,
       releaseFocus: true
     })
+  },
+  // 输入框输入事件
+  bindinput: function (e) {
+    this.setData({
+      repay_content:e.detail.value
+    })
+
+  },
+  // 回复输入框发送事件
+  reply:function(e) {
+    var that=this;
+    this.setData({
+      releaseFocus: false
+    })
+    wx.request({
+      url: app.globalData.tiltes + 'aaaa',
+      data: {
+        content: that.data.repay_content
+      },
+      method: "post",
+      header: {
+        "Content-Type": "application/json" // 默认值
+
+      },
+      success: function (res) {
+        this.setData({
+          repay_content:''
+        })
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+  },
+  // 评论输入框发送事件
+  comments:function(e) {
+    var that=this;
+    this.setData({
+      releaseFocus: false
+    })
+    wx.request({
+      url: app.globalData.tiltes + 'bbb',
+      data: {
+        content: that.data.repay_content
+      },
+      method: "post",
+      header: {
+        "Content-Type": "application/json" // 默认值
+
+      },
+      success: function (res) {
+        this.setData({
+          repay_content:''
+        })
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
   },
   close:function(e) {
     this.setData({
       releaseFocus: false
     })
+    this.setData({
+      repay_content:''
+    })
   },
     pay: function (e) {
       var that = this;
-      console.log(that.data.information.cost_moneny);
       wx.request({
-        url: app.globalData.tiltes + 'wxpay',
+        url: app.globalData.tiltes + 'activity_order',
         data: {
           open_id: app.globalData.gmemberid,
-          cost_moneny: that.data.information.cost_moneny,
-          activity_name: that.data.information.activity_name
+          activity_id:that.data.information.id,
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-        // },
-        success: function (res) {
-        console.log(res);
-          if (result.data) {
-            wx.requestPayment({
-              timeStamp: result.data['timeStamp'],
-              nonceStr: result.data['nonceStr'],
-              package: result.data['package'],
-              signType: 'MD5',
-              paySign: result.data['paySign'],
-              'success': function (successret) {
-                console.log('支付成功');
-                //获取支付用户的信息
-                // wx.getStorage({
-                //   key: 'userInfo',
-                //   success: function (getuser) {
-                //     //加入订单表做记录
-                //     wx.request({
-                //       url: url + 'Wx_AddOrder',
-                //       data: {
-                //         uname: getuser.data.nickName,
-                //         goods: that.data.goodsList[0].goods_name,
-                //         price: that.data.totalPrice,
-                //         openid: res.data,
-                //       },
-                //       success: function (lastreturn) {
-                //         console.log("存取成功");
-                //       }
-                //     })
-                //   },
-                // })
-              },
-              'fail': function (res) { }
-            })
-          }
+        header: {
+          "Content-Type": "application/json" // 默认值
+  
         },
-              fail: function () {
-
-              },
-              complete: function () {
-                wx.hideLoading()
+        success: function (res) {
+          wx.request({
+            // url: app.globalData.tiltes + 'wxpay',
+            url: app.globalData.tiltes + 'wx_index',
+            data: {
+              open_id: app.globalData.gmemberid,
+              cost_moneny: that.data.information.cost_moneny,
+              activity_name: that.data.information.activity_name
+            },
+            dataTypr: 'json',
+            method: "post",
+            // header: {
+            //   "Content-Type": "application/json" // 默认值
+            // },
+            success: function (res) {
+              var result=res;
+    
+              console.log(result.data.paySign);
+              if (result) {
+                wx.requestPayment({
+                  timeStamp: String(result.data.timeStamp),
+                  nonceStr: result.data.nonceStr,
+                  package: result.data.package,
+                  signType: result.data.signType,
+                  paySign:  result.data.paySign,
+                  'success': function (successret) {
+                    console.log('支付成功');
+                    //获取支付用户的信息
+                    // wx.getStorage({
+                    //   key: 'userInfo',
+                    //   success: function (getuser) {
+                    //     //加入订单表做记录
+                    //     wx.request({
+                    //       url: url + 'Wx_AddOrder',
+                    //       data: {
+                    //         uname: getuser.data.nickName,
+                    //         goods: that.data.goodsList[0].goods_name,
+                    //         price: that.data.totalPrice,
+                    //         openid: res.data,
+                    //       },
+                    //       success: function (lastreturn) {
+                    //         console.log("存取成功");
+                    //       }
+                    //     })
+                    //   },
+                    // })
+                  },
+                  'fail': function (res) {
+                    console.log(res);
+                   }
+                })
               }
-            });     
+            },
+                  fail: function () {
+    
+                  },
+                  complete: function () {
+                    wx.hideLoading()
+                  }
+                });   
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
+    
 
-},
+    },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that=this;
     var title = options.title;
-    console.log(title);
     wx.request({
       url: app.globalData.tiltes + 'teacenter_detailed',
       data: {
@@ -109,11 +208,8 @@ Page({
 
       },
       success: function (res) {
-   
-        console.log(res);
         that.setData({
           information: res.data.data[0],
-          
         });
         var article = res.data.data[0].commodity;
         WxParse.wxParse('article', 'html', article, that, 5);

@@ -5,6 +5,7 @@ Page({
   data: {
     // 全局变量的获取
     test: app.data.test,
+    url: app.globalData.img_url,
     // 轮播图图片地址数据
     image: [
       app.globalData.url + '/upload/20181101/66d07e1b7f6e2fb807e02dba5f4cab0b.png',
@@ -14,7 +15,7 @@ Page({
    
     circular: 'true',
     indicatorDots: 'true',
-    interval:'2000',
+    interval:'4000',
     autoplay:'true',
     // 小喇叭图片地址
     laba:'img/u206.png',
@@ -47,61 +48,77 @@ Page({
     ],
   // 商品信息
     routers: [
-      {
-        name: '双骄',
-        url: '/pages/Course/course',
-        icon: 'img/u160.jpg',
-        code: '10',
-        selling:[
-          '新益号',
-          '普洱茶'
-        ],
-        price_img: 'img/u182.png'
+      // {
+      //   name: '双骄',
+      //   url: '/pages/Course/course',
+      //   icon: 'img/u160.jpg',
+      //   code: '10',
+      //   selling:[
+      //     '新益号',
+      //     '普洱茶'
+      //   ],
+      //   price_img: 'img/u182.png'
         
-      },
-      {
-        name: '双骄',
-        url: '/pages/Course/course',
-        icon: 'img/u160.jpg',
-        code: '10',
-        selling: [
-          '新益号',
-          '普洱茶'
-        ],
-        price_img: 'img/u182.png',
-        jiage: '￥120.0/片'
-      },
-      {
-        name: '双骄',
-        url: '/pages/Course/course',
-        icon: 'img/u160.jpg',
-        code: '10',
-        selling: [
-          '新益号',
-          '普洱茶'
-        ],
-        price_img: 'img/u182.png',
-        jiage: '￥120.0/片'
-      },
+      // },
+      // {
+      //   name: '双骄',
+      //   url: '/pages/Course/course',
+      //   icon: 'img/u160.jpg',
+      //   code: '10',
+      //   selling: [
+      //     '新益号',
+      //     '普洱茶'
+      //   ],
+      //   price_img: 'img/u182.png',
+      //   jiage: '￥120.0/片'
+      // },
+      // {
+      //   name: '双骄',
+      //   url: '/pages/Course/course',
+      //   icon: 'img/u160.jpg',
+      //   code: '10',
+      //   selling: [
+      //     '新益号',
+      //     '普洱茶'
+      //   ],
+      //   price_img: 'img/u182.png',
+      //   jiage: '￥120.0/片'
+      // },
      
-      {
-        name: 'Python',
-        url: '/pages/Course/course',
-        icon: 'img/u160.jpg',
-        code: '10',
-        selling: [
-          '新益号',
-          '普洱茶'
-        ],
-        price_img: 'img/u182.png',
-        jiage: '￥120.0/片'
-      },
+      // {
+      //   name: 'Python',
+      //   url: '/pages/Course/course',
+      //   icon: 'img/u160.jpg',
+      //   code: '10',
+      //   selling: [
+      //     '新益号',
+      //     '普洱茶'
+      //   ],
+      //   price_img: 'img/u182.png',
+      //   jiage: '￥120.0/片'
+      // },
     
     ],
     // 分享信息
     share: [
     ]
 
+    },
+    bindViewTap: function (event) {
+      var that=this;
+      var item = event.currentTarget.dataset.item;
+      wx.navigateTo({
+        url: '../detail/detail?title='+ event.currentTarget.id ,
+        success: function (res) {
+        },
+        fail: function () {
+      
+        },
+        complete: function () {
+       
+        }
+  
+      })
     },
   go_good: function (event) {
 
@@ -145,6 +162,52 @@ Page({
 
     })
   },
+  go_gooddetail: function (event) {
+
+    var that = this;
+    var item = event.currentTarget.dataset.item;
+
+    console.log(event.currentTarget.dataset.id);
+    wx.navigateTo({
+      url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
+
+
+    })
+  },
+  go_gooddetail: function (event) {
+
+    var that = this;
+    console.log(event.currentTarget.dataset.id);
+    wx.navigateTo({
+      url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
+
+
+    })
+  },
   onShow: function () {
     var that = this;
     
@@ -181,7 +244,41 @@ Page({
     }
 
   });
+  // 商品列表请求
+  wx.request({
+    url: app.globalData.tiltes + 'commodity_recommend',
+    data: {
+      'open_id': app.globalData.gmemberid,
+    },
+    method: "post",
+    // header: {
+    //   "Content-Type": "json" // 默认值
 
+    // },
+    success: function (res) {
+      console.log(res);
+      that.setData({
+        routers: res.data.data,
+      });
+      //  添加字段到等级数组
+      for (var index in that.data.share) {
+        var sexParam = "share[" + index + "].url";
+        that.setData({
+          [sexParam]: app.globalData.img_url,
+        })
+
+      }
+
+
+    },
+    fail: function () {
+
+    },
+    complete: function () {
+      wx.hideLoading()
+    }
+
+  });
     
   }
  

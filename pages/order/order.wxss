@@ -1,1 +1,127 @@
 /* pages/order/order.wxss */
+.on{
+  color: #821006 !important;
+  border-bottom: 1rpx #821006 solid !important;
+
+}
+.flex{
+  width: 670rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.courier{
+color: #333;
+font-size: 26rpx;
+}
+.type_button{
+  color: #333 !important;
+  border-color:#333 !important; 
+}
+.title{
+  display: flex;
+  align-items: center;
+  border-bottom:  1rpx solid #E4E4E4;
+}
+.title .title_list{
+  flex: 1;
+  text-align: center;
+  color: #6B6B6B;
+  font-size: 30rpx;
+  padding-bottom: 30rpx;
+  padding-top: 30rpx;
+}
+.order_list{
+  background: #fff;
+  border-radius:10rpx;
+  margin: 20rpx;
+  padding: 20rpx; 
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.box_list_one{
+   margin-top: 10rpx;
+  display: flex;
+  align-content: center;
+  font-size: 24rpx;
+  justify-content: space-between;
+  color: #333;
+}
+.static{
+  color: #821006;
+}
+.img{
+  width: 150rpx;
+  height: 150rpx;
+
+}
+.box_list_two{
+   margin-top: 20rpx;
+  width: 670rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.good_infor{
+  width: 500rpx;
+  font-size: 26rpx;
+  box-sizing: border-box;
+}
+.good_selling{
+  color: #999;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+.good_uite{
+  display: flex;
+  align-items: center;
+}
+.user_img{
+  width: 50rpx;
+  height: 50rpx;
+}
+.good_monye{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.uite{
+  color: #821006;
+  font-size: 30rpx;
+
+}
+.num{
+  color: #821006;
+  font-size: 30rpx;
+}
+.box_list_three{
+  margin-top: 20rpx;
+  text-align: right;
+  font-size: 30rpx;
+
+}
+.box_list_four{
+  margin-top: 20rpx;
+  float: right;
+  overflow: hidden;
+}
+.box_list_four>view{
+  display: flex;
+  align-items: center;
+}
+.cancel{
+  padding: 10rpx 20rpx;
+  border: solid 1px #999;
+  color: #999;
+  font-size: 26rpx;
+  border-radius:50rpx;
+  margin-right:40rpx;
+}
+.payment{
+  padding: 10rpx 20rpx;
+  border: solid 1px #821006;
+  color: #821006;
+  font-size: 26rpx;
+  border-radius:50rpx;
+}

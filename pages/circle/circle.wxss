@@ -92,13 +92,11 @@ line-height:42rpx;
 }
 .share-kuchun{
   color: #821006;
-  padding: 30rpx;
   font-size: 24rpx;
 }
 .validity{
-  padding: 15rpx;
   float: right;
-   font-size: 24rpx;
+   font-size: 20rpx;
   color: #363636;
 }
 .share-content{
@@ -125,12 +123,14 @@ padding: 10rpx;
 }
 
 .share-xia{
-  padding-bottom: 10rpx;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20rpx 3rpx;
+  
 }
 
-.share-xia{
-  padding-bottom: 10rpx;
-}
+
 .listview{
   width: 720rpx;
   border-radius:10rpx;

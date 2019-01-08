@@ -1,0 +1,17 @@
+<!--pages/recharge/recharge.wxml-->
+<view class="all">
+    <view class="input_text">
+        <input class="input_monye" type="text" placeholder="请输入其他金额（输入任意值无积分奖励）" />
+        <text class="unit">元</text>
+    </view>
+   <view class="big_box">
+       <view class="box">
+           <view class="monye_box"> 1000元 </view>
+           <view class="integral"> 送5积分 </view>
+       </view>
+    
+   </view>
+   <view class="button"> 
+   <button type="button"  class="submit">确认</button>
+    </view>
+</view>

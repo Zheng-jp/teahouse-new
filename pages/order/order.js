@@ -1,18 +1,46 @@
 // pages/order/order.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+      height:'',
+      tab:'1',
+      static:'3',
   },
-
+  tab_click:function (e) {
+      this.setData({ tab: e.currentTarget.dataset.current });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    var height = wx.getSystemInfoSync().windowHeight;
+    this.setData({ height: height });
+    wx.request({
+      url: app.globalData.tiltes + 'ios_api_order_all',
+      data: {
+        open_id: app.globalData.gmemberid,
+      },
+      method: "post",
+      header: {
+        "Content-Type": "application/json" // 默认值
 
+      },
+      success: function (res) {
+           console.log(res);
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
   },
 
   /**

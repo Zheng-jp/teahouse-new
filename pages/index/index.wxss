@@ -4,7 +4,9 @@ view{
   padding: 0;
   margin: 0;
 }
-
+.seach{
+  font-size: 26rpx;
+}
 .container{
   background: #F9F9F9;
 }
@@ -14,6 +16,18 @@ height:81rpx;
 line-height:71rpx;
 overflow:hidden;
 
+}
+
+.selling_point{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow:hidden;
+  -webkit-box-orient: vertical;
+  line-height:42rpx;
+  margin:10rpx;
+  color: #949494;
+  font-size: 24rpx;
 }
 image {
   width: 100%;
@@ -35,19 +49,28 @@ color:#5E5E5E;
 font-size:20rpx;
 font-weight:bold;
 margin-top:-23rpx;
+text-align: center;
 }
 .seach{
 float:left;
-width:550rpx;
+width:578rpx;
 height:68rpx;
 background:#fff;
 border-radius:36rpx;
 border:solid #E9E9E9 1px;
 margin:1rpx 10rpx;
-padding-left:50rpx;
+padding-left:80rpx;
 box-sizing:border-box;
 
 
+}
+.seach_img{
+  position:absolute;
+  width:37rpx;
+  top:19rpx;
+  left:109rpx;
+  
+  
 }
 .ma{
 width:50rpx;
@@ -187,6 +210,8 @@ margin-top:28rpx;
     width: 50%;
     box-sizing: border-box;
     margin-bottom:50rpx;
+    height: 500rpx;
+    overflow: hidden;
 
 }
  
@@ -246,8 +271,9 @@ margin:0 auto;
 }
  .price_img{
    float: left;
-width:35rpx;
-height:33rpx;
+   align-items: center;
+    width:35rpx;
+    height:35rpx;
 
  }
  .price_text{
@@ -361,13 +387,11 @@ line-height:42rpx;
 }
 .share-kuchun{
   color: #821006;
-  padding: 30rpx;
   font-size: 24rpx;
 }
 .validity{
-  padding: 15rpx;
   float: right;
-   font-size: 24rpx;
+   font-size: 20rpx;
   color: #363636;
 }
 .share-content{
@@ -394,7 +418,11 @@ padding: 10rpx;
 }
 
 .share-xia{
-  padding-bottom: 10rpx;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20rpx 3rpx;
+  
 }
 .listview{
   width: 720rpx;

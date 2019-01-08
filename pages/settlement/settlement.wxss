@@ -11,7 +11,9 @@
   opacity: 0.5;
   overflow: hidden;
 }
- 
+ .good_list{
+   margin-bottom: 20rpx;
+ }
 /*content*/
 .drawer_box {
   width: 650rpx;
