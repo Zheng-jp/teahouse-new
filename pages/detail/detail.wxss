@@ -100,7 +100,7 @@ margin: 0 auto;
   font-size: 24rpx;
 }
 .comment_list{
-  margin-bottom: 70rpx;
+  margin-bottom: 100rpx;
 }
 .comment_ico{
   display: inline-block;

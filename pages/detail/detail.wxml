@@ -46,7 +46,7 @@
           <view class='comment_name'>瑞川</view>
           <view class='zhan'><text class='zhan_text'>赞</text><view class='comment_img'><image src='img/u4967.png'></image></view></view>
           <view class='repay_content'>香港就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感。 但在这个全球最密集的城市，“死后能住进棺材”纯属是妄念。</view>
-          <view class='repay_list'> <text >潮州</text><text>刚刚</text><text class="talk" bindtap="bindReply">回复</text></view>
+          <view class='repay_list'> <text >潮州</text><text>刚刚</text><text class="talk" bindtap="bindReply" data-id="reply">回复</text></view>
       </view>
       <view class="release" hidden="{{!releaseFocus}}">
             <textarea class="text"
@@ -57,30 +57,19 @@
             cursor-spacing="15"
             auto-height="true"
             focus="{{releaseFocus}}"
-            placeholder="回复 {{releaseName}}"></textarea>
-            <view class="submit" bindtap='close'>发送</view>
+            placeholder="" bindinput="bindinput">{{repay_content}}</textarea>
+            <view class="submit" bindtap='{{opaction}}'>发送</view>
+            <view class="submit" bindtap='close'>取消</view>
             </view>
-         <view class='comment_repay' >
-          <view class='comment_ico'><image src='img/u100.jpg'></image></view>
-          <view class='comment_name'>瑞川</view>
-          <view class='zhan'><text class='zhan_text'>赞</text><view class='comment_img'><image src='img/u4967.png'></image></view></view>
-          <view class='repay_content'>香港就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感。 但在这个全球最密集的城市，“死后能住进棺材”纯属是妄念。</view>
-          <view class='repay_list'> <text >潮州</text><text>刚刚</text><text>回复</text></view>
-      </view>
-         <view class='comment_repay' >
-          <view class='comment_ico'><image src='img/u100.jpg'></image></view>
-          <view class='comment_name'>瑞川</view>
-          <view class='zhan'><text class='zhan_text'>赞</text><view class='comment_img'><image src='img/u4967.png'></image></view></view>
-          <view class='repay_content'>香港就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感。 但在这个全球最密集的城市，“死后能住进棺材”纯属是妄念。</view>
-          <view class='repay_list'> <text >潮州</text><text>刚刚</text><text>回复</text></view>
-      </view>
+       
+        
    </view>
 </view>
 
 
 <view class='buttom_nav'>
 <view class='star'><image src='img/u5053.png'></image></view>
-<input class='input' type='text' placeholder='写评论'></input>
+<input class='input' type='text' placeholder='写评论' bindtap="bindReply"  disabled='display'  data-id="comments"></input>
 <view class='share'><image src='img/u5055.png'></image></view>
 <view class='monly'>¥{{information.cost_moneny}}</view>
 <view class='buttons' bindtap='pay'>立即报名</view>

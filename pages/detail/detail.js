@@ -18,19 +18,92 @@ Page({
         color: '#669900'
       }
     ],
-    information:[]
+    information:[],
+    // 输入框内容
+    repay_content:'',
+    // 唤起输入框的事件变量
+    opaction:''
   },
   /**
 * 点击回复
 */
   bindReply: function (e) {
     this.setData({
+      opaction:e.currentTarget.dataset.id,
       releaseFocus: true
     })
+  },
+  // 输入框输入事件
+  bindinput: function (e) {
+    this.setData({
+      repay_content:e.detail.value
+    })
+
+  },
+  // 回复输入框发送事件
+  reply:function(e) {
+    var that=this;
+    this.setData({
+      releaseFocus: false
+    })
+    wx.request({
+      url: app.globalData.tiltes + 'aaaa',
+      data: {
+        content: that.data.repay_content
+      },
+      method: "post",
+      header: {
+        "Content-Type": "application/json" // 默认值
+
+      },
+      success: function (res) {
+        this.setData({
+          repay_content:''
+        })
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+  },
+  // 评论输入框发送事件
+  comments:function(e) {
+    var that=this;
+    this.setData({
+      releaseFocus: false
+    })
+    wx.request({
+      url: app.globalData.tiltes + 'bbb',
+      data: {
+        content: that.data.repay_content
+      },
+      method: "post",
+      header: {
+        "Content-Type": "application/json" // 默认值
+
+      },
+      success: function (res) {
+        this.setData({
+          repay_content:''
+        })
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
   },
   close:function(e) {
     this.setData({
       releaseFocus: false
+    })
+    this.setData({
+      repay_content:''
     })
   },
     pay: function (e) {
