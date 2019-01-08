@@ -35,7 +35,34 @@ Page({
   },
     pay: function (e) {
       var that = this;
-      console.log(that.data.information.cost_moneny);
+      wx.request({
+        url: app.globalData.tiltes + 'activity_order',
+        data: {
+          id: options.title
+        },
+        method: "post",
+        header: {
+          "Content-Type": "application/json" // 默认值
+  
+        },
+        success: function (res) {
+          that.setData({
+            information: res.data.data[0],
+          });
+          var article = res.data.data[0].commodity;
+          WxParse.wxParse('article', 'html', article, that, 5);
+          
+  
+  
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
       wx.request({
         // url: app.globalData.tiltes + 'wxpay',
         url: app.globalData.tiltes + 'wx_index',
@@ -51,6 +78,7 @@ Page({
         // },
         success: function (res) {
           var result=res;
+
           console.log(result.data.paySign);
           if (result) {
             wx.requestPayment({

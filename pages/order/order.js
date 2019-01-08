@@ -1,4 +1,5 @@
 // pages/order/order.js
+const app = getApp();
 Page({
 
   /**
@@ -19,6 +20,27 @@ Page({
     var that = this;
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
+    wx.request({
+      url: app.globalData.tiltes + 'ios_api_order_all',
+      data: {
+        open_id: app.globalData.gmemberid,
+      },
+      method: "post",
+      header: {
+        "Content-Type": "application/json" // 默认值
+
+      },
+      success: function (res) {
+           console.log(res);
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
   },
 
   /**

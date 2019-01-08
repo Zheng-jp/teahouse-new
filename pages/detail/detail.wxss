@@ -148,6 +148,7 @@ margin-left: 80rpx;
 display:flex;
 position:fixed;
 align-items: center;
+justify-content: space-between;
 bottom:0;
 height: 100rpx;
 z-index:9999;
