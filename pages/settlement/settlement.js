@@ -211,7 +211,9 @@ Page({
     wx.showActionSheet({
       itemList: ['账户支付', '微信支付',],
       success: function (res) {
-        console.log(res.tapIndex)
+        if(res.tapIndex==1){
+          
+        }
       },
       fail: function (res) {
         console.log(res.errMsg)
@@ -327,24 +329,34 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res.data.data.id);
-        var tel=res.data.data.harvester_phone_num;
-        var name=res.data.data.harvester;
-        var address=res.data.data.address_name+res.data.data.harvester_real_address;
-        var address_id=res.data.data.id;
-        that.setData({
-          tel: tel,
-          name:name,
-          address:address, 
-
-        });
-        for (var index in address) {
-          var address_names=address.split(",").join("");
+        console.log(res.data.status);
+        if(res.data.status==1){
+          var tel=res.data.data.harvester_phone_num;
+          var name=res.data.data.harvester;
+          var address=res.data.data.address_name+res.data.data.harvester_real_address;
+          var address_id=res.data.data.id;
           that.setData({
-            address:address_names,
-            address_id:address_id,
+            tel: tel,
+            name:name,
+            address:address, 
+  
           });
+          for (var index in address) {
+            var address_names=address.split(",").join("");
+            that.setData({
+              address:address_names,
+              address_id:address_id,
+            });
+          }
+
         }
+        else if(res.data.status==0){
+          that.setData({
+            selected:false,
+          });
+          
+        }
+       
        
       },
       fail: function () {

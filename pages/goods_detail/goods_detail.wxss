@@ -215,8 +215,8 @@
     justify-content: center;
   }
   .trade>view{
-    height: 90rpx;
-    line-height: 90rpx;
+    height: 100rpx;
+    line-height: 100rpx;
     text-align: center;
     flex: 1;
   }

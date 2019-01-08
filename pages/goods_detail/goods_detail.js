@@ -18,7 +18,6 @@ Page({
     images:'',
     // 规格值
     select:'规格',
-    add_address:false,
     selecteds: true,
     id:0,
     // 商品数量
@@ -27,12 +26,14 @@ Page({
     url:app.globalData.img_url,
     circular: 'true',
     indicatorDots: 'true',
-    interval: '2000',
+    interval: '3000',
     autoplay: 'true',
     selected: true,
     selected1: false,
     mask_show:false,
     good_id:0,
+    // 是否有地址，0为没有填写收货地址，1为有，2为未授权
+    address:0,
     
    
   },
@@ -111,37 +112,73 @@ Page({
       })
     }
     else{
-      wx.request({
-        url: app.globalData.tiltes + 'get_goods_id_to_shopping',
-        data: {
-          open_id: app.globalData.gmemberid,
-          goods_unit: that.data.num,
-          // 规格id
-          goods_standard_id: goods_standard_id,
-          // 商品id
-          goods_id: that.data.good_id
-        },
-        method: "post",
-        // header: {
-        //   "Content-Type": "json" // 默认值
-  
-        // },
-        success: function (res) {
-          console.log(res);
-          wx.showToast({
-            title: res.data.info,
-            icon:'none',
+      if(that.data.address==0){
+        wx.showModal({
+          title: '提示',
+          content: '请先添加收货地址',
+          confirmText:'立即添加',
+          success: function(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../add_address/add_address',
+              success: function (res) {
+                // success
+                console.log("nihao////跳转成功")
+              },
+              fail: function () {
+                // fail
+                console.log("nihao////跳转失败")
+              },
+              complete: function () {
+                // complete
+                console.log("nihao////跳转行为结束，未知成功失败")
+              }
+      
+            })
+          } 
+          }
           })
+      }
+      else if(that.data.address==1){
+        wx.request({
+          url: app.globalData.tiltes + 'get_goods_id_to_shopping',
+          data: {
+            open_id: app.globalData.gmemberid,
+            goods_unit: that.data.num,
+            // 规格id
+            goods_standard_id: goods_standard_id,
+            // 商品id
+            goods_id: that.data.good_id
+          },
+          method: "post",
+          // header: {
+          //   "Content-Type": "json" // 默认值
+    
+          // },
+          success: function (res) {
+            console.log(res);
+            wx.showToast({
+              title: res.data.info,
+              icon:'none',
+            })
+    
+          },
+          fail: function () {
+    
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+    
+        });
+      }
+      else{
+        wx.showToast({
+          title:'你未进行授权，请重启小程序',
+          icon:'none'
+        })
+      }
   
-        },
-        fail: function () {
-  
-        },
-        complete: function () {
-          wx.hideLoading()
-        }
-  
-      });
 
     }
     
@@ -212,7 +249,7 @@ Page({
  
   showPopup: function (e) {
     var that=this;
-    if (that.data.add_address){
+    if (that.data.address==0){
       wx.showModal({
         title: '提示',
         content: '请先添加收货地址',
@@ -240,74 +277,79 @@ Page({
         }
       })
     }
-    else{
-      if (that.data.goods.goods_standard == 0)
-      {
-        var goods_standard_id = '';
-        that.setData({
-          select:'',
-        });
-      }
-      else{
-        var goods_standard_id = that.data.id;
-      }
-      if(that.data.select=='规格'){
-        wx.showToast({
-          title: '请选择规格',
-          icon:'none',
-        })
-      }
-      else{
-      var chars=[];
-      // var char = {};
-      var shop_ids = {}
-      var good_ids = {}
-      var ids = {}
-      var nums = {}
-      var shop_ids={}
-      var shop_id=new Array();
-      var good_id=new Array();
-      var id=new Array();
-      var num=new Array();
-         //  添加good_id字段到传值数组
-         good_id.push(that.data.good_id);
-         if(that.data.id==0 || that.data.id==''){
-             id.push(0);
-         }
-         else{
-          id.push(that.data.id);
-         }
-        
-         num.push(that.data.num);
-         shop_id.push(0);
-         shop_ids['shop_id']=shop_id;
-         good_ids['good_id']=good_id;
-         ids['guige']=id;
-         nums['num']=num;
-       chars.push(shop_ids);
-       chars.push(good_ids);
-       chars.push(ids);
-       chars.push(nums);
-       let userStr=JSON.stringify(chars);
-      wx.navigateTo({
-        url: '../settlement/settlement?title=' + userStr,
-        success: function (res) {
-          // success
-          console.log("nihao////跳转成功")
-        },
-        fail: function () {
-          // fail
-          console.log("nihao////跳转失败")
-        },
-        complete: function () {
-          // complete
-          console.log("nihao////跳转行为结束，未知成功失败")
-        }
+    else if(that.data.address==1){
+            if (that.data.goods.goods_standard == 0)
+            {
+              var goods_standard_id = '';
+              that.setData({
+                select:'',
+              });
+            }
+            else{
+              var goods_standard_id = that.data.id;
+            }
+            if(that.data.select=='规格'){
+              wx.showToast({
+                title: '请选择规格',
+                icon:'none',
+              })
+            }
+            else{
+            var chars=[];
+            // var char = {};
+            var shop_ids = {}
+            var good_ids = {}
+            var ids = {}
+            var nums = {}
+            var shop_ids={}
+            var shop_id=new Array();
+            var good_id=new Array();
+            var id=new Array();
+            var num=new Array();
+              //  添加good_id字段到传值数组
+              good_id.push(that.data.good_id);
+              if(that.data.id==0 || that.data.id==''){
+                  id.push(0);
+              }
+              else{
+                id.push(that.data.id);
+              }
+              
+              num.push(that.data.num);
+              shop_id.push(0);
+              shop_ids['shop_id']=shop_id;
+              good_ids['good_id']=good_id;
+              ids['guige']=id;
+              nums['num']=num;
+            chars.push(shop_ids);
+            chars.push(good_ids);
+            chars.push(ids);
+            chars.push(nums);
+            let userStr=JSON.stringify(chars);
+            wx.navigateTo({
+              url: '../settlement/settlement?title=' + userStr,
+              success: function (res) {
+                // success
+                console.log("nihao////跳转成功")
+              },
+              fail: function () {
+                // fail
+                console.log("nihao////跳转失败")
+              },
+              complete: function () {
+                // complete
+                console.log("nihao////跳转行为结束，未知成功失败")
+              }
 
+            })
+          }
+    }
+    else{
+      wx.showToast({
+        title:'你未进行授权，请重启小程序',
+        icon:'none'
       })
     }
-  }
-
   },
 
 
@@ -358,6 +400,31 @@ Page({
       },
       complete: function () {
         wx.hideLoading()
+      }
+
+    });
+    wx.request({
+      url: app.globalData.tiltes + 'member_default_address_return',
+      data: {
+        open_id: app.globalData.gmemberid,
+        address_id:''
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res.data.status);
+          that.setData({
+            address:res.data.status,
+          });
+       
+      },
+      fail: function () {
+
+      },
+      complete: function () {
       }
 
     });

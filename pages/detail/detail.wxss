@@ -149,6 +149,7 @@ display:flex;
 position:fixed;
 align-items: center;
 bottom:0;
+height: 100rpx;
 z-index:9999;
 background:#fff;
 width: 750rpx;
@@ -188,8 +189,8 @@ overflow:hidden;
 .buttons{
 width: 170rpx;
 text-align: center;
-line-height: 60rpx;
-height: 60rpx;
+line-height: 100rpx;
+height: 100rpx;
 color: #fff;
 background: #FF6700;
 font-size: 26rpx;
