@@ -8,7 +8,8 @@ Page({
   data: {
       height:'',
       tab:'1',
-      static:'3',
+      static:'5',
+      order:[]
   },
   tab_click:function (e) {
       this.setData({ tab: e.currentTarget.dataset.current });
@@ -31,7 +32,9 @@ Page({
 
       },
       success: function (res) {
-           console.log(res);
+        that.setData({
+          order:res.data.data,
+        })
       },
       fail: function () {
 
