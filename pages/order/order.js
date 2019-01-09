@@ -33,7 +33,7 @@ Page({
       },
       success: function (res) {
         that.setData({
-          order:res.data.data,
+          order:res.data.data
         })
       },
       fail: function () {
