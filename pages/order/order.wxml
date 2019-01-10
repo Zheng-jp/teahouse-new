@@ -30,7 +30,7 @@
 					</view>
 				</view>
 				<view class='box_list_three'>
-					<view><text>共1件商品</text><text>合计：￥90.0</text> </view>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
 				</view>
 				<view class='box_list_four'>
 					<view>
@@ -61,7 +61,7 @@
 					</view>
 				</view>
 				<view class='box_list_three'>
-					<view><text>共1件商品</text><text>合计：￥90.0</text> </view>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
 				</view>
 				<view class='box_list_four'>
 					<view>
@@ -91,7 +91,7 @@
 					</view>
 				</view>
 				<view class='box_list_three'>
-					<view><text>共1件商品</text><text>合计：￥90.0</text> </view>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
 				</view>
 				<view class='box_list_four'>
 					<view class="flex">
@@ -122,7 +122,7 @@
 					</view>
 				</view>
 				<view class='box_list_three'>
-					<view><text>共1件商品</text><text>合计：￥90.0</text> </view>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
 				</view>
 				<view class='box_list_four'>
 					<view>
@@ -153,7 +153,7 @@
 					</view>
 				</view>
 				<view class='box_list_three'>
-					<view><text>共1件商品</text><text>合计：￥90.0</text> </view>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
 				</view>
 				<view class='box_list_four'>
 					<view>
@@ -183,7 +183,7 @@
 					</view>
 				</view>
 				<view class='box_list_three'>
-					<view><text>共1件商品</text><text>合计：￥90.0</text> </view>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
 				</view>
 				<view class='box_list_four'>
 					<view>
