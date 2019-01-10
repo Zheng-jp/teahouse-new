@@ -41,7 +41,7 @@
 			</view>
 			<view wx:elif="{{item.status==2 || item.status==3}}">
 				<view class='box_list_one'>
-					<view>订单编号：201809145337 </view>
+					<view>订单编号：{{item.parts_order_number}} </view>
 					<view class='static'>买家已付款</view>
 				</view>
 			<view class='box_list_two' wx:for="{{item.info}}">
@@ -71,7 +71,7 @@
 			</view>
 			<view wx:elif="{{item.status==4 || item.status==5}}">
 				<view class='box_list_one'>
-					<view>订单编号：201809145337 </view>
+					<view>订单编号：{{item.parts_order_number}} </view>
 					<view class='static'>卖家已发货</view>
 				</view>
 			<view class='box_list_two' wx:for="{{item.info}}">
@@ -102,7 +102,7 @@
 			</view>
 			<view wx:elif="{{item.status==6 || item.status==7}}">
 				<view class='box_list_one'>
-					<view>订单编号：201809145337 </view>
+					<view>订单编号：{{item.parts_order_number}} </view>
 					<view class='static'>交易成功</view>
 				</view>
 			<view class='box_list_two' wx:for="{{item.info}}">
@@ -133,7 +133,7 @@
 			</view>
 			<view wx:elif="{{item.status==0 || item.status==9 || item.status==10}}">
 				<view class='box_list_one'>
-					<view>订单编号：201809145337 </view>
+					<view>订单编号：{{item.parts_order_number}} </view>
 					<view class='static'>交易成功</view>
 				</view>
 				<view class='box_list_two' wx:for="{{item.info}}">
@@ -157,13 +157,13 @@
 				</view>
 				<view class='box_list_four'>
 					<view>
-						<view class='cancel type_button'>删除</view>
+						<view class='cancel type_button' bindtap="delete_order" data-id="{{item.parts_order_number}}">删除</view>
 					</view>
 				</view>
 			</view>
 			<view wx:elif="{{item.status==8}}">
 				<view class='box_list_one'>
-					<view>订单编号：201809145337 </view>
+					<view>订单编号：{{item.parts_order_number}} </view>
 					<view class='static'>交易成功</view>
 				</view>
 				<view class='box_list_two' wx:for="{{item.info}}">
@@ -193,7 +193,7 @@
 			</view>
 			<view wx:else>
 				<view class='box_list_one'>
-					<view>订单编号：201809145337 </view>
+					<view>订单编号：{{item.parts_order_number}} </view>
 					<view class='static'>交易关闭</view>
 				</view>
 				<view class='box_list_two' wx:for="{{item.info}}">
@@ -217,7 +217,7 @@
 				</view>
 				<view class='box_list_four'>
 					<view>
-						<view class='cancel type_button' bindtap="delete_order">删除</view>
+						<view class='cancel type_button' bindtap="delete_order" data-id="{{item.parts_order_number}}">删除</view>
 					</view>
 				</view>
 			</view>

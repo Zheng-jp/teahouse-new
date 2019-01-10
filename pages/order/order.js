@@ -13,27 +13,43 @@ Page({
   },
   // 删除订单
   delete_order:function (e){
-    wx.request({
-      url: app.globalData.tiltes + 'ios_api_order_del',
-      data: {
-        open_id: app.globalData.gmemberid,
-      },
-      method: "post",
-      header: {
-        "Content-Type": "application/json" // 默认值
-
-      },
-      success: function (res) {
+    var that=this;
+    var indexs = e.currentTarget.dataset.id;
+    var orderItems = that.data.order;
+    console.log(orderItems);
+    for (var i = 0; i < orderItems.length; ++i) {
+      if(orderItems[i].parts_order_number == indexs){
        
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
+        wx.request({
+          url: app.globalData.tiltes + 'ios_api_order_del',
+          data: {
+            open_id: app.globalData.gmemberid,
+            parts_order_number:indexs
+          },
+          method: "post",
+          header: {
+            "Content-Type": "application/json" // 默认值
+    
+          },
+          success: function (res) {
+            orderItems.splice(i, 1);
+            that.setData({
+              order: orderItems
+            }); 
+           
+          },
+          fail: function () {
+         
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+    
+        });
       }
-
-    });
+      
+    }
+  
   },
   tab_click:function (e) {
     var that=this;
@@ -78,6 +94,7 @@ Page({
             that.setData({
               order:res.data.data
             })
+
           },
           fail: function () {
     
