@@ -108,18 +108,7 @@ Page({
   },
     pay: function (e) {
       var that = this;
-      wx.request({
-        url: app.globalData.tiltes + 'activity_order',
-        data: {
-          open_id: app.globalData.gmemberid,
-          activity_id:that.data.information.id,
-        },
-        method: "post",
-        header: {
-          "Content-Type": "application/json" // 默认值
-  
-        },
-        success: function (res) {
+      
           wx.request({
             // url: app.globalData.tiltes + 'wxpay',
             url: app.globalData.tiltes + 'wx_index',
@@ -145,26 +134,29 @@ Page({
                   signType: result.data.signType,
                   paySign:  result.data.paySign,
                   'success': function (successret) {
-                    console.log('支付成功');
-                    //获取支付用户的信息
-                    // wx.getStorage({
-                    //   key: 'userInfo',
-                    //   success: function (getuser) {
-                    //     //加入订单表做记录
-                    //     wx.request({
-                    //       url: url + 'Wx_AddOrder',
-                    //       data: {
-                    //         uname: getuser.data.nickName,
-                    //         goods: that.data.goodsList[0].goods_name,
-                    //         price: that.data.totalPrice,
-                    //         openid: res.data,
-                    //       },
-                    //       success: function (lastreturn) {
-                    //         console.log("存取成功");
-                    //       }
-                    //     })
-                    //   },
-                    // })
+                    wx.request({
+                      url: app.globalData.tiltes + 'activity_order',
+                      data: {
+                        open_id: app.globalData.gmemberid,
+                        activity_id:that.data.information.id,
+                      },
+                      method: "post",
+                      header: {
+                        "Content-Type": "application/json" // 默认值
+                
+                      },
+                      success: function (res) {
+                        console.log('支付成功');
+                      },
+                      fail: function () {
+                
+                      },
+                      complete: function () {
+                        wx.hideLoading()
+                      }
+                
+                    });
+             
                   },
                   'fail': function (res) {
                     console.log(res);
@@ -179,15 +171,7 @@ Page({
                     wx.hideLoading()
                   }
                 });   
-        },
-        fail: function () {
-  
-        },
-        complete: function () {
-          wx.hideLoading()
-        }
-  
-      });
+        
     
 
     },
