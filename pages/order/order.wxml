@@ -10,20 +10,20 @@
 		<view class='order_list' wx:for="{{order}}">
 			<view wx:if="{{item.status==1}}">
 				<view class='box_list_one'>
-					<view>订单编号：201809145337 </view>
+					<view>订单编号：{{item.parts_order_number}} </view>
 					<view class='static'>等待买家付款</view>
 				</view>
-				<view class='box_list_two'>
+				<view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
 						<image src='img/u1222.png' mode='aspectFill'></image>
 					</view>
-					<view class='good_infor'>
-						<view class='good_name'>商品名称</view>
-						<view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='img/u182.png' class='user_img'></image>
-								<text class='uite'>￥90.0/片</text>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x1</view>
 						</view>
@@ -44,17 +44,17 @@
 					<view>订单编号：201809145337 </view>
 					<view class='static'>买家已付款</view>
 				</view>
-				<view class='box_list_two'>
+			<view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
 						<image src='img/u1222.png' mode='aspectFill'></image>
 					</view>
-					<view class='good_infor'>
-						<view class='good_name'>商品名称</view>
-						<view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='img/u182.png' class='user_img'></image>
-								<text class='uite'>￥90.0/片</text>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x1</view>
 						</view>
@@ -74,17 +74,17 @@
 					<view>订单编号：201809145337 </view>
 					<view class='static'>卖家已发货</view>
 				</view>
-				<view class='box_list_two'>
+			<view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
 						<image src='img/u1222.png' mode='aspectFill'></image>
 					</view>
-					<view class='good_infor'>
-						<view class='good_name'>商品名称</view>
-						<view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='img/u182.png' class='user_img'></image>
-								<text class='uite'>￥90.0/片</text>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x1</view>
 						</view>
@@ -105,17 +105,17 @@
 					<view>订单编号：201809145337 </view>
 					<view class='static'>交易成功</view>
 				</view>
-				<view class='box_list_two'>
+			<view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
 						<image src='img/u1222.png' mode='aspectFill'></image>
 					</view>
-					<view class='good_infor'>
-						<view class='good_name'>商品名称</view>
-						<view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='img/u182.png' class='user_img'></image>
-								<text class='uite'>￥90.0/片</text>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x1</view>
 						</view>
@@ -136,17 +136,17 @@
 					<view>订单编号：201809145337 </view>
 					<view class='static'>交易成功</view>
 				</view>
-				<view class='box_list_two'>
+				<view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
 						<image src='img/u1222.png' mode='aspectFill'></image>
 					</view>
-					<view class='good_infor'>
-						<view class='good_name'>商品名称</view>
-						<view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='img/u182.png' class='user_img'></image>
-								<text class='uite'>￥90.0/片</text>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x1</view>
 						</view>
@@ -166,17 +166,17 @@
 					<view>订单编号：201809145337 </view>
 					<view class='static'>交易成功</view>
 				</view>
-				<view class='box_list_two'>
+				<view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
 						<image src='img/u1222.png' mode='aspectFill'></image>
 					</view>
-					<view class='good_infor'>
-						<view class='good_name'>商品名称</view>
-						<view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='img/u182.png' class='user_img'></image>
-								<text class='uite'>￥90.0/片</text>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x1</view>
 						</view>
@@ -191,22 +191,22 @@
 					</view>
 				</view>
 			</view>
-      <view wx:else>
-          <view class='box_list_one'>
+			<view wx:else>
+				<view class='box_list_one'>
 					<view>订单编号：201809145337 </view>
 					<view class='static'>交易关闭</view>
 				</view>
-				<view class='box_list_two'>
+				<view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
 						<image src='img/u1222.png' mode='aspectFill'></image>
 					</view>
-					<view class='good_infor'>
-						<view class='good_name'>商品名称</view>
-						<view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='img/u182.png' class='user_img'></image>
-								<text class='uite'>￥90.0/片</text>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x1</view>
 						</view>
@@ -217,10 +217,10 @@
 				</view>
 				<view class='box_list_four'>
 					<view>
-						<view class='cancel type_button'>删除</view>
+						<view class='cancel type_button' bindtap="delete_order">删除</view>
 					</view>
 				</view>
-      </view>
+			</view>
 
 		</view>
 	</view>

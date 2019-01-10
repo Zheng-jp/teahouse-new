@@ -11,8 +11,159 @@ Page({
       static:'5',
       order:[]
   },
+  // 删除订单
+  delete_order:function (e){
+    wx.request({
+      url: app.globalData.tiltes + 'ios_api_order_del',
+      data: {
+        open_id: app.globalData.gmemberid,
+      },
+      method: "post",
+      header: {
+        "Content-Type": "application/json" // 默认值
+
+      },
+      success: function (res) {
+       
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
+  },
   tab_click:function (e) {
+    var that=this;
       this.setData({ tab: e.currentTarget.dataset.current });
+      if(e.currentTarget.dataset.current==1){
+        wx.request({
+          url: app.globalData.tiltes + 'ios_api_order_all',
+          data: {
+            open_id: app.globalData.gmemberid,
+          },
+          method: "post",
+          header: {
+            "Content-Type": "application/json" // 默认值
+    
+          },
+          success: function (res) {
+            that.setData({
+              order:res.data.data
+            })
+          },
+          fail: function () {
+    
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+    
+        });
+      }
+      else if(e.currentTarget.dataset.current==2){
+        wx.request({
+          url: app.globalData.tiltes + 'ios_api_order_wait_pay',
+          data: {
+            open_id: app.globalData.gmemberid,
+          },
+          method: "post",
+          header: {
+            "Content-Type": "application/json" // 默认值
+    
+          },
+          success: function (res) {
+            that.setData({
+              order:res.data.data
+            })
+          },
+          fail: function () {
+    
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+    
+        });
+      }
+      else if(e.currentTarget.dataset.current==3){
+        wx.request({
+          url: app.globalData.tiltes + 'ios_api_order_wait_send',
+          data: {
+            open_id: app.globalData.gmemberid,
+          },
+          method: "post",
+          header: {
+            "Content-Type": "application/json" // 默认值
+    
+          },
+          success: function (res) {
+            that.setData({
+              order:res.data.data
+            })
+          },
+          fail: function () {
+    
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+    
+        });
+      }
+      else if(e.currentTarget.dataset.current==4){
+        wx.request({
+          url: app.globalData.tiltes + 'ios_api_order_wait_deliver',
+          data: {
+            open_id: app.globalData.gmemberid,
+          },
+          method: "post",
+          header: {
+            "Content-Type": "application/json" // 默认值
+    
+          },
+          success: function (res) {
+            that.setData({
+              order:res.data.data
+            })
+          },
+          fail: function () {
+    
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+    
+        });
+      }
+      else if(e.currentTarget.dataset.current==5){
+        wx.request({
+          url: app.globalData.tiltes + 'ios_api_order_wait_evaluate',
+          data: {
+            open_id: app.globalData.gmemberid,
+          },
+          method: "post",
+          header: {
+            "Content-Type": "application/json" // 默认值
+    
+          },
+          success: function (res) {
+            that.setData({
+              order:res.data.data
+            })
+          },
+          fail: function () {
+    
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+    
+        });
+      }
+      
   },
   /**
    * 生命周期函数--监听页面加载
@@ -32,6 +183,7 @@ Page({
 
       },
       success: function (res) {
+        console.log(res);
         that.setData({
           order:res.data.data
         })
