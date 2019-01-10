@@ -38,42 +38,7 @@ Page({
     var currentStatu = e.currentTarget.dataset.statu;
     this.util(currentStatu)
   },
-  /* 点击减号 */
-  bindMinus: function () {
-    var num = this.data.num;
-    // 如果大于1时，才可以减  
-    if (num > 1) {
-      num--;
-    }
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num <= 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    this.setData({
-      num: num,
-      minusStatus: minusStatus
-    });
-  },
-  /* 点击加号 */
-  bindPlus: function () {
-    var num = this.data.num;
-    // 不作过多考虑自增1  
-    num++;
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num < 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    this.setData({
-      num: num,
-      minusStatus: minusStatus
-    });
-  },
-  /* 输入框事件 */
-  bindManual: function (e) {
-    var num = e.detail.value;
-    // 将数值与状态写回  
-    this.setData({
-      num: num
-    });
-  },
+
   // 弹窗
   radioChange: function (e) {
     var that = this;
@@ -141,7 +106,6 @@ Page({
     console.log(that.data.user);
     var num=new Array();
     num=[that.data.num];
-    console.log(num);
     wx.request({
       url: app.globalData.tiltes + 'order_place',
       data: {
@@ -151,7 +115,6 @@ Page({
       order_quantity : num,
       address_id:that.data.address_id,
       order_amount: that.data.all_money,
-
       },
       method: "post",
       // header: {
@@ -326,10 +289,23 @@ Page({
         }
       );
     }
-        // 弹窗
   },
+     // 计算钱
+     calculate_money:function(){
+      var that=this;
+     var all_moneys=0;
+     for(var i=0;i<that.data.goods.length;i++){
+       all_moneys+=that.data.goods[i].grade_price*that.data.num;
+     }
+     
+     that.setData({
+       all_money: all_moneys,
+     });
+   },
+  
      /* 点击减号 */
      bindMinus: function () {
+      var that=this;
       var num = this.data.num;
       // 如果大于1时，才可以减  
       if (num > 1) {
@@ -338,33 +314,34 @@ Page({
       // 只有大于一件的时候，才能normal状态，否则disable状态  
       var minusStatus = num <= 1 ? 'disabled' : 'normal';
       // 将数值与状态写回  
+     
       this.setData({
         num: num,
         minusStatus: minusStatus
       });
+      that.calculate_money();
     },
     /* 点击加号 */
     bindPlus: function () {
+      var that=this;
+      console.log(that);
       var num = this.data.num;
       // 不作过多考虑自增1  
       num++;
       // 只有大于一件的时候，才能normal状态，否则disable状态  
       var minusStatus = num < 1 ? 'disabled' : 'normal';
       // 将数值与状态写回  
+    
       this.setData({
         num: num,
         minusStatus: minusStatus
       });
+      that.calculate_money();
     },
-      /* 输入框事件 */
-      bindManual: function (e) {
-        var num = e.detail.value;
-        // 将数值与状态写回  
-        this.setData({
-          num: num
-        });
-      },
     
+ 
+  
+   
 
   /**
    * 生命周期函数--监听页面加载
@@ -449,6 +426,7 @@ Page({
         }
         that.setData({
           all_money: all_moneys,
+          num:that.data.goods[0].number
         });
        
        

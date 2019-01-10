@@ -25,7 +25,7 @@
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
-							<view class='num'>x1</view>
+							<view class='num'>x{{item.order_quantity}}</view>
 						</view>
 					</view>
 				</view>
@@ -44,7 +44,7 @@
 					<view>订单编号：{{item.parts_order_number}} </view>
 					<view class='static'>买家已付款</view>
 				</view>
-			<view class='box_list_two' wx:for="{{item.info}}">
+			    <view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
 						<image src='img/u1222.png' mode='aspectFill'></image>
 					</view>
@@ -56,7 +56,7 @@
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
-							<view class='num'>x1</view>
+							<view class='num'>x{{item.order_quantity}}</view>
 						</view>
 					</view>
 				</view>
@@ -74,7 +74,7 @@
 					<view>订单编号：{{item.parts_order_number}} </view>
 					<view class='static'>卖家已发货</view>
 				</view>
-			<view class='box_list_two' wx:for="{{item.info}}">
+			  <view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
 						<image src='img/u1222.png' mode='aspectFill'></image>
 					</view>
@@ -86,7 +86,7 @@
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
-							<view class='num'>x1</view>
+							<view class='num'>x{{item.order_quantity}}</view>
 						</view>
 					</view>
 				</view>
@@ -105,7 +105,7 @@
 					<view>订单编号：{{item.parts_order_number}} </view>
 					<view class='static'>交易成功</view>
 				</view>
-			<view class='box_list_two' wx:for="{{item.info}}">
+			  <view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
 						<image src='img/u1222.png' mode='aspectFill'></image>
 					</view>
@@ -117,7 +117,7 @@
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
-							<view class='num'>x1</view>
+							<view class='num'>x{{item.order_quantity}}</view>
 						</view>
 					</view>
 				</view>
@@ -148,7 +148,7 @@
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
-							<view class='num'>x1</view>
+							<view class='num'>x{{item.order_quantity}}</view>
 						</view>
 					</view>
 				</view>
@@ -178,7 +178,7 @@
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
-							<view class='num'>x1</view>
+							<view class='num'>x{{item.order_quantity}}</view>
 						</view>
 					</view>
 				</view>
@@ -208,12 +208,12 @@
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
-							<view class='num'>x1</view>
+						<view class='num'>x{{item.order_quantity}}</view>
 						</view>
 					</view>
 				</view>
 				<view class='box_list_three'>
-					<view><text>共1件商品</text><text>合计：￥90.0</text> </view>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
 				</view>
 				<view class='box_list_four'>
 					<view>
