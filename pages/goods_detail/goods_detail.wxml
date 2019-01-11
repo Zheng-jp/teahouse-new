@@ -55,7 +55,7 @@
 		<view class='selling-point'>{{goods.goods_selling}}</view>
 		<view class='price_cont'>
 			<view class='level_images'>
-				<image src='https://teahouse.siring.com.cn/uploads/20181121/40f3fba9c9ff0b65540a4eacbca7ff65.png'></image>
+				<image src='{{url}}{{member_grade_img}}'></image>
 			</view>
 			<view wx:if="{{goods.goods_standard==0}}">
 				<view class='sale'>￥{{goods.goods_new_money}}/片</view>

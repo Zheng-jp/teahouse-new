@@ -1,4 +1,4 @@
-// pages/account/account.js
+// pages/password/password.js
 Page({
 
   /**
@@ -6,26 +6,6 @@ Page({
    */
   data: {
 
-  },
-  go: function (event) {
-
-    var that = this;
-    var item = event.currentTarget.dataset.src;
-  
-    wx.navigateTo({
-      url: item,
-      success: function (res) {
-      
-      },
-      fail: function () {
-       
-      },
-      complete: function () {
-      
-      }
-
-
-    })
   },
 
   /**

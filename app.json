@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/logs/logs",
+    
+    "pages/logs/logs", 
     "pages/index/index",
     "pages/mine/mine",
     "pages/circle/circle",
@@ -27,10 +28,16 @@
       "pages/news/news",
       "pages/account/account",
       "pages/identity_authentication/identity_authentication",
-      "pages/recharge/recharge"
+      "pages/recharge/recharge",
+      "pages/integral_center/integral_center",
+      "pages/coupon/coupon",
+      "pages/password/password"
+      
+     
       
       
   ],
+
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F9F9F9",

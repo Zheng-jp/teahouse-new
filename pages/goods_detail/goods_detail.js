@@ -10,6 +10,7 @@ Page({
     goods:[],
      //  商品价格
     price:'',
+    member_grade_img:null,
     // 商品库存
     stock:'',
     // 商品销量
@@ -361,6 +362,10 @@ Page({
   onLoad: function (options) {
     var that=this;
     var s_height = wx.getSystemInfoSync().windowHeight;
+    var member_grade_img=app.globalData.member_grade_img;
+    that.setData({
+      member_grade_img: member_grade_img,
+    })
     var title = options.title;
     wx.request({
       url: app.globalData.tiltes + 'commodity_detail',
