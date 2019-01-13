@@ -1,1 +1,6 @@
-{}
+{
+  "navigationBarTitleText": "关于我们",
+  "navigationBarBackgroundColor": "#303030",
+  "backgroundTextStyle": "light",
+  "navigationBarTextStyle": "white"
+}

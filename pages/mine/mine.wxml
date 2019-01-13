@@ -64,7 +64,7 @@
       </view>
       <view class='right'>
         <view style='align-items:center;height:20px;'>
-          <image style='width:20px;height:20px;padding-left:25px;' src='http://teahouse.siring.com.cn/upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png'></image>
+          <image style='width:15px;height:15px;padding-left:25px;' src='http://teahouse.siring.com.cn/upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png'></image>
         </view>
       </view>
       </view>
@@ -81,7 +81,7 @@
       </view>
       <view class='right'>
         <view style='align-items:center;height:20px;'>
-          <image style='width:20px;height:20px;padding-left:25px;' src='http://teahouse.siring.com.cn//upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png'></image>
+          <image style='width:15px;height:15px;padding-left:25px;' src='http://teahouse.siring.com.cn//upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png'></image>
         </view>
       </view>
       </view>

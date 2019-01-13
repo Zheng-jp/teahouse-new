@@ -8,20 +8,20 @@
     </view>
     <view class='list_contents'>
         <view class='list_a list'>
-          <view class='ico_img'><image  src='img/u4997.png' ></image></view>
+          <view class='ico_img'><image  src='img/u4997.png' mode="widthFix"></image></view>
           <view class='list_content lista_content'>地址：{{information.address}}</view>
 
         </view>
         <view class='list_a list'>
-          <view class='ico_img'><image  src='img/u5001.png' ></image></view>
+          <view class='ico_img'><image  src='img/u5001.png'  mode="widthFix"></image></view>
           <view class='list_content listb_content' style='color:#5E5E5E'>{{information.start_time}}</view>
         </view>
         <view class='list_a list'>
-          <view class='ico_img'><image  src='img/u5005.png' ></image></view>
+          <view class='ico_img'><image  src='img/u5005.png' mode="widthFix"></image></view>
           <view class='list_content listc_content' ><text style='color:#5E5E5E'>活动上限</text>{{information.participats}}<text style='color:#5E5E5E'>人</text><text class="padding">已报名0人</text></view>
         </view>
         <view class='list_a list'>
-          <view class='ico_img'><image  src='img/u5017.png' ></image></view>
+          <view class='ico_img'><image  src='img/u5017.png' mode="widthFix"></image></view>
           <view class='list_content listd_content'>主题：{{information.activity_name}}</view>
         </view>
     </view>

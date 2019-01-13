@@ -116,7 +116,7 @@ font-size: 26rpx;
   border: solid 1px #999;
   color: #999;
   font-size: 26rpx;
-  border-radius:50rpx;
+  border-radius:13rpx;
   margin-right:40rpx;
 }
 .payment{
@@ -124,5 +124,5 @@ font-size: 26rpx;
   border: solid 1px #821006;
   color: #821006;
   font-size: 26rpx;
-  border-radius:50rpx;
+  border-radius:13rpx;
 }

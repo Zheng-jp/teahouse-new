@@ -13,7 +13,9 @@ background:#fff;
 box-shadow:9rpx 9rpx 5rpx 3rpx #E5E5E5 !important;
 
 }
-
+.blue{
+  color:#169BD5; 
+}
 .share-content{
 text-overflow: ellipsis;
 display: -webkit-box;

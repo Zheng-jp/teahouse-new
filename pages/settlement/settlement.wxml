@@ -157,10 +157,7 @@
 	<view>
 	</view>
 	<view class='sundry'>
-		<view class='sundry-li' style='border-bottom: solid 1rpx #E4E4E4;'>
-			<view style='font-size:30rpx;'>订单金额</view>
-			<view>应付<text style='color:#FF7E4A;padding-left:20rpx;'>{{all_money}}元</text></view>
-		</view>
+
 		<view class='sundry-li' style=' border-bottom: solid 1rpx #E4E4E4;'>
 			<view>商品总价</view>
 			<view><text style='color:#FF7E4A;'>{{all_money}}元</text></view>
@@ -182,6 +179,9 @@
 			<view><text style='color:#FF7E4A;'>23元</text></view>
 		</view>
 	</view>
+  <view class="repay_box">
+  <view class="moly">应付<text style='color:#7E383F;padding-left:20rpx;'>{{all_money}}元</text></view>
 	<view class='buts' bindtap='repay' wx:if="{{from_buy}}">立即支付</view>
 	<view class='buts' bindtap='buyrepay' wx:else>立即支付</view>
+  </view>
 </view>

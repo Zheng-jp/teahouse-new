@@ -52,17 +52,15 @@ margin-top:-23rpx;
 text-align: center;
 }
 .seach{
-float:left;
-width:578rpx;
-height:68rpx;
-background:#fff;
-border-radius:36rpx;
-border:solid #E9E9E9 1px;
-margin:1rpx 10rpx;
-padding-left:80rpx;
-box-sizing:border-box;
-
-
+  float:left;
+  width:561rpx;
+  height:68rpx;
+  background:#fff;
+  border-radius:36rpx;
+  border:solid #E9E9E9 1px;
+  margin:0rpx 20rpx;
+  padding-left:80rpx;
+  box-sizing:border-box;
 }
 .seach_img{
   position:absolute;

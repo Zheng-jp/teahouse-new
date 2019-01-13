@@ -55,7 +55,7 @@
 		<view class='selling-point'>{{goods.goods_selling}}</view>
 		<view class='price_cont'>
 			<view class='level_images'>
-				<image src='{{url}}{{member_grade_img}}'></image>
+				<image src='{{url}}{{member_grade_img}}' mode="widthFix"></image>
 			</view>
 			<view wx:if="{{goods.goods_standard==0}}">
 				<view class='sale'>￥{{goods.goods_new_money}}/片</view>

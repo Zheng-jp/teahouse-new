@@ -166,7 +166,7 @@ align-items: center;
   position: fixed;
   bottom: 0;
   z-index: 999;
-  background: #fff;
+  background: #f2f2f1;
   height: 100rpx;
   justify-content: space-between;
   font-size: 24rpx;

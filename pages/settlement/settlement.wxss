@@ -268,14 +268,28 @@ color:#3399FF;
 
  
 }
+.repay_box{
+  position:fixed;
+  bottom:0;
+  display:flex;
+  justify-content:space-between;
+  width:100%;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  background: #F2F2F1;
+
+}
 .buts{
-  width: 100%;
+  width: 200rpx;
+  height: 100rpx;
+  line-height: 100rpx;
   color: #fff;
   text-align: center;
   line-height: 100rpx;
-  background: #FF6700;
-  position: fixed;
-  bottom: 0;
+  background: #A5241A;
+  font-size: 30rpx;
+ 
 }
 .hidden{
   display:none; 

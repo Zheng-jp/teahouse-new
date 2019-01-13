@@ -93,7 +93,7 @@ background-size:80%;
  letter-spacing: 1rpx;
 }
 .order_title_more{
-  font-size:20rpx;
+  font-size:26rpx;
   color:#999;
   letter-spacing: 1rpx;
 }
