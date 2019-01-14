@@ -228,6 +228,34 @@ Page({
       }
 
     });
+    console.log(that.data.information);
+    wx.request({
+      url: app.globalData.tiltes + 'teacenter_comment_show',
+      data: {
+        goods_id:options.title,
+      },
+      method: "post",
+      header: {
+        "Content-Type": "application/json" // 默认值
+
+      },
+      success: function (res) {
+        console.log(res);
+        // that.setData({
+        //   information: res.data.data[0],
+        // });
+        
+
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
   
   },
 
