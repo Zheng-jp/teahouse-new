@@ -84,3 +84,10 @@
  .go_use{
    text-align: right;
  }
+ .range{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow:hidden;
+  -webkit-box-orient: vertical;
+ }

@@ -17,9 +17,10 @@ Page({
       this.setData({ tab: e.currentTarget.dataset.current });
       if(e.currentTarget.dataset.current==1){
         wx.request({
-          url: app.globalData.tiltes + 'aa',
+          url: app.globalData.tiltes + 'coupon_untapped',
           data: {
             open_id: app.globalData.gmemberid,
+            member_grade_name:app.globalData.member_grade_name,
           },
           method: "post",
           header: {
@@ -30,6 +31,15 @@ Page({
             that.setData({
               order:res.data.data
             })
+              //  添加字段到等级数组
+              for (var index in that.data.order) {
+              var sexParam = "order[" + index + "].status";
+              that.setData({
+                [sexParam]: 1,
+              })
+    
+                }
+                console.log(that.data.order);
           },
           fail: function () {
     
@@ -42,9 +52,10 @@ Page({
       }
       else if(e.currentTarget.dataset.current==2){
         wx.request({
-          url: app.globalData.tiltes + 'aa',
+          url: app.globalData.tiltes + 'coupon_user',
           data: {
             open_id: app.globalData.gmemberid,
+            member_grade_name:app.globalData.member_grade_name,
           },
           method: "post",
           header: {
@@ -55,7 +66,15 @@ Page({
             that.setData({
               order:res.data.data
             })
-
+              //  添加字段到等级数组
+              for (var index in that.data.order) {
+              var sexParam = "order[" + index + "].status";
+              that.setData({
+                [sexParam]: 2,
+              })
+    
+                }
+                console.log(that.data.order);
           },
           fail: function () {
     
@@ -68,9 +87,10 @@ Page({
       }
       else if(e.currentTarget.dataset.current==3){
         wx.request({
-          url: app.globalData.tiltes + 'aaa',
+          url: app.globalData.tiltes + 'coupon_time',
           data: {
             open_id: app.globalData.gmemberid,
+            member_grade_name:app.globalData.member_grade_name,
           },
           method: "post",
           header: {
@@ -81,6 +101,15 @@ Page({
             that.setData({
               order:res.data.data
             })
+              //  添加字段到等级数组
+              for (var index in that.data.order) {
+              var sexParam = "order[" + index + "].status";
+              that.setData({
+                [sexParam]: 3,
+              })
+    
+                }
+                console.log(that.data.order);
           },
           fail: function () {
     
@@ -113,10 +142,18 @@ Page({
 
       },
       success: function (res) {
-        console.log(res);
-        // that.setData({
-        //   order:res.data.data
-        // })
+        that.setData({
+          order:res.data.data
+        })
+          //  添加字段到等级数组
+          for (var index in that.data.order) {
+          var sexParam = "order[" + index + "].status";
+          that.setData({
+            [sexParam]: 1,
+          })
+
+            }
+            console.log(that.data.order);
       },
       fail: function () {
 
