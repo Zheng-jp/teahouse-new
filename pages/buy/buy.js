@@ -359,6 +359,11 @@ Page({
         that.setData({
           goodList: res.data.data,
         });
+        if(that.data.goodList==undefined ){
+          that.setData({
+            iscart: true,
+          });
+        }
            //  添加字段到等级数组
         for (var index in that.data.goodList) {
           var sexParam = "goodList[" + index + "].tab";

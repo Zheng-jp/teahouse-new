@@ -23,7 +23,7 @@
                             <image src='img/u300.png' mode='widthFix' style='width:40rpx;'></image>
                             <view class='text_red'>￥{{item.money}}</view>
                         </view>     
-                         <view class='good_num text_red'>×1</view>
+                         <view class='good_num text_red'>×{{item.goods_unit}}</view>
                 </view>
             </view>
          </view>

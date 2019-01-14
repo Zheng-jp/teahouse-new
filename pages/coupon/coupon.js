@@ -8,7 +8,7 @@ Page({
   data: {
       height:'',
       tab:'1',
-      static:'5',
+      status:'1',
       order:[]
   },
   // 删除订单
@@ -56,7 +56,7 @@ Page({
       this.setData({ tab: e.currentTarget.dataset.current });
       if(e.currentTarget.dataset.current==1){
         wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_all',
+          url: app.globalData.tiltes + 'aa',
           data: {
             open_id: app.globalData.gmemberid,
           },
@@ -81,7 +81,7 @@ Page({
       }
       else if(e.currentTarget.dataset.current==2){
         wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_wait_pay',
+          url: app.globalData.tiltes + 'aa',
           data: {
             open_id: app.globalData.gmemberid,
           },
@@ -107,7 +107,7 @@ Page({
       }
       else if(e.currentTarget.dataset.current==3){
         wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_wait_send',
+          url: app.globalData.tiltes + 'aaa',
           data: {
             open_id: app.globalData.gmemberid,
           },
@@ -130,56 +130,7 @@ Page({
     
         });
       }
-      else if(e.currentTarget.dataset.current==4){
-        wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_wait_deliver',
-          data: {
-            open_id: app.globalData.gmemberid,
-          },
-          method: "post",
-          header: {
-            "Content-Type": "application/json" // 默认值
-    
-          },
-          success: function (res) {
-            that.setData({
-              order:res.data.data
-            })
-          },
-          fail: function () {
-    
-          },
-          complete: function () {
-            wx.hideLoading()
-          }
-    
-        });
-      }
-      else if(e.currentTarget.dataset.current==5){
-        wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_wait_evaluate',
-          data: {
-            open_id: app.globalData.gmemberid,
-          },
-          method: "post",
-          header: {
-            "Content-Type": "application/json" // 默认值
-    
-          },
-          success: function (res) {
-            that.setData({
-              order:res.data.data
-            })
-          },
-          fail: function () {
-    
-          },
-          complete: function () {
-            wx.hideLoading()
-          }
-    
-        });
-      }
+  
       
   },
   /**
@@ -190,7 +141,7 @@ Page({
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
     wx.request({
-      url: app.globalData.tiltes + 'ios_api_order_all',
+      url: app.globalData.tiltes + 'aa',
       data: {
         open_id: app.globalData.gmemberid,
       },

@@ -1,132 +1,228 @@
 <view class="all" style='height:{{height}}px;'>
- <view class='title'>
-    <view class="title_list {{tab==1? 'on' : ''}}" data-current="1"  bindtap="tab_click">全部</view>
-    <view class="title_list {{tab==2? 'on' : ''}}"  data-current="2"  bindtap="tab_click">待付款</view>
-    <view class="title_list {{tab==3? 'on' : ''}}"  data-current="3"  bindtap="tab_click">待发货</view>
-    <view class="title_list {{tab==4? 'on' : ''}}"  data-current="4"  bindtap="tab_click">待收货</view>
-    <view class="title_list {{tab==5? 'on' : ''}}"  data-current="5"  bindtap="tab_click">待评价</view>
- </view>
-    <view class='content'>
-        <view class='order_list'>
-          <view wx:if="{{static==1}}">
-              <view class='box_list_one'>
-                <view>订单编号：201809145337 </view>
-                <view class='static'>等待买家付款</view>
-              </view>
-              <view class='box_list_two'>
-                <view class='img'> <image src='img/u1222.png' mode='aspectFill'></image> </view>
-                <view class='good_infor'>
-                <view class='good_name'>商品名称</view>
-                <view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
-                <view class='good_monye'>
-                    <view class='good_uite'>
-                        <image src='img/u182.png' class='user_img'></image>
-                        <text class='uite'>￥90.0/片</text>
-                    </view>
-                    <view class='num'>x1</view>
-                </view>
-                </view>
-              </view>
-              <view class='box_list_three'>
-                <view><text>共1件商品</text><text>合计：￥90.0</text> </view>
-              </view>
-                <view class='box_list_four'>
-                <view>
-                    <view class='cancel'>取消订单</view>
-                    <view class='payment'>付款</view>
-                </view>
-              </view>
-            </view> 
-           <view wx:if="{{static==2}}">
-              <view class='box_list_one'>
-                <view>订单编号：201809145337 </view>
-                <view class='static'>买家已付款</view>
-              </view>
-              <view class='box_list_two'>
-                <view class='img'> <image src='img/u1222.png' mode='aspectFill'></image> </view>
-                <view class='good_infor'>
-                <view class='good_name'>商品名称</view>
-                <view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
-                <view class='good_monye'>
-                    <view class='good_uite'>
-                        <image src='img/u182.png' class='user_img'></image>
-                        <text class='uite'>￥90.0/片</text>
-                    </view>
-                    <view class='num'>x1</view>
-                </view>
-                </view>
-              </view>
-              <view class='box_list_three'>
-                <view><text>共1件商品</text><text>合计：￥90.0</text> </view>
-              </view>
-                <view class='box_list_four'>
-                <view>
-                    <view class='remind_delivery cancel type_button'>提醒发货</view>
-                </view>
-              </view>
-            </view> 
-             <view wx:if="{{static==3}}">
-              <view class='box_list_one'>
-                <view>订单编号：201809145337 </view>
-                <view class='static'>卖家已发货</view>
-              </view>
-              <view class='box_list_two'>
-                <view class='img'> <image src='img/u1222.png' mode='aspectFill'></image> </view>
-                <view class='good_infor'>
-                <view class='good_name'>商品名称</view>
-                <view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
-                <view class='good_monye'>
-                    <view class='good_uite'>
-                        <image src='img/u182.png' class='user_img'></image>
-                        <text class='uite'>￥90.0/片</text>
-                    </view>
-                    <view class='num'>x1</view>
-                </view>
-                </view>
-              </view>
-              <view class='box_list_three'>
-                <view><text>共1件商品</text><text>合计：￥90.0</text> </view>
-              </view>
-                <view class='box_list_four'>
-                <view class="flex">
-                    <view class="courier">顺丰：799394904004040</view>
-                    <view class='remind_delivery cancel type_button'>确认收货</view>
-                </view>
-              </view>
-            </view> 
-            <view wx:if="{{static==4}}">
-              <view class='box_list_one'>
-                <view>订单编号：201809145337 </view>
-                <view class='static'>交易成功</view>
-              </view>
-              <view class='box_list_two'>
-                <view class='img'> <image src='img/u1222.png' mode='aspectFill'></image> </view>
-                <view class='good_infor'>
-                <view class='good_name'>商品名称</view>
-                <view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
-                <view class='good_monye'>
-                    <view class='good_uite'>
-                        <image src='img/u182.png' class='user_img'></image>
-                        <text class='uite'>￥90.0/片</text>
-                    </view>
-                    <view class='num'>x1</view>
-                </view>
-                </view>
-              </view>
-              <view class='box_list_three'>
-                <view><text>共1件商品</text><text>合计：￥90.0</text> </view>
-              </view>
-                <view class='box_list_four'>
-                <view>
-                    <view class='cancel type_button'>售后</view>
-                    <view class='payment '>追加评价</view>
-                </view>
-              </view>
-            </view> 
-       
-      
-        </view>
-    </view>
-     
-  
+	<view class='title'>
+		<view class="title_list {{tab==1? 'on' : ''}}" data-current="1" bindtap="tab_click">全部</view>
+		<view class="title_list {{tab==2? 'on' : ''}}" data-current="2" bindtap="tab_click">待付款</view>
+		<view class="title_list {{tab==3? 'on' : ''}}" data-current="3" bindtap="tab_click">待发货</view>
+		<view class="title_list {{tab==4? 'on' : ''}}" data-current="4" bindtap="tab_click">待收货</view>
+		<view class="title_list {{tab==5? 'on' : ''}}" data-current="5" bindtap="tab_click">待评价</view>
+	</view>
+	<view class='content'>
+		<view class='order_list' wx:for="{{order}}">
+			<view wx:if="{{item.status==1}}">
+				<view class='box_list_one'>
+					<view>订单编号：{{item.parts_order_number}} </view>
+					<view class='static'>等待买家付款</view>
+				</view>
+				<view class='box_list_two' wx:for="{{item.info}}">
+					<view class='img'>
+						<image src='img/u1222.png' mode='aspectFill'></image>
+					</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_monye'>
+							<view class='good_uite'>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
+							</view>
+							<view class='num'>x{{item.order_quantity}}</view>
+						</view>
+					</view>
+				</view>
+				<view class='box_list_three'>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
+				</view>
+				<view class='box_list_four'>
+					<view>
+						<view class='cancel'>取消订单</view>
+						<view class='payment'>付款</view>
+					</view>
+				</view>
+			</view>
+			<view wx:elif="{{item.status==2 || item.status==3}}">
+				<view class='box_list_one'>
+					<view>订单编号：{{item.parts_order_number}} </view>
+					<view class='static'>买家已付款</view>
+				</view>
+			    <view class='box_list_two' wx:for="{{item.info}}">
+					<view class='img'>
+						<image src='img/u1222.png' mode='aspectFill'></image>
+					</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_monye'>
+							<view class='good_uite'>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
+							</view>
+							<view class='num'>x{{item.order_quantity}}</view>
+						</view>
+					</view>
+				</view>
+				<view class='box_list_three'>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
+				</view>
+				<view class='box_list_four'>
+					<view>
+						<view class='remind_delivery cancel type_button'>提醒发货</view>
+					</view>
+				</view>
+			</view>
+			<view wx:elif="{{item.status==4 || item.status==5}}">
+				<view class='box_list_one'>
+					<view>订单编号：{{item.parts_order_number}} </view>
+					<view class='static'>卖家已发货</view>
+				</view>
+			  <view class='box_list_two' wx:for="{{item.info}}">
+					<view class='img'>
+						<image src='img/u1222.png' mode='aspectFill'></image>
+					</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_monye'>
+							<view class='good_uite'>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
+							</view>
+							<view class='num'>x{{item.order_quantity}}</view>
+						</view>
+					</view>
+				</view>
+				<view class='box_list_three'>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
+				</view>
+				<view class='box_list_four'>
+					<view class="flex">
+						<view class="courier">顺丰：799394904004040</view>
+						<view class='remind_delivery cancel type_button'>确认收货</view>
+					</view>
+				</view>
+			</view>
+			<view wx:elif="{{item.status==6 || item.status==7}}">
+				<view class='box_list_one'>
+					<view>订单编号：{{item.parts_order_number}} </view>
+					<view class='static'>交易成功</view>
+				</view>
+			  <view class='box_list_two' wx:for="{{item.info}}">
+					<view class='img'>
+						<image src='img/u1222.png' mode='aspectFill'></image>
+					</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_monye'>
+							<view class='good_uite'>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
+							</view>
+							<view class='num'>x{{item.order_quantity}}</view>
+						</view>
+					</view>
+				</view>
+				<view class='box_list_three'>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
+				</view>
+				<view class='box_list_four'>
+					<view>
+						<view class='cancel type_button'>售后</view>
+						<view class='payment '>追加评价</view>
+					</view>
+				</view>
+			</view>
+			<view wx:elif="{{item.status==0 || item.status==9 || item.status==10}}">
+				<view class='box_list_one'>
+					<view>订单编号：{{item.parts_order_number}} </view>
+					<view class='static'>交易成功</view>
+				</view>
+				<view class='box_list_two' wx:for="{{item.info}}">
+					<view class='img'>
+						<image src='img/u1222.png' mode='aspectFill'></image>
+					</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_monye'>
+							<view class='good_uite'>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
+							</view>
+							<view class='num'>x{{item.order_quantity}}</view>
+						</view>
+					</view>
+				</view>
+				<view class='box_list_three'>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
+				</view>
+				<view class='box_list_four'>
+					<view>
+						<view class='cancel type_button' bindtap="delete_order" data-id="{{item.parts_order_number}}">删除</view>
+					</view>
+				</view>
+			</view>
+			<view wx:elif="{{item.status==8}}">
+				<view class='box_list_one'>
+					<view>订单编号：{{item.parts_order_number}} </view>
+					<view class='static'>交易成功</view>
+				</view>
+				<view class='box_list_two' wx:for="{{item.info}}">
+					<view class='img'>
+						<image src='img/u1222.png' mode='aspectFill'></image>
+					</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_monye'>
+							<view class='good_uite'>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
+							</view>
+							<view class='num'>x{{item.order_quantity}}</view>
+						</view>
+					</view>
+				</view>
+				<view class='box_list_three'>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
+				</view>
+				<view class='box_list_four'>
+					<view>
+						<view class='cancel type_button'>已完成</view>
+					</view>
+				</view>
+			</view>
+			<view wx:else>
+				<view class='box_list_one'>
+					<view>订单编号：{{item.parts_order_number}} </view>
+					<view class='static'>交易关闭</view>
+				</view>
+				<view class='box_list_two' wx:for="{{item.info}}">
+					<view class='img'>
+						<image src='img/u1222.png' mode='aspectFill'></image>
+					</view>
+					<view class='good_infor' >
+						<view class='good_name'>{{item.parts_goods_name}}</view>
+						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_monye'>
+							<view class='good_uite'>
+								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<text class='uite'>￥{{item.goods_money}}/片</text>
+							</view>
+						<view class='num'>x{{item.order_quantity}}</view>
+						</view>
+					</view>
+				</view>
+				<view class='box_list_three'>
+					<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
+				</view>
+				<view class='box_list_four'>
+					<view>
+						<view class='cancel type_button' bindtap="delete_order" data-id="{{item.parts_order_number}}">删除</view>
+					</view>
+				</view>
+			</view>
+
+		</view>
+	</view>
+
 </view>

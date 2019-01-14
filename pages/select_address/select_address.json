@@ -1,1 +1,6 @@
-{}
+{
+    "navigationBarTitleText": "选择地址",
+    "navigationBarBackgroundColor": "#303030",
+    "backgroundTextStyle": "light",
+    "navigationBarTextStyle": "white"
+  }

@@ -1,0 +1,32 @@
+<!--优惠劵-->
+<view class="" style='height:{{height}}px;'>
+	<view class='title'>
+		<view class="title_list {{tab==1? 'on' : ''}}" data-current="1" bindtap="tab_click">未使用</view>
+		<view class="title_list {{tab==2? 'on' : ''}}" data-current="2" bindtap="tab_click">已使用</view>
+		<view class="title_list {{tab==3? 'on' : ''}}" data-current="3" bindtap="tab_click">已过期</view>
+	</view>
+	<view class='content'>
+		<view class='order_list'>
+			<view wx:if="{{status==1}}">
+				<view class="coupon_box" style="background-image: url(img/u11123.png)">
+					<view class="coupon_money_box">
+						 <view><text class="money">100</text><text class="money_unit">元</text></view>
+						 <view class="limit">满任意金额使用</view>
+					</view>
+					<view class="coupon_info_box">
+						<view class="coupon_name">新人现金券</view>
+						<view class="validity">有效期：永久</view>
+						<view class="range">适用范围：所有会员</view>
+						<view class="go_use">立即使用>></view>
+				   </view>
+				</view>
+			</view>
+			<view wx:elif="{{status==2}}">
+			
+			</view>
+			<view wx:elif="{{status==3}}">
+				
+	     	</view>
+	     </view>
+    </view>
+</view>

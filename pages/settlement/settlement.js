@@ -38,42 +38,7 @@ Page({
     var currentStatu = e.currentTarget.dataset.statu;
     this.util(currentStatu)
   },
-  /* 点击减号 */
-  bindMinus: function () {
-    var num = this.data.num;
-    // 如果大于1时，才可以减  
-    if (num > 1) {
-      num--;
-    }
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num <= 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    this.setData({
-      num: num,
-      minusStatus: minusStatus
-    });
-  },
-  /* 点击加号 */
-  bindPlus: function () {
-    var num = this.data.num;
-    // 不作过多考虑自增1  
-    num++;
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num < 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    this.setData({
-      num: num,
-      minusStatus: minusStatus
-    });
-  },
-  /* 输入框事件 */
-  bindManual: function (e) {
-    var num = e.detail.value;
-    // 将数值与状态写回  
-    this.setData({
-      num: num
-    });
-  },
+
   // 弹窗
   radioChange: function (e) {
     var that = this;
@@ -141,7 +106,6 @@ Page({
     console.log(that.data.user);
     var num=new Array();
     num=[that.data.num];
-    console.log(num);
     wx.request({
       url: app.globalData.tiltes + 'order_place',
       data: {
@@ -151,7 +115,6 @@ Page({
       order_quantity : num,
       address_id:that.data.address_id,
       order_amount: that.data.all_money,
-
       },
       method: "post",
       // header: {
@@ -180,7 +143,7 @@ Page({
   },
   buyrepay:function(){
     var that=this;
- 
+    // 下单请求
     wx.request({
       url: app.globalData.tiltes + 'order_place_by_shopping',
       data: {
@@ -199,7 +162,75 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res)
+        wx.showActionSheet({
+          itemList: ['账户支付', '微信支付',],
+          success: function (res) {
+            if(res.tapIndex){
+              wx.request({
+                // url: app.globalData.tiltes + 'wxpay',
+                url: app.globalData.tiltes + 'wx_index',
+                data: {
+                  open_id: app.globalData.gmemberid,
+                  cost_moneny: that.data.information.cost_moneny,
+                  activity_name: that.data.information.activity_name
+                },
+                dataTypr: 'json',
+                method: "post",
+                // header: {
+                //   "Content-Type": "application/json" // 默认值
+                // },
+                success: function (res) {
+                  var result=res;
+        
+                  console.log(result.data.paySign);
+                  if (result) {
+                    wx.requestPayment({
+                      timeStamp: String(result.data.timeStamp),
+                      nonceStr: result.data.nonceStr,
+                      package: result.data.package,
+                      signType: result.data.signType,
+                      paySign:  result.data.paySign,
+                      'success': function (successret) {
+                        console.log('支付成功');
+                        //获取支付用户的信息
+                        // wx.getStorage({
+                        //   key: 'userInfo',
+                        //   success: function (getuser) {
+                        //     //加入订单表做记录
+                        //     wx.request({
+                        //       url: url + 'Wx_AddOrder',
+                        //       data: {
+                        //         uname: getuser.data.nickName,
+                        //         goods: that.data.goodsList[0].goods_name,
+                        //         price: that.data.totalPrice,
+                        //         openid: res.data,
+                        //       },
+                        //       success: function (lastreturn) {
+                        //         console.log("存取成功");
+                        //       }
+                        //     })
+                        //   },
+                        // })
+                      },
+                      'fail': function (res) {
+                        console.log(res);
+                       }
+                    })
+                  }
+                },
+                      fail: function () {
+        
+                      },
+                      complete: function () {
+                        wx.hideLoading()
+                      }
+                    });   
+            }
+          },
+          fail: function (res) {
+            console.log(res.errMsg)
+          }
+        })
       },
       fail: function () {
 
@@ -208,17 +239,7 @@ Page({
       }
 
     });
-    wx.showActionSheet({
-      itemList: ['账户支付', '微信支付',],
-      success: function (res) {
-        if(res.tapIndex==1){
-          
-        }
-      },
-      fail: function (res) {
-        console.log(res.errMsg)
-      }
-    })
+   
   },
     // 弹窗
   util: function (currentStatu) {
@@ -268,10 +289,23 @@ Page({
         }
       );
     }
-        // 弹窗
   },
+     // 计算钱
+     calculate_money:function(){
+      var that=this;
+     var all_moneys=0;
+     for(var i=0;i<that.data.goods.length;i++){
+       all_moneys+=that.data.goods[i].grade_price*that.data.num;
+     }
+     
+     that.setData({
+       all_money: all_moneys,
+     });
+   },
+  
      /* 点击减号 */
      bindMinus: function () {
+      var that=this;
       var num = this.data.num;
       // 如果大于1时，才可以减  
       if (num > 1) {
@@ -280,33 +314,34 @@ Page({
       // 只有大于一件的时候，才能normal状态，否则disable状态  
       var minusStatus = num <= 1 ? 'disabled' : 'normal';
       // 将数值与状态写回  
+     
       this.setData({
         num: num,
         minusStatus: minusStatus
       });
+      that.calculate_money();
     },
     /* 点击加号 */
     bindPlus: function () {
+      var that=this;
+      console.log(that);
       var num = this.data.num;
       // 不作过多考虑自增1  
       num++;
       // 只有大于一件的时候，才能normal状态，否则disable状态  
       var minusStatus = num < 1 ? 'disabled' : 'normal';
       // 将数值与状态写回  
+    
       this.setData({
         num: num,
         minusStatus: minusStatus
       });
+      that.calculate_money();
     },
-      /* 输入框事件 */
-      bindManual: function (e) {
-        var num = e.detail.value;
-        // 将数值与状态写回  
-        this.setData({
-          num: num
-        });
-      },
     
+ 
+  
+   
 
   /**
    * 生命周期函数--监听页面加载
@@ -391,6 +426,7 @@ Page({
         }
         that.setData({
           all_money: all_moneys,
+          num:that.data.goods[0].number
         });
        
        

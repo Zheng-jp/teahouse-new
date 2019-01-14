@@ -48,7 +48,6 @@
 	
 	.level_images {
 		width: 46rpx;
-		height: 40rpx;
 	}
 	
 	.goods_cont {
@@ -71,6 +70,8 @@
 	.price_cont {
 		margin-top: 20rpx;
     margin-bottom: 10rpx;
+    display: flex;
+    align-items: center
 	}
 	
 	.sale {

@@ -52,17 +52,15 @@ margin-top:-23rpx;
 text-align: center;
 }
 .seach{
-float:left;
-width:578rpx;
-height:68rpx;
-background:#fff;
-border-radius:36rpx;
-border:solid #E9E9E9 1px;
-margin:1rpx 10rpx;
-padding-left:80rpx;
-box-sizing:border-box;
-
-
+  float:left;
+  width:561rpx;
+  height:68rpx;
+  background:#fff;
+  border-radius:36rpx;
+  border:solid #E9E9E9 1px;
+  margin:0rpx 20rpx;
+  padding-left:80rpx;
+  box-sizing:border-box;
 }
 .seach_img{
   position:absolute;
@@ -250,9 +248,9 @@ margin-top:28rpx;
 }
  
 .weui-grid__icon {
-  width:344rpx;
-height:344rpx;
-margin:0 auto;
+  width:355rpx;
+  height:355rpx;
+  margin:0 auto;
 
 }
  
@@ -268,6 +266,10 @@ margin:0 auto;
 }
 .price{
   margin-left: 10rpx;
+  margin-top: -8rpx;
+  display:flex;
+  align-items:center;
+
 }
  .price_img{
    float: left;

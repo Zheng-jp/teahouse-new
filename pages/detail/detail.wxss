@@ -36,8 +36,7 @@ text{
 }
 .ico_img{
   display: inline-block;
-width: 38rpx;
-height: 41rpx;
+  width: 38rpx;
   padding-left: 10rpx;
   padding-right: 10rpx;
 }
@@ -152,7 +151,7 @@ justify-content: space-between;
 bottom:0;
 height: 100rpx;
 z-index:9999;
-background:#fff;
+background:#f2f2f1;
 width: 750rpx;
 
 }
@@ -165,7 +164,7 @@ width: 750rpx;
   width: 220rpx;
   height: 60rpx;
   line-height: 60rpx;
-  background: #F2F2F2;
+  background: #fff;
   border-radius: 40rpx;
   font-size: 30rpx;
   color: #797979;

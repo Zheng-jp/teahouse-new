@@ -36,8 +36,9 @@ Page({
                     'content-type': 'application/json'
                   }, // 设置请求的 header
                   success: function (res) {
-                    app.globalData.gmemberid = res.data.data;
-                    console.log(res);
+                    app.globalData.gmemberid = res.data.data.openid;
+                    app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
+                    
                     wx.hideToast();
                     if (res) {
                       wx.switchTab({
@@ -118,7 +119,9 @@ Page({
                             'content-type': 'application/json'
                           }, // 设置请求的 header
                           success: function (res) {
-                            app.globalData.gmemberid = res.data.data;
+                            app.globalData.gmemberid = res.data.data.openid;
+                            app.globalData.member_grade_img = res.data.data.member_grade_info.member_grade_img;
+                            // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             wx.hideToast();
                             if (res) {
                               wx.switchTab({

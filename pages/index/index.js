@@ -5,6 +5,7 @@ Page({
   data: {
     // 全局变量的获取
     test: app.data.test,
+    member_grade_img:null,
     url: app.globalData.img_url,
     // 轮播图图片地址数据
     image: [
@@ -210,7 +211,10 @@ Page({
   },
   onShow: function () {
     var that = this;
-    
+    var member_grade_img=app.globalData.member_grade_img;
+    that.setData({
+      member_grade_img: member_grade_img,
+    })
   wx.request({
     url: app.globalData.tiltes + 'teacenter_recommend',
     data: {
@@ -221,7 +225,6 @@ Page({
 
     // },
     success: function (res) {
-      console.log(res);
       that.setData({
         share: res.data.data,
       });
