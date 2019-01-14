@@ -1,6 +1,5 @@
-
-//app.js
 App({
+
 
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -19,6 +18,6 @@ App({
     // tiltes:'http://localhost/teahouse/public/',
     // img_url:' http://localhost/teahouse/public/uploads/'
 
-  }
 
+  }
 })
