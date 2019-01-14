@@ -1,66 +1,11 @@
 {
-  "pages": [
-    "pages/logs/logs",
-    "pages/index/index",
-    "pages/mine/mine",
-    "pages/circle/circle",
-     "pages/meeting/meeting",
-     "pages/detail/detail",
-     "pages/members/members",
-      "pages/code/code",
-      "pages/good/good",
-      "pages/goods_detail/goods_detail",
-      "pages/add_address/add_address",
-      "pages/select_address/select_address",
-      "pages/change_address/change_address",
-      "pages/settlement/settlement",
-      "pages/select_shop_address/select_shop_address",
-      "pages/select_save_address/select_save_address",
-      "pages/buy/buy",
-      "pages/query/query",
-      "pages/order/order",
-      "pages/test/test",
-      "pages/about/about",
-      "pages/contract/contract",
-      "pages/contract_detail/contract_detail",
-      "pages/problement/problement",
-      "pages/news/news",
-      "pages/account/account",
-      "pages/identity_authentication/identity_authentication",
-      "pages/recharge/recharge"
-      
-      
+  "pages":[
+    "index/index"
   ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F9F9F9",
-    "navigationBarTitleText": "滴金茶业",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#8A8A8A",
-    "selectedColor": "#821006",
-    "borderStyle": "black",
-    "list": [
-      {
-        "selectedIconPath": "images/index-select.png",
-        "iconPath": "images/index.png",
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "selectedIconPath": "images/icod.png",
-        "iconPath": "images/icoc.png",
-        "pagePath": "pages/circle/circle",
-        "text": "茶圈"
-      },
-     
-      {
-        "selectedIconPath": "images/icoh.png",
-        "iconPath": "images/icog.png",
-        "pagePath": "pages/mine/mine",
-        "text": "我的"
-      }
-    ]
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
   }
 }
