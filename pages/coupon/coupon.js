@@ -8,7 +8,7 @@ Page({
   data: {
       height:'',
       tab:'1',
-      status:'1',
+      status:'2',
       order:[]
   },
   // 删除订单

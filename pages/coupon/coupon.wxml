@@ -22,10 +22,32 @@
 				</view>
 			</view>
 			<view wx:elif="{{status==2}}">
-			
+				<view class="coupon_box" style="background-image: url(img/u11124.png)">
+					<view class="coupon_money_box">
+						 <view><text class="money">100</text><text class="money_unit">元</text></view>
+						 <view class="limit">满任意金额使用</view>
+					</view>
+					<view class="coupon_info_box">
+						<view class="coupon_name">新人现金券</view>
+						<view class="validity">有效期：永久</view>
+						<view class="range">适用范围：所有会员</view>
+						<view class="go_use">已使用>></view>
+				   </view>
+				</view>
 			</view>
 			<view wx:elif="{{status==3}}">
-				
+				<view class="coupon_box" style="background-image: url(img/u11124.png)">
+					<view class="coupon_money_box">
+						 <view><text class="money">100</text><text class="money_unit">元</text></view>
+						 <view class="limit">满任意金额使用</view>
+					</view>
+					<view class="coupon_info_box">
+						<view class="coupon_name">新人现金券</view>
+						<view class="validity">有效期：永久</view>
+						<view class="range">适用范围：所有会员</view>
+						<view class="go_use">已过期>></view>
+				   </view>
+				</view>
 	     	</view>
 	     </view>
     </view>
