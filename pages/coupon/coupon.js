@@ -105,6 +105,7 @@ Page({
       url: app.globalData.tiltes + 'coupon_untapped',
       data: {
         open_id: app.globalData.gmemberid,
+        member_grade_name:app.globalData.member_grade_name,
       },
       method: "post",
       header: {
