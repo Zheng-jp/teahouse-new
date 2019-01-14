@@ -31,7 +31,7 @@
 						<view class="coupon_name">{{item.label}}</view>
 						<view class="validity">有效期：{{item.start_time}}-{{item.end_time}}</view>
 						<view class="range">适用范围：<text wx:for="{{item.scope}}"></text></view>
-						<view class="go_use">立即使用>></view>
+						<view class="go_use">已使用>></view>
 				   </view>
 				</view>
 			</view>
@@ -45,7 +45,7 @@
 						<view class="coupon_name">{{item.label}}</view>
 						<view class="validity">有效期：{{item.start_time}}-{{item.end_time}}</view>
 						<view class="range">适用范围：<text wx:for="{{item.scope}}"></text></view>
-						<view class="go_use">立即使用>></view>
+						<view class="go_use">已过期>></view>
 				   </view>
 				</view>
 	     	</view>

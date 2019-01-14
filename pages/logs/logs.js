@@ -38,7 +38,7 @@ Page({
                   success: function (res) {
                     app.globalData.gmemberid = res.data.data.openid;
                     app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
-                    
+                    app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;
                     wx.hideToast();
                     if (res) {
                       wx.switchTab({
