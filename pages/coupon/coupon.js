@@ -11,46 +11,7 @@ Page({
       status:'2',
       order:[]
   },
-  // 删除订单
-  delete_order:function (e){
-    var that=this;
-    var indexs = e.currentTarget.dataset.id;
-    var orderItems = that.data.order;
-    console.log(orderItems);
-    for (var i = 0; i < orderItems.length; ++i) {
-      if(orderItems[i].parts_order_number == indexs){
-       
-        wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_del',
-          data: {
-            open_id: app.globalData.gmemberid,
-            parts_order_number:indexs
-          },
-          method: "post",
-          header: {
-            "Content-Type": "application/json" // 默认值
-    
-          },
-          success: function (res) {
-            orderItems.splice(i, 1);
-            that.setData({
-              order: orderItems
-            }); 
-           
-          },
-          fail: function () {
-         
-          },
-          complete: function () {
-            wx.hideLoading()
-          }
-    
-        });
-      }
-      
-    }
-  
-  },
+
   tab_click:function (e) {
     var that=this;
       this.setData({ tab: e.currentTarget.dataset.current });
@@ -141,7 +102,7 @@ Page({
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
     wx.request({
-      url: app.globalData.tiltes + 'aa',
+      url: app.globalData.tiltes + 'coupon_untapped',
       data: {
         open_id: app.globalData.gmemberid,
       },
@@ -152,9 +113,9 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        that.setData({
-          order:res.data.data
-        })
+        // that.setData({
+        //   order:res.data.data
+        // })
       },
       fail: function () {
 

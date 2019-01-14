@@ -76,9 +76,11 @@ Page({
       releaseFocus: false
     })
     wx.request({
-      url: app.globalData.tiltes + 'bbb',
+      url: app.globalData.tiltes + 'teacenter_comment',
       data: {
-        content: that.data.repay_content
+        user_id: app.globalData.gmemberid,
+        comment_details: that.data.repay_content,
+        goods_id:that.data.information.id,
       },
       method: "post",
       header: {
@@ -86,6 +88,7 @@ Page({
 
       },
       success: function (res) {
+        console.log(res);
         this.setData({
           repay_content:''
         })
