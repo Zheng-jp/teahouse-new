@@ -11,7 +11,26 @@ Page({
       status:'2',
       order:[]
   },
+  go_coupon_good:function(e){
+    var that = this;
+    var item = event.currentTarget.dataset.item;
+    wx.navigateTo({
+      url: '../coupon_good/coupon_good',
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
 
+    })  
+  },
   tab_click:function (e) {
     var that=this;
       this.setData({ tab: e.currentTarget.dataset.current });
