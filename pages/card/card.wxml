@@ -1,0 +1,19 @@
+<!--pages/card/card.wxml-->
+<!--pages/select_address/select_address.wxml-->
+<view class='all'>
+	<radio-group class="radio-group" bindchange="radioChange" wx:if="{{address.info!='没有填写地址记录'}}" >
+		<view class='content_list'>
+			<view class='radio'>
+				<radio value="" color='#fff' />
+			</view>
+			  <view class="card_infor">
+                <view class="bank"><text class="bank_title">开户行：</text><text class="bank_content" >中国银行深圳分行</text></view>
+                <view class="bank_name"><text class="bank_title">开户名：</text><text class="bank_content" >刘德华</text></view>
+                <view class="card_num"><text class="bank_title">卡号：</text><text class="bank_content" >45677******66666</text> </view>
+              </view>
+		</view>
+	
+	</radio-group>
+
+	<view class='add_address' bindtap='add_address'>新增银行卡</view>
+</view>

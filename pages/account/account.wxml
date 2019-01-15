@@ -17,7 +17,7 @@
                 <image src="img/u9491.png"  class="ico" />
                 <text class="text">身份认证</text>
               </view>
-                <view class="box"  bindtap="go"  data-src="">
+                <view class="box"  bindtap="go"  data-src="../card/card">
                 <image src="img/u9479.png"  class="ico" />
                 <text class="text">银行卡管理</text>
               </view>

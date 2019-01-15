@@ -1,0 +1,46 @@
+/* pages/card/card.wxss */
+/* pages/select_address/select_address.wxss */
+.content_list{
+    display: flex;
+    align-items: center;
+    margin: 40rpx 10rpx 10rpx 10rpx;
+  }
+  .radio{
+    width: 100rpx;
+    text-align: center;
+  }
+ 
+  .all{
+    background: #fff;
+  }
+  .add_address{
+    width: 100%;
+    height: 90rpx;
+    line-height: 90rpx;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    background: #00BBFF;
+    text-align: center;
+    font-size: 36rpx;
+  }
+  .card_infor{
+   padding:28rpx;
+    border:solid 1rpx #00BBFF;
+    width:545rpx;
+    font-size:30rpx;
+    box-shadow: 30rpx 20rpx 30rpx 30rpx  #00BBFF;
+
+  }
+  .card_infor>view{
+     padding: 10rpx;
+     border-bottom:solid   1rpx #CCFFFF; 
+  }
+  .bank_content{
+    color: #868686;
+  }
+  .bank_title{
+    display: inline-block;
+    width: 150rpx;
+    text-align: right;
+  }
