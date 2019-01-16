@@ -368,7 +368,7 @@ Page({
     })
     var title = options.title;
     wx.request({
-      url: app.globalData.tiltes + 'commodity_detail',
+      url: app.globalData.tiltes + 'bonus_index',
       data: {
         open_id: app.globalData.gmemberid,
         id: options.title

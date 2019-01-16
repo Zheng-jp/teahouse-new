@@ -66,9 +66,8 @@ Page({
     var that = this;
     var item = event.currentTarget.dataset.item;
 
-    console.log(event.currentTarget.dataset.id);
     wx.navigateTo({
-      url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
+      url: '../integral_good_detail/integral_good_detail?title=' + event.currentTarget.dataset.id,
       success: function (res) {
         // success
         console.log("nihao////跳转成功")
