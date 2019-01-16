@@ -1,48 +1,8 @@
 <import src="../../wxParse/wxParse.wxml"/>
 <view class='all'>
-	<view class='mask' wx:if="{{mask_show}}">
-		<view class='select-ser-pop'>
-			<image src='img/x.png' mode="widthFix" class='close-select-pop' bindtap="hideFlag" style='hight:44rpx'></image>
-			<view class='select-goods-wrap'> 
-				<view class='select-goods-img'>
-					<image src='{{url}}{{images}}' mode="widthFix"></image>
-				</view>
-
-				<view class="select-goods-info">
-					<view class='select-goods-price'>
-						<view class='new_select-goods-price'>￥{{price}}/片</view>
-					</view>
-					<view class='select-goods-spec'>
-						<view class='select-goods-stock'>库存{{stock}}片</view>
-						<view class='select-goods-sells'>销量213片</view>
-					</view>
-				</view>
-			</view>
-			<view class='spec-wrap' >
-				<view class='spec-box' >
-					<view class='spec_title'>选择规格</view>
-					<view class='spec_content_all'>
-						<view class='spec_content' wx:for="{{goods.goods_standard}}">
-							<view  class="spec_content_text {{item.id==id? 'on' : ''}}"  bindtap="labelItemTap"  data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}"  data-value="{{item.name}}"> {{item.name}}  </view>
-						</view>
-					</view>
-				</view>
-				<view class='select-quantity'>
-					<view class='select-quantity_text'>购买数量</view>
-					<view class='select_calculator_num'>
-						<view class="select-minus" bindtap="bindMinus">-</view>
-						<view class='select-calculator_val'><input type='number'  value='{{num}}'></input>
-						</view>
-						<view class="select-increase" bindtap="bindPlus">+</view>
-					</view>
-				</view>
-			</view>
-		</view>
-		
-	</view>
 	<view class='home_banner'>
 		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" duration="1000">
-			<block wx:for="{{image}}" wx:key="{{index}}">
+			<block wx:for="{{goods.image}}" wx:key="{{index}}">
 				<swiper-item class='swiper-item'>
 					<image src="{{url}}{{item}}" class="slide-image" />
 				</swiper-item>
@@ -57,12 +17,10 @@
 			<view class='level_images'>
 				<image src='{{url}}{{member_grade_img}}' mode="widthFix"></image>
 			</view>
-			<view wx:if="{{goods.goods_standard==0}}">
-				<view class='sale'>￥{{goods.goods_new_money}}/片</view>
+			<view >
+				<view class='sale'>积分：{{goods.integral}}/片</view>
 			</view>
-			<view wx:else>
-				<view class='sale'>￥{{goods.min_price}}~￥{{goods.max_price}}</view>
-			</view>
+		
 		</view>
 		<view class='other_info'>
 			<view class='freight'>
@@ -77,14 +35,7 @@
 		</view>
 
 	</view>
-	<view class='ser-type' bindtap='showFlag'  wx:if="{{goods.goods_standard!=0}}" >
-		<view>
-			<text>选择：</text>
-			<text class='type'>{{select}}</text>
-		</view>
-		<image class='more' src='https://teahouse.siring.com.cn/upload/20181129/f95ab6bf449933fe54fbcce047b87c3d.png'></image>
-
-	</view>
+	
 	<view class='tab-box'>
 		<view class="nav bc_white">
 			<view>

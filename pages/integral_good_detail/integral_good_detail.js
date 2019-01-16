@@ -368,7 +368,7 @@ Page({
     })
     var title = options.title;
     wx.request({
-      url: app.globalData.tiltes + 'bonus_index',
+      url: app.globalData.tiltes + 'bonus_detailed',
       data: {
         open_id: app.globalData.gmemberid,
         id: options.title
@@ -381,12 +381,7 @@ Page({
       success: function (res) {
         console.log(res);
         that.setData({
-          goods: res.data.data[0],
-          good_id: parseInt(options.title),
-          images: res.data.data[0].goods_standard[0].images,
-          price: res.data.data[0].goods_standard[0].price,
-          stock: res.data.data[0].goods_standard[0].stock,
-          image:res.data.data[0].goods_show_images
+          goods:res.data.data[0]
         });
         var article = res.data.data[0].goods_text;
         WxParse.wxParse('article', 'html', article, that, 5);
