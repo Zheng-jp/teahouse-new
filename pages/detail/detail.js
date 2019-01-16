@@ -123,13 +123,15 @@ Page({
   
         },
         success: function (res) {
+          console.log(res);
           wx.request({
             // url: app.globalData.tiltes + 'wxpay',
             url: app.globalData.tiltes + 'wx_index',
             data: {
               open_id: app.globalData.gmemberid,
               cost_moneny: that.data.information.cost_moneny,
-              activity_name: that.data.information.activity_name
+              activity_name: that.data.information.activity_name,
+              order_numbers: res.data.data.parts_order_number
             },
             dataTypr: 'json',
             method: "post",
