@@ -34,7 +34,9 @@
       "pages/coupon/coupon",
       "pages/password/password",
       "pages/coupon_good/coupon_good",
-      "pages/card/card"
+      "pages/card/card",
+      "pages/integral_good_detail/integral_good_detail"
+      
       
      
       

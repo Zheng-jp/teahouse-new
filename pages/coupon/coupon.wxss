@@ -91,3 +91,6 @@
   overflow:hidden;
   -webkit-box-orient: vertical;
  }
+.hui{
+  color: #949494
+}

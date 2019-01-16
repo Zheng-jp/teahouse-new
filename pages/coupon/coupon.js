@@ -13,9 +13,8 @@ Page({
   },
   go_coupon_good:function(e){
     var that = this;
-    var item = event.currentTarget.dataset.item;
     wx.navigateTo({
-      url: '../coupon_good/coupon_good',
+      url: '../coupon_good/coupon_good?title='+ e.currentTarget.dataset.id,
       success: function (res) {
         // success
         console.log("nihao////跳转成功")

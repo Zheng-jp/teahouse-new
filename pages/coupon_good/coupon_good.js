@@ -1,10 +1,14 @@
 // pages/coupon_good/coupon_good.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    url: app.globalData.img_url,
+    member_grade_img:null,
+    routers:[],
 
   },
  
@@ -13,6 +17,43 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+      // 商品列表请求
+  wx.request({
+    url: app.globalData.tiltes + 'coupon_goods',
+    data: {
+      'open_id': app.globalData.gmemberid,
+      'coupon_id': options.title
+    },
+    method: "post",
+    // header: {
+    //   "Content-Type": "json" // 默认值
+
+    // },
+    success: function (res) {
+     
+      that.setData({
+        routers: res.data.data,
+      });
+      //  添加字段到等级数组
+      for (var index in that.data.share) {
+        var sexParam = "share[" + index + "].url";
+        that.setData({
+          [sexParam]: app.globalData.img_url,
+        })
+
+      }
+      console.log(that);
+
+    },
+    fail: function () {
+
+    },
+    complete: function () {
+      wx.hideLoading()
+    }
+
+  });
 
   },
 

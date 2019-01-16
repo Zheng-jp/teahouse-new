@@ -8,11 +8,11 @@
                                     <image src="{{url}}{{item.goods_show_image}}" mode="scaleToFill" />
                                 </view>
                                 <text class="weui-grid_name">{{item.goods_name}}</text>
-                                <text class="weui-grid_kuchun">库存123片</text>
+                                <text class="weui-grid_kuchun">库存{{item.goods_repertory}}片</text>
                                 <view class='selling_point'>{{item.goods_selling}}
                                 </view>
                                 <view class='price'>
-                                    <text class="price_text" >积分：{{item.goods_new_money}}</text>
+                                    <text class="price_text" >积分：{{item.integral}}</text>
                                 </view>
 
                             </view>

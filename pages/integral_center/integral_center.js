@@ -61,6 +61,30 @@ Page({
     url: app.globalData.img_url,
 
   },
+  go_gooddetail: function (event) {
+
+    var that = this;
+    var item = event.currentTarget.dataset.item;
+
+    console.log(event.currentTarget.dataset.id);
+    wx.navigateTo({
+      url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
+
+
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -69,7 +93,7 @@ Page({
     var that=this;
   // 商品列表请求
   wx.request({
-    url: app.globalData.tiltes + 'commodity_recommend',
+    url: app.globalData.tiltes + 'bonus_index',
     data: {
       'open_id': app.globalData.gmemberid,
     },

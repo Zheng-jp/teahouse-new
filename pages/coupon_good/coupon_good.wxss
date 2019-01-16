@@ -171,6 +171,18 @@
    
    }
    
+   
+.selling_point{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow:hidden;
+  -webkit-box-orient: vertical;
+  line-height:42rpx;
+  margin:10rpx;
+  color: #949494;
+  font-size: 24rpx;
+}
    .weui-grid_kuchun{
      padding: 10rpx;
      float: right;
