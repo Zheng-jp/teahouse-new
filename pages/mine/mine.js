@@ -48,7 +48,9 @@ Page({
       },
       {
         url: app.globalData.url + '/upload/20181115/81c85d2133879add7c6f8ed268410616.png',
-        text: '我的收藏'
+        text: '我的收藏',
+        src:'../collection/collection',
+        
       },
       {
         url: app.globalData.url + '/upload/20181115/d0221a688c6699297a1092cec2e1a322.png',

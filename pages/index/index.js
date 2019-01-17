@@ -215,6 +215,7 @@ Page({
         })
 
       }
+      console.log(that.data.share);
 
 
     },

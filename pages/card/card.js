@@ -29,24 +29,24 @@ Page({
 
   //   })
   // },
-  // go_change_address: function (event) {
-  //   wx.navigateTo({
-  //     url: '../change_address/change_address?title=' + event.currentTarget.dataset.id,
-  //     success: function (res) {
-  //       // success
-  //       console.log("nihao////跳转成功")
-  //     },
-  //     fail: function () {
-  //       // fail
-  //       console.log("nihao////跳转失败")
-  //     },
-  //     complete: function () {
-  //       // complete
-  //       console.log("nihao////跳转行为结束，未知成功失败")
-  //     }
+  go_add_card: function (event) {
+    wx.navigateTo({
+      url: '../add_card/add_card?title=' + event.currentTarget.dataset.id,
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
 
-  //   })
-  // },
+    })
+  },
   // radioChange: function (e) {
   //   var that = this;
   //    console.log(e.detail.value);

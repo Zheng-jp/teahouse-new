@@ -39,7 +39,13 @@
       "pages/change/change",
       "pages/change_account/change_account",
       "pages/change_name/change_name",
-      "pages/news_detail/news_detail"
+      "pages/news_detail/news_detail",
+      "pages/collection/collection",
+      "pages/add_card/add_card",
+      "pages/withdrawal/withdrawal"
+      
+     
+      
       
       
       

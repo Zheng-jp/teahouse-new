@@ -1,5 +1,9 @@
 /* pages/card/card.wxss */
 /* pages/select_address/select_address.wxss */
+view {
+  overflow: visible;
+}
+
 .content_list{
     display: flex;
     align-items: center;
@@ -29,7 +33,7 @@
     border:solid 1rpx #00BBFF;
     width:545rpx;
     font-size:30rpx;
-    box-shadow: 30rpx 20rpx 30rpx 30rpx  #00BBFF;
+    box-shadow:2rpx 5rpx 30rpx 2rpx #00BBFF;
 
   }
   .card_infor>view{

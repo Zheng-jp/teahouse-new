@@ -15,5 +15,5 @@
 	
 	</radio-group>
 
-	<view class='add_address' bindtap='add_address'>新增银行卡</view>
+	<view class='add_address' bindtap='go_add_card'>新增银行卡</view>
 </view>

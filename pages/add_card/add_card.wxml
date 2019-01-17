@@ -1,0 +1,28 @@
+<form bindsubmit="formSubmit" bindreset="formReset">
+<view  class='form_all'>
+        <view class='title'><text class='text_red'>*</text>添加银行卡管理:</view>
+        <view class='list_a'>
+        <view class="section section_top">
+            <view class="section_title">开户名</view>
+            <input name="harvester" placeholder=" 需要与绑定身份姓名一致"  value=""/>
+          </view>
+          <view class="section">
+            <view class="section_title">开户银行</view>
+            <input name="harvester_phone_num" placeholder=" 请填写开户行及支行名称" value=""/>
+          </view>
+            <view class="section section_top">
+            <view class="section_title">银行卡号</view>
+            <input name="harvester" placeholder="   请输入完整卡号"  value=""/>
+          </view>
+          <view class="section">
+            <view class="section_title">验证码</view>
+            <input name="harvester_phone_num" placeholder="验证码发送到您绑定的手机号" value="" class="cold_input"/>
+            <view class="send_cold">获取验证码</view>
+          </view>
+          </view>
+        
+          <view class="btn-area">
+            <button form-type="submit" class='button-hovers'>确定添加</button>
+          </view>
+  </view>
+</form>
