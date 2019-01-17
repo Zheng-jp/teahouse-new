@@ -1,0 +1,27 @@
+<view>
+    <view class="list" bindtap="pic">
+        <view class="tilte_text">头像</view>
+        <view class="content" >
+            <image src="{{img}}" mode="widthFix" class="head" />
+            <image src="http://teahouse.siring.com.cn/upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png" mode="widthFix" class="more" />
+        </view>
+    </view>
+    <view class="list" bindtap="go_change_account">
+            <view class="tilte_text"> 当前账号</view>
+            <view class="content">
+                <view class="context">  139****0809</view>
+                <image src="http://teahouse.siring.com.cn/upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png" mode="widthFix" class="more" />
+            </view>
+        </view>
+        <view class="list" bindtap="go_change_name">
+                <view class="tilte_text">昵称</view>
+                <view class="content">
+                        <view class="context">刘备</view>
+                    <image src="http://teahouse.siring.com.cn/upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png" mode="widthFix" class="more" />
+                </view>
+            </view>
+            <view class="submit" >
+                保存
+            </view>
+
+</view>

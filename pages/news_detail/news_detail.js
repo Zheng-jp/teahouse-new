@@ -1,37 +1,23 @@
-// pages/news/news.js
+// pages/news_detail/news_detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
-  },
-  go_news_detail: function (event) {
-
-    var that = this;
-    var item = event.currentTarget.dataset.item;
-    wx.navigateTo({
-      url: '../news_detail/news_detail?title=' + event.currentTarget.dataset.id,
-      success: function (res) {
-      
-      },
-      fail: function () {
-       
-      },
-      complete: function () {
-      
-      }
-
-
-    })
+    height:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this;
+    var s_height = wx.getSystemInfoSync().windowHeight;
+    console.log(s_height);
+    that.setData({
+      height:s_height
+    })
   },
 
   /**

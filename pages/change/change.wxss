@@ -1,0 +1,40 @@
+/* pages/change/change.wxss */
+.list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30rpx;
+    border: 1rpx solid #E4E4E4;
+}
+.content{
+   display: flex;
+   align-items: center;
+}
+.tilte_text{
+    color: #0DCBFF;
+    font-size: 26rpx;
+}
+.head{
+    width: 80rpx;
+    border-radius:50%; 
+}
+.more{
+    margin-left: 20rpx;
+    width: 30rpx;
+}
+.context{
+    font-size: 24rpx;
+    color: #333;
+}
+.submit{
+    color: #fff;
+    width: 750rpx; 
+    background: #FF6700;
+    text-align: center;
+    height: 100rpx;
+    line-height: 100rpx;
+    position: fixed;
+    bottom: 0;
+    
+    
+}

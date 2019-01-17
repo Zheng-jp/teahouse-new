@@ -35,7 +35,13 @@
       "pages/password/password",
       "pages/coupon_good/coupon_good",
       "pages/card/card",
-      "pages/integral_good_detail/integral_good_detail"
+      "pages/integral_good_detail/integral_good_detail",
+      "pages/change/change",
+      "pages/change_account/change_account",
+      "pages/change_name/change_name",
+      "pages/news_detail/news_detail"
+      
+      
       
       
      

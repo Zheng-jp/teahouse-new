@@ -1,6 +1,6 @@
 <!--my.wxml-->
 <view style='background-color:#ebebeb;'>
-<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+
 <view style='background:{{information.member_background_color}}'>
   <view class='information' >
       <view class='list balance'>
@@ -8,11 +8,11 @@
             <view class='balance_num nnum'>￥{{information.member_wallet}}</view>
             <view class='balance_btn bbtn'><button style='background:{{information.member_background_color}}'>充值</button></view>
       </view>
-        <view class='list'>
+        <view class='list' bindtap="go_change">
           <view class='username'>
               <open-data type="userNickName"></open-data>
             </view>
-            <view class='head_portrait'>
+            <view class='head_portrait' >
               <open-data type="userAvatarUrl"></open-data>
             </view> 
             <view class='phone_num'>

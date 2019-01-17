@@ -1,0 +1,16 @@
+<form bindsubmit="formSubmit" bindreset="formReset">
+<view  class='form_all'>
+        <view class='title'><text class='text_red'>*</text>修改我的昵称:</view>
+        <view class='list_a'>
+        <view class="section section_top">
+            <view class="section_title">我的昵称</view>
+            <input name="harvester" placeholder="取一个与众不同的名字哟~"  value=""/>
+          </view>
+         
+          </view>
+       
+          <view class="btn-area">
+            <button form-type="submit" class='button-hovers'>保存</button>
+          </view>
+  </view>
+</form>

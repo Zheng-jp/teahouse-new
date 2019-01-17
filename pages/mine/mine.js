@@ -38,7 +38,8 @@ Page({
       },
       {
         url: app.globalData.url + '/upload/20181115/872ba6211e755c12088c2e5f92fad232.png',
-        text: '消息中心'
+        text: '消息中心',
+        src:'../news/news',
       },
       {
         url: app.globalData.url + '/upload/20181115/f052e232cf2c7629080cacbb20522b50.png',
@@ -226,7 +227,26 @@ Page({
 
     })
   },
+  go_change: function (event) {
+    console.log(event);
+    var item = event.currentTarget.dataset.item;
+    wx.navigateTo({
+      url: '../change/change?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
 
+    })
+  },
 
   /**
    * 用户点击右上角分享

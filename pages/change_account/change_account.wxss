@@ -1,0 +1,88 @@
+/* pages/add_address/add_address.wxss */
+.section{
+    width: 750rpx;
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px #F1F1F1;
+    
+  }
+  .section_title{
+    font-weight: bold;
+    width: 200rpx;
+    text-align: center;
+    font-size: 26rpx;
+    padding: 10rpx;
+    border-right: solid 1px #F1F1F1;
+  
+  }
+  .section input{
+    padding-left: 20rpx;
+      font-size: 26rpx;
+       width: 550rpx;
+  
+  }
+  .title{
+    font-size: 36rpx;
+    padding: 20rpx;
+    background: #fff;
+  }
+  .section_top{
+    border-top: solid 1px #F1F1F1;
+  }
+  .list_a{
+    background: #fff;
+  }
+  .list_b{
+      background: #fff;
+      margin-top: 40rpx;
+  }
+  
+  .form_all{
+    background: #F9F9F9;
+  }
+  .button-hovers{
+   width:750rpx;
+    height:100rpx;
+    line-height: 100rpx;
+    color:#fff;
+    background:#FF6700;
+    border:0;
+    position: fixed;
+    bottom: 0;
+    border-radius:0; 
+    font-size: 36rpx;
+
+  
+  }
+  .picker{
+    padding-left: 20rpx;
+    font-size: 26rpx;
+    color: #ADADC4;
+  }
+  .tips{
+      background: #fff;
+      padding: 60rpx 40rpx 40rpx 40rpx;
+  }
+  .tips_title{
+      font-size: 26rpx;
+      color: #FF9999;
+
+  }
+  .tips_content{
+      font-size: 24rpx;
+      color: #A1A1A1;
+      margin-top: 20rpx;
+  }
+  .send_cold{
+    font-size: 26rpx;
+    color: #66CCFF;
+    font-weight: bold;
+    text-align: center;
+    border-left: solid 1rpx  #BCBCBC;
+    width: 250rpx; 
+
+  }
+  .cold_input{
+      width: 300rpx !important;
+  }

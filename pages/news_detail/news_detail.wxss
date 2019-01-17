@@ -1,0 +1,26 @@
+/* pages/news_detail/news_detail.wxss */
+.time{
+    width: 300rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    background: #D1D1D1;
+    color: #fff;
+    font-size: 26rpx;
+    text-align: center;
+    border-radius: 10rpx;
+    margin: 20rpx auto; 
+}
+.news_content{
+    background: #fff;
+    margin: 20rpx;
+    padding: 20rpx;
+    box-sizing: border-box
+}
+.news_content_title{
+    font-size: 26rpx;
+}
+.news_content_content{
+    font-size: 24rpx;
+    color: #949494;
+    margin-top: 10rpx;
+}

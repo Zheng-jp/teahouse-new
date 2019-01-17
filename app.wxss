@@ -86,7 +86,7 @@ radio .wx-radio-input{
    border: none;/* 替换边框（隐藏原有边框） */
 }
 .all{
-  background: #EBEBEB;
+  background: #F9F9F9;
 }
 /*  重写 checkbox 样式  */
 /* 未选中的 背景样式 */
