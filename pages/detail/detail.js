@@ -131,7 +131,7 @@ Page({
               open_id: app.globalData.gmemberid,
               cost_moneny: that.data.information.cost_moneny,
               activity_name: that.data.information.activity_name,
-              order_numbers: res.data.data.parts_order_number
+              order_number: res.data.data.parts_order_number
             },
             dataTypr: 'json',
             method: "post",

@@ -2,7 +2,7 @@
 <view class="all">
       <view class='goods-content'>
             <view class="weui-grids">
-                    <view class="weui-grid" wx:for="{{routers}}" wx:key="name" bindtap="go_gooddetail"  data-id="{{item.id}}">
+                    <view class="weui-grid" wx:for="{{routers}}" wx:key="name" bindtap="go_gooddetail"  data-id="{{item.id}}" wx:if="{{item}}">
                             <view class='weui-grid__bg'>
                                 <view class="weui-grid__icon">
                                     <image src="{{url}}{{item.goods_show_image}}" mode="scaleToFill" />

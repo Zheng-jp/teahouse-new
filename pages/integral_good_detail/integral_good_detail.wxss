@@ -74,9 +74,9 @@ view{
     align-items: center
 	}
 	
-	.sale {
+	.sale{
 		color: red;
-		font-size: 50rpx;
+		font-size: 35rpx;
 		margin-left: 26rpx;
 	}
 	

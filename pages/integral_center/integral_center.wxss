@@ -38,6 +38,8 @@
    }
    .goods-content{
      height: auto;
+     margin-top:21rpx;
+
    }
    .goods-list{
      width: 48%;

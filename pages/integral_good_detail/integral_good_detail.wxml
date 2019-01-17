@@ -2,7 +2,7 @@
 <view class='all'>
 	<view class='home_banner'>
 		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" duration="1000">
-			<block wx:for="{{goods.image}}" wx:key="{{index}}">
+			<block wx:for="{{goods.images}}" wx:key="{{index}}">
 				<swiper-item class='swiper-item'>
 					<image src="{{url}}{{item}}" class="slide-image" />
 				</swiper-item>
@@ -37,50 +37,11 @@
 	</view>
 	
 	<view class='tab-box'>
-		<view class="nav bc_white">
-			<view>
-				<view class="{{selected?'red':'default'}}" bindtap="selected">商品详情</view>
-			</view>
-			<view>
-				<view class="{{selected1?'red':'default'}}" bindtap="selected1">评价</view>
-			</view>
-		</view>
+		
 		<view class="{{selected?'show':'hidden'}}">
 		   <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 		</view>
-		<view class="{{selected1?'show':'hidden'}}">
-			<view class='comment'>
-				<view class='comment_list'>
-					<view class='comment_repay'>
-						<view class='comment_ico'>
-							<image src='img/photo.png' ></image>
-						</view>
-				            <view class='comment_right'>
-				                <view class='comment_name'>瑞川</view>
-				                <view class='repay_content'>香港就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感。 但在这个全球最密集的城市，“死后能住进棺材”纯属是妄念。
-				                </view>
-                        <view class='comment_img_all'>
-                              <view class='comment_imgs'>
-                                  <image src='img/u2811.png'></image>
-                              </view>`
-                               <view class='comment_imgs'>
-                                  <image src='img/u2811.png'></image>
-                              </view>
-                               <view class='comment_imgs'>
-                                  <image src='img/u2811.png'></image>
-                              </view>
-                        </view>
-                        <view class='time'>2018-10-06</view>
-                        <view class='repays_content'>
-                          <text class='repay_content_title'>官方回复：</text>
-                          <text>香港就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感。 但在这个全球最密集的城市，“死后能住进棺材”纯属是妄念。</text>
-                        </view>
-							</view>
-					  </view>
-						
-				</view>
-			</view>
-		</view>
+	
 	</view>
 	<view class='footbar'>
 		<view class='ico_view'>
