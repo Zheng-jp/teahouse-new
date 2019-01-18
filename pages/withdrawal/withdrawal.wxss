@@ -1,1 +1,51 @@
 /* pages/withdrawal/withdrawal.wxss */
+.content{
+    background: #fff;
+}
+.head{
+   background: #00BBFF;
+   color: #fff;
+   padding: 20rpx;
+   width: 320rpx;
+   font-size: 30rpx;
+   border-top-right-radius:50rpx; 
+   border-bottom-right-radius:50rpx; 
+   margin-top: 10rpx;
+}
+.cards_box{
+    display: flex;
+    width: 750rpx;
+    justify-content: center;
+    align-items: center;
+    padding: 20rpx 30rpx;
+    box-sizing: border-box;
+}
+.on{
+  color: #00BBFF;
+  border-bottom:4rpx solid #00BBFF; 
+}
+.weixin_card{
+  flex: 1;
+  text-align: center;
+  font-size: 30rpx;
+  padding: 20rpx;
+}
+.card_card{
+    flex: 1;
+    text-align: center;
+    font-size: 30rpx;
+    padding: 20rpx;
+}
+.limit{
+    color: red;
+    font-size: 30rpx;
+}
+.tip{
+  font-size: 26rpx;
+  font-weight: bold;
+  margin-top: 10rpx;
+}
+.weixin_box{
+    padding: 20rpx;
+    box-sizing: border-box
+}

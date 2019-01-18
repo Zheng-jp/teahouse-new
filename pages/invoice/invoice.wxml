@@ -1,0 +1,15 @@
+<!--pages/invoice/invoice.wxml-->
+<view class="all">
+  <view class="list_content">
+        <view class="list">
+        <view class="list_left">
+            <view class="list_left_one"> 订单号：747585559959595</view>
+            <view class="list_left_two">2018年10月 12日  12:30  </view>
+        </view>
+            <view class="list_right">
+            <view class="list_right_one"><image class="img" src="img/u10642.png" mode="widthFix" ></image> </view>
+            <view class="list_right_two">100元  </view>
+        </view>
+        </view>
+    </view>
+</view>

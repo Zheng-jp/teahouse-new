@@ -1,30 +1,12 @@
-// pages/withdrawal/withdrawal.js
+// pages/invoice/invoice.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    selected:true,
-    selected1:false,
-    weixin:true
+
   },
-  ison: function (event) {
-     var that=this;
-     that.setData({
-      selected:true,
-      selected1:false,
-      weixin:true
-     })
-  },
-  ison2: function (event) {
-    var that=this;
-    that.setData({
-     selected:false,
-     selected1:true,
-     weixin:false
-    })
- },
 
   /**
    * 生命周期函数--监听页面加载

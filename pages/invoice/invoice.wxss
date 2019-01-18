@@ -1,0 +1,53 @@
+/* pages/invoice/invoice.wxss */
+view{
+    overflow: visible;
+}
+.all{
+    background: #fff;
+    border-radius:6rpx; 
+   
+}
+.list_content{
+    height: 180rpx;
+    margin: 30rpx;
+    box-shadow:0rpx 10rpx 10rpx 10rpx #FAFAFa;
+}
+.list{
+    margin: 30rpx;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: solid 1rpx #D7D7D7; 
+    position: relative;
+    padding: 20rpx;
+    top:22rpx;
+
+
+}
+.list_left_one{
+    font-size: 32rpx;
+    font-weight: bold;
+   
+}
+.list_left_two{
+    margin-top: 20rpx;
+    font-size: 30rpx;
+    color: #6B6B6B;
+}
+.list_right_one{
+    position: absolute;
+    top: 10rpx;
+    right: 10rpx;
+}
+.list_right_two{
+   font-size: 30rpx;
+   font-weight: bold;
+   margin-top: 40rpx;
+   z-index: 10000;
+   margin-right: 20rpx;
+}
+.img{
+    width: 120rpx;
+
+}

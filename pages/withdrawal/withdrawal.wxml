@@ -1,2 +1,31 @@
 <!--pages/withdrawal/withdrawal.wxml-->
-<text>pages/withdrawal/withdrawal.wxml</text>
+<view class="all"> 
+ <view class="content">
+        <view class="head"> 您的当前余额：￥5980</view>
+        <view class="cards_box">
+            <view class="weixin_card {{selected?'on':''}}" bindtap="ison">提现到微信</view>
+            <view class="card_card {{selected1?'on':''}}" bindtap="ison2"> 提现到银行卡</view>
+        </view>
+        <view class="box">
+            <view class="weixin_box" wx:if="{{weixin}}">
+
+            <view class="limit">您当前余额可提现：10元</view>
+            <view class="tip">温馨提示：</view>
+            <view class="tip">① 您申请会员的充值余额，需用于平台消费，不能用于提现</view>
+            <view class="tip">② 由于各运营方已收取相应的中间手续费用，为保障用户利益，申请提现只收取2%提现手续费；</view>
+            <view class="tip">③能申请提现的余额需满1000元以上时才可申请提现；</view>
+             <view class="tip">④当天充值后余额需在7天后方可体现；</view>
+             <form class="" report-submit="false" bindsubmit="" bindreset="">
+                  <view class="form_list">
+                      <view>申请提现金额：</view>
+                      <view><input type="text"  /> </view>
+                 </view>
+
+             </form>
+            </view>
+            <view class="card_box" wx:else>
+            22
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,48 @@
+/* pages/integral_record/integral_record.wxss *//* pages/bill/bill.wxss */
+.heading{
+    padding: 20rpx 30rpx;
+    display: flex;
+    box-sizing: border-box;
+    background: #fff;
+    align-items: center;
+}
+.head_img{
+    width: 50rpx;
+}
+.head_text{
+    width: 570rpx;
+    text-align: center;
+    font-size: 36rpx;
+    font-weight: 600;
+    color: #6B6B6B;
+}
+.content_list{
+    background: #fff;
+    margin-top: 20rpx;
+   
+    
+}
+.list{
+    display: flex;
+    justify-content: space-between;
+   border-bottom: #F2F2F2 solid 1rpx;
+   padding: 30rpx;
+}
+.list_left_one{
+    font-size: 28rpx;
+}
+.list_left_two{
+    margin-top: 4rpx;
+    font-size: 22rpx;
+    color: #6B6B6B;
+}
+.list_right_one{
+    font-size: 24rpx;
+    color: #BEBEBE;
+}
+.list_right_two{
+    margin-top: 4rpx;
+    font-size: 22rpx;
+    color: #333;
+    text-align: right;
+}

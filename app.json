@@ -42,16 +42,13 @@
       "pages/news_detail/news_detail",
       "pages/collection/collection",
       "pages/add_card/add_card",
-      "pages/withdrawal/withdrawal"
-      
-     
-      
-      
-      
+      "pages/withdrawal/withdrawal", 
+      "pages/bill/bill",
+      "pages/integral_record/integral_record",
+      "pages/invoice/invoice"
       
       
-     
-      
+        
       
   ],
 

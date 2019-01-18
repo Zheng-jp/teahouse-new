@@ -1,0 +1,20 @@
+<!--pages/bill/bill.wxml-->
+<view class="all">
+   <view class="heading">
+        <view class="head_img"><image src="img/u5282.png"  mode="widthFix"/></view>
+        <view class="head_text">积分记录</view>
+        <view class="head_img"><image src="img/u5294.png"   mode="widthFix"/></view>
+   </view>
+   <view class="content_list">
+        <view class="list" >
+           <view class="list_left">
+               <view class="list_left_one">交易付费</view>
+               <view class="list_left_two">余额：300</view>
+            </view>
+            <view class="list_right">
+               <view class="list_right_one">2018-09-30</view>
+               <view class="list_right_two">-20</view>
+            </view>
+        </view>
+   </view>
+</view>
