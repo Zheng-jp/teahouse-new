@@ -19,15 +19,17 @@ overflow:hidden;
 }
 
 .selling_point{
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  overflow:hidden;
-  -webkit-box-orient: vertical;
-  line-height:42rpx;
-  margin:10rpx;
-  color: #949494;
-  font-size: 24rpx;
+  text-overflow:ellipsis;
+display:-webkit-box;
+-webkit-line-clamp:1;
+overflow:hidden;
+-webkit-box-orient:vertical;
+line-height:42rpx;
+margin-top:-16rpx;
+color:#949494;
+font-size:24rpx;
+padding:0 10rpx;
+
 }
 image {
   width: 100%;
@@ -56,7 +58,7 @@ text-align: center;
   width:561rpx;
   height:68rpx;
   background:#fff;
-  border-radius:36rpx;
+  border-radius:15rpx;
   border:solid #E9E9E9 1px;
   margin:0rpx 20rpx;
   padding-left:80rpx;
@@ -251,6 +253,7 @@ margin-top:28rpx;
   width:355rpx;
   height:355rpx;
   margin:0 auto;
+  overflow: hidden;
 
 }
  
@@ -265,10 +268,12 @@ margin-top:28rpx;
     margin-top: 5px;
 }
 .price{
-  margin-left: 10rpx;
-  margin-top: -8rpx;
+  margin-left:10rpx;
+  margin-top:-8rpx;
   display:flex;
   align-items:center;
+  padding:10rpx;
+
 
 }
  .price_img{
@@ -298,10 +303,12 @@ margin-top:28rpx;
 
  }
 .weui-grid_name {
+  width: 200rpx;
+  display: inline-block;
   padding: 10rpx;
     text-align: center;
     color: #000;
-    font-size: 33rpx;
+    font-size: 30rpx;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

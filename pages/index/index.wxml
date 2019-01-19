@@ -59,7 +59,7 @@
                                 <view class='price'>
                                     <view class='price_img'><image src='{{url}}{{member_grade_img}}'></image></view>
                                     <text class="price_text" wx:if="{{item.goods_standard==0}}">￥{{item.goods_new_money}}</text>
-                                    <text class="price_text" wx:else>￥{{item.min_price}}-￥{{item.max_price}}</text>
+                                    <text class="price_text" wx:else>￥{{item.min_price}}</text>
                                 </view>
 
                             </view>

@@ -82,7 +82,8 @@
 			<text>选择：</text>
 			<text class='type'>{{select}}</text>
 		</view>
-		<image class='more' src='https://teahouse.siring.com.cn/upload/20181129/f95ab6bf449933fe54fbcce047b87c3d.png'></image>
+		<image class='more' src='img/u1508.png' mode="widthFix"></image>
+	
 
 	</view>
 	<view class='tab-box'>

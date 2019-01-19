@@ -35,7 +35,8 @@ text{
 
 }
 .ico_img{
-  display: inline-block;
+ display: flex;
+ align-items: center;
   width: 38rpx;
   padding-left: 10rpx;
   padding-right: 10rpx;
@@ -165,7 +166,7 @@ width: 750rpx;
   height: 60rpx;
   line-height: 60rpx;
   background: #fff;
-  border-radius: 40rpx;
+  border-radius: 10rpx;
   font-size: 30rpx;
   color: #797979;
   padding-left: 10rpx;

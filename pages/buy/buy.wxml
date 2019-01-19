@@ -41,7 +41,7 @@
       </checkbox-group>
    </view>
 </view>
-<view class='good_like'>
+<!--<view class='good_like'>
      <view class='goods '>
    <view class='like_img'><image src='img/u600.png' mode='widthFix'></image></view>
       <view class='goods-content'>
@@ -70,7 +70,7 @@
   
 </view>
    
-</view>
+</view>-->  
   <view class='section-bottom'>
         <checkbox-group bindchange="selectalltap">
           <label class='checkbox-allcheck'>

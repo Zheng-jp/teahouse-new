@@ -47,7 +47,9 @@
 	}
 	
 	.level_images {
-		width: 46rpx;
+    width: 46rpx;
+    display: flex;
+    align-items: center;
 	}
 	
 	.goods_cont {
@@ -76,7 +78,7 @@
 	
 	.sale {
 		color: red;
-		font-size: 50rpx;
+		font-size: 40rpx;
 		margin-left: 26rpx;
 	}
 	
@@ -114,8 +116,7 @@
 	}
 	
 	.more {
-		width: 43rpx;
-		height: 40rpx;
+		width: 20rpx;
 		overflow: hidden;
 	}
 	

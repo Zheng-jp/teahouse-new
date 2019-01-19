@@ -107,6 +107,9 @@ Page({
       var goods_standard_id = that.data.id;
     }
     if(that.data.select=='规格'){
+      this.setData({
+        mask_show:true,
+      })
       wx.showToast({
         title: '请选择规格',
         icon:'none',
@@ -290,6 +293,10 @@ Page({
               var goods_standard_id = that.data.id;
             }
             if(that.data.select=='规格'){
+
+              this.setData({
+                mask_show:true,
+              })
               wx.showToast({
                 title: '请选择规格',
                 icon:'none',

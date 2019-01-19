@@ -18,7 +18,7 @@
   font-size:26rpx;
   color:#000;
   text-align: center;
-  padding:8px 0 8px 0px;
+  margin:8px 0 8px 0px;
 }
 .good_box{
   display: flex;
@@ -35,6 +35,12 @@ margin-bottom:20rpx;
   line-height:20px;
   font-size:14px;
   color:#333;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow:hidden;
+  -webkit-box-orient: vertical;
+  width: 170rpx;
 }
 .nav_goods_price{
   line-height:20px;
@@ -49,6 +55,7 @@ margin-bottom:20rpx;
 }
 .active{
   color: #FF2F00;
+  border-left:solid #FF2F00 1rpx;  
 }
     .liner {
             width:100%;
