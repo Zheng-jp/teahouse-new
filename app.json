@@ -13,6 +13,7 @@
       "pages/good/good",
       "pages/goods_detail/goods_detail",
       "pages/add_address/add_address",
+      
       "pages/select_address/select_address",
       "pages/change_address/change_address",
       "pages/settlement/settlement",
