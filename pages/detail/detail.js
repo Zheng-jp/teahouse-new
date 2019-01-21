@@ -80,7 +80,7 @@ Page({
       data: {
         user_id: app.globalData.gmemberid,
         comment_details: that.data.repay_content,
-        goods_id:that.data.information.id,
+        teahost_id:that.data.information.id,
       },
       method: "post",
       header: {
@@ -92,6 +92,30 @@ Page({
         this.setData({
           repay_content:''
         })
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+  },
+  good: function (e) {
+    var that = this;
+    wx.request({
+      url: app.globalData.tiltes + 'teacenter_comment_updata',
+      data: {
+        user_id: app.globalData.gmemberid,
+        teahost_id: that.data.information.id,
+      },
+      method: "post",
+      header: {
+        "Content-Type": "application/json" // 默认值
+
+      },
+      success: function (res) {
+       
       },
       fail: function () {
 
