@@ -13,22 +13,68 @@ Page({
   },
   go_coupon_good:function(e){
     var that = this;
-    wx.navigateTo({
-      url: '../coupon_good/coupon_good?title='+ e.currentTarget.dataset.id,
-      success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
-      },
-      fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
-      },
-      complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
-      }
+         // 商品列表请求
+        wx.request({
+          url: app.globalData.tiltes + 'coupon_goods',
+          data: {
+            'open_id': app.globalData.gmemberid,
+            'coupon_id': e.currentTarget.dataset.id
+          },
+          method: "post",
+          // header: {
+          //   "Content-Type": "json" // 默认值
 
-    })  
+          // },
+          success: function (res) {
+          if(res.data.status==0){
+              wx.navigateTo({
+                url: '../good/good',
+                success: function (res) {
+                  // success
+                  console.log("nihao////跳转成功")
+                },
+                fail: function () {
+                  // fail
+                  console.log("nihao////跳转失败")
+                },
+                complete: function () {
+                  // complete
+                  console.log("nihao////跳转行为结束，未知成功失败")
+                }
+          
+              })
+          }
+          else{
+            wx.navigateTo({
+              url: '../coupon_good/coupon_good?title='+ e.currentTarget.dataset.id,
+              success: function (res) {
+                // success
+                console.log("nihao////跳转成功")
+              },
+              fail: function () {
+                // fail
+                console.log("nihao////跳转失败")
+              },
+              complete: function () {
+                // complete
+                console.log("nihao////跳转行为结束，未知成功失败")
+              }
+        
+            })  
+          }
+      
+      console.log(that);
+
+    },
+    fail: function () {
+
+    },
+    complete: function () {
+      wx.hideLoading()
+    }
+
+  });
+  
   },
   tab_click:function (e) {
     var that=this;

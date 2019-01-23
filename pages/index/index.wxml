@@ -47,24 +47,10 @@
       </view>
       <view class='goods-content'>
             <view class="weui-grids">
-                    <view class="weui-grid" wx:for="{{routers}}" wx:key="name" bindtap="go_gooddetail"  data-id="{{item.id}}">
-                            <view class='weui-grid__bg'>
-                                <view class="weui-grid__icon">
-                                    <image src="{{url}}{{item.goods_show_image}}" mode="scaleToFill" />
-                                </view>
-                                <text class="weui-grid_name">{{item.goods_name}}</text>
-                                <text class="weui-grid_kuchun">库存123片</text>
-                                <view class='selling_point'>{{item.goods_selling}}
-                                </view>
-                                <view class='price'>
-                                    <view class='price_img'><image src='{{url}}{{member_grade_img}}'></image></view>
-                                    <text class="price_text" wx:if="{{item.goods_standard==0}}">￥{{item.goods_new_money}}</text>
-                                    <text class="price_text" wx:else>￥{{item.min_price}}</text>
-                                </view>
-
-                            </view>
+                    <view class="weui-grid" wx:for="{{routers}}"wx:for-item="item"   wx:key="*this" bindtap="go_gooddetail"  data-id="{{item.id}}">
+                        <template  is="good" data="{{item}}"  bindtap></template> 
                     </view>
-         </view>
+            </view>
       </view>
     </view>
 
@@ -78,10 +64,13 @@
       </view>
       <view class='shares-content'>
       <view class='listview' wx:for="{{share}}" wx:for-item="item"   wx:key="*this">
-             <template  is="{{item.type == '29' ? 'joy-text' : (item.type == '10' ? 'joy-pic' : (item.type == '41' ? 'joy-video' : 'joy-pic'))}}" data="{{item}}"     bindtap></template>
+             <template  is="joy-pic" data="{{item}}"  bindtap></template>
     </view> 
       </view>
   
 </view>
+<image class="buy" src="img/buy.png" mode="widthFix" lazy-load="false" binderror="" bindload="" bindtap="go_car">
+    
+</image>
 
 </view>

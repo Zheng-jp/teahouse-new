@@ -45,20 +45,20 @@ Page({
   },
   scroll: function (e) {
     var self = this;
-    // var last_scrollTop=0;
+    var last_scrollTop=0;
     self.setData({ scrollTop: e.detail.scrollTop });
-    // if(self.data.is_true){
+    if(self.data.is_true){
 
     setTimeout(function () {
-      // self.setData({
-      //   is_true:false
-      // });
+      self.setData({
+        is_true:false
+      });
       if (self.data.last_scrollTop != self.data.scrollTop) {
         self.setData({ last_scrollTop: self.data.scrollTop });
         self.scrollmove(self, e, self.data.scrollTop);
       }
     }, 1000);
-  
+  }
 
   },
   scrollmove: function (self, e, scrollTop) {

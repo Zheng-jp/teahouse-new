@@ -26,24 +26,31 @@ Page({
       'coupon_id': options.title
     },
     method: "post",
-    // header: {
-    //   "Content-Type": "json" // 默认值
-
-    // },
+    header: {
+      "Content-Type": "json" // 默认值
+    },
     success: function (res) {
-     
       that.setData({
         routers: res.data.data,
       });
       //  添加字段到等级数组
-      for (var index in that.data.share) {
-        var sexParam = "share[" + index + "].url";
+      for (var index in that.data.routers) {
+        var sexParam = "routers[" + index + "].url";
         that.setData({
           [sexParam]: app.globalData.img_url,
         })
 
       }
-      console.log(that);
+      var member_grade_img=app.globalData.member_grade_img;
+  
+         //  添加字段到等级数组
+         for (var index in that.data.routers) {
+          var sexParam = "routers[" + index + "].member_grade_img";
+          that.setData({
+            [sexParam]: member_grade_img,
+          })
+  
+        }
 
     },
     fail: function () {

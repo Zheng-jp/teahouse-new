@@ -48,58 +48,7 @@ Page({
 
     ],
   // 商品信息
-    routers: [
-      // {
-      //   name: '双骄',
-      //   url: '/pages/Course/course',
-      //   icon: 'img/u160.jpg',
-      //   code: '10',
-      //   selling:[
-      //     '新益号',
-      //     '普洱茶'
-      //   ],
-      //   price_img: 'img/u182.png'
-        
-      // },
-      // {
-      //   name: '双骄',
-      //   url: '/pages/Course/course',
-      //   icon: 'img/u160.jpg',
-      //   code: '10',
-      //   selling: [
-      //     '新益号',
-      //     '普洱茶'
-      //   ],
-      //   price_img: 'img/u182.png',
-      //   jiage: '￥120.0/片'
-      // },
-      // {
-      //   name: '双骄',
-      //   url: '/pages/Course/course',
-      //   icon: 'img/u160.jpg',
-      //   code: '10',
-      //   selling: [
-      //     '新益号',
-      //     '普洱茶'
-      //   ],
-      //   price_img: 'img/u182.png',
-      //   jiage: '￥120.0/片'
-      // },
-     
-      // {
-      //   name: 'Python',
-      //   url: '/pages/Course/course',
-      //   icon: 'img/u160.jpg',
-      //   code: '10',
-      //   selling: [
-      //     '新益号',
-      //     '普洱茶'
-      //   ],
-      //   price_img: 'img/u182.png',
-      //   jiage: '￥120.0/片'
-      // },
-    
-    ],
+    routers: [],
     // 分享信息
     share: [
     ]
@@ -187,6 +136,25 @@ Page({
 
     })
   },
+    // 点击购物车
+    go_car: function (e) {
+      wx.navigateTo({
+        url: '../buy/buy',
+        success: function (res) {
+          // success
+          console.log("nihao////跳转成功")
+        },
+        fail: function () {
+          // fail
+          console.log("nihao////跳转失败")
+        },
+        complete: function () {
+          // complete
+          console.log("nihao////跳转行为结束，未知成功失败")
+        }
+
+      })
+    },
 
   onShow: function () {
     var that = this;
@@ -243,14 +211,25 @@ Page({
       that.setData({
         routers: res.data.data,
       });
-      //  添加字段到等级数组
-      for (var index in that.data.share) {
-        var sexParam = "share[" + index + "].url";
-        that.setData({
-          [sexParam]: app.globalData.img_url,
-        })
-
-      }
+      
+        //  添加字段到等级数组
+        for (var index in that.data.routers) {
+          var sexParam = "routers[" + index + "].url";
+          that.setData({
+            [sexParam]: app.globalData.img_url,
+          })
+  
+        }
+        var member_grade_img=app.globalData.member_grade_img;
+    
+           //  添加字段到等级数组
+           for (var index in that.data.routers) {
+            var sexParam = "routers[" + index + "].member_grade_img";
+            that.setData({
+              [sexParam]: member_grade_img,
+            })
+    
+          }
 
 
     },

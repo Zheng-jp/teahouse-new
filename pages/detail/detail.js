@@ -255,11 +255,11 @@ Page({
       }
 
     });
-    console.log(that.data.information);
+   
     wx.request({
       url: app.globalData.tiltes + 'teacenter_comment_show',
       data: {
-        goods_id:options.title,
+        id:options.title,
       },
       method: "post",
       header: {
