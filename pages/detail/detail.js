@@ -229,7 +229,8 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_detailed',
       data: {
-        id: options.title
+        id: options.title,
+        open_id: app.globalData.gmemberid,
       },
       method: "post",
       header: {
