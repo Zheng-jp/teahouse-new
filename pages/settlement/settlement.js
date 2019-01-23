@@ -101,28 +101,82 @@ Page({
 
     })
   },
+  // 立即支付
   repay:function(){
     var that=this;
-    console.log(that.data.user);
     var num=new Array();
     num=[that.data.num];
     wx.request({
       url: app.globalData.tiltes + 'order_place',
       data: {
-      open_id: app.globalData.gmemberid,
-      goods_id: that.data.user[1].good_id,
-      goods_standard_id: that.data.user[2].guige,
-      order_quantity : num,
-      address_id:that.data.address_id,
-      order_amount: that.data.all_money,
+          open_id: app.globalData.gmemberid,
+          goods_id: that.data.user[1].good_id,
+          goods_standard_id: that.data.user[2].guige,
+          order_quantity : num,
+          address_id:that.data.address_id,
+          order_amount: that.data.all_money,
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
+      header: {
+        "Content-Type": "json" // 默认值
 
-      // },
+      },
       success: function (res) {
-        console.log(res)
+        var order_number=res.data.data.parts_order_number;
+        wx.showActionSheet({
+          itemList: ['账户支付', '微信支付',],
+          success: function (res) {
+            // 账户支付
+            if(res.tapIndex==0){
+              console.log()
+            }
+            else if(res.tapIndex==1){
+              wx.request({
+                // url: app.globalData.tiltes + 'wxpay',
+                url: app.globalData.tiltes + 'wx_index',
+                data: {
+                  open_id: app.globalData.gmemberid,
+                  order_number: order_number
+                },
+                dataTypr: 'json',
+                method: "post",
+                // header: {
+                //   "Content-Type": "application/json" // 默认值
+                // },
+                success: function (res) {
+                  var result=res;
+      
+                  if (result) {
+                    wx.requestPayment({
+                      timeStamp: String(result.data.timeStamp),
+                      nonceStr: result.data.nonceStr,
+                      package: result.data.package,
+                      signType: result.data.signType,
+                      paySign:  result.data.paySign,
+                      'success': function (successret) {
+                        console.log('支付成功');
+                       
+                      },
+                      'fail': function (res) {
+                        console.log(res);
+                       }
+                    })
+                  }
+                },
+                      fail: function () {
+        
+                      },
+                      complete: function () {
+                        wx.hideLoading()
+                      }
+                    });   
+            }
+            
+          },
+          fail: function (res) {
+            console.log(res.errMsg)
+          }
+        })
       },
       fail: function () {
 
@@ -131,16 +185,9 @@ Page({
       }
 
     });
-    wx.showActionSheet({
-      itemList: ['账户支付', '微信支付',],
-      success: function (res) {
-        console.log(res.tapIndex)
-      },
-      fail: function (res) {
-        console.log(res.errMsg)
-      }
-    })
+  
   },
+  // 购物车支付
   buyrepay:function(){
     var that=this;
     // 下单请求
@@ -162,17 +209,21 @@ Page({
 
       // },
       success: function (res) {
+        var order_number=res.data.data.parts_order_number;
         wx.showActionSheet({
           itemList: ['账户支付', '微信支付',],
           success: function (res) {
-            if(res.tapIndex){
+            // 账户支付
+            if(res.tapIndex==0){
+              console.log()
+            }
+            else if(res.tapIndex==1){
               wx.request({
                 // url: app.globalData.tiltes + 'wxpay',
                 url: app.globalData.tiltes + 'wx_index',
                 data: {
                   open_id: app.globalData.gmemberid,
-                  cost_moneny: that.data.information.cost_moneny,
-                  activity_name: that.data.information.activity_name
+                  order_number: order_number
                 },
                 dataTypr: 'json',
                 method: "post",
@@ -181,8 +232,7 @@ Page({
                 // },
                 success: function (res) {
                   var result=res;
-        
-                  console.log(result.data.paySign);
+      
                   if (result) {
                     wx.requestPayment({
                       timeStamp: String(result.data.timeStamp),
@@ -192,25 +242,7 @@ Page({
                       paySign:  result.data.paySign,
                       'success': function (successret) {
                         console.log('支付成功');
-                        //获取支付用户的信息
-                        // wx.getStorage({
-                        //   key: 'userInfo',
-                        //   success: function (getuser) {
-                        //     //加入订单表做记录
-                        //     wx.request({
-                        //       url: url + 'Wx_AddOrder',
-                        //       data: {
-                        //         uname: getuser.data.nickName,
-                        //         goods: that.data.goodsList[0].goods_name,
-                        //         price: that.data.totalPrice,
-                        //         openid: res.data,
-                        //       },
-                        //       success: function (lastreturn) {
-                        //         console.log("存取成功");
-                        //       }
-                        //     })
-                        //   },
-                        // })
+                       
                       },
                       'fail': function (res) {
                         console.log(res);
@@ -226,6 +258,7 @@ Page({
                       }
                     });   
             }
+            
           },
           fail: function (res) {
             console.log(res.errMsg)
