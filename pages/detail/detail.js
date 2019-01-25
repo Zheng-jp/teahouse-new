@@ -148,7 +148,7 @@ Page({
   
         // },
         success: function (res) {
-          console.log(res);
+          var order_number=res.data.data.parts_order_number;
           wx.request({
             // url: app.globalData.tiltes + 'wxpay',
             url: app.globalData.tiltes + 'wx_index',
@@ -156,7 +156,7 @@ Page({
               open_id: app.globalData.gmemberid,
               cost_moneny: that.data.information.cost_moneny,
               activity_name: that.data.information.activity_name,
-              order_number: res.data.data.parts_order_number
+              order_number: order_number
             },
             dataTypr: 'json',
             method: "post",
@@ -165,8 +165,6 @@ Page({
             // },
             success: function (res) {
               var result=res;
-    
-              console.log(result.data.paySign);
               if (result) {
                 wx.requestPayment({
                   timeStamp: String(result.data.timeStamp),
@@ -181,13 +179,29 @@ Page({
                     });
                   },
                   'fail': function (res) {
-                    console.log(res);
+                    wx.request({
+                      url: app.globalData.tiltes + 'activity_order_delete',
+                      data: {
+                        parts_order_number: order_number
+                      },
+                      method: "post",
+                      success: function (res) {
+                      
+                      },
+                      fail: function () {
+                
+                      },
+                      complete: function () {
+                        wx.hideLoading()
+                      }
+                
+                    });
                    }
                 })
               }
             },
                   fail: function () {
-    
+                    
                   },
                   complete: function () {
                     wx.hideLoading()
@@ -195,7 +209,7 @@ Page({
                 });   
         },
         fail: function () {
-  
+            
         },
         complete: function () {
           wx.hideLoading()
