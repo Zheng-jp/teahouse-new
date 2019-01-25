@@ -260,7 +260,6 @@ Page({
   showPopup: function (e) {
     var that=this;
     var goodList=that.data.goodList;
-    console.log(that);
       var chars=[];
       var shop_ids = {};
       var good_ids = {};
@@ -270,7 +269,6 @@ Page({
       var good_id=new Array();
       var id=new Array();
       var num=new Array();
-      console.log(goodList);
          //  添加good_id字段到传值数组
          for(var index in goodList){
            if(goodList[index].checked==true){
@@ -295,22 +293,31 @@ Page({
        chars.push(ids);
        chars.push(nums);
        let userStr=JSON.stringify(chars);
-      wx.navigateTo({
-        url: '../settlement/settlement?title=' + userStr,
-        success: function (res) {
-          // success
-          console.log("nihao////跳转成功")
-        },
-        fail: function () {
-          // fail
-          console.log("nihao////跳转失败")
-        },
-        complete: function () {
-          // complete
-          console.log("nihao////跳转行为结束，未知成功失败")
-        }
-
-      })
+       if(chars[0].shop_id.length==0){
+        wx.showToast({
+          title:'请选择一个或多个商品',
+          icon:'none'
+        })
+       }
+       else{
+        wx.navigateTo({
+          url: '../settlement/settlement?title=' + userStr,
+          success: function (res) {
+            // success
+            console.log("nihao////跳转成功")
+          },
+          fail: function () {
+            // fail
+            console.log("nihao////跳转失败")
+          },
+          complete: function () {
+            // complete
+            console.log("nihao////跳转行为结束，未知成功失败")
+          }
+  
+        })
+      
+       }
     
 
   },
