@@ -117,10 +117,11 @@ Page({
           order_amount: that.data.all_money,
       },
       method: "post",
-      header: {
-        "Content-Type": "json" // 默认值
 
-      },
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
       success: function (res) {
         var order_number=res.data.data.parts_order_number;
         wx.showActionSheet({
