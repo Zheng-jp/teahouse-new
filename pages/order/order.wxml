@@ -15,14 +15,14 @@
 				</view>
 				<view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
-						<image src='img/u1222.png' mode='aspectFill'></image>
+						<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
 						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<image src='{{url}}{{member_grade_img}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x{{item.order_quantity}}</view>
@@ -46,14 +46,14 @@
 				</view>
 			    <view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
-						<image src='img/u1222.png' mode='aspectFill'></image>
+						<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
 						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<image src='{{url}}{{member_grade_img}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x{{item.order_quantity}}</view>
@@ -76,14 +76,14 @@
 				</view>
 			  <view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
-						<image src='img/u1222.png' mode='aspectFill'></image>
+						<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
 						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<image src='{{url}}{{member_grade_img}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x{{item.order_quantity}}</view>
@@ -107,14 +107,14 @@
 				</view>
 			  <view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
-						<image src='img/u1222.png' mode='aspectFill'></image>
+						<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
 						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<image src='{{url}}{{member_grade_img}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x{{item.order_quantity}}</view>
@@ -138,14 +138,14 @@
 				</view>
 				<view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
-						<image src='img/u1222.png' mode='aspectFill'></image>
+						<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
 						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<image src='{{url}}{{member_grade_img}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x{{item.order_quantity}}</view>
@@ -168,14 +168,14 @@
 				</view>
 				<view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
-						<image src='img/u1222.png' mode='aspectFill'></image>
+						<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
 						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<image src='{{url}}{{member_grade_img}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 							<view class='num'>x{{item.order_quantity}}</view>
@@ -198,14 +198,14 @@
 				</view>
 				<view class='box_list_two' wx:for="{{item.info}}">
 					<view class='img'>
-						<image src='img/u1222.png' mode='aspectFill'></image>
+						<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
 						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
-								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
+								<image src='{{url}}{{member_grade_img}}' class='user_img'></image>
 								<text class='uite'>￥{{item.goods_money}}/片</text>
 							</view>
 						<view class='num'>x{{item.order_quantity}}</view>

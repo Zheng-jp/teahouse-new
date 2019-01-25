@@ -9,7 +9,9 @@ Page({
       height:'',
       tab:'1',
       static:'5',
-      order:[]
+      order:[],
+      url: app.globalData.img_url,
+      member_grade_img:null,
   },
   // 删除订单
   delete_order:function (e){
@@ -332,6 +334,8 @@ Page({
     var that = this;
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
+    var member_grade_img=app.globalData.member_grade_img;
+    this.setData({ member_grade_img: member_grade_img });
     var title = options.title;
     if(title==0){
       wx.request({
