@@ -16,10 +16,9 @@ Page({
     var that=this;
     var indexs = e.currentTarget.dataset.id;
     var orderItems = that.data.order;
-    console.log(orderItems);
     for (var i = 0; i < orderItems.length; ++i) {
       if(orderItems[i].parts_order_number == indexs){
-       
+        orderItems.splice(i, 1);
         wx.request({
           url: app.globalData.tiltes + 'ios_api_order_del',
           data: {
@@ -27,12 +26,13 @@ Page({
             parts_order_number:indexs
           },
           method: "post",
-          header: {
-            "Content-Type": "application/json" // 默认值
+          // header: {
+          //   "Content-Type": "application/json" // 默认值
     
-          },
+          // },
           success: function (res) {
-            orderItems.splice(i, 1);
+         
+            
             that.setData({
               order: orderItems
             }); 
@@ -193,8 +193,8 @@ Page({
       success: function(res) {
       if (res.confirm) {
         for (var i = 0; i < orderItems.length; i++) {
-          console.log(orderItems.length);
           if(orderItems[i].parts_order_number == indexs){
+            orderItems.splice(i, 1);
             wx.request({
               url: app.globalData.tiltes + 'ios_api_order_no_pay_cancel',
               data: {
@@ -208,7 +208,7 @@ Page({
         
               },
               success: function (res) {
-                orderItems.splice(i, 1);
+                
                 that.setData({
                   order: orderItems
                 }); 

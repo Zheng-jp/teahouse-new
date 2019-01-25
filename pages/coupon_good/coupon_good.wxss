@@ -182,6 +182,7 @@
   margin:10rpx;
   color: #949494;
   font-size: 24rpx;
+  margin-top: -13rpx;
 }
    .weui-grid_kuchun{
      padding: 10rpx;

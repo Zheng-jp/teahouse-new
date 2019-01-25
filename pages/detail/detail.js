@@ -22,7 +22,8 @@ Page({
     // 输入框内容
     repay_content:'',
     // 唤起输入框的事件变量
-    opaction:''
+    opaction:'',
+    apply:null
   },
   /**
 * 点击回复
@@ -52,10 +53,10 @@ Page({
         content: that.data.repay_content
       },
       method: "post",
-      header: {
-        "Content-Type": "application/json" // 默认值
+      // header: {
+      //   "Content-Type": "application/json" // 默认值
 
-      },
+      // },
       success: function (res) {
         this.setData({
           repay_content:''
@@ -83,10 +84,10 @@ Page({
         teahost_id:that.data.information.id,
       },
       method: "post",
-      header: {
-        "Content-Type": "application/json" // 默认值
+      // header: {
+      //   "Content-Type": "application/json" // 默认值
 
-      },
+      // },
       success: function (res) {
         console.log(res);
         this.setData({
@@ -110,10 +111,10 @@ Page({
         teahost_id: that.data.information.id,
       },
       method: "post",
-      header: {
-        "Content-Type": "application/json" // 默认值
+      // header: {
+      //   "Content-Type": "application/json" // 默认值
 
-      },
+      // },
       success: function (res) {
        
       },
@@ -142,10 +143,10 @@ Page({
           activity_id:that.data.information.id,
         },
         method: "post",
-        header: {
-          "Content-Type": "application/json" // 默认值
+        // header: {
+        //   "Content-Type": "application/json" // 默认值
   
-        },
+        // },
         success: function (res) {
           console.log(res);
           wx.request({
@@ -175,25 +176,9 @@ Page({
                   paySign:  result.data.paySign,
                   'success': function (successret) {
                     console.log('支付成功');
-                    //获取支付用户的信息
-                    // wx.getStorage({
-                    //   key: 'userInfo',
-                    //   success: function (getuser) {
-                    //     //加入订单表做记录
-                    //     wx.request({
-                    //       url: url + 'Wx_AddOrder',
-                    //       data: {
-                    //         uname: getuser.data.nickName,
-                    //         goods: that.data.goodsList[0].goods_name,
-                    //         price: that.data.totalPrice,
-                    //         openid: res.data,
-                    //       },
-                    //       success: function (lastreturn) {
-                    //         console.log("存取成功");
-                    //       }
-                    //     })
-                    //   },
-                    // })
+                    that.setData({
+                      apply: 1,
+                    });
                   },
                   'fail': function (res) {
                     console.log(res);
@@ -238,7 +223,6 @@ Page({
 
       },
       success: function (res) {
-    
         that.setData({
           apply: res.data.status,
         });

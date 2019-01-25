@@ -2,15 +2,26 @@
       <view class='goods-title clear'>
           <text class='goods-title-text'>商品</text>
           <view class='more-all' bindtap="go_good">
-              <text class='more'>更多</text>
-              <image src='{{more}}' style='float:right; ' class='more-img'></image>
           </view>
       </view>
-      <view class='goods-content'>
+     <view class='goods-content'>
             <view class="weui-grids">
-                    <view class="weui-grid" wx:for="{{routers}}" wx:key="name" bindtap="go_gooddetail"  data-id="{{item.id}}">
-                        <template  is="good" data="{{item}}"  bindtap></template>  
+                    <view class="weui-grid" wx:for="{{routers}}"wx:for-item="item"   wx:key="*this" bindtap="go_gooddetail"  data-id="{{item.id}}">
+                         <view class='weui-grid__bg'>
+                                <view class="weui-grid__icon">
+                                    <image src="{{item.url}}{{item.goods_show_image}}" mode="scaleToFill" />
+                                </view>
+                                <text class="weui-grid_name">{{item.goods_name}}</text>
+                                <text class="weui-grid_kuchun">库存123片</text>
+                                <view class='selling_point'>{{item.goods_selling}}
+                                </view>
+                                <view class='price'>
+                                    <view class='price_img'><image src='{{item.url}}{{item.member_grade_img}}'></image></view>
+                                    <text class="price_text" wx:if="{{item.goods_standard==0}}">￥{{item.goods_new_money}}</text>
+                                    <text class="price_text" wx:else>￥{{item.min_price}}</text>
+                                </view>
+                            </view>
                     </view>
-         </view>
+            </view>
       </view>
     </view>
