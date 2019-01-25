@@ -65,7 +65,7 @@
 				</view>
 				<view class='box_list_four'>
 					<view>
-						<view class='remind_delivery cancel type_button'>提醒发货</view>
+						<view class='remind_delivery cancel type_button'  bindtap="tip_order" data-id="{{item.parts_order_number}}">提醒发货</view>
 					</view>
 				</view>
 			</view>

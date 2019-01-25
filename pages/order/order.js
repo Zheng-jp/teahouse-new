@@ -288,6 +288,36 @@ Page({
       }
     })
   },
+   // 提醒
+   tip_order:function (e){
+    var that=this;
+    var indexs = e.currentTarget.dataset.id;
+    var orderItems = that.data.order;
+    wx.request({
+      url: app.globalData.tiltes + 'option_add',
+      data: {
+        order_num:indexs,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "application/json" // 默认值
+
+      // },
+      success: function (res) {
+       console.log(res);
+       
+      },
+      fail: function () {
+     
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
+  
+  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
