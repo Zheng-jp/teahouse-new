@@ -238,10 +238,10 @@ Page({
 
       },
       success: function (res) {
-      //  res.data.status
-        // that.setData({
-        //   information: res.data.data[0],
-        // });
+    
+        that.setData({
+          apply: res.data.status,
+        });
 
       },
       fail: function () {

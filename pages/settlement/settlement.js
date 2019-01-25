@@ -136,7 +136,7 @@ Page({
                 // url: app.globalData.tiltes + 'wxpay',
                 url: app.globalData.tiltes + 'wx_order_index',
                 data: {
-                  open_id: app.globalData.gmemberid,
+                  member_id: app.globalData.member_id,
                   order_number: order_number
                 },
                 dataTypr: 'json',
@@ -220,10 +220,9 @@ Page({
             }
             else if(res.tapIndex==1){
               wx.request({
-                // url: app.globalData.tiltes + 'wxpay',
                 url: app.globalData.tiltes + 'wx_order_index',
                 data: {
-                  open_id: app.globalData.gmemberid,
+                  member_id: app.globalData.member_id,
                   order_number: order_number
                 },
                 dataTypr: 'json',

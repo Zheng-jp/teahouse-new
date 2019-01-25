@@ -12,6 +12,7 @@ App({
     gmemberid:null,
     member_grade_img:null,
     member_grade_name:null,
+    member_id:null,
     url:'https://teahouse.siring.com.cn',
     tiltes: 'https://teahouse.siring.com.cn/',
     img_url: 'https://teahouse.siring.com.cn/uploads/',
