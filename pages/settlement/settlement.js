@@ -514,10 +514,12 @@ Page({
     var tel=wx.getStorageSync('tel');
     var name=wx.getStorageSync('name');
     var address=wx.getStorageSync('address');
+    var id=wx.getStorageSync('id');
     that.setData({
       tel: tel,
       name:name,
       address:address,
+      address_id:id
     });
   },
 

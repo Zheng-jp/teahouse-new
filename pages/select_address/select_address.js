@@ -83,9 +83,11 @@ Page({
     var tel=event.currentTarget.dataset.tel;
     var name=event.currentTarget.dataset.name;
     var address=event.currentTarget.dataset.address;
+    var id=event.currentTarget.dataset.id;
     wx.setStorageSync('tel', tel);
     wx.setStorageSync('name', name);
     wx.setStorageSync('address', address);
+    wx.setStorageSync('id', id);
      wx.navigateBack({
       delta: 1
     });
