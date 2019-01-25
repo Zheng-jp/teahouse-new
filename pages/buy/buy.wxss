@@ -36,6 +36,7 @@
 .goods_info_wrap{
   min-height: 406rpx;
   background: #fff;
+  margin-bottom: 100rpx;
 }
 .radio{
   padding: 20rpx;

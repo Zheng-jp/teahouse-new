@@ -200,7 +200,7 @@ Page({
               data: {
                 open_id: app.globalData.gmemberid,
                 parts_order_number:indexs,
-                Cancel_order_description :'取消'
+                cancel_order_description :'取消'
               },
               method: "post",
               header: {
