@@ -94,7 +94,7 @@ Page({
       
             // },
             success: function (res) {
-              console.log(res);
+              that.calculateTotal();
               
             },
             fail: function () {
@@ -142,7 +142,7 @@ Page({
       
             // },
             success: function (res) {
-              console.log(res);
+              that.calculateTotal();
               
             },
             fail: function () {
@@ -163,7 +163,7 @@ Page({
   },
  
   checkboxChange: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value);
+    var that=this;
     var checkboxItems = this.data.goodList;
     var values = e.detail.value;
     for (var i = 0; i < checkboxItems.length; ++i) {
@@ -185,10 +185,11 @@ Page({
       'goodList': checkboxItems,
       'checkAll': checkAll
     });
-    this.calculateTotal();
+    that.calculateTotal();
   },
   // 全选
   selectalltap: function (e) {
+    var that=this;
     // console.log('用户点击全选，携带value值为：', e.detail.value);
     var value = e.detail.value;
     var checkAll = false;
@@ -206,7 +207,7 @@ Page({
       'checkAll': checkAll,
       'goodList': goodList
     });
-    this.calculateTotal();
+    that.calculateTotal();
   },
   /**
  * 删除购物车当前商品

@@ -19,7 +19,7 @@
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
-						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
@@ -50,7 +50,7 @@
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
-						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
@@ -80,7 +80,7 @@
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
-						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
@@ -111,7 +111,7 @@
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
-						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
@@ -142,7 +142,7 @@
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
-						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
@@ -172,7 +172,7 @@
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
-						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
@@ -202,7 +202,7 @@
 					</view>
 					<view class='good_infor' >
 						<view class='good_name'>{{item.parts_goods_name}}</view>
-						<view class='good_selling'>{{item.user_account_name}}</view>
+						<view class='good_selling'>{{item.goods_describe}}</view>
 						<view class='good_monye'>
 							<view class='good_uite'>
 								<image src='{{url}}{{item.goods_image}}' class='user_img'></image>
