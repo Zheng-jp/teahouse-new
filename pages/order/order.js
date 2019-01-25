@@ -182,6 +182,56 @@ Page({
       }
       
   },
+  // 取消订单
+  cancel_order:function (e){
+    var that=this;
+    var indexs = e.currentTarget.dataset.id;
+    var orderItems = that.data.order;
+    wx.showModal({
+      title: '提示',
+      content: '确定取消订单吗？',
+      success: function(res) {
+      if (res.confirm) {
+        console.log(orderItems.length);
+        for (var i = 0; i < orderItems.length; i++) {
+          if(orderItems[i].parts_order_number == indexs){
+            wx.request({
+              url: app.globalData.tiltes + 'ios_api_order_no_pay_cancels',
+              data: {
+                open_id: app.globalData.gmemberid,
+                parts_order_number:indexs,
+                Cancel_order_description :'取消'
+              },
+              method: "post",
+              header: {
+                "Content-Type": "application/json" // 默认值
+        
+              },
+              success: function (res) {
+                orderItems.splice(i, 1);
+                that.setData({
+                  order: orderItems
+                }); 
+               
+              },
+              fail: function () {
+             
+              },
+              complete: function () {
+                wx.hideLoading()
+              }
+        
+            });
+          }
+          
+        }
+      } else if (res.cancel) {
+      }
+      }
+      })
+    
+  
+  },
   /**
    * 生命周期函数--监听页面加载
    */

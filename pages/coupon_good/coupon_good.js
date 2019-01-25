@@ -26,9 +26,9 @@ Page({
       'coupon_id': options.title
     },
     method: "post",
-    header: {
-      "Content-Type": "json" // 默认值
-    },
+    // header: {
+    //   "Content-Type": "json" // 默认值
+    // },
     success: function (res) {
       that.setData({
         routers: res.data.data,
