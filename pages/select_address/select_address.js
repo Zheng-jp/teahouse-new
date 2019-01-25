@@ -8,6 +8,7 @@ Page({
   data: {
      addresss:[],
      is_select_address:'',
+     is:true,
    
   },
   add_address: function (event) {
@@ -100,10 +101,10 @@ Page({
     // 判读从哪个页面进来
     var  pages = getCurrentPages();
     var  prevpage = pages[pages.length - 2];
-    console.log(prevpage.route)
    if(prevpage.route=='pages/settlement/settlement'){
     that.setData({
       is_select_address: 'select',
+      is:false
     });
    }
     wx.request({

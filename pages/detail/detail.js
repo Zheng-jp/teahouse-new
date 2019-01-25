@@ -255,6 +255,35 @@ Page({
       }
 
     });
+    wx.request({
+      url: app.globalData.tiltes + 'teacenter_detailed',
+      data: {
+        id: options.title,
+        open_id: app.globalData.gmemberid,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "application/json" // 默认值
+
+      // },
+      success: function (res) {
+        that.setData({
+          information: res.data.data[0],
+        });
+        var article = res.data.data[0].commodity;
+        WxParse.wxParse('article', 'html', article, that, 5);
+        
+
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
    
     wx.request({
       url: app.globalData.tiltes + 'teacenter_comment_show',
@@ -262,10 +291,10 @@ Page({
         id:options.title,
       },
       method: "post",
-      header: {
-        "Content-Type": "application/json" // 默认值
+      // header: {
+      //   "Content-Type": "application/json" // 默认值
 
-      },
+      // },
       success: function (res) {
         console.log(res);
         // that.setData({
