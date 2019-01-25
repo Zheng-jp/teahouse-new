@@ -189,6 +189,7 @@ Page({
     var that = this;
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
+    
     wx.request({
       url: app.globalData.tiltes + 'ios_api_order_all',
       data: {

@@ -2,8 +2,8 @@
 <view class='all'>
 	<radio-group class="radio-group" bindchange="radioChange" wx:if="{{address.info!='没有填写地址记录'}}" >
 		<view class='content_list' wx:for='{{address}}'>
-			<view class='radio'>
-				<radio value="{{item.id}}" color='#fff' />
+			<view class='radio' wx:if="{{is_select_address!=select}}">
+				<radio value="{{item.id}}" color='#fff'  />
 			</view>
 			<view class='add_information' bindtap="{{is_select_address}}"  data-tel='{{item.harvester_phone_num}}' data-name='{{item.harvester}}' data-address='{{item.address_name}}{{item.harvester_real_address}}' name="aaa">
 				<view>
