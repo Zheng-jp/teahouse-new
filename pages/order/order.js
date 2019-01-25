@@ -31,8 +31,10 @@ Page({
     
           // },
           success: function (res) {
-         
-            
+            wx.showToast({
+              title:'删除成功',
+              icon:'none'
+            })
             that.setData({
               order: orderItems
             }); 
@@ -203,12 +205,15 @@ Page({
                 cancel_order_description :'取消'
               },
               method: "post",
-              header: {
-                "Content-Type": "application/json" // 默认值
+              // header: {
+              //   "Content-Type": "application/json" // 默认值
         
-              },
+              // },
               success: function (res) {
-                
+                wx.showToast({
+                  title:'操作成功',
+                  icon:'none'
+                })
                 that.setData({
                   order: orderItems
                 }); 
@@ -304,8 +309,10 @@ Page({
 
       // },
       success: function (res) {
-       console.log(res);
-       
+        wx.showToast({
+          title:'操作成功',
+          icon:'none'
+        })
       },
       fail: function () {
      
