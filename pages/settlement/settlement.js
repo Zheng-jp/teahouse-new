@@ -30,6 +30,8 @@ Page({
     all_money:0,
     user:[],
     address_id:0,
+    // 茶叶类型
+    order_type:1,
     
     
   },
@@ -47,6 +49,7 @@ Page({
         selected: true,
         selected1: false,
         selected2: false,
+        order_type:1,
       })
     }
     else if (e.detail.value == "到店自提"){
@@ -54,6 +57,7 @@ Page({
         selected: false,
         selected1: true,
         selected2: false,
+        order_type:2,
       })
     }
     else{
@@ -61,6 +65,7 @@ Page({
         selected: false,
         selected1: false,
         selected2: true,
+        order_type:3,
       })
     }
     // console.log(e.detail.value);
@@ -115,6 +120,7 @@ Page({
           order_quantity : num,
           address_id:that.data.address_id,
           order_amount: that.data.all_money,
+          order_type:that.data.order_type,
       },
       method: "post",
 
@@ -137,7 +143,8 @@ Page({
                 url: app.globalData.tiltes + 'wx_order_index',
                 data: {
                   member_id: app.globalData.member_id,
-                  order_number: order_number
+                  order_number: order_number,
+               
                 },
                 dataTypr: 'json',
                 method: "post",
@@ -202,6 +209,7 @@ Page({
       order_quantity: that.data.user[3].num,
       address_id:that.data.address_id,
       order_amount: that.data.all_money,
+      order_type:that.data.order_type,
 
       },
       method: "post",
