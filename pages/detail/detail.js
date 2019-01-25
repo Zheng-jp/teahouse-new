@@ -227,7 +227,7 @@ Page({
     var that=this;
     var title = options.title;
     wx.request({
-      url: app.globalData.tiltes + 'teacenter_detailed',
+      url: app.globalData.tiltes + 'activity_status',
       data: {
         id: options.title,
         open_id: app.globalData.gmemberid,
@@ -238,13 +238,10 @@ Page({
 
       },
       success: function (res) {
-        that.setData({
-          information: res.data.data[0],
-        });
-        var article = res.data.data[0].commodity;
-        WxParse.wxParse('article', 'html', article, that, 5);
-        
-
+      //  res.data.status
+        // that.setData({
+        //   information: res.data.data[0],
+        // });
 
       },
       fail: function () {
