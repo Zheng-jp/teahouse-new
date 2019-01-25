@@ -192,11 +192,11 @@ Page({
       content: '确定取消订单吗？',
       success: function(res) {
       if (res.confirm) {
-        console.log(orderItems.length);
         for (var i = 0; i < orderItems.length; i++) {
+          console.log(orderItems.length);
           if(orderItems[i].parts_order_number == indexs){
             wx.request({
-              url: app.globalData.tiltes + 'ios_api_order_no_pay_cancels',
+              url: app.globalData.tiltes + 'ios_api_order_no_pay_cancel',
               data: {
                 open_id: app.globalData.gmemberid,
                 parts_order_number:indexs,
@@ -231,6 +231,62 @@ Page({
       })
     
   
+  },
+  // 付款
+  repay:function(e){
+    var indexs = e.currentTarget.dataset.id;
+    wx.showActionSheet({
+      itemList: ['账户支付', '微信支付',],
+      success: function (res) {
+        // 账户支付
+        if(res.tapIndex==0){
+        
+        }
+        else if(res.tapIndex==1){
+          wx.request({
+            url: app.globalData.tiltes + 'wx_order_index',
+            data: {
+              member_id: app.globalData.member_id,
+              order_number: indexs
+            },
+            dataTypr: 'json',
+            method: "post",
+            // header: {
+            //   "Content-Type": "application/json" // 默认值
+            // },
+            success: function (res) {
+              var result=res;
+  
+              if (result) {
+                wx.requestPayment({
+                  timeStamp: String(result.data.timeStamp),
+                  nonceStr: result.data.nonceStr,
+                  package: result.data.package,
+                  signType: result.data.signType,
+                  paySign:  result.data.paySign,
+                  'success': function (successret) {
+                    console.log('支付成功');
+                  },
+                  'fail': function (res) {
+                    console.log(res);
+                   }
+                })
+              }
+            },
+                  fail: function () {
+    
+                  },
+                  complete: function () {
+                    wx.hideLoading()
+                  }
+                });   
+        }
+        
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

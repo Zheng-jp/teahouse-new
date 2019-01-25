@@ -35,7 +35,7 @@
 				<view class='box_list_four'>
 					<view>
 						<view class='cancel' bindtap="cancel_order"  data-id="{{item.parts_order_number}}">取消订单</view>
-						<view class='payment'>付款</view>
+						<view class='payment' bindtap="repay"  data-id="{{item.parts_order_number}}">付款</view>
 					</view>
 				</view>
 			</view>
