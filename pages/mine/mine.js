@@ -13,18 +13,22 @@ Page({
     order_nav: [
       {
         src: app.globalData.url + '/upload/20181115/eb46c126533c9c51a19b9baea16f8523.png',
-        text: '待付款'
+        text: '待付款',
+        id:1,
       },
       {
         src: app.globalData.url + '/upload/20181115/0a2b1ad83a3cb195b5367943f208e667.png',
-        text: '待发货'
+        text: '待发货',
+        id:2,
       },
       {
         src: app.globalData.url + '/upload/20181115/9dd5f4a52c2a77653c7ea3ef05ef7226.png',
-        text: '待收货'
+        text: '待收货',
+        id:3,
       }, {
         src: app.globalData.url + '/upload/20181115/ab9f934b82ab3e9d2ba77b9616501d6a.png',
-        text: '待评价'
+        text: '待评价',
+        id:4,
       }, {
         src: app.globalData.url + '/upload/20181115/fa73c90513036e142b64e3ef2c948a87.png',
         text: '售后/退款'
@@ -210,10 +214,9 @@ Page({
     })
   },
   go_order: function (event) {
-    console.log(event);
-    var item = event.currentTarget.dataset.item;
+    var item = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../order/order?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
+      url: '../order/order?title='+item,
       success: function (res) {
         // success
         console.log("nihao////跳转成功")

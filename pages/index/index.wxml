@@ -69,8 +69,6 @@
       </view>
   
 </view>
-<image class="buy" src="img/buy.png" mode="widthFix" lazy-load="false" binderror="" bindload="" bindtap="go_car">
-    
-</image>
+<image class="buy" src="img/buy.png" mode="widthFix" lazy-load="false" binderror="" bindload="" bindtap="go_car"></image>
 
 </view>

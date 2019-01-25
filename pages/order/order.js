@@ -189,31 +189,143 @@ Page({
     var that = this;
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
-    
-    wx.request({
-      url: app.globalData.tiltes + 'ios_api_order_all',
-      data: {
-        open_id: app.globalData.gmemberid,
-      },
-      method: "post",
-      header: {
-        "Content-Type": "application/json" // 默认值
-
-      },
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          order:res.data.data
-        })
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
-      }
-
-    });
+    var title = options.title;
+    if(title==0){
+      wx.request({
+        url: app.globalData.tiltes + 'ios_api_order_all',
+        data: {
+          open_id: app.globalData.gmemberid,
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "application/json" // 默认值
+  
+        // },
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            order:res.data.data,
+            tab:'1'
+          })
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
+    }
+    else if(title==1){
+      wx.request({
+        url: app.globalData.tiltes + 'ios_api_order_wait_pay',
+        data: {
+          open_id: app.globalData.gmemberid,
+          tab:'2'
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "application/json" // 默认值
+  
+        // },
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            order:res.data.data
+          })
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
+    }
+    else if(title==2){
+      wx.request({
+        url: app.globalData.tiltes + 'ios_api_order_wait_send',
+        data: {
+          open_id: app.globalData.gmemberid,
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "application/json" // 默认值
+  
+        // },
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            order:res.data.data,
+            tab:'3'
+          })
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
+    }
+    else if(title==3){
+      wx.request({
+        url: app.globalData.tiltes + 'ios_api_order_wait_deliver',
+        data: {
+          open_id: app.globalData.gmemberid,
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "application/json" // 默认值
+  
+        // },
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            order:res.data.data,
+            tab:'4'
+          })
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
+    }
+    else{
+      wx.request({
+        url: app.globalData.tiltes + 'ios_api_order_wait_evaluate',
+        data: {
+          open_id: app.globalData.gmemberid,
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "application/json" // 默认值
+  
+        // },
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            order:res.data.data,
+            tab:'5'
+          })
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
+    }
+   
   },
 
   /**

@@ -41,10 +41,10 @@
   <view class='order'>
      <view class='order_title'>
       <view class="order_title_content">我的订单</view>
-      <view class="order_title_more" bindtap="go_order"> 查看全部订单></view>
+      <view class="order_title_more" bindtap="go_order" data-id="0"> 查看全部订单></view>
       </view>
      <view class='order_content'>
-     <view wx:for="{{order_nav}}" class='nav_list' bindtap="go_order">
+     <view wx:for="{{order_nav}}" class='nav_list' bindtap="go_order" data-id="{{item.id}}">
        <view class='nav_img'><image src='{{item.src}}'></image></view>
        <view>{{item.text}}</view>
      </view >
