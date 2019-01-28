@@ -164,7 +164,8 @@
 		</view>
 		<view class='sundry-li'>
 			<view class='text_red'>优惠券</view>
-			<view><text style='color:#FF7E4A;'>无可适用优惠券</text></view>
+				<view wx:if="{{coupon_show==1}}"><text style='color:#FF7E4A;'>有可适用优惠券</text></view>
+			<view wx:else><text style='color:#FF7E4A;'>无可适用优惠券</text></view>
 		</view>
 		<view class='sundry-li'>
 			<view>运费</view>

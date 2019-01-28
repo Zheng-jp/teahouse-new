@@ -32,6 +32,8 @@ Page({
     address_id:0,
     // 茶叶类型
     order_type:1,
+    // 优惠劵显示
+    coupon_show:null,
     
     
   },
@@ -483,7 +485,12 @@ Page({
     
           // },
           success: function (res) {
-            console.log(res)
+            
+              that.setData({
+                coupon_show:res.data.status
+              });
+            
+            
           },
           fail: function () {
     
@@ -502,7 +509,7 @@ Page({
       }
 
     });
-    console.log(that.data);
+  
    
     // 判读从哪个页面进来
     var  pages = getCurrentPages();
