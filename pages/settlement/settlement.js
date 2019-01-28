@@ -469,6 +469,29 @@ Page({
           all_money: all_moneys,
           num:that.data.goods[0].number
         });
+        wx.request({
+          url: app.globalData.tiltes + 'coupon_appropriated',
+          data: {
+            'open_id': app.globalData.gmemberid,
+            'goods_id': user[1].good_id,
+            'member_garade_name':app.globalData.member_grade_name,
+            "money":all_moneys
+          },
+          method: "post",
+          // header: {
+          //   "Content-Type": "json" // 默认值
+    
+          // },
+          success: function (res) {
+            console.log(res)
+          },
+          fail: function () {
+    
+          },
+          complete: function () {
+          }
+    
+        });
        
        
       },
@@ -479,6 +502,8 @@ Page({
       }
 
     });
+    console.log(that.data);
+   
     // 判读从哪个页面进来
     var  pages = getCurrentPages();
     var  prevpage = pages[pages.length - 2];
