@@ -40,7 +40,6 @@ Page({
     that.setData({
       repay_content:e.detail.value
     })
-    console.log(that.data.repay_content);
   },
  
   // 评论输入框发送事件
@@ -49,7 +48,6 @@ Page({
     that.setData({
       releaseFocus: false
     })
-   
     wx.request({
       url: app.globalData.tiltes + 'teacenter_comment',
       data: {
@@ -65,7 +63,8 @@ Page({
       success: function (res) {
         that.setData({
           repay_content:''
-        })
+        });
+        that.onShow();
       },
       fail: function () {
 
@@ -77,7 +76,6 @@ Page({
   },
   good: function (e) {
     var that = this;
-    console.log(e.currentTarget.dataset.id);
     wx.request({
       url: app.globalData.tiltes + 'teacenter_comment_updata',
       data: {
@@ -317,7 +315,6 @@ formatDate:function(inputTime) {
   
         // },
         success: function (res) {
-          console.log(res);
   
           that.setData({
             repay_informatiom: res.data.data,
@@ -329,7 +326,6 @@ formatDate:function(inputTime) {
           that.setData({
             repay_informatiom:list,
           });
-         console.log(that);
         },
         fail: function () {
   
