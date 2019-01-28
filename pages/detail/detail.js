@@ -283,7 +283,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_comment_show',
       data: {
-        id:options.title,
+        goods_id:options.title,
       },
       method: "post",
       // header: {
