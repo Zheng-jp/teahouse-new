@@ -89,17 +89,17 @@ Page({
 
       // },
       success: function (res) {
-        var lists=that.data.repay_informatiom;
-        for (var i = 0; i <lists.length;i++){
-          if(lists[i].id==e.currentTarget.dataset.id){
-            lists[i].status=1;
-          }
+        // var lists=that.data.repay_informatiom;
+        // for (var i = 0; i <lists.length;i++){
+        //   if(lists[i].id==e.currentTarget.dataset.id){
+        //     lists[i].status=1;
+        //   }
         
-         }
-         that.setData({
-          repay_informatiom: lists
-        }) 
-      
+        //  }
+        //  that.setData({
+        //   repay_informatiom: lists
+        // }) 
+        that.onShow();
       },
       fail: function () {
 
