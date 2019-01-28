@@ -41,11 +41,12 @@
           <text  decode="true">1、评论点赞超过500，奖励积分5个\n</text>
       </view>
           
-      <view class='comment_repay' >
+      <view class='comment_repay' wx:for="{{repay_informatiom}}">
           <view class='comment_ico'><image src='img/u100.jpg'></image></view>
-          <view class='comment_name'>瑞川</view>
-          <view class='zhan'><text class='zhan_text'>赞</text><view class='comment_img' bindtap='good'><image src='img/u4967.png'></image></view></view>
-          <view class='repay_content'>香港就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感。 但在这个全球最密集的城市，“死后能住进棺材”纯属是妄念。</view>
+          <view class='comment_name'>{{item.user_account}}</view>
+          <view class='zhan' wx:if="{{item.status==0}}"><text class='zhan_text'>赞</text><view class='comment_img' bindtap='good'><image src='img/u4967.png'></image></view></view>
+           <view class='zhan' wx:else><text class='zhan_text'>赞</text><view class='comment_img' bindtap='good'><image src='img/u4968.png'></image></view></view>
+          <view class='repay_content'>{{item.comment_details}}</view>
           <view class='repay_list'> <text >潮州</text><text>刚刚</text></view>
       </view>
       <view class="release" hidden="{{!releaseFocus}}">

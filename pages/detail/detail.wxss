@@ -126,7 +126,7 @@ margin: 0 auto;
   margin: 20rpx auto;
 }
 .repay_content{
-  margin-left: 40rpx;
+  margin-left: 66rpx;
   font-size: 24rpx;
   color: #333333;
 }

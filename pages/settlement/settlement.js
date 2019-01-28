@@ -474,7 +474,7 @@ Page({
           data: {
             'open_id': app.globalData.gmemberid,
             'goods_id': user[1].good_id,
-            'member_garade_name':app.globalData.member_grade_name,
+            'member_garde_name':app.globalData.member_grade_name,
             "money":all_moneys
           },
           method: "post",

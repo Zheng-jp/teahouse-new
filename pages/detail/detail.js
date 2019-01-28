@@ -23,7 +23,8 @@ Page({
     repay_content:'',
     // 唤起输入框的事件变量
     opaction:'',
-    apply:null
+    apply:null,
+    repay_informatiom:[]
   },
   /**
 * 点击回复
@@ -283,7 +284,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_comment_show',
       data: {
-        activity_id:options.title,
+        teahost_id:options.title,
       },
       method: "post",
       // header: {
@@ -292,12 +293,9 @@ Page({
       // },
       success: function (res) {
         console.log(res);
-        // that.setData({
-        //   information: res.data.data[0],
-        // });
-        
-
-
+        that.setData({
+          repay_informatiom: res.data.data,
+        });
       },
       fail: function () {
 
