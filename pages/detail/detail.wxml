@@ -42,12 +42,12 @@
       </view>
           
       <view class='comment_repay' wx:for="{{repay_informatiom}}">
-          <view class='comment_ico'><image src='img/u100.jpg'></image></view>
+          <view class='comment_ico'><image src='{{item.user_images}}'></image></view>
           <view class='comment_name'>{{item.user_account}}</view>
-          <view class='zhan' wx:if="{{item.status==0}}"><text class='zhan_text'>赞</text><view class='comment_img' bindtap='good'><image src='img/u4967.png'></image></view></view>
-           <view class='zhan' wx:else><text class='zhan_text'>赞</text><view class='comment_img' bindtap='good'><image src='img/u4968.png'></image></view></view>
+          <view class='zhan' wx:if="{{item.status==0}}" ><view class='comment_img' bindtap='good' data-id="{{item.id}}"><image src='img/u4967.png'></image></view></view>
+           <view class='zhan' wx:else><view class='comment_img' bindtap='good' data-id="{{item.id}}"><image src='img/u4968.png'></image></view></view>
           <view class='repay_content'>{{item.comment_details}}</view>
-          <view class='repay_list'> <text >潮州</text><text>刚刚</text></view>
+          <view class='repay_list'><text>{{item.create_time}}</text></view>
       </view>
       <view class="release" hidden="{{!releaseFocus}}">
             <textarea class="text"
@@ -59,7 +59,7 @@
             auto-height="true"
             focus="{{releaseFocus}}"
             placeholder="" bindinput="bindinput">{{repay_content}}</textarea>
-            <view class="submit" bindtap='{{opaction}}'>发送</view>
+            <view class="submit" bindtap='comments'>发送</view>
             <view class="submit" bindtap='close'>取消</view>
             </view>
        
@@ -70,7 +70,7 @@
 
 <view class='buttom_nav'>
 <view class='star'><image src='img/u5053.png'></image></view>
-<input class='input' type='text' placeholder='写评论' bindtap="bindReply"  disabled='display'  data-id="comments"></input>
+<input class='input' type='text' placeholder='写评论' bindtap="bindReply"  disabled='display'  ></input>
 <view class='share'><image src='img/u5055.png'></image></view>
 <view class='monly'>¥{{information.cost_moneny}}</view>
 <view class='buttons' bindtap='pay' wx:if="{{apply==0}}">立即报名</view>

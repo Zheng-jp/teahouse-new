@@ -21,62 +21,35 @@ Page({
     information:[],
     // 输入框内容
     repay_content:'',
-    // 唤起输入框的事件变量
-    opaction:'',
     apply:null,
-    repay_informatiom:[]
+    repay_informatiom:[],
+    title:null
   },
   /**
 * 点击回复
 */
   bindReply: function (e) {
-    this.setData({
-      opaction:e.currentTarget.dataset.id,
+    var that=this;
+    that.setData({
       releaseFocus: true
     })
   },
   // 输入框输入事件
   bindinput: function (e) {
-    this.setData({
+    var that=this;
+    that.setData({
       repay_content:e.detail.value
     })
-
+    console.log(that.data.repay_content);
   },
-  // 回复输入框发送事件
-  reply:function(e) {
-    var that=this;
-    this.setData({
-      releaseFocus: false
-    })
-    wx.request({
-      url: app.globalData.tiltes + 'aaaa',
-      data: {
-        content: that.data.repay_content
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "application/json" // 默认值
-
-      // },
-      success: function (res) {
-        this.setData({
-          repay_content:''
-        })
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-      }
-
-    });
-  },
+ 
   // 评论输入框发送事件
   comments:function(e) {
     var that=this;
-    this.setData({
+    that.setData({
       releaseFocus: false
     })
+   
     wx.request({
       url: app.globalData.tiltes + 'teacenter_comment',
       data: {
@@ -90,8 +63,7 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
-        this.setData({
+        that.setData({
           repay_content:''
         })
       },
@@ -105,11 +77,13 @@ Page({
   },
   good: function (e) {
     var that = this;
+    console.log(e.currentTarget.dataset.id);
     wx.request({
       url: app.globalData.tiltes + 'teacenter_comment_updata',
       data: {
         user_id: app.globalData.gmemberid,
         teahost_id: that.data.information.id,
+        id:e.currentTarget.dataset.id
       },
       method: "post",
       // header: {
@@ -117,7 +91,17 @@ Page({
 
       // },
       success: function (res) {
-       
+        var lists=that.data.repay_informatiom;
+        for (var i = 0; i <lists.length;i++){
+          if(lists[i].id==e.currentTarget.dataset.id){
+            lists[i].status=1;
+          }
+        
+         }
+         that.setData({
+          repay_informatiom: lists
+        }) 
+      
       },
       fail: function () {
 
@@ -128,10 +112,11 @@ Page({
     });
   },
   close:function(e) {
-    this.setData({
+    var that=this;
+    that.setData({
       releaseFocus: false
     })
-    this.setData({
+    that.setData({
       repay_content:''
     })
   },
@@ -220,12 +205,36 @@ Page({
     
 
     },
+
+/*
+ * 时间戳转换为yyyy-MM-dd hh:mm:ss 格式  formatDate()
+ * inputTime   时间戳
+ */
+
+formatDate:function(inputTime) {
+  var date = new Date(inputTime);
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  m = m < 10 ? ('0' + m) : m;
+  var d = date.getDate();
+  d = d < 10 ? ('0' + d) : d;
+  var h = date.getHours();
+  h = h < 10 ? ('0' + h) : h;
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+  minute = minute < 10 ? ('0' + minute) : minute;
+  second = second < 10 ? ('0' + second) : second;
+  return y + '-' + m + '-' + d ;
+},
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that=this;
     var title = options.title;
+    that.setData({
+      title: title,
+    });
     wx.request({
       url: app.globalData.tiltes + 'activity_status',
       data: {
@@ -280,31 +289,8 @@ Page({
       }
 
     });
+ 
    
-    wx.request({
-      url: app.globalData.tiltes + 'teacenter_comment_show',
-      data: {
-        teahost_id:options.title,
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "application/json" // 默认值
-
-      // },
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          repay_informatiom: res.data.data,
-        });
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
-      }
-
-    });
   
   },
 
@@ -312,14 +298,47 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+   
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that=this;
+      wx.request({
+        url: app.globalData.tiltes + 'teacenter_comment_show',
+        data: {
+          teahost_id:that.data.title,
+        },
+        method: "post", 
+        // header: {
+        //   "Content-Type": "application/json" // 默认值
   
+        // },
+        success: function (res) {
+          console.log(res);
+  
+          that.setData({
+            repay_informatiom: res.data.data,
+          });
+          var list=that.data.repay_informatiom;
+          for (var i = 0; i <list.length;i++){
+           list[i].create_time=that.formatDate(list[i].create_time*1000)
+          }
+          that.setData({
+            repay_informatiom:list,
+          });
+         console.log(that);
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
   },
 
   /**

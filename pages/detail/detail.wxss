@@ -142,7 +142,7 @@ margin: 0 auto;
 .repay_list text{
 font-size: 26rpx;
 color: #949494;
-margin-left: 80rpx;
+margin-left: 60rpx;
 }
 .buttom_nav{
 display:flex;
