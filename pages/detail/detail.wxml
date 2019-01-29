@@ -69,7 +69,8 @@
 <view class='buttom_nav'>
 <view class='star'><image src='img/u5053.png'></image></view>
 <input class='input' type='text' placeholder='写评论' bindtap="bindReply"  disabled='display'  ></input>
-<view class='share'><image src='img/u5055.png'></image></view>
+<view class='share'> <button open-type="share" >
+			</button><image src='img/u5055.png'></image></view>
 <view class='monly'>¥{{information.cost_moneny}}</view>
 <view class='buttons' bindtap='pay' wx:if="{{apply==0}}">立即报名</view>
 <view class='buttons'  wx:else>已报名</view>

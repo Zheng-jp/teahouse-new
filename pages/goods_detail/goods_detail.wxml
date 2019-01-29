@@ -75,7 +75,15 @@
 				销量213片
 			</view>
 		</view>
-
+     <view class='other_info'>
+			<view class='other_info_list'>
+				<image class="other_info_img" src="img/u2151.png" mode="widthFix" ></image>
+				<text class="other_info_text">7*24客服</text>
+			</view>
+		
+			
+			
+		</view>
 	</view>
 	<view class='ser-type' bindtap='showFlag'  wx:if="{{goods.goods_standard!=0}}" >
 		<view>
@@ -92,10 +100,16 @@
 				<view class="{{selected?'red':'default'}}" bindtap="selected">商品详情</view>
 			</view>
 			<view>
+				<view class="{{selected2?'red':'default'}}" bindtap="selected2">检测报告</view>
+			</view>
+			<view>
 				<view class="{{selected1?'red':'default'}}" bindtap="selected1">评价</view>
 			</view>
 		</view>
 		<view class="{{selected?'show':'hidden'}}">
+		   <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+		</view>
+		<view class="{{selected2?'show':'hidden'}}">
 		   <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 		</view>
 		<view class="{{selected1?'show':'hidden'}}">
@@ -138,9 +152,13 @@
 				<image src='img/u1510.png' class='footbar_ico'></image>
 				<view class='footbar_text'>客服</view>
 			</view>
-			<view class='share'>
+			<view class='share' >
+			<button open-type="share" >
+			</button>
 				<image src='img/u1492.png' class='footbar_ico'></image>
-				<view class='footbar_text'>分享</view>
+			
+				<view class='footbar_text' >分享</view>
+			
 			</view>
 			<view class='shopping_cart'  bindtap="go_car">
 				<image src='img/u1494.png' class='footbar_ico'></image>

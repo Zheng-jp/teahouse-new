@@ -31,6 +31,7 @@ Page({
     autoplay: 'true',
     selected: true,
     selected1: false,
+    selected2: false,
     mask_show:false,
     good_id:0,
     // 是否有地址，0为没有填写收货地址，1为有，2为未授权
@@ -73,15 +74,23 @@ Page({
   }
   },
   selected: function (e) {
-    console.log(111);
     this.setData({
+      selected2: false,
       selected1: false,
       selected: true
+    })
+  },
+  selected2: function (e) {
+    this.setData({
+      selected: false,
+      selected1: false,
+      selected2: true
     })
   },
   selected1: function (e) {
     this.setData({
       selected: false,
+      selected2: false,
       selected1: true
     })
   },
@@ -92,6 +101,34 @@ Page({
       
     
   },
+  onShareAppMessage: function () {
+    console.log("分享")
+    let that =this;
+      return {
+        title: '简直走别拐弯', // 转发后 所显示的title
+        path: '/pages/group/index', // 相对的路径
+        success: (res)=>{    // 成功后要做的事情
+          console.log(res.shareTickets[0])
+          // console.log
+         
+          wx.getShareInfo({
+            shareTicket: res.shareTickets[0],
+            success: (res)=> { 
+              that.setData({
+                isShow:true
+              }) 
+              console.log(that.setData.isShow)
+             },
+            fail: function (res) { console.log(res) },
+            complete: function (res) { console.log(res) }
+          })
+        },
+        fail: function (res) {
+          // 分享失败
+          console.log(res)
+        }
+      }
+    },
   // 点击加入购物车
   add_car: function (event) {
     var that=this;

@@ -94,8 +94,14 @@
 		flex: 1;
 		font-size: 26rpx;
 		color: #949494;
-	}
-	
+  }
+  .other_info_list{
+    display: flex;
+    align-items: center;
+  }
+	.other_info_img{
+    width: 50rpx;
+  }
 	.inventory {
 		text-align: center;
 	}
@@ -113,8 +119,8 @@
 		height: 60rpx;
 		align-items: center;
 		font-size: 30rpx;
-	}
-	
+  }
+
 	.more {
 		width: 20rpx;
 		overflow: hidden;
@@ -490,4 +496,14 @@ overflow:hidden;
   background: #F2F2F2;
   padding: 10rpx;
   font-size: 24rpx;
+}
+.share{
+  position: relative;
+}
+.share button{
+  width:77rpx;
+   opacity: 0;
+    height:189rpx;
+    position: absolute;
+
 }

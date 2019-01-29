@@ -58,7 +58,7 @@ text-align: center;
   width:561rpx;
   height:68rpx;
   background:#fff;
-  border-radius:15rpx;
+  border-radius:60rpx;
   border:solid #E9E9E9 1px;
   margin:0rpx 20rpx;
   padding-left:80rpx;

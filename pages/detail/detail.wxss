@@ -235,3 +235,10 @@ line-height: 64rpx;
 text-align: center;
 color: #66CC00;
 }
+.share button{
+  width:77rpx;
+   opacity: 0;
+    height:189rpx;
+    position: absolute;
+
+}
