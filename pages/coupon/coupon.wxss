@@ -41,6 +41,7 @@
    margin: 40rpx 40rpx 20rpx 40rpx;
    display: flex;
    align-items: center;
+   position: relative;
  }
  .coupon_money_box{
    width: 250rpx;
@@ -49,13 +50,14 @@
    justify-content: center;
    flex-direction: column;
    color: #00B6D1;
-   
+   z-index: 9999999999;
  }
  .coupon_info_box{
    padding: 20rpx;
    display: flex;
   flex-direction: column;
   width: 400rpx;
+  z-index: 9999999999;
  }
  .money{
    font-size: 50rpx;
@@ -93,4 +95,7 @@
  }
 .hui{
   color: #949494
+}
+.coupon_box_img{
+  position: absolute;
 }

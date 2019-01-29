@@ -239,6 +239,25 @@ Page({
     
   
   },
+go_order_detail: function (event) {
+
+  var that = this;
+  var item = event.currentTarget.dataset.item;
+  wx.navigateTo({
+    url: '../order_detail/order_detail?title=' + event.currentTarget.dataset.id,
+    success: function (res) {
+    
+    },
+    fail: function () {
+     
+    },
+    complete: function () {
+    
+    }
+
+
+  })
+},
   // 付款
   repay:function(e){
     var indexs = e.currentTarget.dataset.id;

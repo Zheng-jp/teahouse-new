@@ -106,9 +106,9 @@ Page({
     let that =this;
       return {
         title: '简直走别拐弯', // 转发后 所显示的title
-        path: '/pages/group/index', // 相对的路径
+        path: '/pages/logs/logs', // 相对的路径
         success: (res)=>{    // 成功后要做的事情
-          console.log(res.shareTickets[0])
+          // console.log(res.shareTickets[0])
           // console.log
          
           wx.getShareInfo({
@@ -117,7 +117,7 @@ Page({
               that.setData({
                 isShow:true
               }) 
-              console.log(that.setData.isShow)
+              // console.log(that.setData.isShow)
              },
             fail: function (res) { console.log(res) },
             complete: function (res) { console.log(res) }
@@ -197,12 +197,16 @@ Page({
     
           // },
           success: function (res) {
-            console.log(res);
-            wx.showToast({
-              title: res.data.info,
-              icon:'none',
-            })
-    
+            setTimeout( () => {
+              wx.showToast({
+                title: "加入购物车成功",
+                duration: 10000,
+                icon:'none',
+              })
+              setTimeout( () =>{
+                wx.hideToast();  
+              },2000)
+            },0);
           },
           fail: function () {
     

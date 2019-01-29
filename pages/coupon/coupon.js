@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    url: app.globalData.img_url,
       height:'',
       tab:'1',
       status:'2',

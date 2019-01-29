@@ -8,7 +8,8 @@
 	<view class='content' >
 		<view class='order_list' wx:for="{{order}}" >
 			<view wx:if="{{item.status==1}}">
-				<view class="coupon_box" style="background-image: url(img/u11123.png)">
+				<view class="coupon_box" >
+				<image class="coupon_box_img" src="img/u11123.png" mode="widthFix"></image>
 					<view class="coupon_money_box">
 						 <view><text class="money">{{item.money}}</text><text class="money_unit">元</text></view>
 						 <view class="limit">满{{item.use_price}}使用</view>
@@ -22,7 +23,8 @@
 				</view>
 			</view>
 			<view wx:elif="{{item.status==2}}">
-				<view class="coupon_box" style="background-image: url(img/u11124.png)">
+				<view class="coupon_box" >
+					<image class="coupon_box_img" src="img/u11124.png" mode="widthFix"></image>
 						<view class="coupon_money_box">
 						 <view><text class="money hui">{{item.money}}</text><text class="money_unit hui">元</text></view>
 						 <view class="limit hui">满{{item.use_price}}使用</view>
@@ -36,7 +38,8 @@
 				</view>
 			</view>
 			<view wx:elif="{{item.status==3}}">
-				<view class="coupon_box" style="background-image: url(img/u11124.png)">
+				<view class="coupon_box">
+				<image class="coupon_box_img" src="img/u11124.png" mode="widthFix"></image>
 						<view class="coupon_money_box">
 						 <view><text class="money hui">{{item.money}}</text><text class="money_unit hui">元</text></view>
 						 <view class="limit hui">满{{item.use_price}}使用</view>

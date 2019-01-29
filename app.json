@@ -46,7 +46,8 @@
       "pages/withdrawal/withdrawal", 
       "pages/bill/bill",
       "pages/integral_record/integral_record",
-      "pages/invoice/invoice"
+      "pages/invoice/invoice",
+      "pages/order_detail/order_detail"
       
       
         

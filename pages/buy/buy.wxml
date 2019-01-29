@@ -9,7 +9,7 @@
           <view class='buton_to'>到商城随便逛逛</view> 
       </view> 
        <checkbox-group bindchange="checkboxChange">
-         <view  wx:for='{{goodList}}'> 
+         <view  wx:for='{{goodList}}' class="goodList"> 
          <view class='content_list'>
            <view class='radio' >
               <checkbox  value="{{item.id}}"  color='#fff' checked="{{item.checked}}"/>

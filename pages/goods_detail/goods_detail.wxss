@@ -507,3 +507,21 @@ overflow:hidden;
     position: absolute;
 
 }
+.buy_num{
+  width:36rpx;
+  height:36rpx;
+  border-radius:50%;
+  background:red;
+  color:#fff;
+  position:absolute;
+  font-size:20rpx;
+  right:10rpx;
+  top:-6rpx;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  
+}
+.shopping_cart{
+  position: relative;
+}

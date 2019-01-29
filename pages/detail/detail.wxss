@@ -154,6 +154,7 @@ height: 100rpx;
 z-index:9999;
 background:#f2f2f1;
 width: 750rpx;
+overflow: hidden;
 
 }
 .star{

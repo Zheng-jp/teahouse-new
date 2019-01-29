@@ -6,6 +6,9 @@
   align-items: center;
   height: 180rpx;
 }
+.goodList{
+  overflow: hidden;
+}
 .content_list_img{
   background: #fff;
 }
