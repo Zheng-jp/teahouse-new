@@ -1,0 +1,59 @@
+<!--pages/after_sales_detail/after_sales_detail.wxml-->
+
+<!--pages/apply_after_sales/apply_after_sales.wxml-->
+<view class="all" style='height:{{height}}px;'>
+   <view class="shop_info_box">
+       <view class="shop_info_tip">您已成功发起退款申请，如双方协商确认属实，请将商品寄还回商家，商家获得商品后，查明属实，即可退款；</view>
+       <view class="shop_info_address">
+            寄还地址：北京市朝阳区天鹅湾小区5号楼3单元201北京市朝阳区天鹅湾小区5号楼3单元201     刘德华   13922830809
+       </view>
+       <view class="button">撤销申请</view>
+   </view>
+   <view class="good_infor">
+       <view class="good_title">退款信息</view>
+       <view class="good_infor_box">
+           <view class="good_infor_name">
+                <image class="good_img" src="../../images/u1222.png" mode="widthFix" ></image>
+                <text class="good_name">商品名称</text>  
+           </view>
+           <view class="repay_time">
+               <text class="text_title">申请时间：</text>
+               <text class="text_cotenter">2018-10-11  12:15</text>
+           </view>
+           <view class="repay_time">
+                <text class="text_title">退款金额：</text>
+                <text class="text_cotenter">¥80.0</text>
+            </view>
+            <view class="repay_time">
+                    <text class="text_title">退款编号：</text>
+                    <text class="text_cotenter">8586868686863</text>
+            </view>
+            <view class="repay_time">
+                    <text class="text_title">退款原因：</text>
+                    <text class="text_cotenter">退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因</text>
+            </view>
+            <view class="imgcontent">
+                    <image class="good_img" src="../../images/u1222.png" mode="widthFix" ></image>
+            </view>
+            <view class="repay_content">
+               <view class="shop_repay">
+                   <view class="shop_repay_ico">
+                       <image class="shop_repay_icos" src="../../images/u9834.png" mode="widthFix" ></image>
+                       <view class="shop_repay_text">官方回复</view>
+                   </view>
+                   <view class="shop_repay_texts">
+                        请耐心等待商家处理，您可再联系：13884885868
+                   </view>
+               </view> 
+               <view class="me_repay">
+                   <text class="me_repay_title">我的回复：</text>
+                   <text class="">就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款</text>
+               </view>
+               <view class="go_repay">
+                    我要回复 
+               </view>
+            </view>
+       </view>
+    
+   </view>
+</view>

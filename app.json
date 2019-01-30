@@ -47,10 +47,15 @@
       "pages/bill/bill",
       "pages/integral_record/integral_record",
       "pages/invoice/invoice",
-      "pages/order_detail/order_detail"
+      "pages/order_detail/order_detail",
+      "pages/after_sales/after_sales",
+      "pages/apply_after_sales/apply_after_sales",
+      "pages/after_sales_detail/after_sales_detail",
+      "pages/evaluation/evaluation"
       
       
-        
+      
+       
       
   ],
 

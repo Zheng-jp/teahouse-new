@@ -156,7 +156,7 @@ Page({
       })
     },
 
-  onShow: function () {
+    onReady: function () {
     var that = this;
     var member_grade_img=app.globalData.member_grade_img;
     that.setData({

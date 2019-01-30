@@ -1,0 +1,45 @@
+<view class="all" style='height:{{height}}px;'>
+	<view class='title'>
+		<view class="title_list {{tab==1? 'on' : ''}}" data-current="1" bindtap="tab_click">全部</view>
+		<view class="title_list {{tab==2? 'on' : ''}}" data-current="2" bindtap="tab_click">申请中</view>
+		<view class="title_list {{tab==3? 'on' : ''}}" data-current="3" bindtap="tab_click">已撤销</view>
+		<view class="title_list {{tab==4? 'on' : ''}}" data-current="4" bindtap="tab_click">已完成</view>
+	</view>
+	<view class='content'>
+		<view class='order_list'>
+			<view >
+				<view class='box_list_one' bindtap="go_order_detail">
+					<view>服务编号:201809145337 </view>
+					<view class='static'>等待买家付款</view>
+				</view>
+				<view class='box_list_two' bindtap="go_order_detail">
+					<view class='img'>
+						<image src='' mode='aspectFill'></image>
+					</view>
+					<view class='good_infor' >
+						<view class='good_name'>商品名称</view>
+						<view class='good_selling'>商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品……</view>
+						<view class='good_monye'>
+							<view class='good_uite'>
+								<image src='{{url}}{{member_grade_img}}' class='user_img'></image>
+								<text class='uite'>￥50/片</text>
+							</view>
+							<view class='num'>x1</view>
+						</view>
+					</view>
+				</view>
+				<view class='box_list_three'>
+					<view><text>共1件商品</text><text>合计：￥99</text> </view>
+				</view>
+				<view class='box_list_four'>
+					<view>
+						<view class='cancel' bindtap="cancel_order"  data-id="">已完成</view>
+					</view>
+				</view>
+			</view>
+			
+
+		</view>
+	</view>
+
+</view>

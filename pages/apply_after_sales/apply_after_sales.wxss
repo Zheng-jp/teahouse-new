@@ -1,0 +1,87 @@
+/* pages/apply_after_sales/apply_after_sales.wxss */
+.good_infor{
+    background: #fff;
+    display: flex;
+    align-items: center;
+    padding: 10rpx 30rpx;
+}
+.good_img{
+    width: 100rpx;
+}
+.good_name{
+    font-size: 30rpx;
+    margin-left: 30rpx;
+}
+.radio-group{
+    display: flex;
+    font-size: 24rpx;
+    align-items: center;
+    background: #fff;
+    margin-top: 10rpx;
+    padding: 20rpx;
+}
+.input_monly{
+    width:200rpx;
+   font-size:20rpx;
+   border: solid 1rpx #E3E9EF;
+
+}
+.radio-group radio{
+    margin-right: 20rpx;
+}
+.radio_b{
+    margin-left: 40rpx;
+}
+.danwei{
+    color: red;
+    margin-left: 10rpx;
+}
+.reason{
+    background: #fff;
+    margin-top: 10rpx;
+}
+.reason_content{
+    width: 750rpx;
+   font-size: 30rpx;
+   padding: 30rpx;
+}
+/* 
+ */
+ .uplode_img{
+     display: flex;
+     align-items: center;
+     flex-wrap: wrap;
+ }
+ .uplog{
+     width: 140rpx;
+     margin: 20rpx;
+ }
+ .imgs{
+    width: 140rpx;
+    margin: 20rpx;
+ }
+ .delect_img{
+     width: 30rpx;
+     position: absolute;
+     z-index: 9999;
+     right: 10rpx;
+     top: 10rpx;
+ }
+ .imgcontent{
+     position: relative;
+ }
+ .btn-area{
+    position: fixed;
+    bottom: 0;
+    z-index: 99999;
+ }
+ .button-hovers{
+    width:750rpx;
+     height:100rpx;
+     font-size: 30rpx;
+     color:#fff;
+     background:#FF6700;
+     border:0;
+     z-index: 999999;
+   line-height: 100rpx;
+   }

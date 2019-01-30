@@ -31,7 +31,8 @@ Page({
         id:4,
       }, {
         src: app.globalData.url + '/upload/20181115/fa73c90513036e142b64e3ef2c948a87.png',
-        text: '售后/退款'
+        text: '售后/退款',
+        id:5
       }
     ],
     list: [
@@ -215,22 +216,43 @@ Page({
   },
   go_order: function (event) {
     var item = event.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../order/order?title='+item,
-      success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
-      },
-      fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
-      },
-      complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
-      }
-
-    })
+    if(item==5){
+      wx.navigateTo({
+        url: '../after_sales/after_sales',
+        success: function (res) {
+          // success
+          console.log("nihao////跳转成功")
+        },
+        fail: function () {
+          // fail
+          console.log("nihao////跳转失败")
+        },
+        complete: function () {
+          // complete
+          console.log("nihao////跳转行为结束，未知成功失败")
+        }
+  
+      })
+    }
+    else{
+      wx.navigateTo({
+        url: '../order/order?title='+item,
+        success: function (res) {
+          // success
+          console.log("nihao////跳转成功")
+        },
+        fail: function () {
+          // fail
+          console.log("nihao////跳转失败")
+        },
+        complete: function () {
+          // complete
+          console.log("nihao////跳转行为结束，未知成功失败")
+        }
+  
+      })
+    }
+    
   },
   go_change: function (event) {
     console.log(event);

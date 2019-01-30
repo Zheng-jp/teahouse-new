@@ -1,0 +1,21 @@
+<!--pages/apply_after_sales/apply_after_sales.wxml-->
+<view class="all" style='height:{{height}}px;'>
+    <view class="good_infor">
+        <image class="good_img" src="../../images/u1222.png" mode="widthFix" ></image>
+          <text class="good_name">商品名称</text>  
+    </view>
+   
+    <view class="reason">
+        <textarea name="" id="" class="reason_content" placeholder="期待您的好评，您的好评还能获得相应积分哟~"></textarea>
+    </view>
+    <view class="uplode_img">
+          <view class="imgcontent" wx:for="{{img}}">
+              <image class="" src="{{item}}" mode="widthFix" lazy-load="false"  class="imgs"> </image>
+              <image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false"  class="delect_img"> </image>
+          </view>
+          <image class="" src="../../images/1.png" mode="widthFix" lazy-load="false"  class="uplog" bindtap="up_img" wx:if="{{up_img_lenght}}"> </image>
+    </view>
+     <view class="btn-area">
+            <button form-type="submit" class='button-hovers'>提交</button>
+          </view>
+</view>
