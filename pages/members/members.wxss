@@ -42,6 +42,7 @@ image{
 .card_img{
    width: 80rpx;
    height: 80rpx;
+   overflow: hidden;
 }
 .img_cir{
   width: 88rpx;
