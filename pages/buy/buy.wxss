@@ -318,6 +318,8 @@ margin:20rpx auto;
   margin-left: 30rpx;
   vertical-align: top;
   font-size: 0px;
+  display: flex;
+  align-items: center;
 }
 
 .section-bottom .check-all-text {
@@ -342,9 +344,11 @@ margin:20rpx auto;
 
 .total .totalPrice {
   display: inline-block;
-  font-size: 36rpx;
+  font-size: 30rpx;
   margin-left: 20rpx;
   vertical-align: middle;
+  display: flex;
+  align-items: center;
 }
 
 .total .totalCount text {

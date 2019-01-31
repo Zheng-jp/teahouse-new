@@ -525,3 +525,11 @@ overflow:hidden;
 .shopping_cart{
   position: relative;
 }
+.line{
+  position:absolute;
+  width:100rpx;
+  height:94rpx;
+  z-index:99999;
+  opacity:0;
+
+}

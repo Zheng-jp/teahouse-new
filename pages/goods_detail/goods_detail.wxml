@@ -148,7 +148,9 @@
 	</view>
 	<view class='footbar'>
 		<view class='ico_view'>
+		
 			<view class='service'>
+			<button open-type="contact" class="line"></button>
 				<image src='img/u1510.png' class='footbar_ico'></image>
 				<view class='footbar_text'>客服</view>
 			</view>
