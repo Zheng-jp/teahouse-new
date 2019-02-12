@@ -15,9 +15,17 @@
 					{{item.address_name}}{{item.harvester_real_address}}
 				</view>
 			</view>
+			<view>
+				<view class='default' data-id="{{item.id}}" >
+				<checkbox-group >
+				  <checkbox value="设为默认" />设为默认
+				</checkbox-group>
+			</view>
 			<view class='add_ico' data-id="{{item.id}}"  bindtap="go_change_address">
 				<image src='img/u9386.png'></image>
 			</view>
+			</view>
+			
 		</view>
 	
 	</radio-group>
