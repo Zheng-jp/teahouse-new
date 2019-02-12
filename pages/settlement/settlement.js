@@ -165,6 +165,20 @@ Page({
                       paySign:  result.data.paySign,
                       'success': function (successret) {
                         console.log('支付成功');
+                        wx.navigateTo({
+                          url: '../order/order?title='+0,
+                          success: function (res) {
+                          
+                          },
+                          fail: function () {
+                           
+                          },
+                          complete: function () {
+                          
+                          }
+                      
+                      
+                        })
                        
                       },
                       'fail': function (res) {
@@ -251,7 +265,20 @@ Page({
                       signType: result.data.signType,
                       paySign:  result.data.paySign,
                       'success': function (successret) {
-                        console.log('支付成功');
+                        wx.navigateTo({
+                          url: '../order/order?title='+0,
+                          success: function (res) {
+                          
+                          },
+                          fail: function () {
+                           
+                          },
+                          complete: function () {
+                          
+                          }
+                      
+                      
+                        })
                        
                       },
                       'fail': function (res) {
