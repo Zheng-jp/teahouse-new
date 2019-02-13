@@ -35,28 +35,19 @@ Page({
           that.setData({
             img:res.tempFilePaths
           })
-          wx.request({
-            url: app.globalData.tiltes + 'order_evaluate_add',
-            data: {
-              img: res,
-            
-            },
-            method: "post",
-            // header: {
-            //   "Content-Type": "json" // 默认值
+          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths
+        wx.uploadFile({
+         url: app.globalData.tiltes + 'order_evaluate_add',
+         filePath: tempFilePaths[0],
+         name: 'img',
         
-            // },
-            success: function (res) {
-                
-             
-            },
-            fail: function () {
-        
-            },
-            complete: function () {
-            }
-        
-          });
+         success:function(res){
+           //打印
+           console.log(res.data)
+         }
+       })
+       
         },
         fail: function() {
           // fail
