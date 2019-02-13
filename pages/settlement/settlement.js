@@ -14,7 +14,7 @@ Page({
     selected2: false,
     isnum:false,
      // 是否有存茶地址
-    warehouse:true,
+    warehouse:false,
     //  选择保险年限
     showModalStatus: false,
     // 加减框里面的值

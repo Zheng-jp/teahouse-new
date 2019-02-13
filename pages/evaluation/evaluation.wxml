@@ -15,7 +15,7 @@
           </view>
           <image class="" src="../../images/1.png" mode="widthFix" lazy-load="false"  class="uplog" bindtap="up_img" wx:if="{{up_img_lenght}}"> </image>
     </view>
-     <view class="btn-area">
-            <button form-type="submit" class='button-hovers'>提交</button>
-          </view>
+    <view class="btn-area">
+        <button form-type="submit" class='button-hovers' bindtap="aaa">提交</button>
+    </view>
 </view>

@@ -34,6 +34,28 @@ Page({
           that.setData({
             img:res.tempFilePaths
           })
+          wx.request({
+            url: app.globalData.tiltes + 'order_evaluate_add',
+            data: {
+              img: res,
+            
+            },
+            method: "post",
+            // header: {
+            //   "Content-Type": "json" // 默认值
+        
+            // },
+            success: function (res) {
+                
+             
+            },
+            fail: function () {
+        
+            },
+            complete: function () {
+            }
+        
+          });
         },
         fail: function() {
           // fail
@@ -45,7 +67,12 @@ Page({
     }
    
   },
+  aaa:function(){
+    var that = this;
   
+   
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
