@@ -127,7 +127,7 @@
 				<view class='box_list_four'>
 					<view>
 						<view class='cancel type_button'>售后</view>
-						<view class='payment '>追加评价</view>
+						<view class='payment' bindtap="go_evaluation" data-id="{{item.parts_order_number}}">追加评价</view>
 					</view>
 				</view>
 			</view>

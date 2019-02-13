@@ -163,7 +163,7 @@
 			
 			</view>
 			<view class='shopping_cart'  bindtap="go_car">
-			     <view class="buy_num">1</view>
+			     <view class="buy_num">{{buy_num}}</view>
 				<image src='img/u1494.png' class='footbar_ico'></image>
 				<view class='footbar_text'>购物车</view>
 			</view>

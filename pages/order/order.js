@@ -278,6 +278,26 @@ Page({
     }
   
   },
+  // 追加评价
+  go_evaluation: function (event) {
+
+    var that = this;
+    var item = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../evaluation/evaluation?title=' + event.currentTarget.dataset.id,
+      success: function (res) {
+      
+      },
+      fail: function () {
+       
+      },
+      complete: function () {
+      
+      }
+  
+  
+    })
+  },
 go_order_detail: function (event) {
 
   var that = this;

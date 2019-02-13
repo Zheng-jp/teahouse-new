@@ -34,6 +34,7 @@ Page({
     selected2: false,
     mask_show:false,
     good_id:0,
+    buy_num:0,
     // 是否有地址，0为没有填写收货地址，1为有，2为未授权
     address:0,
     
@@ -471,6 +472,30 @@ Page({
         console.log(res.data.status);
           that.setData({
             address:res.data.status,
+          });
+       
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+    wx.request({
+      url: app.globalData.tiltes + 'shopping_numbers',
+      data: {
+        member_id: app.globalData.member_id,
+      
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+          that.setData({
+            buy_num:res.data.data,
           });
        
       },
