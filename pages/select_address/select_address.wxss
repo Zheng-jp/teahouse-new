@@ -3,8 +3,8 @@
 /* 未选中的 背景样式 */
 checkbox .wx-checkbox-input{
   border-radius: 0 !important;/* 圆角 */
-  width: 32rpx; /* 背景的宽 */
-  height: 32rpx; /* 背景的高 */
+  width: 26rpx; /* 背景的宽 */
+  height: 26rpx; /* 背景的高 */
 }
 /* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
 checkbox .wx-checkbox-input.wx-checkbox-input-checked{
@@ -14,11 +14,11 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked{
 /* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
 checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   border-radius: 0 !important;/* 圆角 */
-  width: 32rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
-  height: 32rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
-  line-height: 32rpx;
+  width: 26rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+  height: 26rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+  line-height: 26rpx;
   text-align: center;
-  font-size:30rpx; /* 对勾大小 30rpx */
+  font-size:24rpx; /* 对勾大小 30rpx */
   color:#fff; /* 对勾颜色 白色 */
   background: transparent;
   transform:translate(-50%, -50%) scale(1);
@@ -26,6 +26,24 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
 }
 .default{
   font-size: 24rpx;
+}
+.list3{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #BFBFBF;
+}
+checkbox-group{
+  display: flex;
+  align-items: center;
+}
+.add_ico
+{
+  padding-top: 16rpx;
+  padding-bottom: 16rpx;
+}
+.delect_ico{
+  width: 40rpx;
 }
 .content_list{
   display: flex;
@@ -36,7 +54,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   text-align: center;
 }
 .add_information{
-  width: 560rpx;
+  width: 477rpx;
   font-size: 26rpx;
   padding-right: 20rpx;
 

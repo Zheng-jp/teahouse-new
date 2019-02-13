@@ -9,12 +9,12 @@ Page({
      addresss:[],
      is_select_address:'',
      is:true,
+     checked:"",
    
   },
   add_address: function (event) {
     wx.navigateTo({
       url: '../add_address/add_address',
-    
       success: function (res) {
         // success
         console.log("nihao////跳转成功")
@@ -48,14 +48,13 @@ Page({
 
     })
   },
-  radioChange: function (e) {
+  checkboxChange: function (e) {
     var that = this;
-     console.log(e.detail.value);
      wx.request({
       url: app.globalData.tiltes + 'member_address_status',
       data: {
         open_id: app.globalData.gmemberid,
-        id: e.detail.value,
+        id: e.detail.value[0],
       },
       method: "post",
       // header: {
@@ -63,11 +62,43 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
+        for (var index in that.data.address) {
+         if(e.detail.value[0]==that.data.address[index].id){
+          that.setData({
+            checked:that.data.address[index].checked
+          });
+         }
+        }
         wx.showToast({
           title:'修改成功',
           icon: 'none'
         })
+        console.log(that.data)
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+
+  },
+  delect: function (e) {
+    var that = this;
+     wx.request({
+      url: app.globalData.tiltes + 'member_address_del',
+      data: {
+        open_id: app.globalData.gmemberid,
+        id: e.currentTarget.dataset.id,
+      },
+      method: "post",
+      success: function (res) {
+        // wx.showToast({
+        //   title:'删除成功',
+        //   icon: 'none'
+        // })
+        that.onLoad()
       },
       fail: function () {
 
@@ -120,16 +151,32 @@ Page({
 
       // },
       success: function (res) {
-        that.setData({
-          address: res.data.data,
-        });
+        if(res.data.status!=0){
+          that.setData({
+            address: res.data.data,
+          });
+        }
+        
         for (var index in that.data.address) {
+         
           var address_names=that.data.address[index].address_name.split(",").join("");
-          var price = 'address['+index+'].address_name'
+          var price = 'address['+index+'].address_name';
+          var checked= 'address['+index+'].checked';
+            that.setData({
+              [checked]:index
+            });
+          
           that.setData({
             [price]:address_names
           });
+          if(that.data.address[index].status==1){
+            that.setData({
+              checked:that.data.address[index].checked
+            });
+          }
         }
+      
+        console.log(that.data)
        
       },
       fail: function () {
