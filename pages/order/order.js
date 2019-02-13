@@ -239,6 +239,45 @@ Page({
     
   
   },
+  // 确认收货
+  confirm_receipt:function (e){
+    var that=this;
+    var indexs = e.currentTarget.dataset.id;
+    var orderItems = that.data.order;
+    for (var i = 0; i < orderItems.length; ++i) {
+      if(orderItems[i].parts_order_number == indexs){
+        orderItems.splice(i, 1);
+        wx.request({
+          url: app.globalData.tiltes + 'ios_api_order_collect_goods',
+          data: {
+            open_id: app.globalData.gmemberid,
+            parts_order_number:indexs
+          },
+          method: "post",
+          
+          success: function (res) {
+            wx.showToast({
+              title:'收货成功',
+              icon:'none'
+            })
+            that.setData({
+              order: orderItems
+            }); 
+           
+          },
+          fail: function () {
+         
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+    
+        });
+      }
+      
+    }
+  
+  },
 go_order_detail: function (event) {
 
   var that = this;

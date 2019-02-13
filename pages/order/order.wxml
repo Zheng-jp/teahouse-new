@@ -96,7 +96,7 @@
 				<view class='box_list_four'>
 					<view class="flex">
 						<view class="courier">顺丰：799394904004040</view>
-						<view class='remind_delivery cancel type_button'>确认收货</view>
+						<view class='remind_delivery cancel type_button'  bindtap="confirm_receipt" data-id="{{item.parts_order_number}}">确认收货</view>
 					</view>
 				</view>
 			</view>
