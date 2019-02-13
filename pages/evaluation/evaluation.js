@@ -1,5 +1,6 @@
 // pages/apply_after_sales/apply_after_sales.js
 const regeneratorRuntime = require('../../utils/regenerate.js');
+const app = getApp();
 Page({
 
   /**
