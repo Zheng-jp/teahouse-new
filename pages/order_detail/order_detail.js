@@ -51,7 +51,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  var that=this;
+   wx.request({
+    url: app.globalData.tiltes + 'order_details',
+    data: {
+      parts_order_number:options.title,
+      status:options.status
+    },
+    method: "post",
+    // header: {
+    //   "Content-Type": "application/json" // 默认值
 
+    // },
+    success: function (res) {
+     console.log(res);
+     that.setData({
+      order:res.data.data.data,
+    })
+    },
+    fail: function () {
+   
+    },
+    complete: function () {
+      wx.hideLoading()
+    }
+
+  });
   },
 
   /**

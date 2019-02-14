@@ -30,7 +30,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>等待买家付款</view>
             </view>
-            <view class='box_list_two' wx:for="{{item.info}}">
+            <view class='box_list_two'>
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -52,9 +52,7 @@
                     </view>
                 </view>
             </view>
-            <view class='box_list_three'>
-                <view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
-            </view>
+         
           
         </view>
         <view wx:elif="{{item.status==2 || item.status==3}}">
@@ -62,7 +60,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>买家已付款</view>
             </view>
-            <view class='box_list_two' wx:for="{{item.info}}">
+            <view class='box_list_two'>
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -83,9 +81,7 @@
                     </view>
                 </view>
             </view>
-            <view class='box_list_three'>
-                <view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
-            </view>
+            
            
         </view>
         <view wx:elif="{{item.status==4 || item.status==5}}">
@@ -93,7 +89,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>卖家已发货</view>
             </view>
-          <view class='box_list_two' wx:for="{{item.info}}">
+          <view class='box_list_two'>
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -115,9 +111,7 @@
                     </view>
                 </view>
             </view>
-            <view class='box_list_three'>
-                <view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
-            </view>
+           
            
         </view>
         <view wx:elif="{{item.status==6 || item.status==7}}">
@@ -125,7 +119,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>交易成功</view>
             </view>
-          <view class='box_list_two' wx:for="{{item.info}}">
+          <view class='box_list_two'>
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -147,9 +141,7 @@
                     </view>
                 </view>
             </view>
-            <view class='box_list_three'>
-                <view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
-            </view>
+          
            
         </view>
         <view wx:elif="{{item.status==0 || item.status==9 || item.status==10}}">
@@ -157,7 +149,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>交易成功</view>
             </view>
-            <view class='box_list_two' wx:for="{{item.info}}">
+            <view class='box_list_two'>
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -178,9 +170,7 @@
                     </view>
                 </view>
             </view>
-            <view class='box_list_three'>
-                <view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
-            </view>
+            
            
         </view>
         <view wx:elif="{{item.status==8}}">
@@ -188,7 +178,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>交易成功</view>
             </view>
-            <view class='box_list_two' wx:for="{{item.info}}">
+            <view class='box_list_two'>
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -209,9 +199,7 @@
                     </view>
                 </view>
             </view>
-            <view class='box_list_three'>
-                <view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
-            </view>
+            
          
         </view>
         <view wx:else>
@@ -219,7 +207,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>交易关闭</view>
             </view>
-            <view class='box_list_two' wx:for="{{item.info}}">
+            <view class='box_list_two'>
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -239,9 +227,6 @@
                         <view class='cancel type_button' bindtap="delete_order" data-id="{{item.parts_order_number}}">删除</view>
                     </view>
                 </view>
-            </view>
-            <view class='box_list_three'>
-                <view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
             </view>
            
         </view>

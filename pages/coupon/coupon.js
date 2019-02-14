@@ -195,6 +195,17 @@ Page({
     var that = this;
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
+     // 判读从哪个页面进来
+     var  pages = getCurrentPages();
+     var  prevpage = pages[pages.length - 2];
+    if(prevpage.route=='pages/settlement/settlement'){
+     that.setData({
+       is_select_address: 'select',
+       is:false
+     });
+
+    //  
+    }
     wx.request({
       url: app.globalData.tiltes + 'coupon_untapped',
       data: {

@@ -301,9 +301,11 @@ Page({
 go_order_detail: function (event) {
 
   var that = this;
-  var item = event.currentTarget.dataset.item;
+  var id = event.currentTarget.dataset.id;
+  var status=event.currentTarget.dataset.status;
+ 
   wx.navigateTo({
-    url: '../order_detail/order_detail?title=' + event.currentTarget.dataset.id,
+    url: '../order_detail/order_detail?title=' + id+"&status="+status,
     success: function (res) {
     
     },

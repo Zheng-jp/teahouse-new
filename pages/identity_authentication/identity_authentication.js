@@ -74,7 +74,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.request({
+      url: app.globalData.tiltes + 'id_card_return',
+      data: {
+        member_id: app.globalData.member_id,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
 
+      // },
+      success: function (res) {
+       console.log(res);    
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
   },
 
   /**
