@@ -11,6 +11,7 @@ Page({
     height:null,
     up_img_lenght:true,
     url: app.globalData.img_url,
+    tempFilePaths:[],
     img:[
       "../../images/1.png",
       "../../images/1.png",
@@ -18,9 +19,10 @@ Page({
     goods:[]
 
   },
-  up_img:function(){
+  up_img:function(e){
     var that = this;
-    console.log(that.data.img.length);
+    var id=e.currentTarget.dataset.id;
+
     if(that.data.img.length>3){
       that.setData({
         up_img_lenght:false
@@ -34,21 +36,24 @@ Page({
         sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
         sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
         success: function(res){
-          that.setData({
-            img:res.tempFilePaths
-          })
+          for(var i=0;i<that.data.goods.length;i++){
+            if(id==that.data.goods[i].id){
+                   //  添加字段到等级数组
+                  // for (var index in that.data.routers) {
+                    var img = "goods[" + i + "].img";
+                    that.setData({
+                      [img]: res.tempFilePaths,
+                    })
+            
+                  // }
+            }
+          }
+          // that.setData({
+          //   img:res.tempFilePaths
+          // })
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
-        wx.uploadFile({
-         url: app.globalData.tiltes + 'order_evaluate_add',
-         filePath: tempFilePaths[0],
-         name: 'img',
-         success:function(res){
-           //打印
-           console.log(res)
-         }
-       })
-       
+        that.setData({tempFilePaths: tempFilePaths});
         },
         fail: function() {
           // fail
@@ -60,11 +65,22 @@ Page({
     }
    
   },
-  aaa:function(){
+  formSubmit: function (e) {
     var that = this;
-  
-   
+    console.log(that.data);
+    wx.uploadFile({
+      url: app.globalData.tiltes + 'order_evaluate_add',
+      filePath: that.data.tempFilePaths[0],
+      name: 'img[]',
+      formData: e.detail.value,
+     
+      success:function(res){
+        //打印
+        console.log(res)
+      }
+    })
   },
+  
 
   /**
    * 生命周期函数--监听页面加载

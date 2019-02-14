@@ -85,3 +85,8 @@
      z-index: 999999;
    line-height: 100rpx;
    }
+
+view .good_content:last-child{
+       /* margin-bottom: 100rpx; */
+       background:#ff0000;
+   }
