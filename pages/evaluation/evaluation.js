@@ -1,6 +1,7 @@
 // pages/apply_after_sales/apply_after_sales.js
 const regeneratorRuntime = require('../../utils/regenerate.js');
 const app = getApp();
+
 Page({
 
   /**
@@ -9,10 +10,12 @@ Page({
   data: {
     height:null,
     up_img_lenght:true,
+    url: app.globalData.img_url,
     img:[
       "../../images/1.png",
       "../../images/1.png",
-    ]
+    ],
+    goods:[]
 
   },
   up_img:function(){
@@ -31,7 +34,6 @@ Page({
         sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
         sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
         success: function(res){
-          console.log(res)
           that.setData({
             img:res.tempFilePaths
           })
@@ -41,10 +43,9 @@ Page({
          url: app.globalData.tiltes + 'order_evaluate_add',
          filePath: tempFilePaths[0],
          name: 'img',
-        
          success:function(res){
            //打印
-           console.log(res.data)
+           console.log(res)
          }
        })
        
@@ -72,6 +73,42 @@ Page({
     var that=this;
     var height = wx.getSystemInfoSync().windowHeight;
      that.setData({ height: height});
+    wx.request({
+      url: app.globalData.tiltes + 'order_evaluate_index',
+      data: {
+        'member_id': app.globalData.member_id,
+       'parts_order_number':options.title
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+  
+      // },
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          goods: res.data.data,
+        });
+        
+          //  添加字段到等级数组
+          // for (var index in that.data.routers) {
+          //   var sexParam = "routers[" + index + "].url";
+          //   that.setData({
+          //     [sexParam]: app.globalData.img_url,
+          //   })
+    
+          // }
+         
+  
+      },
+      fail: function () {
+  
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+  
+    });
   },
 
   /**
