@@ -1,10 +1,11 @@
 <form bindsubmit="formSubmit" bindreset="formReset">
-<view  class='form_all'>
+
+<view  class='form_all' wx:if="{{status==0}}">
         <view class='title'><text class='text_red'>*</text>身份认证:</view>
         <view class='list_a'>
         <view class="section section_top">
             <view class="section_title">姓名</view>
-            <input name="harvester" placeholder="请输入真实姓名" />
+            <input name="harvester" placeholder="请输入真实姓名"  />
           </view>
           <view class="section">
             <view class="section_title">身份证号</view>
@@ -15,6 +16,24 @@
       
           <view class="btn-area">
             <button form-type="submit" class='button-hovers'>提交</button>
+          </view>
+  </view>
+  <view  class='form_all' wx:else>
+        <view class='title'><text class='text_red'>*</text>身份认证:</view>
+        <view class='list_a'>
+        <view class="section section_top">
+            <view class="section_title">姓名</view>
+            <input name="harvester" placeholder="请输入真实姓名" value="" />
+          </view>
+          <view class="section">
+            <view class="section_title">身份证号</view>
+            <input name="harvester_phone_num" placeholder="请输入身份证号" value=""/>
+          </view>
+          </view>
+         
+      
+          <view class="btn-area">
+            <button form-type="submit" class='button-hovers' >提交</button>
           </view>
   </view>
 </form>

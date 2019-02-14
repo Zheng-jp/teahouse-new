@@ -6,23 +6,22 @@ Page({
    * 页面的初始数据
    */
   data: {
+    status:0,
     region: ['省', '市', '区'],
-    customItem: "全部"
-
+    customItem: "全部",
+    info:[]
   },
 
   formSubmit: function (e) {
     var that=this;
-   
+    console.log(e.detail.value)
+  if(that.data.status==0){
     wx.request({
-      url: app.globalData.tiltes + 'member_address_adds',
+      url: app.globalData.tiltes + 'id_card_add',
       data: {
-        harvester: e.detail.value.harvester,
-        harvester_phone_num : e.detail.value.harvester_phone_num,
-        address_name: that.data.region,
-        harvester_real_address : e.detail.value.harvester_real_address,
-        status : 1,
-        open_id: app.globalData.gmemberid,
+        member_id :app.globalData.member_id,
+        id_card :e.detail.value.harvester_phone_num,
+        name :e.detail.value.harvester,
       },
       method: "post",
       // header: {
@@ -30,35 +29,7 @@ Page({
 
       // },
       success: function (res) {
-        if(res.data.status==1){
-          wx.showToast({
-            title:res.data.info,
-            icon:'none',
-          });
-          
-        setTimeout(function () {
-          wx.navigateTo({
-            url: '../select_address/select_address',
-            success: function (res) {
-              // success
-              console.log("nihao////跳转成功")
-            },
-            fail: function () {
-              // fail
-              console.log("nihao////跳转失败")
-            },
-            complete: function () {
-              // complete
-              console.log("nihao////跳转行为结束，未知成功失败")
-            }
-
-          })
-        }, 2000)
-         
-        }
-       
-        console.log(res);
-     
+     console.log(res);
       },
       fail: function () {
 
@@ -68,12 +39,15 @@ Page({
       }
 
     });
+  }
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
     wx.request({
       url: app.globalData.tiltes + 'id_card_return',
       data: {
@@ -85,7 +59,11 @@ Page({
 
       // },
       success: function (res) {
-       console.log(res);    
+        that.setData({
+          status: res.data.status,
+          info: res.data.data,
+        });
+       
       },
       fail: function () {
 
