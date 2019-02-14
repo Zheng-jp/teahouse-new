@@ -84,6 +84,7 @@ Page({
 
       // },
       success: function (res) {
+        console.log(res);
         that.setData({
           status: res.data.status,
           info: res.data.data,
