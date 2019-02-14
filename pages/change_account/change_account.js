@@ -10,6 +10,8 @@ Page({
     customItem: "全部",
     address:[],
     title:'',
+    btntext: '获取验证码'
+
 
   },
  
@@ -73,7 +75,46 @@ Page({
 
     });
   },
- 
+  send_cold: function (e) {
+      //这里是要调api接口的，我这里就假装已经调成功了，返回200了
+      var _this = this 
+        var coden = 60    // 定义60秒的倒计时
+        var codeV = setInterval(function () {    
+            _this.setData({    // _this这里的作用域不同了
+              btntext: '重新获取' + (--coden) + 's'
+            })
+            if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
+              clearInterval(codeV)
+              _this.setData({
+                btntext: '获取验证码'
+              })
+            }
+          }, 1000)  //  1000是1秒
+      
+  
+    // wx.request({
+    //   url: app.globalData.tiltes + 'member_address_edit',
+    //   data: {
+      
+    //   },
+    //   method: "post",
+    //   // header: {
+    //   //   "Content-Type": "json" // 默认值
+
+    //   // },
+    //   success: function (res) {
+    //     console.log(res);
+     
+    //   },
+    //   fail: function () {
+
+    //   },
+    //   complete: function () {
+    //     wx.hideLoading()
+    //   }
+
+    // });
+  },
 
   /**
    * 生命周期函数--监听页面加载

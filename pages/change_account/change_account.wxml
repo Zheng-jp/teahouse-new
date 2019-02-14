@@ -13,7 +13,7 @@
           <view class="section">
             <view class="section_title">验证码</view>
             <input name="harvester_phone_num" placeholder="请输入验证码" value="" class="cold_input"/>
-            <view class="send_cold">获取验证码</view>
+            <view class="send_cold" bindtap="send_cold">{{btntext}}</view>
           </view>
           </view>
          <view class="tips">
