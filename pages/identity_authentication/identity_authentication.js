@@ -40,6 +40,31 @@ Page({
 
     });
   }
+  else{
+    wx.request({
+      url: app.globalData.tiltes + 'id_card_edit',
+      data: {
+        member_id :app.globalData.member_id,
+        id_card :e.detail.value.harvester_phone_num,
+        name :e.detail.value.harvester,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+     console.log(res);
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
+  }
     
   },
 
@@ -63,6 +88,11 @@ Page({
           status: res.data.status,
           info: res.data.data,
         });
+        if(that.data.status==1){
+          that.setData({
+            info: res.data.data,
+          });
+        }
        
       },
       fail: function () {
