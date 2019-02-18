@@ -4,7 +4,7 @@
         <view class='list_a'>
         <view class="section section_top">
             <view class="section_title">我的昵称</view>
-            <input name="harvester" placeholder="取一个与众不同的名字哟~"  value=""/>
+            <input name="harvester" placeholder="取一个与众不同的名字哟~"  value="{{name}}"/>
           </view>
          
           </view>

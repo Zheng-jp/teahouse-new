@@ -9,6 +9,7 @@ Page({
     ispassword:false,
 
   },
+ 
   go: function (event) {
 
     var that = this;

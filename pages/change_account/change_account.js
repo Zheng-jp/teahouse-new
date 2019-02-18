@@ -21,6 +21,7 @@ Page({
     var that=this;
     var id=that.data.change;
     var sessionId = wx.getStorageSync('sessionId');
+    console.log(sessionId);
     if(!id){
       if(e.detail.value.member_phone_num==''){
         wx.showToast({
@@ -74,7 +75,7 @@ Page({
             //   })
             // }, 2000)
              
-            // }
+            }
             // else{
   
             // }
@@ -126,6 +127,7 @@ Page({
   
         // },
         success: function (res) {
+          console.log(res);
           var coden = 60    // 定义60秒的倒计时
           var codeV = setInterval(function () {    
               _this.setData({    // _this这里的作用域不同了

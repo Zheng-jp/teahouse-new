@@ -7,9 +7,8 @@ Page({
    */
   data: {
   
-    customItem: "全部",
-    address:[],
-    title:'',
+    
+    name:null
 
   },
  
@@ -18,15 +17,10 @@ Page({
     var id=that.data.title
     console.log(id);
     wx.request({
-      url: app.globalData.tiltes + 'member_address_edit',
+      url: app.globalData.tiltes + 'user_name_update',
       data: {
-        harvester: e.detail.value.harvester,
-        harvester_phone_num : e.detail.value.harvester_phone_num,
-        address_name: that.data.region,
-        harvester_real_address : e.detail.value.harvester_real_address,
-        status : 1,
-        open_id: app.globalData.gmemberid,
-        id:id
+        user_name: e.detail.value.harvester,
+        member_id: app.globalData.member_id,
       },
       method: "post",
       // header: {
@@ -41,22 +35,7 @@ Page({
           });
           
         setTimeout(function () {
-          wx.navigateTo({
-            url: '../select_address/select_address',
-            success: function (res) {
-              // success
-              console.log("nihao////跳转成功")
-            },
-            fail: function () {
-              // fail
-              console.log("nihao////跳转失败")
-            },
-            complete: function () {
-              // complete
-              console.log("nihao////跳转行为结束，未知成功失败")
-            }
-
-          })
+          wx.navigateBack();
         }, 2000)
          
         }
@@ -80,36 +59,31 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    // var title = options.title;
-    // that.setData({
-    //   title: title,
-    // });
-    // wx.request({
-    //   url: app.globalData.tiltes + 'member_address_edit_information',
-    //   data: {
-    //     id:title,
-    //   },
-    //   method: "post",
-    //   // header: {
-    //   //   "Content-Type": "json" // 默认值
+    wx.request({
+      url: app.globalData.tiltes + 'user_name_return',
+      data: {
+        member_id: app.globalData.member_id,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
 
-    //   // },
-    //   success: function (res) {
-    //    console.log(res);
-    //    that.setData({
-    //     address:res.data.data,
-    //     region:res.data.data.address_name.split(","),
-    //    })
+      // },
+      success: function (res) {
+       console.log(res);
+      that.setData({
+        name:res.data.data,
+      })
   
-    //   },
-    //   fail: function () {
+      },
+      fail: function () {
 
-    //   },
-    //   complete: function () {
-    //     wx.hideLoading()
-    //   }
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
 
-    // });
+    });
 
   },
 
