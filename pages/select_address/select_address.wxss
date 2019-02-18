@@ -32,29 +32,28 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   flex-direction: column;
   align-items: center;
   color: #BFBFBF;
+  justify-content: space-between;
+  height: 150rpx;
 }
 checkbox-group{
   display: flex;
   align-items: center;
 }
-.add_ico
-{
-  padding-top: 16rpx;
-  padding-bottom: 16rpx;
-}
+
 .delect_ico{
   width: 40rpx;
 }
 .content_list{
   display: flex;
   align-items: center;
+  padding-right: 30rpx;
 }
 .radio{
   width: 100rpx;
   text-align: center;
 }
 .add_information{
-  width: 477rpx;
+  width: 560rpx;
   font-size: 26rpx;
   padding-right: 20rpx;
 
@@ -63,8 +62,7 @@ checkbox-group{
   margin-right: 20rpx;
 }
 .add_ico{
-  width: 60rpx;
-  height: 64rpx;
+  width: 50rpx;
 
 }
 .content_list{
@@ -72,6 +70,7 @@ checkbox-group{
   padding-bottom: 30rpx;
   margin-top: 16rpx;
   background: #fff;
+  justify-content: space-between;
 }
 .address{
   margin-top: 20rpx;

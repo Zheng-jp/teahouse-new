@@ -6,29 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-     addresss:[],
+     card:[],
      is_select_address:'',
    
   },
-  // add_address: function (event) {
-  //   wx.navigateTo({
-  //     url: '../add_address/add_address',
-    
-  //     success: function (res) {
-  //       // success
-  //       console.log("nihao////跳转成功")
-  //     },
-  //     fail: function () {
-  //       // fail
-  //       console.log("nihao////跳转失败")
-  //     },
-  //     complete: function () {
-  //       // complete
-  //       console.log("nihao////跳转行为结束，未知成功失败")
-  //     }
 
-  //   })
-  // },
   go_add_card: function (event) {
     wx.navigateTo({
       url: '../add_card/add_card?title=' + event.currentTarget.dataset.id,
@@ -97,6 +79,32 @@ Page({
     var that=this;
     var s_height = wx.getSystemInfoSync().windowHeight;
     var title = options.title;
+       wx.request({
+      url: app.globalData.tiltes + 'bank_bingding',
+      data: {
+        member_id: app.globalData.member_id,
+      },
+      method: "post",
+  
+      success: function (res) {
+        console.log(res);
+        if(res.data.status!="0"){
+              that.setData({
+                card:res.data.data
+              });
+        }
+        // wx.showToast({
+        //   title:'修改成功',
+        //   icon: 'none'
+        // })
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
   },
 
   /**

@@ -170,6 +170,7 @@ padding: 10rpx;
   color: #6B6B6B;
   font-weight: bold;
   padding-top: 40rpx;
+  color: #93291E;
 }
 .hide{
  display: none;
@@ -188,8 +189,7 @@ padding: 10rpx;
 .all_seach_text{
   display: inline-block;
   width: 90%;
-border-bottom: 1px #333 solid;
-
+background: #fff;
  padding-bottom: 14rpx;
  padding-top: 14rpx;
 
@@ -202,13 +202,13 @@ border-bottom: 1px #333 solid;
   width: 50%;
   float: left;
   text-align: center;
-  
+  margin-bottom: 20rpx;
      box-sizing: border-box;
 }
 .seach_text{
   display: inline-block;
   width: 80%;
-  border-bottom: 1px #333 solid;
+  background: #fff;
   padding: 14rpx
 }
 .intro {

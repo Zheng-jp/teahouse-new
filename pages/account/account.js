@@ -1,4 +1,5 @@
 // pages/account/account.js
+const app = getApp();
 Page({
 
   /**
@@ -42,6 +43,7 @@ Page({
             }
         })
       }
+     
       else{
         wx.navigateTo({
           url: item,
@@ -59,6 +61,37 @@ Page({
         })
       }
      
+    }
+    else if(item=='../card/card'){
+         if(!app.globalData.judge_phone){
+          wx.showModal({
+            title:'提示',
+            content: '你未绑定手机号码',
+            confirmText:'马上绑定',
+            confirmColor:'#3399FF',
+            cancelColor:'#bbb',
+            success: function(res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '../change_account/change_account?judge_phone='+0,
+                  success: function (res) {
+                     
+                  },
+                  fail: function () {
+                   
+                  },
+                  complete: function () {
+                  
+                  }
+            
+            
+                })
+              } else if (res.cancel) {
+              console.log('用户点击取消')
+              }
+              }
+          })  
+         }
     }
     else{
       wx.navigateTo({
@@ -83,7 +116,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+     app.judge_phone();
   },
 
   /**

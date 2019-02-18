@@ -16,17 +16,15 @@ Page({
   formSubmit: function (e) {
     var that=this;
     var id=that.data.title
-    console.log(id);
+    console.log(e);
     wx.request({
-      url: app.globalData.tiltes + 'member_address_edit',
+      url: app.globalData.tiltes + 'bank_bingding_add',
       data: {
-        harvester: e.detail.value.harvester,
+        bank_name: e.detail.value.bank_name,
+        account_name : e.detail.value.account_name,
+        bank_card: that.data.bank_card,
         harvester_phone_num : e.detail.value.harvester_phone_num,
-        address_name: that.data.region,
-        harvester_real_address : e.detail.value.harvester_real_address,
-        status : 1,
-        open_id: app.globalData.gmemberid,
-        id:id
+        member_id: app.globalData.member_id,
       },
       method: "post",
       // header: {
@@ -73,6 +71,30 @@ Page({
 
     });
   },
+  send_cold: function (e) {
+    wx.request({
+      url: app.globalData.tiltes + 'user_phone_return',
+      data: {
+        member_id: app.globalData.member_id,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+     
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
+  },
  
 
   /**
@@ -80,36 +102,8 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    // var title = options.title;
-    // that.setData({
-    //   title: title,
-    // });
-    // wx.request({
-    //   url: app.globalData.tiltes + 'member_address_edit_information',
-    //   data: {
-    //     id:title,
-    //   },
-    //   method: "post",
-    //   // header: {
-    //   //   "Content-Type": "json" // 默认值
-
-    //   // },
-    //   success: function (res) {
-    //    console.log(res);
-    //    that.setData({
-    //     address:res.data.data,
-    //     region:res.data.data.address_name.split(","),
-    //    })
-  
-    //   },
-    //   fail: function () {
-
-    //   },
-    //   complete: function () {
-    //     wx.hideLoading()
-    //   }
-
-    // });
+    var title = options.title;
+   
 
   },
 

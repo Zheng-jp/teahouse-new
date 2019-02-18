@@ -358,9 +358,19 @@ margin:20rpx auto;
 
 .total .totalPrice text {
   color: #e4452a;
-  font-size: 36rpx;
+  font-size: 30rpx;
   vertical-align: middle;
 }
+.good_name{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow:hidden;
+  -webkit-box-orient: vertical;
+  line-height:42rpx;
+  margin:10rpx;
+  
+  }
 /* 购买数量 */
 .quantity{
   display: flex;

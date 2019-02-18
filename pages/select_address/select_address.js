@@ -48,7 +48,7 @@ Page({
 
     })
   },
-  checkboxChange: function (e) {
+  radioChange: function (e) {
     var that = this;
      wx.request({
       url: app.globalData.tiltes + 'member_address_status',

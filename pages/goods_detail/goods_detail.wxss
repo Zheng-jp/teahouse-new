@@ -138,27 +138,29 @@
 	}
 	
 	.default {
-		line-height: 92rpx;
+		line-height: 99rpx;
 		text-align: center;
 		color: #949494;
 		font-weight: bold;
 		font-size: 28rpx;
     width:141rpx;
     margin:0 auto;
-      border-bottom: solid 3px #949494;
+      /* border-bottom: solid 1px #949494; */
 	}
 	
 	.red {
-    line-height: 92rpx;
+    line-height: 99rpx;
 	  color:red;
     font-weight:bold;
     font-size:28rpx;
     width:141rpx;
     margin:0 auto;
-    border-bottom: solid 3px red;
+    border-bottom: solid 1px red;
 
 	}
-
+.line_price{
+  text-decoration: line-through;
+}
 	.show {
 	}
 	

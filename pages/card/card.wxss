@@ -8,6 +8,20 @@ view {
     display: flex;
     align-items: center;
     margin: 40rpx 10rpx 10rpx 10rpx;
+    position: relative;
+  }
+  .add_ico{
+    position: absolute;
+    width: 50rpx;
+    top:11rpx;
+    right:38rpx;
+
+  }
+  .delect_ico{
+    position: absolute;
+    width: 40rpx;
+    bottom:11rpx;
+    right:38rpx;
   }
   .radio{
     width: 100rpx;

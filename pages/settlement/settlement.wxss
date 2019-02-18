@@ -251,7 +251,7 @@ color:#3399FF;
 }
 .more_imgs{
   width: 30rpx;
-  height: 38rpx;
+  height: 30rpx;
 }
 .sundry{
   background: #fff;

@@ -278,6 +278,16 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
    
  
   }
+  .price{
+    display: flex;
+    justify-content: space-between;
+  }
+  .line_price{
+    text-decoration: line-through;
+    color:#949494;
+  font-size: 26rpx;
+  float: right;
+  }
  .weui-grid_name {
    width: 200rpx;
    display: inline-block;
