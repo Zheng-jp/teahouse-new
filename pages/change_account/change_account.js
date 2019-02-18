@@ -44,17 +44,18 @@ Page({
             member_id: app.globalData.member_id,
           },
           method: "post",
-          header: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Cookie": sessionId
-          },
+          // header: {
+          //   "Content-Type": "application/x-www-form-urlencoded",
+          //   "Cookie": sessionId
+          // },
     
           success: function (res) {
-            if(res.data.status==1){
-              wx.showToast({
-                title:res.data.info,
-                icon:'none',
-              });
+            
+            // if(res.data.status==1){
+            //   wx.showToast({
+            //     title:res.data.info,
+            //     icon:'none',
+            //   });
               
             // setTimeout(function () {
             //   wx.navigateTo({
@@ -75,7 +76,7 @@ Page({
             //   })
             // }, 2000)
              
-            }
+            // }
             // else{
   
             // }
