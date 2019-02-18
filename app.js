@@ -38,7 +38,33 @@ App({
   },
   // 判断绑定支付密码
   judge_repay: function(e){
-    console.log("支付密码")
+    var that=this;
+    console.log(that.globalData);
+      wx.request({
+      url: that.globalData.tiltes + 'pay_password_return',
+      data: {
+        member_id: that.globalData.member_id,
+      },
+      method: "post",
+      
+      success: function (res) {
+        console,log(res);
+       if(res.data.status==0){
+        that.globalData.judge_repay=false;
+       }
+       else{
+         that.globalData.judge_repay=true;
+       }
+     
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+       
+      }
+
+    });
   },
   globalData: {
     
@@ -48,6 +74,7 @@ App({
     member_grade_name:null,
     member_id:null,
     judge_phone:null,
+    judge_repay:null,
     url:'https://teahouse.siring.com.cn',
     tiltes: 'https://teahouse.siring.com.cn/',
     img_url: 'https://teahouse.siring.com.cn/uploads/',

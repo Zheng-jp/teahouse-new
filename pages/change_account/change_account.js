@@ -51,35 +51,20 @@ Page({
     
           success: function (res) {
             
-            // if(res.data.status==1){
-            //   wx.showToast({
-            //     title:res.data.info,
-            //     icon:'none',
-            //   });
+            if(res.data.status==1){
+              wx.showToast({
+                title:res.data.info,
+                icon:'none',
+              });
               
-            // setTimeout(function () {
-            //   wx.navigateTo({
-            //     url: '../select_address/select_address',
-            //     success: function (res) {
-            //       // success
-            //       console.log("nihao////跳转成功")
-            //     },
-            //     fail: function () {
-            //       // fail
-            //       console.log("nihao////跳转失败")
-            //     },
-            //     complete: function () {
-            //       // complete
-            //       console.log("nihao////跳转行为结束，未知成功失败")
-            //     }
-    
-            //   })
-            // }, 2000)
+              setTimeout(function () {
+                wx.navigateBack();
+              }, 2000)
              
-            // }
-            // else{
+            }
+            else{
   
-            // }
+            }
          
           },
           fail: function () {

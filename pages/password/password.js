@@ -6,28 +6,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-    region: ['省', '市', '区'],
-    customItem: "全部"
+    typea:"password",
+    typeb:"password",
+    type1:true,
+    type2:true,
+  },
 
-  },
-  bindRegionChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      region: e.detail.value
-    })
-  },
   formSubmit: function (e) {
     var that=this;
-   
-    wx.request({
-      url: app.globalData.tiltes + 'member_address_adds',
+   if(e.detail.value.harvester==''){
+    wx.showToast({
+      title:"请输入密码",
+      icon:'none',
+    });
+   }
+   else if( e.detail.value.harvester_phone_num==''){
+    wx.showToast({
+      title:"请再次输入密码",
+      icon:'none',
+    });
+   }
+   else if( e.detail.value.harvester_phone_num!=e.detail.value.harvester){
+    wx.showToast({
+      title:"两次密码不一致",
+      icon:'none',
+    });
+   }
+   else{
+      wx.request({
+      url: app.globalData.tiltes + 'pay_password_add',
       data: {
-        harvester: e.detail.value.harvester,
-        harvester_phone_num : e.detail.value.harvester_phone_num,
-        address_name: that.data.region,
-        harvester_real_address : e.detail.value.harvester_real_address,
-        status : 1,
-        open_id: app.globalData.gmemberid,
+        password: e.detail.value.harvester,
+        password_repeat : e.detail.value.harvester_phone_num,
+        member_id: app.globalData.member_id,
       },
       method: "post",
       // header: {
@@ -41,24 +52,9 @@ Page({
             icon:'none',
           });
           
-        setTimeout(function () {
-          wx.navigateTo({
-            url: '../select_address/select_address',
-            success: function (res) {
-              // success
-              console.log("nihao////跳转成功")
-            },
-            fail: function () {
-              // fail
-              console.log("nihao////跳转失败")
-            },
-            complete: function () {
-              // complete
-              console.log("nihao////跳转行为结束，未知成功失败")
-            }
-
-          })
-        }, 2000)
+          setTimeout(function () {
+            wx.navigateBack();
+          }, 2000)
          
         }
        
@@ -73,6 +69,45 @@ Page({
       }
 
     });
+
+   }
+   
+  },
+  to_see:function (e) {
+    var that=this;
+
+    if(e.currentTarget.dataset.id=="type1"){
+       that.setData({
+         type1:false,
+         typea:"text",
+       })
+    }
+    else{
+      that.setData({
+         type2:false,
+         typeb:"text",
+      })
+    }
+   
+
+  },
+  to_nosee:function (e) {
+    var that=this;
+
+    if(e.currentTarget.dataset.id=="type1"){
+       that.setData({
+         type1:true,
+         typea:"password",
+       })
+    }
+    else{
+      that.setData({
+         type2:true,
+         typeb:"password",
+      })
+    }
+   
+
   },
 
   /**
