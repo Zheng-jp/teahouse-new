@@ -21,6 +21,7 @@ Page({
          that.setData({
           img: tempFilePaths,
         });
+        
         } 
       })
      },
