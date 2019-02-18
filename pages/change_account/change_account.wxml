@@ -1,5 +1,5 @@
 <form bindsubmit="formSubmit" bindreset="formReset">
-<view  class='form_all'>
+  <view  class='form_all' wx:if="{{change}}">
         <view class='title'><text class='text_red'>*</text>修改手机号账号绑定:</view>
         <view class='list_a'>
         <view class="section section_top">
@@ -24,4 +24,27 @@
             <button form-type="submit" class='button-hovers'>保存</button>
           </view>
   </view>
+  <view  class='form_all' else>
+        <view class='title'><text class='text_red'>*</text>手机号账号绑定:</view>
+        <view class='list_a'>
+      
+          <view class="section">
+            <view class="section_title">绑定账号</view>
+            <input name="member_phone_num" placeholder="必须是本人使用手机号" value=""  bindchange="bindChange" />
+          </view>
+          <view class="section">
+            <view class="section_title">验证码</view>
+            <input name="cold" placeholder="请输入验证码" value="" class="cold_input"/>
+            <view class="send_cold" bindtap="send_cold">{{btntext}}</view>
+          </view>
+          </view>
+         <view class="tips">
+             <view class="tips_title"> 温馨提示 </view>
+             <view class="tips_content">*请如实填写，各项验证将发到您真实绑定手机号上</view>
+         </view>
+          <view class="btn-area">
+            <button form-type="submit" class='button-hovers' >保存</button>
+          </view>
+  </view>
+
 </form>

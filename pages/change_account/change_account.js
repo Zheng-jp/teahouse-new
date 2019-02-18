@@ -10,110 +10,152 @@ Page({
     customItem: "全部",
     address:[],
     title:'',
-    btntext: '获取验证码'
+    btntext: '获取验证码',
+    change:true,
+    num:null,
 
 
   },
  
   formSubmit: function (e) {
     var that=this;
-    var id=that.data.title
-    console.log(id);
-    wx.request({
-      url: app.globalData.tiltes + 'member_address_edit',
-      data: {
-        harvester: e.detail.value.harvester,
-        harvester_phone_num : e.detail.value.harvester_phone_num,
-        address_name: that.data.region,
-        harvester_real_address : e.detail.value.harvester_real_address,
-        status : 1,
-        open_id: app.globalData.gmemberid,
-        id:id
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
-      success: function (res) {
-        if(res.data.status==1){
-          wx.showToast({
-            title:res.data.info,
-            icon:'none',
-          });
-          
-        setTimeout(function () {
-          wx.navigateTo({
-            url: '../select_address/select_address',
-            success: function (res) {
-              // success
-              console.log("nihao////跳转成功")
-            },
-            fail: function () {
-              // fail
-              console.log("nihao////跳转失败")
-            },
-            complete: function () {
-              // complete
-              console.log("nihao////跳转行为结束，未知成功失败")
-            }
-
-          })
-        }, 2000)
-         
-        }
-       
-        console.log(res);
-     
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
+    var id=that.data.change;
+    var sessionId = wx.getStorageSync('sessionId');
+    if(!id){
+      if(e.detail.value.member_phone_num==''){
+        wx.showToast({
+          title:"手机号不能为空",
+          icon:'none',
+        });
       }
+      else if(e.detail.value.cold==''){
+        wx.showToast({
+          title:"验证码不能为空",
+          icon:'none',
+        });
+      }
+      else{
+        wx.request({
+          url: app.globalData.tiltes + 'user_phone_bingding',
+          data: {
+            member_phone_num: e.detail.value.member_phone_num,
+            code:e.detail.value.cold,
+            member_id: app.globalData.member_id,
+          },
+          method: "post",
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Cookie": sessionId
+          },
+    
+          success: function (res) {
+            if(res.data.status==1){
+              wx.showToast({
+                title:res.data.info,
+                icon:'none',
+              });
+              
+            // setTimeout(function () {
+            //   wx.navigateTo({
+            //     url: '../select_address/select_address',
+            //     success: function (res) {
+            //       // success
+            //       console.log("nihao////跳转成功")
+            //     },
+            //     fail: function () {
+            //       // fail
+            //       console.log("nihao////跳转失败")
+            //     },
+            //     complete: function () {
+            //       // complete
+            //       console.log("nihao////跳转行为结束，未知成功失败")
+            //     }
+    
+            //   })
+            // }, 2000)
+             
+            // }
+            // else{
+  
+            // }
+         
+          },
+          fail: function () {
+    
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+    
+        });
+      }
+    
+    }
+    else{
 
-    });
+    }
+    
+  },
+  validateTel:function (tel){
+    var TEL_REGEXP = /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/;
+    if(TEL_REGEXP.test(tel)){
+      return true;
+    }
+    return false;
+   },
+  bindChange:function (event) {
+     var that=this;
+     that.setData({
+       num:event.detail.value
+     })
   },
   send_cold: function (e) {
-      //这里是要调api接口的，我这里就假装已经调成功了，返回200了
+   var that=this;
       var _this = this 
-        var coden = 60    // 定义60秒的倒计时
-        var codeV = setInterval(function () {    
-            _this.setData({    // _this这里的作用域不同了
-              btntext: '重新获取' + (--coden) + 's'
-            })
-            if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
-              clearInterval(codeV)
-              _this.setData({
-                btntext: '获取验证码'
-              })
-            }
-          }, 1000)  //  1000是1秒
-      
+     var is_phone=that.validateTel(that.data.num);
+     console.log(is_phone);
+     if(is_phone){
+      wx.request({
+        url: app.globalData.tiltes + 'sendMobileCode',
+        data: {
+          mobile:that.data.num,
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
   
-    // wx.request({
-    //   url: app.globalData.tiltes + 'member_address_edit',
-    //   data: {
-      
-    //   },
-    //   method: "post",
-    //   // header: {
-    //   //   "Content-Type": "json" // 默认值
-
-    //   // },
-    //   success: function (res) {
-    //     console.log(res);
-     
-    //   },
-    //   fail: function () {
-
-    //   },
-    //   complete: function () {
-    //     wx.hideLoading()
-    //   }
-
-    // });
+        // },
+        success: function (res) {
+          var coden = 60    // 定义60秒的倒计时
+          var codeV = setInterval(function () {    
+              _this.setData({    // _this这里的作用域不同了
+                btntext: '重新获取' + (--coden) + 's'
+              })
+              if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
+                clearInterval(codeV)
+                _this.setData({
+                  btntext: '获取验证码'
+                })
+              }
+            }, 1000)  //  1000是1秒
+       
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
+     }
+     else{
+      wx.showToast({
+        title: '手机格式有问题',
+        icon:'none',
+      })
+     }
+  
   },
 
   /**
@@ -121,10 +163,19 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    // var title = options.title;
-    // that.setData({
-    //   title: title,
-    // });
+    var judge_phone = options.judge_phone;
+ 
+    if(judge_phone==0){
+      that.setData({
+        change: false,
+      });
+    }
+    else{
+      that.setData({
+        change: true,
+      });
+    }
+   
     // wx.request({
     //   url: app.globalData.tiltes + 'member_address_edit_information',
     //   data: {
