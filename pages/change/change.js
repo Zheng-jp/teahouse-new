@@ -104,11 +104,19 @@ Page({
   
       success: function (res) {
         console.log(res);
-        // if(res.data.status!="0"){
+        if(res.data.status!="0"){
+          console.log(1);
               that.setData({
                 user_phone:res.data.data
               });
-        // }
+        }
+        else{
+          console.log(2);
+          that.setData({
+            user_phone:res.data.status
+          });
+        }
+        console.log(that);
         // wx.showToast({
         //   title:'修改成功',
         //   icon: 'none'

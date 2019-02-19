@@ -1,4 +1,11 @@
 <!--my.wxml-->
+<wxs module="phone">
+var toHide = function(array) {
+  var mphone = array.substring(0, 3) + '****' + array.substring(7);
+  return mphone;
+}
+module.exports.toHide = toHide;
+</wxs>
 <view style='background-color:#ebebeb;'>
 
 <view style='background:{{information.member_background_color}}'>
@@ -15,8 +22,8 @@
             <view class='head_portrait' >
               <open-data type="userAvatarUrl"></open-data>
             </view> 
-            <view class='phone_num'>
-            {{information.member_phone_num}}
+            <view class='phone_num' wx:if="{{information.member_phone_num}}">
+            {{phone.toHide(information.member_phone_num)}}
             </view>
         </view>
           <view class='list'>

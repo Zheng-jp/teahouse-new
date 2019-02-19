@@ -4,16 +4,16 @@
         <view class='list_a'>
         <view class="section section_top">
             <view class="section_title">老账号</view>
-            <input name="harvester" placeholder="输入旧手机号"  value=""/>
+            <input name="harvester" placeholder="输入旧手机号"  value=""  bindchange="bindoldChange" />
           </view>
           <view class="section">
             <view class="section_title">绑定新账号</view>
-            <input name="harvester_phone_num" placeholder="必须是本人使用手机号" value=""/>
+            <input name="harvester_phone_num" placeholder="必须是本人使用手机号" value="" bindchange="bindnewChange" />
           </view>
           <view class="section">
             <view class="section_title">验证码</view>
-            <input name="harvester_phone_num" placeholder="请输入验证码" value="" class="cold_input"/>
-            <view class="send_cold" bindtap="send_cold">{{btntext}}</view>
+            <input name="harvester_phone_num1" placeholder="请输入验证码" value="" class="cold_input"/>
+            <view class="send_cold" bindtap="send_cold1">{{btntext}}</view>
           </view>
           </view>
          <view class="tips">
@@ -21,7 +21,7 @@
              <view class="tips_content">*请如实填写，各项验证将发到您真实绑定手机号上</view>
          </view>
           <view class="btn-area">
-            <button form-type="submit" class='button-hovers'>保存</button>
+            <button form-type="submit" class='button-hovers'>修改账号</button>
           </view>
   </view>
   <view  class='form_all' wx:else>
