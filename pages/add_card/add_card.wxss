@@ -80,7 +80,7 @@
     font-weight: bold;
     text-align: center;
     border-left: solid 1rpx  #BCBCBC;
-    width: 150rpx; 
+    width: 180rpx; 
 
   }
   .cold_input{

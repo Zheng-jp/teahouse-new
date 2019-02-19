@@ -1,4 +1,5 @@
 // pages/change/change.js
+const app = getApp();
 Page({
 
   /**
@@ -31,21 +32,39 @@ Page({
    go_change_account: function (event) {
 
     var that = this;
-    var item = event.currentTarget.dataset.item;
-    wx.navigateTo({
-      url: '../change_account/change_account?title=' + event.currentTarget.dataset.id,
-      success: function (res) {
-      
-      },
-      fail: function () {
-       
-      },
-      complete: function () {
-      
-      }
-
-
-    })
+    if(!app.globalData.judge_phone){
+      wx.navigateTo({
+        url: '../change_account/change_account?judge_phone='+0,
+        success: function (res) {
+        
+        },
+        fail: function () {
+         
+        },
+        complete: function () {
+        
+        }
+  
+  
+      })
+    }
+    else{
+      wx.navigateTo({
+        url: '../change_account/change_account?judge_phone='+1,
+        success: function (res) {
+        
+        },
+        fail: function () {
+         
+        },
+        complete: function () {
+        
+        }
+  
+  
+      })
+    }
+  
   },
   go_change_name: function (event) {
 
@@ -71,7 +90,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    app.judge_phone();
   },
 
   /**

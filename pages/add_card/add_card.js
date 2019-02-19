@@ -8,93 +8,201 @@ Page({
   data: {
   
     customItem: "全部",
-    address:[],
+    name:'',
     title:'',
+    btntext: '获取验证码',
+    change:false,
+    num:null,
+    card:[],
+    cardid:null,
 
   },
  
   formSubmit: function (e) {
     var that=this;
-    var id=that.data.title
-    console.log(e);
-    wx.request({
-      url: app.globalData.tiltes + 'bank_bingding_add',
-      data: {
-        bank_name: e.detail.value.bank_name,
-        account_name : e.detail.value.account_name,
-        bank_card: that.data.bank_card,
-        harvester_phone_num : e.detail.value.harvester_phone_num,
-        member_id: app.globalData.member_id,
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
-      success: function (res) {
-        if(res.data.status==1){
-          wx.showToast({
-            title:res.data.info,
-            icon:'none',
-          });
+    // 添加
+    if(!that.data.change){
+      if(e.detail.value.name==''){
+        wx.showToast({
+          title:"开户名不能为空",
+          icon:'none',
+        });
+      }
+      else if(e.detail.value.card_name==''){
+        wx.showToast({
+          title:"开户银行不能为空",
+          icon:'none',
+        });
+      }
+      else if(e.detail.value.card_num==''){
+        wx.showToast({
+          title:"银行卡号不能为空",
+          icon:'none',
+        });
+      }
+      else if(e.detail.value.harvester_phone_num==''){
+        wx.showToast({
+          title:"验证码不能为空",
+          icon:'none',
+        });
+      }
+      else if(e.detail.value.name!=that.data.name){
+        wx.showToast({
+          title:"您认证的姓名和开卡姓名不一致",
+          icon:'none',
+        });
+      }
+      else{
+        wx.request({
+          url: app.globalData.tiltes + 'bank_bingding_add',
+          data: {
+            account_name:e.detail.value.name,
+            bank_name:e.detail.value.card_name,
+            bank_card:e.detail.value.card_num,
+            code:e.detail.value.harvester_phone_num,
+            status:-1,
+            member_id:app.globalData.member_id,
+          },
+          method: "post",
+          success: function (res) {
           
-        setTimeout(function () {
-          wx.navigateTo({
-            url: '../select_address/select_address',
-            success: function (res) {
-              // success
-              console.log("nihao////跳转成功")
-            },
-            fail: function () {
-              // fail
-              console.log("nihao////跳转失败")
-            },
-            complete: function () {
-              // complete
-              console.log("nihao////跳转行为结束，未知成功失败")
+            if(res.data.status==1){
+              setTimeout(function () {
+                wx.navigateBack();
+              }, 2000)
+             
             }
-
-          })
-        }, 2000)
+            else{
+  
+            }
          
-        }
-       
-        console.log(res);
-     
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
+          },
+          fail: function () {
+           
+          },
+          complete: function (res) {
+            wx.showToast({
+              title:res.data.info,
+              icon:'none',
+            });
+          }
+    
+        });
+      }
+    }
+    else{
+      if(e.detail.value.name==''){
+        wx.showToast({
+          title:"开户名不能为空",
+          icon:'none',
+        });
+      }
+      else if(e.detail.value.card_name==''){
+        wx.showToast({
+          title:"开户银行不能为空",
+          icon:'none',
+        });
+      }
+      else if(e.detail.value.card_num==''){
+        wx.showToast({
+          title:"银行卡号不能为空",
+          icon:'none',
+        });
+      }
+      else if(e.detail.value.harvester_phone_num==''){
+        wx.showToast({
+          title:"验证码不能为空",
+          icon:'none',
+        });
+      }
+      else if(e.detail.value.name!=that.data.name){
+        wx.showToast({
+          title:"您认证的姓名和开卡姓名不一致",
+          icon:'none',
+        });
+      }
+      else{
+        wx.request({
+          url: app.globalData.tiltes + 'bank_bingding_update',
+          data: {
+            id:that.data.cardid,
+            account_name:e.detail.value.name,
+            bank_name:e.detail.value.card_name,
+            bank_card:e.detail.value.card_num,
+            code:e.detail.value.harvester_phone_num,
+            status:-1,
+            member_id:app.globalData.member_id,
+          },
+          method: "post",
+          success: function (res) {
+            if(res.data.status==1){
+              setTimeout(function () {
+                wx.navigateBack();
+              }, 2000)
+             
+            }
+         
+          },
+          fail: function () {
+           
+          },
+          complete: function (res) {
+            wx.showToast({
+              title:res.data.info,
+              icon:'none',
+            });
+          }
+    
+        });
       }
 
-    });
+    }
+     
+    
+   
+    
   },
+
   send_cold: function (e) {
-    wx.request({
-      url: app.globalData.tiltes + 'user_phone_return',
-      data: {
-        member_id: app.globalData.member_id,
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
-      success: function (res) {
-        console.log(res);
-     
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
-      }
-
-    });
-  },
+    var that=this;
+       var _this = this 
+    
+       wx.request({
+         url: app.globalData.tiltes + 'sendMobileCodeBank',
+         data: {
+           member_id:app.globalData.member_id,
+         },
+         method: "post",
+         // header: {
+         //   "Content-Type": "json" // 默认值
+   
+         // },
+         success: function (res) {
+           var coden = 60    // 定义60秒的倒计时
+           var codeV = setInterval(function () {    
+               _this.setData({    // _this这里的作用域不同了
+                 btntext: '重新获取' + (--coden) + 's'
+               })
+               if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
+                 clearInterval(codeV)
+                 _this.setData({
+                   btntext: '获取验证码'
+                 })
+               }
+             }, 1000)  //  1000是1秒
+        
+         },
+         fail: function () {
+   
+         },
+         complete: function () {
+         }
+   
+       });
+      
+    
+   
+   },
  
 
   /**
@@ -103,7 +211,98 @@ Page({
   onLoad: function (options) {
     var that=this;
     var title = options.title;
-   
+    var id=options.id;
+    that.setData({
+      cardid:id
+    });
+    if(title==0){
+      that.setData({
+        change:false,
+      })
+    }
+    else{
+      that.setData({
+        change:true,
+      })
+    }
+    wx.request({
+      url: app.globalData.tiltes + 'id_card_return',
+      data: {
+        member_id: app.globalData.member_id,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+       if(res.data.status!="1"){
+        wx.showModal({
+          title:'提示',
+          content: '你未进行实名认证',
+          confirmText:'马上实名',
+          confirmColor:'#3399FF',
+          cancelColor:'#bbb',
+          success: function(res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../identity_authentication/identity_authentication',
+                success: function (res) {
+                
+                },
+                fail: function () {
+                 
+                },
+                complete: function () {
+                
+                }
+          
+          
+              })
+            } else if (res.cancel) {
+                 wx.navigateBack();
+            }
+            }
+        })
+       }
+       else{
+       that.setData({
+         name:res.data.data.member_real_name,
+       })
+       }
+     
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
+    wx.request({
+      url: app.globalData.tiltes + 'bank_bingding_update_return',
+      data: {
+        member_id: app.globalData.member_id,
+        id:id,
+      },
+      method: "post",
+      success: function (res) {
+        console.log(res);
+        if(res.data.status!="0"){
+              that.setData({
+                card:res.data.data
+              });
+        }
+        
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
 
   },
 

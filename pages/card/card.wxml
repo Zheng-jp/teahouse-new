@@ -7,11 +7,11 @@
 				<radio value="" color='#fff' />
 			</view>
 			  <view class="card_infor">
-                <view class="bank"><text class="bank_title">开户行：</text><text class="bank_content" >中国银行深圳分行</text></view>
-                <view class="bank_name"><text class="bank_title">开户名：</text><text class="bank_content" >刘德华</text></view>
-                <view class="card_num"><text class="bank_title">卡号：</text><text class="bank_content" >45677******66666</text> </view>
+                <view class="bank"><text class="bank_title">开户行：</text><text class="bank_content" >{{item.bank_name}}</text></view>
+                <view class="bank_name"><text class="bank_title">开户名：</text><text class="bank_content" >{{item.account_name}}</text></view>
+                <view class="card_num"><text class="bank_title">卡号：</text><text class="bank_content" >{{item.bank_card}}</text> </view>
       </view>
-					<image src='img/u9386.png' class='add_ico' data-id="{{item.id}}"  bindtap="go_change_address" mode="widthFix"></image>
+					<image src='img/u9386.png' class='add_ico' data-id="{{item.id}}"  bindtap="go_change_card" mode="widthFix"></image>
 					<image src='img/u5826.png' mode="widthFix" class='delect_ico' data-id="{{item.id}}" bindtap="delect"></image>
 		  
 		</view>

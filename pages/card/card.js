@@ -13,7 +13,25 @@ Page({
 
   go_add_card: function (event) {
     wx.navigateTo({
-      url: '../add_card/add_card?title=' + event.currentTarget.dataset.id,
+      url: '../add_card/add_card?title=' + 0,
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function () {
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
+
+    })
+  },
+  go_change_card: function (event) {
+    wx.navigateTo({
+      url: '../add_card/add_card?title=' + 1+ '&id=' + event.currentTarget.dataset.id,
       success: function (res) {
         // success
         console.log("nihao////跳转成功")
@@ -76,9 +94,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     var that=this;
     var s_height = wx.getSystemInfoSync().windowHeight;
-    var title = options.title;
        wx.request({
       url: app.globalData.tiltes + 'bank_bingding',
       data: {
@@ -105,20 +136,6 @@ Page({
       }
 
     });
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   /**

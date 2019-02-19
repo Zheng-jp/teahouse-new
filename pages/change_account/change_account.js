@@ -152,7 +152,6 @@ Page({
   onLoad: function (options) {
     var that=this;
     var judge_phone = options.judge_phone;
- 
     if(judge_phone==0){
       that.setData({
         change: false,
@@ -163,7 +162,7 @@ Page({
         change: true,
       });
     }
-   
+   console.log(that);
     // wx.request({
     //   url: app.globalData.tiltes + 'member_address_edit_information',
     //   data: {

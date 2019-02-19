@@ -9,7 +9,6 @@ App({
   // 判断绑定手机号
   judge_phone: function(e){
     var that=this;
-    console.log(that.globalData);
       wx.request({
       url: that.globalData.tiltes + 'user_phone_return',
       data: {
@@ -24,7 +23,6 @@ App({
        else{
          that.globalData.judge_phone=true;
        }
-       console.log(that);
      
       },
       fail: function () {
@@ -39,7 +37,6 @@ App({
   // 判断绑定支付密码
   judge_repay: function(e){
     var that=this;
-    console.log(that.globalData);
       wx.request({
       url: that.globalData.tiltes + 'pay_password_return',
       data: {
@@ -48,7 +45,6 @@ App({
       method: "post",
       
       success: function (res) {
-        console,log(res);
        if(res.data.status==0){
         that.globalData.judge_repay=false;
        }
