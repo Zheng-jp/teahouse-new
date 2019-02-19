@@ -14,8 +14,7 @@ Page({
 
   formSubmit: function (e) {
     var that=this;
-    console.log(e.detail.value)
-  if(that.data.status==0){
+  if(that.data.status==0){  
     wx.request({
       url: app.globalData.tiltes + 'id_card_add',
       data: {
@@ -29,7 +28,7 @@ Page({
 
       // },
       success: function (res) {
-     console.log(res);
+
       },
       fail: function () {
 
