@@ -7,28 +7,30 @@ Page({
    */
   data: {
     img:'img/1.png',
+    user_phone:'',
+    user_name:'null'
 
   },
   // 调用摄像头
-  pic: function (options) {
-    var that=this;
-     wx.chooseImage({ 
-       count: 1, // 默认9 
-       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有 
-       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有 
-       success: function (res) { 
-         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片 
-         var tempFilePaths = res.tempFilePaths; 
-         that.setData({
-          img: tempFilePaths,
-        });
+  // pic: function (options) {
+  //   var that=this;
+  //    wx.chooseImage({ 
+  //      count: 1, // 默认9 
+  //      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有 
+  //      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有 
+  //      success: function (res) { 
+  //        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片 
+  //        var tempFilePaths = res.tempFilePaths; 
+  //        that.setData({
+  //         img: tempFilePaths,
+  //       });
         
-        } 
-      })
-     },
-       fail: function (res) { 
-         console.log(res.errMsg) 
-   },
+  //       } 
+  //     })
+  //    },
+  //      fail: function (res) { 
+  //        console.log(res.errMsg) 
+  //  },
    go_change_account: function (event) {
 
     var that = this;
@@ -91,6 +93,86 @@ Page({
    */
   onLoad: function (options) {
     app.judge_phone();
+    var that=this;
+    var s_height = wx.getSystemInfoSync().windowHeight;
+       wx.request({
+      url: app.globalData.tiltes + 'user_phone_return',
+      data: {
+        member_id: app.globalData.member_id,
+      },
+      method: "post",
+  
+      success: function (res) {
+        console.log(res);
+        // if(res.data.status!="0"){
+              that.setData({
+                user_phone:res.data.data
+              });
+        // }
+        // wx.showToast({
+        //   title:'修改成功',
+        //   icon: 'none'
+        // })
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+    wx.request({
+      url: app.globalData.tiltes + 'user_name_return',
+      data: {
+        member_id: app.globalData.member_id,
+      },
+      method: "post",
+  
+      success: function (res) {
+        console.log(res);
+        // if(res.data.status!="0"){
+              that.setData({
+                user_name:res.data.data
+              });
+        // }
+        // wx.showToast({
+        //   title:'修改成功',
+        //   icon: 'none'
+        // })
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+    wx.request({
+      url: app.globalData.tiltes + 'user_phone_return',
+      data: {
+        member_id: app.globalData.member_id,
+      },
+      method: "post",
+  
+      success: function (res) {
+        console.log(res);
+        // if(res.data.status!="0"){
+              that.setData({
+                user_phone:res.data.data
+              });
+        // }
+        // wx.showToast({
+        //   title:'修改成功',
+        //   icon: 'none'
+        // })
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
   },
 
   /**
@@ -104,7 +186,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that=this;
+    that.onLoad();
   },
 
   /**

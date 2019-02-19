@@ -15,7 +15,6 @@ Page({
     num:null,
     card:[],
     cardid:null,
-
   },
  
   formSubmit: function (e) {
@@ -280,29 +279,34 @@ Page({
       }
 
     });
-    wx.request({
-      url: app.globalData.tiltes + 'bank_bingding_update_return',
-      data: {
-        member_id: app.globalData.member_id,
-        id:id,
-      },
-      method: "post",
-      success: function (res) {
-        console.log(res);
-        if(res.data.status!="0"){
-              that.setData({
-                card:res.data.data
-              });
+    console.log(id);
+    if(id){
+      wx.request({
+        url: app.globalData.tiltes + 'bank_bingding_update_return',
+        data: {
+          member_id: app.globalData.member_id,
+          id:id,
+        },
+        method: "post",
+        success: function (res) {
+          console.log(res);
+          if(res.data.status!="0"){
+                that.setData({
+                  card:res.data.data 
+                });
+          }
+          
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
         }
-        
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-      }
-
-    });
+  
+      });
+    }
+  
+    
 
   },
 
