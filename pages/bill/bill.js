@@ -15,7 +15,7 @@ Page({
   onLoad: function (options) {
     var that=this;
     wx.request({
-      url: app.globalData.tiltes + 'consume',
+      url: app.globalData.tiltes + 'consume_index',
       data: {
        member_id:app.globalData.member_id,
       },
