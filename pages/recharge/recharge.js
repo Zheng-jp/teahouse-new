@@ -1,18 +1,54 @@
 // pages/recharge/recharge.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    recharge:[],
+    indexs:null,
   },
-
+  color:function (e) {
+    
+    var that=this;
+     that.setData({
+      indexs:e.currentTarget.dataset.id,
+     })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    wx.request({
+      url: app.globalData.tiltes + 'recharge_setting_return',
+      data: {
+        
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "application/x-www-form-urlencoded",
+      //   "Cookie": sessionId
+      // },
 
+      success: function (res) {
+       console.log(res.data.data[0].recharge_setting_id);
+       that.setData({
+        recharge:res.data.data,
+        indexs:res.data.data[0].recharge_setting_id,
+       })
+       console.log(that);
+     
+      },
+      fail: function () {
+
+      },
+      complete: function (res) {
+        
+      }
+
+    });
   },
 
   /**

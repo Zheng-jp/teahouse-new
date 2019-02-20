@@ -11,6 +11,7 @@ Page({
     customItem: "全部",
     info:[]
   },
+  
 
   formSubmit: function (e) {
     var that=this;
@@ -27,56 +28,58 @@ Page({
       });
     }
     else{
-      if(that.data.status==0){  
-        wx.request({
-          url: app.globalData.tiltes + 'id_card_add',
-          data: {
-            member_id :app.globalData.member_id,
-            id_card :e.detail.value.harvester_phone_num,
-            name :e.detail.value.harvester,
-          },
-          method: "post",
-          // header: {
-          //   "Content-Type": "json" // 默认值
-    
-          // },
-          success: function (res) {
-    
-          },
-          fail: function () {
-    
-          },
-          complete: function () {
-            wx.hideLoading()
-          }
-    
-        });
-      }
-      else{
-        wx.request({
-          url: app.globalData.tiltes + 'id_card_edit',
-          data: {
-            member_id :app.globalData.member_id,
-            id_card :e.detail.value.harvester_phone_num,
-            name :e.detail.value.harvester,
-          },
-          method: "post",
-          // header: {
-          //   "Content-Type": "json" // 默认值
-    
-          // },
-          success: function (res) {
-         console.log(res);
-          },
-          fail: function () {
-    
-          },
-          complete: function () {
-            wx.hideLoading()
-          }
-    
-        });
-      }
+     
+        if(that.data.status==0){  
+          wx.request({
+            url: app.globalData.tiltes + 'id_card_add',
+            data: {
+              member_id :app.globalData.member_id,
+              id_card :e.detail.value.harvester_phone_num,
+              name :e.detail.value.harvester,
+            },
+            method: "post",
+            // header: {
+            //   "Content-Type": "json" // 默认值
+      
+            // },
+            success: function (res) {
+      
+            },
+            fail: function () {
+      
+            },
+            complete: function () {
+              wx.hideLoading()
+            }
+      
+          });
+        }
+        else{
+          wx.request({
+            url: app.globalData.tiltes + 'id_card_edit',
+            data: {
+              member_id :app.globalData.member_id,
+              id_card :e.detail.value.harvester_phone_num,
+              name :e.detail.value.harvester,
+            },
+            method: "post",
+            // header: {
+            //   "Content-Type": "json" // 默认值
+      
+            // },
+            success: function (res) {
+           console.log(res);
+            },
+            fail: function () {
+      
+            },
+            complete: function () {
+              wx.hideLoading()
+            }
+      
+          });
+        }
+      
     }
 
     
@@ -118,7 +121,7 @@ Page({
 
     });
   },
-
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

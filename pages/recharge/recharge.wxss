@@ -27,8 +27,8 @@
     flex-basis:48%;
     margin-right: 10rpx;
     margin-bottom: 20rpx;
-    color: #00BBFF;
-    border-color:#00BBFF; 
+    color: #999;
+    border-color:#999; 
     border: solid 1rpx;
     flex-direction:column;
     display: flex;
@@ -40,8 +40,8 @@
 .box:nth-of-type(even){
     flex-basis:46%;
     margin-bottom: 10rpx;
-    color: #00BBFF;
-    border-color:#00BBFF; 
+    color: #999;
+    border-color:#999; 
     border: solid 1rpx;
     flex-direction:column;
     display: flex;
@@ -50,6 +50,10 @@
     height: 180rpx;
     margin-left: 20rpx;
     border-radius:10rpx; 
+}
+.on{
+    color: #00BBFF !important;
+    border-color:#00BBFF !important; 
 }
 .monye_box{
     font-size: 36rpx;

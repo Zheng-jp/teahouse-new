@@ -100,10 +100,11 @@ Page({
       }
       else{
         wx.request({
-          url: app.globalData.tiltes + 'user_phone_bingding',
+          url: app.globalData.tiltes + 'user_phone_bingding_update',
           data: {
-            member_phone_num: e.detail.value.member_phone_num,
-            code:e.detail.value.cold,
+            old_phone_num:e.detail.value.harvester,
+            member_phone_num: e.detail.value.harvester_phone_num,
+            code:e.detail.value.harvester_phone_num1,
             member_id: app.globalData.member_id,
           },
           method: "post",
@@ -264,7 +265,6 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    // console.log(options);
     var judge_phone = options.judge_phone;
     if(judge_phone=='0'){
       that.setData({

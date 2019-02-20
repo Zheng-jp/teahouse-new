@@ -14,7 +14,7 @@ Page({
     var that = this;
     var item = event.currentTarget.dataset.src;
     if(item=='../recharge/recharge'){
-      if(!that.data.ispassword){
+      if(!app.globalData.judge_repay){
         wx.showModal({
           title:'请设置支付密码',
           content: '您还没有资金账号，为了保证您的资金安全，请先设置资金账号支付密码。设置后才可以进行充值、余额消费等操作',

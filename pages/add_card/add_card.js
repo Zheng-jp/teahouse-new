@@ -16,7 +16,34 @@ Page({
     card:[],
     cardid:null,
   },
- 
+ // 验证银行卡号
+ checkCard:function(cardNo) {
+  if (isNaN(cardNo))
+    return false;
+  if (cardNo.length < 12) {
+    return false;
+  }
+  var nums = cardNo.split("");
+  var sum = 0;
+  var index = 1;
+  for (var i = 0; i < nums.length; i++) {
+    if ((i + 1) % 2 == 0) {
+      var tmp = Number(nums[nums.length - index]) * 2;
+      if (tmp >= 10) {
+        var t = tmp + "".split("");
+        tmp = Number(t[0]) + Number(t[1]);
+      }
+      sum += tmp;
+    } else {
+      sum += Number(nums[nums.length - index]);
+    }
+    index++;
+  }
+  if (sum % 10 != 0) {
+    return false;
+  }
+  return true;
+},
   formSubmit: function (e) {
     var that=this;
     // 添加
@@ -48,6 +75,12 @@ Page({
       else if(e.detail.value.name!=that.data.name){
         wx.showToast({
           title:"您认证的姓名和开卡姓名不一致",
+          icon:'none',
+        });
+      }
+      else if(that.checkCard(e.detail.value.card_num)==false){
+        wx.showToast({
+          title:"银行卡格式错误",
           icon:'none',
         });
       }

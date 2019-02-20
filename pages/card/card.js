@@ -10,6 +10,7 @@ Page({
      is_select_address:'',
    
   },
+  
 
   go_add_card: function (event) {
     wx.navigateTo({

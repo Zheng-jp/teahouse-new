@@ -5,12 +5,11 @@
         <text class="unit">元</text>
     </view>
    <view class="big_box">
-       <view class="box">
-           <view class="monye_box"> 1000元 </view>
-           <view class="integral"> 送5积分 </view>
-       </view>
-    
-   </view>
+       <view class="box {{item.recharge_setting_id==indexs?'on':''}}" wx:for="{{recharge}}" bindtap="color" data-id="{{item.recharge_setting_id}}">
+           <view class="monye_box"> {{item.recharge_setting_full_money}}元 </view>
+           <view class="integral"> 送{{item.recharge_setting_send_integral}}积分 </view>
+       </view> 
+   </view> 
    <view class="button"> 
    <button type="button"  class="submit">确认</button>
     </view>
