@@ -1,18 +1,46 @@
 // pages/bill/bill.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    bill:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    wx.request({
+      url: app.globalData.tiltes + 'consume',
+      data: {
+       member_id:app.globalData.member_id,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "application/x-www-form-urlencoded",
+      //   "Cookie": sessionId
+      // },
 
+      success: function (res) {
+        console.log(res);
+       that.setData({
+        bill:res.data.data
+       })
+     
+      },
+      fail: function () {
+
+      },
+      complete: function (res) {
+        
+      }
+
+    });
+    
   },
 
   /**

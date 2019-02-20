@@ -29,7 +29,7 @@
                 <image src="img/u9493.png"  class="ico" />
                 <text class="text">提现</text>
               </view>
-              <view class="box"  bindtap="go"  data-src="">
+              <view class="box"  bindtap="go"  data-src="../bill/bill">
                 <image src="img/u9483.png"  class="ico" />
                 <text class="text">账单</text>
               </view >
