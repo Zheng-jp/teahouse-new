@@ -9,7 +9,25 @@ Page({
     recharge:[],
     indexs:null,
     money:null,  
+    oldmoney:null,
+    oldeindexs:null,
   },
+  bindoldChange:function (event) {
+    var that=this;
+    if(event.detail.value==''){
+      that.setData({
+        money:that.data.oldmoney,
+        indexs:that.data.oldeindexs
+      })
+    }
+    else{
+      that.setData({
+        money:event.detail.value,
+        indexs:0
+      })
+    }
+     
+ },
   color:function (e) {
     
     var that=this;
@@ -59,12 +77,32 @@ Page({
                 paySign:  result.data.paySign,
                 'success': function (successret) {
                   console.log('支付成功');
-                 
-                 
                 },
                 'fail': function (res) {
-                  console.log(res);
+                  wx.request({
+                    url: app.globalData.tiltes + 'wallet_recharge_del',
+                    data: {
+                      member_id: app.globalData.member_id,
+                      recharge_order_number: order_number,
+                    },
+                    method: "post",
+                    // header: {
+                    //   "Content-Type": "application/x-www-form-urlencoded",
+                    //   "Cookie": sessionId
+                    // },
+              
+                    success: function (res) {
+                    },
+                    fail: function () {
+              
+                    },
+                    complete: function (res) {
+                      
+                    }
+              
+                  });
                   
+
                  }
               })
             }
@@ -106,7 +144,9 @@ Page({
        that.setData({
         recharge:res.data.data,
         indexs:res.data.data[0].recharge_setting_id,
+        oldeindexs:res.data.data[0].recharge_setting_id,
          money:res.data.data[0].recharge_setting_full_money,
+         oldmoney:res.data.data[0].recharge_setting_full_money,
        })
        console.log(that);
      

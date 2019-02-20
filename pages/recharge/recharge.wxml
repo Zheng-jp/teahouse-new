@@ -1,7 +1,7 @@
 <!--pages/recharge/recharge.wxml-->
 <view class="all">
     <view class="input_text">
-        <input class="input_monye" type="number" placeholder="请输入其他金额，输入其他金额无奖励积分" />
+        <input class="input_monye" type="number" placeholder="请输入其他金额，输入其他金额无奖励积分"  bindchange="bindoldChange" />
         <text class="unit">元</text>
     </view>
    <view class="big_box">
