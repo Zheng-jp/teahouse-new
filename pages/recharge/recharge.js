@@ -22,7 +22,7 @@ Page({
   submit: function (options) {
     var that=this;
     wx.request({
-      url: app.globalData.tiltes + 'recharge_setmember_balance_rechargeting_return',
+      url: app.globalData.tiltes + 'member_balance_recharge',
       data: {
         member_id: app.globalData.member_id,
         money:that.data.money
@@ -34,13 +34,48 @@ Page({
       // },
 
       success: function (res) {
-       that.setData({
-        recharge:res.data.data,
-        indexs:res.data.data[0].recharge_setting_id,
-         money:res.data.data[0].recharge_setting_full_money,
-       })
-       console.log(that);
-     
+        var order_number=res.data.data
+        wx.request({
+          // url: app.globalData.tiltes + 'wxpay',
+          url: app.globalData.tiltes + 'wx_recharge_pay',
+          data: {
+            member_id: app.globalData.member_id,
+            recharge_order_number: order_number,
+         
+          },
+          dataTypr: 'json',
+          method: "post",
+          // header: {
+          //   "Content-Type": "application/json" // 默认值
+          // },
+          success: function (res) {
+            var result=res;
+            if (result) {
+              wx.requestPayment({
+                timeStamp: String(result.data.timeStamp),
+                nonceStr: result.data.nonceStr,
+                package: result.data.package,
+                signType: result.data.signType,
+                paySign:  result.data.paySign,
+                'success': function (successret) {
+                  console.log('支付成功');
+                 
+                 
+                },
+                'fail': function (res) {
+                  console.log(res);
+                  
+                 }
+              })
+            }
+          },
+                fail: function () {
+  
+                },
+                complete: function () {
+                  wx.hideLoading()
+                }
+              });  
       },
       fail: function () {
 
