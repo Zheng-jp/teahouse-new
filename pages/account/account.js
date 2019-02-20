@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ispassword:false,
+    balance:0,
+    integral:0,
   },
  
   go: function (event) {
@@ -163,6 +164,35 @@ Page({
   onLoad: function (options) {
      app.judge_phone();
      app.judge_repay();
+     var that=this;
+     wx.request({
+       url: app.globalData.tiltes + 'member_balance_return',
+       data: {
+        member_id:app.globalData.member_id,
+       },
+       method: "post",
+       // header: {
+       //   "Content-Type": "application/x-www-form-urlencoded",
+       //   "Cookie": sessionId
+       // },
+ 
+       success: function (res) {
+        that.setData({
+          balance:res.data.data.member_wallet,
+          integral:res.data.data.member_integral_wallet,
+        })
+        console.log(res);
+      
+       },
+       fail: function () {
+ 
+       },
+       complete: function (res) {
+         
+       }
+ 
+     });
+     
   },
 
   /**

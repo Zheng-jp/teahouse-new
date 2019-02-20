@@ -1,16 +1,16 @@
 <!--pages/recharge/recharge.wxml-->
 <view class="all">
     <view class="input_text">
-        <input class="input_monye" type="text" placeholder="请输入其他金额（输入任意值无积分奖励）" />
+        <input class="input_monye" type="number" placeholder="请输入其他金额，输入其他金额无奖励积分" />
         <text class="unit">元</text>
     </view>
    <view class="big_box">
-       <view class="box {{item.recharge_setting_id==indexs?'on':''}}" wx:for="{{recharge}}" bindtap="color" data-id="{{item.recharge_setting_id}}">
+       <view class="box {{item.recharge_setting_id==indexs?'on':''}}" wx:for="{{recharge}}" bindtap="color" data-id="{{item.recharge_setting_id}}" data-value="{{item.recharge_setting_full_money}}">
            <view class="monye_box"> {{item.recharge_setting_full_money}}元 </view>
            <view class="integral"> 送{{item.recharge_setting_send_integral}}积分 </view>
        </view> 
    </view> 
    <view class="button"> 
-   <button type="button"  class="submit">确认</button>
+   <button type="button"  class="submit" bindtap="submit">确认</button>
     </view>
 </view>

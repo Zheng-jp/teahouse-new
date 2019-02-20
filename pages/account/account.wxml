@@ -3,11 +3,11 @@
     <view class="money_information">
         <view class="balance">
             <view class="balance_text">余额</view>
-            <view class="balance_money">¥ 888.00</view>
+            <view class="balance_money">¥ {{balance}}</view>
         </view>
         <view class="integral">
             <view class="integral_text">积分</view>
-            <view class="integral_money">888</view>
+            <view class="integral_money">{{integral}}</view>
         </view>
     </view>
     <view class="assets_management">
