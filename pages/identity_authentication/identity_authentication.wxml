@@ -23,11 +23,11 @@
         <view class='list_a'>
         <view class="section section_top">
             <view class="section_title">姓名</view>
-            <input name="harvester" placeholder="请输入真实姓名" value="{{info.ID_card}}" />
+            <input name="harvester" placeholder="请输入真实姓名" value="{{info.member_real_name}}" />
           </view>
           <view class="section">
             <view class="section_title">身份证号</view>
-            <input name="harvester_phone_num" placeholder="请输入身份证号" value="{{info.member_real_name}}"/>
+            <input name="harvester_phone_num" placeholder="请输入身份证号" value="{{info.ID_card}}"/>
           </view>
           </view>
          

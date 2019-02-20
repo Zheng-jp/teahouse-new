@@ -264,8 +264,9 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
+    // console.log(options);
     var judge_phone = options.judge_phone;
-    if(judge_phone==0){
+    if(judge_phone=='0'){
       that.setData({
         change: false,
       });
@@ -275,34 +276,7 @@ Page({
         change: true,
       });
     }
-   console.log(that);
-    // wx.request({
-    //   url: app.globalData.tiltes + 'member_address_edit_information',
-    //   data: {
-    //     id:title,
-    //   },
-    //   method: "post",
-    //   // header: {
-    //   //   "Content-Type": "json" // 默认值
-
-    //   // },
-    //   success: function (res) {
-    //    console.log(res);
-    //    that.setData({
-    //     address:res.data.data,
-    //     region:res.data.data.address_name.split(","),
-    //    })
-  
-    //   },
-    //   fail: function () {
-
-    //   },
-    //   complete: function () {
-    //     wx.hideLoading()
-    //   }
-
-    // });
-
+    
   },
 
   /**
@@ -317,7 +291,7 @@ Page({
    */
   onShow: function () {
      var that=this;
-     that.onLoad();
+    //  that.onLoad();
   },
 
   /**
