@@ -83,7 +83,7 @@ Page({
                     url: app.globalData.tiltes + 'wallet_recharge_del',
                     data: {
                       member_id: app.globalData.member_id,
-                      recharge_order_number: order_number,
+                      recharge_id: order_number,
                     },
                     method: "post",
                     // header: {
