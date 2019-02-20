@@ -73,7 +73,6 @@ Page({
   }
   },
   selected: function (e) {
-    console.log(111);
     this.setData({
       selected1: false,
       selected: true
@@ -92,117 +91,7 @@ Page({
       
     
   },
-  // 点击加入购物车
-  add_car: function (event) {
-    var that=this;
-    console.log(that);
-    if (that.data.goods.goods_standard == 0)
-    {
-      var goods_standard_id = '';
-      that.setData({
-        select:'',
-      });
-    }
-    else{
-      var goods_standard_id = that.data.id;
-    }
-    if(that.data.select=='规格'){
-      wx.showToast({
-        title: '请选择规格',
-        icon:'none',
-      })
-    }
-    else{
-      if(that.data.address==0){
-        wx.showModal({
-          title: '提示',
-          content: '请先添加收货地址',
-          confirmText:'立即添加',
-          success: function(res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../add_address/add_address',
-              success: function (res) {
-                // success
-                console.log("nihao////跳转成功")
-              },
-              fail: function () {
-                // fail
-                console.log("nihao////跳转失败")
-              },
-              complete: function () {
-                // complete
-                console.log("nihao////跳转行为结束，未知成功失败")
-              }
-      
-            })
-          } 
-          }
-          })
-      }
-      else if(that.data.address==1){
-        wx.request({
-          url: app.globalData.tiltes + 'get_goods_id_to_shopping',
-          data: {
-            open_id: app.globalData.gmemberid,
-            goods_unit: that.data.num,
-            // 规格id
-            goods_standard_id: goods_standard_id,
-            // 商品id
-            goods_id: that.data.good_id
-          },
-          method: "post",
-          // header: {
-          //   "Content-Type": "json" // 默认值
-    
-          // },
-          success: function (res) {
-            console.log(res);
-            wx.showToast({
-              title: res.data.info,
-              icon:'none',
-            })
-    
-          },
-          fail: function () {
-    
-          },
-          complete: function () {
-            wx.hideLoading()
-          }
-    
-        });
-      }
-      else{
-        wx.showToast({
-          title:'你未进行授权，请重启小程序',
-          icon:'none'
-        })
-      }
-  
-
-    }
-    
-    },
-    // 点击购物车
-    go_car: function (e) {
-      wx.navigateTo({
-        url: '../buy/buy',
-        success: function (res) {
-          // success
-          console.log("nihao////跳转成功")
-        },
-        fail: function () {
-          // fail
-          console.log("nihao////跳转失败")
-        },
-        complete: function () {
-          // complete
-          console.log("nihao////跳转行为结束，未知成功失败")
-        }
-
-      })
-    },
+ 
    /* 点击减号 */
    bindMinus: function () {
     var num = this.data.num;
@@ -393,7 +282,7 @@ Page({
         //   })
 
         // }
-     
+       console.log(that);
       },
       fail: function () {
 
