@@ -34,6 +34,9 @@ Page({
     order_type:1,
     // 优惠劵显示
     coupon_show:null,
+    showPayPwdInput: false,  //是否展示密码输入层
+    pwdVal: '',  //输入的密码
+    payFocus: true, //文本框焦点
     
     
   },
@@ -108,6 +111,43 @@ Page({
 
     })
   },
+  // 弹窗
+  /**
+   * 显示支付密码输入层
+   */
+  showInputLayer: function(){
+    this.setData({ showPayPwdInput: true, payFocus: true });
+  },
+  /**
+   * 隐藏支付密码输入层
+   */
+  hidePayLayer: function(){
+    
+    var val = this.data.pwdVal;
+
+    this.setData({ showPayPwdInput: false, payFocus: false, pwdVal: '' }, function(){
+      wx.showToast({
+        title: val,
+      })
+    });
+
+  },
+  /**
+   * 获取焦点
+   */
+  getFocus: function(){
+    this.setData({ payFocus: true });
+  },
+  /**
+   * 输入密码监听
+   */
+  inputPwd: function(e){
+      this.setData({ pwdVal: e.detail.value });
+      if (e.detail.value.length >= 6){
+        this.hidePayLayer();
+      }
+  },
+    // 弹窗
   // 立即支付
   repay:function(){
     var that=this;
@@ -137,7 +177,7 @@ Page({
           success: function (res) {
             // 账户支付
             if(res.tapIndex==0){
-              console.log()
+              that.showInputLayer();
             }
             else if(res.tapIndex==1){
               wx.request({
@@ -240,7 +280,8 @@ Page({
           success: function (res) {
             // 账户支付
             if(res.tapIndex==0){
-              console.log()
+              
+              that.showInputLayer();
             }
             else if(res.tapIndex==1){
               wx.request({
@@ -295,6 +336,7 @@ Page({
                       }
                     });   
             }
+            
             
           },
           fail: function (res) {
@@ -417,6 +459,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+   
     var that=this;
     let user = JSON.parse(options.title);
     that.setData({

@@ -6,17 +6,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    typea:"password",
-    typeb:"password",
+    typea:true,
+    typeb:true,
     type1:true,
     type2:true,
-  },
+    valuea:null,
 
+  },
+ 
   formSubmit: function (e) {
     var that=this;
    if(e.detail.value.harvester==''){
     wx.showToast({
       title:"请输入密码",
+      icon:'none',
+    });
+   }
+   else if( e.detail.value.harvester.length!=6){
+    wx.showToast({
+      title:"密码有且只有6位",
       icon:'none',
     });
    }
@@ -75,21 +83,32 @@ Page({
   },
   to_see:function (e) {
     var that=this;
-
     if(e.currentTarget.dataset.id=="type1"){
        that.setData({
          type1:false,
-         typea:"text",
+         typea:false,
        })
     }
     else{
       that.setData({
          type2:false,
-         typeb:"text",
+         typeb:false,
       })
     }
    
 
+  },
+  typea:function(e){
+    var that=this;
+    that.setData({
+      valuea:e.detail.value
+    })
+  },
+  typeb:function(e){
+    var that=this;
+    that.setData({
+      valueb:e.detail.value
+    })
   },
   to_nosee:function (e) {
     var that=this;
@@ -97,13 +116,13 @@ Page({
     if(e.currentTarget.dataset.id=="type1"){
        that.setData({
          type1:true,
-         typea:"password",
+         typea:true,
        })
     }
     else{
       that.setData({
          type2:true,
-         typeb:"password",
+         typeb:true,
       })
     }
    
