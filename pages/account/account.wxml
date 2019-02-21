@@ -25,7 +25,7 @@
                 <image src="img/u9489.png"  class="ico" />
                 <text class="text">充值</text>
               </view>
-                <view class="box"  bindtap="go"  data-src="">
+                <view class="box"  bindtap="go"  data-src="../withdrawal/withdrawal">
                 <image src="img/u9493.png"  class="ico" />
                 <text class="text">提现</text>
               </view>
