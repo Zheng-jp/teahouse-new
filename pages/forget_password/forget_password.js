@@ -21,9 +21,6 @@ Page({
  
   formSubmit: function (e) {
     var that=this;
-    var id=that.data.change;
-    var sessionId = wx.getStorageSync('sessionId');
-    if(!id){
       if(e.detail.value.member_phone_num==''){
         wx.showToast({
           title:"手机号不能为空",
@@ -78,69 +75,7 @@ Page({
         });
       }
     
-    }
-    else{
-      if(e.detail.value.harvester==''){
-        wx.showToast({
-          title:"老账号不能为空",
-          icon:'none',
-        });
-      }
-      else if(e.detail.value.harvester_phone_num==''){
-        wx.showToast({
-          title:"新账号不能为空",
-          icon:'none',
-        });
-      }
-      else if(e.detail.value.harvester_phone_num1==''){
-        wx.showToast({
-          title:"验证码不能为空",
-          icon:'none',
-        });
-      }
-      else{
-        wx.request({
-          url: app.globalData.tiltes + 'user_phone_bingding_update',
-          data: {
-            old_phone_num:e.detail.value.harvester,
-            member_phone_num: e.detail.value.harvester_phone_num,
-            code:e.detail.value.harvester_phone_num1,
-            member_id: app.globalData.member_id,
-          },
-          method: "post",
-          // header: {
-          //   "Content-Type": "application/x-www-form-urlencoded",
-          //   "Cookie": sessionId
-          // },
     
-          success: function (res) {
-            
-            if(res.data.status==1){
-             
-              
-              setTimeout(function () {
-                wx.navigateBack();
-              }, 2000)
-             
-            }
-            else{
-  
-            }
-         
-          },
-          fail: function () {
-    
-          },
-          complete: function (res) {
-            wx.showToast({
-              title:res.data.info,
-              icon:'none',
-            });
-          }
-    
-        });
-      }
-    }
     
   },
   validateTel:function (tel){
