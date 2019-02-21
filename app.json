@@ -20,7 +20,6 @@
       "pages/select_shop_address/select_shop_address",
       "pages/select_save_address/select_save_address",
       "pages/buy/buy",
-      "pages/query/query",
       "pages/order/order",
       "pages/test/test",
       "pages/about/about",
