@@ -147,6 +147,22 @@ Page({
         this.hidePayLayer();
       }
   },
+  forget_password: function(e){
+    wx.navigateTo({
+      url: '../forget_password/forget_password',
+      success: function (res) {
+      
+      },
+      fail: function () {
+       
+      },
+      complete: function () {
+      
+      }
+  
+  
+    })
+    },
     // 弹窗
   // 立即支付
   repay:function(){

@@ -265,17 +265,7 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    var judge_phone = options.judge_phone;
-    if(judge_phone=='0'){
-      that.setData({
-        change: false,
-      });
-    }
-    else{
-      that.setData({
-        change: true,
-      });
-    }
+   
     
   },
 

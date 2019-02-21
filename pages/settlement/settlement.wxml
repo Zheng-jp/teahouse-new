@@ -15,7 +15,7 @@
                 <text wx:if='{{pwdVal.length>i}}'></text>
             </view>
         </view>
-        <view class='forget_pwd' catchtap='hidePayLayer'>忘记密码</view>
+        <view class='forget_pwd' catchtap='forget_password'>忘记密码</view>
         <input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6'/>
     </view>
 </view>
