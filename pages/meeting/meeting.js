@@ -10,14 +10,14 @@ Page({
    */
   data: {
     // 头部导航
-   tab:0,
+    tab: 0,
     url: app.globalData.url,
-  nav:[],
-  shares:[],
+    nav: [],
+    shares: [],
 
     // 搜索列表
     showView: true,
-    seach_list:[
+    seach_list: [
       '未过期',
       '未过期',
       '未过期'
@@ -50,7 +50,7 @@ Page({
           })
 
         }
-       
+
 
 
       },
@@ -109,11 +109,11 @@ Page({
 
       });
     }
-   
+
   },
   // 点击搜索
   onChangeShowState: function () {
-    
+
     var that = this;
     // console.log(that);
     that.setData({
@@ -121,11 +121,11 @@ Page({
     })
   },
   bindViewTap: function (event) {
-    var that=this;
+    var that = this;
     // console.log()
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
-      url: '../detail/detail?title='+ event.currentTarget.id ,
+      url: '../detail/detail?title=' + event.currentTarget.id,
       success: function (res) {
         // success
         console.log("nihao////跳转成功")
@@ -141,7 +141,7 @@ Page({
 
     })
   },
- 
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -169,7 +169,7 @@ Page({
           })
 
         }
-       
+
 
       },
       fail: function () {
@@ -202,7 +202,7 @@ Page({
           })
 
         }
-   
+
 
 
       },
@@ -224,7 +224,7 @@ Page({
       }
     });
     showView: (options.showView == "true" ? true : false)
-    
+
   },
 
   /**

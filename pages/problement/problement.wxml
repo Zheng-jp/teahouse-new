@@ -1,40 +1,44 @@
 <import src="../../utils/template.wxml" />
 <view class="all-content">
- <view class='nav'>
- <view  class="img hide{{showView?'show':''}}" bindtap="onChangeShowState"><image src='img/u3885.png'></image></view>
-  <view  class="img hide{{showView?'':'show'}}" bindtap="onChangeShowState"><image src='img/u3885.png'></image></view>
-     <scroll-view  class="swiper-tab" scroll-x="true" >
-      <view wx:for="{{nav}}"  class="bre swiper-tab-list {{item.tab==tab? 'on' : ''}}" data-current="{{item.tab}}" bindtap="tab_click" >{{item.name}}</view>  
-   </scroll-view>
- 
-  </view> 
-   <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide"  bindchange="tab_slide" style="height:{{winHeight}}px">
-    <swiper-item  >
-        <scroll-view scroll-y="{{true}}" bindscroll="scroll"  style="height:{{winHeight}}px" >
-          <view class="list" bindtap="go_contract_detail">
-                <view>
-                    <text class="contract_num">Q1.</text>
-                    <text class="contract_name">《服务合同》</text>
-                </view>
-                <image class="more" src="img/more.png" mode="aspectFill" ></image>
-          </view>
+    <view class='nav'>
+        <view class="img hide{{showView?'show':''}}" bindtap="onChangeShowState">
+            <image src='img/u3885.png'></image>
+        </view>
+        <!-- <view class="img hide{{showView?'':'show'}}" bindtap="onChangeShowState">
+            <image src='img/u3885.png'></image>
+        </view> -->
+        <scroll-view class="swiper-tab" scroll-x="true">
+            <view wx:for="{{nav}}" class="bre swiper-tab-list {{item.tab==tab? 'on' : ''}}" data-current="{{item.tab}}" bindtap="tab_click">
+                {{item.name}}
+            </view>
         </scroll-view>
-        </swiper-item>
-        <swiper-item  >
-            <scroll-view scroll-y="{{true}}" bindscroll="scroll"  style="height:{{winHeight}}px" >
-            2
+    </view>
+    <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide" bindchange="tab_slide" style="height:{{winHeight}}px">
+        <swiper-item>
+            <scroll-view scroll-y="{{true}}" bindscroll="scroll" style="height:{{winHeight}}px">
+                <view class="list" bindtap="go_contract_detail">
+                    <view>
+                        <text class="contract_num">Q1.</text>
+                        <text class="contract_name">《服务合同》</text>
+                    </view>
+                    <image class="more" src="img/more.png" mode="aspectFill"></image>
+                </view>
             </scroll-view>
         </swiper-item>
-        <swiper-item  >
-            <scroll-view scroll-y="{{true}}" bindscroll="scroll"  style="height:{{winHeight}}px" >
-            3
+        <!-- <swiper-item>
+            <scroll-view scroll-y="{{true}}" bindscroll="scroll" style="height:{{winHeight}}px">
+                2
             </scroll-view>
         </swiper-item>
-        <swiper-item  >
-            <scroll-view scroll-y="{{true}}" bindscroll="scroll"  style="height:{{winHeight}}px" >
-            4
+        <swiper-item>
+            <scroll-view scroll-y="{{true}}" bindscroll="scroll" style="height:{{winHeight}}px">
+                3
             </scroll-view>
         </swiper-item>
-  </swiper>
-
-  </view> 
+        <swiper-item>
+            <scroll-view scroll-y="{{true}}" bindscroll="scroll" style="height:{{winHeight}}px">
+                4
+            </scroll-view>
+        </swiper-item> -->
+    </swiper>
+</view>
