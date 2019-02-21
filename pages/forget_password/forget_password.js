@@ -174,7 +174,7 @@ Page({
      var is_phone=that.validateTel(that.data.num);
      if(is_phone){
       wx.request({
-        url: app.globalData.tiltes + 'sendMobileCode',
+        url: app.globalData.tiltes + 'sendMobileCodePay',
         data: {
           mobile:that.data.num,
         },
@@ -216,49 +216,7 @@ Page({
      }
   
   },
-  send_cold1: function (e) {
-    var that=this;
-       var _this = this 
-      var is_phone=that.validateTel(that.data.newnum);
-      if(is_phone){
-       wx.request({
-         url: app.globalData.tiltes + 'sendMobileCode',
-         data: {
-           mobile:that.data.newnum,
-         },
-         method: "post",
-         success: function (res) {
-           var coden = 60    // 定义60秒的倒计时
-           var codeV = setInterval(function () {    
-               _this.setData({    // _this这里的作用域不同了
-                 btntext: '重新获取' + (--coden) + 's'
-               })
-               if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
-                 clearInterval(codeV)
-                 _this.setData({
-                   btntext: '获取验证码'
-                 })
-               }
-             }, 1000)  //  1000是1秒
-        
-         },
-         fail: function () {
-   
-         },
-         complete: function () {
-           wx.hideLoading()
-         }
-   
-       });
-      }
-      else{
-       wx.showToast({
-         title: '手机格式有问题',
-         icon:'none',
-       })
-      }
-   
-   },
+  
 
   /**
    * 生命周期函数--监听页面加载
