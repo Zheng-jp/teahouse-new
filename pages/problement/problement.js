@@ -10,37 +10,21 @@ Page({
    */
   data: {
     // 头部导航
-   tab:0,
+    tab: 0,
     url: app.globalData.url,
-  nav:[
-    {
-      name:'常见问题',
-      tab:0,
-    },
-    {
-      name:'常见问题',
-      tab:1,
-    },
-    {
-      name:'常见问题',
-      tab:2,
-    },
-    {
-      name:'常见问题',
-      tab:3,
-    },
-  ],
-  shares:[],
+    nav: [],
+    shares: [],
 
     // 搜索列表
     showView: true,
-    seach_list:[
+    seach_list: [
       '未过期',
       '未过期',
       '未过期'
     ]
   },
   tab_slide: function (e) {//滑动切换tab 
+    console.log(e)
     var that = this;
     that.setData({ tab: e.detail.current });
     var id = that.data.nav[that.data.tab].id;
@@ -67,7 +51,7 @@ Page({
           })
 
         }
-       
+
 
 
       },
@@ -92,7 +76,7 @@ Page({
       })
       var id = that.data.nav[that.data.tab].id;
       wx.request({
-        url: app.globalData.tiltes + 'teacenter_activity',
+        url: app.globalData.tiltes + 'problem_list',
         data: {
           id: id
         },
@@ -126,11 +110,11 @@ Page({
 
       });
     }
-   
+
   },
   // 点击搜索
   onChangeShowState: function () {
-    
+
     var that = this;
     // console.log(that);
     that.setData({
@@ -138,13 +122,12 @@ Page({
     })
   },
 
- 
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -155,7 +138,16 @@ Page({
       }
     });
     showView: (options.showView == "true" ? true : false)
-    
+    wx.request({
+      url: app.globalData.tiltes + 'problem_list',
+      method: "POST",
+      success: function(res){
+        console.log(res);
+      },
+      error: function(res){
+        console.log(res)
+      }
+    })
   },
 
   /**
