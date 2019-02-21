@@ -67,12 +67,12 @@ Page({
       {
         url: app.globalData.url + '/upload/20181115/38b70a3b147560518f3c46c5294ec19f.png',
         text: '常见问题',
-        src:'../account/account',
+        src:'../problement/problement',
       },
       {
         url: app.globalData.url + '/upload/20181115/2505a16ba762f14d5d88d1ddecf2b755.png',
         text: '协议合同',
-        src:'../problement/problement',
+        src:'../contract/contract',
         
       },
       {
