@@ -22,7 +22,7 @@ Page({
       icon:'none',
     });
    }
-   else if( e.detail.value.harvester_phone_num.lenght!=6){
+   else if( e.detail.value.harvester.length!=6){
     wx.showToast({
       title:"密码有且只有6位",
       icon:'none',

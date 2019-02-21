@@ -162,36 +162,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     app.judge_phone();
-     app.judge_repay();
-     var that=this;
-     wx.request({
-       url: app.globalData.tiltes + 'member_balance_return',
-       data: {
-        member_id:app.globalData.member_id,
-       },
-       method: "post",
-       // header: {
-       //   "Content-Type": "application/x-www-form-urlencoded",
-       //   "Cookie": sessionId
-       // },
- 
-       success: function (res) {
-        that.setData({
-          balance:res.data.data.member_wallet,
-          integral:res.data.data.member_integral_wallet,
-        })
-        console.log(res);
-      
-       },
-       fail: function () {
- 
-       },
-       complete: function (res) {
-         
-       }
- 
-     });
+    
      
   },
 
@@ -206,7 +177,36 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.judge_phone();
+    app.judge_repay();
+    var that=this;
+    wx.request({
+      url: app.globalData.tiltes + 'member_balance_return',
+      data: {
+       member_id:app.globalData.member_id,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "application/x-www-form-urlencoded",
+      //   "Cookie": sessionId
+      // },
 
+      success: function (res) {
+       that.setData({
+         balance:res.data.data.member_wallet,
+         integral:res.data.data.member_integral_wallet,
+       })
+       console.log(res);
+     
+      },
+      fail: function () {
+
+      },
+      complete: function (res) {
+        
+      }
+
+    });
   },
 
   /**

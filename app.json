@@ -13,7 +13,6 @@
       "pages/good/good",
       "pages/goods_detail/goods_detail",
       "pages/add_address/add_address",
-      
       "pages/select_address/select_address",
       "pages/change_address/change_address",
       "pages/settlement/settlement",
@@ -51,7 +50,8 @@
       "pages/apply_after_sales/apply_after_sales",
       "pages/after_sales_detail/after_sales_detail",
       "pages/evaluation/evaluation",
-      "pages/logistics/logistics"
+      "pages/logistics/logistics",
+      "pages/forget_password/forget_password"
       
       
       

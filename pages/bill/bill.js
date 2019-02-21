@@ -26,7 +26,6 @@ Page({
       // },
 
       success: function (res) {
-        console.log(res);
        that.setData({
         bill:res.data.data
        })

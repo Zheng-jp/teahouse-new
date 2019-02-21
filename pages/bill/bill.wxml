@@ -6,14 +6,15 @@
         <view class="head_img"><image src="img/u5294.png"   mode="widthFix"/></view>
    </view>
    <view class="content_list">
-        <view class="list" >
+        <view class="list"  wx:for="{{bill}}">
            <view class="list_left">
-               <view class="list_left_one">交易付费</view>
-               <view class="list_left_two">余额：300</view>
+               <view class="list_left_one">{{item.title}}</view>
+               <view class="list_left_two">余额：{{item.wallet_balance}}</view>
             </view>
             <view class="list_right">
-               <view class="list_right_one">2018-09-30</view>
-               <view class="list_right_two"></view>
+               <view class="list_right_one">{{item.operation_time}}</view>
+               <view class="list_right_two" wx:if="{{wallet_type==1}}">{{item.wallet_operation}}</view>
+               <view class="list_right_two" wx:else>-{{item.wallet_operation}}</view>
             </view>
         </view>
    </view>
