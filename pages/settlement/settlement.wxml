@@ -60,8 +60,7 @@
 					</view>
 					<view class='quantity-p text_red'>×{{num}}</view>
 				</view>
-			</view>
-			
+			</view>	
 		</view>
 	    <view class='quantity' wx:if="{{isnum}}">
 	    	<view class='purchase_quantity'>购买数量</view>
