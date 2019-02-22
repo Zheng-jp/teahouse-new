@@ -8,7 +8,7 @@
             <text class="good_name">{{item.parts_goods_name}}</text>  
         </view>
         <view class="reason">
-            <textarea name="aaa_{{item.id}}" id="" class="reason_content" placeholder="期待您的好评，您的好评还能获得相应积分哟~"></textarea>
+            <textarea name="content" id="" class="reason_content" placeholder="期待您的好评，您的好评还能获得相应积分哟~"></textarea>
         </view>
         <view class="uplode_img">
             <view class="imgcontent" wx:for="{{item.img}}">
