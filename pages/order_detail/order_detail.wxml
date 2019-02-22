@@ -45,12 +45,7 @@
                         <view class='num'>x{{item.order_quantity}}</view>
                     </view>
                 </view>
-                <view class='box_list_four'>
-                    <view>
-                        <view class='cancel' bindtap="cancel_order"  data-id="{{item.parts_order_number}}">取消订单</view>
-                        <view class='payment' bindtap="repay"  data-id="{{item.parts_order_number}}">付款</view>
-                    </view>
-                </view>
+               
             </view>
          
           
@@ -75,11 +70,7 @@
                         <view class='num'>x{{item.order_quantity}}</view>
                     </view>
                 </view>
-                <view class='box_list_four'>
-                    <view>
-                        <view class='remind_delivery cancel type_button'  bindtap="tip_order" data-id="{{item.parts_order_number}}">提醒发货</view>
-                    </view>
-                </view>
+              
             </view>
             
            
@@ -137,7 +128,7 @@
                 <view class='box_list_four'>
                     <view>
                         <view class='cancel type_button'>售后</view>
-                        <view class='payment '>追加评价</view>
+                        <view class='payment'  bindtap="go_evaluation" data-id="{{item.id}}">追加评价</view>
                     </view>
                 </view>
             </view>
@@ -164,11 +155,7 @@
                         <view class='num'>x{{item.order_quantity}}</view>
                     </view>
                 </view>
-                <view class='box_list_four'>
-                    <view>
-                        <view class='cancel type_button' bindtap="delete_order" data-id="{{item.parts_order_number}}">删除</view>
-                    </view>
-                </view>
+            
             </view>
             
            
@@ -193,11 +180,7 @@
                         <view class='num'>x{{item.order_quantity}}</view>
                     </view>
                 </view>
-                <view class='box_list_four'>
-                    <view>
-                        <view class='cancel type_button'>已完成</view>
-                    </view>
-                </view>
+               
             </view>
             
          
@@ -222,11 +205,7 @@
                     <view class='num'>x{{item.order_quantity}}</view>
                     </view>
                 </view>
-                <view class='box_list_four'>
-                    <view>
-                        <view class='cancel type_button' bindtap="delete_order" data-id="{{item.parts_order_number}}">删除</view>
-                    </view>
-                </view>
+             
             </view>
            
         </view>

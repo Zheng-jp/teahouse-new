@@ -12,10 +12,7 @@ Page({
     up_img_lenght:true,
     url: app.globalData.img_url,
     tempFilePaths:[],
-    img:[
-      "../../images/1.png",
-      "../../images/1.png",
-    ],
+    img:[],
     goods:[]
 
   },
@@ -106,23 +103,28 @@ Page({
 
 
   formSubmit: function (e) {
+
     var that = this;
-    console.log(that.data);
-    that.uploadimg({
-      url:app.globalData.tiltes + 'order_evaluate_add',//这里是你图片上传的接口
-      path:that.data.tempFilePaths//这里是选取的图片的地址数组
-     });
-    // wx.uploadFile({
-    //   url: app.globalData.tiltes + 'order_evaluate_add',
-    //   filePath: that.data.tempFilePaths,
-    //   name: 'file[]',
-    //   formData: e.detail.value,
-     
-    //   success:function(res){
-    //     //打印
-    //     console.log(res)
-    //   }
-    // })
+    console.log(e);
+    // that.uploadimg({
+    //   url:app.globalData.tiltes + 'order_evaluate_add',//这里是你图片上传的接口
+    //   path:that.data.tempFilePaths//这里是选取的图片的地址数组
+    //  });
+    var imgs=[];
+    for(var i=0;i<that.data.tempFilePaths.length;i++){
+      wx.uploadFile({
+        url: app.globalData.tiltes + 'order_evaluate_images_add',
+        filePath: that.data.tempFilePaths[i],
+        name: 'img',
+        formData: e.detail.value,
+        success:function(res){
+          console.log(res);
+          imgs.push(res.data.images_id);
+        }
+      })
+    }
+    console.log(imgs);
+    
   },
   
 
@@ -137,7 +139,7 @@ Page({
       url: app.globalData.tiltes + 'order_evaluate_index',
       data: {
         'member_id': app.globalData.member_id,
-       'parts_order_number':options.title
+        'order_id':options.title
       },
       method: "post",
       // header: {

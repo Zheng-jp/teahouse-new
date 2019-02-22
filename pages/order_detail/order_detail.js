@@ -78,6 +78,31 @@ Page({
 
   });
   },
+ 
+
+
+  // 追加评价
+  go_evaluation: function (event) {
+
+    var that = this;
+    var item = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../evaluation/evaluation?title=' + event.currentTarget.dataset.id,
+      success: function (res) {
+      
+      },
+      fail: function () {
+       
+      },
+      complete: function () {
+      
+      }
+  
+  
+    })
+  },
+  
+ 
 
   /**
    * 生命周期函数--监听页面初次渲染完成
