@@ -23,7 +23,7 @@ Page({
     id:0,
     // 商品数量
     num:1,
-    image: [ ],
+    image: [],
     url:app.globalData.img_url,
     circular: 'true',
     indicatorDots: 'true',

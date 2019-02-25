@@ -164,7 +164,7 @@ Page({
     }
     else if(that.data.address==1){
             wx.navigateTo({
-              url: '../integral_settlement/integral_settlement?title=' +0,
+              url: '../integral_settlement/integral_settlement?title=' + e.currentTarget.dataset.id,
               success: function (res) {
                 // success
                 console.log("nihao////跳转成功")
