@@ -54,7 +54,7 @@
 			
 		</view>
 		<view class='trade'>
-			<view class='buy' bindtap="showPopup">立即购买</view>
+			<view class='buy' bindtap="showPopup">立即兑换</view>
 		</view>
 	</view>
 </view>

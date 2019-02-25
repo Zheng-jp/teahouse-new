@@ -1,7 +1,6 @@
 {
 
   "pages": [
-    
     "pages/logs/logs", 
     "pages/index/index",
     "pages/mine/mine",
@@ -51,7 +50,9 @@
       "pages/after_sales_detail/after_sales_detail",
       "pages/evaluation/evaluation",
       "pages/logistics/logistics",
-      "pages/forget_password/forget_password"
+      "pages/forget_password/forget_password",
+      "pages/integral_settlement/integral_settlement"
+      
       
       
       

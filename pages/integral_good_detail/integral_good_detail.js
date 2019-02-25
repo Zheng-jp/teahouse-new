@@ -129,12 +129,7 @@ Page({
       });
     },
   
-  hideFlag: function (e) {
-    console.log(111);
-    this.setData({
-      mask_show: false,
-    })
-  },
+
  
  
   showPopup: function (e) {
@@ -168,56 +163,8 @@ Page({
       })
     }
     else if(that.data.address==1){
-            if (that.data.goods.goods_standard == 0)
-            {
-              var goods_standard_id = '';
-              that.setData({
-                select:'',
-              });
-            }
-            else{
-              var goods_standard_id = that.data.id;
-            }
-            if(that.data.select=='规格'){
-              wx.showToast({
-                title: '请选择规格',
-                icon:'none',
-              })
-            }
-            else{
-            var chars=[];
-            // var char = {};
-            var shop_ids = {}
-            var good_ids = {}
-            var ids = {}
-            var nums = {}
-            var shop_ids={}
-            var shop_id=new Array();
-            var good_id=new Array();
-            var id=new Array();
-            var num=new Array();
-              //  添加good_id字段到传值数组
-              good_id.push(that.data.good_id);
-              if(that.data.id==0 || that.data.id==''){
-                  id.push(0);
-              }
-              else{
-                id.push(that.data.id);
-              }
-              
-              num.push(that.data.num);
-              shop_id.push(0);
-              shop_ids['shop_id']=shop_id;
-              good_ids['good_id']=good_id;
-              ids['guige']=id;
-              nums['num']=num;
-            chars.push(shop_ids);
-            chars.push(good_ids);
-            chars.push(ids);
-            chars.push(nums);
-            let userStr=JSON.stringify(chars);
             wx.navigateTo({
-              url: '../settlement/settlement?title=' + userStr,
+              url: '../integral_settlement/integral_settlement?title=' +0,
               success: function (res) {
                 // success
                 console.log("nihao////跳转成功")
@@ -232,7 +179,6 @@ Page({
               }
 
             })
-          }
     }
     else{
       wx.showToast({
