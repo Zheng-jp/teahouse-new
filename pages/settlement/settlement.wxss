@@ -404,3 +404,11 @@ text-align: center;
 .input_control { 
   position: relative; left: -300rpx; bottom: 0; width: 100rpx; height: 100rpx;
 }
+.tips_img{
+  width: 30rpx;
+
+}
+.tips_content{
+  font-size: 26rpx;
+  color: #a1a1a1;
+}

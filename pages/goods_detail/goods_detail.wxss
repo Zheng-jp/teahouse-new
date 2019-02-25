@@ -178,7 +178,10 @@
 		text-align: center;
 		flex: 1;
     border-bottom: 1px solid #DDDDDD;
-	}
+  }
+  .tab-box{
+    margin-bottom: 100rpx;
+  }
   .tab-box>view{
     background: #fff;
   }
@@ -201,7 +204,7 @@
   }
   .footbar_text{
     font-size: 20rpx;
-    margin: 0 auto;
+    margin: -7rpx auto;
     color: #5E5E5E;
   }
   .ico_view{

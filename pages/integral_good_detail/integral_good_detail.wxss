@@ -77,7 +77,6 @@ view{
 	.sale{
 		color: red;
 		font-size: 35rpx;
-		margin-left: 26rpx;
 	}
 	
 	.other_info {

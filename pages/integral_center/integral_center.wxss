@@ -132,9 +132,6 @@
    .weui-grid__icon + .weui-grid__label {
        margin-top: 5px;
    }
-   .price{
-     margin-left: 10rpx;
-   }
     .price_img{
       float: left;
       align-items: center;
@@ -185,7 +182,7 @@
      margin-right: 10rpx;
    }
    .selling_point{
-     margin-left:13rpx; 
+     margin-left:10rpx; 
      text-overflow: ellipsis;
      display: -webkit-box;
      -webkit-line-clamp: 1;

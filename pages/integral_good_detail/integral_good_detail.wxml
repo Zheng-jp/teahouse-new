@@ -14,9 +14,7 @@
 		<view class='good_name'>{{goods.goods_name}}</view>
 		<view class='selling-point'>{{goods.goods_selling}}</view>
 		<view class='price_cont'>
-			<view class='level_images'>
-				<image src='{{url}}{{member_grade_img}}' mode="widthFix"></image>
-			</view>
+			
 			<view >
 				<view class='sale'>积分：{{goods.integral}}/片</view>
 			</view>
