@@ -205,9 +205,33 @@ Page({
       });
       that.calculate_money();
     },
-    repay: function () {
+    repay: function (e) {
       var that=this;
-    
+      console.log();
+      wx.request({
+        url: app.globalData.tiltes + 'order_integara',
+        data: {
+          open_id: app.globalData.gmemberid,
+          address_id:that.data.address_id,
+          goods_id:e.currentTarget.dataset.id,
+          order_quantity:that.data.num,
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+  
+        // },
+        success: function (res) {
+        
+         
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+        }
+  
+      });
     },
  
   

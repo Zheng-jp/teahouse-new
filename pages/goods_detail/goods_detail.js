@@ -37,8 +37,6 @@ Page({
     buy_num:0,
     // 是否有地址，0为没有填写收货地址，1为有，2为未授权
     address:0,
-    
-   
   },
   labelItemTap: function (e) {
     var that=this;
@@ -58,7 +56,6 @@ Page({
   // var goods_standard_id=e.target.dataset.id;
     // 商品名字
     var value=e.target.dataset.value;
-    console.log(e.target.dataset);
    if (that.data.goods.goods_standard.id === e.target.dataset.current) {
     return false;
 

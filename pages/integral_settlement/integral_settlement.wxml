@@ -110,6 +110,6 @@
 	</view>
   <view class="repay_box">
   <view class="moly">应付<text style='color:#7E383F;padding-left:20rpx;'>{{all_money}}元</text></view>
-	<view class='buts' bindtap='repay' >立即兑换</view>
+	<view class='buts' bindtap='repay' data-id="{{goods.id}}" >立即兑换</view>
   </view>
 </view>
