@@ -49,3 +49,60 @@
     padding: 20rpx;
     box-sizing: border-box
 }
+.form{
+  margin-top: 50rpx;
+}
+.form_list{
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 18rpx 0;
+}
+.form_list_text{
+  color: #00BBFF;
+  font-size: 30rpx;
+  width: 240rpx;
+  text-align: right;
+}
+.form_list_input{
+  border: solid 1rpx #a1a1a1;
+  font-size: 24rpx;
+  width: 480rpx;
+}
+.danwei{
+  position: absolute;
+  right: 20rpx;
+  color: #00BBFF; 
+  font-size: 30rpx;
+}
+.send_cond{
+  width: 150rpx;
+  text-align: center;
+  position: absolute;
+  color: #fff;
+  background: #00BBFf;
+  right: 0;
+  font-size: 24rpx;
+  height: 58rpx;
+  line-height: 58rpx;
+}
+.btn-area button{
+  color: #fff;
+  background: #00BBFf;
+  font-size: 30rpx;
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  margin-left: -20rpx;
+}
+.form_list_select{
+  display: flex;
+  align-items: center;
+}
+.go{
+  width: 480rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #00BBFf;
+}

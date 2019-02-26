@@ -19,8 +19,6 @@
         <input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6'/>
     </view>
 </view>
-
-
 <!-- 弹窗 -->
 <view class='all' style="height:{{s_height}}px;">
 	<view class='titles'>
@@ -100,7 +98,6 @@
 		</view>
 	</view>
 	<view class='sundry'>
-
 		<view class='sundry-li' style=' border-bottom: solid 1rpx #E4E4E4;'>
 			<view>商品总价</view>
 			<view><text style='color:#FF7E4A;'>{{all_money}}元</text></view>

@@ -18,7 +18,6 @@ Page({
     // 商品图片
     images:'',
     // 规格值
-    select:'规格',
     selecteds: true,
     id:0,
     // 商品数量
@@ -38,40 +37,7 @@ Page({
     
    
   },
-  labelItemTap: function (e) {
-    var that=this;
-    console.log(e);
-   //  点击添加类
-  // 商品id
-   var current=e.target.dataset.current;
-  //  商品价格
-  var price=e.target.dataset.price;
-  // 商品库存
-  var stock=e.target.dataset.stock;
-  // 商品销量
-  // var current=e.target.dataset.current;
-  // 商品图片
-  var images=e.target.dataset.images;
-  // 规格id
-  // var goods_standard_id=e.target.dataset.id;
-    // 商品名字
-    var value=e.target.dataset.value;
-    console.log(e.target.dataset);
-   if (that.data.goods.goods_standard.id === e.target.dataset.current) {
-    return false;
-
-  } else {
-    that.setData({
-      id: e.target.dataset.current,
-      current: current,
-      price:price,
-      stock:stock,
-      images:images,
-      select:value,
-
-    })
-  }
-  },
+  
   selected: function (e) {
     this.setData({
       selected1: false,
@@ -84,13 +50,7 @@ Page({
       selected1: true
     })
   },
-    showFlag: function (e) {
-      this.setData({
-        mask_show:true,
-      })
-      
-    
-  },
+ 
  
    /* 点击减号 */
    bindMinus: function () {
@@ -163,22 +123,83 @@ Page({
       })
     }
     else if(that.data.address==1){
-            wx.navigateTo({
-              url: '../integral_settlement/integral_settlement?title=' + e.currentTarget.dataset.id,
-              success: function (res) {
-                // success
-                console.log("nihao////跳转成功")
-              },
-              fail: function () {
-                // fail
-                console.log("nihao////跳转失败")
-              },
-              complete: function () {
-                // complete
-                console.log("nihao////跳转行为结束，未知成功失败")
-              }
+      if(!app.globalData.judge_phone){
+        wx.showModal({
+          title:'提示',
+          content: '你未绑定手机号码',
+          confirmText:'马上绑定',
+          confirmColor:'#3399FF',
+          cancelColor:'#bbb',
+          success: function(res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../change_account/change_account?judge_phone='+0,
+                success: function (res) {
+                   
+                },
+                fail: function () {
+                 
+                },
+                complete: function () {
+                
+                }
+          
+          
+              })
+            } else if (res.cancel) {
+            console.log('用户点击取消')
+            }
+            }
+        })  
+       }
+       else if(!app.globalData.judge_repay){
+        wx.showModal({
+          title:'请设置支付密码',
+          content: '您还没有资金账号，为了保证您的资金安全，请先设置资金账号支付密码。设置后才可以进行充值、余额消费等操作',
+          confirmText:'马上设置',
+          confirmColor:'#3399FF',
+          cancelColor:'#bbb',
+          success: function(res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../password/password?judge_phone='+0,
+                success: function (res) {
+                   
+                },
+                fail: function () {
+                 
+                },
+                complete: function () {
+                
+                }
+          
+          
+              })
+            } else if (res.cancel) {
+            console.log('用户点击取消')
+            }
+            }
+        })  
+       }
+       else{
+        wx.navigateTo({
+          url: '../integral_settlement/integral_settlement?title=' + e.currentTarget.dataset.id,
+          success: function (res) {
+            // success
+            console.log("nihao////跳转成功")
+          },
+          fail: function () {
+            // fail
+            console.log("nihao////跳转失败")
+          },
+          complete: function () {
+            // complete
+            console.log("nihao////跳转行为结束，未知成功失败")
+          }
 
-            })
+        })
+       }
+            
     }
     else{
       wx.showToast({
@@ -263,7 +284,7 @@ Page({
       }
 
     });
-
+    
   },
 
   /**
@@ -277,7 +298,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    app.judge_phone();
+    app.judge_repay();
   },
 
   /**

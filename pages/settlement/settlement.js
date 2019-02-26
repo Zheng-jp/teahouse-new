@@ -723,6 +723,26 @@ Page({
       address:address,
       address_id:id
     });
+    wx.request({
+      url: app.globalData.tiltes + 'member_address_edit_information',
+      data: {
+        id:id,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
   },
 
   /**

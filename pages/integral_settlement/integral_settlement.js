@@ -41,6 +41,7 @@ Page({
     showPayPwdInput: false,  //是否展示密码输入层
     pwdVal: '',  //输入的密码
     payFocus: true, //文本框焦点
+    goods_id:null,//商品id
     
     
   },
@@ -113,14 +114,86 @@ Page({
   /**
    * 隐藏支付密码输入层
    */
-  hidePayLayer: function(){
-    
+  hidePayLayer: function(){ 
+    var that=this;
     var val = this.data.pwdVal;
-
-    this.setData({ showPayPwdInput: false, payFocus: false, pwdVal: '' }, function(){
-      wx.showToast({
-        title: val,
-      })
+    this.setData({ showPayPwdInput: false, payFocus: false, pwdVal: '' },
+     function(){
+       if(val.length==6){
+        wx.request({
+          url: app.globalData.tiltes + 'check_password',
+          data: {
+            member_id : app.globalData.member_id,
+            passwords:val,
+          },
+          method: "post",
+          // header: {
+          //   "Content-Type": "json" // 默认值
+    
+          // },
+          success: function (res) {
+            if(res.data.data.status==1){
+              wx.request({
+                  url: app.globalData.tiltes + 'order_integaral',
+                  data: {
+                    open_id: app.globalData.gmemberid,
+                    address_id:that.data.address_id,
+                    goods_id:that.data.goods_id,
+                    order_quantity:that.data.num,
+                    order_type:that.data.order_type,
+                  },
+                  method: "post",
+                  // header: {
+                  //   "Content-Type": "json" // 默认值
+            
+                  // },
+                  success: function (res) {
+                    console.log(res);
+                    if(res.data.status=="1"){
+                      wx.showToast({
+                        icon:"none",
+                        title: res.data.info, 
+                      })
+                    }
+                    else{
+                      wx.showToast({
+                        icon:"none",
+                        title: res.data.info, 
+                      })
+                    }
+                  
+                  },
+                  fail: function () {
+            
+                  },
+                  complete: function () {
+                  }
+            
+                });
+            }
+            else{
+              wx.showToast({
+                icon:"none",
+                title: res.data.info,
+              })
+  
+            }
+          },
+          fail: function () {
+          },
+          complete: function () {
+          }
+    
+        });
+       }
+       else{
+        wx.showToast({
+          icon:"none",
+          title: "您已取消支付",
+        })
+       }
+       
+     
     });
 
   },
@@ -207,31 +280,11 @@ Page({
     },
     repay: function (e) {
       var that=this;
-      console.log();
-      wx.request({
-        url: app.globalData.tiltes + 'order_integara',
-        data: {
-          open_id: app.globalData.gmemberid,
-          address_id:that.data.address_id,
-          goods_id:e.currentTarget.dataset.id,
-          order_quantity:that.data.num,
-        },
-        method: "post",
-        // header: {
-        //   "Content-Type": "json" // 默认值
-  
-        // },
-        success: function (res) {
-        
-         
-        },
-        fail: function () {
-  
-        },
-        complete: function () {
-        }
-  
-      });
+      that.setData({
+        goods_id:e.currentTarget.dataset.id,
+
+      })
+      that.showInputLayer();
     },
  
   
