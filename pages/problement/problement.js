@@ -14,6 +14,7 @@ Page({
     url: app.globalData.url,
     nav: [],
     shares: [],
+    
 
     // 搜索列表
     showView: true,
@@ -65,52 +66,27 @@ Page({
     });
   },
   tab_click: function (e) {//点击tab切换
-    var that = this;
-    console.log(that.data.nav);
-    //  点击添加类
-    if (that.data.nav.tab === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        tab: e.target.dataset.current
+    var _this = this;
+    var current = e.target.dataset.current;
+    if(current != _this.data.tab){
+      _this.setData({
+        tab: current
       })
-      var id = that.data.nav[that.data.tab].id;
+      var pid = _this.data.nav[current].pid;
       wx.request({
-        url: app.globalData.tiltes + 'problem_list',
+        url: app.globalData.tiltes + 'problem_data',
         data: {
-          id: id
+          pid: pid
         },
-        method: "post",
-        // header: {
-        //   "Content-Type": "json" // 默认值
-
-        // },
-        success: function (res) {
-          // console.log(res);
-          that.setData({
-            shares: res.data.data,
-          });
-          //  添加字段到等级数组
-          for (var index in that.data.shares) {
-            var sexParam = "shares[" + index + "].url";
-            that.setData({
-              [sexParam]: app.globalData.img_url,
-            })
-
-          }
-
-
+        method: 'POST',
+        success: function(res){
+          console.log(res);
         },
-        fail: function () {
-
-        },
-        complete: function () {
-          wx.hideLoading()
+        error: function(res){
+          console.log(res.status, res.statusText);
         }
-
-      });
+      })
     }
-
   },
   // 点击搜索
   onChangeShowState: function () {
@@ -138,16 +114,27 @@ Page({
       }
     });
     showView: (options.showView == "true" ? true : false)
+    // navList
     wx.request({
       url: app.globalData.tiltes + 'problem_list',
       method: "POST",
       success: function(res){
-        console.log(res);
+        console.log(res)
+        if(res.data.status == 1){
+          var data = res.data.data;
+          for(var item in data){
+            data[item].tab = item;
+          }
+          that.setData({
+            nav: data
+          })
+        }
       },
       error: function(res){
-        console.log(res)
+        console.log(res);
       }
     })
+    
   },
 
   /**
