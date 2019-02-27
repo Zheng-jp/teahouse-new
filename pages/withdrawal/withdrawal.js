@@ -90,17 +90,17 @@ Page({
             wx.navigateBack();
           }, 2000)
         }
-        wx.showToast({
-          title:"res.data.info",
-          icon:'none',
-        });
+        
      
       },
       fail: function () {
 
       },
       complete: function () {
-        wx.hideLoading()
+        wx.showToast({
+          title:res.data.info,
+          icon:'none',
+        });
       }
 
     });
