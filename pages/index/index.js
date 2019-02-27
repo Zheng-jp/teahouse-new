@@ -54,13 +54,27 @@ Page({
     ]
 
     },
-    nfc:function(){
-      wx.stopHCE({
-        success(res) {
-          console.log(res.errMsg)
+    nfc:function(e){
+      wx.scanCode({
+        onlyFromCamera: true,
+        success: (res) => {
+          console.log(res)
         }
       })
     },
+  bindViewTaps: function () {
+    var that = this;
+    wx.navigateTo({
+      url: '../code/code?title=' + app.globalData.gmemberid,
+      success: function (res) {
+      },
+      fail: function () {
+      },
+      complete: function () {
+      }
+
+    })
+  },
     bindViewTap: function (event) {
       var that=this;
       var item = event.currentTarget.dataset.item;
