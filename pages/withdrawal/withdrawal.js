@@ -96,7 +96,7 @@ Page({
       fail: function () {
 
       },
-      complete: function () {
+      complete: function (res) {
         wx.showToast({
           title:res.data.info,
           icon:'none',

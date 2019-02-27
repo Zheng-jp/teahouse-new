@@ -85,6 +85,7 @@
   font-size: 24rpx;
   height: 58rpx;
   line-height: 58rpx;
+  z-index: 99999;
 }
 .btn-area button{
   color: #fff;
