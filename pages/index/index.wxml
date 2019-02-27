@@ -2,7 +2,7 @@
 <import src="../../utils/template.wxml" />
 <view class="container">
    <view class='title'>
-      <view style='float: left;'>
+      <view style='float: left;' bindtap="nfc">
           <view class="nfc"><image  src="img/u270.png"> </image> </view>
           <view class='fangwei' >溯源</view>
       </view>

@@ -54,6 +54,13 @@ Page({
     ]
 
     },
+    nfc:function(){
+      wx.stopHCE({
+        success(res) {
+          console.log(res.errMsg)
+        }
+      })
+    },
     bindViewTap: function (event) {
       var that=this;
       var item = event.currentTarget.dataset.item;
