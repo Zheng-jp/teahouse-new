@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 36,
+			"current": 37,
 			"list": [
 				{
 					"id": -1,
@@ -257,7 +257,13 @@
 				{
 					"id": -1,
 					"name": "test",
-					"pathName": "pages/test/test"
+					"pathName": "pages/test/test",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "忘记密码",
+					"pathName": "pages/forget_password/forget_password"
 				}
 			]
 		}

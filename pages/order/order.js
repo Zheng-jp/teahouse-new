@@ -298,27 +298,27 @@ Page({
   
     })
   },
-go_order_detail: function (event) {
+  go_order_detail: function (event) {
 
-  var that = this;
-  var id = event.currentTarget.dataset.id;
-  var status=event.currentTarget.dataset.status;
- 
-  wx.navigateTo({
-    url: '../order_detail/order_detail?title=' + id+"&status="+status,
-    success: function (res) {
-    
-    },
-    fail: function () {
-     
-    },
-    complete: function () {
-    
-    }
+    var that = this;
+    var id = event.currentTarget.dataset.id;
+    var status=event.currentTarget.dataset.status;
+  
+    wx.navigateTo({
+      url: '../order_detail/order_detail?title=' + id+"&status="+status,
+      success: function (res) {
+      
+      },
+      fail: function () {
+      
+      },
+      complete: function () {
+      
+      }
 
 
-  })
-},
+    })
+  },
   // 付款
   repay:function(e){
     var indexs = e.currentTarget.dataset.id;
@@ -376,7 +376,7 @@ go_order_detail: function (event) {
     })
   },
    // 提醒
-   tip_order:function (e){
+  tip_order:function (e){
     var that=this;
     var indexs = e.currentTarget.dataset.id;
     var orderItems = that.data.order;

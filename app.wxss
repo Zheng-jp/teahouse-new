@@ -243,7 +243,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
  .weui-grid__icon + .weui-grid__label {
      margin-top: 5px;
  }
- .price{
+ /* .price{
    margin-left:10rpx;
    margin-top:-8rpx;
    display:flex;
@@ -251,18 +251,12 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
    padding:10rpx;
  
  
- }
+ } */
   .price_img{
-    float: left;
-    align-items: center;
      width:35rpx;
-     height:35rpx;
  
   }
   .price_text{
-     float: left;
-    margin-left: 20rpx;
-    margin-top: 6rpx;
     color: red;
     font-size: 30rpx;
  
@@ -280,13 +274,18 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   }
   .price{
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    padding: 0 10rpx;
+  }
+  .price_content{
+    display: flex;
+    align-items: center;
   }
   .line_price{
     text-decoration: line-through;
-    color:#949494;
-  font-size: 26rpx;
-  float: right;
+    color:#A1A1A1;
+     font-size: 26rpx;
+     margin-left: 30rpx;
   }
  .weui-grid_name {
    width: 200rpx;
@@ -311,7 +310,5 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
    font-size: 24rpx ;
    margin-right: 10rpx;
  }
- .selling_point{
-   margin-left:13rpx; 
- }
+
 /* 商品 */

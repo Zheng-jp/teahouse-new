@@ -13,6 +13,18 @@
                     <image src="http://teahouse.siring.com.cn/upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png" mode="widthFix" class="more" />
                 </view>
             </view>
+               <view class="list" >
+                <view class="tilte_text">我的邀请码</view>
+                <view class="content">
+                     <view class="context">0531</view>
+                </view>
+            </view>
+             <view class="list" >
+                <view class="tilte_text">上级邀请码</view>
+                <view class="content">
+                
+                </view>
+            </view>
             <view class="submit" >
                 保存
             </view>

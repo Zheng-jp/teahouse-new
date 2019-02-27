@@ -14,9 +14,6 @@
 		<view class='good_name'>{{goods.goods_name}}</view>
 		<view class='selling-point'>{{goods.goods_selling}}</view>
 		<view class='price_cont'>
-			<view class='level_images'>
-				<image src='{{url}}{{member_grade_img}}' mode="widthFix"></image>
-			</view>
 			<view >
 				<view class='sale'>积分：{{goods.integral}}/片</view>
 			</view>
@@ -56,7 +53,7 @@
 			
 		</view>
 		<view class='trade'>
-			<view class='buy' bindtap="showPopup">立即购买</view>
+			<view class='buy' bindtap="showPopup"   data-id="{{goods.id}}">立即兑换</view>
 		</view>
 	</view>
 </view>

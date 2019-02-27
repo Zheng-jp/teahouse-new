@@ -7,28 +7,53 @@ Page({
    */
   data: {
      addresss:[],
-     is_select_address:'',
+     is_select_address:"",
      is:true,
      checked:"",
    
   },
   add_address: function (event) {
-    wx.navigateTo({
-      url: '../add_address/add_address',
-      success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
-      },
-      fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
-      },
-      complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
-      }
-
-    })
+    var that=this;
+    // 结算页面进去
+    console.log(that.data.is_select_address);
+    if(that.data.is_select_address=="select"){
+      wx.navigateTo({
+        url: '../add_address/add_address?title=' + 0,
+        success: function (res) {
+          // success
+          console.log("nihao////跳转成功")
+        },
+        fail: function () {
+          // fail
+          console.log("nihao////跳转失败")
+        },
+        complete: function () {
+          // complete
+          console.log("nihao////跳转行为结束，未知成功失败")
+        }
+  
+      })
+    }
+    // 从我的页面进去
+    else{
+      wx.navigateTo({
+        url: '../add_address/add_address?title=' + 1,
+        success: function (res) {
+          // success
+          console.log("nihao////跳转成功")
+        },
+        fail: function () {
+          // fail
+          console.log("nihao////跳转失败")
+        },
+        complete: function () {
+          // complete
+          console.log("nihao////跳转行为结束，未知成功失败")
+        }
+  
+      })
+    }
+    
   },
   go_change_address: function (event) {
     wx.navigateTo({
@@ -119,7 +144,7 @@ Page({
     wx.setStorageSync('name', name);
     wx.setStorageSync('address', address);
     wx.setStorageSync('id', id);
-     wx.navigateBack({
+    wx.navigateBack({
       delta: 1
     });
   },
@@ -134,12 +159,33 @@ Page({
     // 判读从哪个页面进来
     var  pages = getCurrentPages();
     var  prevpage = pages[pages.length - 2];
-   if(prevpage.route=='pages/settlement/settlement'){
+   if(!prevpage.route=='pages/mine/mine'){
     that.setData({
-      is_select_address: 'select',
+      is_select_address: "select",
       is:false
     });
    }
+   else{
+    that.setData({
+      is_select_address: "",
+      is:true
+    });
+   }
+   
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     wx.request({
       url: app.globalData.tiltes + 'member_address_information',
       data: {
@@ -186,21 +232,6 @@ Page({
       }
 
     });
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   /**

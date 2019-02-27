@@ -63,7 +63,7 @@ Page({
       }
      
     }
-    else if(item=='../card/card'){
+    else if(item=='../card/card' || item=='../withdrawal/withdrawal'){
          if(!app.globalData.judge_phone){
           wx.showModal({
             title:'提示',

@@ -19,6 +19,10 @@ Page({
     showModalStatus: false,
     // 加减框里面的值
     num:1,
+    // 加减框里面的值
+    num1:1,
+    // 加减框里面的值
+    num2:1,
     // 手机号码
     tel:'',
     // 名字
@@ -147,6 +151,22 @@ Page({
         this.hidePayLayer();
       }
   },
+  forget_password: function(e){
+    wx.navigateTo({
+      url: '../forget_password/forget_password',
+      success: function (res) {
+      
+      },
+      fail: function () {
+       
+      },
+      complete: function () {
+      
+      }
+  
+  
+    })
+    },
     // 弹窗
   // 立即支付
   repay:function(){
@@ -175,6 +195,7 @@ Page({
         wx.showActionSheet({
           itemList: ['账户支付', '微信支付',],
           success: function (res) {
+            console.log(res);
             // 账户支付
             if(res.tapIndex==0){
               that.showInputLayer();
@@ -238,12 +259,25 @@ Page({
             
           },
           fail: function (res) {
-            console.log(res.errMsg)
+            wx.navigateTo({
+              url: '../order/order?title='+0,
+              success: function (res) {
+              
+              },
+              fail: function () {
+               
+              },
+              complete: function () {
+              
+              }
+          
+          
+            })
           }
         })
       },
       fail: function () {
-
+ 
       },
       complete: function () {
       }
@@ -450,6 +484,72 @@ Page({
       });
       that.calculate_money();
     },
+      /* 点击减号 */
+      bindMinus1: function () {
+        var that=this;
+        var num1 = this.data.num1;
+        // 如果大于1时，才可以减  
+        if (num1 > 1) {
+          num1--;
+        }
+        // 只有大于一件的时候，才能normal状态，否则disable状态  
+        var minusStatus = num1 <= 1 ? 'disabled' : 'normal';
+        // 将数值与状态写回  
+       
+        this.setData({
+          num1: num1,
+          minusStatus: minusStatus
+        });
+      },
+      /* 点击加号 */
+      bindPlus1: function () {
+        var that=this;
+        var num1 = this.data.num1;
+        // 不作过多考虑自增1  
+        num1++;
+        // 只有大于一件的时候，才能normal状态，否则disable状态  
+        var minusStatus = num1 < 1 ? 'disabled' : 'normal';
+        // 将数值与状态写回  
+      
+        this.setData({
+          num1: num1,
+          minusStatus: minusStatus
+        });
+      },
+    
+        /* 点击减号 */
+     bindMinus2: function () {
+      var that=this;
+      var num2 = this.data.num2;
+      // 如果大于1时，才可以减  
+      if (num2 > 1) {
+        num2--;
+      }
+      // 只有大于一件的时候，才能normal状态，否则disable状态  
+      var minusStatus = num2 <= 1 ? 'disabled' : 'normal';
+      // 将数值与状态写回  
+     
+      this.setData({
+        num2: num2,
+        minusStatus: minusStatus
+      });
+    },
+    /* 点击加号 */
+    bindPlus2: function () {
+      var that=this;
+      var num2 = this.data.num2;
+      // 不作过多考虑自增1  
+      num2++;
+      // 只有大于一件的时候，才能normal状态，否则disable状态  
+      var minusStatus = num2 < 1 ? 'disabled' : 'normal';
+      // 将数值与状态写回  
+    
+      this.setData({
+        num2: num2,
+        minusStatus: minusStatus
+      });
+    },
+    
     
  
   
@@ -622,6 +722,26 @@ Page({
       name:name,
       address:address,
       address_id:id
+    });
+    wx.request({
+      url: app.globalData.tiltes + 'member_address_edit_information',
+      data: {
+        id:id,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
     });
   },
 

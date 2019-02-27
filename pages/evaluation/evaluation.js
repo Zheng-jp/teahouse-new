@@ -12,11 +12,9 @@ Page({
     up_img_lenght:true,
     url: app.globalData.img_url,
     tempFilePaths:[],
-    img:[
-      "../../images/1.png",
-      "../../images/1.png",
-    ],
-    goods:[]
+    img:[],
+    goods:[],
+    order_id:null,
 
   },
   up_img:function(e){
@@ -107,22 +105,60 @@ Page({
 
   formSubmit: function (e) {
     var that = this;
-    console.log(that.data);
-    that.uploadimg({
-      url:app.globalData.tiltes + 'order_evaluate_add',//这里是你图片上传的接口
-      path:that.data.tempFilePaths//这里是选取的图片的地址数组
-     });
-    // wx.uploadFile({
-    //   url: app.globalData.tiltes + 'order_evaluate_add',
-    //   filePath: that.data.tempFilePaths,
-    //   name: 'file[]',
-    //   formData: e.detail.value,
-     
-    //   success:function(res){
-    //     //打印
-    //     console.log(res)
-    //   }
-    // })
+    var imgs=[];
+    if(e.detail.value.content!=''){
+      for(var i=0;i<that.data.tempFilePaths.length;i++){
+        wx.uploadFile({
+          url: app.globalData.tiltes + 'order_evaluate_images_add',
+          filePath: that.data.tempFilePaths[i],
+          name: 'img',
+          formData: e.detail.value,
+          success:function(res){
+            console.log(res);
+            var jsonstr = JSON.parse(res.data);
+            imgs.push(jsonstr.data.images_id);
+          }
+        })
+      }
+      setTimeout(function () {
+        wx.request({
+          url: app.globalData.tiltes + 'order_evaluate_add',
+          data: {
+            member_id: app.globalData.member_id,
+            id:that.data.order_id,
+            images_id:imgs,
+            content:e.detail.value.content
+    
+          },
+          method: "post",
+          // header: {
+          //   "Content-Type": "application/json" // 默认值
+      
+          // },
+          success: function (res) {
+            wx.navigateBack();
+          },
+          fail: function () {
+         
+          },
+          complete: function (res) {
+            wx.showToast({
+              title:res.data.info,
+              icon: 'none'
+            })
+          }
+      
+        });
+       }, 1000) 
+    
+    }
+    else{
+       wx.showToast({
+          title:'评价内容不能为空',
+          icon: 'none'
+        })
+    }
+   
   },
   
 
@@ -133,11 +169,14 @@ Page({
     var that=this;
     var height = wx.getSystemInfoSync().windowHeight;
      that.setData({ height: height});
+    that.setData({
+      order_id:options.title
+    })
     wx.request({
       url: app.globalData.tiltes + 'order_evaluate_index',
       data: {
         'member_id': app.globalData.member_id,
-       'parts_order_number':options.title
+        'order_id':options.title
       },
       method: "post",
       // header: {

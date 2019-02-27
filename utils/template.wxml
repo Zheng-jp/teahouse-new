@@ -27,12 +27,12 @@
         <view class='selling_point'>{{item.goods_selling}}
         </view>
         <view class='price'>
-            <view>
-			    <view class='price_img'><image src='{{item.url}}{{item.member_grade_img}}'></image></view>
-                <text class="price_text" wx:if="{{item.goods_standard==0}}">￥{{item.goods_new_money}}</text>
-                <text class="price_text" wx:else>￥{{item.min_price}}</text>
+            <view class="price_content">
+			   <image src='{{item.url}}{{item.member_grade_img}}' mode="widthFix" class='price_img'></image>
+                <view class="price_text" wx:if="{{item.goods_standard==0}}">￥{{item.goods_new_money}}</view>
+                <view class="price_text" wx:else>￥{{item.min_price}}</view>
 		   </view>
-            <text class="line_price">￥{{item.min_price}}</text>
+            <view class="line_price">￥{{item.min_price}}</view>
         </view>
     </view>
       
