@@ -15,6 +15,7 @@ Page({
     num:null,
     card:[],
     cardid:null,
+    select_card:null,//查询上个页面
   },
  // 验证银行卡号
  checkCard:function(cardNo) {
@@ -46,6 +47,7 @@ Page({
 },
   formSubmit: function (e) {
     var that=this;
+    
     // 添加
     if(!that.data.change){
       if(e.detail.value.name==''){
@@ -97,15 +99,29 @@ Page({
           },
           method: "post",
           success: function (res) {
-          
-            if(res.data.status==1){
-              setTimeout(function () {
-                wx.navigateBack();
-              }, 2000)
-             
+            console.log(res);
+            var id=res.data.data;
+            // 上两个页面为充值页面
+            if(that.data.select_card=="0"){
+              if(res.data.status==1){
+                setTimeout(function () {
+                  wx.setStorageSync('id', id);
+                  wx.navigateBack({
+                    delta: 2
+                  });
+                }, 2000)
+               
+              }
             }
             else{
-  
+              if(res.data.status==1){
+                setTimeout(function () {
+                  wx.navigateBack({
+                    delta: 1
+                  });
+                }, 2000)
+               
+              }
             }
          
           },
@@ -167,11 +183,27 @@ Page({
           },
           method: "post",
           success: function (res) {
-            if(res.data.status==1){
-              setTimeout(function () {
-                wx.navigateBack();
-              }, 2000)
-             
+            // 上两个页面为充值页面
+            if(that.data.select_card=="0"){
+              if(res.data.status==1){
+                setTimeout(function () {
+                  wx.setStorageSync('id', that.data.cardid);
+                  wx.navigateBack({
+                    delta: 2
+                  });
+                }, 2000)
+               
+              }
+            }
+            else{
+              if(res.data.status==1){
+                setTimeout(function () {
+                  wx.navigateBack({
+                    delta: 1
+                  });
+                }, 2000)
+               
+              }
             }
          
           },
@@ -244,6 +276,10 @@ Page({
     var that=this;
     var title = options.title;
     var id=options.id;
+    var pid=options.pid;
+    that.setData({
+      select_card:pid
+    })
     that.setData({
       cardid:id
     });

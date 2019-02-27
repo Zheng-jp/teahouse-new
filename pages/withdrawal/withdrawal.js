@@ -148,6 +148,19 @@ Page({
     
    
    },
+   go_card:function(e){
+    wx.navigateTo({
+      url: '../card/card',
+      success: function (res) {
+      },
+      fail: function () {
+      },
+      complete: function () {
+      }
+  
+    })
+   },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -237,6 +250,7 @@ Page({
       }
 
     });
+    
   
   },
 
@@ -252,11 +266,12 @@ Page({
    */
   onShow: function () {
     var that=this;
+    var id=wx.getStorageSync('id');
     wx.request({
       url: app.globalData.tiltes + 'withdrawal_return',
       data: {
        member_id:app.globalData.member_id,
-       id:'',
+       id:id,
       },
       method: "post",
       // header: {

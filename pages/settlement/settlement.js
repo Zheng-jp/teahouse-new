@@ -717,10 +717,8 @@ Page({
     var name=wx.getStorageSync('name');
     var address=wx.getStorageSync('address');
     var id=wx.getStorageSync('id');
+    console.log(id);
     that.setData({
-      tel: tel,
-      name:name,
-      address:address,
       address_id:id
     });
     wx.request({
@@ -735,6 +733,12 @@ Page({
       // },
       success: function (res) {
         console.log(res);
+        that.setData({
+          tel: res.data.data.harvester_phone_num,
+          name:res.data.data.harvester,
+          address:res.data.data.address_name+res.data.data.harvester_real_address,
+          address_id:res.data.data.id
+        });
       },
       fail: function () {
 
