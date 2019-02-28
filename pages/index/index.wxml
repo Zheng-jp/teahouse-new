@@ -2,13 +2,13 @@
 <import src="../../utils/template.wxml" />
 <view class="container">
    <view class='title'>
-      <view style='float: left;'>
+      <view style='float: left;' bindtap="nfc">
           <view class="nfc"><image  src="img/u270.png"> </image> </view>
           <view class='fangwei' >溯源</view>
       </view>
       <image src="img/seach.png"  class="seach_img" mode="widthFix" />
       <input type='text' class='seach' placeholder="请输入"></input>
-       <view style='float: left;'>
+       <view style='float: left;' bindtap="bindViewTaps">
           <view class="ma"><image  src="img/u180.png"> </image> </view>
           <view class='fangwei'>会员码</view>
       </view>

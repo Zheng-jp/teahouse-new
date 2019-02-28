@@ -18,6 +18,7 @@ Page({
   },
   formSubmit: function (e) {
     var that=this;
+    console.log(that.data.select_address);
   // 上俩级为结算页面
    if(that.data.select_address=="0"){
     wx.request({
@@ -36,6 +37,8 @@ Page({
 
       // },
       success: function (res) {
+        
+        var id=res.data.data;
         if(res.data.status==1){
           wx.showToast({
             title:res.data.info,
@@ -43,7 +46,6 @@ Page({
           });
           // TODO:给我生成的地址id
         setTimeout(function () {
-          var id=1;
           wx.setStorageSync('id', id);
           wx.navigateBack({
             delta: 2
@@ -112,7 +114,7 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-  
+  console.log(options.title);
     that.setData({
       select_address:options.title
     })

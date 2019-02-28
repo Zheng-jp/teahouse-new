@@ -28,7 +28,7 @@
                    <view class="form_list_select">
                       <view class="form_list_text"></view>
                      <view class="go"> 
-                         <view>选择银行卡>></view>
+                         <view bindtap="go_card">选择银行卡>></view>
                           <view>身份认证>></view>
                      </view>
                  </view>
@@ -45,7 +45,7 @@
                     <view class="form_list">
                       <view class="form_list_text">验证码：</view>
                       <input type="text"   class="form_list_input"  placeholder="验证码发送到您绑定的手机号" name="code" />
-                      <view class="send_cond">获取验证码 </view>
+                      <view class="send_cond" bindtap="send_cold">{{btntext}} </view>
                  </view>
                   <view class="btn-area">
                     <button form-type="submit" class='button-hovers'>提交申请</button>

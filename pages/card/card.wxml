@@ -3,10 +3,10 @@
 <view class='all'>
 	<radio-group class="radio-group" bindchange="radioChange" wx:if="{{address.info!='没有填写地址记录'}}"  >
 		<view class='content_list' wx:for="{{card}}">
-			<view class='radio'>
+			<view class='radio' wx:if="{{is}}">
 				<radio value="{{item.id}}" color='#fff'  checked="{{item.status==1?'true':''}}" data-id="{{item.status}}" />
 			</view>
-			  <view class="card_infor">
+			  <view class="card_infor" style="width:{{width}}px"  bindtap="{{is_select_address}}" data-id="{{item.id}}">
                 <view class="bank"><text class="bank_title">开户行：</text><text class="bank_content" >{{item.bank_name}}</text></view>
                 <view class="bank_name"><text class="bank_title">开户名：</text><text class="bank_content" >{{item.account_name}}</text></view>
                 <view class="card_num"><text class="bank_title">卡号：</text><text class="bank_content" >{{item.bank_card}}</text> </view>

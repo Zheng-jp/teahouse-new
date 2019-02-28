@@ -15,7 +15,6 @@ Page({
   add_address: function (event) {
     var that=this;
     // 结算页面进去
-    console.log(that.data.is_select_address);
     if(that.data.is_select_address=="select"){
       wx.navigateTo({
         url: '../add_address/add_address?title=' + 0,
@@ -56,6 +55,45 @@ Page({
     
   },
   go_change_address: function (event) {
+    var that=this;
+       // 结算页面进去
+       if(that.data.is_select_address=="select"){
+        wx.navigateTo({
+          url: '../change_address/change_address?title=' + event.currentTarget.dataset.id+'&id='+0,
+          success: function (res) {
+            // success
+            console.log("nihao////跳转成功")
+          },
+          fail: function () {
+            // fail
+            console.log("nihao////跳转失败")
+          },
+          complete: function () {
+            // complete
+            console.log("nihao////跳转行为结束，未知成功失败")
+          }
+    
+        })
+      }
+      // 从我的页面进去
+      else{
+        wx.navigateTo({
+          url: '../change_address/change_address?title=' + event.currentTarget.dataset.id+'&id='+1,
+          success: function (res) {
+            // success
+            console.log("nihao////跳转成功")
+          },
+          fail: function () {
+            // fail
+            console.log("nihao////跳转失败")
+          },
+          complete: function () {
+            // complete
+            console.log("nihao////跳转行为结束，未知成功失败")
+          }
+    
+        })
+      }
     wx.navigateTo({
       url: '../change_address/change_address?title=' + event.currentTarget.dataset.id,
       success: function (res) {
@@ -119,11 +157,11 @@ Page({
       },
       method: "post",
       success: function (res) {
-        // wx.showToast({
-        //   title:'删除成功',
-        //   icon: 'none'
-        // })
-        that.onLoad()
+        wx.showToast({
+          title:'删除成功',
+          icon: 'none'
+        })
+        that.onShow()
       },
       fail: function () {
 
@@ -155,20 +193,20 @@ Page({
   onLoad: function (options) {
     var that=this;
     var s_height = wx.getSystemInfoSync().windowHeight;
-    var title = options.title;
     // 判读从哪个页面进来
     var  pages = getCurrentPages();
     var  prevpage = pages[pages.length - 2];
-   if(!prevpage.route=='pages/mine/mine'){
-    that.setData({
-      is_select_address: "select",
-      is:false
-    });
-   }
-   else{
+   if(prevpage.route=='pages/mine/mine'){
     that.setData({
       is_select_address: "",
       is:true
+    });
+    
+   }
+   else{
+    that.setData({
+      is_select_address: "select",
+      is:false
     });
    }
    
@@ -186,6 +224,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that=this;
     wx.request({
       url: app.globalData.tiltes + 'member_address_information',
       data: {

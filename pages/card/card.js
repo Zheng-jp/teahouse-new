@@ -8,45 +8,95 @@ Page({
   data: {
      card:[],
      is_select_address:'',
+     is:true,
+     width:null,
    
   },
   
 
   go_add_card: function (event) {
-    wx.navigateTo({
-      url: '../add_card/add_card?title=' + 0,
-      success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
-      },
-      fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
-      },
-      complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
+    var that=this;
+      // 结算页面进去
+      if(that.data.is_select_address=="select"){
+        wx.navigateTo({
+          url: '../add_card/add_card?title=' + 0+ '&pid=' + 0,
+          success: function (res) {
+            // success
+            console.log("nihao////跳转成功")
+          },
+          fail: function () {
+            // fail
+            console.log("nihao////跳转失败")
+          },
+          complete: function () {
+            // complete
+            console.log("nihao////跳转行为结束，未知成功失败")
+          }
+    
+        })
       }
-
-    })
+      // 从我的页面进去
+      else{
+        wx.navigateTo({
+          url: '../add_card/add_card?title=' + 0+ '&pid=' + 1,
+          success: function (res) {
+            // success
+            console.log("nihao////跳转成功")
+          },
+          fail: function () {
+            // fail
+            console.log("nihao////跳转失败")
+          },
+          complete: function () {
+            // complete
+            console.log("nihao////跳转行为结束，未知成功失败")
+          }
+    
+        })
+      }
+   
   },
   go_change_card: function (event) {
-    wx.navigateTo({
-      url: '../add_card/add_card?title=' + 1+ '&id=' + event.currentTarget.dataset.id,
-      success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
-      },
-      fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
-      },
-      complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
-      }
-
-    })
+    var that=this;
+     // 结算页面进去
+     if(that.data.is_select_address=="select"){
+      wx.navigateTo({
+        url: '../add_card/add_card?title=' + 1+ '&id=' + event.currentTarget.dataset.id+ '&pid=' + 0,
+        success: function (res) {
+          // success
+          console.log("nihao////跳转成功")
+        },
+        fail: function () {
+          // fail
+          console.log("nihao////跳转失败")
+        },
+        complete: function () {
+          // complete
+          console.log("nihao////跳转行为结束，未知成功失败")
+        }
+  
+      })
+    }
+    // 从我的页面进去
+    else{
+      wx.navigateTo({
+        url: '../add_card/add_card?title=' + 1+ '&id=' + event.currentTarget.dataset.id+ '&pid=' + 1,
+        success: function (res) {
+          // success
+          console.log("nihao////跳转成功")
+        },
+        fail: function () {
+          // fail
+          console.log("nihao////跳转失败")
+        },
+        complete: function () {
+          // complete
+          console.log("nihao////跳转行为结束，未知成功失败")
+        }
+  
+      })
+    }
+  
   },
   radioChange: function (e) {
     var that = this;
@@ -106,18 +156,13 @@ Page({
     });
 
   },
-  // // 当从结算页面进来时触发的事件
-  // select:function(event){
-  //   var tel=event.currentTarget.dataset.tel;
-  //   var name=event.currentTarget.dataset.name;
-  //   var address=event.currentTarget.dataset.address;
-  //   wx.setStorageSync('tel', tel);
-  //   wx.setStorageSync('name', name);
-  //   wx.setStorageSync('address', address);
-  //    wx.navigateBack({
-  //     delta: 1
-  //   });
-  // },
+  // 当从充值页面进来时触发的事件
+  select:function(event){
+    wx.setStorageSync('id', event.currentTarget.dataset.id);
+     wx.navigateBack({
+      delta: 1
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -139,6 +184,24 @@ Page({
   onShow: function () {
     var that=this;
     var s_height = wx.getSystemInfoSync().windowHeight;
+    // 判读从哪个页面进来
+    var  pages = getCurrentPages();
+    var  prevpage = pages[pages.length - 2];
+   if(prevpage.route=='pages/account/account'){
+    that.setData({
+      is_select_address: "",
+      is:true
+    });
+    
+   }
+   else{
+    that.setData({
+      is_select_address: "select",
+      is:false,
+      width:663,
+    });
+   }
+   
        wx.request({
       url: app.globalData.tiltes + 'bank_bingding',
       data: {
