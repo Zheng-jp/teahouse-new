@@ -14,31 +14,16 @@
         </scroll-view>
     </view>
     <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide" bindchange="tab_slide" style="height:{{winHeight}}px">
-        <swiper-item>
+        <swiper-item wx:for="{{nav}}">
             <scroll-view scroll-y="{{true}}" bindscroll="scroll" style="height:{{winHeight}}px">
-                <view class="list" bindtap="go_contract_detail">
+                <view  wx:for="{{shares}}" class="list" catchtap="go_problement_detail" data-titleid="{{item.id}}">
                     <view>
-                        <text class="contract_num">Q1.</text>
-                        <text class="contract_name">《服务合同》</text>
+                        <text class="contract_num">Q{{index + 1}}.</text>
+                        <text class="contract_name">{{item.title}}</text>
                     </view>
                     <image class="more" src="img/more.png" mode="aspectFill"></image>
                 </view>
             </scroll-view>
         </swiper-item>
-        <!-- <swiper-item>
-            <scroll-view scroll-y="{{true}}" bindscroll="scroll" style="height:{{winHeight}}px">
-                2
-            </scroll-view>
-        </swiper-item>
-        <swiper-item>
-            <scroll-view scroll-y="{{true}}" bindscroll="scroll" style="height:{{winHeight}}px">
-                3
-            </scroll-view>
-        </swiper-item>
-        <swiper-item>
-            <scroll-view scroll-y="{{true}}" bindscroll="scroll" style="height:{{winHeight}}px">
-                4
-            </scroll-view>
-        </swiper-item> -->
     </swiper>
 </view>

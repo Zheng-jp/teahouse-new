@@ -24,6 +24,7 @@
       "pages/contract/contract",
       "pages/contract_detail/contract_detail",
       "pages/problement/problement",
+      "pages/problement_detail/problement_detail",
       "pages/news/news",
       "pages/account/account",
       "pages/identity_authentication/identity_authentication",

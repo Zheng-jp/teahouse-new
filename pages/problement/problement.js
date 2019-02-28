@@ -14,6 +14,7 @@ Page({
     url: app.globalData.url,
     nav: [],
     shares: [],
+    initPid: null,
     
 
     // 搜索列表
@@ -25,44 +26,34 @@ Page({
     ]
   },
   tab_slide: function (e) {//滑动切换tab 
-    console.log(e)
-    var that = this;
-    that.setData({ tab: e.detail.current });
-    var id = that.data.nav[that.data.tab].id;
+    var _this = this;
+    var current = e.detail.current;
+    _this.setData({
+      tab: e.detail.current
+    })
+    var pid = _this.data.nav[current].pid;
     wx.request({
-      url: app.globalData.tiltes + 'teacenter_activity',
+      url: app.globalData.tiltes + 'problem_data',
       data: {
-        id: id
+        pid: pid
       },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
+      method: "POST",
       success: function (res) {
         // console.log(res);
-        that.setData({
-          shares: res.data.data,
-        });
-        //  添加字段到等级数组
-        for (var index in that.data.shares) {
-          var sexParam = "shares[" + index + "].url";
-          that.setData({
-            [sexParam]: app.globalData.img_url,
-          })
-
+        var data = res.data.data;
+        for(var item in data){
+          data[item].url = app.globalData.tiltes
         }
-
-
-
+        _this.setData({
+          shares: res.data.data
+        })
       },
       fail: function () {
-
+        console.log(res.status, res.statusText);
       },
       complete: function () {
         wx.hideLoading()
       }
-
     });
   },
   tab_click: function (e) {//点击tab切换
@@ -81,12 +72,34 @@ Page({
         method: 'POST',
         success: function(res){
           console.log(res);
+          var data = res.data.data;
+          for(var item in data){
+            data[item].url = app.globalData.tiltes
+          }
+          _this.setData({
+            shares: res.data.data
+          })
         },
-        error: function(res){
+        fail: function(res){
           console.log(res.status, res.statusText);
+        },
+        complete: function () {
+          wx.hideLoading()
         }
       })
     }
+  },
+  go_problement_detail: function(titleid){//查看问题详情
+    var titleid = titleid.currentTarget.dataset.titleid
+    wx.navigateTo({
+      url: '../problement_detail/problement_detail?titleid=' + titleid,
+      success: function(){
+        console.log('跳转成功');
+      },
+      fail: function(){
+        console.log('跳转失败');
+      }
+    })
   },
   // 点击搜索
   onChangeShowState: function () {
@@ -120,21 +133,44 @@ Page({
       method: "POST",
       success: function(res){
         console.log(res)
-        if(res.data.status == 1){
-          var data = res.data.data;
-          for(var item in data){
-            data[item].tab = item;
-          }
-          that.setData({
-            nav: data
-          })
+        var data = res.data.data;
+        for(var item in data){
+          data[item].tab = item;
         }
+        that.setData({
+          nav: data,
+          initPid: data[0].pid
+        })
+        getFirstNavItem();
       },
       error: function(res){
         console.log(res);
       }
     })
-    
+    // navItem
+    function getFirstNavItem(){
+      wx.request({
+        url: app.globalData.tiltes + 'problem_data',
+        data: {
+          pid: that.data.initPid
+        },
+        method: 'POST',
+        success: function(res){
+          console.log(res);
+          var data = res.data.data;
+          for(var item in data){
+            data[item].url = app.globalData.tiltes
+          }
+          that.setData({
+            shares: res.data.data
+          })
+          console.log(that.data.shares);
+        },
+        error: function(res){
+          console.log(res.status, res.statusText);
+        }
+      })
+    }
   },
 
   /**

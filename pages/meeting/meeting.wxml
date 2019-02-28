@@ -12,7 +12,7 @@
     <swiper-item  wx:for="{{nav}}" wx:for-item="items">
           <scroll-view scroll-y="{{true}}" bindscroll="scroll"  style="height:{{winHeight}}px" >
           <view class='listview' wx:for="{{shares}}" wx:for-item="item"  wx:key="*this">
-             <template  is="{{item.type == '29' ? 'joy-text' : (item.type == '10' ? 'joy-pic' : (item.type == '41' ? 'joy-video' : 'joy-pic'))}}" data="{{item}}"   bindtap></template>
+             <template  is="{{item.type == '29' ? 'joy-text' : (item.type == '10' ? 'joy-pic' : (item.type == '41' ? 'joy-video' : 'joy-pic'))}}" data="{{item}}" bindtap></template>
     </view> 
     </scroll-view>
       
