@@ -1,12 +1,13 @@
 // pages/news_detail/news_detail.js
 var app = getApp();
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    msgArr: [],
   },
 
   /**
@@ -14,7 +15,8 @@ Page({
    */
   onLoad: function (options) {
     // console.log(options)
-    var pid = options.pid;
+    var pid = options.pid,
+        _this = this;
     wx.request({
       url: app.globalData.tiltes + 'message_show',
       method: 'POST',
@@ -22,7 +24,22 @@ Page({
         pid: pid
       },
       success: function(res){
-        console.log(res);
+        console.log(res.data);
+        if(res.data.status == 1){
+          var data = res.data.data;
+          data.forEach(function(v, i){
+            for(var prop in v){
+              if(prop == 'time'){
+                v[prop] = app.formatDate(v[prop] * 1000);
+              }
+            }
+          })
+          _this.setData({
+            msgArr: data
+          })
+				  // WxParse.wxParse('article', 'html', article, _this, 5);
+          console.log(_this.data.msgArr)
+        }
       },
       fail: function(){
         console.log('error');
