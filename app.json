@@ -53,7 +53,7 @@
       "pages/logistics/logistics",
       "pages/forget_password/forget_password",
       "pages/integral_settlement/integral_settlement",
-      "pages/integral_order/integral_order",
+      "pages/integral_order/integral_order"
 
   ],
     "subpackages": [
