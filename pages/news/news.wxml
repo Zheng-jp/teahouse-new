@@ -5,50 +5,16 @@
     </view>
     <view class="new_content">
       <view class="new_content_title">个人提醒</view>
-      <view class="new_content_content">您的个人信息需要完善您的个人信息需要完善您的个人信息需要完善您的个人信息需要完善，</view>
-    </view>
-    <view class="tip_box">
-      <view class="time">7月23</view>
-      <view class="dian"></view>
+      <view class="new_content_content">除订单外的消息提醒等</view>
     </view>
   </view>
-  <!-- <view class="list">
-    <view class="tilte_img1">
-      <image src="img/u9268.png" mode="widthFix" class="img1" />
-    </view>
-    <view class="new_content">
-      <view class="new_content_title">个人提醒</view>
-      <view class="new_content_content">您的个人信息需要完善您的个人信息需要完善您的个人信息需要完善您的个人信息需要完善，</view>
-    </view>
-    <view class="tip_box">
-      <view class="time">7月23</view>
-      <view class="dian"></view>
-    </view>
-  </view>
-  <view class="list">
-    <view class="tilte_img2">
-      <image src="img/u9241.png" mode="widthFix" class="img2" />
-    </view>
-    <view class="new_content">
-      <view class="new_content_title">个人提醒</view>
-      <view class="new_content_content">您的个人信息需要完善您的个人信息需要完善您的个人信息需要完善您的个人信息需要完善，</view>
-    </view>
-    <view class="tip_box">
-      <view class="time">7月23</view>
-      <view class="dian"></view>
-    </view>
-  </view> -->
   <view class="list">
     <view class="tilte_img3">
       <image src="img/u9249.png" mode="widthFix" class="img3" />
     </view>
     <view class="new_content">
-      <view class="new_content_title">个人提醒</view>
-      <view class="new_content_content">您的个人信息需要完善您的个人信息需要完善您的个人信息需要完善您的个人信息需要完善，</view>
-    </view>
-    <view class="tip_box">
-      <view class="time">7月23</view>
-      <view class="dian"></view>
+      <view class="new_content_title">系统消息</view>
+      <view class="new_content_content">站内公告、通知等</view>
     </view>
   </view>
 </view>

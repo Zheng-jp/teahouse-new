@@ -8,40 +8,15 @@ Page({
   data: {
 
   },
-  // go_news_detail: function (event) {
-
-  //   var that = this;
-  //   var item = event.currentTarget.dataset.item;
-  //   wx.navigateTo({
-  //     url: '../news_detail/news_detail?title=' + event.currentTarget.dataset.id,
-  //     success: function (res) {
-      
-  //     },
-  //     fail: function () {
-       
-  //     },
-  //     complete: function () {
-      
-  //     }
-
-
-  //   })
-  // },
+  go_news_detail: function (event) {
+    
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.request({
-      url: app.globalData.tiltes + 'message_reminder',
-      method: 'POST',
-      success: function(res){
-        console.log(res);
-      },
-      fail: function(){
-        // console.log()
-      }
-    })
+    
   },
 
   /**

@@ -62,11 +62,11 @@
 }
 
 .new_content_title{
-    font-size: 24rpx;
+    font-size: 32rpx;
     font-weight: bold;
 }
 .new_content_content{
-    font-size: 22rpx;
+    font-size: 24rpx;
     margin-top: 10rpx;
     color: #949494;
     text-overflow: ellipsis;
