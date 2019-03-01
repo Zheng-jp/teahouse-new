@@ -11,13 +11,13 @@
         </view>
         <view class='share-xia'>
             <text class="share-kuchun" style='color:{{item.color}}'>{{item.names}}</text>
-            <text class="validity">
+            <view class="validity">
                 上限
                 <text class='blue'>{{item.participats}}</text>
                 人,已报名
                 <text class='blue'>{{item.peoples}}</text>
                 人
-            </text>
+            </view>
             <text class="validity">活动日期：{{item.start_time}}</text>
         </view>
     </view>
@@ -32,7 +32,7 @@
         <view class='selling_point'>{{item.goods_selling}}</view>
         <view class='price'>
             <view class="price_content">
-                <image src='{{item.url}}{{item.member_grade_img}}' mode="widthFix" class='price_img'></image>
+                <image src='https://teahouse.siring.com.cn/uploads/{{item.member_grade_img}}' mode="widthFix" class='price_img'></image>
                 <view class="price_text" wx:if="{{item.goods_standard==0}}">
                     ￥{{item.goods_new_money}}
                 </view>

@@ -13,48 +13,7 @@ Page({
       url: app.globalData.img_url,
       member_grade_img:null,
   },
-  // 删除订单
-  delete_order:function (e){
-    var that=this;
-    var indexs = e.currentTarget.dataset.id;
-    var orderItems = that.data.order;
-    for (var i = 0; i < orderItems.length; ++i) {
-      if(orderItems[i].parts_order_number == indexs){
-        orderItems.splice(i, 1);
-        wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_del',
-          data: {
-            open_id: app.globalData.gmemberid,
-            parts_order_number:indexs
-          },
-          method: "post",
-          // header: {
-          //   "Content-Type": "application/json" // 默认值
-    
-          // },
-          success: function (res) {
-            wx.showToast({
-              title:'删除成功',
-              icon:'none'
-            })
-            that.setData({
-              order: orderItems
-            }); 
-           
-          },
-          fail: function () {
-         
-          },
-          complete: function () {
-            wx.hideLoading()
-          }
-    
-        });
-      }
-      
-    }
-  
-  },
+
   tab_click:function (e) {
     var that=this;
       this.setData({ tab: e.currentTarget.dataset.current });
@@ -186,59 +145,7 @@ Page({
       }
       
   },
-  // 取消订单
-  cancel_order:function (e){
-    var that=this;
-    var indexs = e.currentTarget.dataset.id;
-    var orderItems = that.data.order;
-    wx.showModal({
-      title: '提示',
-      content: '确定取消订单吗？',
-      success: function(res) {
-      if (res.confirm) {
-        for (var i = 0; i < orderItems.length; i++) {
-          if(orderItems[i].parts_order_number == indexs){
-            orderItems.splice(i, 1);
-            wx.request({
-              url: app.globalData.tiltes + 'ios_api_order_no_pay_cancel',
-              data: {
-                open_id: app.globalData.gmemberid,
-                parts_order_number:indexs,
-                cancel_order_description :'取消'
-              },
-              method: "post",
-              // header: {
-              //   "Content-Type": "application/json" // 默认值
-        
-              // },
-              success: function (res) {
-                wx.showToast({
-                  title:'操作成功',
-                  icon:'none'
-                })
-                that.setData({
-                  order: orderItems
-                }); 
-               
-              },
-              fail: function () {
-             
-              },
-              complete: function () {
-                wx.hideLoading()
-              }
-        
-            });
-          }
-          
-        }
-      } else if (res.cancel) {
-      }
-      }
-      })
-    
-  
-  },
+ 
   // 确认收货
   confirm_receipt:function (e){
     var that=this;
@@ -278,103 +185,9 @@ Page({
     }
   
   },
-  // 追加评价
-  go_evaluation: function (event) {
-
-    var that = this;
-    var item = event.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../evaluation/evaluation?title=' + event.currentTarget.dataset.id,
-      success: function (res) {
-      
-      },
-      fail: function () {
-       
-      },
-      complete: function () {
-      
-      }
-  
-  
-    })
-  },
-  go_order_detail: function (event) {
-
-    var that = this;
-    var id = event.currentTarget.dataset.id;
-    var status=event.currentTarget.dataset.status;
-  
-    wx.navigateTo({
-      url: '../order_detail/order_detail?title=' + id+"&status="+status,
-      success: function (res) {
-      
-      },
-      fail: function () {
-      
-      },
-      complete: function () {
-      
-      }
 
 
-    })
-  },
-  // 付款
-  repay:function(e){
-    var indexs = e.currentTarget.dataset.id;
-    wx.showActionSheet({
-      itemList: ['账户支付', '微信支付',],
-      success: function (res) {
-        // 账户支付
-        if(res.tapIndex==0){
-        
-        }
-        else if(res.tapIndex==1){
-          wx.request({
-            url: app.globalData.tiltes + 'wx_order_index',
-            data: {
-              member_id: app.globalData.member_id,
-              order_number: indexs
-            },
-            dataTypr: 'json',
-            method: "post",
-            // header: {
-            //   "Content-Type": "application/json" // 默认值
-            // },
-            success: function (res) {
-              var result=res;
-  
-              if (result) {
-                wx.requestPayment({
-                  timeStamp: String(result.data.timeStamp),
-                  nonceStr: result.data.nonceStr,
-                  package: result.data.package,
-                  signType: result.data.signType,
-                  paySign:  result.data.paySign,
-                  'success': function (successret) {
-                    console.log('支付成功');
-                  },
-                  'fail': function (res) {
-                    console.log(res);
-                   }
-                })
-              }
-            },
-                  fail: function () {
-    
-                  },
-                  complete: function () {
-                    wx.hideLoading()
-                  }
-                });   
-        }
-        
-      },
-      fail: function (res) {
-        console.log(res.errMsg)
-      }
-    })
-  },
+
    // 提醒
   tip_order:function (e){
     var that=this;
@@ -392,7 +205,7 @@ Page({
       // },
       success: function (res) {
         wx.showToast({
-          title:'操作成功',
+          title:'提醒成功',
           icon:'none'
         })
       },
@@ -406,6 +219,26 @@ Page({
     });
   
   },
+    // 追加评价
+    go: function (event) {
+
+      var that = this;
+      var item = event.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: item+'?title=' + 0,
+        success: function (res) {
+        
+        },
+        fail: function () {
+         
+        },
+        complete: function () {
+        
+        }
+    
+    
+      })
+    },
   
   /**
    * 生命周期函数--监听页面加载
