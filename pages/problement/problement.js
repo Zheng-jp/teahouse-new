@@ -89,8 +89,8 @@ Page({
       })
     }
   },
-  go_problement_detail: function(titleid){//查看问题详情
-    var titleid = titleid.currentTarget.dataset.titleid
+  go_problement_detail: function(e){//查看问题详情
+    var titleid = e.currentTarget.dataset.titleid
     wx.navigateTo({
       url: '../problement_detail/problement_detail?titleid=' + titleid,
       success: function(){

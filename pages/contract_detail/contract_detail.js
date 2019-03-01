@@ -1,52 +1,41 @@
 // pages/contract_detail/contract_detail.js
 var WxParse = require('../../wxParse/wxParse.js');
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    information: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    var title = options.title;
+    var _this=this;
     wx.request({
       url: app.globalData.tiltes + '',
       data: {
-        id: options.title
+        id: options.id
       },
-      method: "post",
+      method: "POST",
       header: {
         "Content-Type": "application/json" // 默认值
-
       },
       success: function (res) {
-   
         console.log(res);
-        that.setData({
+        _this.setData({
           information: res.data.data[0],
-          
         });
-        var article = res.data.data[0].commodity;
-        WxParse.wxParse('article', 'html', article, that, 5);
-        
-
-
+        var article = _this.data.information;
+        WxParse.wxParse('article', 'html', article, _this, 5);
       },
       fail: function () {
 
       },
-      complete: function () {
-        wx.hideLoading()
-      }
-
     });
- 
   },
 
   /**
