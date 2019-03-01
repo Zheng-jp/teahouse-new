@@ -8,8 +8,18 @@ Page({
   data: {
 
   },
-  go_news_detail: function (event) {
-    
+  go_news_detail: function (e) {
+    // console.log(e)
+    var pid = e.currentTarget.dataset.pid;
+    wx.navigateTo({
+      url: '../news_detail/news_detail?pid=' + pid,
+      success: function(){
+        console.log('跳转成功');
+      },
+      fail: function(){
+        console.log('跳转失败');
+      }
+    })
   },
 
   /**

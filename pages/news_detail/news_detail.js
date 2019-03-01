@@ -1,22 +1,32 @@
 // pages/news_detail/news_detail.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    height:'',
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    var s_height = wx.getSystemInfoSync().windowHeight;
-    console.log(s_height);
-    that.setData({
-      height:s_height
+    // console.log(options)
+    var pid = options.pid;
+    wx.request({
+      url: app.globalData.tiltes + 'message_show',
+      method: 'POST',
+      data: {
+        pid: pid
+      },
+      success: function(res){
+        console.log(res);
+      },
+      fail: function(){
+        console.log('error');
+      }
     })
   },
 

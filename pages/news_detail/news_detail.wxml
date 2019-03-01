@@ -1,4 +1,4 @@
-<view class="all" style="height:{{height}}px;" >
+<view class="all">
     <view class="list">
         <view class="time">2018-11-25 15:40</view>
         <view class="news_content">
