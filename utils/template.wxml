@@ -1,39 +1,44 @@
 <template name="joy-pic">
-  <view class='weui-grid__bg' bindtap="bindViewTap" id="{{item.id}}">
+    <view class='weui-grid__bg' bindtap="bindViewTap" id="{{item.id}}">
         <view class="share_icon">
-             <image src="{{item.url}}{{item.classify_image}}" mode="scaleToFill" />
-           
+            <image src="https://teahouse.siring.com.cn/uploads/{{item.classify_image}}" mode="scaleToFill" />
         </view>
         <view style='border-bottom:#C9C9C9 solid 1px;' class='clear aaa'>
-        <view>
-          <button class="share_name" style='background:{{item.color}}'>{{item.named}} </button>
-          </view>
-          <text class='share-content'>{{item.activity_name}}</text>
+            <view>
+                <button class="share_name" style='background:{{item.color}}'>{{item.named}}</button>
+            </view>
+            <text class='share-content'>{{item.activity_name}}</text>
         </view>
         <view class='share-xia'>
             <text class="share-kuchun" style='color:{{item.color}}'>{{item.names}}</text>
-            <text class="validity">上限<text class='blue'>{{item.participats}}</text>人,已报名<text class='blue'>{{item.peoples}}</text>人</text>
+            <text class="validity">
+                上限
+                <text class='blue'>{{item.participats}}</text>
+                人,已报名
+                <text class='blue'>{{item.peoples}}</text>
+                人
+            </text>
             <text class="validity">活动日期：{{item.start_time}}</text>
         </view>
     </view>
 </template>
 <template name="good">
-  <view class='weui-grid__bg'>
+    <view class='weui-grid__bg'>
         <view class="weui-grid__icon">
-            <image src="{{item.url}}{{item.goods_show_image}}" mode="scaleToFill" />
+            <image src="https://teahouse.siring.com.cn/uploads/{{item.goods_show_image}}" mode="scaleToFill" />
         </view>
         <text class="weui-grid_name">{{item.goods_name}}</text>
         <text class="weui-grid_kuchun">库存123片</text>
-        <view class='selling_point'>{{item.goods_selling}}
-        </view>
+        <view class='selling_point'>{{item.goods_selling}}</view>
         <view class='price'>
             <view class="price_content">
-			   <image src='{{item.url}}{{item.member_grade_img}}' mode="widthFix" class='price_img'></image>
-                <view class="price_text" wx:if="{{item.goods_standard==0}}">￥{{item.goods_new_money}}</view>
+                <image src='{{item.url}}{{item.member_grade_img}}' mode="widthFix" class='price_img'></image>
+                <view class="price_text" wx:if="{{item.goods_standard==0}}">
+                    ￥{{item.goods_new_money}}
+                </view>
                 <view class="price_text" wx:else>￥{{item.min_price}}</view>
-		   </view>
+            </view>
             <view class="line_price">￥{{item.min_price}}</view>
         </view>
     </view>
-      
 </template>

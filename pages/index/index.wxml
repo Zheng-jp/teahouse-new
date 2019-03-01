@@ -64,7 +64,7 @@
       </view>
       <view class='shares-content'>
       <view class='listview' wx:for="{{share}}" wx:for-item="item"   wx:key="*this">
-             <template  is="joy-pic" data="{{item}}"  bindtap></template>
+            <template  is="joy-pic" data="{{item}}"  bindtap></template>
     </view> 
       </view>
   

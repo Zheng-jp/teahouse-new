@@ -1,41 +1,46 @@
 // pages/contract/contract.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    contractArr: [],
   },
-  go_contract_detail: function (event) {
-
-    var that = this;
-    var item = event.currentTarget.dataset.item;
-
-    console.log(event.currentTarget.dataset.id);
+  go_contract_detail: function(e){
+    console.log(e);
+    var id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../contract_detail/contract_detail?title=' + event.currentTarget.dataset.id,
-      success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
+      url: '../contract_detail/contract_detail?id=' + id,
+      success: function(){
+        console.log('跳转成功');
       },
-      fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
-      },
-      complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
+      fail: function(){
+        console.log('跳转失败');
       }
-
-
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var _this = this;
+    wx.request({
+      url: app.globalData.tiltes + 'agreement_contract',
+      method: 'POST',
+      success: function(res){
+        console.log(res);
+        if(res.data.status == 1){
+          _this.setData({
+            contractArr: res.data.data
+          })
+        }
+      },
+      fail: function(){
 
+      }
+    })
   },
 
   /**

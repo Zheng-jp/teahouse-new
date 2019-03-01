@@ -1,4 +1,5 @@
 // pages/news/news.js
+var app = getApp();
 Page({
 
   /**
@@ -8,30 +9,14 @@ Page({
 
   },
   go_news_detail: function (event) {
-
-    var that = this;
-    var item = event.currentTarget.dataset.item;
-    wx.navigateTo({
-      url: '../news_detail/news_detail?title=' + event.currentTarget.dataset.id,
-      success: function (res) {
-      
-      },
-      fail: function () {
-       
-      },
-      complete: function () {
-      
-      }
-
-
-    })
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**

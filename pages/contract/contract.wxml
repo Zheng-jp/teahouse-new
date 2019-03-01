@@ -1,10 +1,14 @@
-<!--pages/contract/contract.wxml-->
+<!-- pages/contract/contract.wxml -->
 <view class="all">
-    <view class="list" bindtap="go_contract_detail">
+    <view  class="list" 
+        wx:for="{{contractArr}}" 
+        bindtap="go_contract_detail" 
+        wx:key="item.id"
+        data-id="{{item.id}}" >
         <view>
-            <text class="contract_num">C1.</text>
-            <text class="contract_name">《服务合同》</text>
+            <text class="contract_num">C{{index + 1}}.</text>
+            <text class="contract_name">《{{item.title}}》</text>
         </view>
-        <image class="more" src="img/more.png" mode="aspectFill" ></image>
+        <image class="more" src="img/more.png" mode="aspectFill"></image>
     </view>
 </view>
