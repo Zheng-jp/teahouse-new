@@ -55,13 +55,7 @@
       "pages/integral_settlement/integral_settlement",
       "pages/integral_order/integral_order"      
   ],
-    "subpackages": [
-      {
-        "root": "order_page/",
-        "pages": [
-        ]
-      }
-    ],
+   
   
 
   "window": {
