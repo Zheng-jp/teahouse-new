@@ -147,6 +147,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     wx.request({
       url: app.globalData.tiltes + 'teacenter_display',
       data: {
@@ -167,9 +168,7 @@ Page({
           that.setData({
             [sexParam]: index,
           })
-
         }
-
 
       },
       fail: function () {
@@ -200,11 +199,7 @@ Page({
           that.setData({
             [sexParam]: app.globalData.img_url,
           })
-
         }
-
-
-
       },
       fail: function () {
 
