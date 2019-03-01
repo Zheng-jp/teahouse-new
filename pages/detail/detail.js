@@ -267,7 +267,7 @@ delect_collection:function(e){
     var that=this;
     var id=that.data.title;
     wx.request({
-      url: app.globalData.tiltes + '',
+      url: app.globalData.tiltes + 'collect_updata',
       data: {
         member_id: app.globalData.member_id,
         activity_id: id,
@@ -275,12 +275,10 @@ delect_collection:function(e){
       method: "post",
    
       success: function (res) {
-       if(res.data.status=="1"){
          that.setData({
           collectionimg:false,
          })
         
-       }
       },
       fail: function () {
 
@@ -377,7 +375,39 @@ formatDate:function(inputTime) {
       }
 
     });
- 
+    wx.request({
+      url: app.globalData.tiltes + 'collect_judge',
+      data: {
+        activity_id: options.title,
+        member_id: app.globalData.member_id,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "application/json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+        if(res.data.status=="0"){
+          that.setData({
+            collectionimg:false,
+           })
+        }
+        else{
+          that.setData({
+            collectionimg:true,
+           })
+        }
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
    
   
   },
