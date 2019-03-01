@@ -16,7 +16,7 @@ Page({
   onLoad: function (options) {
     var _this=this;
     wx.request({
-      url: app.globalData.tiltes + '',
+      url: app.globalData.tiltes + 'agreement_show',
       data: {
         id: options.id
       },
@@ -27,7 +27,7 @@ Page({
       success: function (res) {
         console.log(res);
         _this.setData({
-          information: res.data.data[0],
+          information: res.data.data[0].text,
         });
         var article = _this.data.information;
         WxParse.wxParse('article', 'html', article, _this, 5);
