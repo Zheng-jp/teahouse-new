@@ -58,7 +58,6 @@ Page({
       wx.scanCode({
         onlyFromCamera: true,
         success: (res) => {
-          console.log(res)
         }
       })
     },
@@ -94,21 +93,14 @@ Page({
   go_good: function (event) {
 
     var that = this;
-    console.log(event);
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
       url: '../good/good',
       success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
       },
       fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
       },
       complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
       }
 
     })
@@ -119,16 +111,10 @@ Page({
     wx.switchTab ({
       url: '../circle/circle',
       success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
       },
       fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
       },
       complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
       }
 
     })
@@ -137,21 +123,13 @@ Page({
 
     var that = this;
     var item = event.currentTarget.dataset.item;
-
-    console.log(event.currentTarget.dataset.id);
     wx.navigateTo({
       url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
       success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
       },
       fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
       },
       complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
       }
 
 
@@ -162,16 +140,10 @@ Page({
       wx.navigateTo({
         url: '../buy/buy',
         success: function (res) {
-          // success
-          console.log("nihao////跳转成功")
         },
         fail: function () {
-          // fail
-          console.log("nihao////跳转失败")
         },
         complete: function () {
-          // complete
-          console.log("nihao////跳转行为结束，未知成功失败")
         }
 
       })
@@ -204,7 +176,6 @@ Page({
         })
 
       }
-      console.log(that.data.share);
 
 
     },
@@ -228,7 +199,6 @@ Page({
 
     // },
     success: function (res) {
-      console.log(res);
       that.setData({
         routers: res.data.data,
       });

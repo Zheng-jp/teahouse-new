@@ -23,7 +23,8 @@ Page({
     repay_content:'',
     apply:null,
     repay_informatiom:[],
-    title:null
+    title:null,
+    collectionimg:false,
   },
   /**
 * 点击回复
@@ -146,7 +147,7 @@ Page({
       repay_content:''
     })
   },
-    pay: function (e) {
+pay: function (e) {
       var that = this;
       wx.request({
         url: app.globalData.tiltes + 'activity_order',
@@ -231,7 +232,68 @@ Page({
     
 
     },
+collection:function(e){
+      var that=this;
+    var id=that.data.title;
+    wx.request({
+      url: app.globalData.tiltes + 'collect',
+      data: {
+        member_id: app.globalData.member_id,
+        activity_id: id,
+      },
+      method: "post",
+   
+      success: function (res) {
+       if(res.data.status=="1"){
+         that.setData({
+          collectionimg:true,
+         })
+        
+       }
+      },
+      fail: function () {
 
+      },
+      complete: function (res) {
+        wx.showToast({
+          title:res.data.info,
+          icon:'none',
+        });
+      }
+
+    });
+    },
+delect_collection:function(e){
+    var that=this;
+    var id=that.data.title;
+    wx.request({
+      url: app.globalData.tiltes + '',
+      data: {
+        member_id: app.globalData.member_id,
+        activity_id: id,
+      },
+      method: "post",
+   
+      success: function (res) {
+       if(res.data.status=="1"){
+         that.setData({
+          collectionimg:false,
+         })
+        
+       }
+      },
+      fail: function () {
+
+      },
+      complete: function (res) {
+        wx.showToast({
+          title:res.data.info,
+          icon:'none',
+        });
+      }
+
+    });
+    },
 /*
  * 时间戳转换为yyyy-MM-dd hh:mm:ss 格式  formatDate()
  * inputTime   时间戳

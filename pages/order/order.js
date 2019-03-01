@@ -406,6 +406,26 @@ Page({
     });
   
   },
+    // 追加评价
+    go: function (event) {
+
+      var that = this;
+      var item = event.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: item+'?title=' + 0,
+        success: function (res) {
+        
+        },
+        fail: function () {
+         
+        },
+        complete: function () {
+        
+        }
+    
+    
+      })
+    },
   
   /**
    * 生命周期函数--监听页面加载

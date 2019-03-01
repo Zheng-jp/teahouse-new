@@ -25,7 +25,7 @@
 
     </view>
     <view class='nav-list clear'>
-        <view class='list list-one' wx:for="{{nav}}">
+        <view class='list list-one' wx:for="{{nav}}" wx:key="item">
             <view class='ico nav_ico ico-one'><image src='{{item.url}}'></image></view>
             <text class='text' >{{item.text}}</text>
         </view>
@@ -47,7 +47,7 @@
       </view>
       <view class='goods-content'>
             <view class="weui-grids">
-                    <view class="weui-grid" wx:for="{{routers}}"wx:for-item="item"   wx:key="*this" bindtap="go_gooddetail"  data-id="{{item.id}}">
+                    <view class="weui-grid" wx:for="{{routers}}" wx:for-item="item"   wx:key="*this" bindtap="go_gooddetail"  data-id="{{item.id}}">
                         <template  is="good" data="{{item}}"  bindtap></template> 
                     </view>
             </view>

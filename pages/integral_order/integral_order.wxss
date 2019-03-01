@@ -86,7 +86,6 @@
     width: 670rpx;
     display: flex;
     justify-content: space-between;
-    border-bottom:solid 3px #F2F2F2;
   
   }
   .good_infor{
