@@ -56,16 +56,7 @@
       "pages/integral_order/integral_order"
 
   ],
-    "subpackages": [
-      {
-        "root": "order_page/",
-        "pages": [
-
-        ]
-      }
-    ],
-  
-
+   
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F9F9F9",
