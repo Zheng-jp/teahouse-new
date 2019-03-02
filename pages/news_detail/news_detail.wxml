@@ -1,9 +1,13 @@
-<view class="all" style="height:{{height}}px;" >
-    <view class="list">
-        <view class="time">2018-11-25 15:40</view>
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="all">
+    <view class="list" 
+        wx:for="{{msgArr}}">
+        <view class="time">{{item.time}}</view>
         <view class="news_content">
-            <view class="news_content_title">个人提醒</view>
-              <view class="news_content_content">您的个人信息需要完善，您的个人信息需要完善，您的个人信息需要完善，您的个人信息需要完善，您的个人信息需要完善，您的 </view>
+            <view class="news_content_title">{{item.name}}</view>
+            <view class="news_content_content">{{item.text}}
+                <!-- <template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
+            </view>
         </view>
     </view>
 </view>

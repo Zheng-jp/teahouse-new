@@ -1,4 +1,5 @@
 /* pages/news_detail/news_detail.wxss */
+page{background-color: #f9f9f9;}
 .time{
     width: 300rpx;
     height: 60rpx;
