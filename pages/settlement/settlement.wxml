@@ -134,7 +134,7 @@
 		</view>
 	</view>
 		<view class="is_insurance {{selected2?'show':'hidden'}}">
-			<view class='is_invoice'>
+			<view class='is_invoice2'>
 				<label class="checkbox">
 						<checkbox value="选择仓储保险" />选择仓储保险
 				</label>
@@ -156,7 +156,8 @@
 		</view>
 	</view>
 	<view class="is_insurance {{selected2?'show':'hidden'}}">
-		<view class='is_invoice'>
+		<view class='is_invoice1'>
+		<view class="is_invoice11">
 			<label class="checkbox">
                   <checkbox value="选择仓储保险" />选择仓储保险
               </label>
@@ -166,6 +167,10 @@
 				¥ 0.00
 			</view>
 		</view>
+			<view class="text_red" style="font-size:20rpx;margin-left:40rpx;">	*本仓库已由中国人民保险公司诚意承保	</view>
+		</view>
+		
+	
 		<view class='go_invoice_information'>
 			<view>
 				请选择保险年限

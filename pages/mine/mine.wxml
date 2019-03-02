@@ -17,7 +17,7 @@ module.exports.toHide = toHide;
       </view>
         <view class='list' bindtap="go_change">
           <view class='username'>
-              <open-data type="userNickName"></open-data>
+             {{information.member_name}}
             </view>
             <view class='head_portrait' >
               <open-data type="userAvatarUrl"></open-data>

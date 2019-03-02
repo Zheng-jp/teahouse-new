@@ -12,7 +12,7 @@
   overflow: hidden;
 }
  .good_list{
-   margin-bottom: 20rpx;
+   margin-bottom: 4rpx;
  }
 /*content*/
 .drawer_box {
@@ -197,7 +197,6 @@ color:#3399FF;
   font-size: 24rpx;
 }
 .way{
-  margin-top: 30rpx;
   background: #fff;
  
 }
@@ -226,15 +225,28 @@ color:#3399FF;
 }
 .invoice{
  background: #fff;
-  margin-top: 30rpx;
+ margin-top:4rpx;
+}
+.is_invoice1{
+  padding:26rpx 26rpx 0rpx 26rpx;
+  border-bottom:solid 1rpx #E4E4E4; 
+}
+.is_invoice11{
+  display: flex;
+  align-items: center;
+}
+.is_invoice2{
+  display: flex;
+  align-items: center;
+  padding: 26rpx;
+  border-bottom:solid 1rpx #E4E4E4; 
 }
 .is_invoice{
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 26rpx;
- 
- border-bottom:solid 1rpx #E4E4E4; 
+  border-bottom:solid 1rpx #E4E4E4; 
 }
 .checkbox{
   font-size: 30rpx;
@@ -255,7 +267,7 @@ color:#3399FF;
 }
 .sundry{
   background: #fff;
-  margin-top: 30rpx;
+  margin-top: 4rpx;
   margin-bottom:100rpx;
 
 }
@@ -406,9 +418,14 @@ text-align: center;
 }
 .tips_img{
   width: 30rpx;
+  margin-left: 20rpx;
 
 }
 .tips_content{
   font-size: 26rpx;
   color: #a1a1a1;
+  margin-left: 20rpx;
+}
+.invoice_money {
+  margin-left:56rpx;
 }

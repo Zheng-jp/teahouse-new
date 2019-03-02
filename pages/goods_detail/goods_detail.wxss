@@ -73,7 +73,8 @@
 		margin-top: 20rpx;
     margin-bottom: 10rpx;
     display: flex;
-    align-items: center
+    align-items: center;
+    justify-content: space-between;
 	}
 	
 	.sale {
@@ -508,7 +509,7 @@ overflow:hidden;
 .share button{
   width:77rpx;
    opacity: 0;
-    height:189rpx;
+    height:90rpx;
     position: absolute;
 
 }

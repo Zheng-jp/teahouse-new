@@ -65,6 +65,9 @@ checkbox-group{
   width: 50rpx;
 
 }
+.weight{
+  width: 0;
+}
 .content_list{
   padding-top: 30rpx;
   padding-bottom: 30rpx;

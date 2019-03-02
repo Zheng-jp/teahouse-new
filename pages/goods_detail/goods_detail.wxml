@@ -54,15 +54,26 @@
 		<view class='good_name'>{{goods.goods_name}}</view>
 		<view class='selling-point'>{{goods.goods_selling}}</view>
 		<view class='price_cont'>
-		
-			<view class='level_images'>
-				<image src='{{url}}{{member_grade_img}}' mode="widthFix"></image>
-			</view>
-			<view wx:if="{{goods.goods_standard==0}}">
+			<view style="display:flex; align-items:center;">
+				<view class='level_images'>
+					<image src='{{url}}{{member_grade_img}}' mode="widthFix"></image>
+				</view>
+				<view wx:if="{{goods.goods_standard==0}}">
 				<view class='sale'>￥{{goods.goods_new_money}}/片</view>
+				</view>
+				<view wx:else>
+					<view class='sale'>￥{{goods.min_price}}</view>
+				</view>
+					<view >
+					<view class='.line_price'>￥{{goods.min_line}}</view>
+				</view>
 			</view>
-			<view wx:else>
-				<view class='sale'>￥{{goods.min_price}}~￥{{goods.max_price}}</view>
+			
+				<view class='share' >
+			<button open-type="share" >
+			</button>
+				<image src='img/u1492.png' class='footbar_ico'></image>
+				<view class='footbar_text' >分享</view>
 			</view>
 		</view>
 		<view class='other_info'>
@@ -149,20 +160,17 @@
 	</view>
 	<view class='footbar'>
 		<view class='ico_view'>
-		
+		    <view class='service' bindtap="go_index">
+			  <button class="line" ></button>
+				<image src='../../images/index.png' class='footbar_ico'></image>
+				<view class='footbar_text'>首页</view>
+			</view>
 			<view class='service'>
 			<button open-type="contact" class="line"></button>
 				<image src='img/u1510.png' class='footbar_ico'></image>
 				<view class='footbar_text'>客服</view>
 			</view>
-			<view class='share' >
-			<button open-type="share" >
-			</button>
-				<image src='img/u1492.png' class='footbar_ico'></image>
-			
-				<view class='footbar_text' >分享</view>
-			
-			</view>
+		
 			<view class='shopping_cart'  bindtap="go_car">
 			     <view class="buy_num">{{buy_num}}</view>
 				<image src='img/u1494.png' class='footbar_ico'></image>
