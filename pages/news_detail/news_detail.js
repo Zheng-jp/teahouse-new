@@ -8,6 +8,17 @@ Page({
    */
   data: {
     msgArr: [],
+    messageArr: [],
+  },
+
+  // 修改navigationBarTitleText
+  // 系统消息
+  systemText: function(num){
+    if(num == 2){
+      wx.setNavigationBarTitle({
+        title: '系统消息'
+      })
+    }
   },
 
   /**
@@ -17,6 +28,7 @@ Page({
     // console.log(options)
     var pid = options.pid,
         _this = this;
+    _this.systemText(pid);
     wx.request({
       url: app.globalData.tiltes + 'message_show',
       method: 'POST',
@@ -28,6 +40,10 @@ Page({
         if(res.data.status == 1){
           var data = res.data.data;
           data.forEach(function(v, i){
+            WxParse.wxParse('message' + i, 'html', data[i].text, _this, 5);
+            if (i === data.length - 1) {
+              WxParse.wxParseTemArray("messageArr",'message', data.length, _this);
+            }
             for(var prop in v){
               if(prop == 'time'){
                 v[prop] = app.formatDate(v[prop] * 1000);
@@ -37,8 +53,6 @@ Page({
           _this.setData({
             msgArr: data
           })
-				  // WxParse.wxParse('article', 'html', article, _this, 5);
-          console.log(_this.data.msgArr)
         }
       },
       fail: function(){
