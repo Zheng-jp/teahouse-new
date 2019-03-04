@@ -1,4 +1,4 @@
-// pages/storage/pages/view/view.js
+// pages/storage/view/view.js
 Page({
 
   /**

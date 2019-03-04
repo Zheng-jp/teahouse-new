@@ -52,15 +52,8 @@
     "pages/logistics/logistics",
     "pages/forget_password/forget_password",
     "pages/integral_settlement/integral_settlement",
-    "pages/integral_order/integral_order"
-  ],
-  "subPackages": [
-    {
-      "root": "pages/storage",
-      "pages": [
-        "pages/view/view"
-      ]
-    }
+    "pages/integral_order/integral_order",
+    "pages/storage/view/view"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -82,7 +75,7 @@
       {
         "selectedIconPath": "images/icob.png",
         "iconPath": "images/icoa.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/storage/view/view",
         "text": "茶仓"
       },
       {
