@@ -1,0 +1,101 @@
+/* pages/order/order.wxss */
+
+.on{
+    color:#00BBFF !important;
+    border-bottom:7rpx #00BBFF solid !important;
+    font-weight:bold;  
+  
+  }
+  .flex{
+    width: 670rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .courier{
+  color: #333;
+  font-size: 26rpx;
+  }
+  .type_button{
+    color: #333 !important;
+    border-color:#333 !important; 
+  }
+  .title{
+    display: flex;
+    align-items: center;
+    border-bottom:  1rpx solid #E4E4E4;
+  }
+  .title .title_list{
+    flex: 1;
+    text-align: center;
+    color: #6B6B6B;
+    font-size: 30rpx;
+    padding-bottom: 30rpx;
+    padding-top: 30rpx;
+  }
+ .coupon_box{
+   background-repeat: no-repeat;
+   background-size: 100%;
+   height: 220rpx;
+   margin: 40rpx 40rpx 20rpx 40rpx;
+   display: flex;
+   align-items: center;
+   position: relative;
+ }
+ .coupon_money_box{
+   width: 250rpx;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   color: #00B6D1;
+   z-index: 9999999999;
+ }
+ .coupon_info_box{
+   padding: 20rpx;
+   display: flex;
+  flex-direction: column;
+  width: 400rpx;
+  z-index: 9999999999;
+ }
+ .money{
+   font-size: 50rpx;
+   font-weight: bold;
+ }
+ .money_unit{
+  font-size: 30rpx;
+  margin-left: 4rpx;
+ }
+ .limit{
+   font-size: 24rpx;
+ }
+ .coupon_name{
+   font-size: 26rpx;
+   line-height: 50rpx;
+ }
+ .validity,
+ .range,
+ .go_use
+ {
+   font-size: 20rpx;
+   color: #949494;
+   line-height: 40rpx;
+
+ }
+ .go_use{
+   text-align: right;
+ }
+ .range{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow:hidden;
+  -webkit-box-orient: vertical;
+ }
+.hui{
+  color: #949494
+}
+.coupon_box_img{
+  position: absolute;
+}
