@@ -56,7 +56,7 @@
 		<view class='price_cont'>
 			<view style="display:flex; align-items:center;">
 				<view class='level_images'>
-					<image src='{{url}}{{member_grade_img}}' mode="widthFix"></image>
+					<image src='{{url}}{{member_grade_img}}'></image>
 				</view>
 				<view wx:if="{{goods.goods_standard==0}}">
 				<view class='sale'>￥{{goods.goods_new_money}}/片</view>
@@ -67,15 +67,27 @@
 					<view >
 					<view class='.line_price'>￥{{goods.min_line}}</view>
 				</view>
-			</view>
-			
-				<view class='share' >
+		</view>
+	
+		<view class='share' >
 			<button open-type="share" >
 			</button>
 				<image src='img/u1492.png' class='footbar_ico'></image>
 				<view class='footbar_text' >分享</view>
 			</view>
 		</view>
+		<view class="big_limit_purchasing" wx:if="{{limitations_show==1}}">
+			<view class="limit_purchasing">
+				<view class="limit_purchasing_title">限时限购</view>
+				<view class="limit_purchasing_title_title">面向范围：</view>
+				<view class="limit_purchasing_content" wx:for="{{limitations_shows.scope}}">{{item}}</view>
+				<view class="limit_purchasing_title_title">限购数量：</view>
+				<view class="limit_purchasing_content"> {{limitations_shows.number}}</view>
+				<view class="limit_purchasing_title_title"> 每间隔：</view>
+				<view class="limit_purchasing_content"> {{limitations_shows.time}}个月</view>
+				<view class="limit_purchasing_title_title">内</view>
+			</view>
+		</view>	
 		<view class='other_info'>
 			<view class='freight'>
 				运费：免费
@@ -91,10 +103,7 @@
 			<view class='other_info_list'>
 				<image class="other_info_img" src="img/u2151.png" mode="widthFix" ></image>
 				<text class="other_info_text">7*24客服</text>
-			</view>
-		
-			
-			
+			</view>	
 		</view>
 	</view>
 	<view class='ser-type' bindtap='showFlag'  wx:if="{{goods.goods_standard!=0}}" >

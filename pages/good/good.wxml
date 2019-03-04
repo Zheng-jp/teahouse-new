@@ -15,7 +15,6 @@
         <image class="nav_goods_l" src="{{url}}{{good.goods_show_image}}"></image>
         <view class="nav_goods_r">
             <view class="nav_goods_name">{{good.goods_name}}</view>
-
         </view>
      </view>
      </view>
