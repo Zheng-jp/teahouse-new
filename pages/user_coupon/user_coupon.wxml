@@ -1,6 +1,5 @@
 <!--优惠劵-->
 <view class="" style='height:{{height}}px;'>
-
 	<view class='content' >
 		<view class='order_list' wx:for="{{order}}" >
 			<view>
