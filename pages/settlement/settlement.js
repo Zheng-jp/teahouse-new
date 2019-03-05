@@ -833,6 +833,7 @@ Page({
     var that=this;
     var id=wx.getStorageSync('id');
     var coupon_id=wx.getStorageSync('coupon_id');
+    console.log(coupon_id);
     that.setData({
       address_id:id
     });
