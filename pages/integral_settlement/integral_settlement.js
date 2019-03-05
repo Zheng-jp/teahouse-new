@@ -141,6 +141,7 @@ Page({
                     goods_id:that.data.goods_id,
                     order_quantity:that.data.num,
                     order_type:that.data.order_type,
+                    passwords:val,
                   },
                   method: "post",
                   // header: {
