@@ -874,7 +874,7 @@ Page({
       // },
       success: function (res) {
          that.setData({
-          // tel: res.data.data.harvester_phone_num,
+          coupon_money: res.data.data.money,
         });
       },
       fail: function () {

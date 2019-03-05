@@ -1,6 +1,8 @@
 <!--pages/settlement/settlement.wxml-->
 <!-- 弹窗 -->
-
+<view class="">
+	
+</view>
 <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
 <view wx:if='{{showPayPwdInput}}'>
     <view class='bg_layer'></view>
