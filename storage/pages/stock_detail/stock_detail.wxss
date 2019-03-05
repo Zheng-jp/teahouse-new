@@ -1,0 +1,31 @@
+/* storage/pages/stock_detail/stock_detail.wxss */
+.header{display: flex; align-items: center; justify-content: space-between; padding: 10rpx 18rpx;}
+.header-title{font-size: 48rpx; color: #333;}
+.transaction{display: flex; align-items: center;}
+.transaction .transaction-text{font-size: 24rpx; color: #000;}
+.transaction image{width: 35rpx; height: 35rpx; margin-left: 10rpx;}
+.tea-info-container{background-color: #f9f9f9; padding: 18rpx; display: flex;}
+.left-img{margin-right: 26rpx; width: 200rpx; height: 200rpx;}
+.left-img image{width: 100%; height: 100%;}
+.right-info{flex-basis: 65%;}
+.right-info .tea-name{color: #686868; font-size: 28rpx;}
+.right-info .tea-init{font-size: 22rpx; color: #000;}
+.right-info .tea-init text{color: #169bd5;}
+.tag-box{margin-bottom: 10rpx;}
+.tag-item{font-size: 24rpx; color: #999900; border: 2rpx solid #999900; border-radius: 4rpx; padding: 2rpx 10rpx;}
+.price-number{display: flex; align-items: center; justify-content: space-between;}
+.price-number .tea-price{font-size: 24rpx; color: #999;}
+.price-number .tea-price text{color: #f00;}
+.price-number .tea-number{font-size: 24rpx; color: #333;}
+.other-info{padding: 0 38rpx; margin-top: 40rpx;}
+.other-item{display: flex; align-items: center; justify-content: space-between; margin-bottom: 40rpx;}
+.other-item .item-key{font-size: 32rpx; color: #999;}
+.other-item .item-key .explain{color: #fff; font-size: 32rpx; display: inline-block; background-color: #bbb; text-align: center; height: 36rpx; width: 36rpx; line-height: 36rpx; border-radius: 50%;}
+.other-item .item-value{font-size: 32rpx; color: #333;}
+.other-item .item-value .icon-more{width: 15rpx; height: 25rpx;}
+.other-item .item-value.stock{color: #93291E;}
+.other-item .item-value .temperature{width: 26rpx; height: 48rpx;margin-right: 8rpx;}
+.other-item .item-value .humidity{width: 26rpx; height: 38rpx;margin-right: 8rpx;}
+.chart-img{width: 750rpx; height: 500rpx;}
+
+
