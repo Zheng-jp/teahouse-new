@@ -18,7 +18,6 @@ Page({
   },
   formSubmit: function (e) {
     var that=this;
-    console.log(that.data.select_address);
   // 上俩级为结算页面
    if(that.data.select_address=="0"){
     wx.request({
@@ -114,7 +113,6 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-  console.log(options.title);
     that.setData({
       select_address:options.title
     })

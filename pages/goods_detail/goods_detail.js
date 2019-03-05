@@ -37,6 +37,8 @@ Page({
 		buy_num: 0,
 		// 是否有地址，0为没有填写收货地址，1为有，2为未授权
 		address: 0,
+		limitations_show:null,//是否有限时限购
+		limitations_shows:[],
 	},
 	labelItemTap: function(e) {
 		var that = this;
@@ -558,6 +560,36 @@ Page({
 			complete: function() {}
 
 		});
+		wx.request({
+			url: app.globalData.tiltes + 'limitations_show',
+			data: {
+				goods_id: title,
+			},
+			method: "post",
+			// header: {
+			//   "Content-Type": "json" // 默认值
+
+			// },
+			success: function(res) {
+				console.log(res);
+				that.setData({
+					limitations_show: res.data.status,
+				});
+				if( res.data.status==1){
+					that.setData({
+						limitations_shows: res.data.data,
+					});
+				}
+
+			},
+			fail: function() {
+
+			},
+			complete: function() {}
+
+		});
+
+		
 
 	},
 

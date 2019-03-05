@@ -41,6 +41,7 @@ Page({
     showPayPwdInput: false,  //是否展示密码输入层
     pwdVal: '',  //输入的密码
     payFocus: true, //文本框焦点
+    order_number:null,//下单订单号
     
     
   },
@@ -49,6 +50,7 @@ Page({
     var currentStatu = e.currentTarget.dataset.statu;
     this.util(currentStatu)
   },
+  
 
   // 弹窗
   radioChange: function (e) {
@@ -116,6 +118,7 @@ Page({
     })
   },
   // 弹窗
+  // 弹窗
   /**
    * 显示支付密码输入层
    */
@@ -125,14 +128,90 @@ Page({
   /**
    * 隐藏支付密码输入层
    */
-  hidePayLayer: function(){
-    
+  hidePayLayer: function(){ 
+    var that=this;
     var val = this.data.pwdVal;
-
-    this.setData({ showPayPwdInput: false, payFocus: false, pwdVal: '' }, function(){
-      wx.showToast({
-        title: val,
+    this.setData({ showPayPwdInput: false, payFocus: false, pwdVal: '' },
+     function(){
+       if(val.length==6){
+        wx.request({
+          url: app.globalData.tiltes + 'check_password',
+          data: {
+            member_id : app.globalData.member_id,
+            passwords:val,
+          },
+          method: "post",
+          // header: {
+          //   "Content-Type": "json" // 默认值
+    
+          // },
+          success: function (res) {
+            if(res.data.data.status==1){
+              wx.request({
+                  url: app.globalData.tiltes + 'balance_payment',
+                  data: {
+                    member_id : app.globalData.member_id,
+                    order_num:that.data.order_number,
+                    passwords:val,
+                  },
+                  method: "post",
+                  // header: {
+                  //   "Content-Type": "json" // 默认值
+            
+                  // },
+                  success: function (res) {
+                   
+                  
+                  },
+                  fail: function () {
+                 
+                  },
+                  complete: function (res) {
+                    wx.showToast({
+                      icon:"none",
+                      title: res.data.info, 
+                    })
+                    
+                  }
+            
+                });
+            }
+            else{
+              wx.showToast({
+                icon:"none",
+                title: res.data.info,
+              })
+  
+            }
+          },
+          fail: function () {
+          },
+          complete: function () {
+          }
+    
+        });
+       }
+       else{
+        wx.showToast({
+          icon:"none",
+          title: "您已取消支付",
+        })
+       }
+       wx.navigateTo({
+        url: '../order/order?title='+0,
+        success: function (res) {
+        
+        },
+        fail: function () {
+         
+        },
+        complete: function () {
+        
+        }
+    
       })
+       
+     
     });
 
   },
@@ -192,10 +271,13 @@ Page({
       // },
       success: function (res) {
         var order_number=res.data.data.parts_order_number;
+        that.setData({
+          order_number:order_number,
+        })
         wx.showActionSheet({
           itemList: ['账户支付', '微信支付',],
           success: function (res) {
-            console.log(res);
+           
             // 账户支付
             if(res.tapIndex==0){
               that.showInputLayer();
@@ -243,7 +325,7 @@ Page({
                        
                       },
                       'fail': function (res) {
-                        console.log(res);
+                       
                        }
                     })
                   }
@@ -309,6 +391,9 @@ Page({
       // },
       success: function (res) {
         var order_number=res.data.data.parts_order_number;
+        that.setData({
+          order_number:order_number,
+        })
         wx.showActionSheet({
           itemList: ['账户支付', '微信支付',],
           success: function (res) {
@@ -357,7 +442,7 @@ Page({
                        
                       },
                       'fail': function (res) {
-                        console.log(res);
+                       
                        }
                     })
                   }
@@ -435,6 +520,40 @@ Page({
         }
       );
     }
+  },
+  go_coupon:function(){
+    var that=this;
+    let userStr=JSON.stringify(that.data.user[1].good_id);
+    let userStr1=JSON.stringify(that.data.user[3].num);
+    var num=new Array();
+    num=[that.data.num];
+    let userStr3=JSON.stringify(num);
+    // 直接结算
+    if(that.data.from_buy){
+      wx.navigateTo({
+        url: '../user_coupon/user_coupon?title=' + userStr+'&num='+userStr3,
+        success: function (res) {
+        },
+        fail: function () {
+        },
+        complete: function () {
+        }
+  
+      })
+    }
+    else{
+      wx.navigateTo({
+        url: '../user_coupon/user_coupon?title=' + userStr+'&num='+userStr1,
+        success: function (res) {
+        },
+        fail: function () {
+        },
+        complete: function () {
+        }
+  
+      })
+    }
+   
   },
      // 计算钱
      calculate_money:function(){
@@ -655,7 +774,6 @@ Page({
     
           // },
           success: function (res) {
-            
               that.setData({
                 coupon_show:res.data.status
               });
@@ -713,11 +831,8 @@ Page({
    */
   onShow: function () {
     var that=this;
-    var tel=wx.getStorageSync('tel');
-    var name=wx.getStorageSync('name');
-    var address=wx.getStorageSync('address');
     var id=wx.getStorageSync('id');
-    console.log(id);
+    var coupon_id=wx.getStorageSync('coupon_id');
     that.setData({
       address_id:id
     });
@@ -732,7 +847,7 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
+       
         that.setData({
           tel: res.data.data.harvester_phone_num,
           name:res.data.data.harvester,

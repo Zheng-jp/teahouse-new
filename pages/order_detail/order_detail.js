@@ -64,7 +64,7 @@ Page({
 
     // },
     success: function (res) {
-     console.log(res);
+    
      that.setData({
       order:res.data.data.data,
     })

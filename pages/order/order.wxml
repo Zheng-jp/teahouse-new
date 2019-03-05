@@ -1,4 +1,25 @@
 <view class="all" style='height:{{height}}px;'>
+<!-- 弹窗 -->
+
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view wx:if='{{showPayPwdInput}}'>
+    <view class='bg_layer'></view>
+    <view class='input_main'>
+        <view class='input_title'>
+            <view class='input_back' catchtap='hidePayLayer'><text></text></view>
+            <text>输入支付密码</text>
+        </view>
+        <view class='input_tip'><text>请输入账户余额支付密码</text></view>
+        <view class='input_row' catchtap='getFocus'>
+            <view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+                <text wx:if='{{pwdVal.length>i}}'></text>
+            </view>
+        </view>
+        <view class='forget_pwd' catchtap='forget_password'>忘记密码</view>
+        <input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6'/>
+    </view>
+</view>
+<!--content-->
    <view class="nav">
 	   <view class="this" bindtap="go" data-id="../order/order"> 普通订单</view>
 	   <view class="" bindtap="go"> 众筹订单</view>

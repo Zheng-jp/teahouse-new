@@ -1,0 +1,22 @@
+<!--优惠劵-->
+<view class="" style='height:{{height}}px;'>
+	<view class='content' >
+		<view class='order_list' wx:for="{{order}}" >
+			<view>
+				<view class="coupon_box" >
+				<image class="coupon_box_img" src="img/u11123.png" mode="widthFix"></image>
+					<view class="coupon_money_box">
+						 <view><text class="money">{{item.money}}</text><text class="money_unit">元</text></view>
+						 <view class="limit">满{{item.use_price}}使用</view>
+					</view>
+					<view class="coupon_info_box">
+						<view class="coupon_name">{{item.label}}</view>
+						<view class="validity">有效期：{{item.start_time}}-{{item.end_time}}</view>
+						<view class="range">适用范围：<text wx:for="{{item.scope}}">{{item}}</text></view>
+						<view class="go_use" bindtap="go_coupon_good" data-id='{{item.id}}'>立即使用>></view>
+				   </view>
+				</view>
+			</view>
+	     </view>
+    </view>
+</view>

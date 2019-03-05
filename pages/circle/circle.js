@@ -83,7 +83,7 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
+       
         that.setData({
           share: res.data.data,
         });

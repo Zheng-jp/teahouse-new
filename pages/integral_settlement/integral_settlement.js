@@ -141,6 +141,7 @@ Page({
                     goods_id:that.data.goods_id,
                     order_quantity:that.data.num,
                     order_type:that.data.order_type,
+                    passwords:val,
                   },
                   method: "post",
                   // header: {
@@ -148,7 +149,7 @@ Page({
             
                   // },
                   success: function (res) {
-                    console.log(res);
+                   
                     if(res.data.status=="1"){
                       wx.showToast({
                         icon:"none",
@@ -358,7 +359,7 @@ Page({
       method: "post",
      
       success: function (res) {
-        console.log(res);
+       
         that.setData({
           goods:res.data.data[0]
         });

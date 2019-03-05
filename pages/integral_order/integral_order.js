@@ -19,15 +19,15 @@ Page({
       this.setData({ tab: e.currentTarget.dataset.current });
       if(e.currentTarget.dataset.current==1){
         wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_all',
+          url: app.globalData.tiltes + 'integaral_list',
           data: {
-            open_id: app.globalData.gmemberid,
+            member_id: app.globalData.member_id,
           },
           method: "post",
-          header: {
-            "Content-Type": "application/json" // 默认值
+          // header: {
+          //   "Content-Type": "application/json" // 默认值
     
-          },
+          // },
           success: function (res) {
             that.setData({
               order:res.data.data
@@ -42,37 +42,12 @@ Page({
     
         });
       }
-      else if(e.currentTarget.dataset.current==2){
-        wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_wait_pay',
-          data: {
-            open_id: app.globalData.gmemberid,
-          },
-          method: "post",
-          header: {
-            "Content-Type": "application/json" // 默认值
-    
-          },
-          success: function (res) {
-            that.setData({
-              order:res.data.data
-            })
-
-          },
-          fail: function () {
-    
-          },
-          complete: function () {
-            wx.hideLoading()
-          }
-    
-        });
-      }
+ 
       else if(e.currentTarget.dataset.current==3){
         wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_wait_send',
+          url: app.globalData.tiltes + 'integaral_delivered',
           data: {
-            open_id: app.globalData.gmemberid,
+            member_id: app.globalData.member_id,
           },
           method: "post",
           header: {
@@ -95,9 +70,9 @@ Page({
       }
       else if(e.currentTarget.dataset.current==4){
         wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_wait_deliver',
+          url: app.globalData.tiltes + 'integaral_collections',
           data: {
-            open_id: app.globalData.gmemberid,
+            member_id: app.globalData.member_id,
           },
           method: "post",
           header: {
@@ -117,33 +92,8 @@ Page({
           }
     
         });
-      }
-      else if(e.currentTarget.dataset.current==5){
-        wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_wait_evaluate',
-          data: {
-            open_id: app.globalData.gmemberid,
-          },
-          method: "post",
-          header: {
-            "Content-Type": "application/json" // 默认值
-    
-          },
-          success: function (res) {
-            that.setData({
-              order:res.data.data
-            })
-          },
-          fail: function () {
-    
-          },
-          complete: function () {
-            wx.hideLoading()
-          }
-    
-        });
-      }
-      
+ 
+      } 
   },
  
   // 确认收货
@@ -155,7 +105,7 @@ Page({
       if(orderItems[i].parts_order_number == indexs){
         orderItems.splice(i, 1);
         wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_collect_goods',
+          url: app.globalData.tiltes + 'integaral_collections',
           data: {
             open_id: app.globalData.gmemberid,
             parts_order_number:indexs
@@ -219,26 +169,7 @@ Page({
     });
   
   },
-    // 追加评价
-    go: function (event) {
-
-      var that = this;
-      var item = event.currentTarget.dataset.id;
-      wx.navigateTo({
-        url: item+'?title=' + 0,
-        success: function (res) {
-        
-        },
-        fail: function () {
-         
-        },
-        complete: function () {
-        
-        }
     
-    
-      })
-    },
   
   /**
    * 生命周期函数--监听页面加载
@@ -250,11 +181,11 @@ Page({
     var member_grade_img=app.globalData.member_grade_img;
     this.setData({ member_grade_img: member_grade_img });
     var title = options.title;
-    if(title==0){
+
       wx.request({
-        url: app.globalData.tiltes + 'ios_api_order_all',
+        url: app.globalData.tiltes + 'integaral_list',
         data: {
-          open_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
         },
         method: "post",
         // header: {
@@ -262,7 +193,7 @@ Page({
   
         // },
         success: function (res) {
-          console.log(res);
+         
           that.setData({
             order:res.data.data,
             tab:'1'
@@ -276,115 +207,8 @@ Page({
         }
   
       });
-    }
-    else if(title==1){
-      wx.request({
-        url: app.globalData.tiltes + 'ios_api_order_wait_pay',
-        data: {
-          open_id: app.globalData.gmemberid,
-          tab:'2'
-        },
-        method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-  
-        // },
-        success: function (res) {
-          console.log(res);
-          that.setData({
-            order:res.data.data
-          })
-        },
-        fail: function () {
-  
-        },
-        complete: function () {
-          wx.hideLoading()
-        }
-  
-      });
-    }
-    else if(title==2){
-      wx.request({
-        url: app.globalData.tiltes + 'ios_api_order_wait_send',
-        data: {
-          open_id: app.globalData.gmemberid,
-        },
-        method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-  
-        // },
-        success: function (res) {
-          console.log(res);
-          that.setData({
-            order:res.data.data,
-            tab:'3'
-          })
-        },
-        fail: function () {
-  
-        },
-        complete: function () {
-          wx.hideLoading()
-        }
-  
-      });
-    }
-    else if(title==3){
-      wx.request({
-        url: app.globalData.tiltes + 'ios_api_order_wait_deliver',
-        data: {
-          open_id: app.globalData.gmemberid,
-        },
-        method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-  
-        // },
-        success: function (res) {
-          console.log(res);
-          that.setData({
-            order:res.data.data,
-            tab:'4'
-          })
-        },
-        fail: function () {
-  
-        },
-        complete: function () {
-          wx.hideLoading()
-        }
-  
-      });
-    }
-    else{
-      wx.request({
-        url: app.globalData.tiltes + 'ios_api_order_wait_evaluate',
-        data: {
-          open_id: app.globalData.gmemberid,
-        },
-        method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-  
-        // },
-        success: function (res) {
-          console.log(res);
-          that.setData({
-            order:res.data.data,
-            tab:'5'
-          })
-        },
-        fail: function () {
-  
-        },
-        complete: function () {
-          wx.hideLoading()
-        }
-  
-      });
-    }
+    
+    
    
   },
 

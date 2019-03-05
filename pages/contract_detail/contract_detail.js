@@ -25,7 +25,7 @@ Page({
         "Content-Type": "application/json" // 默认值
       },
       success: function (res) {
-        console.log(res);
+       
         _this.setData({
           information: res.data.data[0].text,
         });

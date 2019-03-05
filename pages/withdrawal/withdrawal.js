@@ -12,6 +12,8 @@ Page({
     member_recharge_money:0,//可提现余额
     card:[],
     id:'',
+    selected:true,
+    selected1:false
   },
   // 验证银行卡号
  checkCard:function(cardNo) {
@@ -160,7 +162,20 @@ Page({
   
     })
    },
-
+   ison:function(e){
+     var that=this;
+     that.setData({
+      selected:true,
+      selected1:false
+     })
+   },
+   ison2:function(e){
+    var that=this;
+    that.setData({
+     selected1:true,
+     selected:false
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

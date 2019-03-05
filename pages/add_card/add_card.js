@@ -99,7 +99,6 @@ Page({
           },
           method: "post",
           success: function (res) {
-            console.log(res);
             var id=res.data.data;
             // 上两个页面为充值页面
             if(that.data.select_card=="0"){
@@ -348,7 +347,6 @@ Page({
       }
 
     });
-    console.log(id);
     if(id){
       wx.request({
         url: app.globalData.tiltes + 'bank_bingding_update_return',
@@ -358,7 +356,6 @@ Page({
         },
         method: "post",
         success: function (res) {
-          console.log(res);
           if(res.data.status!="0"){
                 that.setData({
                   card:res.data.data 

@@ -38,7 +38,7 @@ Page({
 
       // },
       success: function (res) {
-        // console.log(res);
+        //
         that.setData({
           shares: res.data.data,
         });
@@ -85,7 +85,7 @@ Page({
 
         // },
         success: function (res) {
-          // console.log(res);
+          //
           that.setData({
             shares: res.data.data,
           });

@@ -235,7 +235,7 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
+       
         that.setData({
           goods:res.data.data[0]
         });

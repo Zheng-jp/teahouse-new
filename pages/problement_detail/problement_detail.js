@@ -23,7 +23,7 @@ Page({
         id: options.titleid
       },
       success: function(res){
-        console.log(res);
+       
         if(res.data.status == 1){
           _this.setData({
             myHtml: res.data.data[0].text

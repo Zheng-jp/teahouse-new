@@ -47,7 +47,8 @@
 	}
 	
 	.level_images {
-    width: 46rpx;
+    width: 34rpx;
+    height: 34rpx;
     display: flex;
     align-items: center;
 	}
@@ -80,7 +81,7 @@
 	.sale {
 		color: red;
 		font-size: 40rpx;
-		margin-left: 26rpx;
+		margin-left: 8rpx;
 	}
 	
 	.other_info {
@@ -442,8 +443,6 @@ width:108rpx;
 height:108rpx;
 border-radius:50%;
 overflow:hidden;
-
-
 }
 .on{
   background-color: #FF0036;
@@ -538,4 +537,32 @@ overflow:hidden;
   z-index:99999;
   opacity:0;
 
+}
+/* 限时限购 */
+.limit_purchasing{
+  display: flex;
+  align-items: center;
+  color: red;
+  font-size: 26rpx;
+}
+.limit_purchasing_content{
+  background: #F2F2F2;
+  padding: 10rpx 20rpx 10rpx 20rpx;
+  flex: 0 0 140rpx;
+  text-align: center;
+  margin-right: 10rpx;
+}
+.limit_purchasing_title_title{
+  flex: 0 0 140rpx;
+}
+.limit_purchasing_title{
+  flex:0 0 120rpx;
+  background:red;
+  color:#fff;
+  text-align:center;
+  margin-right:10rpx;
+}
+.big_limit_purchasing{
+  width: 750rpx;
+  overflow-x: scroll;
 }

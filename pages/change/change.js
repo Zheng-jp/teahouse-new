@@ -103,7 +103,7 @@ Page({
       method: "post",
   
       success: function (res) {
-        console.log(res);
+       
         if(res.data.status!="0"){
               that.setData({
                 user_phone:res.data.data
@@ -135,7 +135,7 @@ Page({
       method: "post",
   
       success: function (res) {
-        console.log(res);
+       
         // if(res.data.status!="0"){
               that.setData({
                 user_name:res.data.data
@@ -161,7 +161,7 @@ Page({
       method: "post",
   
       success: function (res) {
-        console.log(res);
+       
         // if(res.data.status!="0"){
               that.setData({
                 user_phone:res.data.data

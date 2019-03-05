@@ -39,7 +39,6 @@ Page({
           
               })
             } else if (res.cancel) {
-            console.log('用户点击取消')
             }
             }
         })
@@ -88,7 +87,6 @@ Page({
             
                 })
               } else if (res.cancel) {
-              console.log('用户点击取消')
               }
               }
           })  
@@ -117,7 +115,6 @@ Page({
             
                 })
               } else if (res.cancel) {
-              console.log('用户点击取消')
               }
               }
           })  
@@ -196,7 +193,6 @@ Page({
          balance:res.data.data.member_wallet,
          integral:res.data.data.member_integral_wallet,
        })
-       console.log(res);
      
       },
       fail: function () {

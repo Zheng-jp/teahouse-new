@@ -12,6 +12,10 @@
    border-bottom-right-radius:50rpx; 
    margin-top: 10rpx;
 }
+.card_box{
+  padding:20rpx;
+
+}
 .cards_box{
     display: flex;
     width: 750rpx;

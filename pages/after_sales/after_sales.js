@@ -291,10 +291,8 @@ go_order_detail: function (event) {
                   signType: result.data.signType,
                   paySign:  result.data.paySign,
                   'success': function (successret) {
-                    console.log('支付成功');
                   },
                   'fail': function (res) {
-                    console.log(res);
                    }
                 })
               }
@@ -310,7 +308,6 @@ go_order_detail: function (event) {
         
       },
       fail: function (res) {
-        console.log(res.errMsg)
       }
     })
   },
@@ -368,7 +365,7 @@ go_order_detail: function (event) {
   
     //     // },
     //     success: function (res) {
-    //       console.log(res);
+    //      
     //       that.setData({
     //         order:res.data.data,
     //         tab:'1'
@@ -396,7 +393,7 @@ go_order_detail: function (event) {
   
     //     // },
     //     success: function (res) {
-    //       console.log(res);
+    //      
     //       that.setData({
     //         order:res.data.data
     //       })
@@ -422,7 +419,7 @@ go_order_detail: function (event) {
   
     //     // },
     //     success: function (res) {
-    //       console.log(res);
+    //      
     //       that.setData({
     //         order:res.data.data,
     //         tab:'3'
@@ -449,7 +446,7 @@ go_order_detail: function (event) {
   
     //     // },
     //     success: function (res) {
-    //       console.log(res);
+    //      
     //       that.setData({
     //         order:res.data.data,
     //         tab:'4'
@@ -476,7 +473,7 @@ go_order_detail: function (event) {
   
     //     // },
     //     success: function (res) {
-    //       console.log(res);
+    //      
     //       that.setData({
     //         order:res.data.data,
     //         tab:'5'
