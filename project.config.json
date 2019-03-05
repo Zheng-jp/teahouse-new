@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 37,
+			"current": 38,
 			"list": [
 				{
 					"id": -1,
@@ -263,7 +263,15 @@
 				{
 					"id": -1,
 					"name": "忘记密码",
-					"pathName": "pages/forget_password/forget_password"
+					"pathName": "pages/forget_password/forget_password",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "出仓",
+					"pathName": "storage/pages/out_of_warehouse/out_of_warehouse",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

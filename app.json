@@ -55,6 +55,15 @@
     "pages/integral_order/integral_order",
     "pages/storage/view/view"
   ],
+  "subpackages": [
+    {
+      "root": "storage/pages",
+      "pages": [
+        "stock_detail/stock_detail",
+        "out_of_warehouse/out_of_warehouse"
+      ]
+    }
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F9F9F9",

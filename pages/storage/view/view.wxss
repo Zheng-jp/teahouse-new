@@ -1,1 +1,60 @@
 /* pages/storage/view/view.wxss */
+view{overflow: visible !important;}
+page{height: 100%;}
+swiper{min-height: 1020rpx;}
+.swiper-tab{display: flex; width: 100%;border-bottom: 2rpx solid #ccc;text-align: center;height: 88rpx;line-height: 88rpx;}
+.swiper-tab-item{flex: 1; color: #bcbcbc;}
+.active{color:#93291f; position: relative;}
+.active::after{content: ''; width: 40%; position: absolute; bottom: 0; left: 50%; margin-left: -20%; display: block; border: 2rpx solid #93291f;}
+
+.gross-container{position: relative; height: 100rpx; display: flex; justify-content: space-around; align-items: center; background-color: #f9f9f9;}
+.gross-container .gross-item{text-align: center;}
+.gross-container .gross-title{font-size: 32rpx; color: #000;}
+.gross-container .gross-number{font-size: 48rpx; color: #cd300e;}
+.gross-container .choice-warehouse{font-size: 24rpx; color: #bcbcbc; padding-left: 40rpx; border-left: 2rpx solid #bcbcbc;}
+.icon-choice{float: right; width: 25rpx; height: 14rpx; margin: 10rpx 0 0 10rpx;}
+.scaley-img{transform: scaleY(-1);}
+.warehouse-container{position: absolute; top: 100%; width: 100%; background-color: #f9f9f9;}
+.item-box{display: flex; padding: 40rpx 20rpx 0; font-size: 32rpx;}
+.warehouse-left{flex-basis: 20%; text-align: center; align-items: center; padding-top: 8rpx;}
+.warehouse-left text{color: #93291f; font-weight: 700;}
+.warehouse-right{flex-basis: 80%; display: flex; align-items: center; flex-wrap: wrap;}
+.warehouse-right .warehouse-item{color: #93291f; background-color: #fff; text-align: center; padding: 8rpx 30rpx; margin: 0 40rpx 20rpx 0; box-sizing: border-box;}
+.retract{text-align: center; background-color: #d7d7d7;}
+.retract .icon-retract{width: 50rpx; height: 50rpx;}
+.storage-enviroment{border: 1px solid #d7d7d7; box-sizing: border-box; height: 60rpx; display: flex; align-items: center;}
+.storage-enviroment .storage-name-box{display: flex; align-items: center; flex-basis: 25%; height: 100%;}
+.storage-enviroment .storage-name-box image{width: 30rpx; height: 30rpx; margin: 0 10rpx;}
+.storage-enviroment .storage-name-box .storage-name{color: #999900; font-size: 28rpx;}
+.enviroment-data-box{flex: 75%; height: 100%; background-color: #d7d7d7; display: flex; align-items: center; justify-content: space-around;}
+.enviroment-data-box .icon-temperature{width: 26rpx; height: 48rpx; margin-right: 10rpx;}
+.enviroment-data-box .icon-humidity{width: 26rpx; height: 38rpx; margin-right: 10rpx;}
+.enviroment-data-box  .enviroment-item{display: flex; align-items: center;}
+.enviroment-item .temperature{font-size: 28rpx; color: #D81E06;}
+.enviroment-item .humidity{font-size: 28rpx; color: #66CC00;}
+.more image{width: 16rpx; height: 28rpx;}
+
+.storage-item{padding: 40rpx 10rpx; border-bottom: 4rpx solid #f9f9f9; display: flex;}
+.item-left{text-align: center; flex-basis: 35%; display: flex; flex-direction: column; align-items: center; justify-content: space-around;}
+.item-left .display-img{width: 120rpx; height: 120rpx;}
+.item-left .tea-name{font-size: 36rpx; font-weight: bold; color: #797979;}
+.item-left .tea-date{font-size: 24rpx; color: #333;}
+.item-left .tag-box .tag-text{font-size: 24rpx; color: #999900; border: 1px solid #999900; padding: 4rpx 10rpx; border-radius: 8rpx;}
+.item-left .tag-box .tag-text:first-of-type{margin-right: 8rpx;}
+.item-right{flex-basis: 65%;}
+.tea-stock{font-size: 24rpx; color: #868686; font-weight: 700; display: flex; align-items: center; justify-content: space-around;}
+.tea-stock .stock-title{font-size: 24rpx; font-weight: 700; color: #000;}
+.tea-stock .stock-num{font-size: 44rpx; font-weight: 700; color: #93291E;}
+.tea-stock .stock-more{font-size: 24rpx; color: #0099FF;}
+.exchange-price{background-color: #f2f2f2;}
+.exchange-price text{font-size: 24rpx; color: #6b6b6b;}
+.exchange-price text.out-price{color: #D81E06;}
+.exchange-price>view{display: flex; justify-content: space-between; align-items: center; margin-bottom: 16rpx;}
+.out-storage{background-color: #00bbff; color: #fff; height: 70rpx; line-height: 70rpx; font-size: 32rpx;}
+
+
+
+
+
+
+

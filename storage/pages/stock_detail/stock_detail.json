@@ -1,8 +1,6 @@
 {
-  "usingComponents": {
-
-  },
-  "navigationBarTitleText": "茶仓",
+  "usingComponents": {},
+  "navigationBarTitleText": "详情",
   "navigationBarBackgroundColor": "#f9f9f9",
   "backgroundTextStyle": "light",
   "navigationBarTextStyle": "black"

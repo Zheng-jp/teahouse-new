@@ -5,14 +5,67 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    currentTab: 0,
+    scaleImg: false,
+    wareHouseFlag: false,
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
+  },
+
+  clickTab: function(e){
+    // 切换选项卡
+    var current = e.target.dataset.current,
+        _this = this;
+    if(_this.data.currentTab !== current){
+      _this.setData({
+        currentTab: current
+      })
+    }
+  },
+
+  swiperTab: function(e){
+    // 滑动切换选项卡
+    var current = e.detail.current;
+    this.setData({
+      currentTab: current
+    })
+  },
+
+  showAllStorage: function(){
+    // 全部仓储
+    this.setData({
+      wareHouseFlag: !this.data.wareHouseFlag
+    })
+  },
+
+  toStockDetail: function(){
+    // 仓库详情
+    wx.navigateTo({
+      url: '/storage/pages/stock_detail/stock_detail',
+      success: function(){
+        console.log('跳转成功');
+      },
+      fail: function(){
+        console.log('跳转失败');
+      }
+    })
+  },
+
+  outOfStock: function(){
+    // 出仓
+    wx.navigateTo({
+      url: '/storage/pages/out_of_warehouse/out_of_warehouse',
+      success: function(){
+        console.log('跳转成功');
+      },
+      fail: function(){
+        console.log('跳转失败');
+      }
+    })
   },
 
   /**
