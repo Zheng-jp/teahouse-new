@@ -848,12 +848,33 @@ Page({
 
       // },
       success: function (res) {
-       
-        that.setData({
+         that.setData({
           tel: res.data.data.harvester_phone_num,
           name:res.data.data.harvester,
           address:res.data.data.address_name+res.data.data.harvester_real_address,
           address_id:res.data.data.id
+        });
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+    wx.request({
+      url: app.globalData.tiltes + 'coupon_minute',
+      data: {
+        coupon_id:coupon_id,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+         that.setData({
+          // tel: res.data.data.harvester_phone_num,
         });
       },
       fail: function () {
