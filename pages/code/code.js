@@ -36,7 +36,7 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
+       
         that.setData({
           information: res.data.data.information
 

@@ -103,7 +103,7 @@ Page({
       // },
       success: function (res) {
       
-        console.log(res);
+       
         that.setData({
           category: res.data.data.goods_type,
         });

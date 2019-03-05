@@ -190,7 +190,6 @@ Page({
   // 全选
   selectalltap: function (e) {
     var that=this;
-    // console.log('用户点击全选，携带value值为：', e.detail.value);
     var value = e.detail.value;
     var checkAll = false;
     if (value && value[0]) {
@@ -232,7 +231,6 @@ Page({
           // },
           success: function (res) {
             checkboxItems.splice(index, 1);
-            console.log(checkboxItems);
             that.setData({
               goodList: checkboxItems
             });
@@ -304,16 +302,10 @@ Page({
         wx.navigateTo({
           url: '../settlement/settlement?title=' + userStr,
           success: function (res) {
-            // success
-            console.log("nihao////跳转成功")
           },
           fail: function () {
-            // fail
-            console.log("nihao////跳转失败")
           },
           complete: function () {
-            // complete
-            console.log("nihao////跳转行为结束，未知成功失败")
           }
   
         })
@@ -363,7 +355,6 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res);
         that.setData({
           goodList: res.data.data,
         });

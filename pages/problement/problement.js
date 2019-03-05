@@ -39,7 +39,7 @@ Page({
       },
       method: "POST",
       success: function (res) {
-        // console.log(res);
+        //
         var data = res.data.data;
         for(var item in data){
           data[item].url = app.globalData.tiltes
@@ -71,7 +71,7 @@ Page({
         },
         method: 'POST',
         success: function(res){
-          console.log(res);
+         
           var data = res.data.data;
           for(var item in data){
             data[item].url = app.globalData.tiltes
@@ -144,7 +144,7 @@ Page({
         getFirstNavItem();
       },
       error: function(res){
-        console.log(res);
+       
       }
     })
     // navItem
@@ -156,7 +156,7 @@ Page({
         },
         method: 'POST',
         success: function(res){
-          console.log(res);
+         
           var data = res.data.data;
           for(var item in data){
             data[item].url = app.globalData.tiltes

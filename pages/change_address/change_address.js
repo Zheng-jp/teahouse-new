@@ -42,7 +42,7 @@ Page({
       // },
       success: function (res) {
         // var ids=res.data.data;
-        // console.log(res);
+        //
         if(res.data.status==1){
           wx.showToast({
             title:res.data.info,
@@ -139,7 +139,7 @@ Page({
 
       // },
       success: function (res) {
-       console.log(res);
+      
        that.setData({
         address:res.data.data,
         region:res.data.data.address_name.split(","),

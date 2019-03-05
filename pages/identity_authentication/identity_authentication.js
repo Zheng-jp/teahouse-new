@@ -68,7 +68,7 @@ Page({
       
             // },
             success: function (res) {
-           console.log(res);
+          
             },
             fail: function () {
       

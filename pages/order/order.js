@@ -12,7 +12,154 @@ Page({
       order:[],
       url: app.globalData.img_url,
       member_grade_img:null,
+      showPayPwdInput: false,  //是否展示密码输入层
+      pwdVal: '',  //输入的密码
+      payFocus: true, //文本框焦点
+      order_number:null,//付款点击的订单编号
   },
+    // 弹窗
+  /**
+   * 显示支付密码输入层
+   */
+  showInputLayer: function(){
+    this.setData({ showPayPwdInput: true, payFocus: true });
+  },
+  /**
+   * 隐藏支付密码输入层
+   */
+  hidePayLayer: function(){ 
+    var that=this;
+    var val = this.data.pwdVal;
+    this.setData({ showPayPwdInput: false, payFocus: false, pwdVal: '' },
+     function(){
+       if(val.length==6){
+        wx.request({
+          url: app.globalData.tiltes + 'check_password',
+          data: {
+            member_id : app.globalData.member_id,
+            passwords:val,
+          },
+          method: "post",
+          // header: {
+          //   "Content-Type": "json" // 默认值
+    
+          // },
+          success: function (res) {
+            if(res.data.data.status==1){
+              wx.request({
+                  url: app.globalData.tiltes + 'balance_payment',
+                  data: {
+                    member_id : app.globalData.member_id,
+                    order_num:that.data.order_number,
+                    passwords:val,
+                  },
+                  method: "post",
+                  // header: {
+                  //   "Content-Type": "json" // 默认值
+            
+                  // },
+                  success: function (res) {
+                   
+                    if(res.data.status=="1"){
+                       wx.request({
+                      url: app.globalData.tiltes + 'ios_api_order_all',
+                      data: {
+                        open_id: app.globalData.gmemberid,
+                      },
+                      method: "post",
+                      // header: {
+                      //   "Content-Type": "application/json" // 默认值
+                
+                      // },
+                      success: function (res) {
+                        that.setData({
+                          order:res.data.data,
+                          tab:'1'
+                        })
+                      },
+                      fail: function () {
+                
+                      },
+                      complete: function () {
+                        wx.hideLoading()
+                      }
+                
+                    });
+                    }
+                   
+                  },
+                  fail: function () {
+                 
+                  },
+                  complete: function (res) {
+                    wx.showToast({
+                      icon:"none",
+                      title: res.data.info, 
+                    })
+                    
+                  }
+            
+                });
+            }
+            else{
+              wx.showToast({
+                icon:"none",
+                title: res.data.info,
+              })
+  
+            }
+          },
+          fail: function () {
+          },
+          complete: function () {
+          }
+    
+        });
+       }
+       else{
+        wx.showToast({
+          icon:"none",
+          title: "您已取消支付",
+        })
+       }
+    
+       
+     
+    });
+
+  },
+  /**
+   * 获取焦点
+   */
+  getFocus: function(){
+    this.setData({ payFocus: true });
+  },
+  /**
+   * 输入密码监听
+   */
+  inputPwd: function(e){
+      this.setData({ pwdVal: e.detail.value });
+      if (e.detail.value.length >= 6){
+        this.hidePayLayer();
+      }
+  },
+  forget_password: function(e){
+    wx.navigateTo({
+      url: '../forget_password/forget_password',
+      success: function (res) {
+      
+      },
+      fail: function () {
+       
+      },
+      complete: function () {
+      
+      }
+  
+  
+    })
+    },
+    // 弹窗
   // 删除订单
   delete_order:function (e){
     var that=this;
@@ -321,13 +468,17 @@ Page({
   },
   // 付款
   repay:function(e){
+    var that=this;
     var indexs = e.currentTarget.dataset.id;
+    that.setData({
+      order_number:indexs,
+    })
     wx.showActionSheet({
       itemList: ['账户支付', '微信支付',],
       success: function (res) {
         // 账户支付
         if(res.tapIndex==0){
-        
+          that.showInputLayer();
         }
         else if(res.tapIndex==1){
           wx.request({
@@ -355,7 +506,7 @@ Page({
                     console.log('支付成功');
                   },
                   'fail': function (res) {
-                    console.log(res);
+                   
                    }
                 })
               }
@@ -437,6 +588,7 @@ Page({
     var member_grade_img=app.globalData.member_grade_img;
     this.setData({ member_grade_img: member_grade_img });
     var title = options.title;
+    console.log(title);
     if(title==0){
       wx.request({
         url: app.globalData.tiltes + 'ios_api_order_all',
@@ -449,7 +601,7 @@ Page({
   
         // },
         success: function (res) {
-          console.log(res);
+         
           that.setData({
             order:res.data.data,
             tab:'1'
@@ -477,7 +629,7 @@ Page({
   
         // },
         success: function (res) {
-          console.log(res);
+         
           that.setData({
             order:res.data.data
           })
@@ -503,7 +655,7 @@ Page({
   
         // },
         success: function (res) {
-          console.log(res);
+         
           that.setData({
             order:res.data.data,
             tab:'3'
@@ -530,7 +682,7 @@ Page({
   
         // },
         success: function (res) {
-          console.log(res);
+         
           that.setData({
             order:res.data.data,
             tab:'4'
@@ -557,7 +709,7 @@ Page({
   
         // },
         success: function (res) {
-          console.log(res);
+         
           that.setData({
             order:res.data.data,
             tab:'5'

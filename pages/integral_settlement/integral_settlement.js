@@ -149,7 +149,7 @@ Page({
             
                   // },
                   success: function (res) {
-                    console.log(res);
+                   
                     if(res.data.status=="1"){
                       wx.showToast({
                         icon:"none",
@@ -359,7 +359,7 @@ Page({
       method: "post",
      
       success: function (res) {
-        console.log(res);
+       
         that.setData({
           goods:res.data.data[0]
         });

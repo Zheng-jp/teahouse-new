@@ -40,7 +40,7 @@ Page({
          
         }
        
-        console.log(res);
+       
      
       },
       fail: function () {
@@ -70,7 +70,7 @@ Page({
 
       // },
       success: function (res) {
-       console.log(res);
+      
       that.setData({
         name:res.data.data,
       })

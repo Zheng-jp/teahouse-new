@@ -30,7 +30,7 @@ Page({
       url: app.globalData.tiltes + 'agreement_contract',
       method: 'POST',
       success: function(res){
-        console.log(res);
+       
         if(res.data.status == 1){
           _this.setData({
             contractArr: res.data.data

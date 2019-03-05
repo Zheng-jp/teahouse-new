@@ -210,7 +210,7 @@ Page({
       method: "post",
   
       success: function (res) {
-        console.log(res);
+       
         // if(res.data.status!="0"){
               that.setData({
                 card:res.data.data

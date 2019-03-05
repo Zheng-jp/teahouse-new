@@ -387,7 +387,7 @@ formatDate:function(inputTime) {
 
       // },
       success: function (res) {
-        console.log(res);
+       
         if(res.data.status=="0"){
           that.setData({
             collectionimg:false,

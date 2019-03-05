@@ -102,7 +102,7 @@ Page({
 
     // },
     success: function (res) {
-      console.log(res);
+     
       that.setData({
         routers: res.data.data,
       });

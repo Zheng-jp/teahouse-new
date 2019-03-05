@@ -13,27 +13,44 @@ Page({
       order:[]
   },
   
+  // reture:function(){
+  //   wx.setStorageSync('id', id);
+  //   wx.navigateBack({
+  //     delta: 1
+  //   });
+  // },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+   
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
-     
+    let user = JSON.parse(options.title);
+    let num = JSON.parse(options.num);
+    
+    var allmoney=0;
+    for(var i=0;i<user.length;i++){
+      allmoney+=user[i]*num[i];
+    }
     wx.request({
-      url: app.globalData.tiltes + 'coupon_untapped',
+      url: app.globalData.tiltes + 'coupon_appropriated',
       data: {
         open_id: app.globalData.gmemberid,
+        goods_id:user,
+        money:allmoney,
         member_grade_name:app.globalData.member_grade_name,
       },
       method: "post",
-      header: {
-        "Content-Type": "application/json" // 默认值
+      // header: {
+      //   "Content-Type": "application/json" // 默认值
 
-      },
+      // },
       success: function (res) {
+       
         that.setData({
           order:res.data.data
         })
