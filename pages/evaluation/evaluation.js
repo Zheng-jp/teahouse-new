@@ -128,7 +128,6 @@ Page({
             id:that.data.order_id,
             images_id:imgs,
             content:e.detail.value.content
-    
           },
           method: "post",
           // header: {
@@ -139,6 +138,29 @@ Page({
             wx.navigateBack();
           },
           fail: function () {
+            
+        
+            wx.request({
+              url: app.globalData.tiltes + 'order_evaluate_images_del',
+              data: {
+                id:that.data.order_id,
+              },
+              method: "post",
+              // header: {
+              //   "Content-Type": "application/json" // 默认值
+          
+              // },
+              success: function (res) {
+              },
+              fail: function () {
+                
+             
+              },
+              complete: function (res) {
+               
+              }
+          
+            });
          
           },
           complete: function (res) {

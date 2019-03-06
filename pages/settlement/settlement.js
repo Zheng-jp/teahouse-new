@@ -255,6 +255,7 @@ Page({
     var that=this;
     var num=new Array();
     num=[that.data.num];
+    console.log(that.data.coupon_id);
     wx.request({
       url: app.globalData.tiltes + 'order_place',
       data: {
@@ -535,7 +536,7 @@ Page({
   },
   checkboxChange: function (e) {
     var that=this;
-    console.log(e.detail.value);
+    console.log(e.detail.value[0]);
     wx.request({
       url: app.globalData.tiltes + 'coupon_minute',
       data: {
@@ -562,7 +563,7 @@ Page({
     });
     that.setData({
       coupon_mark:false,
-      coupon_id:e.detail.value,
+      coupon_id:parseInt(e.detail.value[0]),
     })
   },
   no_use: function (e) {
@@ -582,10 +583,17 @@ Page({
      for(var i=0;i<that.data.goods.length;i++){
        all_moneys+=that.data.goods[i].grade_price*that.data.num;
      }
+     if(all_moneys-that.data.money>0){
+      that.setData({
+        all_money: all_moneys-that.data.money,
+      });
+     }
+     else{
+      that.setData({
+        all_money: 0,
+      });
+     }
      
-     that.setData({
-       all_money: all_moneys-that.data.money,
-     });
    },
   
      /* 点击减号 */

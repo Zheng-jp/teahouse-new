@@ -17,7 +17,7 @@
         <textarea name="content" id="" class="reason_content" placeholder="请说明原因"></textarea>
     </view>
     <view class="uplode_img">
-          <view class="imgcontent" wx:for="{{img}}">
+          <view class="imgcontent" wx:for="{{tempFilePaths}}">
               <image class="" src="{{item}}" mode="widthFix" lazy-load="false"  class="imgs"> </image>
               <image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false"  class="delect_img"> </image>
           </view>

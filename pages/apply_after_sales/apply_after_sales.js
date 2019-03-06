@@ -76,8 +76,6 @@ Page({
            formData:null,//这里是上传图片时一起上传的数据
            success: (resp) => {
               success++;//图片上传成功，图片上传成功的变量+1
-              console.log(resp)
-               console.log(i);
                //这里可能有BUG，失败也会执行这里,所以这里应该是后台返回过来的状态码为成功时，这里的success才+1
            },
            fail: (res) => {
@@ -144,6 +142,27 @@ Page({
             wx.navigateBack();
           },
           fail: function () {
+            wx.request({
+              url: app.globalData.tiltes + 'after_sale_images_del',
+              data: {
+                id:that.data.order_id,
+              },
+              method: "post",
+              // header: {
+              //   "Content-Type": "application/json" // 默认值
+          
+              // },
+              success: function (res) {
+              },
+              fail: function () {
+                
+             
+              },
+              complete: function (res) {
+               
+              }
+          
+            });
          
           },
           complete: function (res) {

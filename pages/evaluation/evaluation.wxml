@@ -11,7 +11,7 @@
             <textarea name="content" id="" class="reason_content" placeholder="期待您的好评，您的好评还能获得相应积分哟~"></textarea>
         </view>
         <view class="uplode_img">
-            <view class="imgcontent" wx:for="{{item.img}}">
+            <view class="imgcontent" wx:for="{{tempFilePaths}}">
                 <image class="" src="{{item}}" mode="widthFix" lazy-load="false"  class="imgs"> </image>
                 <image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false"  class="delect_img"> </image>
             </view>
