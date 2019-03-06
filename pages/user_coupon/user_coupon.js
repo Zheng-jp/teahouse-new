@@ -13,12 +13,13 @@ Page({
       order:[]
   },
   
-  // reture:function(){
-  //   wx.setStorageSync('id', id);
-  //   wx.navigateBack({
-  //     delta: 1
-  //   });
-  // },
+  retrue:function(e){
+    var coupon_id=e.currentTarget.dataset.id;
+    wx.setStorageSync('coupon_id', coupon_id);
+    wx.navigateBack({
+      delta: 1
+    });
+  },
 
 
   /**
@@ -26,12 +27,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-   
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
     let user = JSON.parse(options.title);
     let num = JSON.parse(options.num);
-    
     var allmoney=0;
     for(var i=0;i<user.length;i++){
       allmoney+=user[i]*num[i];

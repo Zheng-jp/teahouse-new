@@ -99,3 +99,7 @@
 .coupon_box_img{
   position: absolute;
 }
+.order_list_content{
+  display: flex;
+  align-items: center;
+}

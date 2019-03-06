@@ -1,22 +1,23 @@
 <!--pages/apply_after_sales/apply_after_sales.wxml-->
+  <form  bindsubmit="formSubmit" content-type="multipart/form-data">
 <view class="all" style='height:{{height}}px;'>
     <view class="good_infor">
-        <image class="good_img" src="../../images/u1222.png" mode="widthFix" ></image>
-          <text class="good_name">商品名称</text>  
+        <image class="good_img" src="{{url}}{{goods.goods_image}}" mode="widthFix" ></image>
+          <text class="good_name">{{goods.parts_goods_name}}</text>  
     </view>
     <view class="opration">
         <radio-group class="radio-group" bindchange="radioChange">
-              <radio value="" checked="true"   color='#fff' />要求退货退款金额：
-              <input type="text" placeholder="不能超过购买总价" class="input_monly"></input>
+              <radio value="1" checked="true"   color='#fff' />要求退货退款金额：
+              <input type="text" placeholder="不能超过购买总价" class="input_monly" disabled value="{{goods.refund_amount}}"> </input>
               <text class="danwei">元</text>
-              <radio value="" class="radio_b" color='#fff' />要求换货
+              <radio value="2" class="radio_b" color='#fff' />要求换货
         </radio-group>
     </view>
     <view class="reason">
-        <textarea name="" id="" class="reason_content" placeholder="请说明原因"></textarea>
+        <textarea name="content" id="" class="reason_content" placeholder="请说明原因"></textarea>
     </view>
     <view class="uplode_img">
-          <view class="imgcontent" wx:for="{{img}}">
+          <view class="imgcontent" wx:for="{{tempFilePaths}}">
               <image class="" src="{{item}}" mode="widthFix" lazy-load="false"  class="imgs"> </image>
               <image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false"  class="delect_img"> </image>
           </view>
@@ -25,4 +26,5 @@
      <view class="btn-area">
             <button form-type="submit" class='button-hovers'>提交</button>
      </view>
-</view>
+ </view>
+</form>

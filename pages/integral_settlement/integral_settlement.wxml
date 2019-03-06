@@ -38,8 +38,8 @@
 							<image src='img/u216.png' mode="scaleToFill"></image>
 						</view>
 
-						<view class='unit-price-p text_red' wx:if="{{goods.goods_standard==0}}"> ￥{{goods.grade_price}}/片</view>
-						<view class='unit-price-p text_red' wx:else> ￥{{goods.integral}}/片</view>
+						<view class='unit-price-p text_red' wx:if="{{goods.goods_standard==0}}"> 积分{{goods.grade_price}}/片</view>
+						<view class='unit-price-p text_red' wx:else> 积分{{goods.integral}}/片</view>
 					</view>
 					<view class='quantity-p text_red'>×{{num}}</view>
 				</view>

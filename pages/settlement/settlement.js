@@ -37,13 +37,16 @@ Page({
     // 茶叶类型
     order_type:1,
     // 优惠劵显示
-    coupon_show:null,
+    coupon_show:null,//显示有无优惠劵
     showPayPwdInput: false,  //是否展示密码输入层
     pwdVal: '',  //输入的密码
     payFocus: true, //文本框焦点
     order_number:null,//下单订单号
-    
-    
+    coupon_order:[],//优惠劵弹窗显示
+    coupon_mark:false,
+    coupon_content:"有可适用优惠券",
+    money:0,
+    coupon_id:0,//使用优惠劵id
   },
   // 弹窗
   powerDrawer: function (e) {
@@ -252,6 +255,7 @@ Page({
     var that=this;
     var num=new Array();
     num=[that.data.num];
+    console.log(that.data.coupon_id);
     wx.request({
       url: app.globalData.tiltes + 'order_place',
       data: {
@@ -262,6 +266,7 @@ Page({
           address_id:that.data.address_id,
           order_amount: that.data.all_money,
           order_type:that.data.order_type,
+          coupon_id:that.data.coupon_id
       },
       method: "post",
 
@@ -382,6 +387,7 @@ Page({
       address_id:that.data.address_id,
       order_amount: that.data.all_money,
       order_type:that.data.order_type,
+      coupon_id:that.data.coupon_id
 
       },
       method: "post",
@@ -523,37 +529,52 @@ Page({
   },
   go_coupon:function(){
     var that=this;
-    let userStr=JSON.stringify(that.data.user[1].good_id);
-    let userStr1=JSON.stringify(that.data.user[3].num);
-    var num=new Array();
-    num=[that.data.num];
-    let userStr3=JSON.stringify(num);
-    // 直接结算
-    if(that.data.from_buy){
-      wx.navigateTo({
-        url: '../user_coupon/user_coupon?title=' + userStr+'&num='+userStr3,
-        success: function (res) {
-        },
-        fail: function () {
-        },
-        complete: function () {
-        }
-  
-      })
-    }
-    else{
-      wx.navigateTo({
-        url: '../user_coupon/user_coupon?title=' + userStr+'&num='+userStr1,
-        success: function (res) {
-        },
-        fail: function () {
-        },
-        complete: function () {
-        }
-  
-      })
-    }
+    that.setData({
+      coupon_mark:true,
+    })
    
+  },
+  checkboxChange: function (e) {
+    var that=this;
+    console.log(e.detail.value[0]);
+    wx.request({
+      url: app.globalData.tiltes + 'coupon_minute',
+      data: {
+        coupon_id:e.detail.value[0],
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+         that.setData({
+          coupon_content:"-"+ res.data.data.money,
+          money:res.data.data.money
+        });
+        that.calculate_money();
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      }
+
+    });
+    that.setData({
+      coupon_mark:false,
+      coupon_id:parseInt(e.detail.value[0]),
+    })
+  },
+  no_use: function (e) {
+    var that=this;
+    that.setData({
+      coupon_mark:false,
+      coupon_content:"有可适用优惠券",
+      coupon_id:0,
+      money:0,
+    })
+    that.calculate_money();
   },
      // 计算钱
      calculate_money:function(){
@@ -562,10 +583,17 @@ Page({
      for(var i=0;i<that.data.goods.length;i++){
        all_moneys+=that.data.goods[i].grade_price*that.data.num;
      }
+     if(all_moneys-that.data.money>0){
+      that.setData({
+        all_money: all_moneys-that.data.money,
+      });
+     }
+     else{
+      that.setData({
+        all_money: 0,
+      });
+     }
      
-     that.setData({
-       all_money: all_moneys,
-     });
    },
   
      /* 点击减号 */
@@ -775,7 +803,8 @@ Page({
           // },
           success: function (res) {
               that.setData({
-                coupon_show:res.data.status
+                coupon_show:res.data.status,
+                coupon_order:res.data.data,
               });
             
             
@@ -833,6 +862,7 @@ Page({
     var that=this;
     var id=wx.getStorageSync('id');
     var coupon_id=wx.getStorageSync('coupon_id');
+    console.log(coupon_id);
     that.setData({
       address_id:id
     });
@@ -847,8 +877,7 @@ Page({
 
       // },
       success: function (res) {
-       
-        that.setData({
+         that.setData({
           tel: res.data.data.harvester_phone_num,
           name:res.data.data.harvester,
           address:res.data.data.address_name+res.data.data.harvester_real_address,
@@ -862,6 +891,7 @@ Page({
       }
 
     });
+    
   },
 
   /**
