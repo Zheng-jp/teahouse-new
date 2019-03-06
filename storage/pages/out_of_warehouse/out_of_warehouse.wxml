@@ -1,4 +1,102 @@
-<!--storage/pages/out_of_warehouse/out_of_warehouse.wxml-->
+<!-- storage/pages/out_of_warehouse/out_of_warehouse.wxml -->
 <view class="wrapper">
-    
+    <view class="header">
+        <view class="tea-img-box">
+            <image src="./img/img1.png" class="tea-img" />
+        </view>
+        <view>
+            <view class="tea-name">大观</view>
+            <view class="tea-date">生产日期:2018.03.05</view>
+            <view>
+                <text class="stock-addr">北京仓</text>
+            </view>
+        </view>
+        <view class="stock-container">
+            <view class="real-time-stock">
+                <view class="real-time-title">您的实时存茶</view>
+                <view class="stock-box">
+                    <text class="stock-num">11</text>
+                    件
+                    <text class="stock-num">11</text>
+                    提
+                    <text class="stock-num">11</text>
+                    片
+                </view>
+            </view>
+            <image src="./img/icon1.png" class="icon-more" />
+        </view>
+    </view>
+    <view class="list-item">
+        <view class="list-key">购入入仓日期</view>
+        <view class="list-value">2019.09.28</view>
+    </view>
+    <view class="list-item">
+        <view class="list-key">
+            包装规格
+            <text class="explain">?</text>
+        </view>
+        <view class="list-value">7片/提；84片/件</view>
+    </view>
+    <view class="list-item">
+        <view class="list-key">
+            当前市场参考价
+            <text class="explain">?</text>
+        </view>
+        <view class="list-value price">￥20000/件；￥10000/提；￥5000/片</view>
+    </view>
+    <view class="list-item">
+        <view class="list-key">
+            您的初始购入价
+            <text class="explain">?</text>
+        </view>
+        <view class="list-value">￥40000/件×20</view>
+    </view>
+    <view class="list-item">
+        <view class="list-key">
+            出仓属性
+            <text class="explain">?</text>
+        </view>
+        <view class="list-value">整存整取</view>
+    </view>
+    <view class="list-item">
+        <view class="list-key">
+            出仓方式
+            <text class="explain">?</text>
+        </view>
+        <view class="list-value">
+            <view class="way-item">
+                <radio-group>
+                    <!-- wx:for="{{array}}" wx:for-item="item" wx:key="{{item.id}}" -->
+                    <label>
+                        <radio value="按件" />
+                        按件
+                    </label>
+                </radio-group>
+            </view>
+        </view>
+    </view>
+    <view class="list-item">
+        <view class="list-key">
+            数量
+            <text class="explain">?</text>
+        </view>
+        <view class="list-value">
+            <input type="text" placeholder="请输入您要出仓的数量" />
+        </view>
+    </view>
+    <view class="list-item">
+        <view class="list-key">
+            运费
+            <text class="explain">?</text>
+        </view>
+        <view class="list-value">系统自动核算运费</view>
+    </view>
+    <view class="agreement">
+        <label>
+            <checkbox />
+            我已阅读
+            <text>《某某协议》</text>
+        </label>
+    </view>
+    <button class="btn">确定出仓</button>
 </view>

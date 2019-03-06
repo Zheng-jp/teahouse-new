@@ -8,6 +8,12 @@ Page({
     currentTab: 0,
     scaleImg: false,
     wareHouseFlag: false,
+    indicatorDots: true, //是否显示面板指示点
+    autoplay: true,
+    interval: 3000,
+    duration: 500,
+    switchProject: false,
+
   },
   /**
    * 生命周期函数--监听页面加载
