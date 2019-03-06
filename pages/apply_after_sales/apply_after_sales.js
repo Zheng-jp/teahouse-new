@@ -14,6 +14,7 @@ Page({
     img:[],
     goods:[],
     order_id:null,
+    is_return_goods:1,
 
   },
   up_img:function(e){
@@ -101,19 +102,24 @@ Page({
        });
    },
 
-
+   radioChange:function(e){
+      var that=this;
+       that.setData({
+        is_return_goods:that.data.is_return_goods
+       })
+   },
   formSubmit: function (e) {
     var that = this;
+    console.log(111);
     var imgs=[];
     if(e.detail.value.content!=''){
       for(var i=0;i<that.data.tempFilePaths.length;i++){
         wx.uploadFile({
-          url: app.globalData.tiltes + 'order_evaluate_images_add',
+          url: app.globalData.tiltes + 'after_sale_upload',
           filePath: that.data.tempFilePaths[i],
           name: 'img',
           formData: e.detail.value,
           success:function(res){
-           
             var jsonstr = JSON.parse(res.data);
             imgs.push(jsonstr.data.images_id);
           }
@@ -121,13 +127,13 @@ Page({
       }
       setTimeout(function () {
         wx.request({
-          url: app.globalData.tiltes + 'order_evaluate_add',
+          url: app.globalData.tiltes + 'apply_after_sale',
           data: {
             member_id: app.globalData.member_id,
-            id:that.data.order_id,
-            images_id:imgs,
-            content:e.detail.value.content
-    
+            order_id:that.data.order_id,
+            after_image_ids:imgs,
+            return_reason:e.detail.value.content,
+            is_return_goods:that.data.is_return_goods
           },
           method: "post",
           // header: {
