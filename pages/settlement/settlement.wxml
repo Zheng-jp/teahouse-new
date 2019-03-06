@@ -1,26 +1,58 @@
 <!--pages/settlement/settlement.wxml-->
 <!-- 弹窗 -->
-<view class="">
-	
+<view class="coupon_content_all"  wx:if="{{coupon_mark}}">
+	<view class="coupon_content">
+		<view  class="coupon_content_tip">
+			<view class="coupon_content_left">
+				您有以下可适用优惠券
+			</view>
+			<view class="coupon_content_right" bindtap="no_use">
+				暂时不使用优惠券
+				<image class="retrue_ico" src="img/u2014.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+			</view>
+		</view>
+			<checkbox-group bindchange="checkboxChange">
+				<view class='order_list' wx:for="{{coupon_order}}"  data-id="{{item.id}}" >
+					<view class='order_list_content'>
+						<checkbox value="{{item.id}}" checked="{{item.checked}}" data-id="{{item.name}}" /> 
+						<view class="coupon_box" >
+							<image class="coupon_box_img" src="img/u11123.png" mode="widthFix"></image>
+							<view class="coupon_money_box">
+								<view><text class="money">{{item.money}}</text><text class="money_unit">元</text></view>
+								<view class="limit">满{{item.use_price}}使用</view>
+							</view>
+							<view class="coupon_info_box">
+								<view class="coupon_name">{{item.label}}</view>
+								<view class="validity">有效期：{{item.start_time}}-{{item.end_time}}</view>
+								<view class="range">适用范围：<text wx:for="{{item.scope}}">{{item}}</text></view>
+								<view class="go_use" >立即使用>></view>
+						</view>
+						</view>
+					</view>
+				</view>
+			</checkbox-group>
+			
+	</view>
 </view>
-<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
-<view wx:if='{{showPayPwdInput}}'>
-    <view class='bg_layer'></view>
-    <view class='input_main'>
-        <view class='input_title'>
-            <view class='input_back' catchtap='hidePayLayer'><text></text></view>
-            <text>输入支付密码</text>
-        </view>
-        <view class='input_tip'><text>请输入账户余额支付密码</text></view>
-        <view class='input_row' catchtap='getFocus'>
-            <view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
-                <text wx:if='{{pwdVal.length>i}}'></text>
-            </view>
-        </view>
-        <view class='forget_pwd' catchtap='forget_password'>忘记密码</view>
-        <input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6'/>
-    </view>
-</view>
+	<view class="drawer_screen" bindtap="powerDrawer1" data-statu="close" wx:if="{{showModalStatus}}"></view>
+	<view wx:if='{{showPayPwdInput}}'>
+			<view class='bg_layer'></view>
+			<view class='input_main'>
+					<view class='input_title'>
+							<view class='input_back' catchtap='hidePayLayer'><text></text></view>
+							<text>输入支付密码</text>
+					</view>
+					<view class='input_tip'><text>请输入账户余额支付密码</text></view>
+					<view class='input_row' catchtap='getFocus'>
+							<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+									<text wx:if='{{pwdVal.length>i}}'></text>
+							</view>
+					</view>
+					<view class='forget_pwd' catchtap='forget_password'>忘记密码</view>
+					<input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6'/>
+			</view>
+	</view>
+
 <!--content-->
 <!--使用animation属性指定需要执行的动画-->
 <view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
@@ -215,7 +247,7 @@
 		</view>
 		<view class='sundry-li'>
 			<view class='text_red'>优惠券</view>
-				<view wx:if="{{coupon_show==1}}"  bindtap="go_coupon" ><text style='color:#FF7E4A;' >有可适用优惠券</text></view>
+				<view wx:if="{{coupon_show==1}}"  bindtap="go_coupon" ><text style='color:#FF7E4A;' >{{coupon_content}}</text></view>
 			<view wx:else><text style='color:#FF7E4A;'>无可适用优惠券</text></view>
 		</view>
 		<view class='sundry-li'>

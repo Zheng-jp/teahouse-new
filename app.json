@@ -53,7 +53,6 @@
     "pages/forget_password/forget_password",
     "pages/integral_settlement/integral_settlement",
     "pages/integral_order/integral_order",
-    "pages/user_coupon/user_coupon",
     "pages/storage/view/view"
   ],
   "subpackages": [
