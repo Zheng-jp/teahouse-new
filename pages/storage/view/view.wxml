@@ -10,8 +10,8 @@
         众筹
     </view>
 </view>
-<swiper current="{{currentTab}}" duration="300" bindchange="swiperTab">
-    <swiper-item>
+<swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
+    <swiper-item class="overflowYauto">
         <view>
             <view class="gross-container">
                 <view class="gross-item gross-title">总价值</view>
@@ -97,10 +97,109 @@
             </view>
         </view>
     </swiper-item>
-    <swiper-item>
+    <swiper-item class="overflowYauto">
         <view>第二屏</view>
     </swiper-item>
-    <swiper-item>
-        <view>第三屏</view>
+    <swiper-item class="overflowYauto">
+        <view class="swiper-box">
+            <view class="swiper-title">宣铭众筹 · 成就你我</view>
+            <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="70rpx" next-margin="70rpx" display-multiple-items='1' circular class="zc-swiper">
+                <swiper-item>
+                    <view class="box">
+                        <view class="swiper-img-box">
+                            <image src="./img/img2.jpg" />
+                        </view>
+                        <view class="swiper-good-info">
+                            <view class="swiper-stock">剩余85份</view>
+                            <view class="swiper-desc hid-txt-two">
+                                规格描述规格描述规格描述规格描述规格描述规格描述规格描述
+                            </view>
+                            <view class="swiper-button">
+                                <button>支持</button>
+                            </view>
+                        </view>
+                    </view>
+                </swiper-item>
+                <swiper-item>
+                    <view class="box">
+                        <view class="swiper-img-box">
+                            <image src="./img/img2.jpg" />
+                        </view>
+                        <view class="swiper-good-info">
+                            <view class="swiper-stock">剩余85份</view>
+                            <view class="swiper-desc hid-txt-two">
+                                规格描述规格描述规格描述规格描述规格描述规格描述规格描述
+                            </view>
+                            <view class="swiper-button">
+                                <button>支持</button>
+                            </view>
+                        </view>
+                    </view>
+                </swiper-item>
+                <swiper-item>
+                    <view class="box">
+                        <view class="swiper-img-box">
+                            <image src="./img/img2.jpg" />
+                        </view>
+                        <view class="swiper-good-info">
+                            <view class="swiper-stock">剩余85份</view>
+                            <view class="swiper-desc hid-txt-two">
+                                规格描述规格描述规格描述规格描述规格描述规格描述规格描述
+                            </view>
+                            <view class="swiper-button">
+                                <button>支持</button>
+                            </view>
+                        </view>
+                    </view>
+                </swiper-item>
+            </swiper>
+        </view>
+        <view class="zc-project">
+            <view class="switch-project">
+                <view class="switch-btn switch-prev" hidden="{{switchProject}}">
+                    <image src="./img/icon6.png" />
+                    <text>查看往期众筹</text>
+                </view>
+                <view class="switch-btn switch-now" hidden="{{!switchProject}}">
+                    <image src="./img/icon7.png" />
+                    <text>查看正在众筹</text>
+                </view>
+            </view>
+            <text class="project-title">正在众筹</text>
+            <view class="zc-item-box">
+                <view class="zc-item">
+                    <view class="left-img">
+                        <image src="./img/img2.png" />
+                    </view>
+                    <view class="right-project-info">
+                        <view class="project-name hid-txt-one">舌尖上的乡愁——班章烤茶飘香</view>
+                        <wxzx-progress class="wxzx-progress" percent="100" show-info border-radius="4px" width="300" stroke-width='12' radius='6' active-color="#ff9600,#ff1000,#ff0000"></wxzx-progress>
+                        <text class="percent-num">100%</text>
+                        <view class="project-people">666人支持 | 已完成</view>
+                        <view class="project-price">
+                            <text>￥299</text>
+                            <!-- <button class="check-project">立即查看</button> -->
+                            <button class="join-project">支持</button>
+                        </view>
+                    </view>
+                </view>
+                <view class="zc-item">
+                    <view class="left-img">
+                        <image src="./img/img2.png" />
+                    </view>
+                    <view class="right-project-info">
+                        <view class="project-name hid-txt-one">舌尖上的乡愁——班章烤茶飘香</view>
+                        <wxzx-progress class="wxzx-progress" percent="60" show-info border-radius="4px" width="300" stroke-width='12' radius='6' active-color="#ff9600,#ff1000,#ff0000"></wxzx-progress>
+                        <text class="percent-num">60%</text>
+                        <view class="project-people">666人支持 | 已完成</view>
+                        <view class="project-price">
+                            <text>￥299</text>
+                            <!-- <button class="check-project">立即查看</button> -->
+                            <button class="join-project">支持</button>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
     </swiper-item>
 </swiper>

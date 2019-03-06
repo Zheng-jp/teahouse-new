@@ -24,8 +24,8 @@
 .other-item .item-value{font-size: 32rpx; color: #333;}
 .other-item .item-value .icon-more{width: 15rpx; height: 25rpx;}
 .other-item .item-value.stock{color: #93291E;}
-.other-item .item-value .temperature{width: 26rpx; height: 48rpx;margin-right: 8rpx;}
-.other-item .item-value .humidity{width: 26rpx; height: 38rpx;margin-right: 8rpx;}
+.other-item .item-value .temperature{width: 50rpx; height: 50rpx;}
+.other-item .item-value .humidity{width: 50rpx; height: 50rpx;}
 .chart-img{width: 750rpx; height: 500rpx;}
 
 

@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.6.1",
 	"appid": "wx301c1368929fdba8",
 	"projectname": "111",
 	"debugOptions": {
@@ -268,8 +268,8 @@
 				},
 				{
 					"id": -1,
-					"name": "出仓",
-					"pathName": "storage/pages/out_of_warehouse/out_of_warehouse",
+					"name": "众筹",
+					"pathName": "pages/storage/view/view",
 					"query": "",
 					"scene": null
 				}
