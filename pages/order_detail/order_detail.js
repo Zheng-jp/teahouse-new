@@ -101,7 +101,26 @@ Page({
   
     })
   },
+// 申请售后
+  go_apply_after_sales: function (event) {
+
+    var that = this;
+    var item = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../apply_after_sales/apply_after_sales?title=' + event.currentTarget.dataset.id,
+      success: function (res) {
+      
+      },
+      fail: function () {
+       
+      },
+      complete: function () {
+      
+      }
   
+  
+    })
+  },
  
 
   /**

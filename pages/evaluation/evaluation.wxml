@@ -2,7 +2,7 @@
 <view class="all" style='height:{{height}}px;'>
 
   <form  bindsubmit="formSubmit" content-type="multipart/form-data">
-    <view wx:for="{{goods}}" class="good_content">
+    <view class="good_content">
         <view class="good_infor">
             <image class="good_img" src="{{url}}{{item.goods_image}}" mode="widthFix" ></image>
             <text class="good_name">{{item.parts_goods_name}}</text>  
