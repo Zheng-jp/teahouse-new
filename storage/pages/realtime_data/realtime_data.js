@@ -51,6 +51,13 @@ function initChart(canvas, width, height){
   chart.setOption(option);
   return chart;
 }
+
+function getCurrentTime(){
+  var newDate = new Date();
+  var currentTime = app.formatDate(newDate.getTime()),
+      h = newDate.getHours();
+  console.log(currentTime);
+}
 Page({
 
   /**
@@ -82,14 +89,12 @@ Page({
     })
   },
 
-  getCurrentTime: function(){
-    var currentTime = app.formatDate(new Date().getTime());
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+   
+    getCurrentTime();
     
   },
 

@@ -107,7 +107,7 @@
                 <swiper-item>
                     <view class="box">
                         <view class="swiper-img-box">
-                            <image src="./img/img2.jpg" />
+                            <image src="./img/img3.png" />
                         </view>
                         <view class="swiper-good-info">
                             <view class="swiper-stock">剩余85份</view>
@@ -123,7 +123,7 @@
                 <swiper-item>
                     <view class="box">
                         <view class="swiper-img-box">
-                            <image src="./img/img2.jpg" />
+                            <image src="./img/img3.png" />
                         </view>
                         <view class="swiper-good-info">
                             <view class="swiper-stock">剩余85份</view>
@@ -139,7 +139,7 @@
                 <swiper-item>
                     <view class="box">
                         <view class="swiper-img-box">
-                            <image src="./img/img2.jpg" />
+                            <image src="./img/img3.png" />
                         </view>
                         <view class="swiper-good-info">
                             <view class="swiper-stock">剩余85份</view>
