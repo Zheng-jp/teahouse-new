@@ -95,6 +95,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'commodity_index',
       data: {
+        member_grade_name:app.globalData.member_grade_name,
       },
       method: "post",
       // header: {
