@@ -48,7 +48,7 @@ Page({
     // console.log()
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
-      url: '../detail/detail?title='+ event.currentTarget.id ,
+      url: '/storage/pages/detail/detail?title='+ event.currentTarget.id ,
       success: function (res) {
         // success
         console.log("nihao////跳转成功")

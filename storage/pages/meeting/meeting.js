@@ -1,5 +1,5 @@
 // pages/meeting/meeting.js
-import templates from '../../utils/template'
+import templates from '../../../utils/template'
 const app = getApp();
 Page({
 
