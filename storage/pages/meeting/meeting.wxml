@@ -1,0 +1,32 @@
+<import src="../../../utils/template.wxml" />
+<view class="all-content">
+ <view class='nav'>
+ <view  class="img hide {{showView?'show':''}}" bindtap="onChangeShowState"><image src='img/u3885.png'></image></view>
+  <view  class="img hide {{showView?'':'show'}}" bindtap="onChangeShowState"><image src='img/u3885.png'></image></view>
+     <scroll-view  class="swiper-tab" scroll-x="true" >
+      <view wx:for="{{nav}}"  class="bre swiper-tab-list {{item.tab==tab? 'on' : ''}}" data-current="{{item.tab}}" bindtap="tab_click" >{{item.name}}</view>  
+   </scroll-view>
+ 
+  </view> 
+   <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide"  bindchange="tab_slide" style="height:{{winHeight}}px">
+    <swiper-item  wx:for="{{nav}}" wx:for-item="items">
+          <scroll-view scroll-y="{{true}}" bindscroll="scroll"  style="height:{{winHeight}}px" >
+          <view class='listview' wx:for="{{shares}}" wx:for-item="item"  wx:key="*this">
+             <template  is="{{item.type == '29' ? 'joy-text' : (item.type == '10' ? 'joy-pic' : (item.type == '41' ? 'joy-video' : 'joy-pic'))}}" data="{{item}}" bindtap></template>
+    </view> 
+    </scroll-view>
+      
+    </swiper-item>
+ 
+  </swiper>
+  <view class="mask hide{{showView?'':'show'}}" >
+        <view class='all_seach'>
+          <text class='all_seach_text'  bindtap="onChangeShowState">全部 </text>         
+        </view>
+        <view class='other_seach'>
+            <view class='seach_list' wx:for="{{seach_list}}" >
+                <text class='seach_text'  bindtap="onChangeShowState"> {{item}}</text> 
+            </view>
+        </view>
+  </view>
+  </view> 
