@@ -52,12 +52,23 @@ function initChart(canvas, width, height){
   return chart;
 }
 
-function getCurrentTime(){
+function getCurrentTime(_this){
   var newDate = new Date();
   var currentTime = app.formatDate(newDate.getTime()),
-      h = newDate.getHours();
-  console.log(currentTime);
+      h = newDate.getHours(),
+      m = newDate.getMinutes(),
+      s = newDate.getSeconds();
+  m = addZero(m);
+  s = addZero(s);
+  _this.setData({
+    beijingTime: currentTime + ' ' + h + ':' + m + ':' + s
+  })
 }
+function addZero(num){
+  return num > 10 ? num : '0' + num;
+}
+
+
 Page({
 
   /**
@@ -68,6 +79,7 @@ Page({
       onInit: initChart
     },
     currentTab: 0,
+    beijingTime: ''
   },
 
   clickTab: function(e){
@@ -93,9 +105,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
-    getCurrentTime();
-    
+    var _this = this;
+    setInterval(function(){
+      getCurrentTime(_this);
+    }, 300);
   },
 
   /**

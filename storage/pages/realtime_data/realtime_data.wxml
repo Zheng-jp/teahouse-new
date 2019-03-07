@@ -14,7 +14,7 @@
     <swiper-item class="overflowYauto">
         <view>
             <view class="humiture-data">
-                <view class="time">北京时间：</view>
+                <view class="time">北京时间：{{beijingTime}}</view>
             </view>
         </view>
     </swiper-item>
