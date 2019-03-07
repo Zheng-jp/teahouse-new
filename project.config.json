@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 38,
+			"current": 39,
 			"list": [
 				{
 					"id": -1,
@@ -271,6 +271,12 @@
 					"name": "众筹",
 					"pathName": "pages/storage/view/view",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "实时数据",
+					"pathName": "storage/pages/realtime_data/realtime_data",
 					"scene": null
 				}
 			]

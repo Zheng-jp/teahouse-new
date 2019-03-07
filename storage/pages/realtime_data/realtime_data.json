@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "ec-canvas": "/component/ec-canvas/ec-canvas"
+  },
+  "navigationBarTitleText": "实时详情",
+  "navigationBarBackgroundColor": "#f9f9f9",
+  "backgroundTextStyle": "light",
+  "navigationBarTextStyle": "black"
+}

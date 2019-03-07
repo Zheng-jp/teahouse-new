@@ -50,7 +50,7 @@
                         <image src="img/icon3.png" class="icon-humidity" />
                         <text class="humidity">78.99%</text>
                     </view>
-                    <view class="more">
+                    <view class="more" bindtap="checkRealTimeData">
                         <image src="img/icon5.png" />
                     </view>
                 </view>

@@ -48,6 +48,19 @@ Page({
     })
   },
 
+  checkRealTimeData: function(){
+    // 查看仓库实时数据（温度湿度）
+    wx.navigateTo({
+      url: '/storage/pages/realtime_data/realtime_data',
+      success: function(){
+        console.log('跳转成功');
+      },
+      fail: function(){
+        console.log('跳转失败');
+      }
+    })
+  },
+
   toStockDetail: function(){
     // 仓库详情
     wx.navigateTo({
