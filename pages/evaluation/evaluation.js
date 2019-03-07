@@ -114,7 +114,6 @@ Page({
           name: 'img',
           formData: e.detail.value,
           success:function(res){
-           
             var jsonstr = JSON.parse(res.data);
             imgs.push(jsonstr.data.images_id);
           }
