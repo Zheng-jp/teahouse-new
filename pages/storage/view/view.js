@@ -12,14 +12,14 @@ Page({
     autoplay: true,
     interval: 3000,
     duration: 500,
-    switchProject: false,
-
+    switchProject: false
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var _this = this;
+    
   },
 
   clickTab: function(e){
