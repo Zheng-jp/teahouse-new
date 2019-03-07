@@ -27,7 +27,7 @@
         </view>
     </view>
     <view class="list-item">
-        <view class="list-key">购入入仓日期</view>
+        <view class="list-key">入仓日期</view>
         <view class="list-value">2019.09.28</view>
     </view>
     <view class="list-item">
@@ -39,14 +39,14 @@
     </view>
     <view class="list-item">
         <view class="list-key">
-            当前市场参考价
+            当前参考价
             <text class="explain">?</text>
         </view>
         <view class="list-value price">￥20000/件；￥10000/提；￥5000/片</view>
     </view>
     <view class="list-item">
         <view class="list-key">
-            您的初始购入价
+            初始购入价
             <text class="explain">?</text>
         </view>
         <view class="list-value">￥40000/件×20</view>
@@ -77,7 +77,7 @@
     </view>
     <view class="list-item">
         <view class="list-key">
-            数量
+            出仓数量
             <text class="explain">?</text>
         </view>
         <view class="list-value">
@@ -86,7 +86,7 @@
     </view>
     <view class="list-item">
         <view class="list-key">
-            运费
+            出仓运费
             <text class="explain">?</text>
         </view>
         <view class="list-value">系统自动核算运费</view>
