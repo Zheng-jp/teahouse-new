@@ -10,7 +10,7 @@ swiper.swiper-container{min-height: 1020rpx;}
 .active{color:#93291f; position: relative;}
 .active::after{content: ''; width: 60%; position: absolute; bottom: 0; left: 50%; margin-left: -30%; display: block; border: 2rpx solid #93291f;}
 
-
+.humiture-data{padding: 40rpx; border-bottom: 4rpx solid #f2f2f2;}
 
 
 
