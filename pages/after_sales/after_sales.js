@@ -28,10 +28,6 @@ Page({
             parts_order_number:indexs
           },
           method: "post",
-          // header: {
-          //   "Content-Type": "application/json" // 默认值
-    
-          // },
           success: function (res) {
             wx.showToast({
               title:'删除成功',
@@ -67,7 +63,6 @@ Page({
           method: "post",
           header: {
             "Content-Type": "application/json" // 默认值
-    
           },
           success: function (res) {
             that.setData({
@@ -92,7 +87,6 @@ Page({
           method: "post",
           header: {
             "Content-Type": "application/json" // 默认值
-    
           },
           success: function (res) {
             that.setData({
@@ -118,7 +112,6 @@ Page({
           method: "post",
           header: {
             "Content-Type": "application/json" // 默认值
-    
           },
           success: function (res) {
             that.setData({
@@ -143,7 +136,6 @@ Page({
           method: "post",
           header: {
             "Content-Type": "application/json" // 默认值
-    
           },
           success: function (res) {
             that.setData({
@@ -168,7 +160,6 @@ Page({
           method: "post",
           header: {
             "Content-Type": "application/json" // 默认值
-    
           },
           success: function (res) {
             that.setData({

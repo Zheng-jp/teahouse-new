@@ -11,7 +11,7 @@
 .right-info .tea-name{color: #686868; font-size: 28rpx;}
 .right-info .tea-init{font-size: 22rpx; color: #000;}
 .right-info .tea-init text{color: #169bd5;}
-.tag-box{margin-bottom: 20rpx;}
+.tag-box{margin-bottom: 10rpx; padding-bottom: 10rpx;}
 .tag-item{font-size: 24rpx; color: #999900; border: 2rpx solid #999900; border-radius: 4rpx; padding: 2rpx 10rpx;}
 .price-number{display: flex; align-items: center; justify-content: space-between;}
 .price-number .tea-price{font-size: 24rpx; color: #999;}

@@ -35,7 +35,7 @@
             <view class="item-value">2019.03.05</view>
         </view>
         <view class="other-item">
-            <view class="item-key">初始订单号：</view>
+            <view class="item-key">初始订单：</view>
             <view class="item-value">DJ94868686868</view>
         </view>
         <view class="other-item">
@@ -53,16 +53,16 @@
             <view class="item-key">入仓日期：</view>
             <view class="item-value">2019.03.05</view>
         </view>
-        <view class="other-item">
-            <view class="item-key">还手封闭期：<text class="explain">?</text></view>
+        <!-- <view class="other-item">
+            <view class="item-key">换手锁定：<text class="explain">?</text></view>
             <view class="item-value">2019.03.05</view>
-        </view>
+        </view> -->
         <view class="other-item">
-            <view class="item-key">规格：<text class="explain">?</text></view>
+            <view class="item-key">商品规格：<text class="explain">?</text></view>
             <view class="item-value">7片/提；84片/件</view>
         </view>
         <view class="other-item">
-            <view class="item-key">仓储库存地址：</view>
+            <view class="item-key">仓储地址：</view>
             <view class="item-value">王府井1号</view>
         </view>
         <view class="other-item">
@@ -81,19 +81,19 @@
             </view>
         </view>
         <view class="other-item">
-            <view class="item-key">当前市场参考价格：<text class="explain">?</text></view>
+            <view class="item-key">当前参考价：<text class="explain">?</text></view>
             <view class="item-value">¥3000.00/件</view>
         </view>
         <view class="other-item">
-            <view class="item-key">当前购入折扣价格：<text class="explain">?</text></view>
+            <view class="item-key">当前折扣价：<text class="explain">?</text></view>
             <view class="item-value">2000.00/件</view>
         </view>
         <view class="other-item">
-            <view class="item-key">您的购买入仓价：<text class="explain">?</text></view>
+            <view class="item-key">购买入仓价：<text class="explain">?</text></view>
             <view class="item-value">¥1000.00/件</view>
         </view>
         <view class="other-item">
-            <view class="item-key">价格涨幅比例：<text class="explain">?</text></view>
+            <view class="item-key">价格涨幅比：<text class="explain">?</text></view>
             <view class="item-value">100%</view>
         </view>
     </view>
