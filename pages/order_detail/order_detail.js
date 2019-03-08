@@ -106,20 +106,45 @@ Page({
 
     var that = this;
     var item = event.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../apply_after_sales/apply_after_sales?title=' + event.currentTarget.dataset.id,
+    wx.request({
+      url: app.globalData.tiltes + 'after_sale_is_set',
+      data: {
+        order_id:item,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "application/json" // 默认值
+  
+      // },
       success: function (res) {
+       if(res.data.status=="1"){
+         wx.navigateTo({
+          url: '../apply_after_sales/apply_after_sales?title=' + event.currentTarget.dataset.id,
+          success: function (res) {
+          
+          },
+          fail: function () {
+          
+          },
+          complete: function (res) {
+           
+          }
       
+        })
+       }
       },
       fail: function () {
-       
       },
-      complete: function () {
-      
+      complete: function (res) {
+        wx.showToast({
+          title:res.data.info,
+          icon:'none',
+        });
       }
   
+    });
+    
   
-    })
   },
  
 

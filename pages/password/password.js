@@ -72,8 +72,11 @@ Page({
       fail: function () {
 
       },
-      complete: function () {
-        wx.hideLoading()
+      complete: function (res) {
+        wx.showToast({
+          title:res.data.info,
+          icon:'none',
+        });
       }
 
     });
