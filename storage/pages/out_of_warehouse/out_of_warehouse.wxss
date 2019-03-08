@@ -5,7 +5,7 @@ page{background-color: #fff;}
 .header .tea-img-box{width: 80rpx; height: 80rpx;}
 .header .tea-img-box image{width: 100%; height: 100%;}
 .header .tea-name{font-size: 28rpx; color: #797979; font-weight: 700;}
-.header .tea-date{font-size: 24rpx; color: #333; letter-spacing: 0;}
+.header .tea-date{font-size: 22rpx; color: #333; letter-spacing: 0;}
 .header .stock-addr{font-size: 20rpx; color: #999900; border-radius: 6rpx; border: 2rpx solid #999900; padding: 4rpx 10rpx;}
 .real-time-stock{width: 300rpx; height: 110rpx; border: 2rpx solid #821006; border-radius: 6rpx; overflow: hidden;}
 .real-time-stock .real-time-title{background-color: #821006; font-size: 24rpx; color: #fff; text-align: center; padding: 8rpx 0;}

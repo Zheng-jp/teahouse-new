@@ -1,43 +1,11 @@
-// pages/order/order.js
-const app = getApp();
+// aftersale/pages/aftersale_detail/aftersale_detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    currentTab: 0,
-  },
 
-  clickTab: function(e){
-    // 切换选项卡
-    var current = e.target.dataset.current,
-        _this = this;
-    if(_this.data.currentTab !== current){
-      _this.setData({
-        currentTab: current
-      })
-    }
-  },
-
-  swiperTab: function(e){
-    // 滑动切换选项卡
-    var current = e.detail.current;
-    this.setData({
-      currentTab: current
-    })
-  },
-
-  checkDetail: function(e){
-    wx.navigateTo({
-      url: '/aftersale/pages/aftersale_detail/aftersale_detail',
-      success: function(res){
-        console.log('success');
-      },
-      fail: function(res){
-        console.log('fail');
-      }
-    })
   },
 
   /**

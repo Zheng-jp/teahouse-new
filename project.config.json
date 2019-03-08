@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 39,
+			"current": 31,
 			"list": [
 				{
 					"id": -1,
@@ -225,10 +225,11 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 31,
 					"name": "售后",
-					"pathName": "pages/after_sales/after_sales",
-					"query": ""
+					"pathName": "aftersale/pages/aftersale_detail/aftersale_detail",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": -1,
@@ -277,6 +278,7 @@
 					"id": -1,
 					"name": "实时数据",
 					"pathName": "storage/pages/realtime_data/realtime_data",
+					"query": "",
 					"scene": null
 				}
 			]

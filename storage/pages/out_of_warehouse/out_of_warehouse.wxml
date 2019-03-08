@@ -6,10 +6,10 @@
         </view>
         <view>
             <view class="tea-name">大观</view>
-            <view class="tea-date">生产日期:2018.03.05</view>
             <view>
                 <text class="stock-addr">北京仓</text>
             </view>
+            <view class="tea-date">生产日期:2018.03.05</view>
         </view>
         <view class="stock-container">
             <view class="real-time-stock">

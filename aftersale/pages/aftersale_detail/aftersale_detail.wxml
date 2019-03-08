@@ -1,0 +1,68 @@
+<view class="wrapper">
+    <view class="status-box">
+        <view class="status-text">
+            <text>请等待商家处理</text>
+        </view>
+        <view class="time-countdown">还剩余2天23时55分</view>
+    </view>
+    <view class="tips-box">
+        <view class="tips-title">
+            <text>您已成功发起退款申请，请耐心等待商家处理</text>
+        </view>
+        <view class="tips-list">
+            <view>平台同意后，请按照给出的退货地址退货，并请记录退货运单号</view>
+            <view>如平台拒绝，您可以修改申请后再次发起，商家会重新处理</view>
+            <view>平台超过5个工作日后超时未处理，退货申请将达成，请按系统给的退货地址退货</view>
+        </view>
+        <view class="operation-box">
+            <text>修改申请</text>
+            <text class="revoke">撤销申请</text>
+        </view>
+    </view>
+    <view class="refund-info">
+        <view class="info-title">退款信息</view>
+        <view class="refund-goods">
+            <view class="refund-img">
+                <image src="/images/img1.png" />
+            </view>
+            <text>商品名称</text>
+        </view>
+        <view class="info-items">
+            <view class="info-item">
+                <text class="info-key">申请时间：</text>
+                <text class="info-value">2019-03-08</text>
+            </view>
+            <view class="info-item">
+                <text class="info-key">退款金额：</text>
+                <text class="info-value">¥80.0</text>
+            </view>
+            <view class="info-item">
+                <text class="info-key">退款编号：</text>
+                <text class="info-value">8586868686863</text>
+            </view>
+            <view class="info-item">
+                <text class="info-key">退款原因</text>
+                <text class="info-value">退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因</text>
+            </view>
+            <view class="info-item">
+                <image src="/images/img1.png" />
+                <image src="/images/img1.png" />
+                <image src="/images/img1.png" />
+            </view>
+            <view class="reply-items">
+                <view class="official">
+                    <view class="official-left">
+                        <image src="/images/img2.png" />
+                        <view>官方回复</view>
+                    </view>
+                    <view class="official-right">请耐心等待商家处理，您可再联系：13884885868</view>
+                </view>
+                <view class="user-apply">
+                    我的回复：
+                    <text>就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款</text>
+                </view>
+            </view>
+            <view class="apply-btn">我要回复</view>
+        </view>
+    </view>
+</view>
