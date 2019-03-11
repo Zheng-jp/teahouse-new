@@ -1,5 +1,38 @@
 // pages/order/order.js
 const app = getApp();
+
+function getAfterSaleData(_this, url){
+  wx.request({
+    url: app.globalData.tiltes + url,
+    method: 'POST',
+    data: {
+      member_id: app.globalData.member_id
+    },
+    success: function(res){
+      console.log('success:', res);
+      if(res.data.status == 1){
+        _this.setData({
+          dataList: res.data.data
+        })
+        console.log(_this.data.dataList);
+      }
+    },
+    fail: function(res){
+      console.log('fail:', res);
+    }
+  })
+}
+function myNavigateTo(url, id, status){
+  wx.navigateTo({
+    url: url + '?id=' + id + '&status=' + status,
+    success: function(res){
+      console.log('success');
+    },
+    fail: function(res){
+      console.log('fail');
+    }
+  })
+}
 Page({
 
   /**
@@ -7,6 +40,8 @@ Page({
    */
   data: {
     currentTab: 0,
+    navNameList: ['全部', '申请中', '已撤销', '已完成'],
+    dataList: [],
   },
 
   clickTab: function(e){
@@ -18,33 +53,54 @@ Page({
         currentTab: current
       })
     }
+    switch(current){
+      case 0:
+        getAfterSaleData(_this, 'after_sale_all');break;
+      case 1:
+        getAfterSaleData(_this, 'after_sale_applying');break;
+      case 2:
+        getAfterSaleData(_this, 'after_sale_rescinded');break;
+      case 3:
+        getAfterSaleData(_this, 'after_sale_completed');break;
+    }
   },
 
   swiperTab: function(e){
+    var _this = this;
     // 滑动切换选项卡
     var current = e.detail.current;
-    this.setData({
+    _this.setData({
       currentTab: current
     })
+    switch(current){
+      case 0:
+        getAfterSaleData(_this, 'after_sale_all');break;
+      case 1:
+        getAfterSaleData(_this, 'after_sale_applying');break;
+      case 2:
+        getAfterSaleData(_this, 'after_sale_rescinded');break;
+      case 3:
+        getAfterSaleData(_this, 'after_sale_completed');break;
+    }
   },
 
   checkDetail: function(e){
-    wx.navigateTo({
-      url: '/aftersale/pages/aftersale_detail/aftersale_detail',
-      success: function(res){
-        console.log('success');
-      },
-      fail: function(res){
-        console.log('fail');
-      }
-    })
+    var id = e.currentTarget.dataset.id;
+    var status = e.currentTarget.dataset.status;
+    if(status == 1 || status == 5){
+      myNavigateTo('/aftersale/pages/aftersale_detail/aftersale_detail', id, status);
+    }else if(status == 2 || status == 3){
+      myNavigateTo('/aftersale/pages/aftersale_success/aftersale_success', id, status);
+    }
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var _this = this;
+    getAfterSaleData(_this, 'after_sale_all');
   },
 
   /**

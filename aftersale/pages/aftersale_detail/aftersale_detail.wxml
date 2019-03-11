@@ -6,7 +6,6 @@
             <text>您已成功撤销售后/退款申请</text>
         </view>
         <view class="time-countdown">还剩余{{countDownTime}}</view>
-        <view class="time-countdown">感谢您的配合与支持！</view>
     </view>
     <view class="tips-box">
         <view class="tips-title">
