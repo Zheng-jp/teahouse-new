@@ -1,129 +1,47 @@
-/* pages/order/order.wxss */
-.on{
-    color: #821006 !important;
-    border-bottom: 1rpx #821006 solid !important;
-  
-  }
-  .flex{
-    width: 670rpx;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .courier{
-  color: #333;
-  font-size: 26rpx;
-  }
-  .type_button{
-    color: #333 !important;
-    border-color:#333 !important; 
-  }
-  .title{
-    display: flex;
-    align-items: center;
-    border-bottom:  1rpx solid #E4E4E4;
-  }
-  .title .title_list{
-    flex: 1;
-    text-align: center;
-    color: #6B6B6B;
-    font-size: 30rpx;
-    padding-bottom: 30rpx;
-    padding-top: 30rpx;
-  }
-  .order_list{
-    background: #fff;
-    border-radius:10rpx;
-    margin: 20rpx;
-    padding: 20rpx; 
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-  .box_list_one{
-     margin-top: 10rpx;
-    display: flex;
-    align-content: center;
-    font-size: 24rpx;
-    justify-content: space-between;
-    color: #333;
-  }
-  .static{
-    color: #821006;
-  }
-  .img{
-    width: 150rpx;
-    height: 150rpx;
-  
-  }
-  .box_list_two{
-     margin-top: 20rpx;
-    width: 670rpx;
-    display: flex;
-    justify-content: space-between;
-    border-bottom:solid 3px #F2F2F2;
-  
-  }
-  .good_infor{
-    width: 500rpx;
-    font-size: 26rpx;
-    box-sizing: border-box;
-  }
-  .good_selling{
-    color: #999;
-    height: 70rpx;
-    margin-top: 10rpx;
-    margin-bottom: 10rpx;
-  }
-  .good_uite{
-    display: flex;
-    align-items: center;
-  }
-  .user_img{
-    width: 50rpx;
-    height: 50rpx;
-  }
-  .good_monye{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .uite{
-    color: #821006;
-    font-size: 30rpx;
-  
-  }
-  .num{
-    color: #821006;
-    font-size: 30rpx;
-  }
-  .box_list_three{
-    margin-top: 20rpx;
-    text-align: right;
-    font-size: 30rpx;
-  
-  }
-  .box_list_four{
-    margin-top: 20rpx;
-    float: right;
-    overflow: hidden;
-  }
-  .box_list_four>view{
-    display: flex;
-    align-items: center;
-  }
-  .cancel{
-    padding: 10rpx 20rpx;
-    border: solid 1px #999;
-    color: #999;
-    font-size: 26rpx;
-    border-radius:13rpx;
-    margin-right:40rpx;
-  }
-  .payment{
-    padding: 10rpx 20rpx;
-    border: solid 1px #821006;
-    color: #821006;
-    font-size: 26rpx;
-    border-radius:13rpx;
-  }
+view{overflow: auto !important;}
+.hid-txt-two{overflow: hidden !important; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;}
+.hid-txt-one{overflow: hidden !important; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;}
+.clearfix::after{content: ''; clear: both; display: block; height: 0; visibility: hidden;}
+.fl{float: left;}
+.fr{float: right;}
+page{height: 100%;}
+.wrapper{display: flex; flex-direction: column; height: 100%;}
+swiper.swiper-container{flex: 1;}
+.swiper-container swiper-item,
+.scroll-items{background-color: #f2f2f2;}
+.swiper-tab{display: flex; width: 100%;border-bottom: 2rpx solid #ccc;text-align: center;height: 88rpx;line-height: 88rpx; background-color: #f2f2f2;}
+.swiper-tab-item{flex: 1; color: #434343; font-size: 32rpx;}
+.active{color:#93291f; position: relative;}
+.active::after{content: ''; width: 60%; position: absolute; bottom: 0; left: 50%; margin-left: -30%; display: block; border: 2rpx solid #93291f;}
+
+.item{width: 95%; padding: 20rpx; background-color: #fff; margin: 20rpx auto; box-sizing: border-box; border-radius: 10rpx;}
+.item-top{margin-bottom: 20rpx;}
+.item-top .tb-num{font-size: 26rpx; color: #333;}
+.item-top .tb-status{font-size: 26rpx; color: #821006;}
+.item-mid{display: flex; justify-content: space-between;}
+.item-mid .img-box{width: 156rpx; height: 156rpx; margin-right: 16rpx;}
+.item-mid .img-box image{width: 100%; height: 100%;}
+.item-mid .info-box{flex: 1;}
+.item-mid .info-box .tb-name{font-size: 32rpx; color: #000;}
+.item-mid .info-box .tb-describe{font-size: 28rpx; color: #949494; margin-bottom: 14rpx;}
+.item-mid .tb-price image{width: 42rpx; height: 42rpx; margin-right: 16rpx;}
+.item-mid .tb-price .price,
+.item-mid .tb-price .quantity{font-size: 32rpx; color: #ff2a00;}
+.item-bot .total{text-align: right; font-size: 24rpx; color: #1e1e1e; margin-bottom: 10rpx;}
+.item-bot .statustext{text-align: right;}
+.item-bot .statustext .status-text{font-size: 26rpx; color: #000; border: 2rpx solid #515151; display: inline-block; width: 160rpx; height: 60rpx; line-height: 60rpx; text-align: center; border-radius: 30rpx;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

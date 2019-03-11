@@ -63,6 +63,12 @@
         "meeting/meeting",
         "detail/detail"
       ]
+    },
+    {
+      "root": "aftersale/pages",
+      "pages": [
+        "aftersale_detail/aftersale_detail"
+      ]
     }
   ],
   "window": {
