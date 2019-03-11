@@ -8,25 +8,27 @@
 	<swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
 		<swiper-item>
 			<scroll-view class="scroll-items" scroll-y>
-				<view class="item" bindtap="checkDetail">
-					<view class="item-top clearfix">
-						<view class="tb-num fl">服务编号：201903081234</view>
-						<view class="tb-status fr">退款退货成功</view>
-					</view>
-					<view class="item-mid">
-						<view class="img-box">
-							<image src="/images/img1.png" />
+				<view class="item">
+					<view bindtap="checkDetail">
+						<view class="item-top clearfix">
+							<view class="tb-num fl">服务编号：201903081234</view>
+							<view class="tb-status fr">退款退货成功</view>
 						</view>
-						<view class="info-box">
-							<view class="tb-name hid-txt-two">商品名称</view>
-							<view class="tb-describe hid-txt-two">
-								商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品
+						<view class="item-mid">
+							<view class="img-box">
+								<image src="/images/img1.png" />
 							</view>
-							<view class="tb-price clearfix">
-								<view class="price fl">
-									<image src="./img/img1.png" />￥90.0/片
+							<view class="info-box">
+								<view class="tb-name hid-txt-two">商品名称</view>
+								<view class="tb-describe hid-txt-two">
+									商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品
 								</view>
-								<view class="quantity fr">×1</view>
+								<view class="tb-price clearfix">
+									<view class="price fl">
+										<image src="./img/img1.png" />￥90.0/片
+									</view>
+									<view class="quantity fr">×1</view>
+								</view>
 							</view>
 						</view>
 					</view>
