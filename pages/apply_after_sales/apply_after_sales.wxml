@@ -7,10 +7,10 @@
     </view>
     <view class="opration">
         <radio-group class="radio-group" bindchange="radioChange">
-              <radio value="1" checked="true"   color='#fff' />要求退货退款金额：
-              <input type="text" placeholder="不能超过购买总价" class="input_monly" disabled value="{{goods.refund_amount}}"> </input>
+              <radio value="2" checked="true"   color='#fff' />要求退货退款金额：
+              <input type="text" placeholder="" class="input_monly" disabled value="{{goods.refund_amount}}"> </input>
               <text class="danwei">元</text>
-              <radio value="2" class="radio_b" color='#fff' />要求换货
+              <radio value="1" class="radio_b" color='#fff' />要求换货
         </radio-group>
     </view>
     <view class="reason">

@@ -14,7 +14,7 @@ Page({
     img:[],
     goods:[],
     order_id:null,
-    is_return_goods:1,
+    is_return_goods:2,
 
   },
   up_img:function(e){
@@ -103,7 +103,7 @@ Page({
    radioChange:function(e){
       var that=this;
        that.setData({
-        is_return_goods:that.data.is_return_goods
+        is_return_goods:e.detail.value
        })
    },
   formSubmit: function (e) {
