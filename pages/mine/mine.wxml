@@ -13,7 +13,7 @@ module.exports.toHide = toHide;
       <view class='list balance'>
             <view class='balance bbla' >余额</view>
             <view class='balance_num nnum'>￥{{information.member_wallet}}</view>
-            <view class='balance_btn bbtn'><button style='background:{{information.member_background_color}}'>充值</button></view>
+            <view class='balance_btn bbtn' bindtap="go_recharge"><button style='background:{{information.member_background_color}}'>充值</button></view>
       </view>
         <view class='list' bindtap="go_change">
           <view class='username'>
@@ -29,7 +29,7 @@ module.exports.toHide = toHide;
           <view class='list'>
             <view class='bbla'>积分</view>
             <view class='nnum'>{{information.member_integral_wallet}}</view>
-            <view class='bbtn'><button style='background:{{information.member_background_color}}'>兑换</button>  </view>
+            <view class='bbtn' bindtap="go_integral_center"><button style='background:{{information.member_background_color}}'>兑换</button>  </view>
          </view>
     </view>
     <view class='bg1'>

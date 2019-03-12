@@ -87,6 +87,37 @@ Page({
 
   
   },
+  go_recharge:function(){
+    wx.navigateTo({
+      url: '../recharge/recharge',
+      success: function (res) {
+        // success
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+
+    })
+  },
+  go_integral_center:function(){
+    wx.navigateTo({
+      url: '../integral_center/integral_center',
+      success: function (res) {
+        // success
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+
+    })
+  },
+
   /**
  * 生命周期函数--监听页面加载
  */
