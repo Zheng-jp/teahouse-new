@@ -39,7 +39,6 @@ Page({
       },
       method: "POST",
       success: function (res) {
-        //
         var data = res.data.data;
         for(var item in data){
           data[item].url = app.globalData.tiltes

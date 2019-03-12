@@ -203,7 +203,7 @@ Page({
       that.setData({
         routers: res.data.data,
       });
-      
+      console.log(that.data.routers)
         //  添加字段到等级数组
         for (var index in that.data.routers) {
           var sexParam = "routers[" + index + "].url";

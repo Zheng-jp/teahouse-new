@@ -4,24 +4,20 @@
 .fl{float: left;}
 .fr{float: right;}
 
-.status-box{background-color: #fe0034; color: #fff; padding: 50rpx;}
-.status-box .status-text{margin-bottom: 20rpx;}
-.status-box .status-text text{font-size: 40rpx; font-weight: 700;}
-.status-box .time-countdown{font-size: 32rpx;}
-.tips-box{border-bottom: 12rpx solid #f2f2f2; padding: 25rpx; margin-bottom: 20rpx;}
-.tips-box .tips-title{padding-bottom: 20rpx; border-bottom: 2rpx solid #f2f2f2;}
-.tips-box .tips-title text{font-size: 32rpx; color: #797979;}
-.tips-box .tips-list{margin: 20rpx 0;}
-.tips-box .tips-list view{font-size: 28rpx; color: #797979;}
-.tips-box .tips-list view::before{content: ' '; display: inline-block; width: 10rpx; height: 10rpx; border-radius: 50%; background-color: #797979; margin-right: 20rpx; vertical-align: middle;}
-.tips-box .operation-box{text-align: right;}
-.tips-box .operation-box text{width: 140rpx; height: 40rpx; font-size: 26rpx; color: #333; display: inline-block; text-align: center; line-height: 40rpx; border-radius: 8rpx; border: 2rpx solid #797979; margin-right: 20rpx;}
-.tips-box .operation-box text.revoke{color: #FF3300; border-color: #FF3300;}
-.refund-info .info-title{border-bottom: 2rpx solid #f2f2f2; padding: 0 25rpx 20rpx 25rpx; font-size: 32rpx;}
+.tips{background-color: #f9f9f9; padding:  25rpx 25rpx 0;}
+.tips .tips-item{font-size: 26rpx; color: #333; line-height: 2em;}
+.tips .tips-btn{text-align: right;}
+.tips .tips-btn text{font-size: 28rpx; display: inline-block; border: 2rpx solid #333; padding: 8rpx 20rpx; border-radius: 6rpx; margin: 20rpx 0 20rpx 20rpx;}
+.express-info .express-title{font-size: 36rpx; color: #000; line-height: 3em; border-bottom: 1px solid #e4e4e4; padding-left: 25rpx;}
+.express-info .express-title::before{content: '*'; color: #f00;}
+.express-info .express-item{display: flex; align-items: center; font-size: 30rpx; height: 100rpx; border-bottom: 1px solid #e4e4e4;}
+.express-info .express-item .express-key{font-weight: 700; border-right: 2rpx solid #aaa; width: 200rpx; text-align: center; color: #515151;}
+.express-info .express-item .express-value{flex: 1;}
+.express-info .express-value input{padding-left: 20rpx;}
+.refund-info .info-title{border-bottom: 2rpx solid #f2f2f2; padding: 25rpx; font-size: 32rpx;}
 .refund-info .info-items{padding: 0 25rpx;}
 .refund-info .refund-goods{padding:25rpx; border-bottom: 2rpx solid #f2f2f2; display: flex; align-items: center; margin-bottom: 20rpx;}
 .refund-info .refund-goods .refund-img{width: 74rpx; height: 74rpx; text-align: center; line-height: 74rpx; margin-right: 20rpx;}
-.refund-info .refund-goods text{flex: 1; font-size: 30rpx;}
 .refund-info .refund-img image{width: 100%; height: 100%;}
 .refund-info .info-key{font-size: 28rpx; color: #1b1b1b;}
 .refund-info .info-value{font-size: 28rpx; color: #989898;}
@@ -35,14 +31,7 @@
 .reply-items .user-apply{font-size: 28rpx; color: #018BE6; margin: 10rpx 0;}
 .reply-items .user-apply text{color: #949494;}
 .apply-btn{font-size: 26rpx; color: #018BE6; text-align: right; margin-bottom: 20rpx;}
-
-
-
-
-
-
-
-
+.confirm{color: #fff; background-color: rgb(255, 103, 0); border: 0; border-radius: 0;}
 
 
 

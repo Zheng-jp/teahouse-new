@@ -1,24 +1,18 @@
-// pages/apply_after_sales/apply_after_sales.js
-const regeneratorRuntime = require('../../utils/regenerate.js');
+// aftersale/pages/aftersale_finish/aftersale_finish.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    height:null,
-  
 
   },
- 
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    var height = wx.getSystemInfoSync().windowHeight;
-     that.setData({ height: height});
+
   },
 
   /**

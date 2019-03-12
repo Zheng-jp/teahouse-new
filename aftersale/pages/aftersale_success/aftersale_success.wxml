@@ -1,0 +1,71 @@
+<view class="wrapper">
+    <view class="tips">
+        <view class="tips-item">您已成功发起退款申请，如双方协商确认属实，请将商品寄还回商家，商家获得商品后，查明属实，即可退款；</view>
+        <view class="tips-item">寄还地址：北京市朝阳区天鹅湾小区5号楼3单元201北京市朝阳区天鹅湾小区5号楼3单元201     刘德华   13922830809</view>
+        <view class="tips-btn">
+            <text class="aftersale-finish">确认售后完成</text>
+            <text class="aftersale-revoke">撤销申请</text>
+        </view>
+    </view>
+    <view class="express-info">
+        <view class="express-title">填写寄回的快递单号</view>
+        <view class="express-item">
+            <view class="express-key">快递公司</view>
+            <view class="express-value">
+                <input type="text" />
+            </view>
+        </view>
+        <view class="express-item">
+            <view class="express-key">快递单号</view>
+            <view class="express-value">
+                <input type="text" />
+            </view>
+        </view>
+    </view>
+    <view class="refund-info">
+        <view class="info-title">退款信息</view>
+        <view class="refund-goods">
+            <view class="refund-img">
+                <image src="/images/img1.png" />
+            </view>
+            <text>商品名称</text>
+        </view>
+        <view class="info-items">
+            <view class="info-item">
+                <text class="info-key">申请时间：</text>
+                <text class="info-value">2019-03-08</text>
+            </view>
+            <view class="info-item">
+                <text class="info-key">退款金额：</text>
+                <text class="info-value">¥80.0</text>
+            </view>
+            <view class="info-item">
+                <text class="info-key">退款编号：</text>
+                <text class="info-value">8586868686863</text>
+            </view>
+            <view class="info-item">
+                <text class="info-key">退款原因：</text>
+                <text class="info-value">退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因</text>
+            </view>
+            <view class="info-item">
+                <image src="/images/img1.png" />
+                <image src="/images/img1.png" />
+                <image src="/images/img1.png" />
+            </view>
+            <view class="reply-items">
+                <view class="official">
+                    <view class="official-left">
+                        <image src="/images/img2.png" />
+                        <view>官方回复</view>
+                    </view>
+                    <view class="official-right">请耐心等待商家处理，您可再联系：13884885868</view>
+                </view>
+                <view class="user-apply">
+                    我的回复：<text>就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款</text>
+                </view>
+            </view>
+            <view class="apply-btn">我要回复</view>
+        </view>
+    </view>
+    <button class="confirm">确定</button>
+</view>
