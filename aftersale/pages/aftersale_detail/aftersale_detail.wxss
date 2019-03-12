@@ -21,6 +21,7 @@
 .refund-info .info-items{padding: 0 25rpx;}
 .refund-info .refund-goods{padding:25rpx; border-bottom: 2rpx solid #f2f2f2; display: flex; align-items: center; margin-bottom: 20rpx;}
 .refund-info .refund-goods .refund-img{width: 74rpx; height: 74rpx; text-align: center; line-height: 74rpx; margin-right: 20rpx;}
+.refund-info .refund-goods text{flex: 1; font-size: 30rpx;}
 .refund-info .refund-img image{width: 100%; height: 100%;}
 .refund-info .info-key{font-size: 28rpx; color: #1b1b1b;}
 .refund-info .info-value{font-size: 28rpx; color: #989898;}

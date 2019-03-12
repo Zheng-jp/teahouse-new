@@ -1,13 +1,13 @@
 <view class="wrapper">
 	<view class="swiper-tab">
-		<block wx:for="{{navNameList}}">
+		<block wx:for="{{navNameList}}" wx:key="{{item}}">
 			<view class="swiper-tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" bindtap="clickTab">{{item}}</view>
 		</block>
 	</view>
 	<swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
-		<swiper-item wx:for="{{navNameList}}">
+		<swiper-item wx:for="{{navNameList}}" wx:key="">
 			<scroll-view class="scroll-items" scroll-y>
-				<view class="item" bindtap="checkDetail" wx:for="{{dataList}}" data-id="{{item.id}}" data-status="{{item.status}}">
+				<view class="item" bindtap="checkDetail" wx:for="{{dataList}}" wx:key="{{item.id}}" data-id="{{item.id}}" data-status="{{item.status}}">
 					<view class="item-top clearfix">
 						<view class="tb-num fl">服务编号：{{item.sale_order_number}}</view>
 						<view class="tb-status fr">
