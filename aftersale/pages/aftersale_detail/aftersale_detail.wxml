@@ -1,16 +1,15 @@
 <view class="wrapper">
     <view class="status-box">
         <view class="status-text">
-            <text>请等待商家处理</text>
-            <text>商已拒绝理，您需要及时处理</text>
-            <text>您已成功撤销售后/退款申请</text>
+            <text wx:if="{{status==1}}">请等待商家处理</text>
+            <text wx:elif="{{status==5}}">商家已拒绝，您需要及时处理</text>
         </view>
         <view class="time-countdown">还剩余{{countDownTime}}</view>
     </view>
     <view class="tips-box">
         <view class="tips-title">
-            <text>您已成功发起退款申请，请耐心等待商家处理</text>
-            <text>平台已拒绝，详情查阅官方回复</text>
+            <text wx:if="{{status==1}}">您已成功发起退款申请，请耐心等待商家处理</text>
+            <text wx:elif="{{status==5}}">平台已拒绝，详情查阅官方回复</text>
         </view>
         <view class="tips-list">
             <view>平台同意后，请按照给出的退货地址退货，并请记录退货运单号</view>
@@ -23,7 +22,8 @@
         </view>
     </view>
     <view class="refund-info">
-        <view class="info-title">退款信息</view>
+        <view class="info-title" wx:if="{{dataObj.is_return_goods==2}}">退款退货信息</view>
+        <view class="info-title" wx:else>换货信息</view>
         <view class="refund-goods">
             <view class="refund-img">
                 <image src="/images/img1.png" />

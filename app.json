@@ -67,7 +67,8 @@
       "root": "aftersale/pages",
       "pages": [
         "aftersale_detail/aftersale_detail",
-        "aftersale_success/aftersale_success"
+        "aftersale_success/aftersale_success",
+        "aftersale_finish/aftersale_finish"
       ]
     }
   ],

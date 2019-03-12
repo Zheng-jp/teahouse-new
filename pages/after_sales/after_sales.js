@@ -91,8 +91,9 @@ Page({
       myNavigateTo('/aftersale/pages/aftersale_detail/aftersale_detail', id, status);
     }else if(status == 2 || status == 3){
       myNavigateTo('/aftersale/pages/aftersale_success/aftersale_success', id, status);
+    }else if(status == 4){
+      myNavigateTo('/aftersale/pages/aftersale_finish/aftersale_finish', id, status);
     }
-    
   },
 
   /**

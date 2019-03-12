@@ -1,4 +1,5 @@
 // aftersale/pages/aftersale_detail/aftersale_detail.js
+const app = getApp();
 function countDown(endTime, _this){
   var currTime = new Date().getTime(),
       timeDeff = endTime - currTime,
@@ -15,6 +16,7 @@ function addZero(num){
   return num > 10 ? num : '0' + num;
 }
 
+
 Page({
 
   /**
@@ -23,18 +25,42 @@ Page({
   data: {
     endTime: 1553164429000,
     countDownTime: '',
-    
+    id: null,
+    status: null,
+    dataObj: {},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
     var _this = this;
+    _this.setData({
+      id: options.id,
+      status: options.status
+    })
+    wx.request({
+      url: app.globalData.tiltes + 'after_sale_information_return',
+      method: 'POST',
+      data: {
+        after_sale_id: options.id
+      },
+      success: function(res){
+        console.log('success', res);
+        if(res.data.status == 1){
+          _this.setData({
+            dataObj: res.data.data
+          })
+        }
+      },
+      fail: function(res){
+        console.log('fail', res);
+      }
+    })
     setInterval(function(){
-      countDown(_this.data.endTime, _this);
+      countDown(_this.data.dataObj.future_time*1000, _this);
     }, 300);
+
   },
 
   /**
