@@ -3,23 +3,34 @@
         <view class="status-text">
             <text wx:if="{{status==1}}">请等待商家处理</text>
             <text wx:elif="{{status==5&&whoHandle==3}}">商家已拒绝，您需要及时处理</text>
+            <text wx:elif="{{status==5&&whoHandle==2}}">退货退款/换货关闭</text>
             <text wx:elif="{{status==5&&whoHandle==1}}">您已成功撤销售后/退款申请</text>
         </view>
-        <view class="time-countdown">还剩余{{countDownTime}}</view>
+        <view class="time-countdown" wx:if="{{status==5&&whoHandle==1}}">{{revokeTime}}</view>
+        <view class="time-countdown" wx:elif="{{status==5&&whoHandle==2}}">{{revokeTime}}</view>
+        <view class="time-countdown" wx:else>还剩余{{countDownTime}}</view>
     </view>
     <view class="tips-box">
         <view class="tips-title">
             <text wx:if="{{status==1}}">您已成功发起退款申请，请耐心等待商家处理</text>
             <text wx:elif="{{status==5&&whoHandle==3}}">平台已拒绝，详情查阅官方回复</text>
+            <text wx:elif="{{status==5&&whoHandle==2}}">平台已拒绝，详情查阅官方回复</text>
             <text wx:elif="{{status==5&&whoHandle==1}}">您已成功发起撤销申请</text>
         </view>
         <view class="tips-list">
-            <view>平台同意后，请按照给出的退货地址退货，并请记录退货运单号</view>
-            <view>如平台拒绝，您可以修改申请后再次发起，商家会重新处理</view>
-            <view>平台超过5个工作日后超时未处理，退货申请将达成，请按系统给的退货地址退货</view>
+            <block wx:if="{{status==5&&whoHandle==2}}">
+                <view>因您超时未处理，本次申请关闭</view>
+                <view>如您的问题未解决，您可以重新发起申请</view>
+            </block>
+            <block wx:else>
+                <view>平台同意后，请按照给出的退货地址退货，并请记录退货运单号</view>
+                <view>如平台拒绝，您可以修改申请后再次发起，商家会重新处理</view>
+                <view>平台超过5个工作日后超时未处理，退货申请将达成，请按系统给的退货地址退货</view>
+            </block>
         </view>
         <view class="operation-box">
             <text wx:if="{{status==5&&whoHandle==1}}">已撤销</text>
+            <text wx:elif="{{status==5&&whoHandle==2}}">已撤销</text>
             <block wx:else>
                 <text>修改申请</text>
                 <text class="revoke" bindtap="revoke">撤销申请</text>
@@ -71,7 +82,14 @@
                     </view>
                 </block>
             </view>
-            <view class="apply-btn">我要回复</view>
+            <view class="apply-btn" bindtap="switchReplybox">我要回复</view>
+        </view>
+    </view>
+    <view class="reply-container {{switchReplyBoxTag?'show-reply':''}}">
+        <input type="text" class="reply-input" focus="{{facusTag}}" bindblur="switchReplybox" />
+        <view class="reply-btn-box">
+            <text bindtap="">发送</text>
+            <text>取消</text>
         </view>
     </view>
 </view>

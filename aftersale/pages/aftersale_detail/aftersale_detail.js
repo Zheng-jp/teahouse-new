@@ -13,7 +13,7 @@ function countDown(endTime, _this){
 }
 // 时间戳转换
 function timeTrans(date){
-  var date = new Date(1552356735*1000);
+  var date = new Date(date*1000);
   var Y = date.getFullYear();
   var M = date.getMonth() + 1;
   var D = date.getDate();
@@ -39,11 +39,31 @@ Page({
     dataObj: {},
     operationTime: '',
     whoHandle: null,
+    revokeTime: '',
+    switchReplyBoxTag: false,
+    facusTag: false,
+  },
+
+  // sendReply: function(){
+  //     wx.request({
+  //       url: app.globalData.tiltes + 'buyer_replay',
+  //       method: 'POST',
+  //       data: {
+
+  //       }
+  //     })
+  // },
+
+  switchReplybox: function(){
+    this.setData({
+      switchReplyBoxTag: !this.data.switchReplyBoxTag,
+      facusTag: !this.data.facusTag
+    })
   },
 
   revoke: function(){
-    var _this = this;
     // 撤销申请
+    var _this = this;
     wx.showModal({
       title: '提示',
       content: '是否撤销申请？',
@@ -57,6 +77,22 @@ Page({
             },
             success: function(res){
               console.log('撤销成功', res);
+              wx.showToast({
+                title: '撤销成功',
+                icon: 'success',
+                duration: 1500,
+                success: function(){
+                  wx.redirectTo({
+                    url: '/pages/after_sales/after_sales',
+                    success: function(){
+                      console.log('撤销成功跳转');
+                    },
+                    fail: function(){
+                      console.log('撤销成功跳转失败');
+                    }
+                  })
+                }
+              })
             },
             fail: function(){
               console.log('撤销失败');
@@ -87,11 +123,17 @@ Page({
       success: function(res){
         console.log('success', res);
         if(res.data.status == 1){
+          var data = res.data.data;
           _this.setData({
-            dataObj: res.data.data,
-            operationTime: timeTrans(res.data.data.operation_time),
-            whoHandle: res.data.data.who_handle
+            dataObj: data,
+            operationTime: timeTrans(data.operation_time),
+            whoHandle: data.who_handle
           })
+          if(data.handle_time){
+            _this.setData({
+              revokeTime: timeTrans(data.handle_time)
+            })
+          }
         }
       },
       fail: function(res){
