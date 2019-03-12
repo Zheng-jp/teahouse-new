@@ -162,7 +162,20 @@ Page({
                         title: res.data.info, 
                       })
                     }
-                  
+                    wx.navigateTo({
+                      url: '../integral_order/integral_order',
+                      success: function (res) {
+                      
+                      },
+                      fail: function () {
+                       
+                      },
+                      complete: function () {
+                      
+                      }
+                
+                
+                    })
                   },
                   fail: function () {
             

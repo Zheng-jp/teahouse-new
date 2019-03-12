@@ -105,9 +105,9 @@ Page({
       if(orderItems[i].parts_order_number == indexs){
         orderItems.splice(i, 1);
         wx.request({
-          url: app.globalData.tiltes + 'integaral_collections',
+          url: app.globalData.tiltes + 'take_delivery',
           data: {
-            open_id: app.globalData.gmemberid,
+            member_id: app.globalData.member_id,
             parts_order_number:indexs
           },
           method: "post",
@@ -144,9 +144,9 @@ Page({
     var indexs = e.currentTarget.dataset.id;
     var orderItems = that.data.order;
     wx.request({
-      url: app.globalData.tiltes + 'option_add',
+      url: app.globalData.tiltes + 'attention_to',
       data: {
-        order_num:indexs,
+        parts_order_number:indexs,
       },
       method: "post",
       // header: {

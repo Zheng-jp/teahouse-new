@@ -13,7 +13,7 @@
 	<view class='content'>
 		<view class='order_list' wx:for="{{order}}">
 		
-			<view wx:if="{{item.status==1}}">
+			<view wx:if="{{item.status==1||item.status==2}}">
 				<view bindtap="go_order_detail" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
 					<view class='box_list_one'>
 						<view>订单编号：{{item.parts_order_number}} </view>
@@ -42,6 +42,38 @@
 				<view class='box_list_four'>
 					<view>
 						<view class='remind_delivery cancel type_button' bindtap="tip_order" data-id="{{item.parts_order_number}}">提醒发货</view>
+					</view>
+				</view>
+			</view>
+			<view wx:elif="{{item.status==5}}">
+				<view bindtap="go_order_detail" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
+					<view class='box_list_one'>
+						<view>订单编号：{{item.parts_order_number}} </view>
+						<view class='static'>交易成功</view>
+					</view>
+						<view class='box_list_two' >
+						<view class='img'>
+							<image src='{{url}}{{item.goods_show_image}}' mode='aspectFill'></image>
+						</view>
+						<view class='good_infor'>
+							<view class='good_name'>{{item.parts_gogoods_show_imageods_name}}</view>
+							<view class='good_selling'>{{item.goods_describe}}</view>
+							<view class='good_monye'>
+								<view class='good_uite'>
+									<image src='{{url}}{{member_grade_img}}' class='user_img'></image>
+									<text class='uite'>{{item.integral}}积分</text>
+								</view>
+								<view class='num'>x{{item.order_quantity}}</view>
+							</view>
+						</view>
+					</view>
+					<view class='box_list_three'>
+						<view><text>共{{item.all_numbers}}件商品</text><text>合计：￥{{item.all_order_real_pay}}</text> </view>
+					</view>
+				</view>
+				<view class='box_list_four'>
+					<view>
+						<view class='cancel type_button'>已完成</view>
 					</view>
 				</view>
 			</view>

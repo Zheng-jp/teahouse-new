@@ -198,6 +198,7 @@
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
+    background:#F8F8F8;
 
   }
   .footbar_ico{
