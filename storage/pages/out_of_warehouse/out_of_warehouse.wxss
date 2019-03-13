@@ -1,7 +1,7 @@
 /* storage/pages/out_of_warehouse/out_of_warehouse.wxss */
 view{overflow: initial;}
 page{background-color: #fff;}
-.header{display: flex; align-items: center; justify-content: space-around; padding: 20rpx; border-bottom: 10rpx solid #f2f2f2;}
+.header{display: flex; align-items: center; justify-content: space-around; padding: 20rpx;}
 .header .tea-img-box{width: 80rpx; height: 80rpx;}
 .header .tea-img-box image{width: 100%; height: 100%;}
 .header .tea-name{font-size: 28rpx; color: #797979; font-weight: 700;}
@@ -13,7 +13,7 @@ page{background-color: #fff;}
 .real-time-stock .stock-num{color: #fff; font-size: 26rpx; background-color: #811006; border-radius: 4rpx; padding: 4rpx 12rpx; border-radius: 6rpx;}
 .icon-more{width: 14rpx; height: 24rpx; margin-left: 10rpx;}
 .stock-container{display: flex; align-items: center;}
-.list-item{display: flex; align-items: center; justify-content: space-between; padding: 20rpx; border-bottom: 10rpx solid #f2f2f2;}
+.list-item{display: flex; align-items: center; justify-content: space-between; padding: 30rpx 20rpx;}
 .list-item .list-key{font-size: 26rpx; font-weight: 700; color: #00a0e6;}
 .list-item .list-key .explain{display: inline-block; width: 30rpx; height: 30rpx; text-align: center; line-height: 30rpx; border-radius: 50%; background-color: #bbb; color: #fff; margin-left: 6rpx; font-size: 24rpx;}
 .list-item .list-value{font-size: 26rpx; color: #333;}

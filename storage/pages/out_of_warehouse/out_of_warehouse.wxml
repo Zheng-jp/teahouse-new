@@ -51,13 +51,13 @@
         </view>
         <view class="list-value">￥40000/件×20</view>
     </view>
-    <view class="list-item">
+    <!-- <view class="list-item">
         <view class="list-key">
             出仓属性
             <text class="explain">?</text>
         </view>
         <view class="list-value">整存整取</view>
-    </view>
+    </view> -->
     <view class="list-item">
         <view class="list-key">
             出仓方式
