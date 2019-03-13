@@ -7,7 +7,7 @@
 	<swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
 		<swiper-item wx:for="{{navNameList}}" wx:key="">
 			<scroll-view class="scroll-items" scroll-y>
-				<view class="item" bindtap="checkDetail" wx:for="{{dataList}}" wx:key="{{item.id}}" data-id="{{item.id}}" data-status="{{item.status}}">
+				<view class="item" bindtap="checkDetail" wx:for="{{dataList}}" wx:key="{{item.id}}" data-id="{{item.id}}" data-handletag="{{item.who_handle}}" data-status="{{item.status}}">
 					<view class="item-top clearfix">
 						<view class="tb-num fl">服务编号：{{item.sale_order_number}}</view>
 						<view class="tb-status fr">

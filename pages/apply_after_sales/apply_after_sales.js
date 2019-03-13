@@ -7,117 +7,117 @@ Page({
    * 页面的初始数据
    */
   data: {
-    height:null,
-    up_img_lenght:true,
+    height: null,
+    up_img_lenght: true,
     url: app.globalData.img_url,
-    tempFilePaths:[],
-    img:[],
-    goods:[],
-    order_id:null,
-    is_return_goods:2,
-
+    tempFilePaths: [],
+    img: [],
+    goods: [],
+    order_id: null,
+    is_return_goods: 2,
+    amend: null,
   },
-  up_img:function(e){
+  up_img: function (e) {
     var that = this;
-    var id=e.currentTarget.dataset.id;
+    var id = e.currentTarget.dataset.id;
 
-    if(that.data.img.length>3){
+    if (that.data.img.length > 3) {
       that.setData({
-        up_img_lenght:false
+        up_img_lenght: false
       })
-      
+
       return false;
     }
-    else{
+    else {
       wx.chooseImage({
         count: 3, // 最多可以选择的图片张数，默认9
         sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
         sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
-        success: function(res){
-          for(var i=0;i<that.data.goods.length;i++){
-            if(id==that.data.goods[i].id){
-                   //  添加字段到等级数组
-                  // for (var index in that.data.routers) {
-                    var img = "goods[" + i + "].img";
-                    that.setData({
-                      [img]: res.tempFilePaths,
-                    })
-            
-                  // }
+        success: function (res) {
+          for (var i = 0; i < that.data.goods.length; i++) {
+            if (id == that.data.goods[i].id) {
+              //  添加字段到等级数组
+              // for (var index in that.data.routers) {
+              var img = "goods[" + i + "].img";
+              that.setData({
+                [img]: res.tempFilePaths,
+              })
+
+              // }
             }
           }
           // that.setData({
           //   img:res.tempFilePaths
           // })
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths
-        that.setData({tempFilePaths: tempFilePaths});
+          var tempFilePaths = res.tempFilePaths
+          that.setData({ tempFilePaths: tempFilePaths });
         },
-        fail: function() {
+        fail: function () {
           // fail
         },
-        complete: function() {
+        complete: function () {
           // complete
         }
       })
     }
-   
-  },
-   uploadimg:function(data){
-    var that=this,
-        i=data.i?data.i:0,//当前上传的哪张图片
-        success=data.success?data.success:0,//上传成功的个数
-        fail=data.fail?data.fail:0;//上传失败的个数
-     wx.uploadFile(
-       {
-           url: data.url, 
-           filePath: data.path[i],
-           name: 'file',//这里根据自己的实际情况改
-           formData:null,//这里是上传图片时一起上传的数据
-           success: (resp) => {
-              success++;//图片上传成功，图片上传成功的变量+1
-               //这里可能有BUG，失败也会执行这里,所以这里应该是后台返回过来的状态码为成功时，这里的success才+1
-           },
-           fail: (res) => {
-               fail++;//图片上传失败，图片上传失败的变量+1
-               console.log('fail:'+i+"fail:"+fail);
-           },
-           complete: () => {
-               console.log(i);
-               i++;//这个图片执行完上传后，开始上传下一张
-           if(i==data.path.length){   //当图片传完时，停止调用          
-               console.log('执行完毕');
-               console.log('成功：'+success+" 失败："+fail);
-           }else{//若图片还没有传完，则继续调用函数
-               console.log(i);
-               data.i=i;
-               data.success=success;
-               data.fail=fail;
-               that.uploadimg(data);
-           }
-               
-           }
-       });
-   },
 
-   radioChange:function(e){
-      var that=this;
-       that.setData({
-        is_return_goods:e.detail.value
-       })
-   },
+  },
+  uploadimg: function (data) {
+    var that = this,
+      i = data.i ? data.i : 0,//当前上传的哪张图片
+      success = data.success ? data.success : 0,//上传成功的个数
+      fail = data.fail ? data.fail : 0;//上传失败的个数
+    wx.uploadFile(
+      {
+        url: data.url,
+        filePath: data.path[i],
+        name: 'file',//这里根据自己的实际情况改
+        formData: null,//这里是上传图片时一起上传的数据
+        success: (resp) => {
+          success++;//图片上传成功，图片上传成功的变量+1
+          //这里可能有BUG，失败也会执行这里,所以这里应该是后台返回过来的状态码为成功时，这里的success才+1
+        },
+        fail: (res) => {
+          fail++;//图片上传失败，图片上传失败的变量+1
+          console.log('fail:' + i + "fail:" + fail);
+        },
+        complete: () => {
+          console.log(i);
+          i++;//这个图片执行完上传后，开始上传下一张
+          if (i == data.path.length) {   //当图片传完时，停止调用          
+            console.log('执行完毕');
+            console.log('成功：' + success + " 失败：" + fail);
+          } else {//若图片还没有传完，则继续调用函数
+            console.log(i);
+            data.i = i;
+            data.success = success;
+            data.fail = fail;
+            that.uploadimg(data);
+          }
+
+        }
+      });
+  },
+
+  radioChange: function (e) {
+    var that = this;
+    that.setData({
+      is_return_goods: e.detail.value
+    })
+  },
   formSubmit: function (e) {
     var that = this;
     console.log(111);
-    var imgs=[];
-    if(e.detail.value.content!=''){
-      for(var i=0;i<that.data.tempFilePaths.length;i++){
+    var imgs = [];
+    if (e.detail.value.content != '') {
+      for (var i = 0; i < that.data.tempFilePaths.length; i++) {
         wx.uploadFile({
           url: app.globalData.tiltes + 'after_sale_upload',
           filePath: that.data.tempFilePaths[i],
           name: 'img',
           formData: e.detail.value,
-          success:function(res){
+          success: function (res) {
             var jsonstr = JSON.parse(res.data);
             imgs.push(jsonstr.data.images_id);
           }
@@ -128,16 +128,12 @@ Page({
           url: app.globalData.tiltes + 'apply_after_sale',
           data: {
             member_id: app.globalData.member_id,
-            order_id:that.data.order_id,
-            after_image_ids:imgs,
-            return_reason:e.detail.value.content,
-            is_return_goods:that.data.is_return_goods
+            order_id: that.data.order_id,
+            after_image_ids: imgs,
+            return_reason: e.detail.value.content,
+            is_return_goods: that.data.is_return_goods
           },
           method: "post",
-          // header: {
-          //   "Content-Type": "application/json" // 默认值
-      
-          // },
           success: function (res) {
             wx.navigateBack();
           },
@@ -145,91 +141,84 @@ Page({
             wx.request({
               url: app.globalData.tiltes + 'after_sale_images_del',
               data: {
-                id:that.data.order_id,
+                id: that.data.order_id,
               },
               method: "post",
-              // header: {
-              //   "Content-Type": "application/json" // 默认值
-          
-              // },
-              success: function (res) {
-              },
-              fail: function () {
-                
-             
-              },
-              complete: function (res) {
-               
-              }
-          
+              success: function (res) { },
+              fail: function () { },
+              complete: function (res) { }
             });
-         
           },
           complete: function (res) {
             wx.showToast({
-              title:res.data.info,
+              title: res.data.info,
               icon: 'none'
             })
           }
-      
         });
-       }, 1000) 
-    
+      }, 1000)
+
     }
-    else{
-       wx.showToast({
-          title:'申请内容不能为空',
-          icon: 'none'
-        })
+    else {
+      wx.showToast({
+        title: '申请内容不能为空',
+        icon: 'none'
+      })
     }
-   
+
   },
-  
-  
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
+    console.log(options)
+    var that = this;
     var height = wx.getSystemInfoSync().windowHeight;
-     that.setData({ height: height});
+    that.setData({ height: height });
     that.setData({
-      order_id:options.title
+      order_id: options.title
     })
+    if (options.amend) {
+      that.setData({
+        amend: options.amend
+      })
+    }
     wx.request({
       url: app.globalData.tiltes + 'after_sale_order_return',
       data: {
-        'id':options.title
+        'id': options.title
       },
       method: "post",
       // header: {
       //   "Content-Type": "json" // 默认值
-  
+
       // },
       success: function (res) {
-       
+
         that.setData({
           goods: res.data.data,
         });
-        
-          //  添加字段到等级数组
-          // for (var index in that.data.routers) {
-          //   var sexParam = "routers[" + index + "].url";
-          //   that.setData({
-          //     [sexParam]: app.globalData.img_url,
-          //   })
-    
-          // }
-         
-  
+
+        //  添加字段到等级数组
+        // for (var index in that.data.routers) {
+        //   var sexParam = "routers[" + index + "].url";
+        //   that.setData({
+        //     [sexParam]: app.globalData.img_url,
+        //   })
+
+        // }
+
+
       },
       fail: function () {
-  
+
       },
       complete: function () {
         wx.hideLoading()
       }
-  
+
     });
   },
 

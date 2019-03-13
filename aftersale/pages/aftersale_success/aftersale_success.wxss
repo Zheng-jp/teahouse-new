@@ -8,6 +8,7 @@
 .tips .tips-item{font-size: 26rpx; color: #333; line-height: 2em;}
 .tips .tips-btn{text-align: right;}
 .tips .tips-btn text{font-size: 28rpx; display: inline-block; border: 2rpx solid #333; padding: 8rpx 20rpx; border-radius: 6rpx; margin: 20rpx 0 20rpx 20rpx;}
+.tips .tips-btn text.aftersale-revoke{background-color: #f00; border: 0; color: #fff;}
 .express-info .express-title{font-size: 36rpx; color: #000; line-height: 3em; border-bottom: 1px solid #e4e4e4; padding-left: 25rpx;}
 .express-info .express-title::before{content: '*'; color: #f00;}
 .express-info .express-item{display: flex; align-items: center; font-size: 30rpx; height: 100rpx; border-bottom: 1px solid #e4e4e4;}
@@ -30,9 +31,14 @@
 .reply-items .official .official-right{flex: 1; font-size: 24rpx;}
 .reply-items .user-apply{font-size: 28rpx; color: #018BE6; margin: 10rpx 0;}
 .reply-items .user-apply text{color: #949494;}
-.apply-btn{font-size: 26rpx; color: #018BE6; text-align: right; margin-bottom: 20rpx;}
+.apply-btn{font-size: 26rpx; color: #018BE6; text-align: right; margin-bottom: 50rpx;}
 .confirm{color: #fff; background-color: rgb(255, 103, 0); border: 0; border-radius: 0;}
-
+.reply-container{position: absolute; left: 0; bottom: 0; width: 100%; height: 90rpx; padding: 0 30rpx; box-sizing: border-box; display: none; align-items: center; justify-content: space-between; background-color: #fafafa;}
+.reply-container .reply-btn-box{width: 200rpx; text-align: right;}
+.reply-container .reply-btn-box text{color: #018BE6; font-size: 32rpx;}
+.reply-container .reply-btn-box text:last-of-type{margin-left: 20rpx;}
+.reply-container .reply-input{background-color: #fff; height: 85%; flex: 1; border-radius: 8rpx; margin-right: 10rpx;}
+.show-reply{display: flex;}
 
 
 
