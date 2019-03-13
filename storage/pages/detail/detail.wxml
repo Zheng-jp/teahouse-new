@@ -58,7 +58,7 @@
             cursor-spacing="15"
             auto-height="true"
             focus="{{releaseFocus}}"
-            placeholder="" bindinput="bindinput" value="{{repay_content}}">{{repay_content}}</textarea>
+            placeholder="" bindinput="bindinputs" value="{{repay_content}}"></textarea>
             <view class="submit" bindtap='comments'>发送</view>
             <view class="submit" bindtap='close'>取消</view>
             </view>

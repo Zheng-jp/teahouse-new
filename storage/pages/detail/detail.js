@@ -36,7 +36,7 @@ Page({
     })
   },
   // 输入框输入事件
-  bindinput: function (e) {
+  bindinputs: function (e) {
     var that=this;
     that.setData({
       repay_content:e.detail.value

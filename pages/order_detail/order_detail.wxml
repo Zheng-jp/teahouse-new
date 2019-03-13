@@ -125,7 +125,7 @@
                 <view class='box_list_four'>
                     <view class="flex">
                         <view class="courier">顺丰：799394904004040</view>
-                        <!-- <view class='remind_delivery cancel type_button'>确认收货</view> -->
+                         <view class="more_look">查看物流></view>
                     </view>
                 </view>
             </view>
@@ -205,6 +205,7 @@
                             <text class='uite'>￥{{item.goods_money}}/片</text>
                         </view>
                         <view class='num'>x{{item.order_quantity}}</view>
+                    
                     </view>
                 </view>
                
