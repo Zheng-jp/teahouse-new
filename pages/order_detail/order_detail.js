@@ -7,43 +7,7 @@ Page({
    */
   data: {
     url: app.globalData.img_url,
-    order:[{
-      all_numbers :1,
-      all_order_real_pay:888,
-      status:3,
-      info:[
-        {
-          goods_describe:"正山小种茶叶",
-          goods_image:"20190117/151452ab36eda1fe8fc0646013b8e766.jpg",
-          parts_goods_name:"正山小种茶叶红茶茶叶特级浓香型红散装600g五虎红茶礼盒装罐装茶",
-          parts_order_number:"201901251551414657101049",
-          goods_money:888,
-          order_quantity:2
-
-  
-        },
-        {
-          goods_describe:"正山小种茶叶",
-          goods_image:"20190117/151452ab36eda1fe8fc0646013b8e766.jpg",
-          parts_goods_name:"正山小种茶叶红茶茶叶特级浓香型红散装600g五虎红茶礼盒装罐装茶",
-          parts_order_number:"201901251551414657101049",
-          goods_money:888,
-          order_quantity:2
-
-  
-        },
-        {
-          goods_describe:"正山小种茶叶",
-          goods_image:"20190117/151452ab36eda1fe8fc0646013b8e766.jpg",
-          parts_goods_name:"正山小种茶叶红茶茶叶特级浓香型红散装600g五虎红茶礼盒装罐装茶",
-          parts_order_number:"201901251551414657101049",
-          goods_money:888,
-          order_quantity:2
-
-  
-        },
-      ]
-    }]
+    order:[]
   },
 
 
@@ -64,10 +28,14 @@ Page({
 
     // },
     success: function (res) {
+      var data=res.data.data;
+      data.create_time=app.formatDate(data.create_time);
+      data.pay_time=app.formatDate(data.pay_time);
+      that.setData({
+        order:data,
+      })
+      
     
-     that.setData({
-      order:res.data.data.data,
-    })
     },
     fail: function () {
    
