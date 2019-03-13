@@ -191,21 +191,20 @@ Page({
         },
         method: "post",
         success: function (res) {
-        console.log(res);
+          console.log(res);
           // that.setData({
           //   goods: res.data.data,
           // });
         },
         fail: function () {
-  
+
         },
         complete: function () {
           wx.hideLoading()
         }
-  
+
       });
-    }
-    else{
+    } else {
       wx.request({
         url: app.globalData.tiltes + 'after_sale_order_return',
         data: {
@@ -214,24 +213,24 @@ Page({
         method: "post",
         // header: {
         //   "Content-Type": "json" // 默认值
-  
+
         // },
         success: function (res) {
-  
+
           that.setData({
             goods: res.data.data,
           });
         },
         fail: function () {
-  
+
         },
         complete: function () {
           wx.hideLoading()
         }
-  
+
       });
     }
-  
+
   },
 
   /**
