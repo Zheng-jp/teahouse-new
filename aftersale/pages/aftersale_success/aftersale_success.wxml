@@ -3,8 +3,11 @@
         <view class="tips-item">您已成功发起退款申请，如双方协商确认属实，请将商品寄还回商家，商家获得商品后，查明属实，即可退款；</view>
         <view class="tips-item">寄还地址：北京市朝阳区天鹅湾小区5号楼3单元201北京市朝阳区天鹅湾小区5号楼3单元201     刘德华   13922830809</view>
         <view class="tips-btn">
-            <text class="aftersale-finish">确认售后完成</text>
-            <text class="aftersale-revoke">撤销申请</text>
+            <text wx:if="{{status==5&&whoHandle==2}}" class="aftersale-revoke">已撤销</text>
+            <block wx:else>
+                <!-- <text class="aftersale-finish">确认售后完成</text> -->
+                <text bindtap="revoke">撤销申请</text>
+            </block>
         </view>
     </view>
     <view class="express-info">
@@ -12,13 +15,13 @@
         <view class="express-item">
             <view class="express-key">快递公司</view>
             <view class="express-value">
-                <input type="text" />
+                <input type="text" bindblur="getExpressComp" value="{{dataObj.buy_express_company}}" />
             </view>
         </view>
         <view class="express-item">
             <view class="express-key">快递单号</view>
             <view class="express-value">
-                <input type="text" />
+                <input type="text" bindblur="getExpressNum" value="{{dataObj.buy_express_number}}" />
             </view>
         </view>
     </view>
@@ -26,46 +29,55 @@
         <view class="info-title">退款信息</view>
         <view class="refund-goods">
             <view class="refund-img">
-                <image src="/images/img1.png" />
+                <image src="https://teahouse.siring.com.cn/uploads/{{dataObj.goods_images}}" />
             </view>
             <text>商品名称</text>
         </view>
         <view class="info-items">
             <view class="info-item">
                 <text class="info-key">申请时间：</text>
-                <text class="info-value">2019-03-08</text>
+                <text class="info-value">{{operationTime}}</text>
             </view>
             <view class="info-item">
                 <text class="info-key">退款金额：</text>
-                <text class="info-value">¥80.0</text>
+                <text class="info-value">¥{{dataObj.application_amount}}</text>
             </view>
             <view class="info-item">
                 <text class="info-key">退款编号：</text>
-                <text class="info-value">8586868686863</text>
+                <text class="info-value">{{dataObj.sale_order_number}}</text>
             </view>
             <view class="info-item">
                 <text class="info-key">退款原因：</text>
-                <text class="info-value">退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因</text>
+                <text class="info-value">{{dataObj.return_reason}}</text>
             </view>
-            <view class="info-item">
-                <image src="/images/img1.png" />
-                <image src="/images/img1.png" />
-                <image src="/images/img1.png" />
+            <view class="info-item" wx:if="{{dataObj.images.length!==0}}">
+                <block wx:for="{{dataObj.images}}" wx:key="">
+                    <image src="https://teahouse.siring.com.cn/uploads/{{item}}" />
+                </block>
             </view>
-            <view class="reply-items">
-                <view class="official">
-                    <view class="official-left">
-                        <image src="/images/img2.png" />
-                        <view>官方回复</view>
+            <view class="reply-items" wx:if="{{dataObj.reply.length!==0}}">
+                <block wx:for="{{dataObj.reply}}" wx:key="">
+                    <view class="official" wx:if="{{item.is_who==1}}">
+                        <view class="official-left">
+                            <image src="/images/img2.png" />
+                            <view>官方回复</view>
+                        </view>
+                        <view class="official-right">{{item.content}}</view>
                     </view>
-                    <view class="official-right">请耐心等待商家处理，您可再联系：13884885868</view>
-                </view>
-                <view class="user-apply">
-                    我的回复：<text>就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款</text>
-                </view>
+                    <view class="user-apply" wx:if="{{item.is_who==2}}">
+                        我的回复：<text>{{item.content}}</text>
+                    </view>
+                </block>
             </view>
-            <view class="apply-btn">我要回复</view>
+            <view class="apply-btn" bindtap="switchReplybox">我要回复</view>
         </view>
     </view>
-    <button class="confirm">确定</button>
+    <button class="confirm" wx:if="{{status!=5&&whoHandle!=2}}" bindtap="sendExpressInfo">确定</button>
+    <view class="reply-container {{switchReplyBoxTag?'show-reply':''}}">
+        <input type="text" class="reply-input" value="{{replyContent}}" focus="{{facusTag}}" bindinput="getReplyCont" bindblur="switchReplybox" />
+        <view class="reply-btn-box">
+            <text bindtap="sendReply">发送</text>
+            <text>取消</text>
+        </view>
+    </view>
 </view>

@@ -87,9 +87,10 @@ Page({
   checkDetail: function(e){
     var id = e.currentTarget.dataset.id;
     var status = e.currentTarget.dataset.status;
-    if(status == 1 || status == 5){
+    var handleTag = e.currentTarget.dataset.handletag;
+    if(status == 1 || (status == 5 && handleTag == 1) || (status == 5 && handleTag == 3)){
       myNavigateTo('/aftersale/pages/aftersale_detail/aftersale_detail', id, status);
-    }else if(status == 2 || status == 3){
+    }else if(status == 2 || status == 3 || (status == 5 && handleTag == 2)){
       myNavigateTo('/aftersale/pages/aftersale_success/aftersale_success', id, status);
     }else if(status == 4){
       myNavigateTo('/aftersale/pages/aftersale_finish/aftersale_finish', id, status);
