@@ -8,7 +8,7 @@ function countDown(endTime, _this){
       Minutes = addZero(parseInt(timeDeff/1000/60%60)),
       Second = addZero(parseInt(timeDeff/1000%60));
   _this.setData({
-    countDownTime: Day + '天' + Hour + '时' + Minutes + '分' + Second + '秒'
+    countDownTime: Day + '天' + Hour + '时' + Minutes + '分'
   })
 }
 // 时间戳转换
@@ -42,19 +42,61 @@ Page({
     revokeTime: '',
     switchReplyBoxTag: false,
     facusTag: false,
+    replyContent: '',
   },
 
-  // sendReply: function(){
-  //     wx.request({
-  //       url: app.globalData.tiltes + 'buyer_replay',
-  //       method: 'POST',
-  //       data: {
+  AmendPetition: function(e){
+    var id = e.target.dataset.id;
+    wx.navigateTo({
+      url: '/pages/apply_after_sales/apply_after_sales?title=' + id + '&amend=1',
+      success: function(res){
+        console.log('修改申请跳转成功', res);
+      },
+      fail: function(res){
+        console.log('修改申请跳转失败', res);
+      }
+    })
+  },
 
-  //       }
-  //     })
-  // },
+  sendReply: function(){
+    // 发送回复
+    var _this = this;
+    wx.request({
+      url: app.globalData.tiltes + 'buyer_replay',
+      method: 'POST',
+      data: {
+        after_sale_id: _this.data.id,
+        content: _this.data.replyContent
+      },
+      success: function(res){
+        console.log('回复成功', res);
+        if(res.data.status == 1){
+          wx.showToast({
+            title: '回复成功',
+            icon: 'success',
+            success: function(){
+              _this.onShow();
+              _this.setData({
+                replyContent: ''
+              });
+            }
+          })
+        }
+      },
+      fail: function(){
+        console.log('回复失败', res);
+      }
+    })
+  },
 
-  switchReplybox: function(){
+  getReplyCont: function(e){
+    var val = e.detail.value;
+    this.setData({
+      replyContent: val
+    })
+  },
+
+  switchReplybox: function(e){
     this.setData({
       switchReplyBoxTag: !this.data.switchReplyBoxTag,
       facusTag: !this.data.facusTag
@@ -82,15 +124,17 @@ Page({
                 icon: 'success',
                 duration: 1500,
                 success: function(){
-                  wx.redirectTo({
-                    url: '/pages/after_sales/after_sales',
-                    success: function(){
-                      console.log('撤销成功跳转');
-                    },
-                    fail: function(){
-                      console.log('撤销成功跳转失败');
-                    }
-                  })
+                  setTimeout(function(){
+                    wx.redirectTo({
+                      url: '/pages/after_sales/after_sales',
+                      success: function(){
+                        console.log('撤销成功跳转');
+                      },
+                      fail: function(){
+                        console.log('撤销成功跳转失败');
+                      }
+                    })
+                  },1600)
                 }
               })
             },
@@ -114,11 +158,29 @@ Page({
       id: options.id,
       status: options.status
     })
+    
+    setInterval(function(){
+      countDown(_this.data.dataObj.future_time*1000, _this);
+    }, 300);
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    var _this = this;
     wx.request({
       url: app.globalData.tiltes + 'after_sale_information_return',
       method: 'POST',
       data: {
-        after_sale_id: options.id
+        after_sale_id: _this.data.id
       },
       success: function(res){
         console.log('success', res);
@@ -140,23 +202,6 @@ Page({
         console.log('fail', res);
       }
     })
-    setInterval(function(){
-      countDown(_this.data.dataObj.future_time*1000, _this);
-    }, 300);
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   /**
