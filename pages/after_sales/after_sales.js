@@ -10,11 +10,14 @@ function getAfterSaleData(_this, url){
     },
     success: function(res){
       console.log('success:', res);
-      if(res.data.status == 1){
+      if(res.data.status == 1 && res.data.data.lenght!== 0){
         _this.setData({
           dataList: res.data.data
         })
-        console.log(_this.data.dataList);
+      }else{
+        _this.setData({
+          dataList: []
+        })
       }
     },
     fail: function(res){
