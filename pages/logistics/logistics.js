@@ -37,7 +37,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'express_hundred',
       data: {
-        by_order_id:921,
+        by_order_id:options.title,
       },
       method: "post",
       // header: {

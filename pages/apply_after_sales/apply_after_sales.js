@@ -184,42 +184,54 @@ Page({
       that.setData({
         amend: options.amend
       })
+      wx.request({
+        url: app.globalData.tiltes + 'after_sale_information_return',
+        data: {
+          'after_sale_id': options.title
+        },
+        method: "post",
+        success: function (res) {
+        console.log(res);
+          // that.setData({
+          //   goods: res.data.data,
+          // });
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
     }
-    wx.request({
-      url: app.globalData.tiltes + 'after_sale_order_return',
-      data: {
-        'id': options.title
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
-      success: function (res) {
-
-        that.setData({
-          goods: res.data.data,
-        });
-
-        //  添加字段到等级数组
-        // for (var index in that.data.routers) {
-        //   var sexParam = "routers[" + index + "].url";
-        //   that.setData({
-        //     [sexParam]: app.globalData.img_url,
-        //   })
-
-        // }
-
-
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
-      }
-
-    });
+    else{
+      wx.request({
+        url: app.globalData.tiltes + 'after_sale_order_return',
+        data: {
+          'id': options.title
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+  
+        // },
+        success: function (res) {
+  
+          that.setData({
+            goods: res.data.data,
+          });
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+  
+      });
+    }
+  
   },
 
   /**

@@ -18,6 +18,12 @@
 .address_content{
     margin-left: 10rpx;
 }
+.more_look{
+  font-size:26rpx;
+color:#BE2306;
+margin-left: 100rpx;
+
+}
 .other_infor{
     display: flex;
     align-items: center;

@@ -123,14 +123,12 @@
                     </view>
                 </view>
                 <view class='box_list_four'>
-                    <view class="flex">
-                        <view class="courier">顺丰：799394904004040</view>
-                         <view class="more_look">查看物流></view>
+                    <view class="flex" style="justify-content:flex-start;">
+                        <view class="courier">{{item.express_name}}：{{item.courier_number}}</view>
+                         <view class="more_look" bindtap="go_logistics" data-id="{{item.id}}">查看物流></view>
                     </view>
                 </view>
-            </view>
-           
-           
+            </view>    
         </view>
         <view wx:elif="{{item.status==6 || item.status==7}}">
             <view class='box_list_one'>
