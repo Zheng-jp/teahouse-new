@@ -48,7 +48,25 @@ Page({
   },
  
 
+  go_logistics: function (event) {
 
+    var that = this;
+    var item = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../logistics/logistics?title=' + event.currentTarget.dataset.id,
+      success: function (res) {
+      
+      },
+      fail: function () {
+       
+      },
+      complete: function () {
+      
+      }
+  
+  
+    })
+  },
   // 追加评价
   go_evaluation: function (event) {
 

@@ -32,11 +32,12 @@ Page({
  
   },
   onLoad: function(options) {
+    var that=this;
     // 页面初始化 options为页面跳转所带来的参数
     wx.request({
       url: app.globalData.tiltes + 'express_hundred',
       data: {
-        by_order_id:921,
+        by_order_id:options.title,
       },
       method: "post",
       // header: {
@@ -44,13 +45,13 @@ Page({
 
       // },
       success: function (res) {
-      console.log(res);
+        console.log(res.data.data);
         //  添加字段到等级数组
         // for (var index in that.data.nav) {
         //   var sexParam = "nav[" + index + "].tab";
-        //   that.setData({
-        //     [sexParam]: index,
-        //   })
+          that.setData({
+            list: res.data.data,
+          })
 
         // }
        

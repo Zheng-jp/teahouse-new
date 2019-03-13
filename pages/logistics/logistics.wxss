@@ -106,7 +106,7 @@
   .list_imgs{
      display: inline-flex;
     position: absolute;
-    left: -28rpx;
+    left: -22rpx;
     top: 40rpx;
     width: 40rpx;
     height: 40rpx;
