@@ -7,9 +7,17 @@ function countDown(endTime, _this){
       Hour = addZero(parseInt(timeDeff/1000/3600%24)),
       Minutes = addZero(parseInt(timeDeff/1000/60%60)),
       Second = addZero(parseInt(timeDeff/1000%60));
-  _this.setData({
-    countDownTime: Day + '天' + Hour + '时' + Minutes + '分'
-  })
+  if(timeDeff <= 0){
+    if(!_this.data.whoHandle){
+      autoHandle(_this, 2, _this.data.whoHandle);
+    }else if(_this.data.status == 5 && _this.data.whoHandle == 3){
+      autoHandle(_this, 5, 2);
+    }
+  }else{
+    _this.setData({
+      countDownTime: Day + '天' + Hour + '时' + Minutes + '分'
+    })
+  }
 }
 // 时间戳转换
 function timeTrans(date){
@@ -20,6 +28,20 @@ function timeTrans(date){
   var H = date.getHours();
   var MM = date.getMinutes();
   return Y + '-' + M + '-' + D + ' ' + H + ':' + MM;
+}
+
+function autoHandle(_this, status, whoHandle){
+  wx.request({
+    url: app.globalData.tiltes + 'update_time_automatic',
+    method: 'POST',
+    data: {
+      after_sale_id: _this.data.id,
+      status: status,
+      who_handle: whoHandle
+    },
+    success: function(){},
+    fail: function(){}
+  })
 }
 
 function addZero(num){
