@@ -3,66 +3,83 @@
         <view class="status-text">
             <text>您的售后已完成</text>
         </view>
-        <view class="time-countdown">2019年1月28日 14:52</view>
+        <view class="time-countdown">{{}}</view>
     </view>
     <view class="tips-box">
         <view class="tips-title clearfix">
-            <text class="fl">退款总金额</text>
-            <text class="fr">￥100</text>
+            <block wx:if="{{dataObj.is_return_goods==2}}">
+                <text class="fl">退款总金额</text>
+                <text class="fr">￥{{dataObj.application_amount}}</text>
+            </block>
+            <text wx:else>您的换货已成功</text>
         </view>
         <view class="tips-list">
-            <view>退款金额退到您微信账号或余额中</view>
-            <view>您还可以在个人账单记录中查询流水信息</view>
-            <view>请及时查询换货物流信息</view>
-            <view>顺丰：799394904004040<text>查看物流></text></view>
+            <block wx:if="{{dataObj.is_return_goods==2}}">
+                <view>退款金额退到您微信账号或余额中</view>
+                <view>您还可以在个人账单记录中查询流水信息</view>
+            </block>
+            <block wx:else>
+                <view>请及时查询换货物流信息</view>
+                <view>{{dataObj.buy_express_company}}：{{dataObj.buy_express_number}}<text>查看物流></text></view>
+            </block>
         </view>
         <view class="operation-box">
             <text>已完成</text>
         </view>
     </view>
     <view class="refund-info">
-        <view class="info-title">退款信息</view>
+        <view class="info-title" wx:if="{{dataObj.is_return_goods==2}}">退款退货信息</view>
+        <view class="info-title" wx:else>换货信息</view>
         <view class="refund-goods">
             <view class="refund-img">
-                <image src="/images/img1.png" />
+                <image src="https://teahouse.siring.com.cn/uploads/{{dataObj.goods_images}}" />
             </view>
-            <text>商品名称</text>
+            <text>{{dataObj.goods_name}}</text>
         </view>
         <view class="info-items">
-            <view class="info-item">
+           <view class="info-item">
                 <text class="info-key">申请时间：</text>
-                <text class="info-value">2019-03-08</text>
+                <text class="info-value">{{operationTime}}</text>
             </view>
             <view class="info-item">
                 <text class="info-key">退款金额：</text>
-                <text class="info-value">¥80.0</text>
+                <text class="info-value">¥{{dataObj.application_amount}}</text>
             </view>
             <view class="info-item">
                 <text class="info-key">退款编号：</text>
-                <text class="info-value">8586868686863</text>
+                <text class="info-value">{{dataObj.sale_order_number}}</text>
             </view>
             <view class="info-item">
                 <text class="info-key">退款原因：</text>
-                <text class="info-value">退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因退货退款原因</text>
+                <text class="info-value">{{dataObj.return_reason}}</text>
             </view>
-            <view class="info-item">
-                <image src="/images/img1.png" />
-                <image src="/images/img1.png" />
-                <image src="/images/img1.png" />
+            <view class="info-item" wx:if="{{dataObj.images.length!==0}}">
+                <block wx:for="{{dataObj.images}}" wx:key="">
+                    <image src="https://teahouse.siring.com.cn/uploads/{{item}}" />
+                </block>
             </view>
-            <view class="reply-items">
-                <view class="official">
-                    <view class="official-left">
-                        <image src="/images/img2.png" />
-                        <view>官方回复</view>
+            <view class="reply-items" wx:if="{{dataObj.reply.length!==0}}">
+                <block wx:for="{{dataObj.reply}}" wx:key="">
+                    <view class="official" wx:if="{{item.is_who==1}}">
+                        <view class="official-left">
+                            <image src="/images/img2.png" />
+                            <view>官方回复</view>
+                        </view>
+                        <view class="official-right">{{item.content}}</view>
                     </view>
-                    <view class="official-right">请耐心等待商家处理，您可再联系：13884885868</view>
-                </view>
-                <view class="user-apply">
-                    我的回复：<text>就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款就要退款</text>
-                </view>
+                    <view class="user-apply" wx:if="{{item.is_who==2}}">
+                        我的回复：<text>{{item.content}}</text>
+                    </view>
+                </block>
             </view>
-            <view class="apply-btn">我要回复</view>
+            <view class="apply-btn" bindtap="switchReplybox">我要回复</view>
+        </view>
+    </view>
+    <view class="reply-container {{switchReplyBoxTag?'show-reply':''}}">
+        <input type="text" class="reply-input" value="{{replyContent}}" focus="{{facusTag}}" bindinput="getReplyCont" bindblur="switchReplybox" />
+        <view class="reply-btn-box">
+            <text bindtap="sendReply">发送</text>
+            <text>取消</text>
         </view>
     </view>
 </view>

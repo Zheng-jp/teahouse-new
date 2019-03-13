@@ -11,6 +11,7 @@
 .tips-box{border-bottom: 12rpx solid #f2f2f2; padding: 25rpx; margin-bottom: 20rpx;}
 .tips-box .tips-title{padding-bottom: 20rpx; border-bottom: 2rpx solid #f2f2f2;}
 .tips-box .tips-title text{font-size: 32rpx; color: #797979;}
+.tips-box .tips-title text:last-of-type{color: #f00;}
 .tips-box .tips-list{margin: 20rpx 0;}
 .tips-box .tips-list view{font-size: 28rpx; color: #797979;}
 .tips-box .tips-list view::before{content: ' '; display: inline-block; width: 10rpx; height: 10rpx; border-radius: 50%; background-color: #797979; margin-right: 20rpx; vertical-align: middle;}
@@ -34,7 +35,12 @@
 .reply-items .user-apply{font-size: 28rpx; color: #018BE6; margin: 10rpx 0;}
 .reply-items .user-apply text{color: #949494;}
 .apply-btn{font-size: 26rpx; color: #018BE6; text-align: right; margin-bottom: 20rpx;}
-
+.reply-container{position: absolute; left: 0; bottom: 0; width: 100%; height: 90rpx; padding: 0 30rpx; box-sizing: border-box; display: none; align-items: center; justify-content: space-between; background-color: #fafafa;}
+.reply-container .reply-btn-box{width: 200rpx; text-align: right;}
+.reply-container .reply-btn-box text{color: #018BE6; font-size: 32rpx;}
+.reply-container .reply-btn-box text:last-of-type{margin-left: 20rpx;}
+.reply-container .reply-input{background-color: #fff; height: 85%; flex: 1; border-radius: 8rpx; margin-right: 10rpx;}
+.show-reply{display: flex;}
 
 
 
