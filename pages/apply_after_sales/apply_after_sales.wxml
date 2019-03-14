@@ -1,57 +1,71 @@
 <!--pages/apply_after_sales/apply_after_sales.wxml-->
-  <form  bindsubmit="formSubmit" content-type="multipart/form-data">
-    <view class="all" style='height:{{height}}px;' wx:if="{{amend}}">
-        <view class="good_infor">
-            <image class="good_img" src="{{url}}{{goods.goods_image}}" mode="widthFix" ></image>
-            <text class="good_name">{{goods.parts_goods_name}}</text>  
-        </view>
-        <view class="opration">
-            <radio-group class="radio-group" bindchange="radioChange">
-                <radio value="2" checked="true"   color='#fff' />要求退货退款金额：
-                <input type="text" placeholder="" class="input_monly" disabled value="{{goods.refund_amount}}"> </input>
-                <text class="danwei">元</text>
-                <radio value="1" class="radio_b" color='#fff' />要求换货
-            </radio-group>
-        </view>
-        <view class="reason">
-            <textarea name="content" id="" class="reason_content" placeholder="请说明原因"></textarea>
-        </view>
-        <view class="uplode_img">
-            <view class="imgcontent" wx:for="{{tempFilePaths}}">
-                <image class="" src="{{item}}" mode="widthFix" lazy-load="false"  class="imgs"> </image>
-                <image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false"  class="delect_img"> </image>
-            </view>
-            <image class="" src="../../images/1.png" mode="widthFix" lazy-load="false"  class="uplog" bindtap="up_img" wx:if="{{up_img_lenght}}"> </image>
-        </view>
-        <view class="btn-area">
-                <button form-type="submit" class='button-hovers'>提交</button>
-        </view>
-    </view>
-     <view class="all" style='height:{{height}}px;' wx:else>
-        <view class="good_infor">
-            <image class="good_img" src="{{url}}{{goods.goods_image}}" mode="widthFix" ></image>
-            <text class="good_name">{{goods.parts_goods_name}}</text>  
-        </view>
-        <view class="opration">
-            <radio-group class="radio-group" bindchange="radioChange">
-                <radio value="2" checked="true"   color='#fff' />要求退货退款金额：
-                <input type="text" placeholder="" class="input_monly" disabled value="{{goods.refund_amount}}"> </input>
-                <text class="danwei">元</text>
-                <radio value="1" class="radio_b" color='#fff' />要求换货
-            </radio-group>
-        </view>
-        <view class="reason">
-            <textarea name="content" id="" class="reason_content" placeholder="请说明原因"></textarea>
-        </view>
-        <view class="uplode_img">
-            <view class="imgcontent" wx:for="{{tempFilePaths}}">
-                <image class="" src="{{item}}" mode="widthFix" lazy-load="false"  class="imgs"> </image>
-                <image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false"  class="delect_img"> </image>
-            </view>
-            <image class="" src="../../images/1.png" mode="widthFix" lazy-load="false"  class="uplog" bindtap="up_img" wx:if="{{up_img_lenght}}"> </image>
-        </view>
-        <view class="btn-area">
-                <button form-type="submit" class='button-hovers'>提交</button>
-        </view>
-    </view>
+<form bindsubmit="formSubmit" content-type="multipart/form-data">
+	<view class="all" style='height:{{height}}px;' wx:if="{{amend==null}}">
+      <input type="" placeholder="" name="this" style="display:none" value="1" />
+		<view class="good_infor">
+			<image class="good_img" src="{{url}}{{goods.goods_image}}" mode="widthFix"></image>
+			<text class="good_name">{{goods.parts_goods_name}}</text>
+		</view>
+		<view class="opration">
+			<radio-group class="radio-group" bindchange="radioChange">
+				<radio value="2" checked="true" color='#fff' />要求退货退款金额：
+				<input type="text" placeholder="" class="input_monly" disabled value="{{goods.refund_amount}}"> </input>
+				<text class="danwei">元</text>
+				<radio value="1" class="radio_b" color='#fff' />要求换货
+			</radio-group>
+		</view>
+		<view class="reason">
+			<textarea name="content" id="" class="reason_content" placeholder="请说明原因"></textarea>
+		</view>
+		<view class="uplode_img">
+			<view class="imgcontent" wx:for="{{tempFilePaths}}">
+				<image class="" src="{{item}}" mode="widthFix" lazy-load="false" class="imgs"> </image>
+				<image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false" class="delect_img" data-id="{{item}}" bindtap="delect_img"> </image>
+			</view>
+			<image class="" src="../../images/1.png" mode="widthFix" lazy-load="false" class="uplog" bindtap="up_img" wx:if="{{up_img_lenght}}"> </image>
+		</view>
+		<view class="btn-area">
+			<button form-type="submit" class='button-hovers' >提交</button>
+		</view>
+	</view>
+	<view class="all" style='height:{{height}}px;' wx:else>
+     <input type="" placeholder="" name="this" style="display:none" value="2" />
+		<view class="good_infor">
+			<image class="good_img" src="{{url}}{{goods.goods_images}}" mode="widthFix"></image>
+			<text class="good_name">{{goods.goods_name}}</text>
+		</view>
+		<view class="opration" wx:if="{{is_return_goods==2}}">
+			<radio-group class="radio-group" bindchange="radioChange">
+				<radio value="2" checked="true" color='#fff' />要求退货退款金额：
+				<input type="text" placeholder="" class="input_monly" disabled value="{{goods.refund_amount}}"> </input>
+				<text class="danwei">元</text>
+				<radio value="1" class="radio_b" color='#fff' />要求换货
+			</radio-group>
+		</view>
+		<view class="opration" wx:else>
+			<radio-group class="radio-group" bindchange="radioChange">
+				<radio value="2" checked="true" color='#fff' />要求退货退款金额：
+                    <input type="text" placeholder="" class="input_monly" disabled value="{{goods.application_amount}}"> </input>
+                    <text class="danwei">元</text>
+				<radio value="1" class="radio_b" color='#fff'  checked="true" />要求换货
+			</radio-group>
+		</view>
+		<view class="reason">
+			<textarea name="content" id="" class="reason_content" placeholder="">{{goods.return_reason}}</textarea>
+		</view>
+		<view class="uplode_img">
+			<view class="imgcontent" wx:for="{{goods.images}}">
+				<image class="" src="{{url}}{{item.url}}" mode="widthFix" lazy-load="false" class="imgs"> </image>
+				<image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false" class="delect_img"  data-id="{{item.id}}" bindtap="delect_img_old"> </image>
+			</view>
+            <view class="imgcontent" wx:for="{{tempFilePathss}}">
+				<image class="" src="{{item}}" mode="widthFix" lazy-load="false" class="imgs"> </image>
+				<image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false" class="delect_img"  bindtap="delect_img_new" data-id="{{item}}"> </image>
+			</view>
+			<image class="" src="../../images/1.png" mode="widthFix" lazy-load="false" class="uplog" bindtap="up_imgs" wx:if="{{up_img_lenght}}" > </image>
+		</view>
+		<view class="btn-area">
+			<button form-type="submit" class='button-hovers' >提交</button>
+		</view>
+	</view>
 </form>
