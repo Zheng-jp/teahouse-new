@@ -283,7 +283,7 @@ delect_img_old:function(e){
             data: {
               after_sale_id:that.data.after_sale_id,
               member_id: app.globalData.member_id,
-              order_id: that.data.order_id,
+              order_id: that.data.goods.order_id,
               after_image_ids: imgss,
               return_reason: e.detail.value.content,
               is_return_goods: that.data.is_return_goods
