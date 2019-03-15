@@ -712,55 +712,7 @@ Page({
     that.setData({
       user: user,
     });
-    wx.request({
-      url: app.globalData.tiltes + 'member_default_address_return',
-      data: {
-        open_id: app.globalData.gmemberid,
-        address_id:''
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
 
-      // },
-      success: function (res) {
-        console.log(res.data.status);
-        if(res.data.status==1){
-          var tel=res.data.data.harvester_phone_num;
-          var name=res.data.data.harvester;
-          var address=res.data.data.address_name+res.data.data.harvester_real_address;
-          var address_id=res.data.data.id;
-          that.setData({
-            tel: tel,
-            name:name,
-            address:address, 
-  
-          });
-          for (var index in address) {
-            var address_names=address.split(",").join("");
-            that.setData({
-              address:address_names,
-              address_id:address_id,
-            });
-          }
-
-        }
-        else if(res.data.status==0){
-          that.setData({
-            selected:false,
-          });
-          
-        }
-       
-       
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-      }
-
-    });
     wx.request({
       url: app.globalData.tiltes + 'order_return',
       data: {
@@ -862,35 +814,91 @@ Page({
     var that=this;
     var id=wx.getStorageSync('id');
     var coupon_id=wx.getStorageSync('coupon_id');
-    console.log(coupon_id);
     that.setData({
       address_id:id
     });
-    wx.request({
-      url: app.globalData.tiltes + 'member_address_edit_information',
-      data: {
-        id:id,
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
+    if(id==''){
+      wx.request({
+        url: app.globalData.tiltes + 'member_default_address_return',
+        data: {
+          open_id: app.globalData.gmemberid,
+          address_id:''
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
 
-      // },
-      success: function (res) {
-         that.setData({
-          tel: res.data.data.harvester_phone_num,
-          name:res.data.data.harvester,
-          address:res.data.data.address_name+res.data.data.harvester_real_address,
-          address_id:res.data.data.id
-        });
-      },
-      fail: function () {
+        // },
+        success: function (res) {
+          console.log(res.data.data.address_name);
+          if(res.data.status==1){
+            var tel=res.data.data.harvester_phone_num;
+            var name=res.data.data.harvester;
+            var address_id=res.data.data.id;
+            var address_names='';
+            for (var index in res.data.data.address_name) {
+              address_names=res.data.data.address_name.split(",").join("");
+            }
+          
+            var address=address_names+res.data.data.harvester_real_address;
+            console.log(address);
+            that.setData({
+              tel: tel,
+              name:name,
+              address:address, 
+    
+            });
 
-      },
-      complete: function () {
-      }
+          }
+          else if(res.data.status==0){
+            that.setData({
+              selected:false,
+            });
+            
+          }
+        
+        
+        },
+        fail: function () {
 
-    });
+        },
+        complete: function () {
+        }
+
+      });
+    }
+    else{
+      wx.request({
+        url: app.globalData.tiltes + 'member_address_edit_information',
+        data: {
+          id:id,
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+  
+        // },
+        success: function (res) {
+          var address_names='';
+          for (var index in res.data.data.address_name) {
+             address_names=res.data.data.address_name.split(",").join("");
+          }
+           that.setData({
+            tel: res.data.data.harvester_phone_num,
+            name:res.data.data.harvester,
+            address:address_names+res.data.data.harvester_real_address,
+            address_id:res.data.data.id
+          });
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+        }
+  
+      });
+    }
+    
     
   },
 
