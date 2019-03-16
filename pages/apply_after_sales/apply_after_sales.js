@@ -11,11 +11,26 @@ Page({
     up_img_lenght: true,
     url: app.globalData.img_url,
     tempFilePaths: [],
+    tempFilePathss: [],
     img: [],
     goods: [],
     order_id: null,
     is_return_goods: 2,
     amend: null,
+    after_sale_id:null,
+  },
+//  删除图片
+  delect_img:function(e){
+    var that=this;
+     var tem=that.data.tempFilePaths;
+   for(var i=0;i<tem.length;i++){
+     if( e.currentTarget.dataset.id==tem[i]){
+         tem.splice(i, 1);
+     }
+   }
+   that.setData({
+    tempFilePaths:tem,
+   })
   },
   up_img: function (e) {
     var that = this;
@@ -50,8 +65,30 @@ Page({
           //   img:res.tempFilePaths
           // })
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-          var tempFilePaths = res.tempFilePaths
-          that.setData({ tempFilePaths: tempFilePaths });
+          var atempFilePaths = res.tempFilePaths;
+          // console.log(atempFilePaths)
+          var temp=that.data.tempFilePaths;
+
+          // console.log(temp);
+          for(var i=0;i<atempFilePaths.length;i++){
+            if(temp.length<3){
+              temp.push(atempFilePaths[i]);
+            }
+           
+            else{
+              wx.showToast({
+                title:'图片最多上传三张',
+                icon:'none'
+              })
+            }
+              
+          }
+        
+          
+          that.setData({
+            tempFilePaths: temp,
+          })
+          
         },
         fail: function () {
           // fail
@@ -63,42 +100,100 @@ Page({
     }
 
   },
-  uploadimg: function (data) {
-    var that = this,
-      i = data.i ? data.i : 0,//当前上传的哪张图片
-      success = data.success ? data.success : 0,//上传成功的个数
-      fail = data.fail ? data.fail : 0;//上传失败的个数
-    wx.uploadFile(
-      {
-        url: data.url,
-        filePath: data.path[i],
-        name: 'file',//这里根据自己的实际情况改
-        formData: null,//这里是上传图片时一起上传的数据
-        success: (resp) => {
-          success++;//图片上传成功，图片上传成功的变量+1
-          //这里可能有BUG，失败也会执行这里,所以这里应该是后台返回过来的状态码为成功时，这里的success才+1
-        },
-        fail: (res) => {
-          fail++;//图片上传失败，图片上传失败的变量+1
-          console.log('fail:' + i + "fail:" + fail);
-        },
-        complete: () => {
-          console.log(i);
-          i++;//这个图片执行完上传后，开始上传下一张
-          if (i == data.path.length) {   //当图片传完时，停止调用          
-            console.log('执行完毕');
-            console.log('成功：' + success + " 失败：" + fail);
-          } else {//若图片还没有传完，则继续调用函数
-            console.log(i);
-            data.i = i;
-            data.success = success;
-            data.fail = fail;
-            that.uploadimg(data);
-          }
+  up_imgs: function (e) {
+    var that = this;
+    var id = e.currentTarget.dataset.id;
+    var num=that.data.goods.images.length;
+    if (that.data.img.length > 3-num) {
+      that.setData({
+        up_img_lenght: false
+      })
 
+      return false;
+    }
+    else {
+      wx.chooseImage({
+        count: 3-num, // 最多可以选择的图片张数，默认9
+        sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
+        success: function (res) {
+          for (var i = 0; i < that.data.goods.length; i++) {
+            if (id == that.data.goods[i].id) {
+              //  添加字段到等级数组
+              // for (var index in that.data.routers) {
+              var img = "goods[" + i + "].img";
+              that.setData({
+                [img]: res.tempFilePaths,
+              })
+
+              // }
+            }
+          }
+          // that.setData({
+          //   img:res.tempFilePaths
+          // })
+          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+          var tempFilePaths = res.tempFilePaths
+          that.setData({ tempFilePathss: tempFilePaths });
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
         }
-      });
+      })
+    }
+
   },
+//  删除新图片
+delect_img_new:function(e){
+  var that=this;
+   var tem=that.data.tempFilePathss;
+ for(var i=0;i<tem.length;i++){
+   if( e.currentTarget.dataset.id==tem[i]){
+       tem.splice(i, 1);
+   }
+ }
+ that.setData({
+  tempFilePathss:tem,
+ })
+},
+//  删除旧图片
+delect_img_old:function(e){
+  var that=this;
+   var tem=that.data.goods;
+ for(var i=0;i<tem.images.length;i++){
+   if( e.currentTarget.dataset.id==tem.images[i].id){
+       tem.images.splice(i, 1);
+   }
+ }
+ that.setData({
+  goods:tem,
+ })
+ var ids=[];
+ ids.push(e.currentTarget.dataset.id);
+ wx.request({
+  url: app.globalData.tiltes + 'after_sale_images_del',
+  data: {
+    id: ids
+  },
+  method: "post",
+  success: function (res) {
+
+  },
+  fail: function () {
+   
+  },
+  complete: function (res) {
+    wx.showToast({
+      title: res.data.info,
+      icon: 'none'
+    })
+  }
+});
+
+},
 
   radioChange: function (e) {
     var that = this;
@@ -108,63 +203,125 @@ Page({
   },
   formSubmit: function (e) {
     var that = this;
-    console.log(111);
+    console.log();
     var imgs = [];
-    if (e.detail.value.content != '') {
-      for (var i = 0; i < that.data.tempFilePaths.length; i++) {
-        wx.uploadFile({
-          url: app.globalData.tiltes + 'after_sale_upload',
-          filePath: that.data.tempFilePaths[i],
-          name: 'img',
-          formData: e.detail.value,
-          success: function (res) {
-            var jsonstr = JSON.parse(res.data);
-            imgs.push(jsonstr.data.images_id);
-          }
+    var imgss = [];
+    if(e.detail.value.this==1){
+      if (e.detail.value.content != '') {
+        for (var i = 0; i < that.data.tempFilePaths.length; i++) {
+          wx.uploadFile({
+            url: app.globalData.tiltes + 'after_sale_upload',
+            filePath: that.data.tempFilePaths[i],
+            name: 'img',
+            formData: e.detail.value,
+            success: function (res) {
+              var jsonstr = JSON.parse(res.data);
+              imgs.push(jsonstr.data.images_id);
+            }
+          })
+        }
+        setTimeout(function () {
+          wx.request({
+            url: app.globalData.tiltes + 'apply_after_sale',
+            data: {
+              member_id: app.globalData.member_id,
+              order_id: that.data.order_id,
+              after_image_ids: imgs,
+              return_reason: e.detail.value.content,
+              is_return_goods: that.data.is_return_goods
+            },
+            method: "post",
+            success: function (res) {
+              wx.navigateBack();
+            },
+            fail: function () {
+              wx.request({
+                url: app.globalData.tiltes + 'after_sale_images_del',
+                data: {
+                  id: that.data.order_id,
+                },
+                method: "post",
+                success: function (res) { },
+                fail: function () { },
+                complete: function (res) { }
+              });
+            },
+            complete: function (res) {
+              wx.showToast({
+                title: res.data.info,
+                icon: 'none'
+              })
+            }
+          });
+        }, 1000)
+  
+      }
+      else {
+        wx.showToast({
+          title: '申请内容不能为空',
+          icon: 'none'
         })
       }
-      setTimeout(function () {
-        wx.request({
-          url: app.globalData.tiltes + 'apply_after_sale',
-          data: {
-            member_id: app.globalData.member_id,
-            order_id: that.data.order_id,
-            after_image_ids: imgs,
-            return_reason: e.detail.value.content,
-            is_return_goods: that.data.is_return_goods
-          },
-          method: "post",
-          success: function (res) {
-            wx.navigateBack();
-          },
-          fail: function () {
-            wx.request({
-              url: app.globalData.tiltes + 'after_sale_images_del',
-              data: {
-                id: that.data.order_id,
-              },
-              method: "post",
-              success: function (res) { },
-              fail: function () { },
-              complete: function (res) { }
-            });
-          },
-          complete: function (res) {
-            wx.showToast({
-              title: res.data.info,
-              icon: 'none'
-            })
-          }
-        });
-      }, 1000)
-
     }
-    else {
-      wx.showToast({
-        title: '申请内容不能为空',
-        icon: 'none'
-      })
+    else{
+      if (e.detail.value.content != '') {
+        for (var i = 0; i < that.data.tempFilePathss.length; i++) {
+          wx.uploadFile({
+            url: app.globalData.tiltes + 'after_sale_upload',
+            filePath: that.data.tempFilePathss[i],
+            name: 'img',
+            formData: e.detail.value,
+            success: function (res) {
+              var jsonstr = JSON.parse(res.data);
+              imgss.push(jsonstr.data.images_id);
+            }
+          })
+        }
+        setTimeout(function () {
+          wx.request({
+            url: app.globalData.tiltes + 'update_application',
+            data: {
+              after_sale_id:that.data.after_sale_id,
+              member_id: app.globalData.member_id,
+              order_id: that.data.goods.order_id,
+              after_image_ids: imgss,
+              return_reason: e.detail.value.content,
+              is_return_goods: that.data.is_return_goods
+            },
+            method: "post",
+            success: function (res) {
+              wx.navigateBack();
+            },
+            fail: function () {
+              wx.request({
+                url: app.globalData.tiltes + 'after_sale_images_del',
+                data: {
+                  id: that.data.order_id,
+                },
+                method: "post",
+                success: function (res) { },
+                fail: function () { },
+                complete: function (res) { }
+              });
+            },
+            complete: function (res) {
+              wx.showToast({
+                title: res.data.info,
+                icon: 'none'
+              })
+            }
+          });
+        }, 1000)
+  
+      }
+      else {
+        wx.showToast({
+          title: '申请内容不能为空',
+          icon: 'none'
+        })
+      }
     }
+   
 
   },
 
@@ -182,7 +339,8 @@ Page({
     })
     if (options.amend) {
       that.setData({
-        amend: options.amend
+        amend: options.amend,
+        after_sale_id: options.title
       })
       wx.request({
         url: app.globalData.tiltes + 'after_sale_information_return',
@@ -191,10 +349,10 @@ Page({
         },
         method: "post",
         success: function (res) {
-          console.log(res);
-          // that.setData({
-          //   goods: res.data.data,
-          // });
+
+          that.setData({
+            goods: res.data.data,
+          });
         },
         fail: function () {
 
@@ -216,7 +374,6 @@ Page({
 
         // },
         success: function (res) {
-
           that.setData({
             goods: res.data.data,
           });
