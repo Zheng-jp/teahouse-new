@@ -21,7 +21,7 @@
         <view class="list_right">{{data.business_address}}</view>
     </view>
     <view class='tilte'>我们的风采</view>
-    <view>
+    <view class='uedt'>
      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
     </view>
      
