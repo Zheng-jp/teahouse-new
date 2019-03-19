@@ -1,18 +1,46 @@
 // pages/about/about.js
+const app = getApp();
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
+  
   data: {
-
+    data:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    wx.request({
+      url: app.globalData.tiltes + 'about_us',
+      data: {
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
 
+      // },
+      success: function (res) {
+       that.setData({
+         data:res.data.data[0]
+       })
+        var article = res.data.data[0].text;
+        WxParse.wxParse('article', 'html', article, that, 5);
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+      
+      }
+
+    });
   },
 
   /**

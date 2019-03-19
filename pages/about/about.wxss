@@ -13,6 +13,7 @@
 .list_left{
     color: #0DBEFF;
     font-size: 26rpx;
+    width: 200rpx;
 
 }
 .list_right{
