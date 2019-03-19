@@ -45,10 +45,10 @@
                 <image src="./img/icon2.png" class="icon-more" />
             </view>
         </view>
-        <view class="other-item">
+        <!-- <view class="other-item">
             <view class="item-key">出仓属性：<text class="explain">?</text></view>
             <view class="item-value">整存整取</view>
-        </view>
+        </view> -->
         <view class="other-item">
             <view class="item-key">入仓日期：</view>
             <view class="item-value">2019.03.05</view>

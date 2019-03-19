@@ -27,12 +27,14 @@ swiper.swiper-container{height: 93%;}
 .retract .icon-retract{width: 50rpx; height: 50rpx;}
 .storage-enviroment{border: 1px solid #d7d7d7; box-sizing: border-box; height: 60rpx; display: flex; align-items: center;}
 .storage-enviroment .storage-name-box{display: flex; align-items: center; flex-basis: 25%; height: 100%;}
-.storage-enviroment .storage-name-box image{width: 30rpx; height: 30rpx; margin: 0 10rpx;}
+.storage-enviroment .storage-name-box image{width: 40rpx; height: 40rpx; margin: 0 10rpx;}
 .storage-enviroment .storage-name-box .storage-name{color: #999900; font-size: 28rpx;}
-.enviroment-data-box{flex: 75%; height: 100%; background-color: #d7d7d7; display: flex; align-items: center; justify-content: space-around;}
-.enviroment-data-box .icon-temperature{width: 50rpx; height: 50rpx;}
-.enviroment-data-box .icon-humidity{width: 50rpx; height: 50rpx;}
-.enviroment-data-box  .enviroment-item{display: flex; align-items: center;}
+.enviroment-data-box{flex: 75%; height: 100%; background-color: #d7d7d7; display: flex; align-items: center; justify-content: space-between; padding-right: 20rpx;}
+.enviroment-data-box .icon-temperature,
+.enviroment-data-box .icon-humidity,
+.enviroment-data-box .icon-video{width: 50rpx; height: 50rpx;}
+.enviroment-data-box .enviroment-item{display: flex; align-items: center; height: 100%;}
+.enviroment-data-box .item-video{background-color: #e4e4e4; padding: 0 14rpx;}
 .enviroment-item .temperature{font-size: 28rpx; color: #D81E06;}
 .enviroment-item .humidity{font-size: 28rpx; color: #66CC00;}
 .more image{width: 16rpx; height: 28rpx;}

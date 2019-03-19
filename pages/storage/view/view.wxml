@@ -42,6 +42,10 @@
                     <text class="storage-name">仓JB01</text>
                 </view>
                 <view class="enviroment-data-box">
+                    <view class="enviroment-item item-video">
+                        <image src="img/gif1.gif" class="icon-video" />
+                        <text class="temperature">实时视频</text>
+                    </view>
                     <view class="enviroment-item">
                         <image src="img/icon2.png" class="icon-temperature" />
                         <text class="temperature">25.55°C</text>
