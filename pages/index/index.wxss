@@ -15,7 +15,6 @@ padding:0 20rpx;
 height:81rpx;
 line-height:71rpx;
 overflow:hidden;
-
 }
 
 .selling_point{
@@ -24,12 +23,12 @@ display:-webkit-box;
 -webkit-line-clamp:1;
 overflow:hidden;
 -webkit-box-orient:vertical;
-line-height:42rpx;
+line-height:45rpx;
 margin-top:-16rpx;
 color:#949494;
 font-size:24rpx;
 padding:0 10rpx;
-
+text-indent: 1em;
 }
 image {
   width: 100%;

@@ -51,7 +51,6 @@
     height: 34rpx;
     display: flex;
     align-items: center;
-    margin-left: 24px;
 	}
 	
 	.goods_cont {
@@ -62,14 +61,12 @@
 	.good_name {
 		font-size: 31rpx;
 		font-weight: bold;
-    text-indent: 2em;
     margin-bottom: 10px;
 	}
 	
 	.selling-point {
 		color: #949494;
 		font-size: 26rpx;
-    text-indent: 2em;
 	}
 	
 	.price_cont {
@@ -83,7 +80,6 @@
 	.sale {
 		color: red;
 		font-size: 40rpx;
-		margin-left: 8rpx;
 	}
 	
 	.other_info {

@@ -14,6 +14,10 @@ background:#fff;
 box-shadow:9rpx 9rpx 5rpx 3rpx #E5E5E5 !important;
 
 }
+.weui-grid_kuchun{
+  font-size: 3px;
+  display: none;
+}
 .blue{
   color:#169BD5; 
 }
@@ -276,6 +280,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
     display: flex;
     align-items: center;
     padding: 0 10rpx;
+    margin-left: 9px;
+    line-height: 25px;
   }
   .price_content{
     display: flex;
@@ -289,22 +295,14 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   }
  .weui-grid_name {
    width: 200rpx;
-   display: inline-block;
    padding: 10rpx;
-     color: #000;
-     font-size: 30rpx;
-     white-space: nowrap;
-     text-overflow: ellipsis;
-     overflow: hidden;
- 
+   color: #000;
+   font-size: 35rpx;
+   white-space: nowrap;
+   margin-left: 10px;
+   line-height: 35px;
  }
  
- .weui-grid_kuchun{
-   padding: 10rpx;
-   float: right;
-    font-size: 25rpx;
-    color: #A1A1A1;
- }
  .sell-list{
    color: #949494;
    font-size: 24rpx ;
