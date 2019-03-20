@@ -1,9 +1,5 @@
 <import src="../../wxParse/wxParse.wxml"/>
 <view class="all">
-    <view class="list">
-        <view class="list_left">官方网址</view>
-        <view class="list_right">{{data.url}}</view>
-    </view>
       <view class="list">
         <view class="list_left">   官方邮箱</view>
         <view class="list_right">{{data.email}}</view>

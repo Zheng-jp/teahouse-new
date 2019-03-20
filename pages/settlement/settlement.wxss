@@ -321,8 +321,8 @@ color:#3399FF;
   align-items: center;
 }
 .is_insurance{
-  margin-top: 30rpx;
   background: #fff;
+  border-bottom: solid 2px #E4E4E4;
 }
 /* 购买数量 */
 .quantity{
