@@ -211,6 +211,7 @@ color:#3399FF;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: solid 2px #E4E4E4;
 }
 .more_img{
   width: 30rpx;
@@ -229,7 +230,6 @@ color:#3399FF;
 }
 .is_invoice1{
   padding:26rpx 26rpx 0rpx 26rpx;
-  border-bottom:solid 1rpx #E4E4E4; 
 }
 .is_invoice11{
   display: flex;
@@ -246,7 +246,7 @@ color:#3399FF;
   align-items: center;
   justify-content: space-between;
   padding: 26rpx;
-  border-bottom:solid 1rpx #E4E4E4; 
+  border-bottom:solid px #E4E4E4; 
 }
 .checkbox{
   font-size: 30rpx;
@@ -259,7 +259,6 @@ color:#3399FF;
   padding: 20rpx;
   height: 60rpx;
   font-size: 30rpx;
-
 }
 .more_imgs{
   width: 30rpx;
@@ -277,8 +276,15 @@ color:#3399FF;
   align-items: center;
   padding: 28rpx;
   font-size: 26rpx;
-
  
+}
+.sundry-li1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx;
+  font-size: 26rpx;
+  border-top: solid 2px #E4E4E4;
 }
 .repay_box{
   position:fixed;
@@ -290,7 +296,7 @@ color:#3399FF;
   box-sizing: border-box;
   padding-left: 20rpx;
   background: #F2F2F1;
-
+border-top: solid 2px #E4E4E4;
 }
 .buts{
   width: 200rpx;
@@ -333,6 +339,7 @@ color:#3399FF;
   background: #fff;
   padding: 20rpx;
   box-sizing: border-box;
+  border-bottom: solid 2px #E4E4E4;
 }
 .purchase_quantity{
   font-size: 30rpx;
