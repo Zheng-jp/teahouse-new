@@ -46,8 +46,7 @@
 }
 .tip{
   font-size: 26rpx;
-  font-weight: bold;
-  margin-top: 10rpx;
+  margin-top: 10px;
 }
 .weixin_box{
     padding: 20rpx;
@@ -60,24 +59,32 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin: 18rpx 0;
+
 }
 .form_list_text{
   color: #00BBFF;
   font-size: 30rpx;
   width: 240rpx;
   text-align: right;
+  margin-bottom: 10px;
+  margin-right: 100px;
+  font-weight: bolder;
 }
 .form_list_input{
-  border: solid 1rpx #a1a1a1;
+  border:solid  1px white;
   font-size: 24rpx;
-  width: 480rpx;
+  width: 550rpx;
+  box-shadow: 6rpx 6rpx 6rpx 6rpx #E4E4E4 inset;
+  margin-left: 18px;
+  height: 31px;
+  
 }
 .danwei{
   position: absolute;
-  right: 20rpx;
   color: #00BBFF; 
   font-size: 30rpx;
+  margin-left: 235px;
+  font-weight: bold;
 }
 .send_cond{
   width: 150rpx;
@@ -101,7 +108,7 @@
   margin-left: -20rpx;
 }
 .form_list_select{
-  display: flex;
+  margin-left: 21px;
   align-items: center;
 }
 .go{

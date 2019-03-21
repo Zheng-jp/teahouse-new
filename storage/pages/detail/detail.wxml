@@ -5,7 +5,9 @@
     <text class='title_title'>活动信息</text>
     <text class='Label' wx:for="{{Label}}" style='color:{{item.color}}; border-color:{{item.color}}'>{{item.name}}
     </text>
+    
     </view>
+    
     <view class='list_contents'>
         <view class='list_a list'>
           <view class='ico_img'><image  src='img/u4997.png' mode="widthFix"></image></view>

@@ -17,35 +17,21 @@
                 <form  report-submit="false" bindsubmit="formSubmit" bindreset="">
                     <view class="form_list">
                         <view class="form_list_text">申请提现金额：</view>
-                        <input type="text"   class="form_list_input"  placeholder="请输入金额，不能小于1000" name="money" />
+                       
+                  </view>
+                  <view class="form_list">
+                   <input type="text"   class="form_list_input"  placeholder="请输入金额，不能小于1000" name="money" />
                         <text class="danwei">元</text>
                   </view>
-                      <view class="form_list">
-                        <view class="form_list_text">开户名：</view>
-                        <input type="text"   class="form_list_input"  placeholder="需要与绑定身份姓名一致" name="user_name" />
-                  </view>
+                 
                     <view class="form_list_select">
                         <view class="form_list_text"></view>
                       <view class="go"> 
                           <view bindtap="go_card">选择银行卡>></view>
-                            <view>身份认证>></view>
+                           
                       </view>
                   </view>
-                      <view class="form_list">
-                        <view class="form_list_text">开户银行：</view>
-                        <input type="text"   class="form_list_input"  placeholder="请填写开户行及支行名称" name="bank_name"  disabled value="{{card.bank_name}}" />
                       
-                  </view>
-                      <view class="form_list">
-                        <view class="form_list_text">银行卡号：</view>
-                        <input type="text"   class="form_list_input"  placeholder="请输入完整卡号" name="bank_card" disabled value="{{card.bank_card}}" />
-                    
-                  </view>
-                      <view class="form_list">
-                        <view class="form_list_text">验证码：</view>
-                        <input type="text"   class="form_list_input"  placeholder="验证码发送到您绑定的手机号" name="code" />
-                        <view class="send_cond" bindtap="send_cold">{{btntext}} </view>
-                  </view>
                     <view class="btn-area">
                       <button form-type="submit" class='button-hovers'>提交申请</button>
                   </view>
@@ -63,9 +49,14 @@
                 <form  report-submit="false" bindsubmit="formSubmit" bindreset="">
                     <view class="form_list">
                         <view class="form_list_text">申请提现金额：</view>
-                        <input type="text"   class="form_list_input"  placeholder="请输入金额，不能小于1000" name="money" />
-                        <text class="danwei">元</text>
+                        <view>
+                        </view>
                   </view>
+        <view class="form_list">
+          <input type="text"   class="form_list_input"  placeholder="请输入金额，不能小于1000" name="money" />
+                        <text class="danwei">元</text>
+        </view>
+                 
                     <view class="btn-area">
                       <button form-type="submit" class='button-hovers'>提交申请</button>
                   </view>

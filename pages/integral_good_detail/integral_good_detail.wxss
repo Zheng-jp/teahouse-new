@@ -195,7 +195,7 @@ view{
     color: #5E5E5E;
   }
   .ico_view{
-    width: 276rpx;
+    width: 280rpx;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -215,6 +215,7 @@ view{
     justify-content: center;
   }
   .trade>view{
+    width: 500px;
     height: 100rpx;
     line-height: 100rpx;
     text-align: center;
@@ -229,7 +230,7 @@ view{
    background: #FF2401;
     color: #fff;
     font-size: 30rpx;
-    
+
   }
   /* 弹窗开始 */
   .mask{
