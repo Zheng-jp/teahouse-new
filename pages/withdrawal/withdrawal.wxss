@@ -74,16 +74,15 @@
   border:solid  1px white;
   font-size: 24rpx;
   width: 550rpx;
-  box-shadow: 6rpx 6rpx 6rpx 6rpx #E4E4E4 inset;
+  box-shadow: 1rpx 4rpx 1rpx 1rpx #E4E4E4 inset;
   margin-left: 18px;
-  height: 31px;
-  
+  height: 40px;
 }
 .danwei{
   position: absolute;
   color: #00BBFF; 
   font-size: 30rpx;
-  margin-left: 235px;
+  margin-left: 265px;
   font-weight: bold;
 }
 .send_cond{
@@ -117,4 +116,10 @@
   justify-content: space-between;
   font-size: 24rpx;
   color: #00BBFf;
+}
+.tip{
+  color:#b8b8b8;
+font-size:24rpx;
+margin-left: 20px;
+margin-bottom: 10px;
 }

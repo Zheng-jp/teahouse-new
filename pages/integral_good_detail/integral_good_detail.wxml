@@ -18,10 +18,9 @@
 				<view class='sale'>积分：{{goods.integral}}/片</view>
 
 			</view>
-              	<view  style='margin-left:200px'>
-				<image src='img/u1492.png' class='footbar_ico'></image>
-				<view class='footbar_text'>分享</view>
-			</view>
+        
+				
+			
 		
 		</view>
 		<view class='other_info'>

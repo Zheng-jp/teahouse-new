@@ -188,11 +188,10 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
      position: relative;
      float: left;
      width: 50%;
+     height: 50%;
      box-sizing: border-box;
      margin-bottom:50rpx;
-     height: 500rpx;
      overflow: hidden;
- 
  }
   
   .weui-grid:before {
@@ -262,7 +261,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   }
   .price_text{
     color: red;
-    font-size: 30rpx;
+    font-size: 35rpx;
  
   }
    .price_line{
@@ -281,7 +280,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
     align-items: center;
     padding: 0 10rpx;
     margin-left: 9px;
-    line-height: 25px;
+    margin-top: 4px;
   }
   .price_content{
     display: flex;
@@ -294,13 +293,16 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
      margin-left: 30rpx;
   }
  .weui-grid_name {
-   width: 200rpx;
+   display:block;/*内联对象需加*/
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow:hidden;
+   width: 325rpx;
    padding: 10rpx;
    color: #000;
    font-size: 35rpx;
-   white-space: nowrap;
    margin-left: 10px;
-   line-height: 35px;
+   line-height: 30px;
  }
  
  .sell-list{

@@ -55,7 +55,9 @@
                 <view class="weui-grid" wx:for="{{routers}}" wx:for-item="item" wx:key="*this" bindtap="go_gooddetail" data-id="{{item.id}}">
                     <template is="good" data="{{item}}" bindtap></template>
                 </view>
+               
             </view>
+             
         </view>
     </view>
     <view class='share'>
