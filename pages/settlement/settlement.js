@@ -47,6 +47,7 @@ Page({
     coupon_content:"有可适用优惠券",
     money:0,
     coupon_id:0,//使用优惠劵id
+    address_0:'',
   },
   // 弹窗
   powerDrawer: function (e) {
@@ -836,16 +837,17 @@ Page({
             var name=res.data.data.harvester;
             var address_id=res.data.data.id;
             var address_names='';
+            var a = res.data.data.address_name.split(",");
+            console.log(a);
             for (var index in res.data.data.address_name) {
               address_names=res.data.data.address_name.split(",").join("");
             }
-          
             var address=address_names+res.data.data.harvester_real_address;
-            console.log(address);
             that.setData({
               tel: tel,
               name:name,
               address:address, 
+              address_0:a[0],
     
             });
 
@@ -880,6 +882,7 @@ Page({
         // },
         success: function (res) {
           var address_names='';
+          var a = res.data.data.address_name.split(",");
           for (var index in res.data.data.address_name) {
              address_names=res.data.data.address_name.split(",").join("");
           }
@@ -887,7 +890,8 @@ Page({
             tel: res.data.data.harvester_phone_num,
             name:res.data.data.harvester,
             address:address_names+res.data.data.harvester_real_address,
-            address_id:res.data.data.id
+            address_id:res.data.data.id,
+            address_0:a[0],
           });
         },
         fail: function () {

@@ -1,0 +1,26 @@
+<!--pages/seach/seach.wxml-->
+<view class="all">
+    <view class="seach_title">
+        <image class="seach_img" src="img/seach.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+        <input type="text" placeholder="搜索商品" class="seach_input"  value=""/>
+     
+        <view class="seach_btu">搜索</view>
+    </view>
+    <view class="seach_content">
+        <view class="content_title">
+            历史搜索
+        </view>
+        <view class="content_content">
+            <view class="list"> 龙井</view>  
+
+        </view>
+    </view>
+        <view class="seach_content">
+        <view class="content_title">
+            热门搜索
+        </view>
+        <view class="content_content">
+            <view class="list"> 龙井</view>
+        </view>
+    </view>
+</view>
