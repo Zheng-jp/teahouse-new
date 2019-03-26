@@ -121,33 +121,43 @@ Page({
   /**
  * 生命周期函数--监听页面加载
  */
+onLoad:function(){
+  var that = this;
+  var gmemberid = app.globalData.gmemberid;
+    
+  this.requesLocalData();
+  wx.request({
+    url: app.globalData.tiltes + 'my_index',
+    data: {
+      open_id: gmemberid
+    },
+    method: "POST",
+
+    success: function (res) {
+      wx.setNavigationBarColor({
+        frontColor: '#ffffff',
+        backgroundColor: res.data.data.member_background_color
+      });
+      that.setData({
+        information: res.data.data,
+      });
+    },
+    fail: function () {
+
+    },
+    complete: function () {
+      wx.hideLoading()
+    }
+
+  });
+  
+ 
+
+
+ 
+},
   onShow: function () {
-    var that = this;
-    var gmemberid = app.globalData.gmemberid;
-    console.log(that);
-    console.log("我显示了");
-    this.requesLocalData();
-    wx.request({
-      url: app.globalData.tiltes + 'my_index',
-      data: {
-        open_id: gmemberid
-      },
-      method: "POST",
-
-      success: function (res) {
-        that.setData({
-          information: res.data.data,
-        });
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
-      }
-
-    });
-
+   
   },
   
  

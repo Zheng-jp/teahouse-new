@@ -15,14 +15,16 @@
 		<view class='selling-point'>{{goods.goods_selling}}</view>
 		<view class='price_cont'>
 			<view >
-				<view class='sale'>积分：{{goods.integral}}/片</view>
-
+				<view class='sale'><view class='sale_title'>积分</view>{{goods.integral}}</view>
 			</view>
-        
-				
-			
-		
+			<view class='share' >
+			<button open-type="share" >
+			</button>
+				<image src='img/u1492.png' class='footbar_ico'></image>
+				<view class='footbar_text' >分享</view>
+			</view>
 		</view>
+		
 		<view class='other_info'>
 			<view class='freight'>
 				运费：免费
