@@ -72,9 +72,9 @@
 }
 .form_list_input{
   border:solid  1px white;
-  font-size: 24rpx;
+  font-size: 29rpx;
   width: 550rpx;
-  box-shadow: 1rpx 4rpx 1rpx 1rpx #E4E4E4 inset;
+  box-shadow: 1rpx 2rpx 1rpx 1rpx #E4E4E4 inset;
   margin-left: 18px;
   height: 40px;
 }
