@@ -78,7 +78,7 @@ swiper {
 }
 .sale_title{
   color: #333;
-  font-size: 36rpx;
+  font-size: 33rpx;
   margin-right: 20rpx;
 }
 
