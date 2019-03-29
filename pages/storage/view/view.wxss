@@ -32,12 +32,12 @@ swiper.swiper-container{height: 93%;}
 .enviroment-data-box{flex: 75%; height: 100%; background-color: #d7d7d7; display: flex; align-items: center; justify-content: space-between; padding-right: 20rpx;}
 .enviroment-data-box .icon-temperature,
 .enviroment-data-box .icon-humidity,
-.enviroment-data-box .icon-video{width: 50rpx; height: 50rpx;}
+.enviroment-data-box .icon-video{width: 40rpx; height: 40rpx;}
 .enviroment-data-box .enviroment-item{display: flex; align-items: center; height: 100%;}
 .enviroment-data-box .item-video{background-color: #e4e4e4; padding: 0 14rpx;}
-.enviroment-item .temperature{font-size: 28rpx; color: #D81E06;}
+.enviroment-item .temperature{font-size: 28rpx; color:#00BBFF;}
 .enviroment-item .humidity{font-size: 28rpx; color: #66CC00;}
-.more image{width: 16rpx; height: 28rpx;}
+.more image{width: 28rpx; height: 30rpx;margin-top: 4px;}
 
 .storage-item{padding: 40rpx 10rpx; border-bottom: 4rpx solid #f9f9f9; display: flex;}
 .item-left{text-align: center; flex-basis: 35%; display: flex; flex-direction: column; align-items: center; justify-content: space-between;}
