@@ -141,10 +141,10 @@
     }
     .price_text{
        float: left;
-      margin-top: -5rpx;
+
       color: red;
-      font-size: 30rpx;
-   
+      font-size: 24rpx;
+
     }
      .price_line{
        margin-right: 20rpx;
