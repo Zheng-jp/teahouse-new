@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 42,
+			"current": 43,
 			"list": [
 				{
 					"id": -1,
@@ -299,7 +299,13 @@
 					"id": -1,
 					"name": "扫码",
 					"pathName": "sweep/pages/sweep_detail/sweep_detail",
+					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "存茶地址",
+					"pathName": "pages/select_save_address/select_save_address"
 				}
 			]
 		}

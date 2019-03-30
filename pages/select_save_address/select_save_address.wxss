@@ -1,4 +1,13 @@
-/* pages/select_address/select_address.wxss */
+
+@keyframes around {
+  from {
+   margin-left: 100%;
+  }
+  to {
+   /* var接受传入的变量 */
+   margin-left: var(--marqueeWidth--);
+  }
+ }
 .content_list{
   display: flex;
   align-items: center;
@@ -28,11 +37,8 @@
   background: #fff;
 }
 .address{
-  margin-top: 20rpx;
 }
-.all{
-  background: #F9F9F9;
-}
+
 .add_address{
   width: 100%;
   height: 90rpx;
@@ -44,3 +50,42 @@
   text-align: center;
   font-size: 36rpx;
 }
+.list1{
+  display: flex;
+  justify-content: space-between;
+  color: #333333;
+  font-size: 25rpx;
+}
+.tips{
+  font-size: 24rpx;
+  color: #868686;
+}
+.sava_contents{
+  display: flex;
+}
+.sava_list{
+  display: flex;
+}
+.aaa{
+  background-color: #fe4655;
+  height: 50rpx;
+  line-height: 44rpx;
+  position: relative;
+  width: 100rpx;
+  margin-top:0rpx;
+}
+.aaa:hover{
+  /* 不起作用 */
+  animation-play-state: paused;
+}
+.sava_list{
+  color:#fff;
+  font-size: 28rpx;
+  white-space: nowrap;
+  animation-name: around;
+  animation-duration: 10s;  /*过渡时间*/
+  animation-iteration-count: infinite;
+  animation-timing-function:linear;
+}
+
+ 
