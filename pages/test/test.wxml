@@ -1,3 +1,0 @@
-<view class="info_box_happy">
-    <view class="info_box_happy_txt" style="width: {{textW}}px;margin-left: {{textL}}px">{{textN}}</view>
-</view>
