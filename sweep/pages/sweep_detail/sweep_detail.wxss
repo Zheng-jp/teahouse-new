@@ -1,0 +1,106 @@
+.img_content{
+    background: #fff;
+    height: 215rpx;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img{
+    width: 156rpx;
+}
+.list_content{
+    background: #fff;
+    margin-top: 22rpx;
+}
+.lista{
+    display: flex;
+    font-size: 28rpx;
+    height: 111rpx;
+    line-height: 111rpx;
+    padding-left: 41rpx;
+    padding-right: 41rpx;
+    display: flex;
+    justify-content: space-between;
+
+}
+.lefta{
+    color: #999999;
+}
+.righta{
+    color: #333333;
+}
+.list_a{
+    display: flex;
+    font-size: 28rpx;
+    padding-left: 41rpx;
+    display: flex;
+    justify-content: space-between;
+
+}
+.haiba{
+    text-align: right;
+}
+.more{
+    width: 14rpx;
+    height: 23rpx;
+    margin-left: 27rpx;
+}
+.right_content{
+    display: flex;
+    align-items: center;
+}
+.title{
+    font-size: 25rpx;
+    color: #93291E;
+    padding-left: 41rpx;
+   line-height: 60rpx;
+   margin-bottom: 20rpx;
+}
+/* 物流 */
+.logith{
+    display: flex;
+    
+}
+.time{
+    font-size: 23rpx;
+    color: #A1A1A1;
+    text-align: center;
+    line-height: 40rpx;
+    padding-left: 82rpx;
+    padding-right: 41rpx;
+}
+.log_content{
+    width: 400rpx;
+    font-size: 26rpx;
+    font-weight: 700;
+    color: #A1A1A1;
+    height: 100rpx;
+    border-left:solid 1rpx  #DEDEDE;
+    position: relative;
+    overflow: visible;
+    
+}
+.new{
+    color: #FFFFFF; 
+    background-color: rgba(244, 60, 57, 1);
+    width: 57rpx;
+    height: 28rpx;
+    line-height: 28rpx;
+    font-size: 16rpx;
+    position: absolute;
+    left: 20rpx;
+    text-align: center;
+    
+}
+.log_content_text{
+    margin-left: 110rpx;
+}
+.new_img{
+    position:absolute;
+    top:0rpx;
+    left:-6rpx;
+    width:10rpx;
+    z-index:99999;
+    
+}

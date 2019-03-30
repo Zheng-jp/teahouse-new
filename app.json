@@ -71,7 +71,16 @@
         "aftersale_success/aftersale_success",
         "aftersale_finish/aftersale_finish"
       ]
+    },
+    {
+      "root": "sweep/pages",
+      "pages": [
+        "sweep_detail/sweep_detail"
+      ]
     }
+   
+    
+
   ],
   "window": {
     "backgroundTextStyle": "light",
