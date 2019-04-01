@@ -1,0 +1,28 @@
+.view_notice_contain {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 120rpx;
+    background: white;
+    font-size: 26rpx;
+}
+
+.image_notice {
+    margin-left: 5rpx;
+}
+
+.swiper_container {
+    height: 120rpx;
+    width: 100%;
+}
+
+.swiper_item {
+    font-size: 26rpx;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    padding-top: 20rpx;
+}
