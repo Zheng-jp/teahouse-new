@@ -2,22 +2,22 @@
 <view class='all'>
    <radio-group class="radio-group" bindchange="radioChange">
 
-      <view class='content_list'>
+      <view class='content_list' bindtap="select" wx:for="{{warehouse}}" data-id="{{item.id}}">
          <view class='radio'>
             <radio value="" color='#fff' />
          </view>
          <view class='add_information'>
             <view class="list1">
-               <view> 仓储编号:BJ02 </view>
+               <view> 仓储编号:{{item.number}} </view>
                <view>
                   <view class="sava_contents">
                      <view class="savetitle">仓储费标准:</view>
                      <view class='scroll_view_border'>
                         <swiper class="swiper_container" vertical="true" autoplay="true" circular="true"
                            interval="5000">
-                           <block wx:for="{{noticeList}}">
+                           <block wx:for="{{item.units}}">
                               <swiper-item>
-                                 <view class="swiper_item"> ¥{{item.content0}}/天 </view>
+                                 <view class="swiper_item"> ¥{{item.cost}}/{{item.unit}}/天 </view>
                               </swiper-item>
                            </block>
 
@@ -30,14 +30,14 @@
                </view>
             </view>
             <view class='address'>
-               仓储地址:北京市朝阳区天鹅湾小区5号楼3单元201
+               仓储地址:{{item.adress}}
             </view>
             <view class="list2">
                <view class="list2_title">
                   仓库描述：
                </view>
                <view class="list2_content">
-                  云南仓库四季如春，便于普洱茶的发酵
+                  {{item.describe}}
                </view>
             </view>
          </view>

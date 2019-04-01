@@ -6,15 +6,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 商品信息
+    url: app.globalData.img_url,
     // 是否有收货地址
     selected:true,
     // 是否有店铺地址
     selected1: false,
-  
     selected2: false,
     isnum:false,
      // 是否有存茶地址
-    warehouse:false,
+    warehouse:'',
     //  选择保险年限
     showModalStatus: false,
     // 加减框里面的值
@@ -44,7 +45,7 @@ Page({
     order_number:null,//下单订单号
     coupon_order:[],//优惠劵弹窗显示
     coupon_mark:false,
-    coupon_content:"有可适用优惠券",
+    coupon_content:"请选择优惠券",
     money:0,
     coupon_id:0,//使用优惠劵id
     address_0:'',
@@ -584,6 +585,7 @@ Page({
      for(var i=0;i<that.data.goods.length;i++){
        all_moneys+=that.data.goods[i].grade_price*that.data.num;
      }
+     
      if(all_moneys-that.data.money>0){
       that.setData({
         all_money: all_moneys-that.data.money,
@@ -780,6 +782,8 @@ Page({
 
     });
   
+    
+  
    
     // 判读从哪个页面进来
     var  pages = getCurrentPages();
@@ -814,7 +818,7 @@ Page({
   onShow: function () {
     var that=this;
     var id=wx.getStorageSync('id');
-    var coupon_id=wx.getStorageSync('coupon_id');
+    var save_id=wx.getStorageSync('save_id');
     that.setData({
       address_id:id
     });
@@ -902,7 +906,79 @@ Page({
   
       });
     }
-    
+    console.log(save_id)
+    if(save_id==''){
+      wx.request({
+        url: app.globalData.tiltes + 'tacitly_approve',
+        data: {
+         
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+  
+        // },
+        success: function (res) {
+          console.log(res)
+          
+          var warehousess=[];
+        for(var i=0;i<res.data.data.unit.length;i++){
+          var warehouses={};
+            warehouses["unit"]=res.data.data.unit[i];
+            warehouses["cost"]=res.data.data.cost[i];
+          warehousess.push(warehouses);
+        }
+        res.data.data["units"]=warehousess;
+          that.setData({
+            warehouse: res.data.data,
+          });
+  
+      
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+        }
+  
+      });
+    }
+    else{
+      wx.request({
+        url: app.globalData.tiltes + 'tacitly_adress',
+        data: {
+           id:save_id
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+  
+        // },
+        success: function (res) {
+          console.log(res)
+          
+          var warehousess=[];
+        for(var i=0;i<res.data.data.unit.length;i++){
+          var warehouses={};
+            warehouses["unit"]=res.data.data.unit[i];
+            warehouses["cost"]=res.data.data.cost[i];
+          warehousess.push(warehouses);
+        }
+        res.data.data["units"]=warehousess;
+          that.setData({
+            warehouse: res.data.data,
+          });
+  
+      
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+        }
+  
+      });
+    }
     
   },
 

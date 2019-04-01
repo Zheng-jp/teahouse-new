@@ -79,7 +79,7 @@
 	<view wx:for="{{goods}}" class='good_list'>
 		<view class='order-goods-info'>
 			<view class='order-goods-img'>
-				<image src='img/u852.png' mode="scaleToFill"></image>
+				<image src='{{url}}{{item.goods_info.goods_show_image}}' mode="scaleToFill"></image>
 			</view>
 			<view class='order-info-box'>
 				<view class='order-info-title'>{{item.goods_info.goods_name}}</view>
@@ -89,9 +89,9 @@
 						<view class='unit-price-img'>
 							<image src='img/u216.png' mode="scaleToFill"></image>
 						</view>
-						<view class='unit-price-p text_red' wx:if="{{item.goods_info.goods_standard==0}}"> ￥{{item.grade_price}}/片
+						<view class='unit-price-p text_red' wx:if="{{item.goods_info.goods_standard==0}}"> ￥{{item.grade_price}}/{{item.goods_info.monomer}}
 						</view>
-						<view class='unit-price-p text_red' wx:else> ￥{{item.grade_price}}/片</view>
+						<view class='unit-price-p text_red' wx:else> ￥{{item.grade_price}}/{{item.special_info.offer}}</view>
 					</view>
 					<view class='quantity-p text_red'>×{{num}}</view>
 				</view>
@@ -147,23 +147,49 @@
 					<image src='img/u1959.png'></image>
 				</view>
 			</view>
+			
 			<view class="direct_mail {{selected2?'show':'hidden'}}" bindtap='go_save_tea'>
-				<view wx:if="{{warehouse}}" class='select_box'>
-					<view class='direct_mail_infor_all'>
-						<view class='direct_mail_infor'>
-							<text>仓储编号:BJ02 </text>
-							<text> 属性:整件仓储</text>
-						</view>
-						<view class='direct_mail_add'>仓储地址:北京市朝阳区天鹅湾小区5号楼3单元201</view>
-						<view class='direct_mail_add'>仓储费标准:¥0.1/片/天</view>
-					</view>
+				<view  class='select_box'>
+						<view class='add_information'>
+								<view class="list1">
+								   <view> 仓储编号:{{warehouse.name}} </view>
+								   <view>
+									  <view class="sava_contents">
+										 <view class="savetitle">仓储费标准:</view>
+										 <view class='scroll_view_border'>
+											<swiper class="swiper_container" vertical="true" autoplay="true" circular="true"
+											   interval="5000">
+											   <block wx:for="{{warehouse.units}}">
+												  <swiper-item>
+													 <view class="swiper_item"> ¥{{item.cost}}/{{item.unit}}/天 </view>
+												  </swiper-item>
+											   </block>
+					
+											</swiper>
+										 </view>
+					
+									  </view>
+									  <view class="tips">*出仓或换手时收取</view>
+					
+								   </view>
+								</view>
+								<view class='address'>
+								   仓储地址:{{warehouse.adress}}
+								</view>
+								<view class="list2">
+								   <view class="list2_title">
+									  仓库描述：
+								   </view>
+								   <view class="list2_content">
+									  {{warehouse.describe}}
+								   </view>
+								</view>
+							 </view>
 					<view class='more_img'>
 						<image src='img/u1959.png'></image>
 					</view>
 				</view>
-				<view wx:else class='no_select_box'>
-					请选择存茶仓库
-				</view>
+				
 			</view>
 
 		</view>
@@ -250,7 +276,7 @@
 			<view wx:if="{{coupon_show==1}}" bindtap="go_coupon"><text style='color:#FF7E4A;'>{{coupon_content}}</text></view>
 			<view wx:else><text style='color:#FF7E4A;'>无可适用优惠券</text></view>
 		</view>
-		<view class="sundry-li {{selected1?'show':'hidden'}}">
+		<view class="sundry-li {{selected?'show':'hidden'}}">
 			<view>运费</view>
 			<view><text style='color:#FF7E4A;'>10元</text></view>
 		</view>
