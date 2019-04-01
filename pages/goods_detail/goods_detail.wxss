@@ -562,6 +562,9 @@ overflow:hidden;
   margin-right:10rpx;
 }
 .big_limit_purchasing{
-  width: 750rpx;
+  width: 700rpx;
   overflow-x: scroll;
+  
+  
 }
+

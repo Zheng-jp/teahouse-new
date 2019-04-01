@@ -29,7 +29,7 @@ swiper.swiper-container{flex: 1;}
 .item-mid .tb-price .quantity{font-size: 32rpx; color: #ff2a00;}
 .item-bot .total{text-align: right; font-size: 24rpx; color: #1e1e1e; margin-bottom: 10rpx;}
 .item-bot .statustext{text-align: right;}
-.item-bot .statustext .status-text{font-size: 26rpx; color: #000; border: 2rpx solid #515151; display: inline-block; width: 160rpx; height: 50rpx; line-height: 50rpx; text-align: center; border-radius: 30rpx;}
+.item-bot .statustext .status-text{font-size: 26rpx; color: #000; border: 2rpx solid #515151; display: inline-block; width: 160rpx; height: 50rpx; line-height: 50rpx; text-align: center; border-radius: 13rpx;}
 
 
 

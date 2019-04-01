@@ -11,6 +11,8 @@ Page({
       static:'5',
       order:[],
       url: app.globalData.img_url,
+
+
       member_grade_img:null,
   },
 
@@ -212,6 +214,25 @@ Page({
    
   },
 
+  go: function (event) {
+
+    var that = this;
+    var item = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: item + '?title=' + 0,
+      success: function (res) {
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+
+      }
+
+
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
