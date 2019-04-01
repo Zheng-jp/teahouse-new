@@ -1,0 +1,23 @@
+
+<!-- 轮播 通知 start -->
+
+<view class='view_notice_contain'>
+
+
+<swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="5000">
+
+<block wx:for="{{noticeList}}">
+
+<swiper-item >
+
+<view class="swiper_item">{{item.content0}}</view>
+
+</swiper-item>
+
+</block>
+
+ 
+
+</swiper>
+
+</view>

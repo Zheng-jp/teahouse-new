@@ -47,13 +47,14 @@ checkbox-group{
   display: flex;
   align-items: center;
   padding-right: 30rpx;
+  position: relative;
 }
 .radio{
   width: 100rpx;
   text-align: center;
 }
 .add_information{
-  width: 560rpx;
+  width: 486rpx;
   font-size: 26rpx;
   padding-right: 20rpx;
 
@@ -91,4 +92,15 @@ checkbox-group{
   background: #00BBFF;
   text-align: center;
   font-size: 36rpx;
+}
+.moren{
+  font-size: 20rpx;
+  color: rgba(130, 16, 6, 0.788235294117647);
+  border: solid 1rpx rgba(130, 16, 6, 0.788235294117647);
+  position: absolute;
+  right:87rpx;
+   top:35rpx;
+   padding:4rpx;
+
+
 }
