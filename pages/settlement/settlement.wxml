@@ -71,7 +71,6 @@
 	<view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>
 </view>
 
-<!-- 弹窗 -->
 <view class='all'>
 	<view class='titles'>
 		购物清单
