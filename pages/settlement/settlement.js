@@ -49,6 +49,13 @@ Page({
     money:0,
     coupon_id:0,//使用优惠劵id
     address_0:'',
+    freight:0,//运费
+    taxes:0,//税费
+    storage:0,// 存储费
+    insurance:0,//保险费
+    invoice:0,//发票费
+    
+
   },
   // 弹窗
   powerDrawer: function (e) {
