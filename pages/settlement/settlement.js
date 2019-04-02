@@ -54,6 +54,8 @@ Page({
     storage:0,// 存储费
     insurance:0,//保险费
     invoice:0,//发票费
+    storages:[],//存储费管理
+    shop_address:'',
     
 
   },
@@ -62,8 +64,6 @@ Page({
     var currentStatu = e.currentTarget.dataset.statu;
     this.util(currentStatu)
   },
-  
-
   // 弹窗
   radioChange: function (e) {
     var that = this;
@@ -84,14 +84,16 @@ Page({
       })
     }
     else{
+      that.money_storages();
       that.setData({
         selected: false,
         selected1: false,
         selected2: true,
         order_type:3,
       })
+     
     }
-    // console.log(e.detail.value);
+    
   },
   go_direct_mail_address:function(e){
     wx.navigateTo({
@@ -271,7 +273,7 @@ Page({
           open_id: app.globalData.gmemberid,
           goods_id: that.data.user[1].good_id,
           goods_standard_id: that.data.user[2].guige,
-          order_quantity : num,
+          order_quantity : that.data.user[1].number,
           address_id:that.data.address_id,
           order_amount: that.data.all_money,
           order_type:that.data.order_type,
@@ -536,61 +538,61 @@ Page({
       );
     }
   },
-  go_coupon:function(){
-    var that=this;
-    that.setData({
-      coupon_mark:true,
-    })
-   
-  },
-  checkboxChange: function (e) {
-    var that=this;
-    console.log(e.detail.value[0]);
-    wx.request({
-      url: app.globalData.tiltes + 'coupon_minute',
-      data: {
-        coupon_id:e.detail.value[0],
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
+    go_coupon:function(){
+      var that=this;
+      that.setData({
+        coupon_mark:true,
+      })
+    
+    },
+    checkboxChange: function (e) {
+      var that=this;
+      console.log(e.detail.value[0]);
+      wx.request({
+        url: app.globalData.tiltes + 'coupon_minute',
+        data: {
+          coupon_id:e.detail.value[0],
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
 
-      // },
-      success: function (res) {
-         that.setData({
-          coupon_content:"-"+ res.data.data.money,
-          money:res.data.data.money
-        });
-        that.calculate_money();
-      },
-      fail: function () {
+        // },
+        success: function (res) {
+          that.setData({
+            coupon_content:"-"+ res.data.data.money,
+            money:res.data.data.money
+          });
+          that.calculate_money();
+        },
+        fail: function () {
 
-      },
-      complete: function () {
-      }
+        },
+        complete: function () {
+        }
 
-    });
-    that.setData({
-      coupon_mark:false,
-      coupon_id:parseInt(e.detail.value[0]),
-    })
-  },
-  no_use: function (e) {
-    var that=this;
-    that.setData({
-      coupon_mark:false,
-      coupon_content:"有可适用优惠券",
-      coupon_id:0,
-      money:0,
-    })
-    that.calculate_money();
-  },
+      });
+      that.setData({
+        coupon_mark:false,
+        coupon_id:parseInt(e.detail.value[0]),
+      })
+    },
+    no_use: function (e) {
+      var that=this;
+      that.setData({
+        coupon_mark:false,
+        coupon_content:"有可适用优惠券",
+        coupon_id:0,
+        money:0,
+      })
+      that.calculate_money();
+    },
      // 计算钱
      calculate_money:function(){
       var that=this;
      var all_moneys=0;
      for(var i=0;i<that.data.goods.length;i++){
-       all_moneys+=that.data.goods[i].grade_price*that.data.num;
+       all_moneys+=that.data.goods[i].grade_price*that.data.goods[i].number;
      }
      
      if(all_moneys-that.data.money>0){
@@ -605,11 +607,36 @@ Page({
      }
      
    },
+  //  计算仓储费
+    money_storages:function(){
+      var that=this;
+      var storagess=[];
+      var money_storages=0;
+      for(var j=0;j<that.data.goods.length;j++){
+        for(var i=0;i<that.data.warehouse.units.length;i++){
+          if(that.data.goods[j].unit==that.data.warehouse.units[i].unit){
+            storagess.push(that.data.warehouse.units[i].cost);
+          }
+        }
+      }
+      that.setData({
+        storages:storagess,
+      })
+      for(var j=0;j<that.data.goods.length;j++){
+        for(var i=0;i<that.data.storages.length;i++){
+          money_storages+=that.data.storages[i]*that.data.goods[j].number;
+      }
+      }
+      that.setData({
+        storage:money_storages,
+      })
+    },
   
      /* 点击减号 */
      bindMinus: function () {
       var that=this;
-      var num = this.data.num;
+      var num = this.data.goods[0].number;
+      var goods = this.data.goods;
       // 如果大于1时，才可以减  
       if (num > 1) {
         num--;
@@ -617,9 +644,9 @@ Page({
       // 只有大于一件的时候，才能normal状态，否则disable状态  
       var minusStatus = num <= 1 ? 'disabled' : 'normal';
       // 将数值与状态写回  
-     
+      goods[0].number=num;
       this.setData({
-        num: num,
+        goods: goods,
         minusStatus: minusStatus
       });
       that.calculate_money();
@@ -627,16 +654,16 @@ Page({
     /* 点击加号 */
     bindPlus: function () {
       var that=this;
-      console.log(that);
-      var num = this.data.num;
+      var num = this.data.goods[0].number;
+      var goods = this.data.goods;
       // 不作过多考虑自增1  
       num++;
       // 只有大于一件的时候，才能normal状态，否则disable状态  
       var minusStatus = num < 1 ? 'disabled' : 'normal';
       // 将数值与状态写回  
-    
+      goods[0].number=num;
       this.setData({
-        num: num,
+        goods: goods,
         minusStatus: minusStatus
       });
       that.calculate_money();
@@ -706,11 +733,6 @@ Page({
         minusStatus: minusStatus
       });
     },
-    
-    
- 
-  
-   
 
   /**
    * 生命周期函数--监听页面加载
@@ -738,7 +760,7 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res)
+     
         that.setData({
           goods: res.data.data,
         });
@@ -750,6 +772,7 @@ Page({
           all_money: all_moneys,
           num:that.data.goods[0].number
         });
+      
         wx.request({
           url: app.globalData.tiltes + 'coupon_appropriated',
           data: {
@@ -826,6 +849,7 @@ Page({
     var that=this;
     var id=wx.getStorageSync('id');
     var save_id=wx.getStorageSync('save_id');
+    var shop_id=wx.getStorageSync('shop_id');
     that.setData({
       address_id:id
     });
@@ -913,7 +937,7 @@ Page({
   
       });
     }
-    console.log(save_id)
+    
     if(save_id==''){
       wx.request({
         url: app.globalData.tiltes + 'tacitly_approve',
@@ -974,6 +998,59 @@ Page({
         res.data.data["units"]=warehousess;
           that.setData({
             warehouse: res.data.data,
+          });
+  
+      
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+        }
+  
+      });
+    }
+    if(shop_id==''){
+      wx.request({
+        url: app.globalData.tiltes + 'approve_adress',
+        data: {
+         
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+  
+        // },
+        success: function (res) {
+          that.setData({
+            shop_address: res.data.data,
+          });
+  
+      
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+        }
+  
+      });
+    }
+    else{
+      wx.request({
+        url: app.globalData.tiltes + 'approve_detailed',
+        data: {
+           id:shop_id
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+  
+        // },
+        success: function (res) {
+        
+          that.setData({
+            shop_address: res.data.data,
           });
   
       

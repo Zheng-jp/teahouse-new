@@ -93,7 +93,7 @@
 						</view>
 						<view class='unit-price-p text_red' wx:else> ￥{{item.grade_price}}/{{item.special_info.offer}}</view>
 					</view>
-					<view class='quantity-p text_red'>×{{num}}</view>
+					<view class='quantity-p text_red'>×{{item.number}}</view>
 				</view>
 			</view>
 		</view>
@@ -101,7 +101,7 @@
 			<view class='purchase_quantity'>购买数量</view>
 			<view class='select_quantity'>
 				<view class='subtract' bindtap="bindMinus">-</view>
-				<view class='num'><input type="number" placeholder="" value="{{num}}" /></view>
+				<view class='num'><input type="number" placeholder="" value="{{item.number}}" /></view>
 				<view class='add' bindtap="bindPlus">+</view>
 			</view>
 		</view>
@@ -194,10 +194,10 @@
 
 		</view>
 	</view>
-	<view class="is_insurance {{selected2?'show':'hidden'}}">
+	<view class="is_insurance {{selected2?'show':'hidden'}}" >
 		<view class='is_invoice2'>
 			<label class="checkbox">
-				<checkbox value="选择仓储保险" />选择仓储保险
+				<checkbox value="选择仓储年限" />选择仓储年限
 			</label>
 			<image class="tips_img" src="img/u927.png" mode="widthFix"> </image>
 			<view class="" class="tips_content">*可选项，默认1年</view>
@@ -216,7 +216,7 @@
 			</view>
 		</view>
 	</view>
-	<view class="is_insurance {{selected2?'show':'hidden'}}">
+	<view class="is_insurance {{selected2?'show':'hidden'}}" style="display:none">
 		<view class='is_invoice1'>
 			<view class="is_invoice11">
 				<label class="checkbox">
@@ -284,10 +284,14 @@
 			<view>税费</view>
 			<view><text style='color:#FF7E4A;'>23元</text></view>
 		</view>
-		<view class="sundry-li {{selected3?'show':'hidden'}}">
+		<view class="sundry-li {{selected2?'show':'hidden'}}" style="display:none">
 			<view>仓储保险费</view>
 			<view><text style='color:#FF7E4A;'>23元</text></view>
 		</view>
+		<view class="sundry-li {{selected2?'show':'hidden'}}">
+		<view>仓储费</view>
+		<view><text style='color:#FF7E4A;'>{{storage}}元</text></view>
+	    </view>
 	</view>
 	<view class="repay_box">
 		<view class="moly">应付<text style='color:#7E383F;padding-left:20rpx;'>{{all_money}}元</text></view>
