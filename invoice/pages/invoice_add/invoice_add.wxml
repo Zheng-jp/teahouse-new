@@ -1,2 +1,15 @@
 <form bindsubmit="formSubmit" bindreset="formReset">
+   <view class="all">
+       <view class="select_name">
+            <view class="select_right">选择户名</view>
+             <view class="select_right">
+                 <view class="more_text">更多 </view> 
+                 <image class="more_img" src="../u1326.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+            </view>
+       </view>
+       <view class="name_title">
+            <image class="name_img" src="../u1329.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+            
+       </view>
+   </view>
 </form>
