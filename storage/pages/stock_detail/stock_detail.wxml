@@ -76,7 +76,7 @@
             <view class="item-key">实时温湿度：</view>
             <view class="item-value">
                 <image src="./img/icon4.png" class="temperature" />25.55°C
-                <image src="./img/icon3.png" class="humidity" />78.35%
+                <image src="./img/u2173.png" class="humidity" />78.35%
                 <image src="./img/icon2.png" class="icon-more" />
             </view>
         </view>

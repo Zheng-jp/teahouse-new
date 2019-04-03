@@ -40,6 +40,12 @@
 			"list": [
 				{
 					"id": -1,
+					"name": "茶圈",
+					"pathName": "pages/circle/circle",
+					"query": ""
+				},
+				{
+					"id": -1,
 					"name": "茶会",
 					"pathName": "pages/meeting/meeting",
 					"query": ""
@@ -299,14 +305,7 @@
 				{
 					"id": -1,
 					"name": "存茶地址",
-					"pathName": "pages/select_save_address/select_save_address",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "茶会",
-					"pathName": "invoice/pages/invoice_add/invoice_add",
-					"query": ""
+					"pathName": "pages/select_save_address/select_save_address"
 				}
 			]
 		}
