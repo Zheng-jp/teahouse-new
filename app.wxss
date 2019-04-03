@@ -39,11 +39,12 @@ margin:10rpx;
 .share-content{
   width: 600rpx;
 }
-.all image{
-  width:100%;
-  height:100%;
-  display:inline-block;
-  overflow:hidden;
+image {
+width:100%;
+height:100%;
+display:inline-block;
+overflow:hidden;
+
 }
 .price_cont{
   display: flex;
