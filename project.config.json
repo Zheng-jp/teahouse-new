@@ -285,12 +285,6 @@
 				},
 				{
 					"id": -1,
-<<<<<<< HEAD
-					"name": "众筹详情",
-					"pathName": "storage/pages/zcDetail/zcDetail",
-					"query": "",
-					"scene": null
-=======
 					"name": "关于我们",
 					"pathName": "pages/about/about",
 					"query": ""
@@ -312,7 +306,6 @@
 					"id": -1,
 					"name": "存茶地址",
 					"pathName": "pages/select_save_address/select_save_address"
->>>>>>> 55c29a221d7454d22dfda07e71088bde5125ab12
 				}
 			]
 		}
