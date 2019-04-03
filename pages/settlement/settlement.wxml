@@ -1,76 +1,76 @@
 <!--pages/settlement/settlement.wxml-->
 <!-- 弹窗 -->
-<view class="coupon_content_all"  wx:if="{{coupon_mark}}">
+<view class="coupon_content_all" wx:if="{{coupon_mark}}">
 	<view class="coupon_content">
-		<view  class="coupon_content_tip">
+		<view class="coupon_content_tip">
 			<view class="coupon_content_left">
 				您有以下可适用优惠券
 			</view>
 			<view class="coupon_content_right" bindtap="no_use">
 				暂时不使用优惠券
-				<image class="retrue_ico" src="img/u2014.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+				<image class="retrue_ico" src="img/u2014.png" mode="widthFix" lazy-load="false" binderror="" bindload="">
+				</image>
 			</view>
 		</view>
-			<checkbox-group bindchange="checkboxChange">
-				<view class='order_list' wx:for="{{coupon_order}}"  data-id="{{item.id}}" >
-					<view class='order_list_content'>
-						<checkbox value="{{item.id}}" checked="{{item.checked}}" data-id="{{item.name}}" /> 
-						<view class="coupon_box" >
-							<image class="coupon_box_img" src="img/u11123.png" mode="widthFix"></image>
-							<view class="coupon_money_box">
-								<view><text class="money">{{item.money}}</text><text class="money_unit">元</text></view>
-								<view class="limit">满{{item.use_price}}使用</view>
-							</view>
-							<view class="coupon_info_box">
-								<view class="coupon_name">{{item.label}}</view>
-								<view class="validity">有效期：{{item.start_time}}-{{item.end_time}}</view>
-								<view class="range">适用范围：<text wx:for="{{item.scope}}">{{item}}</text></view>
-								<view class="go_use" >立即使用>></view>
+		<checkbox-group bindchange="checkboxChange">
+			<view class='order_list' wx:for="{{coupon_order}}" data-id="{{item.id}}">
+				<view class='order_list_content'>
+					<checkbox value="{{item.id}}" checked="{{item.checked}}" data-id="{{item.name}}" />
+					<view class="coupon_box">
+						<image class="coupon_box_img" src="img/u11123.png" mode="widthFix"></image>
+						<view class="coupon_money_box">
+							<view><text class="money">{{item.money}}</text><text class="money_unit">元</text></view>
+							<view class="limit">满{{item.use_price}}使用</view>
 						</view>
+						<view class="coupon_info_box">
+							<view class="coupon_name">{{item.label}}</view>
+							<view class="validity">有效期：{{item.start_time}}-{{item.end_time}}</view>
+							<view class="range">适用范围：<text wx:for="{{item.scope}}">{{item}}</text></view>
+							<view class="go_use">立即使用>></view>
 						</view>
 					</view>
 				</view>
-			</checkbox-group>
-			
+			</view>
+		</checkbox-group>
+
 	</view>
 </view>
-	<view class="drawer_screen" bindtap="powerDrawer1" data-statu="close" wx:if="{{showModalStatus}}"></view>
-	<view wx:if='{{showPayPwdInput}}'>
-			<view class='bg_layer'></view>
-			<view class='input_main'>
-					<view class='input_title'>
-							<view class='input_back' catchtap='hidePayLayer'><text></text></view>
-							<text>输入支付密码</text>
-					</view>
-					<view class='input_tip'><text>请输入账户余额支付密码</text></view>
-					<view class='input_row' catchtap='getFocus'>
-							<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
-									<text wx:if='{{pwdVal.length>i}}'></text>
-							</view>
-					</view>
-					<view class='forget_pwd' catchtap='forget_password'>忘记密码</view>
-					<input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6'/>
+<view class="drawer_screen" bindtap="powerDrawer1" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view wx:if='{{showPayPwdInput}}'>
+	<view class='bg_layer'></view>
+	<view class='input_main'>
+		<view class='input_title'>
+			<view class='input_back' catchtap='hidePayLayer'><text></text></view>
+			<text>输入支付密码</text>
+		</view>
+		<view class='input_tip'><text>请输入账户余额支付密码</text></view>
+		<view class='input_row' catchtap='getFocus'>
+			<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+				<text wx:if='{{pwdVal.length>i}}'></text>
 			</view>
+		</view>
+		<view class='forget_pwd' catchtap='forget_password'>忘记密码</view>
+		<input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
 	</view>
+</view>
 
 <!--content-->
 <!--使用animation属性指定需要执行的动画-->
 <view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
- 
-  <!--drawer content-->
-  <view class="drawer_title">提示</view>
-  <view class="drawer_content">
-   <view class='tip'>请选择年限</view>
-     <view class='calculate'>
-     <view class='subtract' bindtap="bindMinus">-</view>
-     <input type='text' value='{{num}}' class='calculate_text' ></input>
-     <view class='add' bindtap="bindPlus">+</view>
-     </view>
-  </view>
-  <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>
+
+	<!--drawer content-->
+	<view class="drawer_title">提示</view>
+	<view class="drawer_content">
+		<view class='tip'>请选择年限</view>
+		<view class='calculate'>
+			<view class='subtract' bindtap="bindMinus">-</view>
+			<input type='text' value='{{num}}' class='calculate_text'></input>
+			<view class='add' bindtap="bindPlus">+</view>
+		</view>
+	</view>
+	<view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>
 </view>
 
-<!-- 弹窗 -->
 <view class='all'>
 	<view class='titles'>
 		购物清单
@@ -78,7 +78,7 @@
 	<view wx:for="{{goods}}" class='good_list'>
 		<view class='order-goods-info'>
 			<view class='order-goods-img'>
-				<image src='img/u852.png' mode="scaleToFill"></image>
+				<image src='{{url}}{{item.goods_info.goods_show_image}}' mode="scaleToFill"></image>
 			</view>
 			<view class='order-info-box'>
 				<view class='order-info-title'>{{item.goods_info.goods_name}}</view>
@@ -88,40 +88,40 @@
 						<view class='unit-price-img'>
 							<image src='img/u216.png' mode="scaleToFill"></image>
 						</view>
-
-						<view class='unit-price-p text_red' wx:if="{{item.goods_info.goods_standard==0}}"> ￥{{item.grade_price}}/片</view>
-						<view class='unit-price-p text_red' wx:else> ￥{{item.grade_price}}/片</view>
+						<view class='unit-price-p text_red' wx:if="{{item.goods_info.goods_standard==0}}"> ￥{{item.grade_price}}/{{item.goods_info.monomer}}
+						</view>
+						<view class='unit-price-p text_red' wx:else> ￥{{item.grade_price}}/{{item.special_info.offer}}</view>
 					</view>
-					<view class='quantity-p text_red'>×{{num}}</view>
+					<view class='quantity-p text_red'>×{{item.number}}</view>
 				</view>
-			</view>	
-		</view>
-	    <view class='quantity' wx:if="{{isnum}}">
-	    	<view class='purchase_quantity'>购买数量</view>
-			<view class='select_quantity'>
-			   <view class='subtract' bindtap="bindMinus">-</view>
-               <view class='num'><input type="number" placeholder=""  value="{{num}}" /></view>
-			   <view class='add'  bindtap="bindPlus">+</view>
 			</view>
-		</view>	
+		</view>
+		<view class='quantity' wx:if="{{isnum}}">
+			<view class='purchase_quantity'>购买数量</view>
+			<view class='select_quantity'>
+				<view class='subtract' bindtap="bindMinus">-</view>
+				<view class='num'><input type="number" placeholder="" value="{{item.number}}" /></view>
+				<view class='add' bindtap="bindPlus">+</view>
+			</view>
+		</view>
 	</view>
-	
+
 	<view class='way'>
 		<view class='way_select'>
 			<radio-group class="radio-group" bindchange="radioChange">
 				<label class="radio">
-              <radio value="选择直邮"  color='#fff' checked='checked'/> <text class='text_radio'>选择直邮</text>
-         </label>
+					<radio value="选择直邮" color='#fff' checked='checked' /> <text class='text_radio'>选择直邮</text>
+				</label>
 				<label class="radio">
-              <radio value="到店自提"  color='#fff'/><text class='text_radio'>到店自提</text>
-           </label>
+					<radio value="到店自提" color='#fff' /><text class='text_radio'>到店自提</text>
+				</label>
 				<label class="radio">
-              <radio value="选择存茶"  color='#fff'/><text class='text_radio'>选择存茶</text>
-            </label>
+					<radio value="选择存茶" color='#fff' /><text class='text_radio'>选择存茶</text>
+				</label>
 			</radio-group>
 		</view>
 		<view>
-			<view class="direct_mail {{selected?'show':'hidden'}}"  bindtap='go_direct_mail_address'>
+			<view class="direct_mail {{selected?'show':'hidden'}}" bindtap='go_direct_mail_address'>
 				<view class='direct_mail_infor_all'>
 					<view class='direct_mail_infor'>
 						<text>{{tel}} </text>
@@ -137,85 +137,111 @@
 			<view class="direct_mail {{selected1?'show':'hidden'}}" bindtap='go_shop_address'>
 				<view class='direct_mail_infor_all'>
 					<view class='direct_mail_infor'>
-						<text>北京市01店 </text>
-						<text> 010-54779999</text>
+						<text>{{shop_address.extract_name}} </text>
+						<text> {{shop_address.phone_num}}</text>
 					</view>
-					<view class='direct_mail_add'>北京市朝阳区天鹅湾小区5号楼3单元201</view>
+					<view class='direct_mail_add'>{{shop_address.shop_address}}</view>
 				</view>
-				<view class='more_img' >
+				<view class='more_img'>
 					<image src='img/u1959.png'></image>
 				</view>
 			</view>
-			<view class="direct_mail {{selected2?'show':'hidden'}}"  bindtap='go_save_tea'>
-				<view wx:if="{{warehouse}}" class='select_box'>
-					<view class='direct_mail_infor_all'>
-						<view class='direct_mail_infor'>
-							<text>仓储编号:BJ02 </text>
-							<text> 属性:整件仓储</text>
-						</view>
-						<view class='direct_mail_add'>仓储地址:北京市朝阳区天鹅湾小区5号楼3单元201</view>
-						<view class='direct_mail_add'>仓储费标准:¥0.1/片/天</view>
-					</view>
+			
+			<view class="direct_mail {{selected2?'show':'hidden'}}" bindtap='go_save_tea'>
+				<view  class='select_box'>
+						<view class='add_information'>
+								<view class="list1">
+								   <view> 仓储编号:{{warehouse.name}} </view>
+								   <view>
+									  <view class="sava_contents">
+										 <view class="savetitle">仓储费标准:</view>
+										 <view class='scroll_view_border'>
+											<swiper class="swiper_container" vertical="true" autoplay="true" circular="true"
+											   interval="5000">
+											   <block wx:for="{{warehouse.units}}">
+												  <swiper-item>
+													 <view class="swiper_item"> ¥{{item.cost}}/{{item.unit}}/天 </view>
+												  </swiper-item>
+											   </block>
+					
+											</swiper>
+										 </view>
+					
+									  </view>
+					
+								   </view>
+								</view>
+								<view class='address'>
+								   仓储地址:{{warehouse.adress}}
+								</view>
+								<view class="list2">
+								   <view class="list2_title">
+									  仓库描述：
+								   </view>
+								   <view class="list2_content">
+									  {{warehouse.describe}}
+								   </view>
+								</view>
+							 </view>
 					<view class='more_img'>
 						<image src='img/u1959.png'></image>
 					</view>
 				</view>
-				<view wx:else class='no_select_box'>
-					请选择存茶仓库
-				</view>
+				
 			</view>
 
 		</view>
 	</view>
-		<view class="is_insurance {{selected2?'show':'hidden'}}">
-			<view class='is_invoice2'>
-				<label class="checkbox">
-						<checkbox value="选择仓储保险" />选择仓储保险
-				</label>
-				<image class="tips_img" src="img/u927.png" mode="widthFix" >	</image>
-				<view class="" class="tips_content"  >*可选项，默认1年</view>
-			</view>
+	<view class="is_insurance {{selected2?'show':'hidden'}}" >
+		<view class='is_invoice2'>
+		<checkbox-group bindchange="checkboxChanges">
+			<label class="checkbox">
+				<checkbox value="选择仓储年限"   checked="{{is_checked==true?'true':''}}"/>选择仓储年限
+			</label>
+		</checkbox-group>
+			<image class="tips_img" src="img/u927.png" mode="widthFix"> </image>
+		</view>
 		<view class='go_invoice_information'>
 			<view>
 				选择仓储年限
 			</view>
-	    <!--<view class='more_imgs' bindtap="powerDrawer" data-statu="open">
+			<!--<view class='more_imgs' bindtap="powerDrawer" data-statu="open">
 				<image src='img/u1959.png' mode="scaleToFill"></image>
 			</view>-->
-					<view class='select_quantity'>
-			   <view class='subtract' bindtap="bindMinus1">-</view>
-               <view class='num'><input type="number" placeholder=""  value="{{num1}}" /></view>
-			   <view class='add'  bindtap="bindPlus1">+</view>
+			<view class='select_quantity'>
+				<view class='subtract' bindtap="bindMinus1">-</view>
+				<view class='num'><input type="number" placeholder="" value="{{num1}}" /></view>
+				<view class='add' bindtap="bindPlus1">+</view>
 			</view>
 		</view>
 	</view>
-	<view class="is_insurance {{selected2?'show':'hidden'}}">
+	<view class="is_insurance {{selected2?'show':'hidden'}}" style="display:none">
 		<view class='is_invoice1'>
-		<view class="is_invoice11">
-			<label class="checkbox">
-                  <checkbox value="选择仓储保险" />选择仓储保险
-              </label>
-									<image class="tips_img" src="img/u927.png" mode="widthFix" >	</image>
-				<view class="" class="tips_content"  >*可选项，默认1年</view>
-			<view class='invoice_money text_red'>
-				¥ 0.00
+			<view class="is_invoice11">
+				<label class="checkbox">
+					<checkbox value="选择仓储保险" />选择仓储保险
+				</label>
+				<image class="tips_img" src="img/u927.png" mode="widthFix"> </image>
+				<view class="" class="tips_content">*可选项，默认1年</view>
+				<view class='invoice_money text_red'>
+					¥ 0.00
+				</view>
 			</view>
+			<view class="text_red" style="font-size:20rpx;margin-left:40rpx;"> *本仓库已由中国人民保险公司诚意承保 </view>
 		</view>
-			<view class="text_red" style="font-size:20rpx;margin-left:40rpx;">	*本仓库已由中国人民保险公司诚意承保	</view>
-		</view>
-		
-	
+
+
 		<view class='go_invoice_information'>
 			<view>
 				请选择保险年限
 			</view>
-		 <!--	<view class='more_imgs' bindtap="powerDrawer" data-statu="open">
+			<!--	<view class='more_imgs' bindtap="powerDrawer" data-statu="open">
 				<image src='img/u1959.png' mode="scaleToFill"></image>
 			</view>-->
-					<view class='select_quantity'>
-			   <view class='subtract' bindtap="bindMinus2">-</view>
-               <view class='num'><input type="number" placeholder=""  value="{{num2}}" /></view>
-			   <view class='add'  bindtap="bindPlus2">+</view>
+			<view class='select_quantity'>
+				<view class='subtract' bindtap="bindMinus2">-</view>
+				<view class='num'><input type="number" placeholder="" value="{{num2}}" /></view>
+				<view class='add' bindtap="bindPlus2">+</view>
 			</view>
 		</view>
 	</view>
@@ -223,8 +249,8 @@
 	<view class='invoice'>
 		<view class='is_invoice'>
 			<label class="checkbox">
-                  <checkbox value="选择开具发票" />选择开具发票
-              </label>
+				<checkbox value="选择开具发票" />选择开具发票
+			</label>
 			<view class='invoice_money text_red'>
 				¥ 0.00
 			</view>
@@ -238,19 +264,18 @@
 			</view>
 		</view>
 	</view>
-	
-	<view class='sundry'>
 
-		<view class='sundry-li' style=' border-bottom: solid 1rpx #E4E4E4;'>
+	<view class='sundry'>
+		<view class='sundry-li1' style=' border-bottom: solid 1rpx #E4E4E4;'>
 			<view>商品总价</view>
 			<view><text style='color:#FF7E4A;'>{{all_money}}元</text></view>
 		</view>
 		<view class='sundry-li'>
 			<view class='text_red'>优惠券</view>
-				<view wx:if="{{coupon_show==1}}"  bindtap="go_coupon" ><text style='color:#FF7E4A;' >{{coupon_content}}</text></view>
+			<view wx:if="{{coupon_show==1}}" bindtap="go_coupon"><text style='color:#FF7E4A;'>{{coupon_content}}</text></view>
 			<view wx:else><text style='color:#FF7E4A;'>无可适用优惠券</text></view>
 		</view>
-		<view class='sundry-li'>
+		<view class="sundry-li {{selected?'show':'hidden'}}">
 			<view>运费</view>
 			<view><text style='color:#FF7E4A;'>10元</text></view>
 		</view>
@@ -258,14 +283,18 @@
 			<view>税费</view>
 			<view><text style='color:#FF7E4A;'>23元</text></view>
 		</view>
-		<view class='sundry-li'>
+		<view class="sundry-li {{selected2?'show':'hidden'}}" style="display:none">
 			<view>仓储保险费</view>
 			<view><text style='color:#FF7E4A;'>23元</text></view>
 		</view>
+		<view class="sundry-li {{selected2?'show':'hidden'}}">
+		<view>仓储费</view>
+		<view><text style='color:#FF7E4A;'>{{storage}}元</text></view>
+	    </view>
 	</view>
-  <view class="repay_box">
-  <view class="moly">应付<text style='color:#7E383F;padding-left:20rpx;'>{{all_money}}元</text></view>
-	<view class='buts' bindtap='repay' wx:if="{{from_buy}}">立即支付</view>
-	<view class='buts' bindtap='buyrepay' wx:else>立即支付</view>
-  </view>
+	<view class="repay_box">
+		<view class="moly">应付<text style='color:#7E383F;padding-left:20rpx;'>{{all_money}}元</text></view>
+		<view class='buts' bindtap='repay' wx:if="{{from_buy}}">立即支付</view>
+		<view class='buts' bindtap='buyrepay' wx:else>立即支付</view>
+	</view>
 </view>

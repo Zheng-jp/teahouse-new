@@ -1,62 +1,28 @@
-.imgsbox{
-    width: 690rpx;
-    padding: 20rpx;
-    margin: auto;
-    background: #fff;
-    border-radius:0 0 14rpx 14rpx;
-    border-right: 1px solid #d6d7dc;
-    border-left: 1px solid #d6d7dc;
-    border-bottom: 1px solid #d6d7dc;
-    box-sizing: border-box; 
-    overflow: hidden;
+.view_notice_contain {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 120rpx;
+    background: white;
+    font-size: 26rpx;
 }
-.weui-cells{
-    font-size: 30rpx!important;
+
+.image_notice {
+    margin-left: 5rpx;
 }
- 
-.weui-cell::before{
-    border-top:1rpx solid #eee;
-}
-.upload-img-btn image{
-    width: 185rpx;
-    height: 185rpx;
-}
-.upload-img-btn{
-    float: left;
-}
-.img{
-    width: 185rpx;
-    height: 185rpx;
-    float: left;
-    margin: 15rpx;
-    position: relative;
-    overflow: hidden
-}
-.delete-btn{
-    position: absolute;
-    bottom: 0;left: 0;
-    background-color: rgba(0,0,0,.5);
-    color: #fff;
-    text-align: center;
-    line-height: 40rpx;
+
+.swiper_container {
+    height: 120rpx;
     width: 100%;
 }
-.img image{
-    width: 185rpx;
-    height: 185rpx
-}
-.weui-select{
-    border-right: none;
-}
-.weui-uploader__hd{
-    float: left;
-}
-.weui-uploader__title{
-    width: 150rpx!important;
-}
-.weui-label{
-    width: 150rpx!important;
-}
-.upload-img-btn image{
-    margin: 10rpx;
+
+.swiper_item {
+    font-size: 26rpx;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    padding-top: 20rpx;
 }

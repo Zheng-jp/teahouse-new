@@ -38,7 +38,8 @@
                 </view>
                 <view class="price_text" wx:else>￥{{item.min_price}}</view>
             </view>
-            <view class="line_price">￥{{item.line}}</view>
+            <view class="line_price" wx:if="{{item.goods_standard==0}}">￥{{item.goods_bottom_money}}</view>
+            <view class="line_price" wx:else>￥{{item.line}}</view>
         </view>
     </view>
 </template>

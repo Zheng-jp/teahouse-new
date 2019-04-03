@@ -15,10 +15,10 @@
     "pages/select_shop_address/select_shop_address",
     "pages/select_save_address/select_save_address",
     "pages/buy/buy",
-    "pages/order/order",
     "pages/test/test",
     "pages/about/about",
     "pages/contract/contract",
+    "pages/order/order",
     "pages/contract_detail/contract_detail",
     "pages/problement/problement",
     "pages/problement_detail/problement_detail",
@@ -50,7 +50,9 @@
     "pages/forget_password/forget_password",
     "pages/integral_settlement/integral_settlement",
     "pages/integral_order/integral_order",
-    "pages/storage/view/view"
+    "pages/storage/view/view",
+    "pages/seach/seach"
+    
   ],
   "subpackages": [
     {
@@ -71,7 +73,22 @@
         "aftersale_success/aftersale_success",
         "aftersale_finish/aftersale_finish"
       ]
+    },
+    {
+      "root": "sweep/pages",
+      "pages": [
+        "sweep_detail/sweep_detail"
+      ]
+    },
+    {
+      "root": "invoice/pages",
+      "pages": [
+        "invoice_add/invoice_add"
+      ]
     }
+   
+    
+
   ],
   "window": {
     "backgroundTextStyle": "light",

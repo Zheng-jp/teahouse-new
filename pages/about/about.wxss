@@ -13,8 +13,20 @@
 .list_left{
     color: #0DBEFF;
     font-size: 26rpx;
+    width: 200rpx;
+    font-weight: bold;
 
 }
 .list_right{
     font-size: 24rpx;
+}
+.tilte{
+  font-size: 36rpx;
+  font-weight: bold;
+  border-left: 20rpx solid red;
+  margin: 30rpx;
+  padding-left: 40rpx;
+}
+.uedt{
+  margin: 30rpx;
 }

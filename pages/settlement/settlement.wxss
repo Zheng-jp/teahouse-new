@@ -1,4 +1,9 @@
 /* pages/settlement/settlement.wxss */
+
+.checkbox{
+  display: flex;
+  align-items: center;
+}
 /* 弹窗 */
 .drawer_screen {
   width: 100%;
@@ -211,6 +216,7 @@ color:#3399FF;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: solid 2px #E4E4E4;
 }
 .more_img{
   width: 30rpx;
@@ -229,7 +235,6 @@ color:#3399FF;
 }
 .is_invoice1{
   padding:26rpx 26rpx 0rpx 26rpx;
-  border-bottom:solid 1rpx #E4E4E4; 
 }
 .is_invoice11{
   display: flex;
@@ -246,7 +251,7 @@ color:#3399FF;
   align-items: center;
   justify-content: space-between;
   padding: 26rpx;
-  border-bottom:solid 1rpx #E4E4E4; 
+  border-bottom:solid px #E4E4E4; 
 }
 .checkbox{
   font-size: 30rpx;
@@ -259,7 +264,6 @@ color:#3399FF;
   padding: 20rpx;
   height: 60rpx;
   font-size: 30rpx;
-
 }
 .more_imgs{
   width: 30rpx;
@@ -277,8 +281,15 @@ color:#3399FF;
   align-items: center;
   padding: 28rpx;
   font-size: 26rpx;
-
  
+}
+.sundry-li1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx;
+  font-size: 26rpx;
+  border-top: solid 2px #E4E4E4;
 }
 .repay_box{
   position:fixed;
@@ -290,7 +301,7 @@ color:#3399FF;
   box-sizing: border-box;
   padding-left: 20rpx;
   background: #F2F2F1;
-
+border-top: solid 2px #E4E4E4;
 }
 .buts{
   width: 200rpx;
@@ -321,8 +332,8 @@ color:#3399FF;
   align-items: center;
 }
 .is_insurance{
-  margin-top: 30rpx;
   background: #fff;
+  border-bottom: solid 2px #E4E4E4;
 }
 /* 购买数量 */
 .quantity{
@@ -333,6 +344,7 @@ color:#3399FF;
   background: #fff;
   padding: 20rpx;
   box-sizing: border-box;
+  border-bottom: solid 2px #E4E4E4;
 }
 .purchase_quantity{
   font-size: 30rpx;
@@ -577,3 +589,112 @@ align-items: center;
   
 }
 /* 优惠劵 */
+/* 存茶 */
+.add_information{
+  width: 640rpx;
+  font-size: 26rpx;
+  padding-right: 20rpx;
+  color: #333;
+
+}
+.add_information text{
+  margin-right: 20rpx;
+}
+.add_ico{
+  width: 60rpx;
+  height: 64rpx;
+
+}
+.content_list{
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  margin-top: 16rpx;
+  background: #fff;
+}
+.address{
+  padding-top:5rpx;
+   padding-bottom:12rpx;
+
+}
+
+.add_address{
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  background: #00BBFF;
+  text-align: center;
+  font-size: 36rpx;
+}
+.list1{
+  display: flex;
+  justify-content: space-between;
+  color: #333333;
+  font-size: 25rpx;
+}
+.tips{
+  font-size: 24rpx;
+  color: #868686;
+  margin-top:-18rpx;
+
+}
+.sava_contents{
+  display: flex;
+}
+.sava_list{
+  display: flex;
+}
+.savetitle{
+  width: 280rpx;
+}
+.srcoll_view{
+  position: absolute;
+  top:0rpx;
+  height: 100rpx;
+  font-size: 30rpx;
+  white-space: nowrap;
+  line-height: 100rpx;
+  color: #00bff3;
+  animation:myfirst 20s linear infinite;
+  }
+ 
+  .scroll_view_border{
+  position: relative;
+  width: 100%;
+  height: 50rpx;
+  overflow: hidden;
+  }
+  .view_notice_contain {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 120rpx;
+    background: white;
+    font-size: 26rpx;
+}
+
+.image_notice {
+    margin-left: 5rpx;
+}
+
+.swiper_container {
+    height: 120rpx;
+    width: 100%;
+}
+
+.swiper_item {
+  font-size: 25rpx;
+  color: #FF0000;
+  overflow: hidden;
+  
+}
+.list2{
+  display: flex;
+}
+.list2_content{
+  font-size: 25rpx;
+  color: #6B6B6B;
+}

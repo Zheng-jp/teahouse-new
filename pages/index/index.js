@@ -90,6 +90,20 @@ Page({
   
       })
     },
+    go_seach: function (event) {
+
+      var that = this;
+      wx.navigateTo({
+        url: '../seach/seach',
+        success: function (res) {
+        },
+        fail: function () {
+        },
+        complete: function () {
+        }
+  
+      })
+    },
   go_good: function (event) {
 
     var that = this;

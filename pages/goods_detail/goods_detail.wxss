@@ -61,8 +61,7 @@
 	.good_name {
 		font-size: 31rpx;
 		font-weight: bold;
-		margin-top: 6rpx;
-		margin-bottom: 14rpx;
+    margin-bottom: 10px;
 	}
 	
 	.selling-point {
@@ -81,7 +80,6 @@
 	.sale {
 		color: red;
 		font-size: 40rpx;
-		margin-left: 8rpx;
 	}
 	
 	.other_info {
@@ -564,6 +562,9 @@ overflow:hidden;
   margin-right:10rpx;
 }
 .big_limit_purchasing{
-  width: 750rpx;
+  width: 700rpx;
   overflow-x: scroll;
+  
+  
 }
+

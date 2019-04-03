@@ -1,18 +1,24 @@
+<import src="../../wxParse/wxParse.wxml"/>
 <view class="all">
-<view class="list">
-     <view class="list_left">官方网址</view>
-     <view class="list_right">https://hao.360.cn/?wd_xp1</view>
-</view>
-   <view class="list">
-     <view class="list_left">   官方邮箱</view>
-     <view class="list_right">hao.360.cn/?wd_xp1</view>
-</view>
-<view class="list">
-     <view class="list_left">联系电话</view>
-     <view class="list_right">010-776666666</view>
-</view>
-<view class="list">
-     <view class="list_left">合作微信</view>
-     <view class="list_right">13938388383</view>
-</view>
+      <view class="list">
+        <view class="list_left">   官方邮箱</view>
+        <view class="list_right">{{data.email}}</view>
+    </view>
+    <view class="list">
+        <view class="list_left">联系电话</view>
+        <view class="list_right">{{data.telephone}}</view>
+    </view>
+    <view class="list">
+        <view class="list_left">合作微信</view>
+        <view class="list_right">{{data.wechat}}</view>
+    </view>
+    <view class="list">
+        <view class="list_left">售后邮寄</view>
+        <view class="list_right">{{data.business_address}}</view>
+    </view>
+    <view class='tilte'>我们的风采</view>
+    <view class='uedt'>
+     <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    </view>
+     
 </view>

@@ -1,16 +1,23 @@
-<view class='imgsbox'>
-<view class="weui-uploader" style='display:{{none}}'>
-  <view class="img-v">
-    <view class="img" wx:for="{{imgs1}}" wx:for-item="item" wx:key="*this">
-      <image src="{{item}}" data-index="{{index}}" mode="aspectFill" bindtap="previewImg1"></image>
-      <view class="delete-btn" data-index="{{index}}" catchtap="deleteImg1">
-      <image class='imgx' src='../images/x.png'></image>
-      </view>
-    </view>
-    <view class="upload-img-btn" bindtap="chooseImg1">
-      <image src='../images/upimg.png'></image>
-    </view>
-  </view>
-</view>
-<view class='tishi'>*最多可上传9张图片</view>
+
+<!-- 轮播 通知 start -->
+
+<view class='view_notice_contain'>
+
+
+<swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="5000">
+
+<block wx:for="{{noticeList}}">
+
+<swiper-item >
+
+<view class="swiper_item">{{item.content0}}</view>
+
+</swiper-item>
+
+</block>
+
+ 
+
+</swiper>
+
 </view>

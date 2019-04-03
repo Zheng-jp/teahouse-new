@@ -46,16 +46,17 @@
                         <image src="img/gif1.gif" class="icon-video" />
                         <text class="temperature">实时视频</text>
                     </view>
-                    <view class="enviroment-item">
+                    <view class="enviroment-item" bindtap="checkRealTimeData">
                         <image src="img/icon2.png" class="icon-temperature" />
-                        <text class="temperature">25.55°C</text>
+                        <text class="temperature" style='color:#D9250E'>25.55°C</text>
                     </view>
-                    <view class="enviroment-item">
-                        <image src="img/icon3.png" class="icon-humidity" />
-                        <text class="humidity">78.99%</text>
+                    <view class="enviroment-item" bindtap="checkRealTimeData">
+                        <image src="img/u2173.png" class="icon-humidity" />
+                        <text class="humidity" style='color:#669900'>78.99%</text>
                     </view>
+                     <view>
                     <view class="more" bindtap="checkRealTimeData">
-                        <image src="img/icon5.png" />
+                       <image src="img/icon5.png" /></view>
                     </view>
                 </view>
             </view>

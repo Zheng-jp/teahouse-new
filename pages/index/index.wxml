@@ -9,7 +9,7 @@
             <view class='fangwei'>溯源</view>
         </view>
         <image src="img/seach.png" class="seach_img" mode="widthFix" />
-        <input type='text' class='seach' placeholder="请输入"></input>
+        <input type='text' class='seach' placeholder="请输入"  bindfocus="go_seach" readonly="readonly"></input>
         <view style='float: left;' bindtap="bindViewTaps">
             <view class="ma">
                 <image src="img/u180.png"></image>
@@ -55,7 +55,9 @@
                 <view class="weui-grid" wx:for="{{routers}}" wx:for-item="item" wx:key="*this" bindtap="go_gooddetail" data-id="{{item.id}}">
                     <template is="good" data="{{item}}" bindtap></template>
                 </view>
+               
             </view>
+             
         </view>
     </view>
     <view class='share'>

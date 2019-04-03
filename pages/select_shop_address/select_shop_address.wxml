@@ -1,21 +1,19 @@
 <!--pages/select_address/select_address.wxml-->
 <view class='all'>
    <radio-group class="radio-group" bindchange="radioChange">
-     
-         <view class='content_list'> 
-        <view class='radio' >
-          <radio value=""  color='#fff'/>
-        </view>
+         <view class='content_list' wx:for="{{warehouse}}" bindtap="select" data-id="{{item.id}}"> 
+          <view class='radio' >
+            <radio value=""  color='#fff' checked="{{item.label==1?'true':''}}" />
+          </view>
         <view class='add_information'>
             <view>
-                 <text class='tel'>北京市01店 </text>
-                 <text> 010-54779999 </text>
+                 <text class='tel'>{{item.extract_name}} </text>
+                 <text> {{item.phone_num}} </text>
              </view>
              <view class='address'>
-             北京市朝阳区天鹅湾小区5号楼3单元201北京市朝阳区天鹅湾小区5号楼3单元201 
+               {{item.shop_address}}
              </view>
         </view>
-        <view class='add_ico'><image src='img/u9386.png'></image></view>
      </view>
       </radio-group>
   </view>
