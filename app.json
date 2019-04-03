@@ -78,6 +78,12 @@
       "pages": [
         "sweep_detail/sweep_detail"
       ]
+    },
+    {
+      "root": "invoice/pages",
+      "pages": [
+        "invoice_add/invoice_add"
+      ]
     }
    
     

@@ -16,7 +16,10 @@ height:81rpx;
 line-height:71rpx;
 overflow:hidden;
 }
-
+.weui-grid{
+  height: 500rpx;
+  overflow: hidden;
+}
 .selling_point{
   text-overflow:ellipsis;
 display:-webkit-box;

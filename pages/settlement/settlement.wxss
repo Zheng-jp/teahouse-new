@@ -1,4 +1,9 @@
 /* pages/settlement/settlement.wxss */
+
+.checkbox{
+  display: flex;
+  align-items: center;
+}
 /* 弹窗 */
 .drawer_screen {
   width: 100%;
