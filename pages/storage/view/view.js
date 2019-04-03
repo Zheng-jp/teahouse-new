@@ -1,10 +1,43 @@
 // pages/storage/view/view.js
+const app = getApp();
+// get Data
+function getData(_this){
+  // 轮播图
+  wx.request({
+    url: app.globalData.tiltes + 'crowd_index',
+    method: 'POST',
+    success: function(res){
+      console.log(res);
+      _this.setData({
+        swiperDataList: res.data.data
+      })
+    },
+    fail: function(res){
+      console.log(res);
+    }
+  });
+  // 正在众筹
+  wx.request({
+    url: app.globalData.tiltes + 'crowd_now',
+    method: 'POST',
+    success: function(res){
+      console.log(res);
+      _this.setData({
+        crowdList: res.data.data
+      })
+    },
+    fail: function(res){
+      console.log(res);
+    }
+  });
+}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    url: app.globalData.img_url,
     currentTab: 0,
     scaleImg: false,
     wareHouseFlag: false,
@@ -12,14 +45,16 @@ Page({
     autoplay: true,
     interval: 3000,
     duration: 500,
-    switchProject: false
+    switchProject: false,
+    swiperDataList: [],
+    crowdList: [],
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var _this = this;
-    
+    getData(_this);
   },
 
   clickTab: function(e){
@@ -31,6 +66,19 @@ Page({
         currentTab: current
       })
     }
+  },
+  // 去支持
+  support: function(e){
+    var id = e.target.dataset.id;
+    wx.navigateTo({
+      url: '/storage/pages/zcDetail/zcDetail?id=' + id,
+      success: function(){
+        console.log('跳转成功');
+      },
+      fail: function(){
+        console.log('跳转失败');
+      }
+    })
   },
 
   swiperTab: function(e){

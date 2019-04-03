@@ -1,5 +1,5 @@
 /* pages/storage/view/view.wxss */
-view{overflow: auto !important;}
+view{overflow: initial !important;}
 page{height: 100%;}
 swiper.swiper-container{height: 93%;}
 .overflowYauto{overflow-y: auto !important;}
@@ -60,6 +60,7 @@ swiper.swiper-container{height: 93%;}
 
 /* 众筹 */
 .swiper-box{background-color: #000; box-sizing: border-box; height: 400rpx;}
+.swiper-box swiper{height: 160px;}
 .swiper-title{text-align: center; color: #fff; font-size: 32rpx; padding: 20rpx 0;}
 .zc-swiper swiper-item{text-align: center; height: initial !important;}
 .zc-swiper swiper-item .box{width: 90%; height: 250rpx; background-color: #fff; display: inline-block; box-sizing: border-box; padding: 36rpx 12rpx; display: inline-flex; justify-content: space-between;}
@@ -69,8 +70,8 @@ swiper.swiper-container{height: 93%;}
 .box .swiper-img-box{width: 180rpx; height: 180rpx; margin-right: 20rpx;}
 .box .swiper-img-box image{width: 100%; height: 100%;}
 .box .swiper-good-info{flex: 1;}
-.box .swiper-good-info .swiper-stock{text-align: right; font-size: 24rpx; color: #333; margin-bottom: 14rpx;}
-.box .swiper-good-info .swiper-desc{font-size: 26rpx; color: #949494; text-align: left; margin-bottom: 14rpx;}
+.box .swiper-good-info .swiper-stock{text-align: right; font-size: 24rpx; color: #333; margin-bottom: 10rpx;}
+.box .swiper-good-info .swiper-desc{font-size: 26rpx; color: #949494; text-align: left; margin-bottom: 10rpx; height: 36px; word-break: break-all; text-overflow: ellipsis; overflow: hidden;}
 .box .swiper-good-info .swiper-button{text-align: right;}
 .swiper-good-info .swiper-button button{display: inline-block; width: 150rpx; height: 50rpx; background-color: #d53106; color: #fff; font-size: 28rpx; border-radius: 0; box-sizing: border-box; line-height: 50rpx;}
 .switch-project .switch-btn{width: 300rpx; height: 50rpx; margin: 30rpx auto; border: 2rpx solid #868686; text-align: center; line-height: 40rpx; border-radius: 30rpx; box-sizing: border-box;}
@@ -86,7 +87,7 @@ swiper.swiper-container{height: 93%;}
 .zc-item .right-project-info{flex: 1;}
 .wxzx-progress{display: inline-block; margin-right: 16rpx;}
 .percent-num{font-size: 30rpx; color: #aeaeae; vertical-align: middle;}
-.right-project-info .project-name{font-size: 30rpx; color: #333; margin-bottom: 20rpx;}
+.right-project-info .project-name{font-size: 30rpx; color: #333; line-height: 1em;}
 .right-project-info .project-people{font-size: 26rpx; color: #aeaeae; margin: 20rpx 0 40rpx;}
 .right-project-info .project-price text{font-size: 36rpx; color: #b50000;}
 .right-project-info .project-price button{width: 150rpx; height: 50rpx; text-align: center; box-sizing: border-box; font-size: 26rpx; float: right; line-height: 50rpx; padding: 0; border-radius: 0;}

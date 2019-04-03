@@ -12,7 +12,7 @@ Page({
   },
   select:function(event){
     var id=event.currentTarget.dataset.id;
-    wx.setStorageSync('save_id', id);
+    wx.setStorageSync('sava_id', id);
     wx.navigateBack({
       delta: 1
     });

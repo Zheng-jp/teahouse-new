@@ -34,8 +34,20 @@ Page({
 
       // },
       success: function (res) { 
+        var shop_address= res.data.data;
+        for(var i=0;i<shop_address.length;i++){
+          var address_names='';
+            for (var index in shop_address[i].extract_address) {
+               address_names=shop_address[i].extract_address.split(",").join("");
+            }
+            
+            var address=address_names+shop_address[i].extract_real_address;
+            shop_address[i]["shop_address"]=address;
+          
+        }
+        
         that.setData({
-          warehouse: res.data.data,
+          warehouse:shop_address,
         });
 
     
