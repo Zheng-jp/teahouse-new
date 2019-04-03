@@ -46,12 +46,12 @@
                                 <text>已筹</text>
                             </view>
                             <view class="fr">
-                                <text>已完成</text>
-                                <text class="stillTime">剩余{{item.days}}天</text>
+                                <text class="stillTime" wx:if="{{item.state==1}}">剩余{{item.days}}天</text>
+                                <text wx:elif="{{item.state==2}}">已完成</text>
                             </view>
                         </view>
                     </view>
-                    <view class="hd-share">
+                    <view class="hd-share" wx:if="{{item.state==1}}">
                         <image src="./img/share.png" />
                         <view>分享</view>
                     </view>
@@ -104,7 +104,36 @@
                     <template is="wxParse" data="{{wxParseData:textDom.nodes}}"/>
                 </swiper-item>
                 <swiper-item>
-                    
+                    <view class="tk">
+                        <view>
+                            <view class="author-hd">
+                                <image src="https://img.alicdn.com/imgextra/i3/661916707/O1CN01VeW77L1zPqumnztYo_!!661916707.jpg_430x430q90.jpg" />
+                            </view>
+                            <view class="tk-content">
+                                <view>
+                                    <view class="author-name">
+                                        <text>刘德华</text>
+                                    </view>
+                                    <view class="author-tk">whoa oh oh oh oh oh oh oh oh </view>
+                                    <view class="author-imgs">
+                                        <view>
+                                            <image src="https://img.alicdn.com/imgextra/i3/661916707/O1CN01VeW77L1zPqumnztYo_!!661916707.jpg_430x430q90.jpg" />
+                                        </view>
+                                        <view>
+                                            <image src="https://img.alicdn.com/imgextra/i3/661916707/O1CN01VeW77L1zPqumnztYo_!!661916707.jpg_430x430q90.jpg" />
+                                        </view>
+                                    </view>
+                                    <view class="tk-time">2019-4-3</view>
+                                    <view class="reply">
+                                        <view>
+                                            <text>官方回复：</text>
+                                            Im waking up to ash and dust.I wipe my brow and I sweat my rust,
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
                 </swiper-item>
             </swiper>
         </view>
@@ -136,14 +165,14 @@
                             <view class="sku-pro">
                                 <view>
                                     <view class="sku-img">
-                                        <image src="https://img.alicdn.com/imgextra/i2/16699276/O1CN01ebSSXr2IOSPyTH71I_!!16699276.jpg_120x120q50s150.jpg" />
+                                        <image src="{{url}}{{item.standard[specActive].images}}" />
                                     </view>
                                     <view class="sku-pro-info">
                                         <view>
-                                            <view class="h">￥90.0</view>
+                                            <view class="h">￥{{item.standard[specActive].cost}}</view>
                                             <view class="sku-txt">
-                                                <view>限购<text>2</text>份</view>
-                                                <view>剩余<text>33</text>份</view>
+                                                <view>限购<text>{{item.standard[specActive].limit}}</text>份</view>
+                                                <view>剩余<text>{{item.standard[specActive].stock}}</text>份</view>
                                             </view>
                                         </view>
                                     </view>
@@ -159,10 +188,10 @@
                                             <text>项目规格</text>
                                         </view>
                                         <view class="sku-specs">
-                                            <block wx:for="{{specArr}}" wx:key="">
+                                            <block wx:for="{{item.standard}}" wx:key="">
                                                 <text class="{{specActive==index?'active':''}}"
                                                     data-index="{{index}}"
-                                                    bindtap="clickSpec">{{item}}</text>
+                                                    bindtap="clickSpec">{{item.name}}</text>
                                             </block>
                                         </view>
                                     </view>
@@ -171,19 +200,19 @@
                                             <text>众筹故事</text>
                                         </view>
                                         <view class="sku-story-content">
-                                            <text>红色的目前市面上绝无仅有，总计只有300来份红色的目前市面上绝无仅有，总计只有300来份红色的目前市面上绝无仅有，总计只有300来份</text>
+                                            <text>{{item.standard[specActive].story}}</text>
                                         </view>
                                     </view>
                                     <view class="quantity-info">
                                         <view class="sku-quantity">
                                             <view class="sku-tit">购买数量</view>
-                                            <view class="btn-minus">
+                                            <view class="btn-minus" bindtap="minus">
                                                 <text>-</text>
                                             </view>
                                             <view class="btn-input">
-                                                <input type="number" value="1" />
+                                                <input type="number" bindblur="bindManual" value="{{buyNum}}" />
                                             </view>
-                                            <view class="btn-plus">
+                                            <view class="btn-plus" bindtap="plus">
                                                 <text>+</text>
                                             </view>
                                         </view>
@@ -198,7 +227,7 @@
                                                     <text>全额支持</text>
                                                 </view>
                                                 <view>
-                                                    <text class="gearMon">90元</text>
+                                                    <text class="gearMon">{{item.standard[specActive].cost}}元</text>
                                                 </view>
                                             </view>
                                             <view class="gear">

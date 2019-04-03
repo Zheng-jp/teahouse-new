@@ -18,14 +18,64 @@ Page({
     switchDialogKey: false,
     switchWidth: false,
     proArr: [],
-    specArr: ['红色','红色','红色','红色','红色','红色','红色','红色','红色','红色','红色'],
     specActive: 0,
+    buyNum: 1,
+  },
+  // 减
+  minus: function(){
+    var num = this.data.buyNum;
+    if(num > 1){
+      num --;
+    }
+    this.setData({
+      buyNum: num
+    })
+  },
+  // 加
+  plus: function(){
+    var num = this.data.buyNum;
+    if(+num < +this.data.proArr[0].standard[this.data.specActive].stock){
+      num++;
+      this.setData({
+        buyNum: num
+      })
+    }else{
+      wx.showToast({
+        title: '您所填写的数量超过库存！',
+        icon: 'none',
+        duration: 1500
+      })
+    }
+  },
+  // 输入数量
+  bindManual: function(e){
+    var num = e.detail.value;
+    var stock = +this.data.proArr[0].standard[this.data.specActive].stock;
+    if(num <= 0){
+      this.setData({
+        buyNum: 1
+      })
+    }else if(num <= stock){
+      this.setData({
+        buyNum: num
+      })
+    }else{
+      wx.showToast({
+        title: '您所填写的数量超过库存！',
+        icon: 'none',
+        duration: 1500
+      })
+      this.setData({
+        buyNum: stock
+      })
+    }
   },
 
   // 选择规格
   clickSpec: function(e){
+    var index = e.target.dataset.index
     this.setData({
-      specActive: e.target.dataset.index
+      specActive: index,
     })
   },
 
