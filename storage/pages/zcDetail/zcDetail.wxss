@@ -1,5 +1,5 @@
 page{font-size: 28rpx; color: #6b6b6b;}
-view{overflow: visible !important;}
+view{overflow: initial;}
 .borb12{border-bottom: 12rpx solid rgb(242, 242, 242);}
 .metatit{font-size: 30rpx; color: #333; font-weight: 700;}
 .swiper-hd{height: 640rpx;}
@@ -37,6 +37,18 @@ view{overflow: visible !important;}
 .tab-bd{min-height: 1000rpx;}
 .tab-bd swiper-item{padding: 0 20rpx; box-sizing: border-box;}
 .tab-bd swiper-item image{width: 100% !important;}
+.tk{padding: 20rpx 0; position: relative;}
+.tk .author-hd{width: 100rpx; height: 100rpx; border-radius: 50%; position: absolute; top: 20rpx; left: 0; overflow: hidden;}
+.tk .author-hd image{width: 100%; height: 100%;}
+.tk .tk-content{margin-left: 120rpx;}
+.tk .author-name{font-size: 26rpx; padding: 0 0 20rpx;}
+.tk .author-tk{word-break: break-all; margin-bottom: 10rpx;}
+.tk .author-imgs>view{width: 120rpx; height: 120rpx; margin: 0 20rpx 10rpx 0; overflow: hidden; display: inline-block;}
+.tk .author-imgs>view image{width: 100%; height: 100%;}
+.tk .tk-time{font-size: 24rpx;}
+.tk .reply{padding: 16rpx; background-color: #f2f2f2;}
+.tk .reply text{color: #f00;}
+.tk .reply view{word-break: break-all;}
 .ft{position: fixed; bottom: 0; left: 0; width: 100%; height: 100rpx; border-top: 1px solid #e4e4e4; background-color: #fff;}
 .ftList{display: flex; text-align: center; height: 100rpx; line-height: 100rpx;}
 .ftList .cell{line-height: normal; box-sizing: border-box; max-width: 100rpx; min-width: 13%; flex: 1; display: block; height: 100rpx; color: #999; padding-top: 10rpx;}
@@ -52,7 +64,7 @@ view{overflow: visible !important;}
 .dialog{display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; position: absolute; bottom: 0; left: 0; transition: transform .3s; background-color: #fff; color: #333; font-size: 28rpx; width: 100%; height: 83%; transform: translateY(100%); -webkit-transform: translateY(100%);}
 .dialog.dialog-popup{transform: translateY(0); -webkit-transform: translateY(0);}
 .dialog.dialog-popup .sku-img{display: block;}
-.dialog-content{display: flex; flex: 1; padding: 0 20rpx; overflow: auto;}
+.dialog-content{display: flex; flex: 1; padding: 0 20rpx;}
 .dialog-xsku{width: 100%;}
 .tb-sku-container{display: flex; width: 100%; height: 100%; -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; font-size: 28rpx; color: #333; box-sizing: border-box; padding: 20rpx 0;}
 .sku-pro{position: relative; padding-bottom: 32rpx; border-bottom: 2rpx solid #f2f2f2;}
@@ -63,7 +75,7 @@ view{overflow: visible !important;}
 .sku-pro-info .sku-txt{display: flex; justify-content: space-between; align-items: center; color: #949494;}
 .sku-pro-info .sku-txt text{color: #93291E;}
 .sku-close{position: absolute; right: 0; top: 0;}
-.sku-info{overflow: auto !important;}
+.sku-info{overflow: auto !important; height: 700rpx;}
 .sku-info .sku-spec,
 .sku-story{padding-bottom: 32rpx; border-bottom: 2rpx solid #f2f2f2;}
 .sku-info .sku-tit{font-size: 32rpx; color: #111; padding: 20rpx 0;}
@@ -80,8 +92,8 @@ view{overflow: visible !important;}
 .sku-quantity .btn-input input{width: 100%; height: 100%;}
 .gears{display: flex; flex-wrap: wrap;}
 .gears .gear{width: 180rpx; border: 2rpx solid #e4e4e4; line-height: 80rpx; border-radius: 8rpx; margin-right: 20rpx; text-align: center;}
+.gears .active{border-color: #f00;}
 .gears .gearAll{line-height: normal;}
 .gears .gear .gearMon{color: #999;}
 .sku-btns{padding-top: 34rpx;}
 .sku-btns .support{height: 80rpx; text-align: center; line-height: 80rpx; color: #fff; background-color: #ff6700;}
-
