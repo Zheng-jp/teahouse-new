@@ -84,6 +84,9 @@ Page({
       },
       success: function(res){
         console.log(res);
+        WxParse.wxParse('proDom', 'html', res.data.data[0].goods_text, _this, 5);
+        WxParse.wxParse('teamDom', 'html', res.data.data[0].team, _this, 5);
+        WxParse.wxParse('textDom', 'html', res.data.data[0].text, _this, 5);
         _this.setData({
           proArr: res.data.data
         })

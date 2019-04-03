@@ -1,6 +1,6 @@
 <import src="/wxParse/wxParse.wxml"/>
 <view class="wrapper">
-    <block wx:for="{{proArr}}">
+    <block wx:for="{{proArr}}" wx:key="">
         <view class="hd-swiper borb12">
             <swiper class="swiper-hd" 
                 indicator-dots="{{indicatorDots}}" 
@@ -23,8 +23,7 @@
                     <view class="hd-bar">
                         <view class="hd-bar-params">
                             <view class="hd-param-sup">
-                                <text class="hd-sup-alr">{{item.collecting}}</text>
-                                <text>/8000人支持</text>
+                                <text class="hd-sup-alr">{{item.collecting}}人支持</text>
                             </view>
                             <view class="hd-sup-per">
                                 <text>达成</text>
@@ -95,11 +94,18 @@
                 current="{{currTab}}" 
                 duration="{{500}}"
                 bindchange="swiperTabBd">
-                <block wx:for="{{tabHdArr}}" wx:key="">
-                    <swiper-item>
-                        <text>{{item}}</text>
-                    </swiper-item>
-                </block>
+                <swiper-item>
+                    <template is="wxParse" data="{{wxParseData:proDom.nodes}}"/>
+                </swiper-item>
+                <swiper-item>
+                    <template is="wxParse" data="{{wxParseData:teamDom.nodes}}"/>
+                </swiper-item>
+                <swiper-item>
+                    <template is="wxParse" data="{{wxParseData:textDom.nodes}}"/>
+                </swiper-item>
+                <swiper-item>
+                    
+                </swiper-item>
             </swiper>
         </view>
         <view class="ft {{fixiPhone?'fix-iphonex':''}}">

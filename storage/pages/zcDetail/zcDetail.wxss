@@ -35,7 +35,8 @@ view{overflow: visible !important;}
 .tab-hd{display: flex; align-items: flex-start; justify-content: space-around; height: 78rpx; line-height: 74rpx; border-bottom: 2rpx solid #e4e4e4; margin-bottom: 4rpx;}
 .tab-hd .active{color: #f10; border-bottom: 4rpx solid #f10;}
 .tab-bd{min-height: 1000rpx;}
-.tab-bd swiper-item{padding: 0 20rpx;}
+.tab-bd swiper-item{padding: 0 20rpx; box-sizing: border-box;}
+.tab-bd swiper-item image{width: 100% !important;}
 .ft{position: fixed; bottom: 0; left: 0; width: 100%; height: 100rpx; border-top: 1px solid #e4e4e4; background-color: #fff;}
 .ftList{display: flex; text-align: center; height: 100rpx; line-height: 100rpx;}
 .ftList .cell{line-height: normal; box-sizing: border-box; max-width: 100rpx; min-width: 13%; flex: 1; display: block; height: 100rpx; color: #999; padding-top: 10rpx;}
@@ -83,5 +84,4 @@ view{overflow: visible !important;}
 .gears .gear .gearMon{color: #999;}
 .sku-btns{padding-top: 34rpx;}
 .sku-btns .support{height: 80rpx; text-align: center; line-height: 80rpx; color: #fff; background-color: #ff6700;}
-
 
