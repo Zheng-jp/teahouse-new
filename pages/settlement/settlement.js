@@ -838,7 +838,6 @@ Page({
       that.setData({
         isnum: true,
         from_buy: true,
-
       });
     }
     else {
