@@ -70,7 +70,7 @@ Page({
       })
     }
   },
-
+  touchMove () {},
   // 选择规格
   clickSpec: function(e){
     var index = e.target.dataset.index
