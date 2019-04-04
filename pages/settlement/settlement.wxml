@@ -150,7 +150,7 @@
 			<view class="direct_mail {{selected2?'show':'hidden'}}" bindtap='go_save_tea'>
 				<view  class='select_box'>
 						<view class='add_information'>
-								<view class="list1">
+								<view class="list1" style='margin-left:8rpx'>
 								   <view> 仓储编号:{{warehouse.name}} </view>
 								   <view>
 									  <view class="sava_contents">
@@ -176,7 +176,7 @@
 								</view>
 								<view class="list2">
 								   <view class="list2_title">
-									  仓库描述：
+									  仓库描述:
 								   </view>
 								   <view class="list2_content">
 									  {{warehouse.describe}}

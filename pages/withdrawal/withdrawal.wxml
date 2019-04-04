@@ -20,7 +20,7 @@
 
             </view>
             <view class="form_list">
-              <input type="text" class="form_list_input" placeholder="请输入金额，不能小于1000" name="money" />
+              <input type="number" class="form_list_input" placeholder="请输入金额，不能小于1000" name="money" />
               <text class="danwei">元</text>
             </view>
 
@@ -56,7 +56,7 @@
               </view>
             </view>
             <view class="form_list">
-              <input type="text" class="form_list_input" placeholder="请输入金额，不能小于1000" name="money" />
+              <input  type="number" class="form_list_input" placeholder="请输入金额，不能小于1000" name="money" />
               <text class="danwei">元</text>
             </view>
             <view style=' display: flex; align-items: center;position: relative;'>
