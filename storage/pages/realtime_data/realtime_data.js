@@ -54,14 +54,14 @@ function initChart(canvas, width, height){
 
 function getCurrentTime(_this){
   var newDate = new Date();
-  var currentTime = app.formatDate(newDate.getTime()),
+  var currentTime = app.formatDate(newDate.getTime()/1000),
       h = newDate.getHours(),
       m = newDate.getMinutes(),
-      s = newDate.getSeconds();
-  m = addZero(m);
-  s = addZero(s);
+      s = newDate.getSeconds(),
+      m = addZero(m),
+      s = addZero(s);
   _this.setData({
-    beijingTime: currentTime + ' ' + h + ':' + m + ':' + s
+    beijingTime: currentTime
   })
 }
 function addZero(num){
@@ -108,7 +108,7 @@ Page({
     var _this = this;
     setInterval(function(){
       getCurrentTime(_this);
-    }, 300);
+    }, 1000);
   },
 
   /**
