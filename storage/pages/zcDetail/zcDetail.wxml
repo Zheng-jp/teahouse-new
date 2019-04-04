@@ -32,7 +32,7 @@
                         </view>
                         <view class="hd-bar-box">
                             <wxzx-progress class="wxzx-progress" 
-                                percent="{{item.centum}}"
+                                percent="{{item.centum>100?100:item.centum}}"
                                 width="{{1?600:710}}"
                                 show-info 
                                 border-radius="4px" 
@@ -152,11 +152,13 @@
                     <view>购物车</view>
                 </view>
                 <view class="ft-btn">
-                    <text>去支持</text>
+                    <text wx:if="{{item.state==1}}"
+                        bind:tap="switchDialog">去支持</text>
+                    <text wx:else>已结束</text>
                 </view>
             </view>
         </view>
-        <view class="dialog-container {{switchWidth?'dialog-show':''}}">
+        <view class="dialog-container {{switchWidth?'dialog-show':''}}"  catch:touchmove="touchMove">
             <view class="mask" bindtap="switchDialog"></view>
             <view class="dialog {{switchDialogKey?'dialog-popup':''}}">
                 <view class="dialog-content">
@@ -171,7 +173,8 @@
                                         <view>
                                             <view class="h">￥{{item.standard[specActive].cost}}</view>
                                             <view class="sku-txt">
-                                                <view>限购<text>{{item.standard[specActive].limit}}</text>份</view>
+                                                <view wx:if="{{item.standard[specActive].limit==-1}}">不限购</view>
+                                                <view wx:else>限购<text>{{item.standard[specActive].limit}}</text>份</view>
                                                 <view>剩余<text>{{item.standard[specActive].stock}}</text>份</view>
                                             </view>
                                         </view>
@@ -181,7 +184,7 @@
                                     </view>
                                 </view>
                             </view>
-                            <view class="sku-info">
+                            <scroll-view scroll-y="{{true}}" class="sku-info" catch:touchmove="touchMove">
                                 <view>
                                     <view class="sku-spec">
                                         <view class="sku-tit">
@@ -236,7 +239,7 @@
                                         </view>
                                     </view>
                                 </view>
-                            </view>
+                            </scroll-view>
                             <view>
                                 <view class="sku-btns">
                                     <view class="sku-btn support">支持项目</view>

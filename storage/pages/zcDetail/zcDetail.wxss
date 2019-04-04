@@ -54,6 +54,7 @@ view{overflow: initial;}
 .ftList .cell{line-height: normal; box-sizing: border-box; max-width: 100rpx; min-width: 13%; flex: 1; display: block; height: 100rpx; color: #999; padding-top: 10rpx;}
 .ftList image{width: 40rpx; height: 40rpx; display: block; margin: 8rpx auto 0;}
 .ftList .ft-btn{max-width: 450rpx; box-sizing: border-box; background-color: #cc363f; color: #fff; text-align: center; display: block; flex: 1;}
+.ftList .ft-btn text{display: block; height: 100%;}
 .fix-iphonex{bottom:68rpx!important;}
 .fix-iphonex::after {content: ' '; position: fixed; bottom: 0!important; height: 68rpx!important; width: 100%; background: #fff;}
 /* dialog section */
@@ -75,7 +76,7 @@ view{overflow: initial;}
 .sku-pro-info .sku-txt{display: flex; justify-content: space-between; align-items: center; color: #949494;}
 .sku-pro-info .sku-txt text{color: #93291E;}
 .sku-close{position: absolute; right: 0; top: 0;}
-.sku-info{overflow: auto !important; height: 700rpx;}
+.sku-info{flex: 1;}
 .sku-info .sku-spec,
 .sku-story{padding-bottom: 32rpx; border-bottom: 2rpx solid #f2f2f2;}
 .sku-info .sku-tit{font-size: 32rpx; color: #111; padding: 20rpx 0;}
