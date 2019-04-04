@@ -252,6 +252,7 @@ function html2json(html, bindName) {
             // parent.nodes.push(node);
         },
     });
+    console.log(results)
     return results;
 };
 

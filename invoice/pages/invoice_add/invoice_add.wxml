@@ -1,15 +1,121 @@
-<form bindsubmit="formSubmit" bindreset="formReset">
+<form bindsubmit="formSubmit" bindreset="formReset" style="display:none">
    <view class="all">
        <view class="select_name">
-            <view class="select_right">选择户名</view>
+            <view class="select_left">选择户名</view>
              <view class="select_right">
                  <view class="more_text">更多 </view> 
-                 <image class="more_img" src="../u1326.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+                 <image class="more_img" src="img/u1326.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
             </view>
        </view>
-       <view class="name_title">
-            <image class="name_img" src="../u1329.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
-            
+       <view class="list2">
+          <view class="name_title">
+              <image class="name_img" src="img/u1329.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+              <view class="name_text">户名: </view>
+          </view>
+          <view class="list2_text">深圳市环保质量监督局</view>
        </view>
+       <view class="tips">温馨提示：本平台提供发票寄送服务，且不提供发票作废服务，如需重开请联系平台商，如需退货需扣除发票款项；</view>
+       <view class="list">
+            <view class="list_name">
+               发票类型 
+            </view>
+            <view class="input">
+               <radio-group class="radio-group" bindchange="radioChange">
+                    <label class="radio"><radio value="企业"  color='#fff' />  企业 </label>
+                    <label class="radio"> <radio value="个人"  color='#fff' checked  />  个人</label>
+               </radio-group>
+            </view>
+       </view>
+       <view class="list">
+          <view class="list_name">姓名 </view>
+          <view class="input">
+            <input class="" value="" type="text" placeholder="请输入真实姓名"></input>
+          </view>
+       </view>
+       <view class="list">
+          <view class="list_name"> 收票人手机 </view>
+          <view class="input">
+            <input class="" value="" type="text" placeholder="请输入真实手机号码"></input>
+          </view>
+       </view>
+       <view class="list">
+          <view class="list_name"> 收票人邮箱 </view>
+          <view class="input">
+            <input class="" value="" type="text" placeholder="用于接收电子发票"></input>
+          </view>
+       </view>
+       <view class="list">
+          <view class="list_name">
+             发票类型 
+          </view>
+          <view class="input">
+             <radio-group class="radio-group" bindchange="radioChange">
+                  <label class="radio"><radio value="普通发票" checked  color='#fff' />  普通发票 </label>
+                  <label class="radio"> <radio value="增值税专用发票"  color='#fff' />  增值税专用发票</label>
+             </radio-group>
+          </view>
+     </view>
+     <view class="remit">重置，添加一个新户名</view>
+      
+          <button form-type="submit" class='button-hovers btn-area' >提交开票</button>
+       
    </view>
 </form>
+<form bindsubmit="formSubmit" bindreset="formReset">
+     <view class="all">
+         <view class="select_name">
+              <view class="select_left">选择户名</view>
+               <view class="select_right">
+                   <view class="more_text">更多 </view> 
+                   <image class="more_img" src="img/u1326.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+              </view>
+         </view>
+         <view class="list2">
+            <view class="name_title">
+                <image class="name_img" src="img/u1329.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+                <view class="name_text">户名: </view>
+            </view>
+            <view class="list2_text">深圳市环保质量监督局</view>
+         </view>
+         <view class="tips">温馨提示：本平台提供发票寄送服务，且不提供发票作废服务，如需重开请联系平台商，如需退货需扣除发票款项；</view>
+         <view class="list">
+              <view class="list_name">
+                 发票类型 
+              </view>
+              <view class="input">
+                 <radio-group class="radio-group" bindchange="radioChange">
+                      <label class="radio"><radio value="企业" checked  color='#fff' />  企业 </label>
+                      <label class="radio"> <radio value="个人"  color='#fff' />  个人</label>
+                 </radio-group>
+              </view>
+         </view>
+         <view class="list">
+            <view class="list_name">发票抬头 </view>
+            <view class="input">
+              <input class="" value="" type="text" placeholder="请输入真实姓名"></input>
+            </view>
+         </view>
+         <view class="list">
+            <view class="list_name"> 企业税号 </view>
+            <view class="input">
+              <input class="" value="" type="text" placeholder="请输入真实手机号码"></input>
+            </view>
+         </view>
+        
+         <view class="list">
+            <view class="list_name">
+               发票类型 
+            </view>
+            <view class="input">
+               <radio-group class="radio-group" bindchange="radioChange">
+                    <label class="radio"><radio value="普通发票" checked  color='#fff' />  普通发票 </label>
+                    <label class="radio"> <radio value="增值税专用发票"  color='#fff' />  增值税专用发票</label>
+               </radio-group>
+            </view>
+       </view>
+       <view class="remit">重置，添加一个新户名</view>
+        
+            <button form-type="submit" class='button-hovers btn-area' >提交开票</button>
+         
+     </view>
+  </form>

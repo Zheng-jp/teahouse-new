@@ -52,6 +52,7 @@ Page({
     coupon_id: 0,//使用优惠劵id
     address_0: '',
     freight: 0,//运费
+    freight_infor:[],
     taxes: 0,//税费
     storage: 0,// 存储费
     insurance: 0,//保险费
@@ -78,6 +79,7 @@ Page({
         order_type: 1,
         storage:0,
       })
+      that.money_freight();
     }
     else if (e.detail.value == "到店自提") {
       that.setData({
@@ -90,7 +92,7 @@ Page({
       })
     }
     else {
-      that.money_storages();
+     
       that.setData({
         selected: false,
         selected1: false,
@@ -98,8 +100,10 @@ Page({
         order_type: 3,
         freight:0,
       })
+      that.money_storages();
 
     }
+    that.calculate_money();
 
   },
   go_direct_mail_address: function (e) {
@@ -608,7 +612,10 @@ Page({
 
     if (all_moneys - that.data.money > 0) {
       that.setData({
-        all_money: all_moneys - that.data.money,
+        all_money: all_moneys - that.data.money+that.data.storage+that.data.freight,
+      });
+      that.setData({
+        all_money: that.data.all_money.toFixed(2),
       });
     }
     else {
@@ -645,6 +652,21 @@ Page({
       storage: that.data.storage.toFixed(2),
     })
   },
+  // 计算运费
+  money_freight: function () {
+    var that = this;
+    var money_freight=0;
+    for(var i=0;i<that.data.goods.length;i++){
+      for(var j=0;j<that.data.freight_infor.length;j++){
+         if(that.data.goods[i].goods_info.id==that.data.freight_infor[j].goods_id){
+            money_freight+=that.data.freight_infor[j].collect+(that.data.goods[i].number-1)*that.data.freight_infor[j].markup;
+         }
+      }
+    }
+     that.setData({
+      freight:money_freight,
+     })
+  },
 
   /* 点击减号 */
   bindMinus: function () {
@@ -663,6 +685,7 @@ Page({
       goods: goods,
       minusStatus: minusStatus
     });
+    that.money_freight();
     that.calculate_money();
   },
   /* 点击加号 */
@@ -680,6 +703,7 @@ Page({
       goods: goods,
       minusStatus: minusStatus
     });
+    that.money_freight();
     that.calculate_money();
   },
   /* 点击减号 */
@@ -699,6 +723,7 @@ Page({
       minusStatus: minusStatus
     });
     that.money_storages();
+    that.calculate_money();
   },
   /* 点击加号 */
   bindPlus1: function () {
@@ -715,6 +740,7 @@ Page({
       minusStatus: minusStatus
     });
     that.money_storages();
+    that.calculate_money();
   },
 
   /* 点击减号 */
@@ -903,6 +929,32 @@ Page({
             });
 
           }
+          wx.request({
+            url: app.globalData.tiltes + 'transportation',
+            data: {
+              'goods_id': that.data.user[1].good_id,
+              'goods_standard_id': that.data.user[2].guige,
+              'are':that.data.address_0
+            },
+            method: "post",
+            // header: {
+            //   "Content-Type": "json" // 默认值
+      
+            // },
+            success: function (res) {
+               that.setData({
+                freight_infor:res.data.data,
+               })
+               that.money_freight();
+               that.calculate_money();
+            },
+            fail: function () {
+      
+            },
+            complete: function () {
+            }
+      
+          });
 
 
         },
@@ -939,6 +991,32 @@ Page({
             address_id: res.data.data.id,
             address_0: a[0],
             address_id:address_id,
+          });
+          wx.request({
+            url: app.globalData.tiltes + 'transportation',
+            data: {
+              'goods_id': that.data.user[1].good_id,
+              'goods_standard_id': that.data.user[2].guige,
+              'are':that.data.address_0
+            },
+            method: "post",
+            // header: {
+            //   "Content-Type": "json" // 默认值
+      
+            // },
+            success: function (res) {
+               that.setData({
+                freight_infor:res.data.data,
+               })
+               that.money_freight();
+               that.calculate_money();
+            },
+            fail: function () {
+      
+            },
+            complete: function () {
+            }
+      
           });
         },
         fail: function () {
@@ -1096,6 +1174,10 @@ Page({
 
       });
     }
+   
+    
+    
+   
 
   },
 

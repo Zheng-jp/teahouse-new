@@ -23,11 +23,11 @@ image{
 
 }
 .cir{
-height:124rpx;
+height:130rpx;
 width:750rpx;
 border-radius:50%;
 overflow:hidden;
-margin-top:-57rpx;
+margin-top:-68rpx;
 
 
 }

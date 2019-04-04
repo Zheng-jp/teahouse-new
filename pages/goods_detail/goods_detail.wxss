@@ -539,10 +539,11 @@ overflow:hidden;
 }
 /* 限时限购 */
 .limit_purchasing{
-  display: flex;
+
   align-items: center;
   color: red;
   font-size: 26rpx;
+  display: none;
 }
 .limit_purchasing_content{
   background: #F2F2F2;
@@ -562,8 +563,8 @@ overflow:hidden;
   margin-right:10rpx;
 }
 .big_limit_purchasing{
-  width: 700rpx;
-  overflow-x: scroll;
+  width: 100%;
+  overflow-x: hidden;
   
   
 }
