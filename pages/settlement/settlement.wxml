@@ -277,7 +277,7 @@
 		</view>
 		<view class="sundry-li {{selected?'show':'hidden'}}">
 			<view>运费</view>
-			<view><text style='color:#FF7E4A;'>10元</text></view>
+			<view><text style='color:#FF7E4A;'>{{freight}}元</text></view>
 		</view>
 		<view class='sundry-li'>
 			<view>税费</view>

@@ -1,0 +1,119 @@
+.select_name{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+}
+.select_left{
+    font-size: 28rpx;
+    color: #000000;
+    padding: 27rpx;
+}
+.select_right{
+    display: flex;
+    align-items: center;
+    padding: 27rpx;
+}
+.more_text{
+    font-size: 20rpx;
+    color: #0099FF;
+}
+.more_img{
+    width: 25rpx;
+    height: 25rpx;
+    margin-left: 20rpx;
+    
+}
+.name_title{
+    background-color: rgba(45, 187, 255, 1);
+    display: flex;
+    font-weight: 700;
+    font-size: 40rpx;
+    color: #FFFFFF;
+    padding: 10rpx;
+    width: 206rpx;
+    justify-content: center;
+}
+.name_img{
+    width: 50rpx;
+    height: 50rpx;
+   
+}
+.name_text{
+    margin-left: 10rpx;
+}
+.list2{
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+    color: #6B6B6B;
+    background: #fff;
+    margin-top: 3rpx;
+    
+}
+.list2_text{
+    padding-left: 20rpx;
+}
+.tips{
+    font-size: 24rpx;
+    color: #FF6666;
+    padding: 5rpx 30rpx;
+    border-bottom: #E4E4E4  2rpx solid;
+}
+.list{
+    display: flex;
+    align-items: center;
+}
+.list_name{
+    font-size: 25rpx;
+    color: #797979;
+    font-weight: 700;
+    width: 211rpx;
+    text-align: center;
+    line-height: 112rpx;
+}
+.list{
+    background: #fff;
+}
+.radio{
+    display: flex;
+    align-items: center;
+    font-size: 24rpx;
+    color: #333333;
+    flex: 1;
+}
+.radio radio{
+   margin-right: 20rpx;
+}
+.radio-group{
+    width: 539rpx;
+    display: flex;
+    align-items: center;
+}
+.input{
+    font-size: 24rpx;
+}
+.list{
+    border-bottom: #E4E4E4  2rpx solid;
+   border-right:  #E4E4E4  2rpx solid;
+}
+.btn-area{
+    position: fixed;
+    bottom: 0;
+    color: #fff;
+    background: #FF6600;
+    width: 750rpx;
+    border: 0;
+    border-radius:0; 
+}
+.remit{
+    font-weight: 700;
+    font-size: 24rpx;
+    color: #2DBBFF;
+    background: #fff;
+    width: 750rpx;
+    text-align: right;
+    line-height: 80rpx;
+    padding-right: 20rpx;
+    box-sizing: border-box;
+}

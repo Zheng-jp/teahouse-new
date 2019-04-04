@@ -42,7 +42,6 @@ Page({
 	},
 	labelItemTap: function(e) {
 		var that = this;
-		console.log(e);
 		//  点击添加类
 		// 商品id
 		var current = e.target.dataset.current;
@@ -281,6 +280,7 @@ Page({
 	bindManual: function(e) {
 		var num = e.detail.value;
 		// 将数值与状态写回  
+
 		this.setData({
 			num: num
 		});
@@ -494,7 +494,7 @@ Page({
 					image: res.data.data[0].goods_show_images
 				});
 				var article = res.data.data[0].goods_text;
-				console.log(article);
+		
 				WxParse.wxParse('article', 'html', article, that, 5);
 				//  添加字段到等级数组
 				// for (var index in that.data.goods.goods_standard) {
