@@ -233,7 +233,7 @@
                                                     <text class="gearMon">{{item.standard[specActive].cost}}元</text>
                                                 </view>
                                             </view>
-                                            <view class="gear">
+                                            <view class="gear" bind:tap="supportProject">
                                                 <text>打赏</text>
                                             </view>
                                         </view>

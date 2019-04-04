@@ -5,7 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    moneyArray: [1, 5, 10],
+    index: 0,
+    suppMoney: null,
+  },
+  
+  bindPickerChange: function(e){
+    this.setData({
+      index: e.detail.value
+    })
+  },
+  // 输入支付金额
+  bindInputMoney: function(e){
+    var val = e.detail.value;
+    if(val > 0 ){
+      this.setData({
+        suppMoney: e.detail.value
+      })
+    }
   },
 
   /**
