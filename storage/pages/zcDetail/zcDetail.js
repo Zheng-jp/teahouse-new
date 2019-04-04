@@ -21,6 +21,18 @@ Page({
     specActive: 0,
     buyNum: 1,
   },
+  // 打赏跳转
+  supportProject: function(){
+    wx.navigateTo({
+      url: '/storage/pages/zcOrder/zcOrder',
+      success: function(){
+        console.log('跳转成功');
+      },
+      fail: function(){
+        console.log('跳转失败');
+      }
+    })
+  },
   // 减
   minus: function(){
     var num = this.data.buyNum;

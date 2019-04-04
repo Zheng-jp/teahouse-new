@@ -1,1 +1,22 @@
-/* storage/pages/zcOrder/zcOrder.wxss */
+.block{padding: 20rpx 20rpx 0 20rpx;}
+.block .block-bg{padding: 30rpx; padding-bottom: 0; background-color: #f2f2f2;}
+.block-bg .h2{font-size: 34rpx; color: #333; margin-bottom: 20rpx; font-weight: 700;}
+.block-bg .block-txt{font-size: 28rpx; color: #999; word-break: break-all;}
+.block-bg .read{font-size: 24rpx; color: #333; margin-top: 30rpx;}
+.picker-box>view{display: flex; align-items: center; justify-content: space-between; padding: 20rpx 0; border-top: 1px solid #e4e4e4;}
+.picker-box .tit{font-size: 28rpx; color: rbg(121,121,121);}
+.picker-box .supp{position: relative;}
+.picker{background-color: rgb(222,222,222); width: 200rpx; height: 50rpx; line-height: 50rpx; padding-left: 20rpx; box-sizing: border-box; color: #333; font-size: 26rpx;}
+.triangle{position: absolute; width: 0; top: 22rpx; right: 18rpx; height: 0; border: 10rpx solid transparent; border-top-color: #333;}
+.picker-box .input-box{position: relative;}
+.picker-box .input-box input{ width: 200rpx; height: 50rpx; line-height: 50rpx; border: 1px solid rgb(222,222,222); padding: 0 34rpx 0 20rpx; background-color: #fff; box-sizing: border-box; font-size: 28rpx;}
+.input-box .unit{position: absolute; right: 10rpx; top: 10rpx; font-size: 24rpx; color: #666;}
+.fBox{position: fixed; left: 0; bottom: 0; width: 100%; height: 100rpx; border-top: 1px solid rgb(222,222,222); background-color: #fff; display: flex; box-sizing: border-box;}
+.sel{padding-left: 30rpx; color: #333; flex: 1; line-height: 100rpx; font-size: 30rpx;}
+.sel .m{color: rgb(179, 10,7); font-size: 36rpx;}
+.btn{width: 240rpx; height: 100rpx; background-color: rgb(255, 103, 0); color: #fff; text-align: center; line-height: 100rpx; font-size: 28rpx;}
+
+
+
+
+
