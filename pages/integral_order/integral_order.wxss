@@ -7,12 +7,13 @@
   
   }
   .nav view{
-    flex:1;
-    color:#868686;
-    text-align:center;
-    font-size:26rpx;
-    padding:10rpx;
-    line-height:40rpx;
+   flex:1;
+  color:#868686;
+  text-align:center;
+  font-size:26rpx;
+  padding:10rpx;
+  line-height:40rpx;
+  margin-top: 16rpx;
   }
   .this{
     color: #fff !important;

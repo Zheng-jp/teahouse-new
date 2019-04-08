@@ -15,7 +15,7 @@
 					{{item.address_name}}{{item.harvester_real_address}}
 				</view>
 			</view>
-			<view class="moren"  wx:if="{{item.status==1}}">默认</view>
+			<view class="moren"  wx:if="{{item.status==1}}" >默认</view>
 			<view class="list3">
 				<image src='img/u9386.png' class='add_ico' data-id="{{item.id}}"  bindtap="go_change_address" mode="widthFix"></image>
 				<image src='img/u5826.png' mode="widthFix" class='delect_ico' data-id="{{item.id}}" bindtap="delect"></image>
