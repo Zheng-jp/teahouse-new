@@ -21,6 +21,13 @@ Page({
     specActive: 0,
     buyNum: 1,
   },
+
+  // 去首页
+  bindSwitchTab: function(){
+    wx.switchTab({
+      url: '/pages/index/index'
+    })
+  },
   // 打赏跳转
   supportProject: function(){
     wx.navigateTo({
@@ -146,9 +153,17 @@ Page({
       },
       success: function(res){
         console.log(res);
-        WxParse.wxParse('proDom', 'html', res.data.data[0].goods_text, _this, 5);
-        WxParse.wxParse('teamDom', 'html', res.data.data[0].team, _this, 5);
-        WxParse.wxParse('textDom', 'html', res.data.data[0].text, _this, 5);
+        var data = res.data.data[0];
+        var richTextArr = [];
+        richTextArr.push(data.goods_text);
+        richTextArr.push(data.team);
+        richTextArr.push(data.text);
+        for(var i = 0; i < richTextArr.length; i++){
+          richTextArr[i]?WxParse.wxParse('richText' + i, 'html', richTextArr[i], _this):'';
+          if (i === richTextArr.length - 1) {
+            WxParse.wxParseTemArray("richTextTemArray",'richText', richTextArr.length, _this)
+          }
+        }
         _this.setData({
           proArr: res.data.data
         })
@@ -158,53 +173,4 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

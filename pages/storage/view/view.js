@@ -16,9 +16,11 @@ function getData(_this){
       console.log(res);
     }
   });
-  // 正在众筹
+}
+// switch project
+function switchProject(option, _this){
   wx.request({
-    url: app.globalData.tiltes + 'crowd_now',
+    url: app.globalData.tiltes + option,
     method: 'POST',
     success: function(res){
       console.log(res);
@@ -31,6 +33,7 @@ function getData(_this){
     }
   });
 }
+
 Page({
 
   /**
@@ -45,7 +48,7 @@ Page({
     autoplay: true,
     interval: 3000,
     duration: 500,
-    switchProject: false,
+    switchProject: true,
     swiperDataList: [],
     crowdList: [],
   },
@@ -53,8 +56,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var _this = this;
-    getData(_this);
+    getData(this);
+    switchProject('crowd_now', this);
+  },
+
+  // 切换 正在众筹 往期众筹
+  bindSwitchProject: function(){
+    if(this.data.switchProject){
+      // 切换往期众筹
+      switchProject('crowd_period', this);
+    }else{
+      switchProject('crowd_now', this);
+    }
+    this.setData({
+      switchProject: !this.data.switchProject
+    })
   },
 
   clickTab: function(e){
@@ -134,53 +150,4 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

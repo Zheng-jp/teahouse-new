@@ -94,15 +94,20 @@
                 current="{{currTab}}" 
                 duration="{{500}}"
                 bindchange="swiperTabBd">
-                <swiper-item>
-                    <!-- <template is="wxParse" data="{{wxParseData:proDom.nodes}}"/> -->
+                <block wx:for="{{richTextTemArray}}" wx:key="">
+                    <swiper-item>
+                        <template is="wxParse" data="{{wxParseData:item}}"/>
+                    </swiper-item>
+                </block>
+                <!-- <swiper-item>
+                    <template is="wxParse" data="{{wxParseData:proDom.nodes}}"/>
                 </swiper-item>
                 <swiper-item>
-                    <!-- <template is="wxParse" data="{{wxParseData:teamDom.nodes}}"/> -->
+                    <template is="wxParse" data="{{wxParseData:teamDom.nodes}}"/>
                 </swiper-item>
                 <swiper-item>
-                    <!-- <template is="wxParse" data="{{wxParseData:textDom.nodes}}"/> -->
-                </swiper-item>
+                    <template is="wxParse" data="{{wxParseData:textDom.nodes}}"/>
+                </swiper-item> -->
                 <swiper-item>
                     <view class="tk">
                         <view>
@@ -139,7 +144,7 @@
         </view>
         <view class="ft {{fixiPhone?'fix-iphonex':''}}">
             <view class="ftList">
-                <view class="cell h-page">
+                <view class="cell h-page" bind:tap="bindSwitchTab">
                     <image src="./img/icon2.png" />
                     <view>首页</view>
                 </view>
