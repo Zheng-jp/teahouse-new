@@ -130,6 +130,18 @@ Page({
 
     })
   },
+  go_invoice_add: function (e) {
+    wx.navigateTo({
+      url: '/invoice/pages/invoice_add/invoice_add',
+      success: function (res) {
+      },
+      fail: function () {
+      },
+      complete: function () {
+      }
+
+    })
+  },
   go_save_tea: function (e) {
     wx.navigateTo({
       url: '../select_save_address/select_save_address',

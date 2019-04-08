@@ -255,9 +255,9 @@
 				¥ 0.00
 			</view>
 		</view>
-		<view class='go_invoice_information'>
+		<view class='go_invoice_information' bindtap="go_invoice_add">
 			<view>
-				请填写发票信息
+				请添加发票信息
 			</view>
 			<view class='more_imgs'>
 				<image src='img/u1959.png' mode="scaleToFill"></image>
