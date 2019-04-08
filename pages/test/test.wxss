@@ -1,28 +1,106 @@
-.view_notice_contain {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 120rpx;
-    background: white;
-    font-size: 26rpx;
+.date-show{
+	position: relative;
+	width: 250rpx;
+	font-family: PingFang-SC-Regular;
+	font-size: 31rpx;
+	color: #282828;
+	text-align: center;
+	margin: 59rpx auto 10rpx;
+  font-weight: bold;
 }
-
-.image_notice {
-    margin-left: 5rpx;
+.lt-arrow,.rt-arrow{
+	position: absolute;
+	top: 1rpx;
+	width: 60rpx;
+	height: 60rpx;
 }
-
-.swiper_container {
-    height: 120rpx;
-    width: 100%;
+.lt-arrow image,.rt-arrow image{
+	width: 14rpx;
+	height: 26rpx;
 }
+.lt-arrow{
+	left: -110rpx;
+	transform: rotate(180deg);
+}
+.rt-arrow{
+	right: -100rpx;
+}
+.header{
+	font-size: 0;
+	padding: 0 24rpx;
+}
+.header>view{
+	display: inline-block;
+	width: 14.285%;
+	color: #B8B8B8;
+	font-size: 30rpx;
+	text-align: center;
+	padding: 15rpx 0;
+}
+.weekMark{
+	position: relative;
+}
+.weekMark view{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	border-bottom: 1px solid #22A7F6;
+}
+.date-box{
+	font-size: 0;
+	padding: 10rpx 0;
+}
+.date-box>view{
+	position: relative;
+	display: inline-block;
+	width: 14.285%;
+	color: #020202;
+	font-size: 40rpx;
+	text-align: center;
+	vertical-align: middle;
+	margin: 15rpx 0;
+}
+.date-head{
+	height: 60rpx;
+	line-height: 60rpx;
+	font-size: 26rpx;
+}
+.nowDay{
+background: #FAAB1B;
 
-.swiper_item {
-    font-size: 26rpx;
-    color: #666;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    letter-spacing: 2px;
-    padding-top: 20rpx;
+}
+.nowDay .date-head{
+	width: 60rpx;
+	border-radius: 50%;
+	text-align: center;
+	color: #fff;
+	/* background-color: #22A7F6; */
+	margin: 0 auto;
+}
+.date-weight{
+	font-size: 22rpx;
+	padding: 4rpx 0;
+}
+.nowDay .date-weight{
+	/* color: #22A7F6; */
+  color: #fff;
+}
+.one{
+	position: absolute;
+	bottom: 0;
+	right: 5rpx;
+	width: 20rpx;
+	height: 20rpx;
+	border-radius: 50%;
+	background-color: red;
+}
+.two{
+	position: absolute;
+	bottom: 30rpx;
+	right: 5rpx;
+	width: 20rpx;
+	height: 20rpx;
+	border-radius: 50%;
+	background-color: blue;
 }

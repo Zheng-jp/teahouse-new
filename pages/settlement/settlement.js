@@ -511,55 +511,7 @@ Page({
     });
 
   },
-  // 弹窗
-  util: function (currentStatu) {
-    /* 动画部分 */
-    // 第1步：创建动画实例 
-    var animation = wx.createAnimation({
-      duration: 200,  //动画时长
-      timingFunction: "linear", //线性
-      delay: 0  //0则不延迟
-    });
 
-    // 第2步：这个动画实例赋给当前的动画实例
-    this.animation = animation;
-
-    // 第3步：执行第一组动画
-    animation.opacity(0).rotateX(-100).step();
-
-    // 第4步：导出动画对象赋给数据对象储存
-    this.setData({
-      animationData: animation.export()
-    })
-
-    // 第5步：设置定时器到指定时候后，执行第二组动画
-    setTimeout(function () {
-      // 执行第二组动画
-      animation.opacity(1).rotateX(0).step();
-      // 给数据对象储存的第一组动画，更替为执行完第二组动画的动画对象
-      this.setData({
-        animationData: animation
-      })
-
-      //关闭
-      if (currentStatu == "close") {
-        this.setData(
-          {
-            showModalStatus: false
-          }
-        );
-      }
-    }.bind(this), 200)
-
-    // 显示
-    if (currentStatu == "open") {
-      this.setData(
-        {
-          showModalStatus: true
-        }
-      );
-    }
-  },
   go_coupon: function () {
     var that = this;
     that.setData({
@@ -621,10 +573,10 @@ Page({
     for (var i = 0; i < that.data.goods.length; i++) {
       all_moneys += that.data.goods[i].grade_price * that.data.goods[i].number;
     }
-
-    if (all_moneys - that.data.money > 0) {
+    var all_moneys_alls=all_moneys+that.data.storage+that.data.freight-that.data.money
+    if (all_moneys_alls> 0) {
       that.setData({
-        all_money: all_moneys - that.data.money+that.data.storage+that.data.freight,
+        all_money: all_moneys_alls,
       });
       that.setData({
         all_money: that.data.all_money.toFixed(2),
@@ -697,8 +649,15 @@ Page({
       goods: goods,
       minusStatus: minusStatus
     });
-    that.money_freight();
-    that.calculate_money();
+    if(that.data.order_type=="1"){
+      that.money_freight();
+      that.calculate_money();
+    }
+    else if(that.data.order_type=="3"){
+      that.money_storages();
+      that.calculate_money();
+    }
+   
   },
   /* 点击加号 */
   bindPlus: function () {
@@ -715,8 +674,17 @@ Page({
       goods: goods,
       minusStatus: minusStatus
     });
-    that.money_freight();
-    that.calculate_money();
+    if(that.data.order_type=="1"){
+      that.money_freight();
+      that.calculate_money();
+    }
+    else if(that.data.order_type=="3"){
+      that.money_storages();
+      that.calculate_money();
+    }
+    else{
+      that.calculate_money();
+    }
   },
   /* 点击减号 */
   bindMinus1: function () {

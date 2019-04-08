@@ -1,23 +1,26 @@
-
-<!-- 轮播 通知 start -->
-
-<view class='view_notice_contain'>
-
-
-<swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="5000">
-
-<block wx:for="{{noticeList}}">
-
-<swiper-item >
-
-<view class="swiper_item">{{item.content0}}</view>
-
-</swiper-item>
-
-</block>
-
- 
-
-</swiper>
-
+<view class='wrap'>
+	<view>
+		<view class='date-show'>
+			<view class='lt-arrow' bindtap='lastMonth'>
+      1111
+				<image src='../images/nextMonth.png' mode='aspectFit'></image>
+			</view>
+			{{year}}年{{month}}月
+			<view class='rt-arrow' bindtap='nextMonth'>
+      2222
+				<image src='../images/nextMonth.png' mode='aspectFit'></image>
+			</view>
+		</view>
+	</view>
+	<view class='header'>
+		<view wx:for='{{date}}' class=''>{{item}}<view></view></view>
+	</view>
+	<view class='date-box'>
+		<view wx:for='{{dateArr}}' class='{{isToday == item.isToday ? "nowDay" : ""}} {{isToday}} {{item.isToday}}' data-date='{{item.isToday}}'>			
+			<view class='date-head'>
+				<view>{{item.dateNum}}</view>
+			</view>
+			<view class='date-weight'>{{item.weight}}</view>
+		</view>
+	</view>
 </view>
