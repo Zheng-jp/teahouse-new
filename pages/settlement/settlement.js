@@ -939,7 +939,7 @@ Page({
         all_money: all_moneys_alls,
       });
       that.setData({
-        all_money: that.data.all_money.toFixed(2),
+        all_money: that.data.all_money,
       });
     }
     else {
@@ -969,11 +969,12 @@ Page({
         money_storages += that.data.storages[i] * that.data.goods[j].number;
       }
     }
+    console.log(money_storages);
     that.setData({
       storage: money_storages * that.data.num1 * 365,
     })
     that.setData({
-      storage: that.data.storage.toFixed(2),
+      storage: that.data.storage,
     })
   },
   // 计算运费
