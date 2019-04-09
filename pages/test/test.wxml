@@ -2,12 +2,12 @@
 	<view>
 		<view class='date-show'>
 			<view class='lt-arrow' bindtap='lastMonth'>
-      1111
+    
 				<image src='../images/nextMonth.png' mode='aspectFit'></image>
 			</view>
 			{{year}}年{{month}}月
 			<view class='rt-arrow' bindtap='nextMonth'>
-      2222
+      
 				<image src='../images/nextMonth.png' mode='aspectFit'></image>
 			</view>
 		</view>
