@@ -296,7 +296,7 @@ Page({
     //     open_id: app.globalData.gmemberid,
     //     goods_id: that.data.user[1].good_id,
     //     goods_standard_id: that.data.user[2].guige,
-    //     order_quantity: that.data.user[1].number,
+    //     order_quantity: that.data.user[3].num,
     //     address_id: that.data.address_id,
     //     order_amount: that.data.all_money,
     //     order_type: that.data.order_type,
@@ -412,7 +412,7 @@ Page({
           member_id: app.globalData.member_id,
           goods_id: that.data.user[1].good_id,
           goods_standard_id: that.data.user[2].guige,
-          order_quantity: that.data.user[1].number,
+          order_quantity: that.data.user[3].num,
           address_id: that.data.address_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
@@ -530,7 +530,7 @@ Page({
           member_id: app.globalData.member_id,
           goods_id: that.data.user[1].good_id,
           goods_standard_id: that.data.user[2].guige,
-          order_quantity: that.data.user[1].number,
+          order_quantity: that.data.user[3].num,
           address_id: that.data.shop_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
@@ -648,7 +648,7 @@ Page({
           member_id: app.globalData.member_id,
           goods_id: that.data.user[1].good_id,
           goods_standard_id: that.data.user[2].guige,
-          order_quantity: that.data.user[1].number,
+          order_quantity: that.data.user[3].num,
           address_id: that.data.sava_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
@@ -1149,7 +1149,8 @@ Page({
           all_moneys += that.data.goods[i].grade_price * that.data.goods[i].number;
         }
         for(var j = 0; j < that.data.goods.length; j++){
-          unit.push(that.data.goods[i].unit);   
+         
+          unit.push(that.data.goods[j].unit);   
         }
         that.setData({
           all_money: all_moneys,
