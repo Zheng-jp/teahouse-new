@@ -417,7 +417,8 @@ Page({
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
           coupon_id: that.data.coupon_id,
-          unit:that.data.unit_all
+          unit:that.data.unit_all,
+          year:that.data.num2,
           
         },
         method: "post",
@@ -535,7 +536,8 @@ Page({
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
           coupon_id: that.data.coupon_id,
-          unit:that.data.unit_all
+          unit:that.data.unit_all,
+           year:that.data.num2,
           
         },
         method: "post",
@@ -653,7 +655,8 @@ Page({
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
           coupon_id: that.data.coupon_id,
-          unit:that.data.unit_all
+          unit:that.data.unit_all,
+          year:that.data.num2,
           
         },
         method: "post",
