@@ -193,9 +193,10 @@ redirectto: function(n, e) {
         break;
 
       case "web":
-        wx.navigateTo({
-            url: "/sudu8_page/webpage/webpage?url=" + encodeURIComponent(n)
+          wx.switchTab({
+            url: n
         });
+      
         break;
 
       case "tel":

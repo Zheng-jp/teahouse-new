@@ -90,6 +90,20 @@ Page({
   
       })
     },
+    go_div: function (event) {
+
+      var that = this;
+      wx.navigateTo({
+        url: '/diy/index/index',
+        success: function (res) {
+        },
+        fail: function () {
+        },
+        complete: function () {
+        }
+  
+      })
+    },
     go_seach: function (event) {
 
       var that = this;

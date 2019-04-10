@@ -26,8 +26,8 @@
             </block>
         </swiper>
     </view>
-    <view class='nav-list clear'>
-        <view class='list list-one' wx:for="{{nav}}" wx:key="item">
+    <view class='nav-list clear' bindtap="go_div">
+        <view class='list list-one' wx:for="{{nav}}" wx:key="item" >
             <view class='ico nav_ico ico-one'>
                 <image src='{{item.url}}'></image>
             </view>
