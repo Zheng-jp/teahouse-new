@@ -872,7 +872,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'order_place_by_shoppings',
       data: {
-        open_id: app.globalData.gmemberid,
+        member_id: app.globalData.member_id,
         shopping_id: that.data.user[0].shop_id,
         goods_id: that.data.user[1].good_id,
         goods_standard_id: that.data.user[2].guige,
