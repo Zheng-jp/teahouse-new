@@ -769,8 +769,108 @@ Page({
   buyrepay: function () {
     var that = this;
     // 下单请求
+    // wx.request({
+    //   url: app.globalData.tiltes + 'order_place_by_shopping',
+    //   data: {
+    //     open_id: app.globalData.gmemberid,
+    //     shopping_id: that.data.user[0].shop_id,
+    //     goods_id: that.data.user[1].good_id,
+    //     goods_standard_id: that.data.user[2].guige,
+    //     order_quantity: that.data.user[3].num,
+    //     address_id: that.data.address_id,
+    //     order_amount: that.data.all_money,
+    //     order_type: that.data.order_type,
+    //     coupon_id: that.data.coupon_id
+
+    //   },
+    //   method: "post",
+    //   // header: {
+    //   //   "Content-Type": "json" // 默认值
+
+    //   // },
+    //   success: function (res) {
+    //     var order_number = res.data.data.parts_order_number;
+    //     that.setData({
+    //       order_number: order_number,
+    //     })
+    //     wx.showActionSheet({
+    //       itemList: ['账户支付', '微信支付',],
+    //       success: function (res) {
+    //         // 账户支付
+    //         if (res.tapIndex == 0) {
+
+    //           that.showInputLayer();
+    //         }
+    //         else if (res.tapIndex == 1) {
+    //           wx.request({
+    //             url: app.globalData.tiltes + 'wx_order_index',
+    //             data: {
+    //               member_id: app.globalData.member_id,
+    //               order_number: order_number
+    //             },
+    //             dataTypr: 'json',
+    //             method: "post",
+    //             // header: {
+    //             //   "Content-Type": "application/json" // 默认值
+    //             // },
+    //             success: function (res) {
+    //               var result = res;
+
+    //               if (result) {
+    //                 wx.requestPayment({
+    //                   timeStamp: String(result.data.timeStamp),
+    //                   nonceStr: result.data.nonceStr,
+    //                   package: result.data.package,
+    //                   signType: result.data.signType,
+    //                   paySign: result.data.paySign,
+    //                   'success': function (successret) {
+    //                     wx.navigateTo({
+    //                       url: '../order/order?title=' + 0,
+    //                       success: function (res) {
+
+    //                       },
+    //                       fail: function () {
+
+    //                       },
+    //                       complete: function () {
+
+    //                       }
+
+
+    //                     })
+
+    //                   },
+    //                   'fail': function (res) {
+
+    //                   }
+    //                 })
+    //               }
+    //             },
+    //             fail: function () {
+
+    //             },
+    //             complete: function () {
+    //               wx.hideLoading()
+    //             }
+    //           });
+    //         }
+
+
+    //       },
+    //       fail: function (res) {
+    //         console.log(res.errMsg)
+    //       }
+    //     })
+    //   },
+    //   fail: function () {
+
+    //   },
+    //   complete: function () {
+    //   }
+
+    // });
     wx.request({
-      url: app.globalData.tiltes + 'order_place_by_shopping',
+      url: app.globalData.tiltes + 'order_place_by_shoppings',
       data: {
         open_id: app.globalData.gmemberid,
         shopping_id: that.data.user[0].shop_id,
@@ -780,7 +880,9 @@ Page({
         address_id: that.data.address_id,
         order_amount: that.data.all_money,
         order_type: that.data.order_type,
-        coupon_id: that.data.coupon_id
+        coupon_id: that.data.coupon_id,
+        unit:that.data.unit_all,
+        year:that.data.num2,
 
       },
       method: "post",

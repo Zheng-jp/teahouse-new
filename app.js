@@ -181,7 +181,7 @@ util: function(o) {
     });
 }),
 redirectto: function(n, e) {
-    console.log(e);
+    
     switch (e) {
       case "page":
         var t = n.indexOf("page/index"), o = n.indexOf("index?pageid");
