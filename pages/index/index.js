@@ -139,6 +139,8 @@ Page({
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
       url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
+      
+     
       success: function (res) {
       },
       fail: function () {

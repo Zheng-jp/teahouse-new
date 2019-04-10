@@ -85,6 +85,12 @@
       "pages": [
         "invoice_add/invoice_add"
       ]
+    },
+    {
+      "root": "diy",
+      "pages": [
+        "index/index"
+      ]
     }
   ],
   "window": {
