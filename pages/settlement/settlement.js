@@ -1070,10 +1070,10 @@ Page({
       storages: storagess,
     })
     for (var j = 0; j < that.data.goods.length; j++) {
-      for (var i = 0; i < that.data.storages.length; i++) {
-        ever_storage.push(that.data.storages[i] * that.data.goods[j].number);
-        money_storages += that.data.storages[i] * that.data.goods[j].number;
-      }
+      // for (var i = 0; i < that.data.storages.length; i++) {
+        ever_storage.push(that.data.storages[j] * that.data.goods[j].number * that.data.num1 * 365);
+        money_storages += that.data.storages[j] * that.data.goods[j].number;
+      // }
     }
     // console.log(money_storages);
     that.setData({
