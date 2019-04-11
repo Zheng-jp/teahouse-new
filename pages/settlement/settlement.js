@@ -106,7 +106,6 @@ Page({
 
     }
     that.calculate_money();
-
   },
   go_direct_mail_address: function (e) {
     wx.navigateTo({
@@ -1032,6 +1031,7 @@ Page({
   },
   // 计算钱
   calculate_money: function () {
+    console.log(111);
     var that = this;
     var all_moneys = 0;
     for (var i = 0; i < that.data.goods.length; i++) {
