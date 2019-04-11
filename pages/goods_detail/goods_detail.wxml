@@ -76,18 +76,7 @@
 				<view class='footbar_text' >分享</view>
 			</view>
 		</view>
-		<view class="big_limit_purchasing" wx:if="{{limitations_show==1}}" style='overflow:hidden'>
-			<view class="limit_purchasing">
-				<view class="limit_purchasing_title">限时限购</view>
-				<view class="limit_purchasing_title_title">面向范围：</view>
-				<view class="limit_purchasing_content" wx:for="{{limitations_shows.scope}}">{{item}}</view>
-				<view class="limit_purchasing_title_title">限购数量：</view>
-				<view class="limit_purchasing_content"> {{limitations_shows.number}}</view>
-				<view class="limit_purchasing_title_title"> 每间隔：</view>
-				<view class="limit_purchasing_content"> {{limitations_shows.time}}个月</view>
-				<view class="limit_purchasing_title_title">内</view>
-			</view>
-		</view>	
+	
 		<view class='other_info'>
 			<view class='freight'>
 				运费：免费
