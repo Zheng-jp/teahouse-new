@@ -1,8 +1,8 @@
-<form bindsubmit="formSubmit" bindreset="formReset" style="display:none">
+<form bindsubmit="formSubmit1" bindreset="formReset" wx:if="{{select}}">
    <view class="all">
        <view class="select_name">
             <view class="select_left">选择户名</view>
-             <view class="select_right">
+             <view class="select_right" bindtap='go_invoice_select'>
                  <view class="more_text">更多 </view> 
                  <image class="more_img" src="img/u1326.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
             </view>
@@ -29,19 +29,19 @@
        <view class="list">
           <view class="list_name">姓名 </view>
           <view class="input">
-            <input class="" value="" type="text" placeholder="请输入真实姓名"></input>
+            <input class="" value="" type="text" placeholder="请输入真实姓名" name="name"></input>
           </view>
        </view>
        <view class="list">
           <view class="list_name"> 收票人手机 </view>
           <view class="input">
-            <input class="" value="" type="text" placeholder="请输入真实手机号码"></input>
+            <input class="" value="" type="text" placeholder="请输入真实手机号码" name="phone_num"></input>
           </view>
        </view>
        <view class="list">
           <view class="list_name"> 收票人邮箱 </view>
           <view class="input">
-            <input class="" value="" type="text" placeholder="用于接收电子发票"></input>
+            <input class="" value="" type="text" placeholder="用于接收电子发票" name="email"></input>
           </view>
        </view>
        <view class="list">
@@ -49,9 +49,10 @@
              发票类型 
           </view>
           <view class="input">
-             <radio-group class="radio-group" bindchange="radioChange">
-                  <label class="radio"><radio value="普通发票" checked  color='#fff' />  普通发票 </label>
-                  <label class="radio"> <radio value="增值税专用发票"  color='#fff' />  增值税专用发票</label>
+             <radio-group class="radio-group" bindchange="radioChange2">
+                  <label class="radio" wx:if="{{statics==3 || statics==1}}"><radio value="普通发票" checked  color='#fff'  name="invoic_type" />  普通发票 </label>
+           
+           
              </radio-group>
           </view>
      </view>
@@ -61,7 +62,7 @@
        
    </view>
 </form>
-<form bindsubmit="formSubmit" bindreset="formReset">
+<form bindsubmit="formSubmit" bindreset="formReset" wx:if="{{!select}}">
      <view class="all">
          <view class="select_name">
               <view class="select_left">选择户名</view>
@@ -92,13 +93,13 @@
          <view class="list">
             <view class="list_name">发票抬头 </view>
             <view class="input">
-              <input class="" value="" type="text" placeholder="请输入真实姓名"></input>
+              <input class="" value="" type="text" placeholder="深圳市环保质量监督局" name="name1"></input>
             </view>
          </view>
          <view class="list">
             <view class="list_name"> 企业税号 </view>
             <view class="input">
-              <input class="" value="" type="text" placeholder="请输入真实手机号码"></input>
+              <input class="" value="" type="text" placeholder="请输入纳税人识别号（统一社会信用代码）" name="num1"></input>
             </view>
          </view>
         
@@ -107,11 +108,11 @@
                发票类型 
             </view>
             <view class="input">
-               <radio-group class="radio-group" bindchange="radioChange">
-                    <label class="radio"><radio value="普通发票" checked  color='#fff' />  普通发票 </label>
-                    <label class="radio"> <radio value="增值税专用发票"  color='#fff' />  增值税专用发票</label>
-               </radio-group>
-            </view>
+             <radio-group class="radio-group" bindchange="radioChange">
+                  <label class="radio" wx:if="{{statics==3 || statics==1}}"><radio value="普通发票" checked  color='#fff'  name="invoic_type1" />  普通发票 </label>
+                  <label class="radio"  wx:if="{{statics==3 || statics==2}}"> <radio value="增值税专用发票"  color='#fff' name="invoic_type1" />  增值税专用发票</label>
+             </radio-group>
+          </view>
        </view>
        <view class="remit">重置，添加一个新户名</view>
         

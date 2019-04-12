@@ -1,0 +1,98 @@
+<view class="all">
+  <view class='nav'>
+    <view wx:for="{{nav}}" class="bre swiper-tab-list {{item.tab==tab? 'on' : ''}}" data-current="{{item.tab}}" bindtap="tab_click">
+      <view class='nav_item'>{{item}}</view>
+    </view>
+  </view>
+  <swiper current="{{tab}}" class="swiper-box" duration="500" bindchange="tab_slide" bindchange="tab_slide" style="height:{{winHeight}}px">
+    <swiper-item>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <scroll-view scroll-y="{{true}}" bindscroll="scroll">
+          <label class="radio">
+            <view class='left'>
+              <radio value="" checked="{{item.checked}}" color='#fff' />
+            </view>
+
+            <view class='right'>
+              <view class='list'>
+                <view class='label'>姓名：</view>
+                <view class='content'>刘德华</view>
+              </view>
+              <view class='list'>
+                <view class='label'>收票人手机：</view>
+                <view class='content'>139****0809</view>
+              </view>
+              <view class='list last-child'>
+                <view class='label'>收票人邮箱：</view>
+                <view class='content'>50087223@qq.com</view>
+              </view>
+              <image src='https://d2i72ju5buk5xz.cloudfront.net/gsc/2ZMMUG/f4/35/06/f435068e614248d0ac39fcac3f086858/images/更多（户名企业）/u1466.png?token=c2e237608c69986995e111c25174c456' mode='widthFix' class='delect'></image>
+              <view class='reonly'>
+                <checkbox value="0" checked="checked" />设为默认</view>
+            </view>
+          </label>
+        </scroll-view>
+        <scroll-view scroll-y="{{true}}" bindscroll="scroll">
+          <label class="radio">
+            <view class='left'>
+              <radio value="" checked="{{item.checked}}" color='#fff' />
+            </view>
+
+            <view class='right'>
+              <view class='list'>
+                <view class='label'>姓名：</view>
+                <view class='content'>刘德华</view>
+              </view>
+              <view class='list'>
+                <view class='label'>收票人手机：</view>
+                <view class='content'>139****0809</view>
+              </view>
+              <view class='list last-child'>
+                <view class='label'>收票人邮箱：</view>
+                <view class='content'>50087223@qq.com</view>
+              </view>
+              <image src='https://d2i72ju5buk5xz.cloudfront.net/gsc/2ZMMUG/f4/35/06/f435068e614248d0ac39fcac3f086858/images/更多（户名企业）/u1466.png?token=c2e237608c69986995e111c25174c456' mode='widthFix' class='delect'></image>
+              <view class='reonly'>
+                <checkbox value="0" checked="checked" />设为默认</view>
+            </view>
+          </label>
+        </scroll-view>
+
+
+      </radio-group>
+    </swiper-item>
+    <swiper-item>
+      <radio-group class="radio-group" bindchange="radioChange">
+
+        <scroll-view scroll-y="{{true}}" bindscroll="scroll">
+          <label class="radio">
+            <view class='left'>
+              <radio value="" checked="{{item.checked}}" color='#fff' />
+            </view>
+
+            <view class='right'>
+              <view class='list'>
+                <view class='label'>发票抬头：</view>
+                <view class='content'>刘德华</view>
+              </view>
+              <view class='list'>
+                <view class='label'>企业税号</view>
+                <view class='content'>139****0809</view>
+              </view>
+              <view class='list last-child'>
+                <view class='label'>发票种类：</view>
+                <view class='content'>50087223@qq.com</view>
+              </view>
+              <image src='https://d2i72ju5buk5xz.cloudfront.net/gsc/2ZMMUG/f4/35/06/f435068e614248d0ac39fcac3f086858/images/更多（户名企业）/u1466.png?token=c2e237608c69986995e111c25174c456' mode='widthFix' class='delect'></image>
+              <view class='reonly'>
+                <checkbox value="0" checked="checked" />设为默认</view>
+            </view>
+          </label>
+        </scroll-view>
+
+
+      </radio-group>
+    </swiper-item>
+  </swiper>
+
+</view>

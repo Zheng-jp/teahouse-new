@@ -83,7 +83,8 @@
     {
       "root": "invoice/pages",
       "pages": [
-        "invoice_add/invoice_add"
+        "invoice_add/invoice_add",
+        "invoice_select/invoice_select"
       ]
     },
     {

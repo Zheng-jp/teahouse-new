@@ -59,6 +59,13 @@
 					"query": "",
 					"scene": null
 				},
+          {
+            "id": -1,
+            "name": "选择发票",
+            "pathName": "invoice/pages/invoice_select/invoice_select",
+            "query": "",
+            "scene": null
+          },
 				{
 					"id": -1,
 					"name": "测试",
