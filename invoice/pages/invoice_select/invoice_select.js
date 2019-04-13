@@ -12,10 +12,18 @@ Page({
     // 头部导航
     tab: 0,
     url: app.globalData.url,
-    nav: [
-      "企业",
-      "个人"
+    nav: [{
+      name:"企业",
+      tab:0
+    },{
+      name: "个人",
+      tab:1
+  },
+    
+     
     ],
+    enterprise:[],
+    personal:[],
     shares: [],
 
  
@@ -23,89 +31,13 @@ Page({
   tab_slide: function (e) {//滑动切换tab 
     var that = this;
     that.setData({ tab: e.detail.current });
-    var id = that.data.nav[that.data.tab].id;
-    wx.request({
-      url: app.globalData.tiltes + 'teacenter_activity',
-      data: {
-        id: id
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
-      success: function (res) {
-        //
-        that.setData({
-          shares: res.data.data,
-        });
-        //  添加字段到等级数组
-        for (var index in that.data.shares) {
-          var sexParam = "shares[" + index + "].url";
-          that.setData({
-            [sexParam]: app.globalData.img_url,
-          })
-
-        }
-
-
-
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
-      }
-
-    });
+   
   },
   tab_click: function (e) {//点击tab切换
     var that = this;
-    console.log(that.data.nav);
-    //  点击添加类
-    if (that.data.nav.tab === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        tab: e.target.dataset.current
-      })
-      var id = that.data.nav[that.data.tab].id;
-      wx.request({
-        url: app.globalData.tiltes + 'teacenter_activity',
-        data: {
-          id: id
-        },
-        method: "post",
-        // header: {
-        //   "Content-Type": "json" // 默认值
-
-        // },
-        success: function (res) {
-          //
-          that.setData({
-            shares: res.data.data,
-          });
-          //  添加字段到等级数组
-          for (var index in that.data.shares) {
-            var sexParam = "shares[" + index + "].url";
-            that.setData({
-              [sexParam]: app.globalData.img_url,
-            })
-
-          }
-
-
-        },
-        fail: function () {
-
-        },
-        complete: function () {
-          wx.hideLoading()
-        }
-
-      });
-    }
+    that.setData({ 
+      tab: e.currentTarget.dataset.current 
+    });
 
   },
  
@@ -145,6 +77,45 @@ Page({
         });
       }
     });
+    wx.request({
+      url:app.globalData.tiltes+ 'corporation',
+      data:{
+        // member_id:app.globalData.member_id,
+        member_id:1049,
+      },
+      method:"post",
+      success:function(res){
+        console.log(res);
+        that.setData({
+          enterprise:res.data.data,
+        })
+      },
+      fail:function(res){
+
+      },
+      complete:function(res){
+
+      }
+    })
+    wx.request({
+      url:app.globalData.tiltes+"individual",
+      data:{
+        // member_id:app.globalData.member_id,
+        member_id:1049,
+      },
+      method:"post",
+      success:function(res){
+        that.setData({
+          personal:res.data.data,
+        })
+      },
+      fail:function(){
+
+      },
+      complete:function(){
+
+      }
+    })
   },
 
   /**

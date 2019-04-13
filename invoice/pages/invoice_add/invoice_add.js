@@ -6,20 +6,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-    select: false,
+    select: 0,
     statics: 0,
     invoice: 1,
     invoice1: 1,
+    enterprise: [],
+    personal: [],
+  },
+  radioChange0: function (e) {
+   return false;
   },
   radioChange: function(e) {
     var that = this;
     if (e.detail.value == "个人") {
+      that.geren();
+      // that.setData({
+      //   select: 1,
+      // })
+    } else {
+      that.qiye();
+      // that.setData({
+      //   select: 0,
+      // })
+    }
+  },
+  radioChange3: function (e) {
+    var that = this;
+    if (e.detail.value == "个人") {
       that.setData({
-        select: true,
+        select: 1,
       })
     } else {
       that.setData({
-        select: false,
+        select: 0,
       })
     }
   },
@@ -95,7 +114,7 @@ Page({
         },
         complete: function(res) {
           wx.showToast({
-            title: res.data.data.info,
+            title: res.data.info,
             icon: 'none',
           });
         }
@@ -149,8 +168,9 @@ Page({
 
         },
         complete: function (res) {
+          console.log(res);
           wx.showToast({
-            title: res.data.data.info,
+            title: res.data.info,
             icon: 'none',
           });
         }
@@ -160,7 +180,80 @@ Page({
 
 
   },
+  geren:function(){
+    var that=this;
+    wx.request({
+      url: app.globalData.tiltes + 'approve_individual',
+      data: {
+        // member_id:app.globalData.member_id,
+        member_id: 1049,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
 
+      // },
+      success: function (res) {
+        console.log(res);
+        if (res.data.status == "1") {
+          that.setData({
+            personal: res.data.data[0],
+            select: 3
+          })
+        }
+        else {
+          that.setData({
+            select: 1
+          })
+        }
+
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+
+      }
+    })
+  },
+  qiye:function(){
+    var that=this;
+    wx.request({
+      url: app.globalData.tiltes + 'approve_corporation',
+      data: {
+        // member_id:app.globalData.member_id,
+        member_id: 1049,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        if (res.data.status == "1") {
+          that.setData({
+            enterprise: res.data.data[0],
+            select: 2
+          })
+        }
+        else {
+          that.setData({
+            select: 0
+          })
+        }
+
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+
+      }
+    })
+  },
+  
 
 
 
@@ -190,6 +283,9 @@ Page({
 
       }
     })
+    that.qiye();
+  
+   
 
 
 
