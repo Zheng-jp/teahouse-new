@@ -76,9 +76,7 @@ Page({
   },
   formSubmit: function(e) {
     var that = this;
-    console.log(e);
     // 添加
-
     if (e.detail.value.name1 == '') {
       wx.showToast({
         title: "发票抬头不能为空",
@@ -93,7 +91,8 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'bill',
         data: {
-          member_id: app.globalData.member_id,
+          // member_id: app.globalData.member_id,
+          member_id: 1049,
           type: 1,
           company: e.detail.value.name1,
           company_number: e.detail.value.num1,
@@ -106,8 +105,10 @@ Page({
 
         // },
         success: function(res) {
-
-
+          wx.setStorageSync('receipt_id', res.data.data.receipt_id);
+          wx.navigateBack({
+            delta: 1
+          });
         },
         fail: function() {
 
@@ -120,9 +121,6 @@ Page({
         }
       })
     }
-
-
-
   },
   formSubmit1: function (e) {
     var that = this;
@@ -147,7 +145,8 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'people',
         data: {
-          member_id: app.globalData.member_id,
+          // member_id: app.globalData.member_id,
+          member_id: 1049,
           type: 2,
           company:e.detail.value.name,
           name: e.detail.value.name,
@@ -161,7 +160,10 @@ Page({
 
         // },
         success: function (res) {
-
+          wx.setStorageSync('receipt_id', res.data.data.receipt_id);
+          wx.navigateBack({
+            delta: 1
+          });
 
         },
         fail: function () {
@@ -180,6 +182,18 @@ Page({
 
 
   },
+  formSubmit2: function (e) {
+      wx.setStorageSync('receipt_id', e.detail.value.id);
+          wx.navigateBack({
+            delta: 1
+          });
+  },
+  formSubmit3: function (e) {
+    wx.setStorageSync('receipt_id', e.detail.value.id);
+        wx.navigateBack({
+          delta: 1
+        });
+},
   geren:function(){
     var that=this;
     wx.request({
@@ -251,6 +265,18 @@ Page({
       complete: function () {
 
       }
+    })
+  },
+  go_form2:function(){
+    var that=this;
+    that.setData({
+      select:1,
+    })
+  },
+  go_form1:function(){
+    var that=this;
+    that.setData({
+      select:0,
     })
   },
   

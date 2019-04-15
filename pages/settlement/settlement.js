@@ -53,6 +53,7 @@ Page({
     address_0: '',
     freight: 0,//运费
     freight_infor: [],
+    taxes_id:null,
     taxes: 0,//税费
     storage: 0,// 存储费
     insurance: 0,//保险费
@@ -1220,6 +1221,81 @@ Page({
       minusStatus: minusStatus
     });
   },
+  check_invoice:function(e){
+    if(e.detail.value[0]==undefined){
+
+    }
+  },
+  geren:function(){
+    var that=this;
+    wx.request({
+      url: app.globalData.tiltes + 'approve_individual',
+      data: {
+        member_id:app.globalData.member_id,
+        // member_id: 1049,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        console.log(res);
+        if (res.data.status == "1") {
+          that.setData({
+            taxes_id: res.data.data[0].id,
+          })
+          return 1;
+        }
+        else{
+          return 0;
+        }
+        
+
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+
+      }
+    })
+  },
+  qiye:function(){
+    var that=this;
+    wx.request({
+      url: app.globalData.tiltes + 'approve_corporation',
+      data: {
+        member_id:app.globalData.member_id,
+        // member_id: 1049,
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "json" // 默认值
+
+      // },
+      success: function (res) {
+        if (res.data.status == "1") {
+          that.setData({
+            taxes_id: res.data.data[0].id,
+          })
+          return 1;
+        }
+        else {
+          return 0;
+        }
+
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -1304,10 +1380,6 @@ Page({
       }
 
     });
-
-
-
-
     // 判读从哪个页面进来
     var pages = getCurrentPages();
     var prevpage = pages[pages.length - 2];
@@ -1341,7 +1413,7 @@ Page({
     var id = wx.getStorageSync('id');
     var sava_id = wx.getStorageSync('sava_id');
     var shop_id = wx.getStorageSync('shop_id');
-
+    var receipt_id=wx.getStorageSync('receipt_id');
     if (id == '') {
       wx.request({
         url: app.globalData.tiltes + 'member_default_address_return',
@@ -1625,7 +1697,13 @@ Page({
 
       });
     }
-
+    if(receipt_id==''){
+       if(that.geren()==0 && that.qiye()==0){
+         that.setData({
+           
+         });
+       }
+    }
 
 
 

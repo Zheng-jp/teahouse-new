@@ -173,11 +173,9 @@
              </radio-group>
           </view>
        </view>
-       <view class="remit">重置，添加一个新户名</view>
-        
+       <view class="remit" bindtap="go_form1">重置，添加一个新户名</view>
             <button form-type="submit" class='button-hovers btn-area' >提交开票</button>
-         
-     </view>
+       </view>
 </form>
 <form bindsubmit="formSubmit13" bindreset="formReset" wx:if="{{select==3}}">
  <input type='text' name="id" style="display: none;" value='{{personal.id}}'></input>
@@ -238,7 +236,7 @@
              </radio-group>
           </view>
      </view>
-     <view class="remit">重置，添加一个新户名</view>
+     <view class="remit" bindtap="go_form2">重置，添加一个新户名</view>
       
           <button form-type="submit" class='button-hovers btn-area' >提交开票</button>
        
