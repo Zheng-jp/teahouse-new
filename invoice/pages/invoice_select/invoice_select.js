@@ -73,8 +73,8 @@ Page({
     wx.request({
      url: app.globalData.tiltes + 'bill_delete',
      data: {
-      // member_id: app.globalData.member_id,
-      member_id: 1049,
+      member_id: app.globalData.member_id,
+      // member_id: 1049,
        id: e.currentTarget.dataset.id,
      },
      method: "post",
@@ -99,8 +99,8 @@ Page({
      wx.request({
       url: app.globalData.tiltes + 'set_default',
       data: {
-       // member_id: app.globalData.member_id,
-       member_id: 1049,
+       member_id: app.globalData.member_id,
+      //  member_id: 1049,
        type:1,
         id: e.detail.value[0],
       },
@@ -137,8 +137,8 @@ Page({
     wx.request({
      url: app.globalData.tiltes + 'set_default',
      data: {
-      // member_id: app.globalData.member_id,
-      member_id: 1049,
+      member_id: app.globalData.member_id,
+      // member_id: 1049,
       type:2,
        id: e.detail.value[0],
      },
@@ -201,8 +201,8 @@ Page({
     wx.request({
       url:app.globalData.tiltes+ 'corporation',
       data:{
-        // member_id:app.globalData.member_id,
-        member_id:1049,
+        member_id:app.globalData.member_id,
+        // member_id:1049,
       },
       method:"post",
       success:function(res){
@@ -221,8 +221,8 @@ Page({
     wx.request({
       url:app.globalData.tiltes+"individual",
       data:{
-        // member_id:app.globalData.member_id,
-        member_id:1049,
+        member_id:app.globalData.member_id,
+        // member_id:1049,
       },
       method:"post",
       success:function(res){
