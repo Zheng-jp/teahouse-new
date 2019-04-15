@@ -1,3 +1,4 @@
+// const app = getApp();
 var _Page, _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
     return typeof t;
 } : function(t) {
@@ -689,7 +690,8 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
             url: f.data.baseurl + "doPageDiypage",
             data: {
                 uniacid: f.data.uniacid,
-                pageid: t
+                pageid: t,
+                open_id: app.globalData.gmemberid,
             },
             success: function(t) {
                 var a = t.data.data;

@@ -53,7 +53,8 @@ Page({
     address_0: '',
     freight: 0,//运费
     freight_infor: [],
-    taxes_id:null,
+    taxes_id:-1,
+    taxes_select:0,
     taxes: 0,//税费
     storage: 0,// 存储费
     insurance: 0,//保险费
@@ -1030,6 +1031,7 @@ Page({
     })
     that.calculate_money();
   },
+ 
   // 计算钱
   calculate_money: function () {
     var that = this;
@@ -1222,8 +1224,27 @@ Page({
     });
   },
   check_invoice:function(e){
-    if(e.detail.value[0]==undefined){
-
+    var that=this;
+    if(e.detail.value[0]== undefined){
+        that.setData({
+          taxes_select:0,
+        })
+    }
+    else{
+        if(that.data.taxes_id==-1){
+          that.setData({
+            taxes_select:0,
+          })
+          wx.showToast({
+            title:'请选择户名',
+            icon: 'none'
+          })
+        }
+        else{
+          that.setData({
+            taxes_select:1,
+          })
+        }
     }
   },
   geren:function(){
@@ -1242,10 +1263,7 @@ Page({
       success: function (res) {
         console.log(res);
         if (res.data.status == "1") {
-          that.setData({
-            taxes_id: res.data.data[0].id,
-          })
-          return 1;
+          return res.data.data[0].id;
         }
         else{
           return 0;
@@ -1277,13 +1295,12 @@ Page({
       // },
       success: function (res) {
         if (res.data.status == "1") {
-          that.setData({
-            taxes_id: res.data.data[0].id,
-          })
-          return 1;
+         
+          return res.data.data[0].id;
         }
         else {
           return 0;
+
         }
 
 
@@ -1698,11 +1715,73 @@ Page({
       });
     }
     if(receipt_id==''){
-       if(that.geren()==0 && that.qiye()==0){
+       if(that.qiye()!=0){
          that.setData({
-           
+          taxes_id:that.qiye(),
          });
        }
+       else{
+         if(that.geren()!=0){
+          that.setData({
+            taxes_id:that.geren(),
+           });
+         }  
+
+       }
+       if(that.data.taxes_id!=null){
+        wx.request({
+          url: app.globalData.tiltes + 'proportion',
+          data: {
+           //  member_id:app.globalData.member_id,
+            // member_id: 1049,
+            receipt_id:that.data.taxes_id
+          },
+          method: "post",
+          // header: {
+          //   "Content-Type": "json" // 默认值
+    
+          // },
+          success: function (res) {
+            console.log(res);
+          },
+          fail: function () {
+    
+          },
+          complete: function () {
+    
+          }
+        })
+       }
+       else{
+
+       }
+       
+
+    }
+    else{
+      wx.request({
+        url: app.globalData.tiltes + 'proportion',
+        data: {
+         //  member_id:app.globalData.member_id,
+          // member_id: 1049,
+          receipt_id:receipt_id
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+  
+        // },
+        success: function (res) {
+          console.log(res);
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+  
+        }
+      })
+
     }
 
 

@@ -254,7 +254,7 @@
 		<view class='is_invoice'>
 			<label class="checkbox">
 			<checkbox-group bindchange="check_invoice">
-				<checkbox value="0" />选择开具发票
+				<checkbox value="0" checked="{{taxes_select==1?'true':''}}" />选择开具发票
 			</checkbox-group>
 			</label>
 			<view class='invoice_money text_red'>
