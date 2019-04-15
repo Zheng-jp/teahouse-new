@@ -44,9 +44,9 @@
                发票类型 
             </view>
             <view class="input">
-             <radio-group class="radio-group" bindchange="radioChange">
-                  <label class="radio" wx:if="{{statics==3 || statics==1}}"><radio value="普通发票" checked  color='#fff'  name="invoic_type1" />  普通发票 </label>
-                  <label class="radio"  wx:if="{{statics==3 || statics==2}}"> <radio value="增值税专用发票"  color='#fff' name="invoic_type1" />  增值税专用发票</label>
+             <radio-group class="radio-group" bindchange="radioChange10">
+                  <label class="radio" wx:if="{{statics==3 || statics==1}}"><radio value="1" checked  color='#fff'   />  普通发票 </label>
+                  <label class="radio"  wx:if="{{statics==3 || statics==2}}"> <radio value="2"  color='#fff'  />  增值税专用发票</label>
              </radio-group>
           </view>
        </view>

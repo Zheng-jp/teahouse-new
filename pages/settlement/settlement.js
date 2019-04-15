@@ -56,6 +56,7 @@ Page({
     taxes_id:-1,
     taxes_select:0,
     taxes: 0,//税费
+    rate:0,//费率
     storage: 0,// 存储费
     insurance: 0,//保险费
     invoice: 0,//发票费
@@ -421,6 +422,9 @@ Page({
           coupon_id: that.data.coupon_id,
           unit: that.data.unit_all,
           year: that.data.num2,
+          receipt_id:that.data.taxes_id,
+          receipt_price:that.data.taxes,
+          receipt_status:that.data.taxes_select,
 
         },
         method: "post",
@@ -540,6 +544,9 @@ Page({
           coupon_id: that.data.coupon_id,
           unit: that.data.unit_all,
           year: that.data.num2,
+          receipt_id:that.data.taxes_id,
+          receipt_price:that.data.taxes,
+          receipt_status:that.data.taxes_select,
 
         },
         method: "post",
@@ -659,6 +666,9 @@ Page({
           coupon_id: that.data.coupon_id,
           unit: that.data.unit_all,
           year: that.data.num2,
+          receipt_id:that.data.taxes_id,
+          receipt_price:that.data.taxes,
+          receipt_status:that.data.taxes_select,
 
         },
         method: "post",
@@ -886,6 +896,9 @@ Page({
         unit: that.data.unit_all,
         year: that.data.num2,
         house_price:that.data.ever_storage,
+        receipt_id:that.data.taxes_id,
+        receipt_price:that.data.taxes,
+        receipt_status:that.data.taxes_select,
 
       },
       method: "post",
@@ -1039,7 +1052,7 @@ Page({
     for (var i = 0; i < that.data.goods.length; i++) {
       all_moneys += that.data.goods[i].grade_price * that.data.goods[i].number;
     }
-    var all_moneys_alls = all_moneys + that.data.storage + that.data.freight - that.data.money
+    var all_moneys_alls = all_moneys + that.data.storage + that.data.freight - that.data.money+that.data.taxes;
     if (all_moneys_alls > 0) {
       that.setData({
         all_money: all_moneys_alls,
@@ -1125,6 +1138,7 @@ Page({
       that.money_storages();
       that.calculate_money();
     }
+    that.invi();
 
   },
   /* 点击加号 */
@@ -1153,6 +1167,7 @@ Page({
     else {
       that.calculate_money();
     }
+    that.invi();
   },
   /* 点击减号 */
   bindMinus1: function () {
@@ -1228,7 +1243,9 @@ Page({
     if(e.detail.value[0]== undefined){
         that.setData({
           taxes_select:0,
+          taxes:0,
         })
+        that.calculate_money();
     }
     else{
         if(that.data.taxes_id==-1){
@@ -1236,83 +1253,38 @@ Page({
             taxes_select:0,
           })
           wx.showToast({
-            title:'请选择户名',
+            title:'请添加户名',
             icon: 'none'
           })
+         
         }
         else{
           that.setData({
             taxes_select:1,
           })
+          that.invi();
+          that.calculate_money();
+         
         }
+          
+         
     }
   },
-  geren:function(){
+
+  // 计算发票费用
+  invi:function(){
     var that=this;
-    wx.request({
-      url: app.globalData.tiltes + 'approve_individual',
-      data: {
-        member_id:app.globalData.member_id,
-        // member_id: 1049,
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
-      success: function (res) {
-        console.log(res);
-        if (res.data.status == "1") {
-          return res.data.data[0].id;
-        }
-        else{
-          return 0;
-        }
-        
-
-
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-
-      }
+    var goods_money=0;
+    for(var i=0;i<that.data.goods.length;i++){
+      goods_money += that.data.goods[i].grade_price * that.data.goods[i].number;
+    }
+    goods_money=goods_money*that.data.rate/100;
+    that.setData({
+      taxes:goods_money,
     })
+
   },
-  qiye:function(){
-    var that=this;
-    wx.request({
-      url: app.globalData.tiltes + 'approve_corporation',
-      data: {
-        member_id:app.globalData.member_id,
-        // member_id: 1049,
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
 
-      // },
-      success: function (res) {
-        if (res.data.status == "1") {
-         
-          return res.data.data[0].id;
-        }
-        else {
-          return 0;
-
-        }
-
-
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-
-      }
-    })
-  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -1431,6 +1403,7 @@ Page({
     var sava_id = wx.getStorageSync('sava_id');
     var shop_id = wx.getStorageSync('shop_id');
     var receipt_id=wx.getStorageSync('receipt_id');
+  //  console.log(receipt_id);
     if (id == '') {
       wx.request({
         url: app.globalData.tiltes + 'member_default_address_return',
@@ -1715,50 +1688,123 @@ Page({
       });
     }
     if(receipt_id==''){
-       if(that.qiye()!=0){
-         that.setData({
-          taxes_id:that.qiye(),
-         });
-       }
-       else{
-         if(that.geren()!=0){
-          that.setData({
-            taxes_id:that.geren(),
-           });
-         }  
-
-       }
-       if(that.data.taxes_id!=null){
-        wx.request({
-          url: app.globalData.tiltes + 'proportion',
-          data: {
-           //  member_id:app.globalData.member_id,
-            // member_id: 1049,
-            receipt_id:that.data.taxes_id
-          },
-          method: "post",
-          // header: {
-          //   "Content-Type": "json" // 默认值
-    
-          // },
-          success: function (res) {
-            console.log(res);
-          },
-          fail: function () {
-    
-          },
-          complete: function () {
-    
+      wx.request({
+        url: app.globalData.tiltes + 'approve_corporation',
+        data: {
+          member_id:app.globalData.member_id,
+          // member_id: 1049,
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+  
+        // },
+        success: function (res) {
+          if (res.data.status == "1") {
+           that.setData({
+            taxes_id:res.data.data[0].id
+           })
+           wx.request({
+            url: app.globalData.tiltes + 'proportion',
+            data: {
+             //  member_id:app.globalData.member_id,
+              // member_id: 1049,
+              receipt_id:res.data.data[0].id
+            },
+            method: "post",
+            // header: {
+            //   "Content-Type": "json" // 默认值
+      
+            // },
+            success: function (res) {
+              that.setData({
+                rate:res.data.data
+              })
+            },
+            fail: function () {
+      
+            },
+            complete: function () {
+      
+            }
+          })
           }
-        })
-       }
-       else{
-
-       }
+          else {
+            wx.request({
+              url: app.globalData.tiltes + 'approve_individual',
+              data: {
+                member_id:app.globalData.member_id,
+                // member_id: 1049,
+              },
+              method: "post",
+              // header: {
+              //   "Content-Type": "json" // 默认值
+        
+              // },
+              success: function (res) {
+                console.log(res);
+                if (res.data.status == "1") {
+                  that.setData({
+                      taxes_id:res.data.data[0].id
+                    })
+                    wx.request({
+                      url: app.globalData.tiltes + 'proportion',
+                      data: {
+                       //  member_id:app.globalData.member_id,
+                        // member_id: 1049,
+                        receipt_id:res.data.data[0].id
+                      },
+                      method: "post",
+                      // header: {
+                      //   "Content-Type": "json" // 默认值
+                
+                      // },
+                      success: function (res) {
+                        that.setData({
+                          rate:res.data.data
+                        })
+                      },
+                      fail: function () {
+                
+                      },
+                      complete: function () {
+                
+                      }
+                    })
+                }
+                
+        
+        
+              },
+              fail: function () {
+        
+              },
+              complete: function () {
+        
+              }
+            })
+  
+          }
+  
+  
+        },
+        fail: function () {
+  
+        },
+        complete: function () {
+  
+        }
+      })
+     
+      
+       
        
 
     }
     else{
+      that.setData({
+        taxes_id:receipt_id
+      })
       wx.request({
         url: app.globalData.tiltes + 'proportion',
         data: {
@@ -1772,7 +1818,10 @@ Page({
   
         // },
         success: function (res) {
-          console.log(res);
+          // console.log(res.data.data);
+          that.setData({
+            rate:res.data.data
+          })
         },
         fail: function () {
   

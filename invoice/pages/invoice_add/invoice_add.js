@@ -12,6 +12,7 @@ Page({
     invoice1: 1,
     enterprise: [],
     personal: [],
+    invoice10:1,
   },
   radioChange0: function (e) {
    return false;
@@ -29,6 +30,12 @@ Page({
       //   select: 0,
       // })
     }
+  },
+  radioChange10: function(e) {
+    var that = this;
+   that.setData({
+        invoice10: e.detail.value,
+      })
   },
   radioChange3: function (e) {
     var that = this;
@@ -96,8 +103,7 @@ Page({
           type: 1,
           company: e.detail.value.name1,
           company_number: e.detail.value.num1,
-          status: that.data.invoice1
-
+          status: that.data.invoice10,
         },
         method: "post",
         // header: {

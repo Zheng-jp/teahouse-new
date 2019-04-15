@@ -258,7 +258,7 @@
 			</checkbox-group>
 			</label>
 			<view class='invoice_money text_red'>
-				¥ 0.00
+				¥ {{taxes}}
 			</view>
 		</view>
 		<view class='go_invoice_information' bindtap="go_invoice_add">
@@ -287,7 +287,7 @@
 		</view>
 		<view class='sundry-li'>
 			<view>税费</view>
-			<view><text style='color:#FF7E4A;'>23元</text></view>
+			<view><text style='color:#FF7E4A;'>{{taxes}}元</text></view>
 		</view>
 		<view class="sundry-li {{selected2?'show':'hidden'}}" style="display:none">
 			<view>仓储保险费</view>

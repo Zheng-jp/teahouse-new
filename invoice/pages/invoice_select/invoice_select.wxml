@@ -8,25 +8,26 @@
     style="height:{{winHeight}}px">
     <swiper-item>
         <radio-group class="radio-group" bindchange="radioChange">
-          <scroll-view scroll-y="{{true}}" bindscroll="scroll" wx:for="{{enterprise}}" bindtap="go_back" data-id="{{item.id}}">
+          <scroll-view scroll-y="{{true}}" bindscroll="scroll" wx:for="{{enterprise}}" >
             <label class="radio">
               <view class='left'>
                 <radio value="" checked="{{item.checked}}" color='#fff' />
               </view>
-
               <view class='right'>
-                <view class='list'>
-                  <view class='label'>发票抬头：</view>
-                  <view class='content'>{{item.company}}</view>
-                </view>
-                <view class='list'>
-                  <view class='label'>企业税号</view>
-                  <view class='content'>{{item.company_number}}</view>
-                </view>
-                <view class='list last-child'>
-                  <view class='label'>发票种类：</view>
-                  <view class='content' wx:if="{{status==1}}">普通发票</view>
-                  <view class='content' wx:else>增值税专用发票</view>
+                <view bindtap="go_back" data-id="{{item.id}}">
+                    <view class='list'>
+                        <view class='label'>发票抬头：</view>
+                        <view class='content'>{{item.company}}</view>
+                      </view>
+                      <view class='list'>
+                        <view class='label'>企业税号</view>
+                        <view class='content'>{{item.company_number}}</view>
+                      </view>
+                      <view class='list last-child'>
+                        <view class='label'>发票种类：</view>
+                        <view class='content' wx:if="{{status==1}}">普通发票</view>
+                        <view class='content' wx:else>增值税专用发票</view>
+                      </view>
                 </view>
                 <image src='img/u1458.png' mode='widthFix' class='delect' bindtap="delect" data-id="{{item.id}}">
                 </image>

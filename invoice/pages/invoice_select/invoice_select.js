@@ -41,7 +41,7 @@ Page({
 
   },
   go_back:function(e){
-    wx.setStorageSync('receipt_id', res.data.data.receipt_id);
+    wx.setStorageSync('receipt_id', e.currentTarget.dataset.id );
     wx.navigateBack({
       delta: 2,
     });
