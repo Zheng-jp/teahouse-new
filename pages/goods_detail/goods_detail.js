@@ -244,8 +244,8 @@ Page({
 		})
 	},
 	go_index: function(e) {
-		wx.switchTab({
-      url: '../index/index',   //注意switchTab只能跳转到带有tab的页面，不能跳转到不带tab的页面
+		wx.navigateTo({
+      url: '../index/index',   //注意navigateTo只能跳转到带有tab的页面，不能跳转到不带tab的页面
     })
 	},
 	/* 点击减号 */

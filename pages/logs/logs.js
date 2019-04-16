@@ -42,20 +42,20 @@ Page({
                     app.globalData.member_id = res.data.data.member_id;
                     wx.hideToast();
                     if (res) {
-                      wx.switchTab({
-                        url: '../index/index'
-                      })
-                  
                       // wx.navigateTo({
-                      //     url: '/diy/index/index',
-                      //     success: function (res) {
-                      //     },
-                      //     fail: function () {
-                      //     },
-                      //     complete: function () {
-                      //     }
+                      //   url: '../index/index'
+                      // })
+                  
+                      wx.navigateTo({
+                          url: '/diy/index/index',
+                          success: function (res) {
+                          },
+                          fail: function () {
+                          },
+                          complete: function () {
+                          }
                     
-                      //   })
+                        })
                      
                       
                     }
@@ -139,11 +139,11 @@ Page({
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             wx.hideToast();
                             if (res) {
-                              wx.switchTab({
-                                url: '../index/index',
-                             
                               // wx.navigateTo({
-                              //   url: '/diy/index/index',
+                              //   url: '../index/index',
+                             
+                              wx.navigateTo({
+                                url: '/diy/index/index',
                                 success: function (res) {
                                 },
                                 fail: function () {
@@ -175,7 +175,7 @@ Page({
                   }
                 }
               });
-              // wx.switchTab({
+              // wx.navigateTo({
               //   url: '../index/index'
               // })
             }
