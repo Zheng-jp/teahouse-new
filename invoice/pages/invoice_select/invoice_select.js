@@ -70,6 +70,7 @@ Page({
   },
    delect:function(e){
     var that = this;
+     var receipt_id = wx.getStorageSync('receipt_id');
     wx.request({
      url: app.globalData.tiltes + 'bill_delete',
      data: {
@@ -79,6 +80,9 @@ Page({
      },
      method: "post",
      success: function (res) {
+       if (receipt_id == e.currentTarget.dataset.id){
+         wx.removeStorageSync("receipt_id");
+       }
        wx.showToast({
          title:'删除成功',
          icon: 'none'

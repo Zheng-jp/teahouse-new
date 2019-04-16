@@ -1822,6 +1822,10 @@ Page({
           that.setData({
             rate:res.data.data
           })
+          if(that.data.taxes_select==1){
+            that.invi();
+          }
+          
         },
         fail: function () {
   

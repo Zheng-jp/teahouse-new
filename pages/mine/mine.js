@@ -102,6 +102,7 @@ Page({
 
     })
   },
+
   go_integral_center:function(){
     wx.navigateTo({
       url: '../integral_center/integral_center',
@@ -150,6 +151,38 @@ onLoad:function(){
     }
 
   });
+  wx.request({
+    url: app.globalData.baseurl + "doPagehomepage",
+    cachetime: "30",
+    data: {
+        uniacid: 1
+    },
+    success: function(t) {
+          
+          wx.request({
+            url: app.globalData.baseurl + "doPageGetFoot",
+            cachetime: "30",
+            data: {
+                uniacid: 1,
+                foot: t.data.data.foot_is
+            },
+            success: function(t) {
+                2 == that.data.foot_is && that.setData({
+                    footinfo: t.data.data
+                }), 1 ==that.data.foot_is  && that.setData({
+                    baseinfo: t.data.data
+                });
+            }
+        });
+            
+        
+    },
+    fail: function(t) {
+        console.log(t);
+    }
+});
+
+
   
  
 
