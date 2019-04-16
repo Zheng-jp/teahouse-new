@@ -1055,7 +1055,7 @@ Page({
     var all_moneys_alls = all_moneys + that.data.storage + that.data.freight - that.data.money+that.data.taxes;
     if (all_moneys_alls > 0) {
       that.setData({
-        all_money: all_moneys_alls,
+        all_money: all_moneys_alls.toFixed(2),
       });
       that.setData({
         all_money: that.data.all_money,
