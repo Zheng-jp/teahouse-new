@@ -11,6 +11,9 @@ Page({
     url: app.globalData.img_url,
     ico:[],
     share: [],
+    footinfo:[],
+    foot_is:2,
+    style:[],
 
   },
   bindViewTap: function (event) {
@@ -35,7 +38,10 @@ Page({
     })
   },
  
-
+  redirectto: function(t) {
+    var a = t.currentTarget.dataset.link, e = t.currentTarget.dataset.linktype;
+    app.redirectto(a, e);
+},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -105,6 +111,37 @@ Page({
       }
 
     });
+    wx.request({
+      url: app.globalData.baseurl + "doPagehomepage",
+      cachetime: "30",
+      data: {
+          uniacid: 1
+      },
+      success: function(t) {
+            that.setData({
+              foot_is: t.data.data.foot_is
+            })
+            wx.request({
+              url: app.globalData.baseurl + "doPageGetFoot",
+              cachetime: "30",
+              data: {
+                  uniacid: 1,
+                  foot: t.data.data.foot_is
+              },
+              success: function(t) {
+                that.setData({
+                      footinfo: t.data.data,
+                      style:t.data.data.style,
+                  })
+              }
+          });
+              
+          
+      },
+      fail: function(t) {
+          console.log(t);
+      }
+  });
 
   },
 

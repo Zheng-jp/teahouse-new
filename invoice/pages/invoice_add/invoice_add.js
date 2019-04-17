@@ -12,6 +12,7 @@ Page({
     invoice1: 1,
     enterprise: [],
     personal: [],
+    invoice10:1,
   },
   radioChange0: function (e) {
    return false;
@@ -29,6 +30,12 @@ Page({
       //   select: 0,
       // })
     }
+  },
+  radioChange10: function(e) {
+    var that = this;
+   that.setData({
+        invoice10: e.detail.value,
+      })
   },
   radioChange3: function (e) {
     var that = this;
@@ -76,9 +83,7 @@ Page({
   },
   formSubmit: function(e) {
     var that = this;
-    console.log(e);
     // 添加
-
     if (e.detail.value.name1 == '') {
       wx.showToast({
         title: "发票抬头不能为空",
@@ -94,11 +99,11 @@ Page({
         url: app.globalData.tiltes + 'bill',
         data: {
           member_id: app.globalData.member_id,
+          // member_id: 1049,
           type: 1,
           company: e.detail.value.name1,
           company_number: e.detail.value.num1,
-          status: that.data.invoice1
-
+          status: that.data.invoice10,
         },
         method: "post",
         // header: {
@@ -106,8 +111,10 @@ Page({
 
         // },
         success: function(res) {
-
-
+          wx.setStorageSync('receipt_id', res.data.data.receipt_id);
+          wx.navigateBack({
+            delta: 1
+          });
         },
         fail: function() {
 
@@ -120,9 +127,6 @@ Page({
         }
       })
     }
-
-
-
   },
   formSubmit1: function (e) {
     var that = this;
@@ -148,6 +152,7 @@ Page({
         url: app.globalData.tiltes + 'people',
         data: {
           member_id: app.globalData.member_id,
+          // member_id: 1049,
           type: 2,
           company:e.detail.value.name,
           name: e.detail.value.name,
@@ -161,7 +166,10 @@ Page({
 
         // },
         success: function (res) {
-
+          wx.setStorageSync('receipt_id', res.data.data.receipt_id);
+          wx.navigateBack({
+            delta: 1
+          });
 
         },
         fail: function () {
@@ -180,13 +188,25 @@ Page({
 
 
   },
+  formSubmit2: function (e) {
+      wx.setStorageSync('receipt_id', e.detail.value.id);
+          wx.navigateBack({
+            delta: 1
+          });
+  },
+  formSubmit3: function (e) {
+    wx.setStorageSync('receipt_id', e.detail.value.id);
+        wx.navigateBack({
+          delta: 1
+        });
+},
   geren:function(){
     var that=this;
     wx.request({
       url: app.globalData.tiltes + 'approve_individual',
       data: {
-        // member_id:app.globalData.member_id,
-        member_id: 1049,
+        member_id:app.globalData.member_id,
+        // member_id: 1049,
       },
       method: "post",
       // header: {
@@ -222,8 +242,8 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'approve_corporation',
       data: {
-        // member_id:app.globalData.member_id,
-        member_id: 1049,
+        member_id:app.globalData.member_id,
+        // member_id: 1049,
       },
       method: "post",
       // header: {
@@ -251,6 +271,18 @@ Page({
       complete: function () {
 
       }
+    })
+  },
+  go_form2:function(){
+    var that=this;
+    that.setData({
+      select:1,
+    })
+  },
+  go_form1:function(){
+    var that=this;
+    that.setData({
+      select:0,
     })
   },
   

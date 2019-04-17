@@ -1,3 +1,4 @@
+// const app = getApp();
 var _Page, _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
     return typeof t;
 } : function(t) {
@@ -689,7 +690,8 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
             url: f.data.baseurl + "doPageDiypage",
             data: {
                 uniacid: f.data.uniacid,
-                pageid: t
+                pageid: t,
+                open_id: app.globalData.gmemberid,
             },
             success: function(t) {
                 var a = t.data.data;
@@ -787,7 +789,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
                     cons: wxParse.wxParse("content3", "html", i[r].richtext, f, 0)
                 }), i[r].id = "richtext3"), 4 == d && (f.setData({
                     cons: wxParse.wxParse("content4", "html", i[r].richtext, f, 0)
-                }), i[r].id = "richtext4"), d++), console.log(i), f.setData({
+                }), i[r].id = "richtext4"), d++), f.setData({
                     list: i
                 });
                 wx.hideLoading();

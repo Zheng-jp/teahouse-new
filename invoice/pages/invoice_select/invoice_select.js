@@ -40,6 +40,12 @@ Page({
     });
 
   },
+  go_back:function(e){
+    wx.setStorageSync('receipt_id', e.currentTarget.dataset.id );
+    wx.navigateBack({
+      delta: 2,
+    });
+  },
  
   bindViewTap: function (event) {
     var that = this;
@@ -62,7 +68,111 @@ Page({
 
     })
   },
+   delect:function(e){
+    var that = this;
+     var receipt_id = wx.getStorageSync('receipt_id');
+    wx.request({
+     url: app.globalData.tiltes + 'bill_delete',
+     data: {
+      member_id: app.globalData.member_id,
+      // member_id: 1049,
+       id: e.currentTarget.dataset.id,
+     },
+     method: "post",
+     success: function (res) {
+       if (receipt_id == e.currentTarget.dataset.id){
+         wx.removeStorageSync("receipt_id");
+       }
+       wx.showToast({
+         title:'删除成功',
+         icon: 'none'
+       })
+       that.onShow()
+     },
+     fail: function () {
 
+     },
+     complete: function () {
+     }
+
+   });
+   },
+   checkboxChange:function(e){
+     var that=this;
+     var enterpriseco=that.data.enterprise;
+     wx.request({
+      url: app.globalData.tiltes + 'set_default',
+      data: {
+       member_id: app.globalData.member_id,
+      //  member_id: 1049,
+       type:1,
+        id: e.detail.value[0],
+      },
+      method: "post",
+      success: function (res) {
+        for (var i = 0; i < that.data.enterprise.length;i++){
+          if (e.detail.value[0] == that.data.enterprise[i].id){
+              enterpriseco[i].label=1;
+          }
+          else{
+           enterpriseco[i].label=0;
+          }
+        }
+        that.setData({
+         enterprise:enterpriseco,
+        })
+     
+      },
+      fail: function () {
+         that.show();
+      },
+      complete: function (res) {
+        wx.showToast({
+          title:res.data.info,
+          icon: 'none'
+        })
+      }
+ 
+    });
+   },
+   checkboxChange1:function(e){
+    var that=this;
+    var personalco=that.data.personal;
+    wx.request({
+     url: app.globalData.tiltes + 'set_default',
+     data: {
+      member_id: app.globalData.member_id,
+      // member_id: 1049,
+      type:2,
+       id: e.detail.value[0],
+     },
+     method: "post",
+     success: function (res) {
+       for (var i = 0; i < that.data.personal.length;i++){
+         if (e.detail.value[0] == that.data.personal[i].id){
+          personalco[i].label=1;
+         }
+         else{
+          personalco[i].label=0;
+         }
+       }
+       that.setData({
+        personal:personalco,
+       })
+    
+     },
+     fail: function () {
+        that.show();
+     },
+     complete: function (res) {
+       wx.showToast({
+         title:res.data.info,
+         icon: 'none'
+       })
+     }
+
+   });
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -77,11 +187,26 @@ Page({
         });
       }
     });
+   
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    var  that=this;
     wx.request({
       url:app.globalData.tiltes+ 'corporation',
       data:{
-        // member_id:app.globalData.member_id,
-        member_id:1049,
+        member_id:app.globalData.member_id,
+        // member_id:1049,
       },
       method:"post",
       success:function(res){
@@ -100,8 +225,8 @@ Page({
     wx.request({
       url:app.globalData.tiltes+"individual",
       data:{
-        // member_id:app.globalData.member_id,
-        member_id:1049,
+        member_id:app.globalData.member_id,
+        // member_id:1049,
       },
       method:"post",
       success:function(res){
@@ -116,19 +241,6 @@ Page({
 
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
   },
 
   /**

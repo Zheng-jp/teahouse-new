@@ -193,7 +193,7 @@ redirectto: function(n, e) {
         break;
 
       case "web":
-          wx.switchTab({
+          wx.navigateTo({
             url: n
         });
       

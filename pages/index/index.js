@@ -136,7 +136,7 @@ Page({
   go_meeting: function (event) {
     var that = this;
     var item = event.currentTarget.dataset.item;
-    wx.switchTab ({
+    wx.navigateTo ({
       url: '../circle/circle',
       success: function (res) {
       },
