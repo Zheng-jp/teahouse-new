@@ -783,7 +783,8 @@ Page({
 
               })
             }
-          }) }
+          })
+         }
           else{
             wx.showToast({
               title:"下单失败，请联系管理员",
@@ -1003,7 +1004,20 @@ Page({
 
               },
               fail: function (res) {
-                console.log(res.errMsg)
+                wx.navigateTo({
+                  url: '../order/order?title=' + 0,
+                  success: function (res) {
+  
+                  },
+                  fail: function () {
+  
+                  },
+                  complete: function () {
+  
+                  }
+  
+  
+                })
               }
             })
           }
@@ -1111,7 +1125,20 @@ Page({
 
                     },
                     complete: function () {
-                      wx.hideLoading()
+                      wx.navigateTo({
+                        url: '../order/order?title=' + 0,
+                        success: function (res) {
+        
+                        },
+                        fail: function () {
+        
+                        },
+                        complete: function () {
+        
+                        }
+        
+        
+                      })
                     }
                   });
                 }
@@ -1235,7 +1262,20 @@ Page({
 
               },
               fail: function (res) {
-                console.log(res.errMsg)
+                wx.navigateTo({
+                  url: '../order/order?title=' + 0,
+                  success: function (res) {
+  
+                  },
+                  fail: function () {
+  
+                  },
+                  complete: function () {
+  
+                  }
+  
+  
+                })
               }
             })
           }
