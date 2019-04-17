@@ -15,6 +15,13 @@ Page({
     isTodayWeek: false,
     todayIndex: 0,
     releaseFocus: false,
+    clickDay: 0,
+    show_start_time: 0,
+    show_end_time: 0,
+    mengShow: false,
+    aniStyle: true,
+    start_time:0,
+    end_time:0,
     Label: [
       {
         name: '仅限会员',
@@ -77,6 +84,7 @@ Page({
       }
     }
   },
+
 
   // 评论输入框发送事件
   comments: function (e) {
@@ -154,91 +162,31 @@ Page({
       repay_content: ''
     })
   },
-  pay: function (e) {
-    var that = this;
-    wx.request({
-      url: app.globalData.tiltes + 'activity_order',
-      data: {
-        open_id: app.globalData.gmemberid,
-        activity_id: that.data.information.id,
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "application/json" // 默认值
-
-      // },
-      success: function (res) {
-        var order_number = res.data.data.parts_order_number;
-        wx.request({
-          // url: app.globalData.tiltes + 'wxpay',
-          url: app.globalData.tiltes + 'wx_index',
-          data: {
-            open_id: app.globalData.gmemberid,
-            cost_moneny: that.data.information.cost_moneny,
-            activity_name: that.data.information.activity_name,
-            order_number: order_number
-          },
-          dataTypr: 'json',
-          method: "post",
-          // header: {
-          //   "Content-Type": "application/json" // 默认值
-          // },
-          success: function (res) {
-            var result = res;
-            if (result) {
-              wx.requestPayment({
-                timeStamp: String(result.data.timeStamp),
-                nonceStr: result.data.nonceStr,
-                package: result.data.package,
-                signType: result.data.signType,
-                paySign: result.data.paySign,
-                'success': function (successret) {
-                  console.log('支付成功');
-                  that.setData({
-                    apply: 1,
-                  });
-                },
-                'fail': function (res) {
-                  wx.request({
-                    url: app.globalData.tiltes + 'activity_order_delete',
-                    data: {
-                      parts_order_number: order_number
-                    },
-                    method: "post",
-                    success: function (res) {
-
-                    },
-                    fail: function () {
-
-                    },
-                    complete: function () {
-                      wx.hideLoading()
-                    }
-
-                  });
-                }
-              })
-            }
-          },
-          fail: function () {
-
-          },
-          complete: function () {
-            wx.hideLoading()
-          }
-        });
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-        wx.hideLoading()
-      }
-
-    });
-
+  //日历显示控制
+  showMeng: function(e) {
+    this.setData({
+      mengShow: true, //蒙层显示
+      aniStyle: true　　　　　　　//设置动画效果为slideup
+      
+    })
 
   },
+  outbtn: function (e) {
+   // 这是日历外部的点击事件，给它绑定事件，是为了实现点击其它地方隐藏蒙层的效果
+    var that = this;
+    this.setData({
+      aniStyle: false　
+    })
+    setTimeout(function () {
+      //延时设置蒙层的隐藏，这个定时器的时间,不设置定时器会导致动画效果看不见
+      that.setData({
+        mengShow: false
+      })
+    }, 500)
+  },
+  inbtn: function (e) {
+  }, 
+
   collection: function (e) {
     var that = this;
     var id = that.data.title;
@@ -273,6 +221,7 @@ Page({
   delect_collection: function (e) {
     var that = this;
     var id = that.data.title;
+
     wx.request({
       url: app.globalData.tiltes + 'collect_updata',
       data: {
@@ -299,6 +248,8 @@ Page({
 
     });
   },
+    
+
   /*
    * 时间戳转换为yyyy-MM-dd hh:mm:ss 格式  formatDate()
    * inputTime   时间戳
@@ -319,7 +270,19 @@ Page({
     second = second < 10 ? ('0' + second) : second;
     return y + '-' + m + '-' + d;
   },
+  formatDay: function (inputTime) {
+    var date = new Date(inputTime);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    return y  + m  + d;
+  },
+  
+  
   dateInit: function (setYear, setMonth) {
+    // console.log(that.data.information);
     //全部时间的月份都是按0~11基准，显示月份才+1
     let dateArr = [];						//需要遍历的日历数组数据
     let arrLen = 0;							//dateArr的数组长度
@@ -332,27 +295,83 @@ Page({
     let dayNums = new Date(year, nextMonth, 0).getDate();				//获取目标月有多少天
     let obj = {};
     let num = 0;
-
+    let months = month;
+    let state = false;
+    let weight;
+    let todayTime;
     if (month + 1 > 11) {
       nextYear = year + 1;
       dayNums = new Date(nextYear, nextMonth, 0).getDate();
     }
     arrLen = startWeek + dayNums;
-  
+    
+    months = months + 1;
+    if (months < 10) {
+      months = '0' + months;
+    }
+
+    var start_time = this.data.information.start_time * 1000;
+    var end_time = this.data.information.end_time * 1000;
+    // console.log(this.formatDay(end_time))
+    start_time = Number(this.formatDay(start_time));
+    end_time = Number(this.formatDay(end_time));
+    var timeDiff = this.data.information.end_time - this.data.information.start_time;
+    timeDiff = Number(timeDiff / 86400);
+
+    var ins;
+    var timeArr = [];
+    var timeC = [this.data.information.start_time];
+
+    for(let j = 0; j < timeDiff; j++) {
+      timeC.push(Number(timeC[j]) + 86400);
+    }
+    for (let u = 0; u < timeC.length; u++) {
+      ins = this.formatDay(timeC[u] * 1000);
+      timeArr.push(ins);
+    }
+    // console.log(timeArr)
+    // console.log(this.data.information)
     for (let i = 0; i < arrLen; i++) {
       if (i >= startWeek) {
         num = i - startWeek + 1;
-        // console.log(parseInt('' + year + (month + 1) + num));
+        if(num < 10) {
+          num = '0' + num;
+        }
+    
+        //已预约的时间
+        todayTime = parseInt('' + year + months + num);
+        state = false;
+        var indexId;
+        for (let r = 0; r < timeArr.length; r++) {
+          if (Number(timeArr[r]) == Number(todayTime)) {
+            // console.log(r)
+            state = true;
+            weight = this.data.information.day_array[r];
+            indexId = r;
+          }
+          // console.log(weight)
+        }
+        
+        // console.log(parseInt('' + year + (month + 1) + num))
         obj = {
-          isToday: parseInt('' + year + (month + 1) + num),
+          isToday: todayTime,
           dateNum: num,
-          weight: "剩余227"
+          weight: weight || '',
+          state: state,
+          start_time: start_time,
+          end_time: end_time,
+          indexId: indexId
         }
       } else {
         obj = {};
       }
       dateArr[i] = obj;
     }
+
+   
+
+
+    //  console.log(dateArr)
     this.setData({
       dateArr: dateArr
     })
@@ -396,11 +415,117 @@ Page({
     })
     this.dateInit(year, month);
   },
+
+  // 选中日期
+  changeColor: function (e) {
+    var that = this;
+    var data = e.currentTarget;
+    var clickDate;
+    var dateArr = that.data.dateArr;
+    clickDate = data.dataset.date;
+    
+    // console.log(e)
+    // console.log(clickDate)
+    if (dateArr[data.id].state == true) {
+      that.setData({
+        clickDay: clickDate
+    })
+      console.log(clickDate)
+    console.log(Number(Date.parse(clickDate)));
+      //选中调起支付
+      wx.request({
+        url: app.globalData.tiltes + 'activity_order',
+        data: {
+          open_id: app.globalData.gmemberid,
+          activity_id: that.data.information.id,
+          start_time: clickDate
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "application/json" // 默认值
+
+        // },
+        success: function (res) {
+          console.log(res)
+          var order_number = res.data.data;
+          wx.request({
+            // url: app.globalData.tiltes + 'wxpay',
+            url: app.globalData.tiltes + 'wx_index',
+            data: {
+              open_id: app.globalData.gmemberid,
+              cost_moneny: that.data.information.cost_moneny,
+              activity_name: that.data.information.activity_name,
+              order_number: order_number
+            },
+            dataTypr: 'json',
+            method: "post",
+            // header: {
+            //   "Content-Type": "application/json" // 默认值
+            // },
+            success: function (res) {
+              var result = res;
+              if (result) {
+                wx.requestPayment({
+                  timeStamp: String(result.data.timeStamp),
+                  nonceStr: result.data.nonceStr,
+                  package: result.data.package,
+                  signType: result.data.signType,
+                  paySign: result.data.paySign,
+                  'success': function (successret) {
+                    console.log('支付成功');
+                    that.setData({
+                      apply: 1,
+                    });
+                  },
+                  'fail': function (res) {
+                    wx.request({
+                      url: app.globalData.tiltes + 'activity_order_delete',
+                      data: {
+                        parts_order_number: order_number
+                      },
+                      method: "post",
+                      success: function (res) {
+
+                      },
+                      fail: function () {
+
+                      },
+                      complete: function () {
+                        wx.hideLoading()
+                      }
+
+                    });
+                  }
+                })
+              }
+            },
+            fail: function () {
+
+            },
+            complete: function () {
+              wx.hideLoading()
+            }
+          });
+        },
+        fail: function () {
+
+        },
+        complete: function () {
+          wx.hideLoading()
+        }
+
+      });
+
+    }
+
+
+  },
+  
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
     var that = this;
     var title = options.title;
     that.setData({
@@ -434,8 +559,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_detailed',
       data: {
-        id: options.title,
-        open_id: app.globalData.gmemberid,
+        id: options.title
       },
       method: "post",
       // header: {
@@ -444,12 +568,60 @@ Page({
       // },
       success: function (res) {
         that.setData({
-          information: res.data.data[0],
+          information: res.data.data
         });
-        var article = res.data.data[0].commodity;
+        // console.log(res.data.data)
+        var article = res.data.data.commodity;
         WxParse.wxParse('article', 'html', article, that, 5);
+        // console.log(res.data.data)
+        if (res.data.data.requirements == 1 && res.data.data.open_request == 1) {
+          that.setData({
+            Label: [
+              {
+                name: '仅限会员',
+                color: '#93291E'
+              },
+              {
+                name: '需要预约',
+                color: '#669900'
+              }
+            ]})
+          
+        }
+        if (res.data.data.requirements == 1 && res.data.data.open_request == 0) {
+          that.setData({
+            Label: [
+              {
+                name: '需要预约',
+                color: '#669900'
+              }
+            ]
+          })
+          
+        }
+        if (res.data.data.requirements == 0 && res.data.data.open_request == 1) {
+          that.setData({
+            Label: [
+              {
+                name: '仅限会员',
+                color: '#93291E'
+              }
+            ]
+          })
+         
+        }
+        if (res.data.data.requirements == 0 && res.data.data.open_request == 0) {
+          that.setData({
+            Label: []
+          })
+        }
 
-
+        var show_start_time =  that.formatDate(res.data.data.start_time * 1000);
+        var show_end_time = that.formatDate(res.data.data.end_time * 1000);
+        that.setData({
+          show_start_time: show_start_time,
+          show_end_time: show_end_time
+        })
 
       },
       fail: function () {
@@ -496,15 +668,29 @@ Page({
     let now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
-    this.dateInit();
+    let months = month;
+    
+    
+    setTimeout(function () {
+      that.dateInit();
+    }, 500)
+
+    if (months < 10) {
+      months = '0' + months;
+    }
     this.setData({
       year: year,
       month: month,
-      isToday: '' + year + month + now.getDate()
+      isToday: '' + year + months + now.getDate()
     })
-
-
+    //缓存当日时间戳
+    this.setData({
+      clickDay: that.data.isToday
+    });
+    
   },
+
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -517,7 +703,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
     var that = this;
+   
     wx.request({
       url: app.globalData.tiltes + 'teacenter_comment_show',
       data: {

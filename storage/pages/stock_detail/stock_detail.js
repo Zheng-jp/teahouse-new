@@ -1,4 +1,4 @@
-// storage/pages/stock_detail/stock_detail.js
+ // storage/pages/stock_detail/stock_detail.js
 Page({
 
   /**

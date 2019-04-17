@@ -6,7 +6,6 @@ image{
 .title{
   width: 94%;
   margin: 16rpx auto;
- 
 }
 text{
    display: inline-block;
@@ -251,10 +250,13 @@ color: #66CC00;
 
 }
 /* 预约 */
+
 .wrap{
   background:#fff;
   margin:10rpx;
-  
+  margin-bottom: 100rpx;
+  position: fixed;
+  bottom: 0;
 }
 .date-show{
   position:relative;
@@ -363,6 +365,29 @@ background: #FAAB1B;
 	border-radius: 50%;
 	background-color: blue;
 }
-.aften>view{
+.aften>view {
   color:#D6D6D6 !important;
+}
+
+@keyframes slidedown {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+.slidedown {
+    animation: slidedown 0.5s linear ;
+}
+.slideup {
+    animation: slideup 0.5s linear ;
+}
+@keyframes slideup {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }

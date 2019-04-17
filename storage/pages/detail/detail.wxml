@@ -1,9 +1,9 @@
 <import src="../../../wxParse/wxParse.wxml" />
-<view class="all">
-  <view class="active_information">
+<view class="all" >
+  <view class="active_information"  catchtap='outbtn' >
     <view class='title'>
       <text class='title_title'>活动信息</text>
-      <text class='Label' wx:for="{{Label}}" style='color:{{item.color}}; border-color:{{item.color}}'>{{item.name}}
+      <text class='Label' wx:for="{{Label}}" style='color:{{item.color}}; border-color:{{item.color}}' >{{item.name}}
       </text>
 
     </view>
@@ -20,14 +20,14 @@
         <view class='ico_img'>
           <image src='img/u5001.png' mode="widthFix"></image>
         </view>
-        <view class='list_content listb_content' style='color:#5E5E5E'>{{information.start_time}}</view>
+        <view class='list_content listb_content' style='color:#5E5E5E'>{{show_start_time}} 至 {{show_end_time}}</view>
       </view>
       <view class='list_a list'>
         <view class='ico_img'>
           <image src='img/u5005.png' mode="widthFix"></image>
         </view>
         <view class='list_content listc_content'><text style='color:#5E5E5E'>活动上限</text>{{information.participats}}<text
-            style='color:#5E5E5E'>人</text><text class="padding">已报名0人</text></view>
+            style='color:#5E5E5E'>人</text><text class="padding">已报名{{information.peoples}}人</text></view>
       </view>
       <view class='list_a list'>
         <view class='ico_img'>
@@ -37,8 +37,10 @@
       </view>
     </view>
   </view>
-  <view class='wrap'>
-    <view>
+  
+
+  <view class='wrap {{aniStyle?"slideup":"slidedown"}}'  catchtap='inbtn' wx:if="{{mengShow}}" > 
+    <view >
       <view class='date-show'>
         <view class='lt-arrow' bindtap='lastMonth'>
 
@@ -57,19 +59,21 @@
       </view>
     </view>
     <view class='date-box'>
-      <view wx:for='{{dateArr}}' class='{{isToday == item.isToday ? "nowDay" : ""}} {{isToday > item.isToday ? "aften" : ""}}'
-        data-date='{{item.isToday}}'>
+      item.end_time > item.isToday
+      <view wx:for='{{dateArr}}' class='{{clickDay == item.isToday ? "nowDay" : ""}} {{item.isToday < item.start_time ? "aften" : ""}}  {{item.isToday > item.end_time ? "aften" : ""}}' data-date='{{item.isToday}}' id='{{index}}' data-indexid = '{{item.indexId}}' bindtap='changeColor' >
+
         <view class='date-head'>
           <view>{{item.dateNum}}</view>
         </view>
-        <view class='date-weight'>{{item.weight}}</view>
+        <view class='date-weight' wx:if='{{item.state == true}}'>剩余{{item.weight}}</view>
       </view>
     </view>
   </view>
-  <view class='text'>
+
+  <view class='text' catchtap='outbtn'>
     <template is="wxParse" data="{{wxParseData:article.nodes}}" />
   </view>
-  <view class='comment'>
+  <view class='comment' catchtap='outbtn'>
     <view class='comment_list'>
       <view class='comment_title'>
         <text class='xian'></text>
@@ -110,6 +114,8 @@
   </view>
 
 
+
+
   <view class='buttom_nav'>
     <view class='star' bindtap="collection" wx:if="{{!collectionimg}}">
       <image src='img/u5053.png'></image>
@@ -123,7 +129,7 @@
       <image src='img/u5055.png'></image>
     </view>
     <view class='monly'>¥{{information.cost_moneny}}</view>
-    <view class='buttons' bindtap='pay' wx:if="{{apply==0}}">立即报名</view>
+    <view class='buttons' bindtap='showMeng' wx:if="{{apply==0}}">立即报名</view>
     <view class='buttons' wx:else>已报名</view>
   </view>
 </view>
