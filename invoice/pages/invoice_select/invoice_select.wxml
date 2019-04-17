@@ -1,0 +1,82 @@
+<view class="all">
+  <view class='nav'>
+    <view wx:for="{{nav}}" class="bre swiper-tab-list " data-current="{{item.tab}}" bindtap="tab_click">
+      <view class="nav_item {{item.tab==tab? 'on' : ''}}">{{item.name}}</view>
+    </view>
+  </view>
+  <swiper current="{{tab}}" class="swiper-box" duration="500" bindchange="tab_slide" bindchange="tab_slide"
+    style="height:{{winHeight}}px">
+    <swiper-item>
+        <radio-group class="radio-group" bindchange="radioChange">
+          <scroll-view scroll-y="{{true}}" bindscroll="scroll" wx:for="{{enterprise}}" >
+            <label class="radio">
+              <view class='left'>
+                <radio value="" checked="{{item.checked}}" color='#fff' />
+              </view>
+              <view class='right'>
+                <view bindtap="go_back" data-id="{{item.id}}">
+                    <view class='list'>
+                        <view class='label'>发票抬头：</view>
+                        <view class='content'>{{item.company}}</view>
+                      </view>
+                      <view class='list'>
+                        <view class='label'>企业税号</view>
+                        <view class='content'>{{item.company_number}}</view>
+                      </view>
+                      <view class='list last-child'>
+                        <view class='label'>发票种类：</view>
+                        <view class='content' wx:if="{{status==1}}">普通发票</view>
+                        <view class='content' wx:else>增值税专用发票</view>
+                      </view>
+                </view>
+                <image src='img/u1458.png' mode='widthFix' class='delect' bindtap="delect" data-id="{{item.id}}">
+                </image>
+                <view class='reonly'>
+                <checkbox-group bindchange="checkboxChange">
+                  <checkbox value="{{item.id}}" checked="{{item.label==1?'true':''}}" />设为默认
+                  </checkbox-group>
+                  </view>
+              </view>
+            </label>
+          </scroll-view>
+        </radio-group>
+      
+    </swiper-item>
+    <swiper-item>
+      
+      <radio-group class="radio-group" bindchange="radioChange">
+        <scroll-view scroll-y="{{true}}" bindscroll="scroll" wx:for="{{personal}}" bindtap="go_back" data-id="{{item.id}}">
+          <label class="radio">
+            <view class='left'>
+              <radio value="" checked="{{item.checked}}" color='#fff' />
+            </view>
+            <view class='right'>
+              <view class='list'>
+                <view class='label'>姓名：</view>
+                <view class='content'>{{item.name}}</view>
+              </view>
+              <view class='list'>
+                <view class='label'>收票人手机：</view>
+                <view class='content'>{{item.user_phone}}</view>
+              </view>
+              <view class='list last-child'>
+                <view class='label'>收票人邮箱：</view>
+                <view class='content'>{{item.email}}</view>
+              </view>
+              <image src='img/u1458.png' mode='widthFix' class='delect' bindtap="delect" data-id="{{item.id}}"></image>
+              <view class='reonly'>
+              <checkbox-group bindchange="checkboxChange1">
+                <checkbox value="{{item.id}}" checked="{{item.label==1?'true':''}}" class="" />设为默认
+                </checkbox-group>
+                </view>
+            </view>
+          </label>
+        </scroll-view>
+
+      </radio-group>
+     
+    </swiper-item>
+
+  </swiper>
+
+</view>

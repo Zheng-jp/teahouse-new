@@ -26,8 +26,8 @@
             </block>
         </swiper>
     </view>
-    <view class='nav-list clear'>
-        <view class='list list-one' wx:for="{{nav}}" wx:key="item">
+    <view class='nav-list clear' bindtap="go_div">
+        <view class='list list-one' wx:for="{{nav}}" wx:key="item" >
             <view class='ico nav_ico ico-one'>
                 <image src='{{item.url}}'></image>
             </view>
@@ -75,4 +75,7 @@
         </view>
     </view>
     <image class="buy" src="img/buy.png" mode="widthFix" lazy-load="false" binderror="" bindload="" bindtap="go_car"></image>
+    <view style='font-size: 25rpx; color: #725E5E;text-align:center;margin-bottom:20rpx'>宣铭科技www.xuanmingkeji.cn提供技术支持</view>
+</view>
+<view style=''>
 </view>

@@ -83,7 +83,14 @@
     {
       "root": "invoice/pages",
       "pages": [
-        "invoice_add/invoice_add"
+        "invoice_add/invoice_add",
+        "invoice_select/invoice_select"
+      ]
+    },
+    {
+      "root": "diy",
+      "pages": [
+        "index/index"
       ]
     }
   ],
@@ -92,36 +99,5 @@
     "navigationBarBackgroundColor": "#F9F9F9",
     "navigationBarTitleText": "滴金茶业",
     "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#8A8A8A",
-    "selectedColor": "#821006",
-    "borderStyle": "black",
-    "list": [
-      {
-        "selectedIconPath": "images/index-select.png",
-        "iconPath": "images/index.png",
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "selectedIconPath": "images/icob.png",
-        "iconPath": "images/icoa.png",
-        "pagePath": "pages/storage/view/view",
-        "text": "茶仓"
-      },
-      {
-        "selectedIconPath": "images/icod.png",
-        "iconPath": "images/icoc.png",
-        "pagePath": "pages/circle/circle",
-        "text": "茶圈"
-      },
-      {
-        "selectedIconPath": "images/icoh.png",
-        "iconPath": "images/icog.png",
-        "pagePath": "pages/mine/mine",
-        "text": "我的"
-      }
-    ]
   }
 }

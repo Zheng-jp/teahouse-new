@@ -36,9 +36,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 44,
+			"current": 3,
 			"list": [
-				
 				{
 					"id": -1,
 					"name": "众筹",
@@ -59,6 +58,18 @@
 					"pathName": "invoice/pages/invoice_add/invoice_add",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择发票",
+					"pathName": "invoice/pages/invoice_select/invoice_select",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试",
+					"pathName": "pages/test/test"
 				}
 			]
 		}

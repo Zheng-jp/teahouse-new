@@ -42,6 +42,7 @@ checkbox-group{
 
 .delect_ico{
   width: 40rpx;
+  margin-bottom: 5rpx;
 }
 .content_list{
   display: flex;
@@ -63,7 +64,7 @@ checkbox-group{
   margin-right: 20rpx;
 }
 .add_ico{
-  width: 50rpx;
+  width: 45rpx;
 
 }
 .weight{
@@ -78,6 +79,7 @@ checkbox-group{
 }
 .address{
   margin-top: 20rpx;
+  font-size: 20rpx;
 }
 .all{
   background: #F9F9F9;
@@ -101,6 +103,7 @@ checkbox-group{
   right:87rpx;
    top:35rpx;
    padding:4rpx;
+   margin-top: 1rpx;
 
 
 }

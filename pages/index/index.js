@@ -90,6 +90,20 @@ Page({
   
       })
     },
+    go_div: function (event) {
+
+      var that = this;
+      wx.navigateTo({
+        url: '/diy/index/index',
+        success: function (res) {
+        },
+        fail: function () {
+        },
+        complete: function () {
+        }
+  
+      })
+    },
     go_seach: function (event) {
 
       var that = this;
@@ -122,7 +136,7 @@ Page({
   go_meeting: function (event) {
     var that = this;
     var item = event.currentTarget.dataset.item;
-    wx.switchTab ({
+    wx.navigateTo ({
       url: '../circle/circle',
       success: function (res) {
       },
@@ -139,6 +153,8 @@ Page({
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
       url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
+      
+     
       success: function (res) {
       },
       fail: function () {

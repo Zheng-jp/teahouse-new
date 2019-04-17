@@ -52,14 +52,19 @@ Page({
     coupon_id: 0,//使用优惠劵id
     address_0: '',
     freight: 0,//运费
-    freight_infor:[],
+    freight_infor: [],
+    taxes_id: -1,
+    taxes_select: 0,
     taxes: 0,//税费
+    rate: 0,//费率
     storage: 0,// 存储费
     insurance: 0,//保险费
     invoice: 0,//发票费
     storages: [],//存储费管理
     shop_address: '',
     is_checked: true,
+    unit_all: [],//报价单位
+    ever_storage: [],//单个仓储费
 
 
   },
@@ -77,7 +82,7 @@ Page({
         selected1: false,
         selected2: false,
         order_type: 1,
-        storage:0,
+        storage: 0,
       })
       that.money_freight();
     }
@@ -87,24 +92,23 @@ Page({
         selected1: true,
         selected2: false,
         order_type: 2,
-        storage:0,
-        freight:0,
+        storage: 0,
+        freight: 0,
       })
     }
     else {
-     
+
       that.setData({
         selected: false,
         selected1: false,
         selected2: true,
         order_type: 3,
-        freight:0,
+        freight: 0,
       })
       that.money_storages();
 
     }
     that.calculate_money();
-
   },
   go_direct_mail_address: function (e) {
     wx.navigateTo({
@@ -289,282 +293,1018 @@ Page({
     var that = this;
     var num = new Array();
     num = [that.data.num];
-    wx.request({
-      url: app.globalData.tiltes + 'order_place',
-      data: {
-        open_id: app.globalData.gmemberid,
-        goods_id: that.data.user[1].good_id,
-        goods_standard_id: that.data.user[2].guige,
-        order_quantity: that.data.user[1].number,
-        address_id: that.data.address_id,
-        order_amount: that.data.all_money,
-        order_type: that.data.order_type,
-        coupon_id: that.data.coupon_id
-      },
-      method: "post",
+    // wx.request({
+    //   url: app.globalData.tiltes + 'order_place',
+    //   data: {
+    //     open_id: app.globalData.gmemberid,
+    //     goods_id: that.data.user[1].good_id,
+    //     goods_standard_id: that.data.user[2].guige,
+    //     order_quantity: that.data.user[3].num,
+    //     address_id: that.data.address_id,
+    //     order_amount: that.data.all_money,
+    //     order_type: that.data.order_type,
+    //     coupon_id: that.data.coupon_id
 
-      // header: {
-      //   "Content-Type": "json" // 默认值
+    //   },
+    //   method: "post",
 
-      // },
-      success: function (res) {
-        var order_number = res.data.data.parts_order_number;
-        that.setData({
-          order_number: order_number,
-        })
-        wx.showActionSheet({
-          itemList: ['账户支付', '微信支付',],
-          success: function (res) {
+    //   // header: {
+    //   //   "Content-Type": "json" // 默认值
 
-            // 账户支付
-            if (res.tapIndex == 0) {
-              that.showInputLayer();
-            }
-            else if (res.tapIndex == 1) {
-              wx.request({
-                // url: app.globalData.tiltes + 'wxpay',
-                url: app.globalData.tiltes + 'wx_order_index',
-                data: {
-                  member_id: app.globalData.member_id,
-                  order_number: order_number,
+    //   // },
+    //   success: function (res) {
+    //     var order_number = res.data.data.parts_order_number;
+    //     that.setData({
+    //       order_number: order_number,
+    //     })
+    //     wx.showActionSheet({
+    //       itemList: ['账户支付', '微信支付',],
+    //       success: function (res) {
 
-                },
-                dataTypr: 'json',
-                method: "post",
-                // header: {
-                //   "Content-Type": "application/json" // 默认值
-                // },
-                success: function (res) {
-                  var result = res;
+    //         // 账户支付
+    //         if (res.tapIndex == 0) {
+    //           that.showInputLayer();
+    //         }
+    //         else if (res.tapIndex == 1) {
+    //           wx.request({
+    //             // url: app.globalData.tiltes + 'wxpay',
+    //             url: app.globalData.tiltes + 'wx_order_index',
+    //             data: {
+    //               member_id: app.globalData.member_id,
+    //               order_number: order_number,
 
-                  if (result) {
-                    wx.requestPayment({
-                      timeStamp: String(result.data.timeStamp),
-                      nonceStr: result.data.nonceStr,
-                      package: result.data.package,
-                      signType: result.data.signType,
-                      paySign: result.data.paySign,
-                      'success': function (successret) {
-                        console.log('支付成功');
-                        wx.navigateTo({
-                          url: '../order/order?title=' + 0,
-                          success: function (res) {
+    //             },
+    //             dataTypr: 'json',
+    //             method: "post",
+    //             // header: {
+    //             //   "Content-Type": "application/json" // 默认值
+    //             // },
+    //             success: function (res) {
+    //               var result = res;
 
-                          },
-                          fail: function () {
+    //               if (result) {
+    //                 wx.requestPayment({
+    //                   timeStamp: String(result.data.timeStamp),
+    //                   nonceStr: result.data.nonceStr,
+    //                   package: result.data.package,
+    //                   signType: result.data.signType,
+    //                   paySign: result.data.paySign,
+    //                   'success': function (successret) {
+    //                     console.log('支付成功');
+    //                     wx.navigateTo({
+    //                       url: '../order/order?title=' + 0,
+    //                       success: function (res) {
 
-                          },
-                          complete: function () {
+    //                       },
+    //                       fail: function () {
 
-                          }
+    //                       },
+    //                       complete: function () {
+
+    //                       }
 
 
-                        })
+    //                     })
 
-                      },
-                      'fail': function (res) {
+    //                   },
+    //                   'fail': function (res) {
 
-                      }
-                    })
+    //                   }
+    //                 })
+    //               }
+    //             },
+    //             fail: function () {
+
+    //             },
+    //             complete: function () {
+    //               wx.hideLoading()
+    //             }
+    //           });
+    //         }
+
+    //       },
+    //       fail: function (res) {
+    //         wx.navigateTo({
+    //           url: '../order/order?title=' + 0,
+    //           success: function (res) {
+
+    //           },
+    //           fail: function () {
+
+    //           },
+    //           complete: function () {
+
+    //           }
+
+
+    //         })
+    //       }
+    //     })
+    //   },
+    //   fail: function () {
+
+    //   },
+    //   complete: function () {
+    //   }
+
+    // });
+    if (that.data.order_type == "1") {
+      wx.request({
+        url: app.globalData.tiltes + 'order_places',
+        data: {
+          member_id: app.globalData.member_id,
+          goods_id: that.data.user[1].good_id,
+          goods_standard_id: that.data.user[2].guige,
+          order_quantity: that.data.user[3].num,
+          address_id: that.data.address_id,
+          order_amount: that.data.all_money,
+          order_type: that.data.order_type,
+          coupon_id: that.data.coupon_id,
+          unit: that.data.unit_all,
+          year: that.data.num2,
+          receipt_id: that.data.taxes_id,
+          receipt_price: that.data.taxes,
+          receipt_status: that.data.taxes_select,
+
+        },
+        method: "post",
+
+        // header: {
+        //   "Content-Type": "json" // 默认值
+
+        // },
+        success: function (res) {
+          if (res.data.status == 1) {
+          var order_number = res.data.data.parts_order_number;
+          that.setData({
+            order_number: order_number,
+          })
+          wx.showActionSheet({
+            itemList: ['账户支付', '微信支付',],
+            success: function (res) {
+
+              // 账户支付
+              if (res.tapIndex == 0) {
+                that.showInputLayer();
+              }
+              else if (res.tapIndex == 1) {
+                wx.request({
+                  // url: app.globalData.tiltes + 'wxpay',
+                  url: app.globalData.tiltes + 'wx_order_index',
+                  data: {
+                    member_id: app.globalData.member_id,
+                    order_number: order_number,
+
+                  },
+                  dataTypr: 'json',
+                  method: "post",
+                  // header: {
+                  //   "Content-Type": "application/json" // 默认值
+                  // },
+                  success: function (res) {
+                    var result = res;
+
+                    if (result) {
+                      wx.requestPayment({
+                        timeStamp: String(result.data.timeStamp),
+                        nonceStr: result.data.nonceStr,
+                        package: result.data.package,
+                        signType: result.data.signType,
+                        paySign: result.data.paySign,
+                        'success': function (successret) {
+                          console.log('支付成功');
+                          wx.navigateTo({
+                            url: '../order/order?title=' + 0,
+                            success: function (res) {
+
+                            },
+                            fail: function () {
+
+                            },
+                            complete: function () {
+
+                            }
+
+
+                          })
+
+                        },
+                        'fail': function (res) {
+
+                        }
+                      })
+                    }
+                  },
+                  fail: function () {
+
+                  },
+                  complete: function () {
+                    wx.hideLoading()
                   }
+                });
+              }
+
+            },
+            fail: function (res) {
+              wx.navigateTo({
+                url: '../order/order?title=' + 0,
+                success: function (res) {
+
                 },
                 fail: function () {
 
                 },
                 complete: function () {
-                  wx.hideLoading()
+
                 }
-              });
+
+
+              })
             }
+          })
+        }
+        else{
+          wx.showToast({
+            title:"下单失败，请联系管理员",
+            icon:none,
+          })
+        }
+        },
+        fail: function () {
 
-          },
-          fail: function (res) {
-            wx.navigateTo({
-              url: '../order/order?title=' + 0,
-              success: function (res) {
+        },
+        complete: function () {
+        }
 
-              },
-              fail: function () {
+      });
+    }
+    else if (that.data.order_type == "2") {
+      wx.request({
+        url: app.globalData.tiltes + 'order_places',
+        data: {
+          member_id: app.globalData.member_id,
+          goods_id: that.data.user[1].good_id,
+          goods_standard_id: that.data.user[2].guige,
+          order_quantity: that.data.user[3].num,
+          address_id: that.data.shop_id,
+          order_amount: that.data.all_money,
+          order_type: that.data.order_type,
+          coupon_id: that.data.coupon_id,
+          unit: that.data.unit_all,
+          year: that.data.num2,
+          receipt_id: that.data.taxes_id,
+          receipt_price: that.data.taxes,
+          receipt_status: that.data.taxes_select,
 
-              },
-              complete: function () {
+        },
+        method: "post",
 
+        // header: {
+        //   "Content-Type": "json" // 默认值
+
+        // },
+        success: function (res) {
+          if (res.data.status == 1) {
+          var order_number = res.data.data.parts_order_number;
+          that.setData({
+            order_number: order_number,
+          })
+          wx.showActionSheet({
+            itemList: ['账户支付', '微信支付',],
+            success: function (res) {
+
+              // 账户支付
+              if (res.tapIndex == 0) {
+                that.showInputLayer();
+              }
+              else if (res.tapIndex == 1) {
+                wx.request({
+                  // url: app.globalData.tiltes + 'wxpay',
+                  url: app.globalData.tiltes + 'wx_order_index',
+                  data: {
+                    member_id: app.globalData.member_id,
+                    order_number: order_number,
+
+                  },
+                  dataTypr: 'json',
+                  method: "post",
+                  // header: {
+                  //   "Content-Type": "application/json" // 默认值
+                  // },
+                  success: function (res) {
+                    var result = res;
+
+                    if (result) {
+                      wx.requestPayment({
+                        timeStamp: String(result.data.timeStamp),
+                        nonceStr: result.data.nonceStr,
+                        package: result.data.package,
+                        signType: result.data.signType,
+                        paySign: result.data.paySign,
+                        'success': function (successret) {
+                          console.log('支付成功');
+                          wx.navigateTo({
+                            url: '../order/order?title=' + 0,
+                            success: function (res) {
+
+                            },
+                            fail: function () {
+
+                            },
+                            complete: function () {
+
+                            }
+
+
+                          })
+
+                        },
+                        'fail': function (res) {
+
+                        }
+                      })
+                    }
+                  },
+                  fail: function () {
+
+                  },
+                  complete: function () {
+                    wx.hideLoading()
+                  }
+                });
+              }
+              
+
+            },
+            fail: function (res) {
+              wx.navigateTo({
+                url: '../order/order?title=' + 0,
+                success: function (res) {
+
+                },
+                fail: function () {
+
+                },
+                complete: function () {
+
+                }
+
+
+              })
+            }
+          })
+        }
+        else{
+          wx.showToast({
+            title:"下单失败，请联系管理员",
+            icon:none,
+          })
+        }
+        },
+        fail: function () {
+
+        },
+        complete: function () {
+        }
+
+      });
+    }
+    else {
+      wx.request({
+        url: app.globalData.tiltes + 'order_places',
+        data: {
+          member_id: app.globalData.member_id,
+          goods_id: that.data.user[1].good_id,
+          goods_standard_id: that.data.user[2].guige,
+          order_quantity: that.data.user[3].num,
+          address_id: that.data.sava_id,
+          order_amount: that.data.all_money,
+          order_type: that.data.order_type,
+          coupon_id: that.data.coupon_id,
+          unit: that.data.unit_all,
+          year: that.data.num2,
+          receipt_id: that.data.taxes_id,
+          receipt_price: that.data.taxes,
+          receipt_status: that.data.taxes_select,
+
+        },
+        method: "post",
+
+        // header: {
+        //   "Content-Type": "json" // 默认值
+
+        // },
+        success: function (res) {
+          if (res.data.status == 1) {
+
+          var order_number = res.data.data.parts_order_number;
+          that.setData({
+            order_number: order_number,
+          })
+          wx.showActionSheet({
+            itemList: ['账户支付', '微信支付',],
+            success: function (res) {
+
+              // 账户支付
+              if (res.tapIndex == 0) {
+                that.showInputLayer();
+              }
+              else if (res.tapIndex == 1) {
+                wx.request({
+                  // url: app.globalData.tiltes + 'wxpay',
+                  url: app.globalData.tiltes + 'wx_order_index',
+                  data: {
+                    member_id: app.globalData.member_id,
+                    order_number: order_number,
+
+                  },
+                  dataTypr: 'json',
+                  method: "post",
+                  // header: {
+                  //   "Content-Type": "application/json" // 默认值
+                  // },
+                  success: function (res) {
+                    var result = res;
+
+                    if (result) {
+                      wx.requestPayment({
+                        timeStamp: String(result.data.timeStamp),
+                        nonceStr: result.data.nonceStr,
+                        package: result.data.package,
+                        signType: result.data.signType,
+                        paySign: result.data.paySign,
+                        'success': function (successret) {
+                          console.log('支付成功');
+                          wx.navigateTo({
+                            url: '../order/order?title=' + 0,
+                            success: function (res) {
+
+                            },
+                            fail: function () {
+
+                            },
+                            complete: function () {
+
+                            }
+
+
+                          })
+
+                        },
+                        'fail': function (res) {
+
+                        }
+                      })
+                    }
+                  },
+                  fail: function () {
+
+                  },
+                  complete: function () {
+                    wx.hideLoading()
+                  }
+                });
               }
 
+            },
+            fail: function (res) {
+              wx.navigateTo({
+                url: '../order/order?title=' + 0,
+                success: function (res) {
 
+                },
+                fail: function () {
+
+                },
+                complete: function () {
+
+                }
+
+
+              })
+            }
+          })
+         }
+          else{
+            wx.showToast({
+              title:"下单失败，请联系管理员",
+              icon:none,
             })
           }
-        })
-      },
-      fail: function () {
+        },
+        fail: function () {
 
-      },
-      complete: function () {
-      }
+        },
+        complete: function () {
+        }
 
-    });
+      });
+    }
+
 
   },
   // 购物车支付
   buyrepay: function () {
     var that = this;
     // 下单请求
-    wx.request({
-      url: app.globalData.tiltes + 'order_place_by_shopping',
-      data: {
-        open_id: app.globalData.gmemberid,
-        shopping_id: that.data.user[0].shop_id,
-        goods_id: that.data.user[1].good_id,
-        goods_standard_id: that.data.user[2].guige,
-        order_quantity: that.data.user[3].num,
-        address_id: that.data.address_id,
-        order_amount: that.data.all_money,
-        order_type: that.data.order_type,
-        coupon_id: that.data.coupon_id
+    // wx.request({
+    //   url: app.globalData.tiltes + 'order_place_by_shopping',
+    //   data: {
+    //     open_id: app.globalData.gmemberid,
+    //     shopping_id: that.data.user[0].shop_id,
+    //     goods_id: that.data.user[1].good_id,
+    //     goods_standard_id: that.data.user[2].guige,
+    //     order_quantity: that.data.user[3].num,
+    //     address_id: that.data.address_id,
+    //     order_amount: that.data.all_money,
+    //     order_type: that.data.order_type,
+    //     coupon_id: that.data.coupon_id
 
-      },
-      method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
+    //   },
+    //   method: "post",
+    //   // header: {
+    //   //   "Content-Type": "json" // 默认值
 
-      // },
-      success: function (res) {
-        var order_number = res.data.data.parts_order_number;
-        that.setData({
-          order_number: order_number,
-        })
-        wx.showActionSheet({
-          itemList: ['账户支付', '微信支付',],
-          success: function (res) {
-            // 账户支付
-            if (res.tapIndex == 0) {
+    //   // },
+    //   success: function (res) {
+    //     var order_number = res.data.data.parts_order_number;
+    //     that.setData({
+    //       order_number: order_number,
+    //     })
+    //     wx.showActionSheet({
+    //       itemList: ['账户支付', '微信支付',],
+    //       success: function (res) {
+    //         // 账户支付
+    //         if (res.tapIndex == 0) {
 
-              that.showInputLayer();
-            }
-            else if (res.tapIndex == 1) {
-              wx.request({
-                url: app.globalData.tiltes + 'wx_order_index',
-                data: {
-                  member_id: app.globalData.member_id,
-                  order_number: order_number
-                },
-                dataTypr: 'json',
-                method: "post",
-                // header: {
-                //   "Content-Type": "application/json" // 默认值
-                // },
-                success: function (res) {
-                  var result = res;
+    //           that.showInputLayer();
+    //         }
+    //         else if (res.tapIndex == 1) {
+    //           wx.request({
+    //             url: app.globalData.tiltes + 'wx_order_index',
+    //             data: {
+    //               member_id: app.globalData.member_id,
+    //               order_number: order_number
+    //             },
+    //             dataTypr: 'json',
+    //             method: "post",
+    //             // header: {
+    //             //   "Content-Type": "application/json" // 默认值
+    //             // },
+    //             success: function (res) {
+    //               var result = res;
 
-                  if (result) {
-                    wx.requestPayment({
-                      timeStamp: String(result.data.timeStamp),
-                      nonceStr: result.data.nonceStr,
-                      package: result.data.package,
-                      signType: result.data.signType,
-                      paySign: result.data.paySign,
-                      'success': function (successret) {
-                        wx.navigateTo({
-                          url: '../order/order?title=' + 0,
-                          success: function (res) {
+    //               if (result) {
+    //                 wx.requestPayment({
+    //                   timeStamp: String(result.data.timeStamp),
+    //                   nonceStr: result.data.nonceStr,
+    //                   package: result.data.package,
+    //                   signType: result.data.signType,
+    //                   paySign: result.data.paySign,
+    //                   'success': function (successret) {
+    //                     wx.navigateTo({
+    //                       url: '../order/order?title=' + 0,
+    //                       success: function (res) {
+
+    //                       },
+    //                       fail: function () {
+
+    //                       },
+    //                       complete: function () {
+
+    //                       }
+
+
+    //                     })
+
+    //                   },
+    //                   'fail': function (res) {
+
+    //                   }
+    //                 })
+    //               }
+    //             },
+    //             fail: function () {
+
+    //             },
+    //             complete: function () {
+    //               wx.hideLoading()
+    //             }
+    //           });
+    //         }
+
+
+    //       },
+    //       fail: function (res) {
+    //         console.log(res.errMsg)
+    //       }
+    //     })
+    //   },
+    //   fail: function () {
+
+    //   },
+    //   complete: function () {
+    //   }
+
+    // });
+    if (that.data.order_type == "1") {
+      wx.request({
+        url: app.globalData.tiltes + 'order_place_by_shoppings',
+        data: {
+          member_id: app.globalData.member_id,
+          shopping_id: that.data.user[0].shop_id,
+          goods_id: that.data.user[1].good_id,
+          goods_standard_id: that.data.user[2].guige,
+          order_quantity: that.data.user[3].num,
+          address_id: that.data.address_id,
+          order_amount: that.data.all_money,
+          order_type: that.data.order_type,
+          coupon_id: that.data.coupon_id,
+          unit: that.data.unit_all,
+          year: that.data.num2,
+          house_price: that.data.ever_storage,
+          receipt_id: that.data.taxes_id,
+          receipt_price: that.data.taxes,
+          receipt_status: that.data.taxes_select,
+
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+
+        // },
+        success: function (res) {
+          if (res.data.status == 1) {
+            var order_number = res.data.data.parts_order_number;
+            that.setData({
+              order_number: order_number,
+            })
+            wx.showActionSheet({
+              itemList: ['账户支付', '微信支付',],
+              success: function (res) {
+                // 账户支付
+                if (res.tapIndex == 0) {
+
+                  that.showInputLayer();
+                }
+                else if (res.tapIndex == 1) {
+                  wx.request({
+                    url: app.globalData.tiltes + 'wx_order_index',
+                    data: {
+                      member_id: app.globalData.member_id,
+                      order_number: order_number
+                    },
+                    dataTypr: 'json',
+                    method: "post",
+                    // header: {
+                    //   "Content-Type": "application/json" // 默认值
+                    // },
+                    success: function (res) {
+                      var result = res;
+
+                      if (result) {
+                        wx.requestPayment({
+                          timeStamp: String(result.data.timeStamp),
+                          nonceStr: result.data.nonceStr,
+                          package: result.data.package,
+                          signType: result.data.signType,
+                          paySign: result.data.paySign,
+                          'success': function (successret) {
+                            wx.navigateTo({
+                              url: '../order/order?title=' + 0,
+                              success: function (res) {
+
+                              },
+                              fail: function () {
+
+                              },
+                              complete: function () {
+
+                              }
+
+
+                            })
 
                           },
-                          fail: function () {
-
-                          },
-                          complete: function () {
+                          'fail': function (res) {
 
                           }
-
-
                         })
-
-                      },
-                      'fail': function (res) {
-
                       }
-                    })
-                  }
-                },
-                fail: function () {
+                    },
+                    fail: function () {
 
-                },
-                complete: function () {
-                  wx.hideLoading()
+                    },
+                    complete: function () {
+                      wx.hideLoading()
+                    }
+                  });
                 }
-              });
+
+
+              },
+              fail: function (res) {
+                wx.navigateTo({
+                  url: '../order/order?title=' + 0,
+                  success: function (res) {
+  
+                  },
+                  fail: function () {
+  
+                  },
+                  complete: function () {
+  
+                  }
+  
+  
+                })
+              }
+            })
+          }
+            else{
+              wx.showToast({
+                title:"下单失败，请联系管理员",
+                icon:none,
+              })
             }
+        },
+        fail: function () {
 
-
-          },
-          fail: function (res) {
-            console.log(res.errMsg)
-          }
-        })
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-      }
-
-    });
-
-  },
-  // 弹窗
-  util: function (currentStatu) {
-    /* 动画部分 */
-    // 第1步：创建动画实例 
-    var animation = wx.createAnimation({
-      duration: 200,  //动画时长
-      timingFunction: "linear", //线性
-      delay: 0  //0则不延迟
-    });
-
-    // 第2步：这个动画实例赋给当前的动画实例
-    this.animation = animation;
-
-    // 第3步：执行第一组动画
-    animation.opacity(0).rotateX(-100).step();
-
-    // 第4步：导出动画对象赋给数据对象储存
-    this.setData({
-      animationData: animation.export()
-    })
-
-    // 第5步：设置定时器到指定时候后，执行第二组动画
-    setTimeout(function () {
-      // 执行第二组动画
-      animation.opacity(1).rotateX(0).step();
-      // 给数据对象储存的第一组动画，更替为执行完第二组动画的动画对象
-      this.setData({
-        animationData: animation
-      })
-
-      //关闭
-      if (currentStatu == "close") {
-        this.setData(
-          {
-            showModalStatus: false
-          }
-        );
-      }
-    }.bind(this), 200)
-
-    // 显示
-    if (currentStatu == "open") {
-      this.setData(
-        {
-          showModalStatus: true
+        },
+        complete: function () {
         }
-      );
+
+      });
     }
+    else  if (that.data.order_type == "2") {
+      wx.request({
+        url: app.globalData.tiltes + 'order_place_by_shoppings',
+        data: {
+          member_id: app.globalData.member_id,
+          shopping_id: that.data.user[0].shop_id,
+          goods_id: that.data.user[1].good_id,
+          goods_standard_id: that.data.user[2].guige,
+          order_quantity: that.data.user[3].num,
+          address_id: that.data.shop_id,
+          order_amount: that.data.all_money,
+          order_type: that.data.order_type,
+          coupon_id: that.data.coupon_id,
+          unit: that.data.unit_all,
+          year: that.data.num2,
+          house_price: that.data.ever_storage,
+          receipt_id: that.data.taxes_id,
+          receipt_price: that.data.taxes,
+          receipt_status: that.data.taxes_select,
+
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+
+        // },
+        success: function (res) {
+          if (res.data.status == 1) {
+            var order_number = res.data.data.parts_order_number;
+            that.setData({
+              order_number: order_number,
+            })
+            wx.showActionSheet({
+              itemList: ['账户支付', '微信支付',],
+              success: function (res) {
+                // 账户支付
+                if (res.tapIndex == 0) {
+
+                  that.showInputLayer();
+                }
+                else if (res.tapIndex == 1) {
+                  wx.request({
+                    url: app.globalData.tiltes + 'wx_order_index',
+                    data: {
+                      member_id: app.globalData.member_id,
+                      order_number: order_number
+                    },
+                    dataTypr: 'json',
+                    method: "post",
+                    // header: {
+                    //   "Content-Type": "application/json" // 默认值
+                    // },
+                    success: function (res) {
+                      var result = res;
+
+                      if (result) {
+                        wx.requestPayment({
+                          timeStamp: String(result.data.timeStamp),
+                          nonceStr: result.data.nonceStr,
+                          package: result.data.package,
+                          signType: result.data.signType,
+                          paySign: result.data.paySign,
+                          'success': function (successret) {
+                            wx.navigateTo({
+                              url: '../order/order?title=' + 0,
+                              success: function (res) {
+
+                              },
+                              fail: function () {
+
+                              },
+                              complete: function () {
+
+                              }
+
+
+                            })
+
+                          },
+                          'fail': function (res) {
+
+                          }
+                        })
+                      }
+                    },
+                    fail: function () {
+
+                    },
+                    complete: function () {
+                      wx.navigateTo({
+                        url: '../order/order?title=' + 0,
+                        success: function (res) {
+        
+                        },
+                        fail: function () {
+        
+                        },
+                        complete: function () {
+        
+                        }
+        
+        
+                      })
+                    }
+                  });
+                }
+
+
+              },
+              fail: function (res) {
+                console.log(res.errMsg)
+              }
+            })
+          }
+            else{
+              wx.showToast({
+                title:"下单失败，请联系管理员",
+                icon:none,
+              })
+            }
+        },
+        fail: function () {
+
+        },
+        complete: function () {
+        }
+
+      });
+    }
+    else {
+      wx.request({
+        url: app.globalData.tiltes + 'order_place_by_shoppings',
+        data: {
+          member_id: app.globalData.member_id,
+          shopping_id: that.data.user[0].shop_id,
+          goods_id: that.data.user[1].good_id,
+          goods_standard_id: that.data.user[2].guige,
+          order_quantity: that.data.user[3].num,
+          address_id: that.data.sava_id,
+          order_amount: that.data.all_money,
+          order_type: that.data.order_type,
+          coupon_id: that.data.coupon_id,
+          unit: that.data.unit_all,
+          year: that.data.num2,
+          house_price: that.data.ever_storage,
+          receipt_id: that.data.taxes_id,
+          receipt_price: that.data.taxes,
+          receipt_status: that.data.taxes_select,
+
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+
+        // },
+        success: function (res) {
+          if (res.data.status == 1) {
+            var order_number = res.data.data.parts_order_number;
+            that.setData({
+              order_number: order_number,
+            })
+            wx.showActionSheet({
+              itemList: ['账户支付', '微信支付',],
+              success: function (res) {
+                // 账户支付
+                if (res.tapIndex == 0) {
+
+                  that.showInputLayer();
+                }
+                else if (res.tapIndex == 1) {
+                  wx.request({
+                    url: app.globalData.tiltes + 'wx_order_index',
+                    data: {
+                      member_id: app.globalData.member_id,
+                      order_number: order_number
+                    },
+                    dataTypr: 'json',
+                    method: "post",
+                    // header: {
+                    //   "Content-Type": "application/json" // 默认值
+                    // },
+                    success: function (res) {
+                      var result = res;
+
+                      if (result) {
+                        wx.requestPayment({
+                          timeStamp: String(result.data.timeStamp),
+                          nonceStr: result.data.nonceStr,
+                          package: result.data.package,
+                          signType: result.data.signType,
+                          paySign: result.data.paySign,
+                          'success': function (successret) {
+                            wx.navigateTo({
+                              url: '../order/order?title=' + 0,
+                              success: function (res) {
+
+                              },
+                              fail: function () {
+
+                              },
+                              complete: function () {
+
+                              }
+
+
+                            })
+
+                          },
+                          'fail': function (res) {
+
+                          }
+                        })
+                      }
+                    },
+                    fail: function () {
+
+                    },
+                    complete: function () {
+                      wx.hideLoading()
+                    }
+                  });
+                }
+
+
+              },
+              fail: function (res) {
+                wx.navigateTo({
+                  url: '../order/order?title=' + 0,
+                  success: function (res) {
+  
+                  },
+                  fail: function () {
+  
+                  },
+                  complete: function () {
+  
+                  }
+  
+  
+                })
+              }
+            })
+          }
+            else{
+              wx.showToast({
+                title:"下单失败，请联系管理员",
+                icon:none,
+              })
+            }
+        },
+        fail: function () {
+
+        },
+        complete: function () {
+        }
+
+      });
+    }
+    
+    
+
+
   },
+
   go_coupon: function () {
     var that = this;
     that.setData({
       coupon_mark: true,
-    })
+    })/*  */
 
   },
   checkboxChange: function (e) {
@@ -614,6 +1354,7 @@ Page({
     })
     that.calculate_money();
   },
+
   // 计算钱
   calculate_money: function () {
     var that = this;
@@ -621,13 +1362,13 @@ Page({
     for (var i = 0; i < that.data.goods.length; i++) {
       all_moneys += that.data.goods[i].grade_price * that.data.goods[i].number;
     }
-
-    if (all_moneys - that.data.money > 0) {
+    var all_moneys_alls = all_moneys + that.data.storage + that.data.freight - that.data.money + that.data.taxes;
+    if (all_moneys_alls > 0) {
       that.setData({
-        all_money: all_moneys - that.data.money+that.data.storage+that.data.freight,
+        all_money: all_moneys_alls.toFixed(2),
       });
       that.setData({
-        all_money: that.data.all_money.toFixed(2),
+        all_money: that.data.all_money,
       });
     }
     else {
@@ -641,6 +1382,7 @@ Page({
   money_storages: function () {
     var that = this;
     var storagess = [];
+    var ever_storage = [];
     var money_storages = 0;
     for (var j = 0; j < that.data.goods.length; j++) {
       for (var i = 0; i < that.data.warehouse.units.length; i++) {
@@ -653,31 +1395,32 @@ Page({
       storages: storagess,
     })
     for (var j = 0; j < that.data.goods.length; j++) {
-      for (var i = 0; i < that.data.storages.length; i++) {
-        money_storages += that.data.storages[i] * that.data.goods[j].number;
-      }
+      // for (var i = 0; i < that.data.storages.length; i++) {
+      ever_storage.push(that.data.storages[j] * that.data.goods[j].number * that.data.num1 * 365);
+      money_storages += that.data.storages[j] * that.data.goods[j].number;
+      // }
     }
+    // console.log(money_storages);
     that.setData({
       storage: money_storages * that.data.num1 * 365,
+      ever_storage: ever_storage,
     })
-    that.setData({
-      storage: that.data.storage.toFixed(2),
-    })
+
   },
   // 计算运费
   money_freight: function () {
     var that = this;
-    var money_freight=0;
-    for(var i=0;i<that.data.goods.length;i++){
-      for(var j=0;j<that.data.freight_infor.length;j++){
-         if(that.data.goods[i].goods_info.id==that.data.freight_infor[j].goods_id){
-            money_freight+=that.data.freight_infor[j].collect+(that.data.goods[i].number-1)*that.data.freight_infor[j].markup;
-         }
+    var money_freight = 0;
+    for (var i = 0; i < that.data.goods.length; i++) {
+      for (var j = 0; j < that.data.freight_infor.length; j++) {
+        if (that.data.goods[i].goods_info.id == that.data.freight_infor[j].goods_id) {
+          money_freight += that.data.freight_infor[j].collect + (that.data.goods[i].number - 1) * that.data.freight_infor[j].markup;
+        }
       }
     }
-     that.setData({
-      freight:money_freight,
-     })
+    that.setData({
+      freight: money_freight,
+    })
   },
 
   /* 点击减号 */
@@ -697,8 +1440,16 @@ Page({
       goods: goods,
       minusStatus: minusStatus
     });
-    that.money_freight();
-    that.calculate_money();
+    if (that.data.order_type == "1") {
+      that.money_freight();
+      that.calculate_money();
+    }
+    else if (that.data.order_type == "3") {
+      that.money_storages();
+      that.calculate_money();
+    }
+    that.invi();
+
   },
   /* 点击加号 */
   bindPlus: function () {
@@ -715,8 +1466,18 @@ Page({
       goods: goods,
       minusStatus: minusStatus
     });
-    that.money_freight();
-    that.calculate_money();
+    if (that.data.order_type == "1") {
+      that.money_freight();
+      that.calculate_money();
+    }
+    else if (that.data.order_type == "3") {
+      that.money_storages();
+      that.calculate_money();
+    }
+    else {
+      that.calculate_money();
+    }
+    that.invi();
   },
   /* 点击减号 */
   bindMinus1: function () {
@@ -787,6 +1548,53 @@ Page({
       minusStatus: minusStatus
     });
   },
+  check_invoice: function (e) {
+    var that = this;
+    if (e.detail.value[0] == undefined) {
+      that.setData({
+        taxes_select: 0,
+        taxes: 0,
+      })
+      that.calculate_money();
+    }
+    else {
+      if (that.data.taxes_id == -1) {
+        that.setData({
+          taxes_select: 0,
+        })
+        wx.showToast({
+          title: '请添加户名',
+          icon: 'none'
+        })
+
+      }
+      else {
+        that.setData({
+          taxes_select: 1,
+        })
+        that.invi();
+        that.calculate_money();
+
+      }
+
+
+    }
+  },
+
+  // 计算发票费用
+  invi: function () {
+    var that = this;
+    var goods_money = 0;
+    for (var i = 0; i < that.data.goods.length; i++) {
+      goods_money += that.data.goods[i].grade_price * that.data.goods[i].number;
+    }
+    goods_money = goods_money * that.data.rate / 100;
+    that.setData({
+      taxes: goods_money,
+    })
+
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -819,12 +1627,18 @@ Page({
           goods: res.data.data,
         });
         var all_moneys = 0;
+        var unit = [];
         for (var i = 0; i < that.data.goods.length; i++) {
           all_moneys += that.data.goods[i].grade_price * that.data.goods[i].number;
         }
+        for (var j = 0; j < that.data.goods.length; j++) {
+
+          unit.push(that.data.goods[j].unit);
+        }
         that.setData({
           all_money: all_moneys,
-          num: that.data.goods[0].number
+          num: that.data.goods[0].number,
+          unit_all: unit,
         });
 
         wx.request({
@@ -865,10 +1679,6 @@ Page({
       }
 
     });
-
-
-
-
     // 判读从哪个页面进来
     var pages = getCurrentPages();
     var prevpage = pages[pages.length - 2];
@@ -902,8 +1712,9 @@ Page({
     var id = wx.getStorageSync('id');
     var sava_id = wx.getStorageSync('sava_id');
     var shop_id = wx.getStorageSync('shop_id');
-   
-    if (id =='') {
+    var receipt_id = wx.getStorageSync('receipt_id');
+    //  console.log(receipt_id);
+    if (id == '') {
       wx.request({
         url: app.globalData.tiltes + 'member_default_address_return',
         data: {
@@ -931,7 +1742,7 @@ Page({
               name: name,
               address: address,
               address_0: a[0],
-              address_id:address_id,
+              address_id: address_id,
             });
 
           }
@@ -946,26 +1757,26 @@ Page({
             data: {
               'goods_id': that.data.user[1].good_id,
               'goods_standard_id': that.data.user[2].guige,
-              'are':that.data.address_0
+              'are': that.data.address_0
             },
             method: "post",
             // header: {
             //   "Content-Type": "json" // 默认值
-      
+
             // },
             success: function (res) {
-               that.setData({
-                freight_infor:res.data.data,
-               })
-               that.money_freight();
-               that.calculate_money();
+              that.setData({
+                freight_infor: res.data.data,
+              })
+              that.money_freight();
+              that.calculate_money();
             },
             fail: function () {
-      
+
             },
             complete: function () {
             }
-      
+
           });
 
 
@@ -1002,33 +1813,33 @@ Page({
             address: address_names + res.data.data.harvester_real_address,
             address_id: res.data.data.id,
             address_0: a[0],
-            address_id:address_id,
+            address_id: address_id,
           });
           wx.request({
             url: app.globalData.tiltes + 'transportation',
             data: {
               'goods_id': that.data.user[1].good_id,
               'goods_standard_id': that.data.user[2].guige,
-              'are':that.data.address_0
+              'are': that.data.address_0
             },
             method: "post",
             // header: {
             //   "Content-Type": "json" // 默认值
-      
+
             // },
             success: function (res) {
-               that.setData({
-                freight_infor:res.data.data,
-               })
-               that.money_freight();
-               that.calculate_money();
+              that.setData({
+                freight_infor: res.data.data,
+              })
+              that.money_freight();
+              that.calculate_money();
             },
             fail: function () {
-      
+
             },
             complete: function () {
             }
-      
+
           });
         },
         fail: function () {
@@ -1064,7 +1875,7 @@ Page({
           res.data.data["units"] = warehousess;
           that.setData({
             warehouse: res.data.data,
-            sava_id:sava_id,
+            sava_id: sava_id,
           });
 
 
@@ -1102,7 +1913,7 @@ Page({
           res.data.data["units"] = warehousess;
           that.setData({
             warehouse: res.data.data,
-            sava_id:sava_id,
+            sava_id: sava_id,
           });
 
 
@@ -1138,7 +1949,7 @@ Page({
           shop_address["shop_address"] = address
           that.setData({
             shop_address: shop_address,
-            shop_id:shop_id,
+            shop_id: shop_id,
           });
 
 
@@ -1173,7 +1984,7 @@ Page({
           shop_address["shop_address"] = address
           that.setData({
             shop_address: shop_address,
-            shop_id:shop_id,
+            shop_id: shop_id,
           });
 
 
@@ -1186,10 +1997,158 @@ Page({
 
       });
     }
-   
-    
-    
-   
+    if (receipt_id == '') {
+      wx.request({
+        url: app.globalData.tiltes + 'approve_corporation',
+        data: {
+          member_id: app.globalData.member_id,
+          // member_id: 1049,
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+
+        // },
+        success: function (res) {
+          if (res.data.status == "1") {
+            that.setData({
+              taxes_id: res.data.data[0].id
+            })
+            wx.request({
+              url: app.globalData.tiltes + 'proportion',
+              data: {
+                //  member_id:app.globalData.member_id,
+                // member_id: 1049,
+                receipt_id: res.data.data[0].id
+              },
+              method: "post",
+              // header: {
+              //   "Content-Type": "json" // 默认值
+
+              // },
+              success: function (res) {
+                that.setData({
+                  rate: res.data.data
+                })
+              },
+              fail: function () {
+
+              },
+              complete: function () {
+
+              }
+            })
+          }
+          else {
+            wx.request({
+              url: app.globalData.tiltes + 'approve_individual',
+              data: {
+                member_id: app.globalData.member_id,
+                // member_id: 1049,
+              },
+              method: "post",
+              // header: {
+              //   "Content-Type": "json" // 默认值
+
+              // },
+              success: function (res) {
+                console.log(res);
+                if (res.data.status == "1") {
+                  that.setData({
+                    taxes_id: res.data.data[0].id
+                  })
+                  wx.request({
+                    url: app.globalData.tiltes + 'proportion',
+                    data: {
+                      //  member_id:app.globalData.member_id,
+                      // member_id: 1049,
+                      receipt_id: res.data.data[0].id
+                    },
+                    method: "post",
+                    // header: {
+                    //   "Content-Type": "json" // 默认值
+
+                    // },
+                    success: function (res) {
+                      that.setData({
+                        rate: res.data.data
+                      })
+                    },
+                    fail: function () {
+
+                    },
+                    complete: function () {
+
+                    }
+                  })
+                }
+
+
+
+              },
+              fail: function () {
+
+              },
+              complete: function () {
+
+              }
+            })
+
+          }
+
+
+        },
+        fail: function () {
+
+        },
+        complete: function () {
+
+        }
+      })
+
+
+
+
+
+    }
+    else {
+      that.setData({
+        taxes_id: receipt_id
+      })
+      wx.request({
+        url: app.globalData.tiltes + 'proportion',
+        data: {
+          //  member_id:app.globalData.member_id,
+          // member_id: 1049,
+          receipt_id: receipt_id
+        },
+        method: "post",
+        // header: {
+        //   "Content-Type": "json" // 默认值
+
+        // },
+        success: function (res) {
+          // console.log(res.data.data);
+          that.setData({
+            rate: res.data.data
+          })
+          if (that.data.taxes_select == 1) {
+            that.invi();
+          }
+
+        },
+        fail: function () {
+
+        },
+        complete: function () {
+
+        }
+      })
+
+    }
+
+
+
 
   },
 

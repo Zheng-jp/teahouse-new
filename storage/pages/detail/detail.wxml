@@ -1,80 +1,135 @@
-<import src="../../../wxParse/wxParse.wxml"/>
-
-<view class="active_information">
+<import src="../../../wxParse/wxParse.wxml" />
+<view class="all" >
+  <view class="active_information"  catchtap='outbtn' >
     <view class='title'>
-    <text class='title_title'>活动信息</text>
-    <text class='Label' wx:for="{{Label}}" style='color:{{item.color}}; border-color:{{item.color}}'>{{item.name}}
-    </text>
-    
+      <text class='title_title'>活动信息</text>
+      <text class='Label' wx:for="{{Label}}" style='color:{{item.color}}; border-color:{{item.color}}' >{{item.name}}
+      </text>
+
     </view>
-    
+
     <view class='list_contents'>
-        <view class='list_a list'>
-          <view class='ico_img'><image  src='img/u4997.png' mode="widthFix"></image></view>
-          <view class='list_content lista_content'>地址：{{information.address}}</view>
+      <view class='list_a list'>
+        <view class='ico_img'>
+          <image src='img/u4997.png' mode="widthFix"></image>
+        </view>
+        <view class='list_content lista_content'>地址：{{information.address}}</view>
+
+      </view>
+      <view class='list_a list'>
+        <view class='ico_img'>
+          <image src='img/u5001.png' mode="widthFix"></image>
+        </view>
+        <view class='list_content listb_content' style='color:#5E5E5E'>{{show_start_time}} 至 {{show_end_time}}</view>
+      </view>
+      <view class='list_a list'>
+        <view class='ico_img'>
+          <image src='img/u5005.png' mode="widthFix"></image>
+        </view>
+        <view class='list_content listc_content'><text style='color:#5E5E5E'>活动上限</text>{{information.participats}}<text
+            style='color:#5E5E5E'>人</text><text class="padding">已报名{{information.peoples}}人</text></view>
+      </view>
+      <view class='list_a list'>
+        <view class='ico_img'>
+          <image src='img/u5017.png' mode="widthFix"></image>
+        </view>
+        <view class='list_content listd_content'>主题：{{information.activity_name}}</view>
+      </view>
+    </view>
+  </view>
+  
+
+  <view class='wrap {{aniStyle?"slideup":"slidedown"}}'  catchtap='inbtn' wx:if="{{mengShow}}" > 
+    <view >
+      <view class='date-show'>
+        <view class='lt-arrow' bindtap='lastMonth'>
+
+          <image src='img/u5168.png' mode='widthFix'></image>
 
         </view>
-        <view class='list_a list'>
-          <view class='ico_img'><image  src='img/u5001.png'  mode="widthFix"></image></view>
-          <view class='list_content listb_content' style='color:#5E5E5E'>{{information.start_time}}</view>
+        {{year}}年{{month}}月
+        <view class='rt-arrow' bindtap='nextMonth'>
+
+          <image src='img/u5167.png' mode='widthFix'></image>
         </view>
-        <view class='list_a list'>
-          <view class='ico_img'><image  src='img/u5005.png' mode="widthFix"></image></view>
-          <view class='list_content listc_content' ><text style='color:#5E5E5E'>活动上限</text>{{information.participats}}<text style='color:#5E5E5E'>人</text><text class="padding">已报名0人</text></view>
-        </view>
-        <view class='list_a list'>
-          <view class='ico_img'><image  src='img/u5017.png' mode="widthFix"></image></view>
-          <view class='list_content listd_content'>主题：{{information.activity_name}}</view>
-        </view>
+      </view>
     </view>
-</view>
-<view class='text'>
-<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-</view>
-<view class='comment'>
-   <view class='comment_list'>
+    <view class='header'>
+      <view wx:for='{{date}}' class=''>{{item}}<view></view>
+      </view>
+    </view>
+    <view class='date-box'>
+      item.end_time > item.isToday
+      <view wx:for='{{dateArr}}' class='{{clickDay == item.isToday ? "nowDay" : ""}} {{item.isToday < item.start_time ? "aften" : ""}}  {{item.isToday > item.end_time ? "aften" : ""}}' data-date='{{item.isToday}}' id='{{index}}' data-indexid = '{{item.indexId}}' bindtap='changeColor' >
+
+        <view class='date-head'>
+          <view>{{item.dateNum}}</view>
+        </view>
+        <view class='date-weight' wx:if='{{item.state == true}}'>剩余{{item.weight}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='text' catchtap='outbtn'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
+  <view class='comment' catchtap='outbtn'>
+    <view class='comment_list'>
       <view class='comment_title'>
-       <text class='xian'></text>
-       <text class='ping'>最新评论</text>
-       <text class='xian'></text>
+        <text class='xian'></text>
+        <text class='ping'>最新评论</text>
+        <text class='xian'></text>
       </view>
       <view class='reward'>
-          <text  decode="true">1、评论点赞超过500，奖励积分5个\n</text>
-          <text  decode="true">1、评论点赞超过500，奖励积分5个\n</text>
+        <text decode="true">1、评论点赞超过500，奖励积分5个\n</text>
+        <text decode="true">1、评论点赞超过500，奖励积分5个\n</text>
       </view>
-          
+
       <view class='comment_repay' wx:for="{{repay_informatiom}}">
-          <view class='comment_ico'><image src='{{item.user_images}}'></image></view>
-          <view class='comment_name'>{{item.user_account}}</view>
-          <view class='zhan' wx:if="{{item.status==0}}" ><view class='comment_img' bindtap='good' data-id="{{item.id}}"><image src='img/u4967.png'></image></view></view>
-           <view class='zhan' wx:else><view class='comment_img' bindtap='good' data-id="{{item.id}}"><image src='img/u4968.png'></image></view></view>
-          <view class='repay_content'>{{item.comment_details}}</view>
-          <view class='repay_list'><text>{{item.create_time}}</text></view>
+        <view class='comment_ico'>
+          <image src='{{item.user_images}}'></image>
+        </view>
+        <view class='comment_name'>{{item.user_account}}</view>
+        <view class='zhan' wx:if="{{item.status==0}}">
+          <view class='comment_img' bindtap='good' data-id="{{item.id}}">
+            <image src='img/u4967.png'></image>
+          </view>
+        </view>
+        <view class='zhan' wx:else>
+          <view class='comment_img' bindtap='good' data-id="{{item.id}}">
+            <image src='img/u4968.png'></image>
+          </view>
+        </view>
+        <view class='repay_content'>{{item.comment_details}}</view>
+        <view class='repay_list'><text>{{item.create_time}}</text></view>
       </view>
       <view class="release" hidden="{{!releaseFocus}}">
-            <textarea class="text"
-            placeholder-class="input_null"
-            fixed="true"
-            maxlength="-1"
-            show-confirm-bar="false"
-            cursor-spacing="15"
-            auto-height="true"
-            focus="{{releaseFocus}}"
-            placeholder="" bindinput="bindinputs" value="{{repay_content}}"></textarea>
-            <view class="submit" bindtap='comments'>发送</view>
-            <view class="submit" bindtap='close'>取消</view>
-            </view>
-   </view>
-</view>
+        <textarea class="text" placeholder-class="input_null" fixed="true" maxlength="-1" show-confirm-bar="false"
+          cursor-spacing="15" auto-height="true" focus="{{releaseFocus}}" placeholder="" bindinput="bindinputs"
+          value="{{repay_content}}"></textarea>
+        <view class="submit" bindtap='comments'>发送</view>
+        <view class="submit" bindtap='close'>取消</view>
+      </view>
+    </view>
+  </view>
 
 
-<view class='buttom_nav'>
-<view class='star' bindtap="collection"  wx:if="{{!collectionimg}}"><image src='img/u5053.png'></image></view>
-<view class='star' bindtap="delect_collection"  wx:else><image src='img/u1001.png'></image></view>
-<input class='input' type='text' placeholder='写评论' bindtap="bindReply"  disabled='display'  ></input>
-<view class='share'> <button open-type="share" >
-			</button><image src='img/u5055.png'></image></view>
-<view class='monly'>¥{{information.cost_moneny}}</view>
-<view class='buttons' bindtap='pay' wx:if="{{apply==0}}">立即报名</view>
-<view class='buttons'  wx:else>已报名</view>
+
+
+  <view class='buttom_nav'>
+    <view class='star' bindtap="collection" wx:if="{{!collectionimg}}">
+      <image src='img/u5053.png'></image>
+    </view>
+    <view class='star' bindtap="delect_collection" wx:else>
+      <image src='img/u1001.png'></image>
+    </view>
+    <input class='input' type='text' placeholder='写评论' bindtap="bindReply" disabled='display'></input>
+    <view class='share'> <button open-type="share">
+      </button>
+      <image src='img/u5055.png'></image>
+    </view>
+    <view class='monly'>¥{{information.cost_moneny}}</view>
+    <view class='buttons' bindtap='showMeng' wx:if="{{apply==0}}">立即报名</view>
+    <view class='buttons' wx:else>已报名</view>
+  </view>
 </view>
