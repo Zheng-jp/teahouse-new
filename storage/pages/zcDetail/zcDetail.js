@@ -16,10 +16,10 @@ Page({
     tabHdArr: ['项目详情', '团队介绍', '监测报告', '评价'],
     fixiPhone: false,
     switchDialogKey: false,
-    switchWidth: false,
+    switchWidth: false, //
     proArr: [],
-    specActive: 0,
-    buyNum: 1,
+    specActive: 0, //规格索引
+    buyNum: 1,  //购买数量
   },
 
   // 去首页
@@ -52,20 +52,47 @@ Page({
   },
   // 加
   plus: function(){
-    var num = this.data.buyNum;
-    if(+num < +this.data.proArr[0].standard[this.data.specActive].stock){
-      num++;
-      this.setData({
-        buyNum: num
-      })
+    var num = +this.data.buyNum;
+    var standard = this.data.proArr[0].standard[this.data.specActive];
+    // 限购
+    if(standard.limit !== -1){
+      if(num < standard.limit){
+        if(num < +standard.stock){
+          num++;
+          this.setData({
+            buyNum: num
+          })
+        }else{
+          wx.showToast({
+            title: '您所填写的数量超过库存！',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      }else{
+        wx.showToast({
+          title: '不能超过限购数量！',
+          icon: 'none',
+          duration: 1500
+        })
+      }
     }else{
-      wx.showToast({
-        title: '您所填写的数量超过库存！',
-        icon: 'none',
-        duration: 1500
-      })
+      if(num < +standard.stock){
+        num++;
+        this.setData({
+          buyNum: num
+        })
+      }else{
+        wx.showToast({
+          title: '您所填写的数量超过库存！',
+          icon: 'none',
+          duration: 1500
+        })
+      }
     }
   },
+  
+
   // 输入数量
   bindManual: function(e){
     var num = e.detail.value;
@@ -89,6 +116,7 @@ Page({
       })
     }
   },
+
   touchMove () {},
   // 选择规格
   clickSpec: function(e){
