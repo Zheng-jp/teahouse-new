@@ -29,7 +29,8 @@ Page({
                   data: {
                     code: code,
                     encryptedData: encryptedData,
-                    iv: iv
+                    iv: iv,
+                    uniacid:app.globalData.uniacid,
                   },
                   method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                   header: {
@@ -125,7 +126,8 @@ Page({
                           data: {
                             code: code,
                             encryptedData: encryptedData,
-                            iv: iv
+                            iv: iv,
+                            uniacid:app.globalData.uniacid,
                           },
                           method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                           header: {
