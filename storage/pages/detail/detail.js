@@ -430,15 +430,16 @@ Page({
       that.setData({
         clickDay: clickDate
     })
-      console.log(clickDate)
-    console.log(Number(Date.parse(clickDate)));
+    clickDate = String(clickDate);
+    clickDate = clickDate.slice(0, 4) + '-' + clickDate.slice(4, 6) + '-' + clickDate.slice(6, 8);
       //选中调起支付
       wx.request({
         url: app.globalData.tiltes + 'activity_order',
         data: {
           open_id: app.globalData.gmemberid,
           activity_id: that.data.information.id,
-          start_time: clickDate
+          start_time: clickDate,
+          index: data.dataset.indexid
         },
         method: "post",
         // header: {
@@ -446,7 +447,7 @@ Page({
 
         // },
         success: function (res) {
-          console.log(res)
+          // console.log(res)
           var order_number = res.data.data;
           wx.request({
             // url: app.globalData.tiltes + 'wxpay',
