@@ -29,7 +29,8 @@ Page({
                   data: {
                     code: code,
                     encryptedData: encryptedData,
-                    iv: iv
+                    iv: iv,
+                    uniacid:app.globalData.uniacid,
                   },
                   method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                   header: {
@@ -42,20 +43,20 @@ Page({
                     app.globalData.member_id = res.data.data.member_id;
                     wx.hideToast();
                     if (res) {
-                      // wx.navigateTo({
-                      //   url: '../index/index'
-                      // })
-                  
                       wx.navigateTo({
-                          url: '/diy/index/index',
-                          success: function (res) {
-                          },
-                          fail: function () {
-                          },
-                          complete: function () {
-                          }
+                        url: '../index/index'
+                      })
+                  
+                      // wx.navigateTo({
+                      //     url: '/diy/index/index',
+                      //     success: function (res) {
+                      //     },
+                      //     fail: function () {
+                      //     },
+                      //     complete: function () {
+                      //     }
                     
-                        })
+                      //   })
                      
                       
                     }
@@ -125,7 +126,8 @@ Page({
                           data: {
                             code: code,
                             encryptedData: encryptedData,
-                            iv: iv
+                            iv: iv,
+                            uniacid:app.globalData.uniacid,
                           },
                           method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                           header: {
@@ -139,10 +141,10 @@ Page({
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             wx.hideToast();
                             if (res) {
-                              // wx.navigateTo({
-                              //   url: '../index/index',
                               wx.navigateTo({
-                                url: '/diy/index/index',
+                                url: '../index/index',
+                              // wx.navigateTo({
+                              //   url: '/diy/index/index',
                                 success: function (res) {
                                 },
                                 fail: function () {
