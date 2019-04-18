@@ -1,0 +1,21 @@
+<!--live/index/index.wxml-->
+<view class=''>
+  <view class='nav'>
+    <view class='teaStorehouse'>茶仓</view>
+    <view class='teamountain'>茶山</view>
+    <view class='teafactory'>茶厂</view>
+  </view>
+
+  <view>
+    <swiper autoplay="ture">
+      <!-- <block wx:for="{{imgUrls}}"> -->
+        <swiper-item>
+          <image src="https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640" class="slide-image" width="355" height="150" />
+          <image src="https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640" class="slide-image" width="355" height="150" />
+          <image src="https://images.unsplash.com/photo-1551446591-142875a901a1?w=640" class="slide-image" width="355" height="150" />
+        </swiper-item>
+      <!-- </block> -->
+    </swiper>
+  </view>
+
+</view>
