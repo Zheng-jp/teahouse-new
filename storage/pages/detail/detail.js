@@ -616,9 +616,9 @@ Page({
             Label: []
           })
         }
-
-        var show_start_time =  app.formatDate(res.data.data.start_time * 1000);
-        var show_end_time = app.formatDate(res.data.data.end_time * 1000);
+        
+        var show_start_time =  app.formatDate(res.data.data.start_time);
+        var show_end_time = app.formatDate(res.data.data.end_time);
         that.setData({
           show_start_time: show_start_time,
           show_end_time: show_end_time
