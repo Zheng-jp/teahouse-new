@@ -1050,7 +1050,9 @@
                     <view class="goodsTitle" style="color:{{style.titlecolor}}" wx:if="{{params.showtitle==1}}">{{item.title}}</view>
                     <view class="goodsDesc">{{item.desc!=null?item.desc:''}}</view>
                     <view style="font-size:24rpx;color:{{style.pricecolor}};">
-            ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
+                         <image class="price_img" src="https://teahouse.siring.com.cn/uploads/20190405/292eb0460935544f8823fa164aa11f6b.png" mode="widthFix" >
+                             </image>
+                       ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
                         <text class="goodsSaleNum">销量：{{item.sale_num}}</text>
                     </view>
                 </view>
@@ -1108,6 +1110,8 @@
                         <view class="goodsTitle" style="color:{{style.titlecolor}}" wx:if="{{params.showtitle==1}}">{{item.title}}</view>
                         <view class="goodsDesc">{{item.desc!=null?item.desc:''}}</view>
                         <view style="font-size:24rpx;color:{{style.pricecolor}};">
+                          <image class="price_img" src="https://teahouse.siring.com.cn/uploads/20190405/292eb0460935544f8823fa164aa11f6b.png" mode="widthFix" >
+                             </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
                             <text class="goodsSaleNum">销量：{{item.sale_num}}</text>
                         </view>
@@ -1165,6 +1169,8 @@
                         <view class="goodsTitle" style="color:{{style.titlecolor}}" wx:if="{{params.showtitle==1}}">{{item.title}}</view>
                         <view class="goodsDesc">{{item.desc}}</view>
                         <view style="font-size:24rpx;color:{{style.pricecolor}};">
+                          <image class="price_img" src="" mode="widthFix" >
+                             </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
                             <text class="goodsSaleNum">销量：{{item.sale_num}}</text>
                         </view>
@@ -1279,6 +1285,8 @@
                     <view class="goodsBottom">
                         <view class="goodsTitle" style="color:{{style.titlecolor}}" wx:if="{{params.showtitle==1}}">{{item.title}}</view>
                         <view style="font-size:24rpx;color:{{style.pricecolor}};">
+                          <image class="price_img" src="https://teahouse.siring.com.cn/uploads/20190405/292eb0460935544f8823fa164aa11f6b.png" mode="widthFix" >
+                             </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
                             <text class="goodsSaleNum">售{{item.sale_num}}</text>
                         </view>

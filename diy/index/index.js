@@ -75,7 +75,8 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         footmenuh: 0,
         foottext: 0,
         page_is: 1,
-        homepageid: 0
+        homepageid: 0,
+       
     },
     onPullDownRefresh: function() {
         var t = this;
@@ -87,7 +88,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         var e = t.data.pageid;
         null != e && "undefined" != e ? (t.data.homepageid == e && t.setData({
             foot_is: t.data.foot_is
-        }), t.getPage(e), t.setData({
+        }), t.getPage(e),t.setData({
             homepage: 2,
             page_is: 2
         }), t.getfoot(t.data.foot_is)) : this.homepage();
@@ -119,7 +120,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
             foot_is: e.data.foot_is
         }) : e.setData({
             foot_is: 1
-        }), e.getPage(n), e.setData({
+        }), e.getPage(n),e.setData({
             homepage: 2,
             page_is: 2,
             pageid: n,
@@ -166,6 +167,10 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
                 console.log(t);
             }
         });
+      
+    },
+    onShow:function(){
+        
     },
     getfoot: function(a) {
         var e = this;
@@ -692,8 +697,10 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
                 uniacid: f.data.uniacid,
                 pageid: t,
                 open_id: app.globalData.gmemberid,
+                member_grade_name: app.globalData.member_grade_img
             },
             success: function(t) {
+                console.log(t);
                 var a = t.data.data;
                 if (3 == a) return wx.showModal({
                     title: "提示",
@@ -789,9 +796,9 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
                     cons: wxParse.wxParse("content3", "html", i[r].richtext, f, 0)
                 }), i[r].id = "richtext3"), 4 == d && (f.setData({
                     cons: wxParse.wxParse("content4", "html", i[r].richtext, f, 0)
-                }), i[r].id = "richtext4"), d++), f.setData({
-                    list: i
+                }), i[r].id = "richtext4"), d++), f.setData({list: i
                 });
+              
                 wx.hideLoading();
             },
             fail: function(t) {
@@ -800,6 +807,24 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
                     content: "加载失败"
                 });
             }
+        });
+    },
+    list:function(){
+        console.log(111);
+        var f=this;
+        var goods_list=f.data.list;
+        for(var i=0;i<goods_list.length;i++){
+            if(goods_list[i].id="goods" && goods_list[i].icon=="iconfont2 icon-chanpin"){
+                console.log(goods_list[i]);
+                //  goods_data=that.data.list[i].data;
+                for(var j=0;j<goods_list[i].data.length;j++){
+                    goods_list[i].data[j]["member_grade_img"]=app.globalData.member_grade_img;
+                }
+
+            }
+        };
+        f.setData({
+            list: goods_list
         });
     },
     daojishi: function() {
