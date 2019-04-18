@@ -697,7 +697,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
                 uniacid: f.data.uniacid,
                 pageid: t,
                 open_id: app.globalData.gmemberid,
-                member_grade_name: app.globalData.member_grade_img
+                member_grade_name: app.globalData.member_grade_name
             },
             success: function(t) {
                 console.log(t);
