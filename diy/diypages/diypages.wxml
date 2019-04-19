@@ -505,7 +505,7 @@
                 <view class="hbj">
                     <view class="" style="font-size:28rpx;color#434343;line-height:46rpx;">{{item.title}}</view>
                 </view>
-                <view class="" style="width:{{750-168-style.pdw*4-30}}rpx;line-height:46rpx;height:46rpx;margin-top:10rpx;color:#838383;font-size:24rpx;">{{item.descs}}</view>
+                <view class="" style="width:{{750-168-style.pdw*4-30}}rpx;line-height:46rpx;height:46rpx;margin-top:10rpx;color:#838383;font-size:24rpx;">{{item.goods_sellings}}</view>
                 <view class="hbj" style="margin-top:10rpx;display:flex">
                     <view style="font-size:36rpx;color:#FF4A47">
                         <text style="font-size:24rpx;">￥</text>{{item.price}}</view>
@@ -520,7 +520,7 @@
             <view bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="display:inline-block;box-sizing:border-box;width:50%;padding:{{style.pdh*2}}rpx {{style.pdw}}rpx;background:#fff" wx:if="{{style.showtype==0}}" wx:for="{{data}}">
                 <image mode="{{style.pich==1?'widthFix':'aspectFill'}}" src="{{item.thumb}}" style="width:{{(750-style.pdw*6)/2}}rpx;height:{{style.pich==2?(750-style.pdw*6)/2:''}}{{style.pich==3?(750-style.pdw*6)/4:''}}{{style.pich==4?(750-style.pdw*6)*3/8:''}}rpx;display:block"></image>
                 <view class="" style="margin-top:20rpx;width:100%;line-height:50rpx;color:#434343;font-size:28rpx;">{{item.title}}</view>
-                <view class="" style="font-size:24rpx;width:100%;color:#838383;line-height:46rpx;height:46rpx">{{item.descs}}</view>
+                <view class="" style="font-size:24rpx;width:100%;color:#838383;line-height:46rpx;height:46rpx">{{item.goods_sellings}}</view>
                 <view class="hbj" style="margin-top:10rpx">
                     <view style="font-size:36rpx;color:#FF4A47">
                         <text style="font-size:24rpx;">￥</text>{{item.price}}</view>
@@ -536,7 +536,7 @@
                 <view bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="display:inline-block;box-sizing:border-box;width:50%;padding:{{style.pdh*2}}rpx {{style.pdw}}rpx;background:#fff" wx:for="{{data}}">
                     <image mode="{{style.pich==1?'widthFix':'aspectFill'}}" src="{{item.thumb}}" style="width:{{(750-style.pdw*6)/2}}rpx;height:{{style.pich==2?(750-style.pdw*6)/2:''}}{{style.pich==3?(750-style.pdw*6)/4:''}}{{style.pich==4?(750-style.pdw*6)*3/8:''}}rpx;display:block"></image>
                     <view class="" style="margin-top:20rpx;width:100%;line-height:50rpx;color:#434343;font-size:28rpx;">{{item.title}}</view>
-                    <view class="" style="font-size:24rpx;width:100%;color:#838383;line-height:46rpx;height:46rpx">{{item.descs}}</view>
+                    <view class="" style="font-size:24rpx;width:100%;color:#838383;line-height:46rpx;height:46rpx">{{item.goods_sellings}}</view>
                     <view class="hbj" style="margin-top:10rpx">
                         <view style="font-size:36rpx;color:#FF4A47">
                             <text style="font-size:24rpx;">￥</text>{{item.price}}</view>
@@ -557,7 +557,7 @@
                     <text style="font-size:30rpx;">￥</text>{{item.price}}</view>
             </view>
             <view class="" style="margin-top:10rpx;font-size:28rpx;line-height:48rpx;width:100%;color:#434343;">{{item.title}}</view>
-            <view class="" style="line-height:46rpx;height:46rpx;font-size:24rpx;color:#838383;width:100%;">{{item.descs}}</view>
+            <view class="" style="line-height:46rpx;height:46rpx;font-size:24rpx;color:#838383;width:100%;">{{item.goods_sellings}}</view>
             <view style="overflow:hidden;width:100%;height:60rpx">
                 <image src="{{vo.avatar}}" style="width:60rpx;height:60rpx;border-radius:60rpx;border:2rpx solid #fff;" wx:if="{{item.userthumb}}" wx:for="{{item.userthumb}}" wx:for-item="vo"></image>
             </view>
@@ -666,7 +666,7 @@
                             <text wx:if="{{item.sale_num!=null}}">{{item.sale_num}}</text>
                         </text>件</view>
                 </view>
-                <view style="font-size:24rpx;color:#838383;margin-top:10rpx;width:{{750-pdw*4-30-168}}rpx;height:44rpx;overflow:hidden">{{item.desc!=null?item.desc:''}}</view>
+                <view style="font-size:24rpx;color:#838383;margin-top:10rpx;width:{{750-pdw*4-30-168}}rpx;height:44rpx;overflow:hidden">{{item.goods_selling!=null?item.goods_selling:''}}</view>
                 <view class="hbj">
                     <view style="overflow:hidden;width:260rpx;height:44rpx;text-align:center;line-height:44rpx;color:#fff;font-size:24rpx;background:#FF4A47;{{item.end_time==0?'display:none':''}}" wx:if="{{item.endtime}}">
                         <image mode="widthFix" src="{{siteroot}}/diypage/resource/images/diypage/default/flash.png" style="width:16rpx;margin-right:10rpx;vertical-align:-4rpx"></image>距结束{{item.endtime}}
@@ -688,7 +688,7 @@
                     <image mode="widthFix" src="{{siteroot}}/diypage/resource/images/diypage/default/flash.png" style="width:16rpx;vertical-align:-4rpx;margin-right:10rpx;"></image>距离结束：{{item.endtime}}
           </view>
                 <view style="margin-top:20rpx;width:100%;font-size:28rpx;line-height:52rpx;color:#434343">{{item.title}}</view>
-                <view style="width:100%;font-size:24rpx;color:#838383;height:44rpx;overflow:hidden">{{item.desc!=null?item.desc:''}}</view>
+                <view style="width:100%;font-size:24rpx;color:#838383;height:44rpx;overflow:hidden">{{item.goods_selling!=null?item.goods_selling:''}}</view>
                 <view class="hbj" style="margin-top:10rpx;">
                     <view style="font-size:36rpx;color:#FF4A47;flex:1">
                         <text style="font-size:24rpx;">￥</text>{{item.price}}
@@ -710,7 +710,7 @@
                         <image mode="widthFix" src="{{siteroot}}/diypage/resource/images/diypage/default/flash.png" style="width:16rpx;vertical-align:-4rpx;margin-right:10rpx;"></image>距离结束：{{item.endtime}}
           </view>
                     <view style="margin-top:20rpx;width:100%;font-size:28rpx;line-height:52rpx;color:#434343">{{item.title}}</view>
-                    <view style="width:100%;font-size:24rpx;color:#838383;height:46rpx;line-height:46rpx;">{{item.desc!=null?item.desc:''}}</view>
+                    <view style="width:100%;font-size:24rpx;color:#838383;height:46rpx;line-height:46rpx;">{{item.goods_selling!=null?item.goods_selling:''}}</view>
                     <view class="hbj" style="margin-top:10rpx;">
                         <view style="font-size:36rpx;color:#FF4A47;flex:1">
                             <text style="font-size:24rpx;">￥</text>{{item.price}}
@@ -735,7 +735,7 @@
           </view>
             </view>
             <view style="margin-top:10rpx;font-size:28rpx;line-height:48rpx;width:100%;color:#434343;">{{item.title}}</view>
-            <view style="height:44rpx;font-size:24rpx;color:#838383;width:100%;overflow:hidden">{{item.desc!=null?item.desc:''}}</view>
+            <view style="height:44rpx;font-size:24rpx;color:#838383;width:100%;overflow:hidden">{{item.goods_selling!=null?item.goods_selling:''}}</view>
             <view class="hbj" style="margin-top:20rpx;">
                 <progress active activeColor="#FF4A47" backgroundColor="#FFA4A3" percent="{{item.sale_num/item.pro_kc*100}}" style="width:530rpx;height:20rpx;border-radius:100rpx;overflow:hidden"></progress>
                 <view style="flex:1"></view>
@@ -801,7 +801,7 @@
             <view style="margin-left:30rpx;width:{{750-style.paddingleft*4-30-168}}rpx">
                 <view class="" style="font-size:28rpx;color:{{style.color}};height:40rpx;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;">{{item.title}}</view>
                 <view class="" style="color:#939393;font-size:24rpx;line-height:44rpx;height:88rpx;overflow:hidden;text-overflow: ellipsis">
-                    <text wx:if="{{item.desc!=NULL}}">{{item.desc}}</text>
+                    <text wx:if="{{item.goods_selling!=NULL}}">{{item.goods_selling}}</text>
                 </view>
                 <view class="hbj" style="margin-top:10rpx;">
                     <block wx:if="{{params.show2==1}}">
@@ -829,7 +829,7 @@
                 <image mode="{{style.pich==1?'widthFix':'aspectFill'}}" src="{{item.thumb}}" style="width:{{(750-8*style.paddingleft)/2}}rpx;height:{{style.pich==2?(750-8*style.paddingleft)/2:''}}{{style.pich==3?(750-8*style.paddingleft)/4:''}}{{style.pich==4?(750-8*style.paddingleft)*3/8:''}}rpx;display:block;border-radius:{{style.radius}}rpx"></image>
                 <view class="" style="font-size:28rpx;color:{{style.color}};height:40rpx;padding:6rpx 0;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;">{{item.title}}</view>
                 <view class="" style="color:#939393;font-size:24rpx;line-height:26rpx;height:30rpx;overflow:hidden;text-overflow: ellipsis">
-                    <text wx:if="{{item.desc!=NULL}}">{{item.desc}}</text>
+                    <text wx:if="{{item.goods_selling!=NULL}}">{{item.goods_selling}}</text>
                 </view>
                 <view style="width:{{(750-8*style.paddingleft)/2}}rpx; height:1px; background:#f3f3f3; margin-top: 5px;"></view>
                 <view style="margin-top:6rpx;">
@@ -1048,9 +1048,11 @@
                 </image>
                 <view class="goodsBottom">
                     <view class="goodsTitle" style="color:{{style.titlecolor}}" wx:if="{{params.showtitle==1}}">{{item.title}}</view>
-                    <view class="goodsDesc">{{item.desc!=null?item.desc:''}}</view>
+                    <view class="goodsDesc">{{item.goods_selling!=null?item.goods_selling:''}}</view>
                     <view style="font-size:24rpx;color:{{style.pricecolor}};">
-            ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
+                         <image class="price_img" src="{{item.member_grade_img}}" mode="widthFix" >
+                             </image>
+                       ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
                         <text class="goodsSaleNum">销量：{{item.sale_num}}</text>
                     </view>
                 </view>
@@ -1106,8 +1108,10 @@
                     </image>
                     <view class="goodsBottom">
                         <view class="goodsTitle" style="color:{{style.titlecolor}}" wx:if="{{params.showtitle==1}}">{{item.title}}</view>
-                        <view class="goodsDesc">{{item.desc!=null?item.desc:''}}</view>
+                        <view class="goodsDesc">{{item.goods_selling!=null?item.goods_selling:''}}</view>
                         <view style="font-size:24rpx;color:{{style.pricecolor}};">
+                          <image class="price_img" src="{{item.member_grade_img}}" mode="widthFix" >
+                             </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
                             <text class="goodsSaleNum">销量：{{item.sale_num}}</text>
                         </view>
@@ -1163,8 +1167,10 @@
                     </image>
                     <view class="goodsBottom">
                         <view class="goodsTitle" style="color:{{style.titlecolor}}" wx:if="{{params.showtitle==1}}">{{item.title}}</view>
-                        <view class="goodsDesc">{{item.desc}}</view>
+                        <view class="goodsDesc">{{item.goods_selling}}</view>
                         <view style="font-size:24rpx;color:{{style.pricecolor}};">
+                          <image class="price_img" src="{{item.member_grade_img}}" mode="widthFix" >
+                             </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
                             <text class="goodsSaleNum">销量：{{item.sale_num}}</text>
                         </view>
@@ -1223,6 +1229,8 @@
                     <view class="goodsBottom">
                         <view class="goodsTitle" style="color:{{style.titlecolor}}" wx:if="{{params.showtitle==1}}">{{item.title}}</view>
                         <view style="font-size:24rpx;color:{{style.pricecolor}};">
+                            <image class="price_img" src="{{item.member_grade_img}}" mode="widthFix" >
+                             </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
                             <text class="goodsSaleNum">售{{item.sale_num}}</text>
                         </view>
@@ -1279,6 +1287,8 @@
                     <view class="goodsBottom">
                         <view class="goodsTitle" style="color:{{style.titlecolor}}" wx:if="{{params.showtitle==1}}">{{item.title}}</view>
                         <view style="font-size:24rpx;color:{{style.pricecolor}};">
+                          <image class="price_img" src="{{item.member_grade_img}}" mode="widthFix" >
+                             </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
                             <text class="goodsSaleNum">售{{item.sale_num}}</text>
                         </view>
