@@ -127,12 +127,12 @@
                 </swiper>
             </view>
             <view class="zc-project">
-                <view class="switch-project">
-                    <view class="switch-btn switch-prev" hidden="{{switchProject}}">
+                <view class="switch-project" bind:tap="bindSwitchProject">
+                    <view class="switch-btn switch-prev" hidden="{{!switchProject}}">
                         <image src="./img/icon6.png" />
                         <text>查看往期众筹</text>
                     </view>
-                    <view class="switch-btn switch-now" hidden="{{!switchProject}}">
+                    <view class="switch-btn switch-now" hidden="{{switchProject}}">
                         <image src="./img/icon7.png" />
                         <text>查看正在众筹</text>
                     </view>
@@ -150,7 +150,7 @@
                             <view class="project-people">{{item.collecting}}人支持 | {{item.centum==100?'已完成':'进行中'}}</view>
                             <view class="project-price">
                                 <text>￥299</text>
-                                <button  wx:if="{{1}}" class="join-project" 
+                                <button  wx:if="{{switchProject}}" class="join-project" 
                                     bindtap="support"
                                     data-id="{{item.id}}">支持</button>
                                 <button wx:else class="check-project"

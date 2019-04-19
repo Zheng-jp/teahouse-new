@@ -92,6 +92,12 @@
       "pages": [
         "index/index"
       ]
+    },
+    {
+      "root": "live",
+      "pages": [
+        "index/index"
+      ]
     }
   ],
   "window": {
