@@ -34,6 +34,7 @@ Page({
     from_buy: false,
     all_money: 0,
     user: [],
+    goods_money_one:0,//商品钱数
     address_id: 0,//地址id
     shop_id: 0,//店铺地址id
     sava_id: 0,//存茶地址id
@@ -1310,12 +1311,13 @@ Page({
     })/*  */
 
   },
-  checkboxChange: function (e) {
+  checkboxChangess: function (e) {
     var that = this;
+    console.log(e);
     wx.request({
       url: app.globalData.tiltes + 'coupon_minute',
       data: {
-        coupon_id: e.detail.value[0],
+        coupon_id: e.currentTarget.dataset.id,
       },
       method: "post",
       // header: {
@@ -1323,11 +1325,48 @@ Page({
 
       // },
       success: function (res) {
-        that.setData({
-          coupon_content: "-" + res.data.data.money,
-          money: res.data.data.money
-        });
-        that.calculate_money();
+        if(e.currentTarget.dataset.value=="1"){
+          if(res.data.data.money<=that.data.goods_money_one){
+            that.setData({
+              coupon_content: "-" + res.data.data.money,
+              coupon_type:e.currentTarget.dataset.value,
+              money: res.data.data.money,
+            });
+          }
+          else{
+            that.setData({
+              coupon_content: "-" + that.data.goods_money_one,
+              coupon_type:e.currentTarget.dataset.value,
+              money: res.that.data.goods_money_one,
+            });
+          }
+        }
+        else if(e.currentTarget.dataset.value=="3"){
+          if(res.data.data.money<=that.data.storage){
+            that.setData({
+              coupon_content: "-" + res.data.data.money,
+              coupon_type:e.currentTarget.dataset.value,
+              money: res.data.data.money,
+            });
+          }
+          else{
+            that.setData({
+              coupon_content: "-" + that.data.storage,
+              coupon_type:e.currentTarget.dataset.value,
+              money: res.that.data.storage,
+            });
+          }
+        }
+        else if(e.currentTarget.dataset.value==""){
+          that.setData({
+              coupon_content: "-" + res.data.data.money,
+              coupon_type:e.currentTarget.dataset.value,
+              money: res.data.data.money,
+            });
+        }
+        
+         
+        
       },
       fail: function () {
 
@@ -1341,6 +1380,15 @@ Page({
       coupon_id: parseInt(e.detail.value[0]),
     })
   },
+  //  // 计算优惠劵
+  //  coupon:function(){
+  //  if(that.data.coupon_type=="1"){
+  //    that.setData({
+       
+  //    })
+  //  }
+  //   that.calculate_money();
+  // },
   checkboxChanges: function (e) {
     var that = this;
     that.setData({
@@ -1357,15 +1405,26 @@ Page({
     })
     that.calculate_money();
   },
-
-  // 计算钱
-  calculate_money: function () {
-    var that = this;
+  // 计算商品价格
+  god_money:function(){
     var all_moneys = 0;
     for (var i = 0; i < that.data.goods.length; i++) {
       all_moneys += that.data.goods[i].grade_price * that.data.goods[i].number;
     }
-    var all_moneys_alls = all_moneys + that.data.storage + that.data.freight - that.data.money + that.data.taxes;
+    that.setData({
+      goods_money_one:all_moneys
+    })
+  },
+
+  // 计算钱
+  calculate_money: function () {
+    var that = this;
+    // var all_moneys = 0;
+    // for (var i = 0; i < that.data.goods.length; i++) {
+    //   all_moneys += that.data.goods[i].grade_price * that.data.goods[i].number;
+    // }
+    that.god_money();
+    var all_moneys_alls = that.data.goods_money_one + that.data.storage + that.data.freight - that.data.money + that.data.taxes;
     if (all_moneys_alls > 0) {
       that.setData({
         all_money: all_moneys_alls.toFixed(2),
@@ -1381,6 +1440,8 @@ Page({
     }
 
   },
+ 
+
   //  计算仓储费
   money_storages: function () {
     var that = this;
@@ -1411,7 +1472,8 @@ Page({
 
   },
   // 计算运费
-  money_freight: function () {
+  money_freight: function
+   () {
     var that = this;
     var money_freight = 0;
     for (var i = 0; i < that.data.goods.length; i++) {
@@ -1650,7 +1712,8 @@ Page({
             'open_id': app.globalData.gmemberid,
             'goods_id': user[1].good_id,
             'member_grade_name': app.globalData.member_grade_name,
-            "money": all_moneys
+            "money": all_moneys,
+            "coupon_type":1,
           },
           method: "post",
           // header: {

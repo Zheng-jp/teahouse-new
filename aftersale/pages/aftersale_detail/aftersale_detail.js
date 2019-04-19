@@ -8,9 +8,12 @@ function countDown(endTime, _this){
       Minutes = addZero(parseInt(timeDeff/1000/60%60)),
       Second = addZero(parseInt(timeDeff/1000%60));
   if(timeDeff <= 0){
+    clearInterval(_this.data.timer);
     if(!_this.data.whoHandle){
+      console.log(11)
       autoHandle(_this, 2, _this.data.whoHandle);
     }else if(_this.data.status == 5 && _this.data.whoHandle == 3){
+      console.log(22)
       autoHandle(_this, 5, 2);
     }
   }else{
@@ -31,6 +34,7 @@ function timeTrans(date){
 }
 
 function autoHandle(_this, status, whoHandle){
+  console.log(whoHandle)
   wx.request({
     url: app.globalData.tiltes + 'update_time_automatic',
     method: 'POST',
@@ -60,10 +64,11 @@ Page({
     dataObj: {},
     operationTime: '',
     whoHandle: null,
-    revokeTime: '',
+    revokeTime: '', //撤销时间
     switchReplyBoxTag: false,
     facusTag: false,
-    replyContent: '',
+    replyContent: '', 
+    timer: null, //定时器
   },
 
   AmendPetition: function(e){
@@ -123,9 +128,8 @@ Page({
       facusTag: !this.data.facusTag
     })
   },
-
+  // 撤销申请
   revoke: function(){
-    // 撤销申请
     var _this = this;
     wx.showModal({
       title: '提示',
@@ -179,24 +183,6 @@ Page({
       id: options.id,
       status: options.status
     })
-    
-    setInterval(function(){
-      countDown(_this.data.dataObj.future_time*1000, _this);
-    }, 300);
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    var _this = this;
     wx.request({
       url: app.globalData.tiltes + 'after_sale_information_return',
       method: 'POST',
@@ -210,19 +196,36 @@ Page({
           _this.setData({
             dataObj: data,
             operationTime: timeTrans(data.operation_time),
-            whoHandle: data.who_handle
+            whoHandle: data.who_handle==null ? 2 : data.who_handle
           })
           if(data.handle_time){
             _this.setData({
               revokeTime: timeTrans(data.handle_time)
             })
           }
+          _this.data.timer = setInterval(function(){
+            countDown(_this.data.dataObj.future_time*1000, _this);
+          }, 300);
         }
       },
       fail: function(res){
         console.log('fail', res);
       }
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
   },
 
   /**
