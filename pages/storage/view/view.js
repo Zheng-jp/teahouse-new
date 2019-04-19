@@ -22,6 +22,9 @@ function switchProject(option, _this){
   wx.request({
     url: app.globalData.tiltes + option,
     method: 'POST',
+    data: {
+      member_id: app.globalData.member_id
+    },
     success: function(res){
       console.log(res);
       _this.setData({

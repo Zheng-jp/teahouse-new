@@ -177,7 +177,8 @@ Page({
       url: app.globalData.tiltes + 'crowd_support',
       method: 'POST',
       data: {
-        id: id
+        id: id,
+        member_id: app.globalData.member_id
       },
       success: function(res){
         console.log(res);
