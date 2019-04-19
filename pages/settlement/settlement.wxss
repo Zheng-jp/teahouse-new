@@ -133,6 +133,9 @@ color:#3399FF;
 }
 
 /* 弹窗 */
+.range text{
+   margin-right: 4rpx;
+}
 .titles{
   background: #fff;
   padding: 25rpx; 
