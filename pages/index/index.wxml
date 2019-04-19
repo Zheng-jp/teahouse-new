@@ -34,7 +34,7 @@
             <text class='text'>{{item.text}}</text>
         </view>
     </view>
-    <view class='new clear'>
+    <view class='new clear' bindtap='toLive'>
         <image src='{{laba}}' class='news-img'></image>
         <text style='color:#fff; font-size:24rpx;vertical-align:6rpx;margin-left:37rpx; float:left;'>
             通知：

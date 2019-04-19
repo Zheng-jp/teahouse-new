@@ -1,0 +1,296 @@
+.main {
+  font-size: 28rpx;
+  width: 100%;
+  height: 100%;
+}
+
+.nav_synopsis {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 3rpx solid rgb(204, 204, 204);
+}
+
+.details{
+  margin-left: 40rpx;
+  display: block;
+  width: 300rpx;
+  line-height: 70rpx;
+}
+
+.status_bar { 
+  margin: 10rpx;
+}
+
+.grey {
+  height: 16rpx;
+  width: 100%;
+  background: rgba(242, 242, 242, 1);
+}
+
+
+
+/* 图标 */
+.status_bar {
+  height: 60rpx;
+  width: 100%;
+  margin-top: 10rpx;
+  display: flex;
+  flex-direction: row;
+  font-size: 30rpx;
+  align-items: center;
+}
+
+.tubiao {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+}
+
+.store_name {
+  font-size: 30rpx;
+  color: rgb(153, 153, 0);
+  margin-right: 60rpx;
+  padding-bottom: 8rpx;
+}
+
+.size {
+  margin-right: 15rpx;
+  
+}
+.size .size_last {
+  padding-bottom: 12rpx;
+}
+
+.nav_bottom {
+  color:rgb(147, 31, 30);
+  border-bottom: 5rpx solid rgb(147, 31, 30);
+}
+
+.tea {
+  justify-content: center;
+  flex: 3;
+  text-align: center;
+  
+}
+.article_main {
+  margin: 20rpx;
+}
+
+.title {
+  line-height: 50rpx;
+ 
+}
+
+.article {
+  border-top: 1rpx solid rgb(235, 235, 235);
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  font-family: 'Arial Normal', 'Arial';
+  font-weight: 400;
+  font-style: normal;
+  color: #333333;
+}
+
+
+/* 最新评论 */
+.ping{
+  margin:0 auto;
+  font-size: 30rpx;
+  color: #169BD5;
+  width: 250rpx;
+  font-weight: 800;
+  text-align: center;
+  background: #fff;
+  position: relative;
+  bottom: -30rpx
+}
+.xian{
+  margin: 10rpx 30rpx;
+  height: 2rpx;
+  background: #BCBCBC;
+}
+.reward{
+  padding: 12rpx 15rpx;
+  font-size: 23rpx;
+  width: 700rpx;
+  margin: 0 auto;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 153, 255, 1)
+}
+
+
+/* 评论回复 */
+.comment {
+  margin-bottom: 120rpx;
+}
+.title{
+  background: #fff;
+}
+.comment_repay{
+  width: 96%;
+  margin: auto;
+  margin-top: 60rpx;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+/*.comment_list{
+  margin-bottom: 100rpx;
+} */
+.comment_ico {
+  flex: 3;
+}
+.comment_ico > image{
+  display: inline-block;  
+  border-radius: 25px;
+  width: 60rpx;
+  height: 60rpx;
+}
+.comment_name{
+  display: inline-block;
+  
+}
+.comment_img > image{
+  width: 45rpx;
+  height: 45rpx;
+}
+
+/* .zhan{
+  float: right;
+}
+.zhan_text{
+  float: left;
+} */
+
+.repay_content{
+  margin-left: 66rpx;
+  font-size: 24rpx;
+  color: #333333;
+}
+.comment_name{
+  margin-left: 10rpx;
+  font-family: 'Arial Normal', 'Arial';
+  font-weight: 500;
+  font-size: 35rpx;
+  font-style: normal;
+  padding-bottom: 10rpx;
+} 
+
+.zan {
+  color: #949494;
+  font-size: 35rpx;
+  margin-right: 10rpx;
+}
+
+.comment_main {
+  font-size: 25rpx;
+  color: #333333;
+  margin-right: 10rpx;
+  margin-left: 85rpx;
+}
+
+.subscript {
+  color: #797979;
+}
+
+.comment_subscript {
+  margin-top: 5rpx;
+  margin-bottom: 10rpx;
+}
+.site {
+  margin-left: 60rpx;
+  margin-right: 35rpx;
+}
+.time {
+  margin-right: 80rpx;
+}
+
+/* 点中回复 */
+.reply {
+  background-color: rgba(242, 242, 242, 1);
+  border-radius: 5px;
+  display: inline-block;
+  width: 80rpx;
+  text-align: center;
+}
+.reply_main {
+  padding: 10rpx;
+  background-color: rgba(242, 242, 242, 1);
+  margin-right: 35rpx;
+}
+
+.p_r {
+  padding-right: 5rpx;
+}
+
+/* 底部回复 */
+.buttom_nav{
+display:flex;
+position:fixed;
+align-items: center;
+justify-content: space-between;
+bottom:0;
+height: 100rpx;
+z-index:9999;
+width: 750rpx;
+overflow: hidden;
+background-color: #fff;
+}
+.star > image{
+  margin-left:10rpx; 
+  width: 50rpx;
+  height: 50rpx;
+}
+.input{
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  background:#f2f2f1;
+  border-radius: 25rpx;
+  font-size: 30rpx;
+  color: #797979;
+  padding-left: 10rpx;
+  margin-left: 20rpx;
+}
+.share > image{
+  margin-right: 15rpx;
+  margin-left: 15rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.release{
+display: flex;
+align-items: flex-end; /*底部对齐*/
+justify-content: space-between; /*两端对齐*/
+box-sizing: border-box;
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+padding: 18rpx 0 18rpx 30rpx;
+background-color: #F7F8F7;
+font-size: 28rpx;
+z-index: 9999999;
+}
+.release .text{
+width: 604rpx;
+min-height: 34rpx;
+max-height: 102rpx; /*最多显示三行*/
+border-width: 15rpx 20rpx; /*使用padding与预期留白不一致，故使用border*/
+border-style: solid;
+border-color: #ffffff;
+line-height: 34rpx;
+font-size: 28rpx;
+background-color: #ffffff;
+border-radius: 4rpx;
+}
+.release .submit{
+width: 116rpx;
+height: 64rpx;
+line-height: 64rpx;
+text-align: center;
+color: #66CC00;
+}
