@@ -12,7 +12,7 @@
         <view class="tip">温馨提示：</view>
         <view class="tip">① 您申请会员的充值余额，需用于平台消费，不能用于提现</view>
         <view class="tip">② 由于各运营方已收取相应的中间手续费用，为保障用户利益，申请提现只收取2%提现手续费；</view>
-        <view class="tip">③能申请提现的余额需满1000元以上时才可申请提现；</view>
+        <view class="tip">③ 能申请提现的余额需满1000元以上时才可申请提现；</view>
         <view class="form">
           <form report-submit="false" bindsubmit="formSubmit" bindreset="">
             <view class="form_list">
@@ -20,7 +20,7 @@
 
             </view>
             <view class="form_list">
-              <input type="number" class="form_list_input" placeholder="请输入金额，不能小于1000" name="money" />
+              <input type="number" class="form_list_input" placeholder=" 请输入金额，不能小于1000" name="money" />
               <text class="danwei">元</text>
             </view>
 
@@ -31,7 +31,21 @@
               <view class="tip">(费率2%)
               </view>
             </view>
-
+            <view class='card'>
+              <view class='select_card' bindtap='selectCard'>请选择银行卡>></view>
+              <view class='card_info' wx:if="{{showCard}}">
+                <view class='card_list card_border'>开户名:
+                  <text class='text_color'>刘德华</text>
+                </view>
+                <view class='card_list card_border'>开户行:
+                  <text class='text_color'>中国银行深圳分行</text>
+                </view>
+                <view class='card_list'>
+                  <text decode="{{true}}">&ensp;&ensp;卡号: </text>
+                  <text class='text_color'>47500********646468</text>
+                </view>
+              </view>
+            </view>
 
 
             <view class="btn-area">
@@ -47,7 +61,7 @@
         <view class="tip">温馨提示：</view>
         <view class="tip">① 您申请会员的充值余额，需用于平台消费，不能用于提现</view>
         <view class="tip">② 由于各运营方已收取相应的中间手续费用，为保障用户利益，申请提现只收取2%提现手续费；</view>
-        <view class="tip">③能申请提现的余额需满1000元以上时才可申请提现；</view>
+        <view class="tip">③ 能申请提现的余额需满1000元以上时才可申请提现；</view>
         <view class="form">
           <form report-submit="false" bindsubmit="formSubmit" bindreset="">
             <view class="form_list">
@@ -56,7 +70,7 @@
               </view>
             </view>
             <view class="form_list">
-              <input  type="number" class="form_list_input" placeholder="请输入金额，不能小于1000" name="money" />
+              <input type="number" class="form_list_input" placeholder=" 请输入金额，不能小于1000" name="money" />
               <text class="danwei">元</text>
             </view>
             <view style=' display: flex; align-items: center;position: relative;'>

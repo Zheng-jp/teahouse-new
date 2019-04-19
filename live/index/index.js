@@ -37,7 +37,6 @@ Page({
     that.setData({
       winHeight: 380 * this.data.imgUrls.length
     })
-    console.log(this.data.winHeight)
   },
 
 
