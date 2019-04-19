@@ -211,6 +211,7 @@ Page({
                     wx.showToast({
                       icon: "none",
                       title: res.data.info,
+                      duration: 2000
                     })
 
                   }
@@ -218,9 +219,11 @@ Page({
                 });
               }
               else {
+                
                 wx.showToast({
                   icon: "none",
                   title: res.data.info,
+                  duration: 2000
                 })
 
               }
@@ -526,7 +529,7 @@ Page({
         else{
           wx.showToast({
             title:"下单失败，请联系管理员",
-            icon:none,
+            icon:none
           })
         }
         },

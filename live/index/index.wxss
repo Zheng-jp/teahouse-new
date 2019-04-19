@@ -56,7 +56,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  font-size: 30rpx;
+  font-size: 28rpx;
   align-items: center;
 }
 
@@ -67,7 +67,7 @@
 }
 
 .store_name {
-  font-size: 30rpx;
+  font-size: 28rpx;
   color: rgb(153, 153, 0);
   margin-right: 60rpx;
   padding-bottom: 8rpx;

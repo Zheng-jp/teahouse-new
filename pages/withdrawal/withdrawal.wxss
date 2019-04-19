@@ -73,16 +73,16 @@
 .form_list_input{
   border:solid  1px #E4E4E4;
   font-size: 29rpx;
-  width: 550rpx;
+  width: 100%;
   box-shadow: 1rpx 1rpx 1rpx 1rpx white ;
-  margin-left: 18px;
+  margin: 0 18px;
   height: 40px;
 }
 .danwei{
   position: absolute;
   color: #00BBFF; 
   font-size: 30rpx;
-  margin-left: 265px;
+  margin-left: 600rpx;
   font-weight: bold;
 }
 .send_cond{
@@ -122,4 +122,33 @@
 font-size:24rpx;
 margin-left: 20px;
 margin-bottom: 10px;
+}
+
+.card {
+  padding: 0 20px;
+  font-size: 30rpx;
+  margin-bottom: 30rpx;
+}
+.select_card {
+   color: #00BBFf;
+   font-size: 25rpx;
+}
+
+.card_info {
+  margin-top: 15rpx;
+  padding: 15rpx;
+  border-radius: 5px;
+  border: 1rpx solid rgb(191, 243, 255);
+  box-shadow: 0 0 15rpx rgb(191, 243, 255);
+}
+
+.card_border {
+  border-bottom: 1px solid rgb(224, 255, 255);
+}
+.card_list {
+  padding: 20rpx;
+}
+
+.text_color {
+  color: rgb(134, 134, 134)
 }

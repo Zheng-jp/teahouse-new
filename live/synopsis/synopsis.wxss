@@ -239,7 +239,8 @@ overflow: hidden;
 background-color: #fff;
 }
 .star > image{
-  margin-left:10rpx; 
+  margin-left:15rpx; 
+  margin-right:20rpx; 
   width: 50rpx;
   height: 50rpx;
 }
@@ -251,11 +252,11 @@ background-color: #fff;
   border-radius: 25rpx;
   font-size: 30rpx;
   color: #797979;
-  padding-left: 10rpx;
-  margin-left: 20rpx;
+  padding-left: 20rpx;
+  margin-left: 30rpx;
 }
 .share > image{
-  margin-right: 15rpx;
+  margin-right: 30rpx;
   margin-left: 15rpx;
   width: 50rpx;
   height: 50rpx;

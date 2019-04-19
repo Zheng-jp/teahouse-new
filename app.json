@@ -96,7 +96,8 @@
     {
       "root": "live",
       "pages": [
-        "index/index"
+        "index/index",
+        "synopsis/synopsis"
       ]
     }
   ],

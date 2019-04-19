@@ -135,6 +135,7 @@ background-size:80%;
 }
 .list-content{
   margin-top: 20rpx;
+  margin-bottom: 100rpx;
   background: #fff;
 }
 .ifor_list{
