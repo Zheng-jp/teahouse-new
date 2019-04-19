@@ -188,7 +188,7 @@ App({
       case "page":
         var t = n.indexOf("page/index"),
           o = n.indexOf("index?pageid"); -
-        1 == t || -1 != o ? wx.navigateTo({
+        1 == t || -1 != o ? wx.reLaunch({
           url: n
         }) : wx.reLaunch({
           url: n
@@ -196,7 +196,7 @@ App({
         break;
 
       case "web":
-        wx.navigateTo({
+        wx.reLaunch({
           url: n
         });
 
