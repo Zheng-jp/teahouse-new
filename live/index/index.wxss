@@ -1,1 +1,82 @@
-/* live/index/index.wxss */
+
+/* 导航 */
+.all {
+  width: 100%;
+  height: 100%;
+}
+.nav {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 3rpx solid rgb(204, 204, 204);
+}
+
+.tea {
+  justify-content: center;
+  flex: 3;
+  text-align: center;
+  
+}
+
+.sizecolor {
+  margin-left: 50rpx;
+  display: block;
+  width: 150rpx;
+  line-height: 70rpx;
+}
+
+.change_current {
+  color:rgb(147, 31, 30);
+  border-bottom: 5rpx solid rgb(147, 31, 30);
+  font-weight: 600;
+}
+.not_change {
+  color:rgb(204, 204, 204);
+}
+
+/* 视频 */
+/* .scroll_main{
+  display: inline;
+} */
+.scoll-h {
+  height: 100%;
+}
+
+.swiper_main{
+  margin: 20rpx;
+}
+
+.slide-image > image {
+  width: 100%;
+  height: 300rpx;
+}
+/* 图标 */
+
+.status_bar {
+  height: 60rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: 30rpx;
+  align-items: center;
+}
+
+.tubiao {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+}
+
+.store_name {
+  font-size: 30rpx;
+  color: rgb(153, 153, 0);
+  margin-right: 60rpx;
+  padding-bottom: 8rpx;
+}
+
+.size {
+  margin-right: 15rpx;
+  
+}
+.size .size_last {
+  padding-bottom: 12rpx;
+}

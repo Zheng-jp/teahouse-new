@@ -74,6 +74,11 @@ Page({
 
     })
   },
+  toLive: function() {
+    wx.navigateTo({
+      url: '../../live/index/index',
+    })
+  },
     bindViewTap: function (event) {
       var that=this;
       var item = event.currentTarget.dataset.item;
