@@ -260,7 +260,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
  
  } */
   .price_img{
-     width:35rpx;
+     width:30rpx;
  
   }
   .price_text{

@@ -188,15 +188,21 @@ App({
       case "page":
         var t = n.indexOf("page/index"),
           o = n.indexOf("index?pageid"); -
-        1 == t || -1 != o ? wx.redirectTo  ({
+        1 == t || -1 != o ? wx.reLaunch  ({
           url: n
-        }) : wx.redirectTo  ({
+        }) : wx.reLaunch  ({
           url: n
         });
         break;
 
       case "web":
-        wx.redirectTo  ({
+        wx.reLaunch  ({
+          url: n
+        });
+
+        break;
+        case "webs":
+        wx.navigateTo  ({
           url: n
         });
 
