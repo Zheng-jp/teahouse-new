@@ -164,9 +164,14 @@ overflow: hidden;
 
 }
 .star{
-  margin-left:10rpx; 
+  margin-left:250rpx; 
   width: 50rpx;
   height: 50rpx;
+}
+.star1{
+  margin-left:25rpx; 
+  width: 40rpx;
+  height: 40rpx;
 }
 .input{
   width: 220rpx;
@@ -182,8 +187,8 @@ overflow: hidden;
 }
 .share{
   margin-left: 20rpx;
-  width: 50rpx;
-  height: 50rpx;
+  width: 40rpx;
+  height: 40rpx;
   
 }
 .monly{

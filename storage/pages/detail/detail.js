@@ -84,7 +84,11 @@ Page({
       }
     }
   },
-
+  toHome: function () {
+    wx.redirectTo({
+      url: '../../../pages/index/index',
+    })
+  },
 
   // 评论输入框发送事件
   comments: function (e) {
