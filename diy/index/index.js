@@ -15,7 +15,8 @@ function _defineProperty(t, a, e) {
 }
 
 var app = getApp();
- var wxParse = require("../resource/wxParse/wxParse.js");
+ var wxParse = 
+ require("../resource/wxParse/wxParse.js");
 var BackgroundAudioManager = wx.getBackgroundAudioManager();
 
 BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {

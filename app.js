@@ -195,8 +195,8 @@ App({
         });
         break;
 
-      case "web":
-        wx.reLaunch  ({
+      case "pages":
+        wx.navigateTo  ({
           url: n
         });
 
