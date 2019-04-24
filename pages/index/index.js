@@ -74,11 +74,6 @@ Page({
 
     })
   },
-  toLive: function () {
-    wx.navigateTo({
-      url: '../../live/index/index',
-    })
-  },
   bindViewTap: function (event) {
     var that = this;
     var item = event.currentTarget.dataset.item;
@@ -242,7 +237,7 @@ Page({
         that.setData({
           routers: res.data.data,
         });
-        console.log(that.data.routers)
+        // console.log(that.data.routers)
         //  添加字段到等级数组
         for (var index in that.data.routers) {
           var sexParam = "routers[" + index + "].url";
@@ -290,6 +285,7 @@ Page({
             foot: t.data.data.foot_is
           },
           success: function (t) {
+            console.log(t)
             that.setData({
               footinfo: t.data.data,
               style: t.data.data.style,
