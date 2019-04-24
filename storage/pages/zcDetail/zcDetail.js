@@ -21,10 +21,22 @@ Page({
     specActive: 0, //规格索引
     buyNum: 1,  //购买数量
   },
+  	// 点击购物车
+	go_car: function(e) {
+		wx.navigateTo({
+			url: '/pages/buy/buy',
+			success: function(res) {
+				console.log("跳转成功");
+			},
+			fail: function() {
+        console.log("跳转失败");
+      }
+		})
+	},
 
   // 去首页
   bindSwitchTab: function(){
-    wx.switchTab({
+    wx.reLaunch({
       url: '/pages/index/index'
     })
   },

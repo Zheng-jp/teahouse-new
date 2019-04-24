@@ -194,20 +194,16 @@ App({
           url: n
         });
         break;
-
       case "pages":
         wx.navigateTo  ({
           url: n
         });
-
         break;
         case "webs":
         wx.navigateTo  ({
           url: n
         });
-
         break;
-
       case "tel":
         n = n.slice(4), wx.showModal({
           title: "提示",
@@ -219,7 +215,6 @@ App({
           }
         });
         break;
-
       case "map":
         var a = n.split("##");
         n = a[0].split(","), wx.openLocation({
@@ -230,7 +225,6 @@ App({
           address: a[2]
         });
         break;
-
       case "mini":
         var i = n.slice(6);
         wx.navigateToMiniProgram({

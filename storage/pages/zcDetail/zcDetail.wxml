@@ -149,10 +149,11 @@
                     <view>首页</view>
                 </view>
                 <view class="cell support">
+                    <button open-type="contact" class="kf"></button>
                     <image src="./img/icon1.png" />
                     <view>客服</view>
                 </view>
-                <view class="cell addcart">
+                <view class="cell addcart" bind:tap="go_car">
                     <image src="./img/cart.png" />
                     <view>购物车</view>
                 </view>
