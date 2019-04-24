@@ -43,8 +43,9 @@ Page({
                     app.globalData.member_id = res.data.data.member_id;
                     wx.hideToast();
                     if (res) {
-                      wx.navigateTo({
-                        url: '../index/index'
+                      wx.redirectTo({
+                        url: '../../diy/index/index' //装修后的首页
+                        // url: '../index/index' //原始首页
                       })
                   
                       // wx.navigateTo({
@@ -141,8 +142,8 @@ Page({
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             wx.hideToast();
                             if (res) {
-                              wx.navigateTo({
-                                url: '../index/index',
+                              wx.redirectTo({
+                                url: '../../diy/index/index',
                               // wx.navigateTo({
                               //   url: '/diy/index/index',
                                 success: function (res) {

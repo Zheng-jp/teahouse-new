@@ -100,5 +100,6 @@
     "navigationBarBackgroundColor": "#F9F9F9",
     "navigationBarTitleText": "滴金茶业",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
