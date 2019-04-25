@@ -1039,7 +1039,7 @@
                             <text wx:if="{{style.goodsicon=='bigsale'}}">促销</text>
                         </view>
                     </block>
-                    <block wx:if="{{params.showicon==2}}">
+                    <block wx:if="{{params.showicon==2}}">"
                         <image class="product_tb6" mode="widthFix" src="{{params.goodsiconsrc}}" style="left:{{style.iconpaddingleft*2}}rpx;top:{{style.iconpaddingtop*2}}rpx;width:{{style.iconzoom*2}}rpx" wx:if="{{params.iconposition=='left top'}}"></image>
                         <image class="product_tb6" mode="widthFix" src="{{params.goodsiconsrc}}" style="right:{{style.iconpaddingleft*2}}rpx;top:{{style.iconpaddingtop*2}}rpx;width:{{style.iconzoom*2}}rpx" wx:if="{{params.iconposition=='right top'}}"></image>
                         <image class="product_tb6" mode="widthFix" src="{{params.goodsiconsrc}}" style="left:{{style.iconpaddingleft*2}}rpx;bottom:{{style.iconpaddingtop*2}}rpx;width:{{style.iconzoom*2}}rpx" wx:if="{{params.iconposition=='left bottom'}}"></image>

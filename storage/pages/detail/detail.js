@@ -86,7 +86,7 @@ Page({
   },
   toHome: function () {
     wx.redirectTo({
-      url: '../../../pages/index/index',
+      url: '../../../diy/index/index',
     })
   },
 
@@ -457,6 +457,7 @@ Page({
             // url: app.globalData.tiltes + 'wxpay',
             url: app.globalData.tiltes + 'wx_index',
             data: {
+              uniacid: app.uniacid,
               open_id: app.globalData.gmemberid,
               cost_moneny: that.data.information.cost_moneny,
               activity_name: that.data.information.activity_name,
@@ -468,6 +469,7 @@ Page({
             //   "Content-Type": "application/json" // 默认值
             // },
             success: function (res) {
+              console.log(res)
               var result = res;
               if (result) {
                 wx.requestPayment({

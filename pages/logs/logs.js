@@ -142,10 +142,10 @@ Page({
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             wx.hideToast();
                             if (res) {
+                              // wx.redirectTo({
+                              //   url: '../../diy/index/index', // 新首页
                               wx.redirectTo({
-                                url: '../../diy/index/index',
-                              // wx.navigateTo({
-                              //   url: '/diy/index/index',
+                                url: '../index/index', //原始首页
                                 success: function (res) {
                                 },
                                 fail: function () {

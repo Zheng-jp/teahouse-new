@@ -24,8 +24,7 @@ Page({
     close: 'img/close.png',
     // 更多图片地址
     more: 'img/more.png',
-    nav: [
-      {
+    nav: [{
         url: 'img/u103.png',
         text: '商品分类'
       },
@@ -50,108 +49,102 @@ Page({
     // 商品信息
     routers: [],
     // 分享信息
-    share: [
-    ]
+    share: []
 
   },
-  nfc: function (e) {
-    wx.scanCode({
-      onlyFromCamera: true,
-      success: (res) => {
-      }
-    })
+
+  nfc: function(e) {
+    // wx.scanCode({
+    //   onlyFromCamera: false,
+    //   success(res) {
+    //     wx.showToast({
+    //       title: '非在下产品',
+    //       icon: 'none',
+    //       duration: 3000
+    //     })
+    //     console.log(res)
+    //     // var com_url = res.result.split('/')[2];
+    //     // console.log(a)
+    //   }
+    // });
+    
   },
-  bindViewTaps: function () {
+  bindViewTaps: function() {
     var that = this;
     wx.navigateTo({
       url: '../code/code?title=' + app.globalData.gmemberid,
-      success: function (res) {
-      },
-      fail: function () {
-      },
-      complete: function () {
-      }
+      success: function(res) {},
+      fail: function() {},
+      complete: function() {}
 
     })
   },
-  bindViewTap: function (event) {
+  bindViewTap: function(event) {
     var that = this;
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
       url: '/storage/pages/detail/detail?title=' + event.currentTarget.id,
-      success: function (res) {
-      },
-      fail: function () {
+      success: function(res) {},
+      fail: function() {
 
       },
-      complete: function () {
+      complete: function() {
 
       }
 
     })
   },
-  go_div: function (event) {
+  go_div: function(event) {
 
     var that = this;
     wx.navigateTo({
       url: '/diy/index/index',
-      success: function (res) {
-      },
-      fail: function () {
-      },
-      complete: function () {
-      }
+      success: function(res) {},
+      fail: function() {},
+      complete: function() {}
 
     })
   },
-  go_seach: function (event) {
+  go_seach: function(event) {
 
     var that = this;
     wx.navigateTo({
       url: '../seach/seach',
-      success: function (res) {
-      },
-      fail: function () {
-      },
-      complete: function () {
-      }
+      success: function(res) {},
+      fail: function() {},
+      complete: function() {}
 
     })
   },
-  go_good: function (event) {
+  go_good: function(event) {
 
     var that = this;
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
       url: '../good/good',
-      success: function (res) {
-      },
-      fail: function () {
-      },
-      complete: function () {
-      }
+      success: function(res) {},
+      fail: function() {},
+      complete: function() {}
 
     })
   },
-  redirectto: function (t) {
-    var a = t.currentTarget.dataset.link, e = t.currentTarget.dataset.linktype;
+  redirectto: function(t) {
+    var a = t.currentTarget.dataset.link,
+      e = t.currentTarget.dataset.linktype;
     app.redirectto(a, e);
   },
-  go_meeting: function (event) {
+  go_meeting: function(event) {
     var that = this;
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
       url: '../circle/circle',
-      success: function (res) {
-      },
-      fail: function () {
-      },
-      complete: function () {
-      }
+      success: function(res) {},
+      fail: function() {},
+      complete: function() {}
 
     })
   },
-  go_gooddetail: function (event) {
+  go_gooddetail: function(event) {
 
     var that = this;
     var item = event.currentTarget.dataset.item;
@@ -159,31 +152,25 @@ Page({
       url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
 
 
-      success: function (res) {
-      },
-      fail: function () {
-      },
-      complete: function () {
-      }
+      success: function(res) {},
+      fail: function() {},
+      complete: function() {}
 
 
     })
   },
   // 点击购物车
-  go_car: function (e) {
+  go_car: function(e) {
     wx.navigateTo({
       url: '../buy/buy',
-      success: function (res) {
-      },
-      fail: function () {
-      },
-      complete: function () {
-      }
+      success: function(res) {},
+      fail: function() {},
+      complete: function() {}
 
     })
   },
 
-  onReady: function () {
+  onReady: function() {
     var that = this;
     var member_grade_img = app.globalData.member_grade_img;
     that.setData({
@@ -191,14 +178,13 @@ Page({
     })
     wx.request({
       url: app.globalData.tiltes + 'teacenter_recommend',
-      data: {
-      },
+      data: {},
       method: "post",
       // header: {
       //   "Content-Type": "json" // 默认值
 
       // },
-      success: function (res) {
+      success: function(res) {
         that.setData({
           share: res.data.data,
         });
@@ -213,10 +199,10 @@ Page({
 
 
       },
-      fail: function () {
+      fail: function() {
 
       },
-      complete: function () {
+      complete: function() {
         wx.hideLoading()
       }
 
@@ -233,7 +219,7 @@ Page({
       //   "Content-Type": "json" // 默认值
 
       // },
-      success: function (res) {
+      success: function(res) {
         that.setData({
           routers: res.data.data,
         });
@@ -259,10 +245,10 @@ Page({
 
 
       },
-      fail: function () {
+      fail: function() {
 
       },
-      complete: function () {
+      complete: function() {
         wx.hideLoading()
       }
 
@@ -273,7 +259,7 @@ Page({
       data: {
         uniacid: 1
       },
-      success: function (t) {
+      success: function(t) {
         that.setData({
           foot_is: t.data.data.foot_is
         })
@@ -284,7 +270,7 @@ Page({
             uniacid: 1,
             foot: t.data.data.foot_is
           },
-          success: function (t) {
+          success: function(t) {
             console.log(t)
             that.setData({
               footinfo: t.data.data,
@@ -295,7 +281,7 @@ Page({
 
 
       },
-      fail: function (t) {
+      fail: function(t) {
         console.log(t);
       }
     });

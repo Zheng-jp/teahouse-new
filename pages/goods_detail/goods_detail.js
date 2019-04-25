@@ -99,7 +99,7 @@ Page({
 
 	},
 	onShareAppMessage: function() {
-		console.log("分享")
+		// console.log("分享")
 		let that = this;
 		return {
 			title: '简直走别拐弯', // 转发后 所显示的title
@@ -133,7 +133,7 @@ Page({
 	// 点击加入购物车
 	add_car: function(event) {
 		var that = this;
-		console.log(that);
+		// console.log(that);
 		if(that.data.goods.goods_standard == 0) {
 			var goods_standard_id = '';
 			that.setData({
@@ -286,7 +286,7 @@ Page({
 	},
 
 	hideFlag: function(e) {
-		console.log(111);
+		// console.log(111);
 		this.setData({
 			mask_show: false,
 		})
@@ -525,7 +525,7 @@ Page({
 
 			// },
 			success: function(res) {
-				console.log(res.data.status);
+				// console.log(res.data.status);
 				that.setData({
 					address: res.data.status,
 				});

@@ -164,9 +164,9 @@ overflow: hidden;
 
 }
 .star{
-  margin-left:250rpx; 
-  width: 50rpx;
-  height: 50rpx;
+  margin-left:280rpx; 
+  width: 40rpx;
+  height: 40rpx;
 }
 .star1{
   margin-left:25rpx; 
