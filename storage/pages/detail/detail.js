@@ -440,6 +440,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'activity_order',
         data: {
+          
           open_id: app.globalData.gmemberid,
           activity_id: that.data.information.id,
           start_time: clickDate,
@@ -451,13 +452,13 @@ Page({
 
         // },
         success: function (res) {
-          // console.log(res)
+          console.log(app)
           var order_number = res.data.data;
           wx.request({
             // url: app.globalData.tiltes + 'wxpay',
             url: app.globalData.tiltes + 'wx_index',
             data: {
-              uniacid: app.uniacid,
+              uniacid: app.globalData.uniacid,
               open_id: app.globalData.gmemberid,
               cost_moneny: that.data.information.cost_moneny,
               activity_name: that.data.information.activity_name,
