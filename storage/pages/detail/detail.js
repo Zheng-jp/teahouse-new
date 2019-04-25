@@ -452,7 +452,7 @@ Page({
 
         // },
         success: function (res) {
-          console.log(app)
+          // console.log(app)
           var order_number = res.data.data;
           wx.request({
             // url: app.globalData.tiltes + 'wxpay',
