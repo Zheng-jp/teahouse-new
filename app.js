@@ -1,14 +1,10 @@
 var url = "https://teahouse.siring.com.cn/api/";
 var uniacid = "1";
 App({
-
-
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     winMask_if: true,
-
   },
-
   // 判断绑定手机号
   judge_phone: function(e) {
     var that = this;
