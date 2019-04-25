@@ -1,11 +1,16 @@
 <import src="../../../wxParse/wxParse.wxml" />
-<view class="all" >
-  <view class="active_information"  catchtap='outbtn' >
-    <view class='title'>
+<view class="all">
+  <view class="active_information" catchtap='outbtn'>
+    <view class='title' style='display:flex;align-items: center;'>
       <text class='title_title'>活动信息</text>
-      <text class='Label' wx:for="{{Label}}" style='color:{{item.color}}; border-color:{{item.color}}' >{{item.name}}
+      <text class='Label' wx:for="{{Label}}" style='color:{{item.color}}; border-color:{{item.color}}'>{{item.name}}
       </text>
-
+      <view class='star' bindtap="collection" wx:if="{{!collectionimg}}">
+        <image src='img/u5053.png'></image>
+      </view>
+      <view class='star' bindtap="delect_collection" wx:else>
+        <image src='img/u1001.png'></image>
+      </view>
     </view>
 
     <view class='list_contents'>
@@ -26,8 +31,11 @@
         <view class='ico_img'>
           <image src='img/u5005.png' mode="widthFix"></image>
         </view>
-        <view class='list_content listc_content'><text style='color:#5E5E5E'>活动上限</text>{{information.participats}}<text
-            style='color:#5E5E5E'>人</text><text class="padding">已报名{{information.peoples}}人</text></view>
+        <view class='list_content listc_content'>
+          <text style='color:#5E5E5E'>活动上限</text>{{information.participats}}
+          <text style='color:#5E5E5E'>人</text>
+          <text class="padding">已报名{{information.peoples}}人</text>
+        </view>
       </view>
       <view class='list_a list'>
         <view class='ico_img'>
@@ -37,10 +45,10 @@
       </view>
     </view>
   </view>
-  
 
-  <view class='wrap {{aniStyle?"slideup":"slidedown"}}'  catchtap='inbtn' wx:if="{{mengShow}}" > 
-    <view >
+
+  <view class='wrap {{aniStyle?"slideup":"slidedown"}}' catchtap='inbtn' wx:if="{{mengShow}}">
+    <view>
       <view class='date-show'>
         <view class='lt-arrow' bindtap='lastMonth'>
 
@@ -55,12 +63,14 @@
       </view>
     </view>
     <view class='header'>
-      <view wx:for='{{date}}' class=''>{{item}}<view></view>
+      <view wx:for='{{date}}' class=''>{{item}}
+        <view></view>
       </view>
     </view>
     <view class='date-box'>
       item.end_time > item.isToday
-      <view wx:for='{{dateArr}}' class='{{clickDay == item.isToday ? "nowDay" : ""}} {{item.isToday < item.start_time ? "aften" : ""}}  {{item.isToday > item.end_time ? "aften" : ""}}' data-date='{{item.isToday}}' id='{{index}}' data-indexid = '{{item.indexId}}' bindtap='changeColor' >
+      <view wx:for='{{dateArr}}' class='{{clickDay == item.isToday ? "nowDay" : ""}} {{item.isToday < item.start_time ? "aften" : ""}}  {{item.isToday > item.end_time ? "aften" : ""}}' data-date='{{item.isToday}}' id='{{index}}' data-indexid='{{item.indexId}}'
+        bindtap='changeColor'>
 
         <view class='date-head'>
           <view>{{item.dateNum}}</view>
@@ -101,12 +111,12 @@
           </view>
         </view>
         <view class='repay_content'>{{item.comment_details}}</view>
-        <view class='repay_list'><text>{{item.create_time}}</text></view>
+        <view class='repay_list'>
+          <text>{{item.create_time}}</text>
+        </view>
       </view>
       <view class="release" hidden="{{!releaseFocus}}">
-        <textarea class="text" placeholder-class="input_null" fixed="true" maxlength="-1" show-confirm-bar="false"
-          cursor-spacing="15" auto-height="true" focus="{{releaseFocus}}" placeholder="" bindinput="bindinputs"
-          value="{{repay_content}}"></textarea>
+        <textarea class="text" placeholder-class="input_null" fixed="true" maxlength="-1" show-confirm-bar="false" cursor-spacing="15" auto-height="true" focus="{{releaseFocus}}" placeholder="" bindinput="bindinputs" value="{{repay_content}}"></textarea>
         <view class="submit" bindtap='comments'>发送</view>
         <view class="submit" bindtap='close'>取消</view>
       </view>
@@ -117,14 +127,12 @@
 
 
   <view class='buttom_nav'>
-    <view class='star' bindtap="collection" wx:if="{{!collectionimg}}">
-      <image src='img/u5053.png'></image>
-    </view>
-    <view class='star' bindtap="delect_collection" wx:else>
-      <image src='img/u1001.png'></image>
+    <view class='star1' bindtap="toHome">
+      <image src='img/u147.png'></image>
     </view>
     <input class='input' type='text' placeholder='写评论' bindtap="bindReply" disabled='display'></input>
-    <view class='share'> <button open-type="share">
+    <view class='share'>
+      <button open-type="share">
       </button>
       <image src='img/u5055.png'></image>
     </view>

@@ -399,7 +399,9 @@ page {
     width: 110rpx;
     position: absolute;
 }
-
+.price_img{
+    
+}
 .qyxxhead {
     padding: 30rpx;
     background: #fff;

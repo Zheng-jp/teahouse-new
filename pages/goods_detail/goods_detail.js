@@ -45,13 +45,12 @@ Page({
 		//  点击添加类
 		// 商品id
 		var current = e.target.dataset.current;
-		//  商品价格
-		var price = e.target.dataset.price;
+		//  商品价格 
 		// 商品库存
 		var stock = e.target.dataset.stock;
 		// 商品销量
 		// var current=e.target.dataset.current;
-		// 商品图片
+		// 商品图片 
 		var images = e.target.dataset.images;
 		// 规格id
 		// var goods_standard_id=e.target.dataset.id;

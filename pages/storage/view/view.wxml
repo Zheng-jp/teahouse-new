@@ -1,166 +1,174 @@
 <!-- pages/storage/view/view.wxml -->
 <view class="swiper-tab">
-    <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">
-        茶仓
-    </view>
-    <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">
-        定制
-    </view>
-    <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">
-        众筹
-    </view>
+  <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">
+    茶仓
+  </view>
+  <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">
+    定制
+  </view>
+  <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">
+    众筹
+  </view>
 </view>
 <swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
-    <swiper-item class="overflowYauto">
-        <scroll-view>
-            <view class="gross-container">
-                <view class="gross-item gross-title">总价值</view>
-                <view class="gross-item gross-number">￥123456.00</view>
-                <view class="gross-item choice-warehouse choice-down" bindtap="showAllStorage">
-                    <text>全部仓储</text>
-                    <image src="img/icon-c.png" class="icon-choice {{scaleImg?'scaley-img':''}}" />
-                </view>
-                <view class="warehouse-container" style="display: {{wareHouseFlag?'':'none'}};">
-                    <view class="item-box">
-                        <view class="warehouse-left">
-                            <text>全部</text>
-                        </view>
-                        <view class="warehouse-right">
-                            <view class="warehouse-item">北京仓01仓</view>
-                            <view class="warehouse-item">北京仓01仓</view>
-                            <view class="warehouse-item">北京仓01仓</view>
-                        </view>
-                    </view>
-                    <view class="retract" bindtap="showAllStorage">
-                        <image src="img/icon4.png" class="icon-retract" />
-                    </view>
-                </view>
+  <swiper-item class="overflowYauto">
+    <scroll-view>
+      <view class="gross-container">
+        <view class="gross-item gross-title">总价值</view>
+        <view class="gross-item gross-number">￥123456.00</view>
+        <view class="gross-item choice-warehouse choice-down" bindtap="showAllStorage">
+          <text>全部仓储</text>
+          <image src="img/icon-c.png" class="icon-choice {{scaleImg?'scaley-img':''}}" />
+        </view>
+        <view class="warehouse-container" style="display: {{wareHouseFlag?'':'none'}};">
+          <view class="item-box">
+            <view class="warehouse-left">
+              <text>全部</text>
             </view>
-            <view class="storage-enviroment">
-                <view class="storage-name-box">
-                    <image src="img/icon1.png" class="" />
-                    <text class="storage-name">仓JB01</text>
-                </view>
-                <view class="enviroment-data-box">
-                    <view class="enviroment-item item-video">
-                        <image src="img/gif1.gif" class="icon-video" />
-                        <text class="temperature">实时视频</text>
-                    </view>
-                    <view class="enviroment-item" bindtap="checkRealTimeData">
-                        <image src="img/icon2.png" class="icon-temperature" />
-                        <text class="temperature" style='color:#D9250E'>25.55°C</text>
-                    </view>
-                    <view class="enviroment-item" bindtap="checkRealTimeData">
-                        <image src="img/u2173.png" class="icon-humidity" />
-                        <text class="humidity" style='color:#669900'>78.99%</text>
-                    </view>
-                     <view>
-                    <view class="more" bindtap="checkRealTimeData">
-                       <image src="img/icon5.png" /></view>
-                    </view>
-                </view>
+            <view class="warehouse-right">
+              <view class="warehouse-item">北京仓01仓</view>
+              <view class="warehouse-item">北京仓01仓</view>
+              <view class="warehouse-item">北京仓01仓</view>
             </view>
-            <view class="storage-manage">
-                <view class="storage-item">
-                    <view class="item-left">
-                        <image src="img/img1.png" class="display-img" />
-                        <text class="tea-name">大观</text>
-                        <text class="tea-date">生产日期：2018.08.09</text>
-                        <view class="tag-box">
-                            <text class="tag-text">北京仓</text>
-                            <text class="tag-text">古树生茶</text>
-                        </view>
-                    </view>
-                    <view class="item-right">
-                        <view class="tea-stock">
-                            <text class="stock-title">实时库存</text>
-                            <text class="stock-num">11</text>
-                            件
-                            <text class="stock-num">11</text>
-                            提
-                            <text class="stock-num">11</text>
-                            片
-                            <text class="stock-more" bindtap="toStockDetail">详情></text>
-                        </view>
-                        <view class="exchange-price">
-                            <view>
-                                <text>购入入仓日期：</text>
-                                <text>2018.01.01</text>
-                            </view>
-                            <view>
-                                <text>当前市场参考价：</text>
-                                <text class="out-price">￥5000/片</text>
-                            </view>
-                            <view>
-                                <text>您的初始购入价：</text>
-                                <text>￥20000/片</text>
-                            </view>
-                        </view>
-                        <button class="out-storage" bindtap="outOfStock">出仓</button>
-                    </view>
-                </view>
+          </view>
+          <view class="retract" bindtap="showAllStorage">
+            <image src="img/icon4.png" class="icon-retract" />
+          </view>
+        </view>
+      </view>
+      <view class="storage-enviroment">
+        <view class="storage-name-box">
+          <image src="img/icon1.png" class="" />
+          <text class="storage-name">仓JB01</text>
+        </view>
+        <view class="enviroment-data-box">
+          <view class="enviroment-item item-video">
+            <image src="img/gif1.gif" class="icon-video" />
+            <text class="temperature">实时视频</text>
+          </view>
+          <view class="enviroment-item" bindtap="checkRealTimeData">
+            <image src="img/icon2.png" class="icon-temperature" />
+            <text class="temperature" style='color:#D9250E'>25.55°C</text>
+          </view>
+          <view class="enviroment-item" bindtap="checkRealTimeData">
+            <image src="img/u2173.png" class="icon-humidity" />
+            <text class="humidity" style='color:#669900'>78.99%</text>
+          </view>
+          <view>
+            <view class="more" bindtap="checkRealTimeData">
+              <image src="img/icon5.png" />
             </view>
-        </scroll-view>
-    </swiper-item>
-    <swiper-item class="overflowYauto">
-        <scroll-view>第二屏</scroll-view>
-    </swiper-item>
-    <swiper-item class="overflowYauto">
-        <scroll-view>
-            <view class="swiper-box">
-                <view class="swiper-title">创意众筹 · 成就希望</view>
-                <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="70rpx" next-margin="70rpx" display-multiple-items='1' circular class="zc-swiper">
-                    <swiper-item wx:for="{{swiperDataList}}" wx:key="">
-                        <view class="box">
-                            <view class="swiper-img-box">
-                                <image src="{{url}}{{item.goods_show_image}}" />
-                            </view>
-                            <view class="swiper-good-info">
-                                <view class="swiper-stock">剩余{{item.days}}天</view>
-                                <view class="swiper-desc hid-txt-two">{{item.goods_describe}}</view>
-                                <view class="swiper-button">
-                                    <button bindtap="support" data-id="{{item.id}}">支持</button>
-                                </view>
-                            </view>
-                        </view>
-                    </swiper-item>
-                </swiper>
+          </view>
+        </view>
+      </view>
+      <view class="storage-manage">
+        <view class="storage-item">
+          <view class="item-left">
+            <image src="img/img1.png" class="display-img" />
+            <text class="tea-name">大观</text>
+            <text class="tea-date">生产日期：2018.08.09</text>
+            <view class="tag-box">
+              <text class="tag-text">北京仓</text>
+              <text class="tag-text">古树生茶</text>
             </view>
-            <view class="zc-project">
-                <view class="switch-project">
-                    <view class="switch-btn switch-prev" hidden="{{switchProject}}">
-                        <image src="./img/icon6.png" />
-                        <text>查看往期众筹</text>
-                    </view>
-                    <view class="switch-btn switch-now" hidden="{{!switchProject}}">
-                        <image src="./img/icon7.png" />
-                        <text>查看正在众筹</text>
-                    </view>
-                </view>
-                <text class="project-title">正在众筹</text>
-                <view class="zc-item-box">
-                    <view class="zc-item" wx:for="{{crowdList}}" wx:key="">
-                        <view class="left-img">
-                            <image src="{{url}}{{item.goods_show_image}}" />
-                        </view>
-                        <view class="right-project-info">
-                            <view class="project-name hid-txt-one">{{item.project_name}}</view>
-                            <wxzx-progress class="wxzx-progress" percent="{{item.centum>100?100:item.centum}}" show-info border-radius="4px" width="300" stroke-width='12' radius='6' active-color="#ff9600,#ff1000,#ff0000"></wxzx-progress>
-                            <text class="percent-num">{{item.centum}}%</text>
-                            <view class="project-people">{{item.collecting}}人支持 | {{item.centum==100?'已完成':'进行中'}}</view>
-                            <view class="project-price">
-                                <text>￥299</text>
-                                <button  wx:if="{{1}}" class="join-project" 
-                                    bindtap="support"
-                                    data-id="{{item.id}}">支持</button>
-                                <button wx:else class="check-project"
-                                    bindtap="support"
-                                    data-id="{{item.id}}">立即查看</button>
-                            </view>
-                        </view>
-                    </view>
-                </view>
+          </view>
+          <view class="item-right">
+            <view class="tea-stock">
+              <text class="stock-title">实时库存</text>
+              <text class="stock-num">11</text> 件
+              <text class="stock-num">11</text> 提
+              <text class="stock-num">11</text> 片
+              <text class="stock-more" bindtap="toStockDetail">详情></text>
             </view>
-        </scroll-view>
-    </swiper-item>
+            <view class="exchange-price">
+              <view>
+                <text>购入入仓日期：</text>
+                <text>2018.01.01</text>
+              </view>
+              <view>
+                <text>当前市场参考价：</text>
+                <text class="out-price">￥5000/片</text>
+              </view>
+              <view>
+                <text>您的初始购入价：</text>
+                <text>￥20000/片</text>
+              </view>
+            </view>
+            <button class="out-storage" bindtap="outOfStock">出仓</button>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item class="overflowYauto">
+    <scroll-view>第二屏</scroll-view>
+  </swiper-item>
+  <swiper-item class="overflowYauto">
+    <scroll-view>
+      <view class="swiper-box">
+        <view class="swiper-title">创意众筹 · 成就希望</view>
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="70rpx" next-margin="70rpx" display-multiple-items='1' circular class="zc-swiper">
+          <swiper-item wx:for="{{swiperDataList}}" wx:key="">
+            <view class="box">
+              <view class="swiper-img-box">
+                <image src="{{url}}{{item.goods_show_image}}" />
+              </view>
+              <view class="swiper-good-info">
+                <view class="swiper-stock">剩余{{item.days}}天</view>
+                <view class="swiper-desc hid-txt-two">{{item.goods_describe}}</view>
+                <view class="swiper-button">
+                  <button bindtap="support" data-id="{{item.id}}">支持</button>
+                </view>
+              </view>
+            </view>
+          </swiper-item>
+        </swiper>
+      </view>
+      <view class="zc-project">
+        <view class="switch-project" bind:tap="bindSwitchProject">
+          <view class="switch-btn switch-prev" hidden="{{!switchProject}}">
+            <image src="./img/icon6.png" />
+            <text>查看往期众筹</text>
+          </view>
+          <view class="switch-btn switch-now" hidden="{{switchProject}}">
+            <image src="./img/icon7.png" />
+            <text>查看正在众筹</text>
+          </view>
+        </view>
+        <text class="project-title">正在众筹</text>
+        <view class="zc-item-box">
+          <view class="zc-item" wx:for="{{crowdList}}" wx:key="">
+            <view class="left-img">
+              <image src="{{url}}{{item.goods_show_image}}" />
+            </view>
+            <view class="right-project-info">
+              <view class="project-name hid-txt-one">{{item.project_name}}</view>
+              <wxzx-progress class="wxzx-progress" percent="{{item.centum>100?100:item.centum}}" show-info border-radius="4px" width="300" stroke-width='12' radius='6' active-color="#ff9600,#ff1000,#ff0000"></wxzx-progress>
+              <text class="percent-num">{{item.centum}}%</text>
+              <view class="project-people">{{item.collecting}}人支持 | {{item.centum==100?'已完成':'进行中'}}</view>
+              <view class="project-price">
+                <text>￥299</text>
+                <button wx:if="{{switchProject}}" class="join-project" bindtap="support" data-id="{{item.id}}">支持</button>
+                <button wx:else class="check-project" bindtap="support" data-id="{{item.id}}">立即查看</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
 </swiper>
+<view wx:if="{{foot_is==2}}">
+  <view class="hbj footmenu" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:9998;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:if="{{footinfo.params.navstyle==0}}">
+    <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+      <span class="iconfont {{item.iconclass}}" style="font-size:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx 0;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;line-height:{{style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
+      <view style="font-size:{{style.textfont*2}}rpx;padding:{{style.paddingleft*2}}rpx 0;color:{{style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+    </view>
+  </view>
+  <view class="footmenu2" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:10000;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:elif="{{footinfo.params.navstyle==1}}">
+    <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+      <image mode="aspectFill" src="https://teahouse.siring.com.cn/{{item.imgurl}}" style="display:block;margin:0 auto;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx;"></image>
+      <view style="font-size:{{style.textfont*2}}rpx;color:{{style.textcolor}};padding:{{style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+    </view>
+  </view>
+</view>

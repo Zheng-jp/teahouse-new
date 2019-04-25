@@ -46,7 +46,7 @@ Page({
             }
             for(var prop in v){
               if(prop == 'time'){
-                v[prop] = app.formatDate(v[prop] * 1000);
+                v[prop] = app.formatDate(v[prop]);
               }
             }
           })

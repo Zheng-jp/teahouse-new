@@ -16,10 +16,29 @@ Page({
     tabHdArr: ['项目详情', '团队介绍', '监测报告', '评价'],
     fixiPhone: false,
     switchDialogKey: false,
-    switchWidth: false,
+    switchWidth: false, //
     proArr: [],
-    specActive: 0,
-    buyNum: 1,
+    specActive: 0, //规格索引
+    buyNum: 1,  //购买数量
+  },
+  	// 点击购物车
+	go_car: function(e) {
+		wx.navigateTo({
+			url: '/pages/buy/buy',
+			success: function(res) {
+				console.log("跳转成功");
+			},
+			fail: function() {
+        console.log("跳转失败");
+      }
+		})
+	},
+
+  // 去首页
+  bindSwitchTab: function(){
+    wx.reLaunch({
+      url: '/pages/index/index'
+    })
   },
   // 打赏跳转
   supportProject: function(){
@@ -45,20 +64,47 @@ Page({
   },
   // 加
   plus: function(){
-    var num = this.data.buyNum;
-    if(+num < +this.data.proArr[0].standard[this.data.specActive].stock){
-      num++;
-      this.setData({
-        buyNum: num
-      })
+    var num = +this.data.buyNum;
+    var standard = this.data.proArr[0].standard[this.data.specActive];
+    // 限购
+    if(standard.limit !== -1){
+      if(num < standard.limit){
+        if(num < +standard.stock){
+          num++;
+          this.setData({
+            buyNum: num
+          })
+        }else{
+          wx.showToast({
+            title: '您所填写的数量超过库存！',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      }else{
+        wx.showToast({
+          title: '不能超过限购数量！',
+          icon: 'none',
+          duration: 1500
+        })
+      }
     }else{
-      wx.showToast({
-        title: '您所填写的数量超过库存！',
-        icon: 'none',
-        duration: 1500
-      })
+      if(num < +standard.stock){
+        num++;
+        this.setData({
+          buyNum: num
+        })
+      }else{
+        wx.showToast({
+          title: '您所填写的数量超过库存！',
+          icon: 'none',
+          duration: 1500
+        })
+      }
     }
   },
+  
+
   // 输入数量
   bindManual: function(e){
     var num = e.detail.value;
@@ -82,6 +128,7 @@ Page({
       })
     }
   },
+
   touchMove () {},
   // 选择规格
   clickSpec: function(e){
@@ -142,13 +189,22 @@ Page({
       url: app.globalData.tiltes + 'crowd_support',
       method: 'POST',
       data: {
-        id: id
+        id: id,
+        member_id: app.globalData.member_id
       },
       success: function(res){
         console.log(res);
-        WxParse.wxParse('proDom', 'html', res.data.data[0].goods_text, _this, 5);
-        WxParse.wxParse('teamDom', 'html', res.data.data[0].team, _this, 5);
-        WxParse.wxParse('textDom', 'html', res.data.data[0].text, _this, 5);
+        var data = res.data.data[0];
+        var richTextArr = [];
+        richTextArr.push(data.goods_text);
+        richTextArr.push(data.team);
+        richTextArr.push(data.text);
+        for(var i = 0; i < richTextArr.length; i++){
+          richTextArr[i]?WxParse.wxParse('richText' + i, 'html', richTextArr[i], _this):'';
+          if (i === richTextArr.length - 1) {
+            WxParse.wxParseTemArray("richTextTemArray",'richText', richTextArr.length, _this)
+          }
+        }
         _this.setData({
           proArr: res.data.data
         })
@@ -158,53 +214,4 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

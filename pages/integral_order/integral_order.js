@@ -218,7 +218,8 @@ Page({
 
     var that = this;
     var item = event.currentTarget.dataset.id;
-    wx.navigateTo({
+    wx.navigateBack({
+      delta: 1,
       url: item + '?title=' + 0,
       success: function (res) {
 

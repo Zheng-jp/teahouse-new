@@ -51,7 +51,8 @@
     "pages/integral_settlement/integral_settlement",
     "pages/integral_order/integral_order",
     "pages/storage/view/view",
-    "pages/seach/seach"
+    "pages/seach/seach",
+    "live/index/index"
   ],
   "subpackages": [
     {
@@ -99,5 +100,6 @@
     "navigationBarBackgroundColor": "#F9F9F9",
     "navigationBarTitleText": "滴金茶业",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

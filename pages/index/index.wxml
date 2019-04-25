@@ -1,93 +1,93 @@
 <!-- index.wxml -->
 <import src="../../utils/template.wxml" />
 <view class="container">
-    <view class='title'>
-        <view style='float: left;' bindtap="nfc">
-            <view class="nfc">
-                <image src="img/u270.png"></image>
-            </view>
-            <view class='fangwei'>溯源</view>
-        </view>
-        <image src="img/seach.png" class="seach_img" mode="widthFix" />
-        <input type='text' class='seach' placeholder="请输入"  bindfocus="go_seach" readonly="readonly"></input>
-        <view style='float: left;' bindtap="bindViewTaps">
-            <view class="ma">
-                <image src="img/u180.png"></image>
-            </view>
-            <view class='fangwei'>会员码</view>
-        </view>
+  <view class='title'>
+    <view style='float: left;' bindtap="nfc">
+      <view class="nfc">
+        <image src="img/u270.png"></image>
+      </view>
+      <view class='fangwei'>溯源</view>
     </view>
-    <view class='home_banner'>
-        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" duration="1000">
-            <block wx:for="{{image}}" wx:key="{{index}}">
-                <swiper-item>
-                    <image src="{{item}}" class="slide-image" />
-                </swiper-item>
-            </block>
-        </swiper>
+    <image src="img/seach.png" class="seach_img" mode="widthFix" />
+    <input type='text' class='seach' placeholder="请输入" bindfocus="go_seach" readonly="readonly"></input>
+    <view style='float: left;' bindtap="bindViewTaps">
+      <view class="ma">
+        <image src="img/u180.png"></image>
+      </view>
+      <view class='fangwei'>会员码</view>
     </view>
-    <view class='nav-list clear' bindtap="go_div">
-        <view class='list list-one' wx:for="{{nav}}" wx:key="item" >
-            <view class='ico nav_ico ico-one'>
-                <image src='{{item.url}}'></image>
-            </view>
-            <text class='text'>{{item.text}}</text>
-        </view>
+  </view>
+  <view class='home_banner'>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" duration="1000">
+      <block wx:for="{{image}}" wx:key="{{index}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='nav-list clear' bindtap="go_div">
+    <view class='list list-one' wx:for="{{nav}}" wx:key="item">
+      <view class='ico nav_ico ico-one'>
+        <image src='{{item.url}}'></image>
+      </view>
+      <text class='text'>{{item.text}}</text>
     </view>
-    <view class='new clear'>
-        <image src='{{laba}}' class='news-img'></image>
-        <text style='color:#fff; font-size:24rpx;vertical-align:6rpx;margin-left:37rpx; float:left;'>
+  </view>
+  <view class='new clear'>
+    <image src='{{laba}}' class='news-img'></image>
+    <text style='color:#fff; font-size:24rpx;vertical-align:6rpx;margin-left:37rpx; float:left;'>
             通知：
         </text>
-        <view class='news-text'>111111</view>
-        <image src='{{close}}' class='close'></image>
+    <view class='news-text'>111111</view>
+    <image src='{{close}}' class='close'></image>
+  </view>
+  <view class='goods'>
+    <view class='goods-title clear'>
+      <text class='goods-title-text'>商品</text>
+      <view class='more-all' bindtap="go_good">
+        <text class='more'>更多</text>
+        <image src='{{more}}' style='float:right; ' class='more-img'></image>
+      </view>
     </view>
-    <view class='goods'>
-        <view class='goods-title clear'>
-            <text class='goods-title-text'>商品</text>
-            <view class='more-all' bindtap="go_good">
-                <text class='more'>更多</text>
-                <image src='{{more}}' style='float:right; ' class='more-img'></image>
-            </view>
+    <view class='goods-content'>
+      <view class="weui-grids">
+        <view class="weui-grid" wx:for="{{routers}}" wx:for-item="item" wx:key="*this" bindtap="go_gooddetail" data-id="{{item.id}}">
+          <template is="good" data="{{item}}" bindtap></template>
         </view>
-        <view class='goods-content'>
-            <view class="weui-grids">
-                <view class="weui-grid" wx:for="{{routers}}" wx:for-item="item" wx:key="*this" bindtap="go_gooddetail" data-id="{{item.id}}">
-                    <template is="good" data="{{item}}" bindtap></template>
-                </view>
-               
-            </view>
-             
-        </view>
+
+      </view>
+
     </view>
-    <view class='share'>
-        <view class='share-title clear'>
-            <text class='goods-title-text'>推荐</text>
-            <view class='more-all' bindtap="go_meeting">
-                <text class='more'>更多</text>
-                <image src='{{more}}' style='float:right; ' class='more-img'></image>
-            </view>
-        </view>
-        <view class='shares-content'>
-            <view class='listview' wx:for="{{share}}" wx:for-item="item" wx:key="*this">
-                <template is="joy-pic" data="{{item}}" bindtap></template>
-            </view>
-        </view>
+  </view>
+  <view class='share'>
+    <view class='share-title clear'>
+      <text class='goods-title-text'>推荐</text>
+      <view class='more-all' bindtap="go_meeting">
+        <text class='more'>更多</text>
+        <image src='{{more}}' style='float:right; ' class='more-img'></image>
+      </view>
     </view>
-    <image class="buy" src="img/buy.png" mode="widthFix" lazy-load="false" binderror="" bindload="" bindtap="go_car"></image>
-    <view style='font-size: 25rpx; color: #725E5E;text-align:center;margin-bottom:20rpx'>宣铭科技www.xuanmingkeji.cn提供技术支持</view>
-     <view wx:if="{{foot_is==2}}">
-        <view class="hbj footmenu" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:9998;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:if="{{footinfo.params.navstyle==0}}">
-            <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
-                <span class="iconfont {{item.iconclass}}" style="font-size:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx 0;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;line-height:{{style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
-                <view style="font-size:{{style.textfont*2}}rpx;padding:{{style.paddingleft*2}}rpx 0;color:{{style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
-            </view>
-        </view>
-        <view class="footmenu2" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:10000;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:elif="{{footinfo.params.navstyle==1}}">
-            <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
-                <image mode="aspectFill" src="https://teahouse.siring.com.cn/{{item.imgurl}}" style="display:block;margin:0 auto;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx;"></image>
-                <view style="font-size:{{style.textfont*2}}rpx;color:{{style.textcolor}};padding:{{style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
-            </view>
-        </view>
+    <view class='shares-content'>
+      <view class='listview' wx:for="{{share}}" wx:for-item="item" wx:key="*this">
+        <template is="joy-pic" data="{{item}}" bindtap></template>
+      </view>
+    </view>
+  </view>
+  <image class="buy" src="img/buy.png" mode="widthFix" lazy-load="false" binderror="" bindload="" bindtap="go_car"></image>
+  <view style='font-size: 25rpx; color: #725E5E;text-align:center;margin-bottom:20rpx'>宣铭科技www.xuanmingkeji.cn提供技术支持</view>
+  <view wx:if="{{foot_is==2}}">
+    <view class="hbj footmenu" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:9998;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:if="{{footinfo.params.navstyle==0}}">
+      <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+        <span class="iconfont {{item.iconclass}}" style="font-size:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx 0;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;line-height:{{style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
+        <view style="font-size:{{style.textfont*2}}rpx;padding:{{style.paddingleft*2}}rpx 0;color:{{style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+      </view>
+    </view>
+    <view class="footmenu2" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:10000;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:elif="{{footinfo.params.navstyle==1}}">
+      <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+        <image mode="aspectFill" src="https://teahouse.siring.com.cn/{{item.imgurl}}" style="display:block;margin:0 auto;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx;"></image>
+        <view style="font-size:{{style.textfont*2}}rpx;color:{{style.textcolor}};padding:{{style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+      </view>
+    </view>
   </view>
 </view>

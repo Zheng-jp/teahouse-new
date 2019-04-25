@@ -1,0 +1,153 @@
+<!--live/index/index.wxml-->
+<view class='main'>
+  <view class='nav'>
+    <view class='tea'>
+      <text class="sizecolor {{currentTab==0 ? ' change_current ' : 'not_change'}}" data-current="0" bindtap="swichNav">茶仓</text>
+    </view>
+    <view class='tea'>
+      <text class="sizecolor {{currentTab==1 ? ' change_current ' : 'not_change'}}" data-current="1" bindtap="swichNav">茶山</text>
+    </view>
+    <view class='tea'>
+      <text class="sizecolor {{currentTab==2 ? ' change_current ' : 'not_change'}}" data-current="2" bindtap="swichNav">茶厂</text>
+    </view>
+  </view>
+
+  <view class='swiper_main'>
+    <swiper current="{{currentTab}}" style='height: {{winHeight}}rpx' bindchange="bindChange">
+      <swiper-item>
+
+        <scroll-view scroll-y='true'>
+          <block wx:for="{{imgUrls}}" wx:key='index'>
+            <view>
+              <view class="slide-image">
+                <image src="{{item}}" bindtap='toLive'></image>
+              </view>
+              <view class='status_bar'>
+                <view class=''>
+                  <image src='../img/u2133.png' class='tubiao'></image>
+                </view>
+                <text class='store_name'>仓BJ01</text>
+
+                <view class=''>
+                  <image src='../img/u5440.png' class='tubiao'></image>
+                </view>
+                <text class='size'>230</text>
+
+                <view class=''>
+                  <image src='../img/u5437.png' class='tubiao'></image>
+                </view>
+                <text class='size'>230</text>
+
+                <view class=''>
+                  <image src='../img/u5439.png' class='tubiao'></image>
+                </view>
+                <text class='size'>230</text>
+
+                <view class=''>
+                  <image src='../img/u5462.png' class='tubiao'></image>
+                </view>
+                <text class='size_last'>230</text>
+              </view>
+            </view>
+          </block>
+        </scroll-view>
+
+      </swiper-item>
+
+      <swiper-item>
+        <view class=''>
+          <scroll-view class='scoll-h' scroll-y='true'>
+            <block wx:for="{{imgUrls}}" wx:key='index'>
+              <view style='width: 100%;'>
+                <view class="slide-image">
+                  <image src="{{item}}" bindtap='toLive'></image>
+                </view>
+                <view class='status_bar'>
+                  <view class=''>
+                    <image src='../img/u2133.png' class='tubiao'></image>
+                  </view>
+                  <text class='store_name'>仓BJ01</text>
+
+                  <view class=''>
+                    <image src='../img/u5440.png' class='tubiao'></image>
+                  </view>
+                  <text class='size'>230</text>
+
+                  <view class=''>
+                    <image src='../img/u5437.png' class='tubiao'></image>
+                  </view>
+                  <text class='size'>230</text>
+
+                  <view class=''>
+                    <image src='../img/u5439.png' class='tubiao'></image>
+                  </view>
+                  <text class='size'>230</text>
+
+                  <view class=''>
+                    <image src='../img/u5462.png' class='tubiao'></image>
+                  </view>
+                  <text class='size_last'>230</text>
+                </view>
+              </view>
+            </block>
+          </scroll-view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class=''>
+          <scroll-view class='scoll-h' scroll-y='true'>
+            <block wx:for="{{imgUrls}}" wx:key='index'>
+              <view style='width: 100%;'>
+                <view class="slide-image">
+                  <image src="{{item}}" bindtap='toLive'></image>
+                </view>
+                <view class='status_bar'>
+                  <view class=''>
+                    <image src='../img/u2133.png' class='tubiao'></image>
+                  </view>
+                  <text class='store_name'>仓BJ01</text>
+
+                  <view class=''>
+                    <image src='../img/u5440.png' class='tubiao'></image>
+                  </view>
+                  <text class='size'>230</text>
+
+                  <view class=''>
+                    <image src='../img/u5437.png' class='tubiao'></image>
+                  </view>
+                  <text class='size'>230</text>
+
+                  <view class=''>
+                    <image src='../img/u5439.png' class='tubiao'></image>
+                  </view>
+                  <text class='size'>230</text>
+
+                  <view class=''>
+                    <image src='../img/u5462.png' class='tubiao'></image>
+                  </view>
+                  <text class='size_last'>230</text>
+                </view>
+              </view>
+            </block>
+          </scroll-view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+
+  </view>
+  <view wx:if="{{foot_is==2}}">
+  <view class="hbj footmenu" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:9998;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:if="{{footinfo.params.navstyle==0}}">
+    <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+      <span class="iconfont {{item.iconclass}}" style="font-size:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx 0;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;line-height:{{style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
+      <view style="font-size:{{style.textfont*2}}rpx;padding:{{style.paddingleft*2}}rpx 0;color:{{style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+    </view>
+  </view>
+  <view class="footmenu2" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:10000;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:elif="{{footinfo.params.navstyle==1}}">
+    <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+      <image mode="aspectFill" src="https://teahouse.siring.com.cn/{{item.imgurl}}" style="display:block;margin:0 auto;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx;"></image>
+      <view style="font-size:{{style.textfont*2}}rpx;color:{{style.textcolor}};padding:{{style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+    </view>
+  </view>
+</view>
+</view>

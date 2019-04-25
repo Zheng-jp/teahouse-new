@@ -15,7 +15,8 @@ function _defineProperty(t, a, e) {
 }
 
 var app = getApp();
- var wxParse = require("../resource/wxParse/wxParse.js");
+ var wxParse = 
+ require("../resource/wxParse/wxParse.js");
 var BackgroundAudioManager = wx.getBackgroundAudioManager();
 
 BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
@@ -464,9 +465,59 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
             }
         });
     },
+  newRedirectto: function (n, e) {
+
+    switch (e) {
+      case "page":
+        wx.navigateTo({
+          url: n
+        });
+
+        break;
+      case "webs":
+        wx.navigateTo({
+          url: n
+        });
+
+        break;
+
+      case "tel":
+        n = n.slice(4), wx.showModal({
+          title: "提示",
+          content: "是否拨打电话:" + n,
+          success: function (e) {
+            1 == e.confirm && wx.makePhoneCall({
+              phoneNumber: n
+            });
+          }
+        });
+        break;
+
+      case "map":
+        var a = n.split("##");
+        n = a[0].split(","), wx.openLocation({
+          latitude: parseFloat(n[0]),
+          longitude: parseFloat(n[1]),
+          scale: 22,
+          name: a[1],
+          address: a[2]
+        });
+        break;
+
+      case "mini":
+        var i = n.slice(6);
+        wx.navigateToMiniProgram({
+          appId: i,
+          path: "",
+          success: function (e) {
+            console.log("打开成功"), console.log(i);
+          }
+        });
+    }
+  },
     redirectto: function(t) {
         var a = t.currentTarget.dataset.link, e = t.currentTarget.dataset.linktype;
-        app.redirectto(a, e);
+        this.newRedirectto(a, e);
     },
     showvideo: function() {
         this.setData({
@@ -697,7 +748,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
                 uniacid: f.data.uniacid,
                 pageid: t,
                 open_id: app.globalData.gmemberid,
-                member_grade_name: app.globalData.member_grade_img
+                member_grade_name: app.globalData.member_grade_name
             },
             success: function(t) {
                 console.log(t);

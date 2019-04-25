@@ -369,29 +369,28 @@ Page({
           that.setData({
             [sexParam]: index,
           })
-
         }
            //  添加字段到等级数组
-           for (var index in that.data.goodList) {
-            var sexParam = "goodList[" + index + "].desc";
-            that.setData({
-              [sexParam]: '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
-            })
-  
-          }
-           //  添加字段到等级数组
-           for (var index in that.data.goodList) {
-            var sexParam = "goodList[" + index + "].check";
-            that.setData({
-              [sexParam]: false,
-            })
-  
-          }
-          // if(!that.data.goodList.length){
-          //   that.setData({
-          //     iscart: true
-          //   });
-          // }
+          for (var index in that.data.goodList) {
+          var sexParam = "goodList[" + index + "].desc";
+          that.setData({
+            [sexParam]: '商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点商品卖点',
+          })
+
+        }
+          //  添加字段到等级数组
+          for (var index in that.data.goodList) {
+          var sexParam = "goodList[" + index + "].check";
+          that.setData({
+            [sexParam]: false,
+          })
+
+        }
+        // if(!that.data.goodList.length){
+        //   that.setData({
+        //     iscart: true
+        //   });
+        // }
 
       },
       fail: function () {
