@@ -187,6 +187,11 @@ color:#3399FF;
 .order-goods-info{
   background: #FAFAFA;
 }
+radio {
+  padding: 0rpx !important;
+  width: 33rpx;
+}
+
 .radio-group{
   display: flex;
   align-items: center;
@@ -246,7 +251,7 @@ color:#3399FF;
 .is_invoice2{
   display: flex;
   align-items: center;
-  padding: 26rpx;
+  padding: 22rpx 10rpx 22rpx 25rpx;
   border-bottom:solid 1rpx #E4E4E4; 
 }
 .is_invoice{

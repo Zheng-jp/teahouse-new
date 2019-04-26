@@ -33,22 +33,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    //  高度自适应
-    that.setData({
-      winHeight: 380 * this.data.imgUrls.length + 50
-    })
-  },
-
-
-  redirectto: function (t) {
-    var a = t.currentTarget.dataset.link, e = t.currentTarget.dataset.linktype;
-    app.redirectto(a, e);
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    var that = this;
     wx.request({
       url: app.globalData.baseurl + "doPagehomepage",
       cachetime: "30",
@@ -67,20 +51,42 @@ Page({
             foot: t.data.data.foot_is
           },
           success: function (t) {
-            console.log(t)
             that.setData({
               footinfo: t.data.data,
               style: t.data.data.style,
             })
           }
+         
         });
-
+        
 
       },
       fail: function (t) {
         console.log(t);
       }
     });
+    //  高度自适应
+    that.setData({
+      winHeight: 380 * this.data.imgUrls.length + 50
+    })
+  },
+
+
+  redirectto: function (t) {
+    var a = t.currentTarget.dataset.link, e = t.currentTarget.dataset.linktype;
+    app.redirectto(a, e);
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    // var that = this;
+    
+      
+      
+      
+    
+    
 
   },
 

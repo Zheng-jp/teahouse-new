@@ -173,6 +173,7 @@
 	
 	.bc_white {
 		background: #fff;
+    margin-bottom: 20rpx;
 	}
   	.bc_white>view{
    line-height: 94rpx;
