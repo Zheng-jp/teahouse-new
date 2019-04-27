@@ -81,6 +81,8 @@
 	.sale {
 		color: red;
 		font-size: 40rpx;
+    margin-bottom:-10rpx;
+
 	}
 	
 	.other_info {
@@ -185,7 +187,7 @@
     border-bottom: 1px solid #DDDDDD;
   }
   .tab-box{
-    margin-bottom: 100rpx;
+    /* margin-bottom: 100rpx; */
   }
   .tab-box>view{
     background: #fff;
@@ -574,3 +576,12 @@ overflow:hidden;
   
 }
 
+.foot_text {
+  text-align:center;
+  font-size:28rpx;
+  color:rgba(0, 0, 0, 0.6);
+  background-color:#fff;
+  height:80rpx;
+  padding:15rpx;
+  margin:15rpx 0 100rpx 0;
+}

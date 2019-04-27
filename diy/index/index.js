@@ -79,6 +79,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     homepageid: 0,
 
   },
+  
   onPullDownRefresh: function() {
     var t = this;
     t.refreshSessionkey();

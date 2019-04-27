@@ -8,6 +8,7 @@ Page({
       '../img/u2404.png'
     ]
   },
+  
   toLive: function () {
     wx.navigateTo({
       url: '../synopsis/synopsis'
@@ -82,7 +83,7 @@ Page({
   onReady: function () {
     // var that = this;
     
-      
+    wx.startPullDownRefresh();
       
       
     

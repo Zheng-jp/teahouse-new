@@ -54,7 +54,7 @@
 				<view class='good_name'>{{goods.goods_name}}</view>
 				<view class='selling-point'>{{goods.goods_selling}}</view>
 				<view class='price_cont'>
-						<view style="display:flex; align-items:center;">
+						<view style="display:flex; align-items:flex-end;">
 								<view class='level_images'>
 										<image src='{{url}}{{member_grade_img}}'></image>
 								</view>
@@ -64,7 +64,7 @@
 								<view wx:else>
 										<view class='sale'>￥{{goods.min_price}}/片</view>
 								</view>
-								<view>
+								<view style='margin-bottom:-7rpx;'>
 										<view class='.line_price'>￥{{goods.min_line}}/片</view>
 								</view>
 						</view>
@@ -146,7 +146,7 @@
 						</view>
 				</view>
 		</view>
-    <view style='text-align:center;'>
+    <view class='foot_text'>
       <view>智慧茶仓提供技术支持</view>
       <view>www.zhihuichacang.com</view>
     </view>

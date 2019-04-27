@@ -187,9 +187,10 @@ color:#3399FF;
 .order-goods-info{
   background: #FAFAFA;
 }
-radio {
-  padding: 0rpx !important;
-  width: 33rpx;
+radio .wx-radio-input.wx-radio-input-checked::before{
+  
+   transform:translate(-7rpx, -7rpx) scale(1);
+   -webkit-transform:translate(-7rpx, -7rpx) scale(1);
 }
 
 .radio-group{
@@ -697,7 +698,6 @@ align-items: center;
   font-size: 25rpx;
   color: #FF0000;
   overflow: hidden;
-  
 }
 .list2{
   display: flex;

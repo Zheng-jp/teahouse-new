@@ -1313,7 +1313,7 @@ Page({
   },
   checkboxChangess: function (e) {
     var that = this;
-    console.log(e);
+    // console.log(e);
     wx.request({
       url: app.globalData.tiltes + 'coupon_minute',
       data: {
@@ -1409,9 +1409,9 @@ Page({
   god_money: function () {
     var that = this;
     var all_moneys = 0;
+    // console.log(that.data.goods)
     for (var i = 0; i < that.data.goods.length; i++) {
-      all_moneys += that.data.goods[i].grade_price * that.data.goods[i].number;
-      console.log(that.data.goods[i].grade_price);
+      all_moneys += Number(that.data.goods[i].grade_price) * Number(that.data.goods[i].number);
     }
     that.setData({
       goods_money_one: all_moneys
@@ -1426,10 +1426,11 @@ Page({
     //   all_moneys += that.data.goods[i].grade_price * that.data.goods[i].number;
     // }
     that.god_money();
-    var all_moneys_alls = that.data.goods_money_one + that.data.storage + that.data.freight - that.data.money + that.data.taxes;
+    var all_moneys_alls = Number(that.data.goods_money_one) + Number(that.data.storage) + Number(that.data.freight) - Number(that.data.money) + Number(that.data.taxes);
+    all_moneys_alls = Number(all_moneys_alls).toFixed(2);
     if (all_moneys_alls > 0) {
       that.setData({
-        all_money: all_moneys_alls.toFixed(2),
+        all_money: all_moneys_alls,
       });
       that.setData({
         all_money: that.data.all_money,
@@ -1650,11 +1651,12 @@ Page({
   // 计算发票费用
   invi: function () {
     var that = this;
-    var goods_money = 0;
+    var goods_money = 0.00;
     for (var i = 0; i < that.data.goods.length; i++) {
       goods_money += that.data.goods[i].grade_price * that.data.goods[i].number;
     }
-    goods_money = goods_money * that.data.rate / 100;
+    
+    goods_money = (goods_money * that.data.rate / 100).toFixed(2);
     that.setData({
       taxes: goods_money,
     })
@@ -1695,8 +1697,9 @@ Page({
         var all_moneys = 0;
         var unit = [];
         for (var i = 0; i < that.data.goods.length; i++) {
-          all_moneys += that.data.goods[i].grade_price * that.data.goods[i].number;
+          all_moneys += Number(that.data.goods[i].grade_price) * Number(that.data.goods[i].number);
         }
+        // console.log(all_moneys)
         for (var j = 0; j < that.data.goods.length; j++) {
 
           unit.push(that.data.goods[j].unit);
