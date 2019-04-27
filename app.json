@@ -53,8 +53,8 @@
     "pages/storage/view/view",
     "pages/seach/seach",
     "live/index/index",
-    "pages/nfc/index/index",
-    "pages/nfc/anti_fake/anti_fake"
+    "sweep/pages/index/index",
+    "sweep/pages/sweep_detail/sweep_detail"
   ],
   "subpackages": [
     {
@@ -75,12 +75,6 @@
         "aftersale_detail/aftersale_detail",
         "aftersale_success/aftersale_success",
         "aftersale_finish/aftersale_finish"
-      ]
-    },
-    {
-      "root": "sweep/pages",
-      "pages": [
-        "sweep_detail/sweep_detail"
       ]
     },
     {

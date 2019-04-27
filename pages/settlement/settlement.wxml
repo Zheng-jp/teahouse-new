@@ -201,7 +201,7 @@
 		</checkbox-group>
 			<image class="tips_img" src="img/u927.png" mode="widthFix"> </image>
       <view style='font-size:23rpx;color:#949494;margin-left:8rpx;'>*必选，默认1年</view>
-      	<view class='invoice_money text_red' style='margin-left:150rpx'>
+      	<view class='invoice_money text_red' style='margin-left:166rpx; '>
 				¥ 0.00
 			</view>
 		</view>

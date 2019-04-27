@@ -1,4 +1,4 @@
-// pages/live/index/index.js
+// pages/sweep/pages/index/index.js
 Page({
 
   /**

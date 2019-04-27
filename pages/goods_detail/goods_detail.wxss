@@ -113,7 +113,7 @@
 	
 	.ser-type {
 		padding: 20rpx;
-		margin: 10rpx 0 10rpx 0;
+		margin-top: 10rpx;
 		display: flex;
 		justify-content: space-between;
 		background: #fff;
@@ -173,6 +173,10 @@
 	
 	.bc_white {
 		background: #fff;
+    margin-bottom: 20rpx;
+    margin-top:10rpx;
+    
+
 	}
   	.bc_white>view{
    line-height: 94rpx;
