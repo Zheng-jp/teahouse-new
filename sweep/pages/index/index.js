@@ -13,7 +13,7 @@ Page({
     var that = this
     wx.getHCEState({
       success(res) {
-        console.log('NfcHCECore-->getNfcStatus::success:', res)
+        console.log(res)
         that.setData({
           isNfc: true
         })

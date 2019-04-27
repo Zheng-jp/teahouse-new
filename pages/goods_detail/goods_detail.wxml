@@ -146,6 +146,10 @@
 						</view>
 				</view>
 		</view>
+    <view style='text-align:center;'>
+      <view>智慧茶仓提供技术支持</view>
+      <view>www.zhihuichacang.com</view>
+    </view>
 		<view class='footbar'>
 				<view class='ico_view'>
 						<view class='service' bindtap="go_index">

@@ -49,7 +49,7 @@ Page({
 		// 商品库存
 		var stock = e.target.dataset.stock;
 		// 商品销量
-		// var current=e.target.dataset.current;
+    var price = e.target.dataset.price;
 		// 商品图片 
 		var images = e.target.dataset.images;
 		// 规格id
