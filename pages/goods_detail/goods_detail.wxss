@@ -81,6 +81,8 @@
 	.sale {
 		color: red;
 		font-size: 40rpx;
+    margin-bottom:-10rpx;
+
 	}
 	
 	.other_info {
@@ -113,7 +115,7 @@
 	
 	.ser-type {
 		padding: 20rpx;
-		margin: 10rpx 0 10rpx 0;
+		margin-top: 10rpx;
 		display: flex;
 		justify-content: space-between;
 		background: #fff;
@@ -173,6 +175,10 @@
 	
 	.bc_white {
 		background: #fff;
+    margin-bottom: 20rpx;
+    margin-top:10rpx;
+    
+
 	}
   	.bc_white>view{
    line-height: 94rpx;
@@ -181,7 +187,7 @@
     border-bottom: 1px solid #DDDDDD;
   }
   .tab-box{
-    margin-bottom: 100rpx;
+    /* margin-bottom: 100rpx; */
   }
   .tab-box>view{
     background: #fff;
@@ -570,3 +576,12 @@ overflow:hidden;
   
 }
 
+.foot_text {
+  text-align:center;
+  font-size:28rpx;
+  color:rgba(0, 0, 0, 0.6);
+  background-color:#fff;
+  height:80rpx;
+  padding:15rpx;
+  margin:15rpx 0 100rpx 0;
+}

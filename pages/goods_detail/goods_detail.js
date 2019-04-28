@@ -49,7 +49,7 @@ Page({
 		// 商品库存
 		var stock = e.target.dataset.stock;
 		// 商品销量
-		// var current=e.target.dataset.current;
+    var price = e.target.dataset.price;
 		// 商品图片 
 		var images = e.target.dataset.images;
 		// 规格id
@@ -244,7 +244,7 @@ Page({
 	},
 	go_index: function(e) {
 		wx.navigateTo({
-      url: '../index/index',   //注意navigateTo只能跳转到带有tab的页面，不能跳转到不带tab的页面
+      url: '../../diy/index/index',   //注意navigateTo只能跳转到带有tab的页面，不能跳转到不带tab的页面
     })
 	},
 	/* 点击减号 */

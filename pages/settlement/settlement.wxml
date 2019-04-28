@@ -150,8 +150,8 @@
 			<view class="direct_mail {{selected2?'show':'hidden'}}" bindtap='go_save_tea'>
 				<view  class='select_box'>
 						<view class='add_information'>
-								<view class="list1" style='margin-left:8rpx'>
-								   <view> 仓储编号:{{warehouse.name}} </view>
+								<view class="list1">
+								   <view> 仓储编号: {{warehouse.name}} </view>
 								   <view>
 									  <view class="sava_contents">
 										 <view class="savetitle">仓储费标准:</view>
@@ -172,11 +172,11 @@
 								   </view>
 								</view>
 								<view class='address'>
-								   仓储地址:{{warehouse.adress}}
+								   仓储地址: {{warehouse.adress}}
 								</view>
 								<view class="list2">
-								   <view class="list2_title">
-									  仓库描述:
+								   <view class="list2_title" style='width:115rpx;'>
+									  仓库描述: 
 								   </view>
 								   <view class="list2_content">
 									  {{warehouse.describe}}
@@ -201,7 +201,7 @@
 		</checkbox-group>
 			<image class="tips_img" src="img/u927.png" mode="widthFix"> </image>
       <view style='font-size:23rpx;color:#949494;margin-left:8rpx;'>*必选，默认1年</view>
-      	<view class='invoice_money text_red' style='margin-left:150rpx'>
+      	<view class='invoice_money text_red' style='margin-left:166rpx; '>
 				¥ 0.00
 			</view>
 		</view>

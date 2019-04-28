@@ -159,11 +159,12 @@ Page({
   },
   onReady: function() {
     var that = this;
+    var uniacid = app.globalData.uniacid;
     wx.request({
       url: app.globalData.baseurl + "doPagehomepage",
       cachetime: "30",
       data: {
-        uniacid: 1
+        uniacid: uniacid
       },
       success: function (t) {
         that.setData({
@@ -173,7 +174,7 @@ Page({
           url: app.globalData.baseurl + "doPageGetFoot",
           cachetime: "30",
           data: {
-            uniacid: 1,
+            uniacid: uniacid,
             foot: t.data.data.foot_is
           },
           success: function (t) {

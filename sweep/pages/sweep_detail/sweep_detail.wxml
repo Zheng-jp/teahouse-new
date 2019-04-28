@@ -1,106 +1,109 @@
 <view class="all">
-    <view class="img_content">
-        <image class="img"
-            src="https://d2i72ju5buk5xz.cloudfront.net/gsc/2ZMMUG/a0/f3/fc/a0f3fc0de2164591acc52ce23209672e/images/扫码成功/u352.png?token=623ea009238a0fd2939e5b8c94f8052d"
-            mode="widthFix" lazy-load="false" binderror="" bindload="" />
+  <view class="img_content">
+    
+      <image class="img" src="../../../images/img1.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+  </view>
+  <view class="list_content">
+    <view class="lista">
+      <view class="lefta">NFC ID： </view>
+      <view class="righta">45667778567 </view>
     </view>
-    <view class="list_content">
-        <view class="lista">
-            <view class="lefta">NFC ID： </view>
-            <view class="righta">45667778567 </view>
-        </view>
-        <view class="lista">
-            <view class="lefta"> 产品总量： </view>
-            <view class="righta">45667778567 </view>
-        </view>
-        <view class="lista">
-            <view class="lefta"> 产品编号： </view>
-            <view class="righta">45667778567 </view>
-        </view>
+    <view class="lista">
+      <view class="lefta"> 产品总量： </view>
+      <view class="righta">6547片 </view>
     </view>
-    <view class="list_content">
-        <view class="lista">
-            <view class="lefta">
-                出品商： </view>
-            <view class="righta">45667778567 </view>
+    <view class="lista">
+      <view class="lefta"> 产品编号： </view>
+      <view class="righta">dy0987 </view>
+    </view>
+  </view>
+  <view class="list_content">
+    <view class="lista">
+      <view class="lefta"> 出品商： </view>
+      <view class="righta">云南大益茶厂 </view>
+    </view>
+    <view class="lista">
+      <view class="lefta">品牌： </view>
+      <view class="righta">大益茶 </view>
+    </view>
+    <view class="lista">
+      <view class="lefta"> 产品名称： </view>
+      <view class="righta">云雀 </view>
+    </view>
+    <view class="lista">
+      <view class="lefta"> 规格： </view>
+      <view class="righta">24提 </view>
+    </view>
+    <view class="lista">
+      <view class="lefta"> 原料日期： </view>
+      <view class="righta">2018.09.08 </view>
+    </view>
+    <view class="lista">
+      <view class="lefta"> 发酵日期： </view>
+      <view class="righta">2018.09.08 </view>
+    </view>
+    <view class="lista">
+      <view class="lefta"> 包装日期： </view>
+      <view class="righta">2018.09.08 </view>
+    </view>
+    <view class="lista">
+      <view class="lefta"> 加工日期 </view>
+      <view class="righta">2018.09.08 </view>
+    </view>
+    <view class="lista">
+      <view class="lefta"> 原产地： </view>
+      <view class="righta">云南 </view>
+    </view>
+    <view class="list_a">
+      <view class="lefta"> 产地定位： </view>
+      <view class="right_content">
+        <view class="righta">
+          <view class="haiba">海拔1486米</view>
+          <view class="haiba">东经108°48′37,北纬26°23′29</view>
         </view>
-        <view class="lista">
-            <view class="lefta">品牌： </view>
-            <view class="righta">45667778567 </view>
-        </view>
-        <view class="lista">
-            <view class="lefta"> 产品名称： </view>
-            <view class="righta">45667778567 </view>
-        </view>
-        <view class="lista">
-            <view class="lefta"> 规格： </view>
-            <view class="righta">45667778567 </view>
-        </view>
-        <view class="lista">
-            <view class="lefta">
-                原料日期： </view>
-            <view class="righta">45667778567 </view>
-        </view>
-        <view class="lista">
-            <view class="lefta"> 发酵日期： </view>
-            <view class="righta">45667778567 </view>
-        </view>
-        <view class="lista">
-            <view class="lefta"> 包装日期： </view>
-            <view class="righta">45667778567 </view>
-        </view>
-        <view class="lista">
-                <view class="lefta"> 加工日期 </view>
-                <view class="righta">45667778567 </view>
-            </view>
-        <view class="lista">
-            <view class="lefta"> 原产地： </view>
-            <view class="righta">45667778567 </view>
-        </view>
-        <view class="list_a">
-            <view class="lefta"> 产地定位： </view>
-            <view class="right_content">
-                <view class="righta">
-                    <view class="haiba">海拔1486米</view>
-                    <view class="haiba">东经108°48′37,北纬26°23′29</view>
-                </view>
-                <image class="more" src="img/u303.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+        <image class="more" src="img/u303.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
 
-            </view>
-        </view>
+      </view>
+    </view> 
+  </view>
+  <view class="list_content">
+    <view class="title">
+      数据来自终端设备采集 ：
     </view>
-    <view class="list_content">
-        <view class="title">
-            数据来自终端设备采集 ：
+    <view class="logith">
+      <view class="time">
+        <view class="times">2018年2月18日</view>
+        <view class="times">00:23:54</view>
+      </view>
+
+      <view class="log_content">
+        <image class="new_img" src="img/u474.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+
+        <view class="new">最新</view>
+        <view class="log_content_text">
+          <text> 从 </text>
+          <text class="add"> 普洱一号仓库 </text>
+          <text>出库 </text>
         </view>
-        <view class="logith">
-            <view class="time">
-                <view class="times">2018年2月18日</view>
-                <view class="times">00:23:54</view>
-            </view>
-           
-            <view class="log_content">
-                <image class="new_img" src="img/u474.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
-                  
-                    <view class="new">最新</view>
-                    <view class="log_content_text">
-                            <text > 从 </text><text class="add" > 普洱一号仓库 </text>  <text >出库 </text>
-                    </view>
-            </view>
-        </view>
-        <view class="logith">
-                <view class="time">
-                    <view class="times">2018年2月18日</view>
-                    <view class="times">00:23:54</view>
-                </view>
-                <view class="log_content">
-                    <image class="new_img" src="img/u482.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
-                      
-                        <view class="new" style="opacity: 0;">最新</view>
-                        <view class="log_content_text">
-                                <text > 从 </text><text class="add" > 普洱一号仓库 </text>  <text >出库 </text>
-                        </view>
-                </view>
-            </view>
+      </view>
     </view>
+    <view class="logith">
+      <view class="time">
+        <view class="times">2018年2月18日</view>
+        <view class="times">00:23:54</view>
+      </view>
+      <view class="log_content">
+        <image class="new_img" src="img/u482.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+
+        <view class="new" style="opacity: 0;">最新</view>
+        <view class="log_content_text">
+          <text> 从 </text>
+          <text class="add"> 普洱一号仓库 </text>
+          <text>出库 </text>
+        </view>
+      </view>
+    </view>
+
+
+  </view>
 </view>

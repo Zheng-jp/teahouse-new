@@ -54,6 +54,7 @@ checkbox-group{
   width: 100rpx;
   text-align: center;
 }
+
 .add_information{
   width: 486rpx;
   font-size: 26rpx;

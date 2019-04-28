@@ -239,7 +239,7 @@ Page({
             address: res.data.data,
           });
         }
-
+        console.log(that.data.address)
         for (var index in that.data.address) {
 
           var address_names = that.data.address[index].address_name.split(",").join("");

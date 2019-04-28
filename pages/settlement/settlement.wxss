@@ -187,6 +187,12 @@ color:#3399FF;
 .order-goods-info{
   background: #FAFAFA;
 }
+radio .wx-radio-input.wx-radio-input-checked::before{
+  
+   transform:translate(-7rpx, -7rpx) scale(1);
+   -webkit-transform:translate(-7rpx, -7rpx) scale(1);
+}
+
 .radio-group{
   display: flex;
   align-items: center;
@@ -246,7 +252,7 @@ color:#3399FF;
 .is_invoice2{
   display: flex;
   align-items: center;
-  padding: 26rpx;
+  padding: 22rpx 10rpx 22rpx 25rpx;
   border-bottom:solid 1rpx #E4E4E4; 
 }
 .is_invoice{
@@ -692,7 +698,6 @@ align-items: center;
   font-size: 25rpx;
   color: #FF0000;
   overflow: hidden;
-  
 }
 .list2{
   display: flex;

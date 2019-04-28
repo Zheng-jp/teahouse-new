@@ -1,5 +1,5 @@
 var url = "https://teahouse.siring.com.cn/api/";
-var uniacid = "1";
+var uniacid = "6";
 App({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),

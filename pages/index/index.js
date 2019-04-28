@@ -54,20 +54,39 @@ Page({
   },
 
   nfc: function(e) {
-    // wx.scanCode({
-    //   onlyFromCamera: false,
-    //   success(res) {
-    //     wx.showToast({
-    //       title: '非在下产品',
-    //       icon: 'none',
-    //       duration: 3000
-    //     })
-    //     console.log(res)
-    //     // var com_url = res.result.split('/')[2];
-    //     // console.log(a)
-    //   }
-    // });
+    wx.scanCode({
+      onlyFromCamera: false,
+      success(res) {
+        var code_url = res.result.split('/')[2];
+        var com_url = app.globalData.url.split('/')[2];
+        // console.log(code_url)
+        // console.log(com_url)
+        if (code_url != com_url){
+          wx.showToast({
+            title: '非在下产品',
+            icon: 'none',
+            duration: 2500
+          })
+        } else {
+          wx.navigateTo({
+            url: '../code/code?title=' + app.globalData.gmemberid,
+            success: function (res) { },
+            fail: function () { },
+            complete: function () { }
+
+          })
+        }
+        
+      }
+    });
     
+  },
+  tofaker: function() {
+    var that = this;
+    wx.navigateTo({
+      url: '../nfc/index/index'
+
+    })
   },
   bindViewTaps: function() {
     var that = this;
