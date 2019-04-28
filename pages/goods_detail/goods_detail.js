@@ -431,7 +431,7 @@ Page({
               chars.push(good_ids);
               chars.push(ids);
               chars.push(nums);
-              let userStr = JSON.stringify(chars);
+							let userStr = JSON.stringify(chars);
               wx.navigateTo({
                 url: '../settlement/settlement?title=' + userStr,
                 success: function(res) {
