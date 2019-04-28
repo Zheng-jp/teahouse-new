@@ -33,6 +33,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+  },
+
+
+  redirectto: function (t) {
+    var a = t.currentTarget.dataset.link, e = t.currentTarget.dataset.linktype;
+    app.redirectto(a, e);
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     var that = this;
     var uniacid = app.globalData.uniacid;
     wx.request({
@@ -58,9 +77,9 @@ Page({
               style: t.data.data.style,
             })
           }
-         
+
         });
-        
+
 
       },
       fail: function (t) {
@@ -71,32 +90,6 @@ Page({
     that.setData({
       winHeight: 380 * this.data.imgUrls.length + 50
     })
-  },
-
-
-  redirectto: function (t) {
-    var a = t.currentTarget.dataset.link, e = t.currentTarget.dataset.linktype;
-    app.redirectto(a, e);
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    // var that = this;
-    
-    wx.startPullDownRefresh();
-      
-      
-    
-    
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   /**

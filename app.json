@@ -92,10 +92,11 @@
     }
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#F9F9F9",
     "navigationBarTitleText": "滴金茶业",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh" : true
   },
   "sitemapLocation": "sitemap.json"
 }

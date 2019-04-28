@@ -54,9 +54,9 @@
 				<view class='good_name'>{{goods.goods_name}}</view>
 				<view class='selling-point'>{{goods.goods_selling}}</view>
 				<view class='price_cont'>
-						<view style="display:flex; align-items:flex-end;">
-								<view class='level_images'>
-										<image src='{{url}}{{member_grade_img}}'></image>
+						<view style="display:flex; align-items:flex-end;margin-bottom:-15px">
+								<view class='level_images' style='margin-bottom:9.5rpx;'>
+										<image src='{{url}}{{member_grade_img}}' ></image>
 								</view>
 								<view wx:if="{{goods.goods_standard==0}}">
 										<view class='sale'>￥{{goods.goods_new_money}}/片</view>
@@ -64,7 +64,7 @@
 								<view wx:else>
 										<view class='sale'>￥{{goods.min_price}}/片</view>
 								</view>
-								<view style='margin-bottom:-7rpx;'>
+								<view>
 										<view class='.line_price'>￥{{goods.min_line}}/片</view>
 								</view>
 						</view>

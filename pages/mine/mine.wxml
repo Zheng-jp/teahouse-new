@@ -1,66 +1,74 @@
 <!--my.wxml-->
 <wxs module="phone">
-var toHide = function(array) {
-  var mphone = array.substring(0, 3) + '****' + array.substring(7);
-  return mphone;
-}
-module.exports.toHide = toHide;
+  var toHide = function(array) {
+    var mphone = array.substring(0, 3) + '****' + array.substring(7);
+    return mphone;
+  }
+  module.exports.toHide = toHide;
 </wxs>
 <view style='background-color:#ebebeb;'>
 
-<view style='background:{{information.member_background_color}}'>
-  <view class='information' >
+  <view style='background:{{information.member_background_color}}'>
+    <view class='information'>
       <view class='list balance'>
-            <view class='balance bbla' >余额</view>
-            <view class='balance_num nnum'>￥{{information.member_wallet}}</view>
-            <view class='balance_btn bbtn' bindtap="go_recharge"><button style='background:{{information.member_background_color}}'>充值</button></view>
-      </view>
-        <view class='list' bindtap="go_change">
-          <view class='username'>
-             {{information.member_name}}
-            </view>
-            <view class='head_portrait' >
-              <open-data type="userAvatarUrl"></open-data>
-            </view> 
-            <view class='phone_num' wx:if="{{information.member_phone_num}}">
-            {{phone.toHide(information.member_phone_num)}}
-            </view>
+        <view class='balance bbla'>余额</view>
+        <view class='balance_num nnum'>￥{{information.member_wallet}}</view>
+        <view class='balance_btn bbtn' bindtap="go_recharge">
+          <button style='background:{{information.member_background_color}}'>充值</button>
         </view>
-          <view class='list'>
-            <view class='bbla'>积分</view>
-            <view class='nnum'>{{information.member_integral_wallet}}</view>
-            <view class='bbtn' bindtap="go_integral_center"><button style='background:{{information.member_background_color}}'>兑换</button>  </view>
-         </view>
+      </view>
+      <view class='list' bindtap="go_change">
+        <view class='username'>
+          {{information.member_name}}
+        </view>
+        <view class='head_portrait'>
+          <open-data type="userAvatarUrl"></open-data>
+        </view>
+        <view class='phone_num' wx:if="{{information.member_phone_num}}">
+          {{phone.toHide(information.member_phone_num)}}
+        </view>
+      </view>
+      <view class='list'>
+        <view class='bbla'>积分</view>
+        <view class='nnum'>{{information.member_integral_wallet}}</view>
+        <view class='bbtn' bindtap="go_integral_center">
+          <button style='background:{{information.member_background_color}}'>兑换</button>
+        </view>
+      </view>
     </view>
     <view class='bg1'>
-    <view class='big-img'>
-     <view class='bd_img'>
-     <image src='{{url}}{{information.member_grade_img}}'></image></view></view>
-   
+      <view class='big-img'>
+        <view class='bd_img'>
+          <image src='{{url}}{{information.member_grade_img}}'></image>
+        </view>
+      </view>
+
     </view>
 
   </view>
   <view style='background:#fff;'>
-      <view class='cir' style='background:{{information.member_background_color}}'>
-     <view class='huiyuan'  bindtap="bindnume"> {{information.member_grade_name}}</view>
+    <view class='cir' style='background:{{information.member_background_color}}'>
+      <view class='huiyuan' bindtap="bindnume"> {{information.member_grade_name}}</view>
     </view>
-    </view>
+  </view>
   <view class='order'>
-     <view class='order_title'>
+    <view class='order_title'>
       <view class="order_title_content">我的订单</view>
       <view class="order_title_more" bindtap="go_order" data-id="0"> 查看全部订单></view>
+    </view>
+    <view class='order_content'>
+      <view wx:for="{{order_nav}}" class='nav_list' bindtap="go_order" data-id="{{item.id}}">
+        <view class='nav_img'>
+          <image src='{{item.src}}'></image>
+        </view>
+        <view>{{item.text}}</view>
       </view>
-     <view class='order_content'>
-     <view wx:for="{{order_nav}}" class='nav_list' bindtap="go_order" data-id="{{item.id}}">
-       <view class='nav_img'><image src='{{item.src}}'></image></view>
-       <view>{{item.text}}</view>
-     </view >
-    
-     </view>
+
+    </view>
   </view>
- 
-   <view   class='list-content'>
-   <view wx:for='{{list}}' class='ifor_list' data-url="{{item.src}}" bindtap="mycollect" >
+
+  <view class='list-content'>
+    <view wx:for='{{list}}' class='ifor_list' data-url="{{item.src}}" bindtap="mycollect">
       <view class='left'>
         <view class='list-ico'>
           <image src='{{item.url}}'></image>
@@ -74,10 +82,10 @@ module.exports.toHide = toHide;
           <image style='width:15px;height:15px;padding-left:25px;' src='http://teahouse.siring.com.cn/upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png'></image>
         </view>
       </view>
-      </view>
+    </view>
   </view>
-     <view  class='list-content' >
-   <view wx:for='{{lista}}' class='ifor_list'   data-url="{{item.src}}" bindtap="mycollect">
+  <view class='list-content' style='margin-bottom:100rpx'>
+    <view wx:for='{{lista}}' class='ifor_list' data-url="{{item.src}}" bindtap="mycollect">
       <view class='left'>
         <view class='list-ico'>
           <image src='{{item.url}}'></image>
@@ -91,20 +99,20 @@ module.exports.toHide = toHide;
           <image style='width:15px;height:15px;padding-left:25px;' src='http://teahouse.siring.com.cn//upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png'></image>
         </view>
       </view>
-      </view>
+    </view>
   </view>
- <view wx:if="{{foot_is==2}}">
-        <view class="hbj footmenu" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:9998;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:if="{{footinfo.params.navstyle==0}}">
-            <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
-                <span class="iconfont {{item.iconclass}}" style="font-size:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx 0;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;line-height:{{style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
-                <view style="font-size:{{style.textfont*2}}rpx;padding:{{style.paddingleft*2}}rpx 0;color:{{style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
-            </view>
-        </view>
-        <view class="footmenu2" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:10000;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:elif="{{footinfo.params.navstyle==1}}">
-            <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
-                <image mode="aspectFill" src="https://teahouse.siring.com.cn/{{item.imgurl}}" style="display:block;margin:0 auto;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx;"></image>
-                <view style="font-size:{{style.textfont*2}}rpx;color:{{style.textcolor}};padding:{{style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
-            </view>
-        </view>
+  <view wx:if="{{foot_is==2}}">
+    <view class="hbj footmenu" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:9998;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:if="{{footinfo.params.navstyle==0}}">
+      <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+        <span class="iconfont {{item.iconclass}}" style="font-size:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx 0;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;line-height:{{style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
+        <view style="font-size:{{style.textfont*2}}rpx;padding:{{style.paddingleft*2}}rpx 0;color:{{style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+      </view>
+    </view>
+    <view class="footmenu2" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:10000;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:elif="{{footinfo.params.navstyle==1}}">
+      <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+        <image mode="aspectFill" src="https://teahouse.siring.com.cn/{{item.imgurl}}" style="display:block;margin:0 auto;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx;"></image>
+        <view style="font-size:{{style.textfont*2}}rpx;color:{{style.textcolor}};padding:{{style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+      </view>
+    </view>
   </view>
 </view>

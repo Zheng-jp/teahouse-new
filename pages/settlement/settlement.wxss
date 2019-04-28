@@ -187,11 +187,11 @@ color:#3399FF;
 .order-goods-info{
   background: #FAFAFA;
 }
-radio .wx-radio-input.wx-radio-input-checked::before{
+/* radio .wx-radio-input.wx-radio-input-checked::before{
   
    transform:translate(-7rpx, -7rpx) scale(1);
    -webkit-transform:translate(-7rpx, -7rpx) scale(1);
-}
+} */
 
 .radio-group{
   display: flex;
