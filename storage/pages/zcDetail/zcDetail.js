@@ -37,7 +37,7 @@ Page({
   // 去首页
   bindSwitchTab: function(){
     wx.reLaunch({
-      url: '/pages/index/index'
+      url: '/diy/index/index'
     })
   },
   // 打赏跳转

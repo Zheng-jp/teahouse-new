@@ -1673,13 +1673,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     var that = this;
     let user = JSON.parse(options.title);
+    console.log(user);
     that.setData({
       user: user,
     });
-
     wx.request({
       url: app.globalData.tiltes + 'order_return',
       data: {
@@ -1690,12 +1689,7 @@ Page({
         'shopping_id': user[0].shop_id,
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
       success: function (res) {
-
         that.setData({
           goods: res.data.data,
         });
