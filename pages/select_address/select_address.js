@@ -114,11 +114,12 @@ Page({
   },
   radioChange: function(e) {
     var that = this;
+    // console.log(e.detail.value)
     wx.request({
       url: app.globalData.tiltes + 'member_address_status',
       data: {
         open_id: app.globalData.gmemberid,
-        id: e.detail.value[0],
+        id: e.detail.value,
       },
       method: "post",
       // header: {
@@ -137,6 +138,8 @@ Page({
           title: '修改成功',
           icon: 'none'
         })
+        
+        
         console.log(that.data)
       },
       fail: function() {
@@ -145,7 +148,9 @@ Page({
       complete: function() {}
 
     });
-
+    wx.navigateBack({
+        delta: 1
+    })
   },
   delect: function(e) {
     var that = this;

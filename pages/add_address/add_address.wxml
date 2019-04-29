@@ -4,11 +4,11 @@
         <view class='list_a'>
         <view class="section section_top">
             <view class="section_title">姓名</view>
-            <input name="harvester" placeholder="真实姓名" />
+            <input name="harvester" placeholder="真实姓名" required="required"/>
           </view>
           <view class="section">
             <view class="section_title">电话</view>
-            <input name="harvester_phone_num" placeholder="手机号码" />
+            <input name="harvester_phone_num" placeholder="手机号码" required="required"/>
           </view>
           </view>
           <view class='list_b'>

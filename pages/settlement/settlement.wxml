@@ -201,7 +201,7 @@
 		</checkbox-group>
 			<image class="tips_img" src="img/u927.png" mode="widthFix"> </image>
       <view style='font-size:23rpx;color:#949494;margin-left:8rpx;'>*必选，默认1年</view>
-      	<view class='invoice_money text_red' style='margin-left:166rpx; '>
+      	<view class='invoice_money text_red'>
 				¥ 0.00
 			</view>
 		</view>
@@ -271,7 +271,7 @@
 		</view>
 	</view>
 
-	<view class='sundry'>
+	<view class="{{selected2?'sundry':'sundry1'}}"  >
 		<view class='sundry-li1' style=' border-bottom: solid 1rpx #E4E4E4;'>
 			<view>商品总价</view>
 			<view><text style='color:#FF7E4A;'>{{all_money}}元</text></view>
