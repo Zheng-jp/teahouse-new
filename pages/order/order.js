@@ -562,7 +562,7 @@ Page({
   go: function (event) {
     var item = event.currentTarget.dataset.id;
     console.log(event)
-    wx.navigateTo({
+    wx.redirectTo({
       url: item+'?title=' + 0,
       success: function (res) {
       

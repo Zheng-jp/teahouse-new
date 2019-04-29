@@ -215,23 +215,16 @@ Page({
   },
 
   go: function (event) {
-
     var that = this;
     var item = event.currentTarget.dataset.id;
-    wx.navigateBack({
-      delta: 1,
+    wx.redirectTo({
       url: item + '?title=' + 0,
       success: function (res) {
 
       },
       fail: function () {
 
-      },
-      complete: function () {
-
       }
-
-
     })
   },
   /**
