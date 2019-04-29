@@ -110,13 +110,13 @@
 		<view class='way_select'>
 			<radio-group class="radio-group" bindchange="radioChange">
 				<label class="radio">
-					<radio value="选择直邮" color='#fff' checked='checked' /> <text class='text_radio'>选择直邮</text>
+					<radio value="选择直邮" color='#02A0E6'  checked='checked' /> <text class='text_radio'>选择直邮</text>
 				</label>
 				<label class="radio">
-					<radio value="到店自提" color='#fff' /><text class='text_radio'>到店自提</text>
+					<radio value="到店自提" color='#02A0E6' /><text class='text_radio'>到店自提</text>
 				</label>
 				<label class="radio">
-					<radio value="选择存茶" color='#fff' /><text class='text_radio'>选择存茶</text>
+					<radio value="选择存茶" color='#02A0E6' /><text class='text_radio'>选择存茶</text>
 				</label>
 			</radio-group>
 		</view>

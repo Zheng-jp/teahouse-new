@@ -52,13 +52,13 @@ Page({
     money: 0,
     coupon_id: 0,//使用优惠劵id
     address_0: '',
-    freight: 0,//运费
+    freight: '0.00',//运费
     freight_infor: [],
     taxes_id: -1,
     taxes_select: 0,
-    taxes: 0,//税费
+    taxes: '0.00',//税费
     rate: 0,//费率
-    storage: 0,// 存储费
+    storage: '0.00',// 存储费
     insurance: 0,//保险费
     invoice: 0,//发票费
     storages: [],//存储费管理
@@ -83,7 +83,7 @@ Page({
         selected1: false,
         selected2: false,
         order_type: 1,
-        storage: 0,
+        storage: '0.00',
       })
       that.money_freight();
     }
@@ -93,8 +93,8 @@ Page({
         selected1: true,
         selected2: false,
         order_type: 2,
-        storage: 0,
-        freight: 0,
+        storage: '0.00',
+        freight: '0.00',
       })
     }
     else {
@@ -104,7 +104,7 @@ Page({
         selected1: false,
         selected2: true,
         order_type: 3,
-        freight: 0,
+        freight: '0.00',
       })
       that.money_storages();
 
@@ -412,7 +412,9 @@ Page({
     //   }
 
     // });
+    let taxes1 = Number(that.data.taxes);
     if (that.data.order_type == "1") {
+      
       wx.request({
         url: app.globalData.tiltes + 'order_places',
         data: {
@@ -427,7 +429,7 @@ Page({
           unit: that.data.unit_all,
           year: that.data.num2,
           receipt_id: that.data.taxes_id,
-          receipt_price: that.data.taxes,
+          receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
 
         },
@@ -557,7 +559,7 @@ Page({
           unit: that.data.unit_all,
           year: that.data.num2,
           receipt_id: that.data.taxes_id,
-          receipt_price: that.data.taxes,
+          receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
 
         },
@@ -688,7 +690,7 @@ Page({
           unit: that.data.unit_all,
           year: that.data.num2,
           receipt_id: that.data.taxes_id,
-          receipt_price: that.data.taxes,
+          receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
 
         },
@@ -911,6 +913,7 @@ Page({
     //   }
 
     // });
+    let taxes1 = Number(that.data.taxes)
     if (that.data.order_type == "1") {
       wx.request({
         url: app.globalData.tiltes + 'order_place_by_shoppings',
@@ -928,7 +931,7 @@ Page({
           year: that.data.num2,
           house_price: that.data.ever_storage,
           receipt_id: that.data.taxes_id,
-          receipt_price: that.data.taxes,
+          receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
 
         },
@@ -1057,7 +1060,7 @@ Page({
           year: that.data.num2,
           house_price: that.data.ever_storage,
           receipt_id: that.data.taxes_id,
-          receipt_price: that.data.taxes,
+          receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
 
         },
@@ -1186,7 +1189,7 @@ Page({
           year: that.data.num2,
           house_price: that.data.ever_storage,
           receipt_id: that.data.taxes_id,
-          receipt_price: that.data.taxes,
+          receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
 
         },
@@ -1342,7 +1345,7 @@ Page({
           }
         }
         else if (e.currentTarget.dataset.value == "3") {
-          if (res.data.data.money <= that.data.storage) {
+          if (res.data.data.money <= Number(that.data.storage)) {
             that.setData({
               coupon_content: "-" + res.data.data.money,
               coupon_type: e.currentTarget.dataset.value,
@@ -1467,9 +1470,10 @@ Page({
       money_storages += that.data.storages[j] * that.data.goods[j].number;
       // }
     }
-    // console.log(money_storages);
+    console.log(money_storages);
+    var storage1 = (money_storages * that.data.num1 * 365).toFixed(2);
     that.setData({
-      storage: money_storages * that.data.num1 * 365,
+      storage: storage1,
       ever_storage: ever_storage,
     })
 
@@ -1485,6 +1489,7 @@ Page({
         }
       }
     }
+    money_freight = money_freight.toFixed(2);
     that.setData({
       freight: money_freight,
     })
@@ -1620,7 +1625,7 @@ Page({
     if (e.detail.value[0] == undefined) {
       that.setData({
         taxes_select: 0,
-        taxes: 0,
+        taxes: 0.00,
       })
       that.calculate_money();
     }
