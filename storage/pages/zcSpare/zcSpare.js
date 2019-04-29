@@ -65,7 +65,7 @@ Page({
             success: function (res) {
               if (res.data.data.status == 1) {
                 wx.request({
-                  url: app.globalData.tiltes + 'balance_payment',
+                  url: app.globalData.tiltes + 'remainder_pay',
                   data: {
                     member_id: app.globalData.member_id,
                     order_num: _this.data.order_number,
@@ -102,7 +102,7 @@ Page({
           })
         }
         wx.navigateTo({
-          url: '/pages/order/order?title=' + 0,
+          url: '/storage/pages/zcOrder/zcOrder?title=' + 0,
           success: function (res) {
 
           },

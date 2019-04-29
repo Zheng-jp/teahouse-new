@@ -573,8 +573,6 @@ Page({
       complete: function () {
       
       }
-  
-  
     })
   },
   

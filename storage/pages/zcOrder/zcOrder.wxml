@@ -21,8 +21,8 @@
 </view>
 <!--content-->
    <view class="nav">
-	   <view class="this"> 普通订单</view>
-	   <view class="" bindtap="go" data-id="/storage/pages/zcOrder/zcOrder"> 众筹订单</view>
+	   <view class=""> 普通订单</view>
+	   <view class="this" bindtap="go" data-id="/storage/pages/zcOrder/zcOrder"> 众筹订单</view>
 	   <view class="" bindtap="go"> 定制订单</view>
 	   <view class="" bindtap="go" data-id="../integral_order/integral_order"> 积分订单</view>
    </view>
@@ -34,14 +34,14 @@
 		<view class="title_list {{tab==5? 'on' : ''}}" data-current="5" bindtap="tab_click">待评价</view>
 	</view>
 	<view class='content'>
-		<view class='order_list' wx:for="{{order}}">
+		<view class='order_list' wx:for="{{order}}" wx:key="index">
 			<view wx:if="{{item.status==1}}">
 				<view bindtap="go_order_detail" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
 					<view class='box_list_one'>
 						<view>订单编号：{{item.parts_order_number}} </view>
 						<view class='static'>等待买家付款</view>
 					</view>
-					<view class='box_list_two' wx:for="{{item.info}}">
+					<view class='box_list_two' wx:for="{{item.info}}" wx:key="index">
 						<view class='img'>
 							<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 						</view>
@@ -75,7 +75,7 @@
 						<view>订单编号：{{item.parts_order_number}} </view>
 						<view class='static'>买家已付款</view>
 					</view>
-					<view class='box_list_two' wx:for="{{item.info}}">
+					<view class='box_list_two' wx:for="{{item.info}}" wx:key="index">
 						<view class='img'>
 							<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 						</view>
@@ -107,7 +107,7 @@
 						<view>订单编号：{{item.parts_order_number}} </view>
 						<view class='static'>卖家已发货</view>
 					</view>
-					<view class='box_list_two' wx:for="{{item.info}}">
+					<view class='box_list_two' wx:for="{{item.info}}" wx:key="index">
 						<view class='img'>
 							<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 						</view>
@@ -140,7 +140,7 @@
 						<view>订单编号：{{item.parts_order_number}} </view>
 						<view class='static'>交易成功</view>
 					</view>
-					<view class='box_list_two' wx:for="{{item.info}}">
+					<view class='box_list_two' wx:for="{{item.info}}" wx:key="index">
 						<view class='img'>
 							<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 						</view>
@@ -173,7 +173,7 @@
 						<view>订单编号：{{item.parts_order_number}} </view>
 						<view class='static'>交易成功</view>
 					</view>
-					<view class='box_list_two' wx:for="{{item.info}}">
+					<view class='box_list_two' wx:for="{{item.info}}" wx:key="index">
 						<view class='img'>
 							<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 						</view>
@@ -205,7 +205,7 @@
 						<view>订单编号：{{item.parts_order_number}} </view>
 						<view class='static'>交易成功</view>
 					</view>
-					<view class='box_list_two' wx:for="{{item.info}}">
+					<view class='box_list_two' wx:for="{{item.info}}" wx:key="index">
 						<view class='img'>
 							<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 						</view>
@@ -237,7 +237,7 @@
 						<view>订单编号：{{item.parts_order_number}} </view>
 						<view class='static'>交易关闭</view>
 					</view>
-					<view class='box_list_two' wx:for="{{item.info}}">
+					<view class='box_list_two' wx:for="{{item.info}}"  wx:key="index">
 						<view class='img'>
 							<image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
 						</view>
