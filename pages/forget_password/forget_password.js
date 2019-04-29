@@ -108,6 +108,7 @@ Page({
    var that=this;
       var _this = this 
      var is_phone=that.validateTel(that.data.num);
+    console.log(is_phone)
      if(is_phone){
       wx.request({
         url: app.globalData.tiltes + 'sendMobileCodePay',
