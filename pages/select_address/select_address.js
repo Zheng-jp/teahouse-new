@@ -113,7 +113,6 @@ Page({
     })
   },
   radioChange: function(e) {
-    console.log(e.detail.value)
     var that = this;
     wx.request({
       url: app.globalData.tiltes + 'member_address_status',
@@ -135,6 +134,7 @@ Page({
           icon: 'none'
         })
         console.log(that.data)
+        that.onShow();
       },
       fail: function() {
 
@@ -158,7 +158,7 @@ Page({
           title: '删除成功',
           icon: 'none'
         })
-        that.onShow()
+        that.onShow();
       },
       fail: function() {
 
