@@ -594,12 +594,7 @@ Page({
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-  
-        // },
         success: function (res) {
-         
           that.setData({
             order:res.data.data,
             tab:'1'

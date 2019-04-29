@@ -53,61 +53,58 @@ Page({
       payFocus: false,
       pwdVal: ''
     },
-      function () {
-        if (val.length == 6) {
-          wx.request({
-            url: app.globalData.tiltes + 'check_password',
-            data: {
-              member_id: app.globalData.member_id,
-              passwords: val,
-            },
-            method: "POST",
-            success: function (res) {
-              if (res.data.data.status == 1) {
-                wx.request({
-                  url: app.globalData.tiltes + 'remainder_pay',
-                  data: {
-                    member_id: app.globalData.member_id,
-                    order_num: _this.data.order_number,
-                    passwords: val,
-                  },
-                  method: "POST",
-                  success: function (res) { },
-                  fail: function () { },
-                  complete: function (res) {
-                    wx.showToast({
-                      icon: "none",
-                      title: res.data.info,
-                      duration: 2000
-                    })
-                  }
-                });
-              }
-              else {
-                wx.showToast({
-                  icon: "none",
-                  title: res.data.info,
-                  duration: 2000
-                })
-              }
-            },
-            fail: function () {
-            },
-            complete: function () { }
-          });
-        } else {
-          wx.showToast({
-            icon: "none",
-            title: "您已取消支付",
-          })
-        }
-        wx.navigateTo({
-          url: '/storage/pages/zcOrder/zcOrder?title=' + 0,
-          success: function (res) {
-
+    function () {
+      if (val.length == 6) {
+        wx.request({
+          url: app.globalData.tiltes + 'check_password',
+          data: {
+            member_id: app.globalData.member_id,
+            passwords: val,
           },
+          method: "POST",
+          success: function (res) {
+            if (res.data.data.status == 1) {
+              wx.request({
+                url: app.globalData.tiltes + 'remainder_pay',
+                data: {
+                  member_id: app.globalData.member_id,
+                  order_num: _this.data.order_number,
+                  passwords: val,
+                },
+                method: "POST",
+                success: function (res) { },
+                fail: function () { },
+                complete: function (res) {
+                  wx.showToast({
+                    icon: "none",
+                    title: res.data.info,
+                    duration: 2000
+                  })
+                }
+              });
+            }else {
+              wx.showToast({
+                icon: "none",
+                title: res.data.info,
+                duration: 2000
+              })
+            }
+          },
+          fail: function () {
+          },
+          complete: function () { }
+        });
+      }else {
+        wx.showToast({
+          icon: "none",
+          title: "您已取消支付",
         })
-      });
+      }
+      wx.navigateTo({
+        url: '/storage/pages/zcOrder/zcOrder?title=' + 0,
+        success: function (res) {},
+      })
+    });
   },
 
   // 打赏金额 下拉列表索引
@@ -191,11 +188,11 @@ Page({
             success(res) {
               console.log(res);
               // 支付成功 跳转众筹订单
-              // wx.navigateTo({
-              //   url: '../order/order?title=' + 0,
-              //   success: function (res) {},
-              //   fail: function () {},
-              // })
+              wx.redirectTo({
+                url: '/storage/pages/zcOrder/zcOrder?title=' + 0,
+                success: function (res) {},
+                fail: function () {},
+              })
             },
             fail(res) { console.log(res) }
           })
