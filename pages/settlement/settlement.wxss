@@ -455,8 +455,8 @@ text-align: center;
   margin-left: 20rpx;
 }
 .invoice_money {
-  margin-left:58rpx;
-  width:210rpx;
+  margin-left:12rpx;
+  width:270rpx;
   text-align:right;
 }
 /* 优惠劵 */
@@ -651,6 +651,7 @@ align-items: center;
   justify-content: space-between;
   color: #333333;
   font-size: 25rpx;
+  overflow: visible;
 }
 .tips{
   font-size: 24rpx;
@@ -660,6 +661,9 @@ align-items: center;
 }
 .sava_contents{
   display: flex;
+  margin-left: -35rpx;
+  width: 340rpx;
+
 }
 .sava_list{
   display: flex;

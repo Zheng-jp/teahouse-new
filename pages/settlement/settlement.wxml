@@ -152,7 +152,7 @@
 						<view class='add_information'>
 								<view class="list1">
 								   <view> 仓储编号: {{warehouse.name}} </view>
-								   <view>
+								   <view style='overflow:visible;'>
 									  <view class="sava_contents">
 										 <view class="savetitle">仓储费标准:</view>
 										 <view class='scroll_view_border'>
