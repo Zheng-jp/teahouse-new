@@ -45,7 +45,7 @@
                 <text class="m">￥{{suppMoney==null?moneyArray[index]:suppMoney}}</text>
             </view>
         </view>
-        <view class="btn">
+        <view class="btn" bind:tap="payment">
             <text>去支付</text>
         </view>
     </view>

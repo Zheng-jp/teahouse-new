@@ -42,8 +42,9 @@ Page({
   },
   // 打赏跳转
   supportProject: function(){
+    var standardId = this.data.proArr[0].standard[this.data.specActive].id;
     wx.navigateTo({
-      url: '/storage/pages/zcOrder/zcOrder',
+      url: '/storage/pages/zcOrder/zcOrder?standardId=' + standardId,
       success: function(){
         console.log('跳转成功');
       },
@@ -199,6 +200,7 @@ Page({
         richTextArr.push(data.goods_text);
         richTextArr.push(data.team);
         richTextArr.push(data.text);
+        // 循环 转换 html -> wxml
         for(var i = 0; i < richTextArr.length; i++){
           richTextArr[i]?WxParse.wxParse('richText' + i, 'html', richTextArr[i], _this):'';
           if (i === richTextArr.length - 1) {
