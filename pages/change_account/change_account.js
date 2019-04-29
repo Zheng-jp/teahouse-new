@@ -145,7 +145,7 @@ Page({
     
   },
   validateTel:function (tel){
-    var TEL_REGEXP = /^1(3|4|5|7|8)\d{9}$/;
+    var TEL_REGEXP = /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/;
     if(TEL_REGEXP.test(tel)){
       return true;
     }
@@ -219,7 +219,7 @@ Page({
       })
      }
   
-  },60000),
+  },5000),
   send_cold1: throttle.throttle( function (e) {
     var that=this;
        var _this = this 
@@ -265,7 +265,7 @@ Page({
        })
       }
    
-   },60000),
+   },5000),
 
   /**
    * 生命周期函数--监听页面加载
