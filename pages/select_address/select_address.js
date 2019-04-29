@@ -122,10 +122,6 @@ Page({
         id: e.detail.value,
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
       success: function(res) {
         for (var index in that.data.address) {
           if (e.detail.value[0] == that.data.address[index].id) {
@@ -141,6 +137,7 @@ Page({
         
         
         console.log(that.data)
+        that.onShow();
       },
       fail: function() {
 
@@ -166,7 +163,7 @@ Page({
           title: '删除成功',
           icon: 'none'
         })
-        that.onShow()
+        that.onShow();
       },
       fail: function() {
 

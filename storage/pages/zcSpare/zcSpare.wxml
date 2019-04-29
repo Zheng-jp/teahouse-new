@@ -1,0 +1,70 @@
+<view class="wrapper">
+    <view class="block">
+        <view class="block-bg">
+            <view>
+                <view class="h2">产品名称产品名称</view>
+                <view class="block-txt">
+                    <view>
+                        <text>1、感谢您对我们的支持与信任，我们将带着您的这份支持向梦想迈进。</text>
+                    </view>
+                    <view>
+                        <text>2、对于非全额支持项目的打赏用户，我们将依据您打赏的金额，按比例进行概率抽取幸运星获得项目产品。例如：本项目全额100元，有11人打赏，其中10人每人1元打赏，另外1人是90元打赏，总计筹得费用100元，那么项目成功众筹了1份产品！虽然这11个用户都有权获得该商品，但是其中支持90元的用户获得该产品的概率是：90%，其他人为10%</text>
+                    </view>
+                    <view class="read">
+                        <text>秒懂以上规则，这就支持该项目：</text>
+                    </view>
+                </view>
+            </view>
+            <view class="picker-box">
+                <view>
+                    <view class="tit">支持金额：</view>
+                    <view class="supp">
+                        <picker mode="selector" 
+                            value="{{index}}" 
+                            range="{{moneyArray}}"
+                            bindchange="bindPickerChange">
+                            <view class="picker">{{moneyArray[index]}}</view>
+                        </picker>
+                        <text class="triangle"></text>
+                    </view>
+                </view>
+                <view>
+                    <view class="tit">自定义金额：</view>
+                    <view class="input-box">
+                        <input type="number" bindblur="bindInputMoney" value="{{suppMoney}}" />
+                        <text class="unit">元</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="fBox">
+        <view class="sel">
+            <view>
+                <text>总计：</text>
+                <text class="m">￥{{suppMoney==null?moneyArray[index]:suppMoney}}</text>
+            </view>
+        </view>
+        <view class="btn" bind:tap="payment">
+            <text>去支付</text>
+        </view>
+    </view>
+</view>
+
+<view wx:if='{{showPayPwdInput}}'>
+	<view class='bg_layer'></view>
+	<view class='input_main'>
+		<view class='input_title'>
+			<view class='input_back' catchtap='hidePayLayer'><text></text></view>
+			<text>输入支付密码</text>
+		</view>
+		<view class='input_tip'><text>请输入账户余额支付密码</text></view>
+		<view class='input_row' catchtap='getFocus'>
+			<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+				<text wx:if='{{pwdVal.length>i}}'></text>
+			</view>
+		</view>
+		<view class='forget_pwd' catchtap='forget_password'>忘记密码</view>
+		<input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
+	</view>
+</view>
