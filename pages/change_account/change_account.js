@@ -1,4 +1,5 @@
 // pages/add_address/add_address.js
+const throttle = require('../../utils/throttle.js');
 const app = getApp();
 Page({
 
@@ -145,7 +146,6 @@ Page({
   },
   validateTel:function (tel){
     var TEL_REGEXP = /^1(3|4|5|7|8)\d{9}$/;
-    console.log(TEL_REGEXP)
     if(TEL_REGEXP.test(tel)){
       return true;
     }
@@ -169,7 +169,7 @@ Page({
     newnum:event.detail.value
   })
 },
-  send_cold: function (e) {
+  send_cold: throttle.throttle( function (e) {
    var that=this;
       var _this = this 
      var is_phone=that.validateTel(that.data.num);
@@ -219,8 +219,8 @@ Page({
       })
      }
   
-  },
-  send_cold1: function (e) {
+  },60000),
+  send_cold1: throttle.throttle( function (e) {
     var that=this;
        var _this = this 
       var is_phone=that.validateTel(that.data.newnum);
@@ -265,7 +265,7 @@ Page({
        })
       }
    
-   },
+   },60000),
 
   /**
    * 生命周期函数--监听页面加载

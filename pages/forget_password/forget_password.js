@@ -1,4 +1,5 @@
 // pages/add_address/add_address.js
+const throttle = require('../../utils/throttle.js');
 const app = getApp();
 Page({
 
@@ -79,7 +80,7 @@ Page({
     
   },
   validateTel:function (tel){
-    var TEL_REGEXP = /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/;
+    var TEL_REGEXP = /^1(3|4|5|7|8)\d{9}$/;
     if(TEL_REGEXP.test(tel)){
       return true;
     }
@@ -103,7 +104,7 @@ Page({
     newnum:event.detail.value
   })
 },
-  send_cold: function (e) {
+  send_cold: throttle.throttle( function (e) {
    var that=this;
       var _this = this 
      var is_phone=that.validateTel(that.data.num);
@@ -150,7 +151,7 @@ Page({
       })
      }
   
-  },
+  },60000),
   
 
   /**
