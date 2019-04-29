@@ -113,18 +113,15 @@ Page({
     })
   },
   radioChange: function(e) {
+    console.log(e.detail.value)
     var that = this;
     wx.request({
       url: app.globalData.tiltes + 'member_address_status',
       data: {
         open_id: app.globalData.gmemberid,
-        id: e.detail.value[0],
+        id: e.detail.value,
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
       success: function(res) {
         for (var index in that.data.address) {
           if (e.detail.value[0] == that.data.address[index].id) {
