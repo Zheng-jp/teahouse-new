@@ -80,7 +80,7 @@ Page({
     
   },
   validateTel:function (tel){
-    var TEL_REGEXP = /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/;
+    var TEL_REGEXP = /^1[3456789]\d{9}$/;
     if(TEL_REGEXP.test(tel)){
       return true;
     }
