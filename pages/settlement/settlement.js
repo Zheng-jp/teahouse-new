@@ -434,11 +434,6 @@ Page({
 
         },
         method: "post",
-
-        // header: {
-        //   "Content-Type": "json" // 默认值
-
-        // },
         success: function (res) {
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;

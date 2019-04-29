@@ -64,6 +64,7 @@
         "out_of_warehouse/out_of_warehouse",
         "realtime_data/realtime_data",
         "zcDetail/zcDetail",
+        "zcSpare/zcSpare",
         "zcOrder/zcOrder",
         "meeting/meeting",
         "detail/detail"

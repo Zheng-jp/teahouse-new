@@ -44,7 +44,7 @@ Page({
   supportProject: function(){
     var standardId = this.data.proArr[0].standard[this.data.specActive].id;
     wx.navigateTo({
-      url: '/storage/pages/zcOrder/zcOrder?standardId=' + standardId,
+      url: '/storage/pages/zcSpare/zcSpare?standardId=' + standardId,
       success: function(){
         console.log('跳转成功');
       },
