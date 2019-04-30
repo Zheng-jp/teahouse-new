@@ -31,6 +31,7 @@ Page({
                     encryptedData: encryptedData,
                     iv: iv,
                     uniacid:app.globalData.uniacid,
+                    gender: res2.userInfo.gender // 性别  0：未知、1：男、2：女
                   },
                   method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                   header: {
