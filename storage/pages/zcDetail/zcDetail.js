@@ -21,6 +21,29 @@ Page({
     specActive: 0, //规格索引
     buyNum: 1,  //购买数量
   },
+
+  // 支持项目
+  supProj: function(){
+    var guige = this.data.proArr[0].standard[this.data.specActive].id;
+    var goods_id = this.data.proArr[0].id;
+    var num = this.data.buyNum;
+    var member_id = app.globalData.member_id;
+    var arr = [
+      [guige],
+      [goods_id],
+      [num],
+      [member_id]
+    ]
+    wx.navigateTo({
+      url: '/storage/pages/zcSettle/zcSettle?title=' + JSON.stringify(arr),
+      success: function(res) {
+        console.log(res);
+      },
+      fail: function(res) {
+        console.log(res);
+      }
+    })
+  },
   	// 点击购物车
 	go_car: function(e) {
 		wx.navigateTo({

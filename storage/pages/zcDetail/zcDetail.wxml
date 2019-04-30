@@ -248,7 +248,7 @@
                             </scroll-view>
                             <view>
                                 <view class="sku-btns">
-                                    <view class="sku-btn support">支持项目</view>
+                                    <view class="sku-btn support" bind:tap="supProj">支持项目</view>
                                 </view>
                             </view>
                         </view>

@@ -100,10 +100,10 @@ Page({
           title: "您已取消支付",
         })
       }
-      wx.navigateTo({
-        url: '/storage/pages/zcOrder/zcOrder?title=' + 0,
-        success: function (res) {},
-      })
+      // wx.reLaunch({
+      //   url: '/storage/pages/zcOrder/zcOrder?title=' + 0,
+      //   success: function (res) {},
+      // })
     });
   },
 
@@ -188,7 +188,7 @@ Page({
             success(res) {
               console.log(res);
               // 支付成功 跳转众筹订单
-              wx.redirectTo({
+              wx.reLaunch({
                 url: '/storage/pages/zcOrder/zcOrder?title=' + 0,
                 success: function (res) {},
                 fail: function () {},
