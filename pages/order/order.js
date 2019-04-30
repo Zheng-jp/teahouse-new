@@ -96,6 +96,7 @@ Page({
                     wx.showToast({
                       icon:"none",
                       title: res.data.info, 
+                      duration: 3000
                     })
                     
                   }
@@ -106,6 +107,7 @@ Page({
               wx.showToast({
                 icon:"none",
                 title: res.data.info,
+                duration: 3000
               })
   
             }
@@ -121,6 +123,7 @@ Page({
         wx.showToast({
           icon:"none",
           title: "您已取消支付",
+          duration: 3000
         })
        }
     
@@ -183,7 +186,8 @@ Page({
           success: function (res) {
             wx.showToast({
               title:'删除成功',
-              icon:'none'
+              icon:'none',
+              duration: 3000
             })
             that.setData({
               order: orderItems
@@ -362,7 +366,8 @@ Page({
               success: function (res) {
                 wx.showToast({
                   title:'操作成功',
-                  icon:'none'
+                  icon:'none',
+                  duration: 3000
                 })
                 that.setData({
                   order: orderItems
@@ -406,7 +411,8 @@ Page({
           success: function (res) {
             wx.showToast({
               title:'收货成功',
-              icon:'none'
+              icon:'none',
+              duration: 3000
             })
             that.setData({
               order: orderItems
@@ -545,7 +551,8 @@ Page({
       success: function (res) {
         wx.showToast({
           title:'操作成功',
-          icon:'none'
+          icon:'none',
+          duration: 3000
         })
       },
       fail: function () {

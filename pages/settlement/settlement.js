@@ -1465,7 +1465,6 @@ Page({
       money_storages += that.data.storages[j] * that.data.goods[j].number;
       // }
     }
-    console.log(money_storages);
     var storage1 = (money_storages * that.data.num1 * 365).toFixed(2);
     that.setData({
       storage: storage1,

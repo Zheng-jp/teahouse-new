@@ -45,8 +45,9 @@
                 <image src="img/u9517.png"  class="ico" />
                 <text class="text">优惠券</text>
               </view>
-                <view class="box">
-                
+              <view class="box"  bindtap="go"   data-src="../forget_password/forget_password">
+                <image src="img/u8288.png"  class="ico" />
+                <text class="text">支付密码</text>
               </view>
 
           </view>
