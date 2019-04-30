@@ -314,7 +314,6 @@ Page({
 								// complete
 								console.log("nihao////跳转行为结束，未知成功失败")
 							}
-
 						})
 					} else if(res.cancel) {
 						console.log('用户点击取消')
@@ -408,7 +407,6 @@ Page({
               var good_ids = {}
               var ids = {}
               var nums = {}
-              var shop_ids = {}
               var shop_id = new Array();
               var good_id = new Array();
               var id = new Array();
