@@ -64,7 +64,7 @@ Page({
     storages: [],//存储费管理
     shop_address: '',
     is_checked: true,
-    unit_all: [],//报价单位
+    unit: [],//报价单位
     ever_storage: [],//单个仓储费
 
 
@@ -275,7 +275,7 @@ Page({
           order_amount: _this.data.all_money,
           order_type: _this.data.order_type,
           coupon_id: _this.data.coupon_id,
-          unit: _this.data.unit_all,
+          unit: _this.data.unit,
           year: _this.data.num2,
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
@@ -376,7 +376,7 @@ Page({
           order_amount: _this.data.all_money,
           order_type: _this.data.order_type,
           coupon_id: _this.data.coupon_id,
-          unit: _this.data.unit_all,
+          unit: _this.data.unit,
           year: _this.data.num2,
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
@@ -463,8 +463,7 @@ Page({
 
         },
       });
-    }
-    else {
+    }else {
       wx.request({
         url: app.globalData.tiltes + 'order_places',
         data: {
@@ -476,7 +475,7 @@ Page({
           order_amount: _this.data.all_money,
           order_type: _this.data.order_type,
           coupon_id: _this.data.coupon_id,
-          unit: _this.data.unit_all,
+          unit: _this.data.unit,
           year: _this.data.num2,
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
@@ -585,7 +584,7 @@ Page({
           order_amount: _this.data.all_money,
           order_type: _this.data.order_type,
           coupon_id: _this.data.coupon_id,
-          unit: _this.data.unit_all,
+          unit: _this.data.unit,
           year: _this.data.num2,
           house_price: _this.data.ever_storage,
           receipt_id: _this.data.taxes_id,
@@ -687,7 +686,7 @@ Page({
           order_amount: _this.data.all_money,
           order_type: _this.data.order_type,
           coupon_id: _this.data.coupon_id,
-          unit: _this.data.unit_all,
+          unit: _this.data.unit,
           year: _this.data.num2,
           house_price: _this.data.ever_storage,
           receipt_id: _this.data.taxes_id,
@@ -790,7 +789,7 @@ Page({
           order_amount: _this.data.all_money,
           order_type: _this.data.order_type,
           coupon_id: _this.data.coupon_id,
-          unit: _this.data.unit_all,
+          unit: _this.data.unit,
           year: _this.data.num2,
           house_price: _this.data.ever_storage,
           receipt_id: _this.data.taxes_id,
@@ -949,6 +948,7 @@ Page({
       is_checked: true
     })
   },
+  // 优惠券
   no_use: function (e) {
     var _this = this;
     _this.setData({
@@ -991,8 +991,6 @@ Page({
       });
     }
   },
-
-
   //  计算仓储费
   money_storages: function () {
     var _this = this;
@@ -1216,7 +1214,7 @@ Page({
         "guige": user[0],
         "goods_id": user[1],
         "num": user[2],
-        "member_id": user[3],
+        "member_id": user[3][0],
       },
       method: "POST",
       success: function (res) {
@@ -1224,19 +1222,16 @@ Page({
           goods: res.data.data,
         });
         var all_moneys = 0;
-        var unit = [];
-        for (var i = 0; i < _this.data.goods.length; i++) {
-          all_moneys += Number(_this.data.goods[i].grade_price) * Number(_this.data.goods[i].number);
-        }
-        // console.log(all_moneys)
-        for (var j = 0; j < _this.data.goods.length; j++) {
-          unit.push(_this.data.goods[j].unit);
-        }
+        console.log(_this.data.goods);
+        // 商品总价
+        all_moneys = +_this.data.goods[0].grade_price * +_this.data.goods[0].number;
+        
         _this.setData({
           all_money: all_moneys,
           num: _this.data.goods[0].number,
-          unit_all: unit,
+          unit: _this.data.goods[0].unit
         });
+        // 优惠券请求
         wx.request({
           url: app.globalData.tiltes + 'coupon_appropriated',
           data: {
@@ -1255,15 +1250,11 @@ Page({
           },
           fail: function () {
 
-          },
-          complete: function () {
           }
         });
       },
       fail: function () {
 
-      },
-      complete: function () {
       }
     });
     // 判读从哪个页面进来
@@ -1281,13 +1272,6 @@ Page({
         from_buy: false,
       });
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
   },
 
   /**
@@ -1597,39 +1581,4 @@ Page({
       })
     }
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
