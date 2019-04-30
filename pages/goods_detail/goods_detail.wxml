@@ -49,15 +49,11 @@
 								</swiper-item>
 						</block>
 				</swiper>
-		</view>
+		</view> 
 		<view class='goods_cont'>
 
 				<view class='good_name'>{{goods.goods_name}}</view>
-				<view class='selling-point'>
-        <text style=''>促销</text>
-        <text>古树生茶</text>
-        <text>商家活动</text>
-        {{goods.goods_selling}}</view>
+				<view class='selling-point'>{{goods.goods_selling}}</view>
 				<view class='price_cont'>
 						<view style="display:flex; align-items:flex-end;margin-bottom:-15px">
 								<view class='level_images' style='margin-bottom:9.5rpx;'>
