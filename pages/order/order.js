@@ -198,7 +198,7 @@ Page({
          
           },
           complete: function () {
-            wx.hideLoading()
+            // wx.hideLoading()
           }
     
         });
@@ -365,7 +365,7 @@ Page({
               // },
               success: function (res) {
                 wx.showToast({
-                  title:'操作成功',
+                  title:'取消成功',
                   icon:'none',
                   duration: 3000
                 })
@@ -378,7 +378,7 @@ Page({
              
               },
               complete: function () {
-                wx.hideLoading()
+                // wx.hideLoading()
               }
         
             });
@@ -423,7 +423,7 @@ Page({
          
           },
           complete: function () {
-            wx.hideLoading()
+            // wx.hideLoading()
           }
     
         });
@@ -522,7 +522,7 @@ Page({
     
                   },
                   complete: function () {
-                    wx.hideLoading()
+                    // wx.hideLoading()
                   }
                 });   
         }
@@ -550,7 +550,7 @@ Page({
       // },
       success: function (res) {
         wx.showToast({
-          title:'操作成功',
+          title:'提醒成功',
           icon:'none',
           duration: 3000
         })
@@ -559,7 +559,7 @@ Page({
      
       },
       complete: function () {
-        wx.hideLoading()
+        // wx.hideLoading()
       }
 
     });

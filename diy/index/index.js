@@ -82,6 +82,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
   
   onPullDownRefresh: function() {
     var t = this;
+    console.log(t)
     t.refreshSessionkey();
     var a = t.data.baseurl.split("/api");
     t.setData({
