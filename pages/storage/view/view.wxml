@@ -75,9 +75,12 @@
           <view class="item-right">
             <view class="tea-stock">
               <text class="stock-title">实时库存</text>
-              <text class="stock-num">11</text> 件
-              <text class="stock-num">11</text> 提
-              <text class="stock-num">11</text> 片
+              <text class="stock-num">11</text>
+              件
+              <text class="stock-num">11</text>
+              提
+              <text class="stock-num">11</text>
+              片
               <text class="stock-more" bindtap="toStockDetail">详情></text>
             </view>
             <view class="exchange-price">
@@ -136,7 +139,7 @@
           </view>
         </view>
         <text class="project-title">正在众筹</text>
-        <view class="zc-item-box">
+        <view class="zc-item-box" style="height: {{Height}}rpx">
           <view class="zc-item" wx:for="{{crowdList}}" wx:key="index">
             <view class="left-img">
               <image src="{{url}}{{item.goods_show_image}}" />
@@ -145,11 +148,17 @@
               <view class="project-name hid-txt-one">{{item.project_name}}</view>
               <wxzx-progress class="wxzx-progress" percent="{{item.centum>100?100:item.centum}}" show-info border-radius="4px" width="300" stroke-width='12' radius='6' active-color="#ff9600,#ff1000,#ff0000"></wxzx-progress>
               <text class="percent-num">{{item.centum}}%</text>
-              <view class="project-people">{{item.collecting}}人支持 | {{item.centum==100?'已完成':'进行中'}}</view>
+              <view class="project-people">
+                {{item.collecting}}人支持 | {{item.centum==100?'已完成':'进行中'}}
+              </view>
               <view class="project-price">
                 <text>￥299</text>
-                <button wx:if="{{switchProject}}" class="join-project" bindtap="support" data-id="{{item.id}}">支持</button>
-                <button wx:else class="check-project" bindtap="support" data-id="{{item.id}}">立即查看</button>
+                <button wx:if="{{switchProject}}" class="join-project" bindtap="support" data-id="{{item.id}}">
+                  支持
+                </button>
+                <button wx:else class="check-project" bindtap="support" data-id="{{item.id}}">
+                  立即查看
+                </button>
               </view>
             </view>
           </view>
@@ -162,13 +171,17 @@
   <view class="hbj footmenu" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:9998;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:if="{{footinfo.params.navstyle==0}}">
     <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}" wx:key="index">
       <span class="iconfont {{item.iconclass}}" style="font-size:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx 0;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;line-height:{{style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
-      <view style="font-size:{{style.textfont*2}}rpx;padding:{{style.paddingleft*2}}rpx 0;color:{{style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+      <view style="font-size:{{style.textfont*2}}rpx;padding:{{style.paddingleft*2}}rpx 0;color:{{style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">
+        {{item.text}}
+      </view>
     </view>
   </view>
   <view class="footmenu2" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:10000;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:elif="{{footinfo.params.navstyle==1}}">
     <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="flex:1;float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}" wx:key="index">
       <image mode="aspectFill" src="https://teahouse.siring.com.cn/{{item.imgurl}}" style="display:block;margin:0 auto;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx;"></image>
-      <view style="font-size:{{style.textfont*2}}rpx;color:{{style.textcolor}};padding:{{style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+      <view style="font-size:{{style.textfont*2}}rpx;color:{{style.textcolor}};padding:{{style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">
+        {{item.text}}
+      </view>
     </view>
   </view>
 </view>
