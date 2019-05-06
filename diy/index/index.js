@@ -98,9 +98,11 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     wx.stopPullDownRefresh();
   },
   onReady: function(t) {
+    
     this.audioCtx = wx.createAudioContext("myAudio");
   },
   onLoad: function(t) {
+    this.getfoot();
     (e = this).refreshSessionkey();
     var a = e.data.baseurl.split("/api");
     e.setData({
@@ -175,7 +177,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
 
   },
   onShow: function() {
-
+    
   },
   getfoot: function(a) {
     var e = this;

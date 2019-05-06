@@ -190,7 +190,7 @@ color:#3399FF;
  radio .wx-radio-input.wx-radio-input-checked::before{
    width: auto; 
    height: auto; 
-   font-size: 10rpx;
+   font-size: 0;
    transform:translate(-50%, -50%) scale(1);
    -webkit-transform:translate(-50%, -50%) scale(1);
 } 

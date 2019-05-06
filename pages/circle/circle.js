@@ -47,7 +47,39 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    var uniacid = app.globalData.uniacid;
+    wx.request({
+      url: app.globalData.baseurl + "doPagehomepage",
+      cachetime: "30",
+      data: {
+        uniacid: uniacid
+      },
+      success: function (t) {
+        that.setData({
+          foot_is: t.data.data.foot_is
+        })
+        wx.request({
+          url: app.globalData.baseurl + "doPageGetFoot",
+          cachetime: "30",
+          data: {
+            uniacid: uniacid,
+            foot: t.data.data.foot_is
+          },
+          success: function (t) {
+            that.setData({
+              footinfo: t.data.data,
+              style: t.data.data.style,
+            })
+          }
+        });
 
+
+      },
+      fail: function (t) {
+        console.log(t);
+      }
+    });
   },
 
   /**
@@ -113,37 +145,7 @@ Page({
       }
 
     });
-    wx.request({
-      url: app.globalData.baseurl + "doPagehomepage",
-      cachetime: "30",
-      data: {
-        uniacid: uniacid
-      },
-      success: function(t) {
-            that.setData({
-              foot_is: t.data.data.foot_is
-            })
-            wx.request({
-              url: app.globalData.baseurl + "doPageGetFoot",
-              cachetime: "30",
-              data: {
-                uniacid: uniacid,
-                  foot: t.data.data.foot_is
-              },
-              success: function(t) {
-                that.setData({
-                      footinfo: t.data.data,
-                      style:t.data.data.style,
-                  })
-              }
-          });
-              
-          
-      },
-      fail: function(t) {
-          console.log(t);
-      }
-  });
+    
 
   },
 
