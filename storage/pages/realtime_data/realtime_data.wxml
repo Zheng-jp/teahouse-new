@@ -14,11 +14,32 @@
     <swiper-item class="overflowYauto">
         <view>
             <view class="humiture-data">
-                <view class="time">
-                    <text class="humiture-title">北京时间：</text>
-                    {{beijingTime}}
+                <view>
+                    <view class="time">
+                        <text class="humiture-title">北京时间：</text>
+                        {{beijingTime}}
+                    </view>
+                    <view class="temperature">
+                        <view class="temp-in">
+                            <text class="humiture-title">仓储温度：</text>
+                            26.3℃
+                        </view>
+                        <view class="temp-out">
+                            <text class="humiture-title">室外温度：</text>
+                            26.3℃
+                        </view>
+                    </view>
+                    <view class="humidity">
+                        <view class="humi-in">
+                            <text class="humiture-title">仓储湿度：</text>
+                            79.3%
+                        </view>
+                        <view class="humi-out">
+                            <text class="humiture-title">室外湿度：</text>
+                            79.3%
+                        </view>
+                    </view>
                 </view>
-                <view ></view>
             </view>
         </view>
     </swiper-item>

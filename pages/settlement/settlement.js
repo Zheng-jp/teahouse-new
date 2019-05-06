@@ -1669,6 +1669,7 @@ Page({
     that.setData({
       user: user,
     });
+    console.log(user)
     wx.request({
       url: app.globalData.tiltes + 'order_return',
       data: {

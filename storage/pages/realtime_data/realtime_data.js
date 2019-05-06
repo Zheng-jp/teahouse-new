@@ -54,7 +54,7 @@ function initChart(canvas, width, height){
 
 function getCurrentTime(_this){
   var newDate = new Date();
-  var currentTime = app.formatDate(newDate.getTime()/1000),
+  var currentTime = app.formatDate(newDate.getTime() / 1000),
       h = newDate.getHours(),
       m = newDate.getMinutes(),
       s = newDate.getSeconds(),
@@ -67,7 +67,6 @@ function getCurrentTime(_this){
 function addZero(num){
   return num > 10 ? num : '0' + num;
 }
-
 
 Page({
 

@@ -10,9 +10,11 @@ swiper.swiper-container{min-height: 1020rpx;}
 .active{color:#93291f; position: relative;}
 .active::after{content: ''; width: 60%; position: absolute; bottom: 0; left: 50%; margin-left: -30%; display: block; border: 2rpx solid #93291f;}
 
-.humiture-data{padding: 40rpx; border-bottom: 4rpx solid #f2f2f2;}
-
-
+.humiture-data{padding: 40rpx 40rpx 0 40rpx; font-size: 28rpx; color: #a1a1a1;}
+.humiture-data>view{border-bottom: 4rpx solid #f2f2f2; padding-bottom: 40rpx;}
+.temperature,
+.humidity{display: flex; align-items: center; justify-content: space-between; margin-top: 20rpx;}
+.humiture-data .humiture-title{color: #333;}
 
 
 

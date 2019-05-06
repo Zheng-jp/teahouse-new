@@ -28,7 +28,8 @@ function switchProject(option, _this){
     success: function(res){
       console.log(res);
       _this.setData({
-        crowdList: res.data.data
+        crowdList: res.data.data,
+        Height: 146 * res.data.data.length + 100
       })
     },
     fail: function(res){
@@ -54,6 +55,7 @@ Page({
     switchProject: true,
     swiperDataList: [],
     crowdList: [],
+    Height: 0,
   },
   /**
    * 生命周期函数--监听页面加载

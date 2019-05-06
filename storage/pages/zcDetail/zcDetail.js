@@ -29,10 +29,10 @@ Page({
     var num = this.data.buyNum;
     var member_id = app.globalData.member_id;
     var arr = [
-      [guige],
-      [goods_id],
-      [num],
-      [member_id]
+      {"guige": [guige]},
+      {"goods_id": [goods_id]},
+      {"num": [num]},
+      {"member_id": [member_id]}
     ]
     wx.navigateTo({
       url: '/storage/pages/zcSettle/zcSettle?title=' + JSON.stringify(arr),
