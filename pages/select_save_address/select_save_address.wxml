@@ -1,47 +1,46 @@
 <!--pages/select_address/select_address.wxml-->
 <view class='all'>
-   <radio-group class="radio-group" bindchange="radioChange">
+  <radio-group class="radio-group" bindchange="radioChange">
 
-      <view class='content_list' bindtap="select" wx:for="{{warehouse}}" data-id="{{item.id}}">
-         <view class='radio'>
-            <radio value="" color='#fff' />
-         </view>
-         <view class='add_information'>
-            <view class="list1">
-               <view> 仓储编号:{{item.number}} </view>
-               <view>
-                  <view class="sava_contents">
-                     <view class="savetitle">仓储费标准:</view>
-                     <view class='scroll_view_border'>
-                        <swiper class="swiper_container" vertical="true" autoplay="true" circular="true"
-                           interval="5000">
-                           <block wx:for="{{item.units}}">
-                              <swiper-item>
-                                 <view class="swiper_item"> ¥{{item.cost}}/{{item.unit}}/天 </view>
-                              </swiper-item>
-                           </block>
-
-                        </swiper>
-                     </view>
-
-                  </view>
-
-               </view>
-            </view>
-            <view class='address'>
-               仓储地址:{{item.adress}}
-            </view>
-            <view class="list2">
-               <view class="list2_title">
-                  仓库描述：
-               </view>
-               <view class="list2_content">
-                  {{item.describe}}
-               </view>
-            </view>
-         </view>
+    <view class='content_list' bindtap="select" wx:for="{{warehouse}}" data-id="{{item.id}}">
+      <view class='radio'>
+        <radio value="" color='#fff' />
       </view>
-   </radio-group>
+      <view class='add_information'>
+        <view class="list1">
+          <view>仓储编号：{{item.number}}</view>
+        </view>
+        <view style='margin-top:15rpx;margin-bottom:-5rpx;'>
+          <view class="sava_contents">
+            <view class="savetitle">仓储标准：</view>
+            <view class='scroll_view_border'>
+              <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="5000">
+                <block wx:for="{{item.units}}">
+                  <swiper-item>
+                    <view class="swiper_item"> ¥{{item.cost}}/{{item.unit}}/天 </view>
+                  </swiper-item>
+                </block>
 
-   <!--<view class='add_address' bindtap='add_address'>新增收货地址</view>-->
+              </swiper>
+            </view>
+
+          </view>
+
+        </view>
+        <view class='address'>
+          仓储地址：{{item.adress}}
+        </view>
+        <view class="list2">
+          <view class="list2_title">
+            仓库描述：
+          </view>
+          <view class="list2_content">
+            {{item.describe}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </radio-group>
+
+  <!--<view class='add_address' bindtap='add_address'>新增收货地址</view>-->
 </view>
