@@ -1,5 +1,5 @@
 <!-- pages/storage/view/view.wxml -->
-<view class="swiper-tab">
+<view class="swiper-tab" wx:if="{{version== 3}}">
   <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">
     茶仓
   </view>

@@ -1477,7 +1477,7 @@ Page({
       that.money_storages();
       that.calculate_money();
     }
-    
+
 
   },
   /* 点击加号 */
@@ -1505,7 +1505,7 @@ Page({
     } else {
       that.calculate_money();
     }
-    
+
   },
   /* 点击减号 */
   bindMinus1: function() {
@@ -2174,6 +2174,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
+    // this.onShow();
     setTimeout(function() {
       wx.stopPullDownRefresh();
     }, 1000)

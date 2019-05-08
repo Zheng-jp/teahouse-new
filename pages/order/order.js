@@ -568,9 +568,8 @@ Page({
   // 追加评价
   go: function (event) {
     var item = event.currentTarget.dataset.id;
-    console.log(event)
     wx.redirectTo({
-      url: item+'?title=' + 0,
+      url: item+'?title=' + 0 + '&version=' + this.data.version,
       success: function (res) {
       
       },
@@ -588,12 +587,14 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    that.setData({
+      version: options.version
+    })
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
     var member_grade_img=app.globalData.member_grade_img;
     this.setData({ member_grade_img: member_grade_img });
     var title = options.title;
-    console.log(title);
     if(title==0){
       wx.request({
         url: app.globalData.tiltes + 'ios_api_order_all',

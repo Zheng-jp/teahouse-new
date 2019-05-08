@@ -55,6 +55,11 @@ checkbox-group{
   text-align: center;
 }
 
+radio .wx-radio-input.wx-radio-input-checked::before {
+  width: auto;
+  height: auto;
+  
+}
 .add_information{
   width: 486rpx;
   font-size: 26rpx;

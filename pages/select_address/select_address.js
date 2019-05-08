@@ -114,7 +114,7 @@ Page({
   },
   radioChange: function(e) {
     var that = this;
-    // console.log(e.detail.value)
+    // console.log(e)
     wx.request({
       url: app.globalData.tiltes + 'member_address_status',
       data: {
@@ -123,21 +123,35 @@ Page({
       },
       method: "post",
       success: function(res) {
+        // console.log(res)
         for (var index in that.data.address) {
-          if (e.detail.value[0] == that.data.address[index].id) {
+          if (e.detail.value == that.data.address[index].id) {
+            // console.log(that.data.address[index])
+            // var tel = that.data.address[index].harvester_phone_num;
+            // var name = that.data.address[index].harvester;
+            // var address = that.data.address[index].address_name;
+            // var id = that.data.address[index].id;
+            // wx.setStorageSync('tel', tel);
+            // wx.setStorageSync('name', name);
+            // wx.setStorageSync('address', address);
+            // wx.setStorageSync('id', id);
             that.setData({
               checked: that.data.address[index].checked
             });
           }
         }
+        // 
+        // wx.navigateBack({
+        //   delta: 1
+        // });
         wx.showToast({
-          title: '修改成功',
+          title: '默认地址修改成功',
           icon: 'none'
         })
         
         
-        console.log(that.data)
-        that.onShow();
+        // console.log(that.data)
+        // that.onShow();
       },
       fail: function() {
 
@@ -175,17 +189,35 @@ Page({
   },
   // 当从结算页面进来时触发的事件
   select: function(event) {
-    var tel = event.currentTarget.dataset.tel;
-    var name = event.currentTarget.dataset.name;
-    var address = event.currentTarget.dataset.address;
-    var id = event.currentTarget.dataset.id;
-    wx.setStorageSync('tel', tel);
-    wx.setStorageSync('name', name);
-    wx.setStorageSync('address', address);
-    wx.setStorageSync('id', id);
-    wx.navigateBack({
-      delta: 1
-    });
+    // console.log(event.currentTarget)
+    wx.request({
+      url: app.globalData.tiltes + 'member_address_status',
+      data: {
+        open_id: app.globalData.gmemberid,
+        id: event.currentTarget.dataset.id,
+      },
+      method: "post",
+      success: function (res) {
+        var tel = event.currentTarget.dataset.tel;
+        var name = event.currentTarget.dataset.name;
+        var address = event.currentTarget.dataset.address;
+        var id = event.currentTarget.dataset.id;
+        wx.setStorageSync('tel', tel);
+        wx.setStorageSync('name', name);
+        wx.setStorageSync('address', address);
+        wx.setStorageSync('id', id);
+        wx.navigateBack({
+          delta: 1
+        });
+        wx.showToast({
+          title: '默认地址修改成功',
+          icon: 'none'
+        })
+      },
+      fail: function() {}
+    })
+    
+    
   },
 
   /**
@@ -241,7 +273,7 @@ Page({
             address: res.data.data,
           });
         }
-        console.log(that.data.address)
+        // console.log(that.data.address)
         for (var index in that.data.address) {
 
           var address_names = that.data.address[index].address_name.split(",").join("");
@@ -261,7 +293,7 @@ Page({
           }
         }
 
-        console.log(that.data)
+        // console.log(that.data)
 
       },
       fail: function() {

@@ -178,6 +178,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    that.setData({
+      version: options.version
+    })
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
     var member_grade_img=app.globalData.member_grade_img;
@@ -218,7 +221,7 @@ Page({
     var that = this;
     var item = event.currentTarget.dataset.id;
     wx.redirectTo({
-      url: item + '?title=' + 0,
+      url: item + '?title=' + 0 + '&version=' + this.data.version,
       success: function (res) {
 
       },

@@ -819,8 +819,8 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .sava_contents {
   display: flex;
-  margin-left: -35rpx;
   width: 340rpx;
+  margin-top:10rpx;
 }
 
 .sava_list {
@@ -828,7 +828,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .savetitle {
-  width: 280rpx;
+  width: 185rpx;
 }
 
 .srcoll_view {

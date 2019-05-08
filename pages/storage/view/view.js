@@ -56,6 +56,7 @@ Page({
     swiperDataList: [],
     crowdList: [],
     Height: 0,
+    version: 0
   },
   /**
    * 生命周期函数--监听页面加载
@@ -169,8 +170,16 @@ Page({
         uniacid: uniacid
       },
       success: function (t) {
+        var version_is;
+        if (t.data.data.test_name.goods_name == '茶进阶版')
+          version_is = 3;
+        else if (t.data.data.test_name.goods_name == '茶行业版')
+          version_is = 2;
+        else
+          version_is = 1;
         that.setData({
-          foot_is: t.data.data.foot_is
+          foot_is: t.data.data.foot_is,
+          version: version_is
         })
         wx.request({
           url: app.globalData.baseurl + "doPageGetFoot",

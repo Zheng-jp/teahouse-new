@@ -22,8 +22,8 @@
 <!--content-->
    <view class="nav">
 	   <view class="this"> 普通订单</view>
-	   <view class="" bindtap="go" data-id="/storage/pages/zcOrder/zcOrder"> 众筹订单</view>
-	   <view class="" bindtap="go"> 定制订单</view>
+	   <view class="" bindtap="go" data-id="/storage/pages/zcOrder/zcOrder" wx:if="{{version == 3}}"> 众筹订单</view>
+	   <view class="" bindtap="go" wx:if="{{version == 3}}"> 定制订单</view>
 	   <view class="" bindtap="go" data-id="../integral_order/integral_order"> 积分订单</view>
    </view>
 	<view class='title'>

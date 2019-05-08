@@ -83,6 +83,7 @@ Page({
         src:'../about/about',
       }
     ],
+    version: '' //版本
   /**
    * 会员卡
    */
@@ -140,8 +141,16 @@ onLoad:function(){
       uniacid: uniacid
     },
     success: function (t) {
+      var version_is;
+      if (t.data.data.test_name.goods_name == '茶进阶版')
+        version_is = 3;
+      else if (t.data.data.test_name.goods_name == '茶行业版')
+        version_is = 2;
+      else
+        version_is = 1;
       that.setData({
-        foot_is: t.data.data.foot_is
+        foot_is: t.data.data.foot_is,
+        version: version_is
       })
       wx.request({
         url: app.globalData.baseurl + "doPageGetFoot",
@@ -300,9 +309,10 @@ onLoad:function(){
   },
   go_order: function (event) {
     var item = event.currentTarget.dataset.id;
+    console.log(this.data.version)
     if(item==5){
       wx.navigateTo({
-        url: '../after_sales/after_sales',
+        url: '../after_sales/after_sales?version=' + this.data.version,
         success: function (res) {
           // success
           console.log("nihao////跳转成功")
@@ -320,7 +330,7 @@ onLoad:function(){
     }
     else{
       wx.navigateTo({
-        url: '../order/order?title='+item,
+        url: '../order/order?title=' + item + '&version=' + this.data.version,
         success: function (res) {
           // success
           console.log("nihao////跳转成功")

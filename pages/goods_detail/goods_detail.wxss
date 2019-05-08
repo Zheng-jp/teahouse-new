@@ -582,5 +582,5 @@ overflow:hidden;
   background-color:#fff;
   height:80rpx;
   padding:15rpx;
-  margin:15rpx 0 100rpx 0;
+  margin-top: 15rpx;
 }
