@@ -4,7 +4,7 @@
 
     <view class='content_list' bindtap="select" wx:for="{{warehouse}}" data-id="{{item.id}}">
       <view class='radio'>
-        <radio value="" color='#fff' />
+        <radio value="{{item.id}}" color='#02A0E6' checked = "{{item.status == 1 ? 'true':''}}"/>
       </view>
       <view class='add_information'>
         <view class="list1">
