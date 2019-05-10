@@ -11,7 +11,9 @@ Page({
     is: true, 
     url: app.globalData.img_url,
     level:[],
-    information:[ ]
+    information:[ ],
+    menber_send: '0.00',
+    integral_send: '0.00'
 
   },
     catchTouchMove:function(res){
@@ -29,6 +31,7 @@ Page({
  
   radioChange: function (e) {
     var that = this;
+    // console.log(e)
     //  点击添加类
     if (that.data.level.tab === e.detail.value) {
       return false;
@@ -37,9 +40,23 @@ Page({
         tab: e.detail.value
       })
     }
+    var tab = that.data.tab;
+    for (var i = 0; i < that.data.level.length; i++) {
+      var check = "level[" + i + "].check";
+      that.setData({
+        [check]: false
+      })
+      if (that.data.level[i].member_grade_id == that.data.level[tab].member_grade_id) {
+        var check = "level[" + tab + "].check";
+        that.setData({
+          [check]: true
+        })
+      }
+    }
+
     var member_grade_id = that.data.information.member_grade_id;
-    var tab=that.data.tab;
-    if (member_grade_id == that.data.level[tab].member_grade_id) {    
+    
+    if (member_grade_id == that.data.level[tab].member_grade_id) {   
         that.setData({
           is: true,
         })
@@ -49,6 +66,7 @@ Page({
           is: false,
         })
       }
+    
     
   },
   stopTouchMove: function () {
@@ -67,6 +85,75 @@ Page({
 
     })
   },
+
+  //调起支付下单
+  pay: function (e) {
+    var that = this;
+    var data = e.currentTarget;
+    console.log(that.data.level)
+    var arr_data;
+    for(var i = 0; i < that.data.level.length; i++) {
+      if(that.data.level[i].check == true) {
+        arr_data = that.data.level[i];
+      }
+    }
+    console.log(arr_data)
+    //下单
+    wx.request({
+      url: app.globalData.tiltes + 'member_balance_recharge',
+      data: {
+        member_id: that.data.information.member_id,//账号id
+        money: arr_data.recharge_member_send,//金额
+        member_grade_id: arr_data.member_grade_id //选择等级
+      },
+      method: "POST",
+      success: function (res) {
+        // console.log(res)
+        //调起支付
+        wx.request({
+          url: app.globalData.tiltes + 'wx_recharge_pay',
+          data: {
+            member_id: that.data.information.member_id,
+            recharge_order_number: res.data.data
+          },
+          method: 'POST',
+          success: function (res) {
+            console.log(res)
+            var result = res;
+            if (result) {
+              wx.requestPayment({
+                timeStamp: String(result.data.timeStamp),
+                nonceStr: result.data.nonceStr,
+                package: result.data.package,
+                signType: result.data.signType,
+                paySign: result.data.paySign,
+                'success': function (successret) {
+                  console.log(successret)
+                  console.log('支付成功');
+                  // that.setData({
+                  //   apply: 1,
+                  // });
+                },
+                'fail': function (e) {
+                  console.log(e)
+                }
+              })
+            }
+          },
+          fail: function (e) {
+
+          }
+        })
+      },
+      fail: function (e) {
+
+      },
+      complete: function () {
+      }
+    })
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -79,8 +166,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-
   },
 
   /**
@@ -100,10 +185,10 @@ Page({
 
       // },
       success: function (res) {
+        console.log(res.data.data.member_grade)
         that.setData({
           level: res.data.data.member_grade,
           information: res.data.data.information
-          
         });
         //  添加字段到等级数组
         for (var index in that.data.level) {
@@ -121,8 +206,8 @@ Page({
 
         }
         var member_grade_id = that.data.information.member_grade_id;
-        console.log(member_grade_id);
-        console.log(that.data.level);
+        // console.log(member_grade_id);
+        // console.log(that.data.level);
         for (var index in that.data.level){
         
           if (member_grade_id == that.data.level[index].member_grade_id){
