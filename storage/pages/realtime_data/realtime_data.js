@@ -51,7 +51,7 @@ function initChart(canvas, width, height){
   chart.setOption(option);
   return chart;
 }
-
+// 获取当前时间
 function getCurrentTime(_this){
   var newDate = new Date();
   var currentTime = app.formatDate(newDate.getTime() / 1000),
@@ -64,9 +64,50 @@ function getCurrentTime(_this){
     beijingTime: currentTime
   })
 }
+// 给各位数时间加上0
 function addZero(num){
   return num > 10 ? num : '0' + num;
 }
+// 获取设备信息 （用户登录接口）
+function userLogin(_this){
+  wx.request({
+    url: 'https://api.dtuip.com/qy/user/login.html',
+    method: 'POST',
+    data: {
+      "userName": "18510393696",
+      "password": "zhcc63268696"
+    },
+    success(res){
+      // console.log(res.data);
+      _this.setData({
+        userLogin: res.data
+      })
+      queryDevMoniData(res.data, _this);
+    }
+  })
+}
+// 获取设备监控数据
+function queryDevMoniData(userData, _this){
+  wx.request({
+    url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html',
+    method: 'POST',
+    data: {
+      "userApiKey": userData.userApikey,
+      "deviceNo": "8606S86YL8295C5Y",
+      "flagCode": userData.flagCode
+    },
+    success(res){
+      console.log(res.data);
+      _this.setData({
+        inTemp: res.data.deviceList[0].sensorList[0].value,
+        outTemp: res.data.deviceList[0].sensorList[2].value,
+        inHumi: res.data.deviceList[0].sensorList[1].value,
+        outHumi: res.data.deviceList[0].sensorList[3].value
+      })
+    }
+  })
+} 
+
 
 Page({
 
@@ -78,7 +119,13 @@ Page({
       onInit: initChart
     },
     currentTab: 0,
-    beijingTime: ''
+    beijingTime: '',
+    userLogin: {},
+    inTemp: 26.22,
+    outTemp: 26.22,
+    inHumi: 79.33,
+    outHumi: 79.33,
+
   },
 
   clickTab: function(e){
@@ -105,6 +152,9 @@ Page({
    */
   onLoad: function (options) {
     var _this = this;
+
+    userLogin(this);
+
     setInterval(function(){
       getCurrentTime(_this);
     }, 1000);
