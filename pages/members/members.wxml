@@ -62,12 +62,14 @@
             <view>1.当消费达到以上等级，即可成员该等级会员并享受等级会员服务；</view>
             <view> 2.您还可以直接等级会员充值，成为会员，充值有赠送哦~；</view>
             <view> 3.更多服务，了解会员权益，请查阅</view>
-            <view style='color:#6B6B6B;'> <checkbox  value="111" >我已阅读并同意《会员权益协议》</checkbox> 
-</view>
+            <checkbox-group bindchange="read">
+              <view style='color:#6B6B6B;'> <checkbox  value="是否已读" >我已阅读并同意《会员权益协议》</checkbox></view>
+            </checkbox-group> 
+
      </view>
      </view>
     <view class="num_button">
-    <view><text>充值</text> <text style='color: red; font-size:40rpx;padding-right:10rpx;font-size:35rpx;'>￥40000</text><text>送积分</text><text style='color:red'>8000</text> </view>
+    <view><text>充值</text> <text style='color: red; font-size:40rpx;padding-right:10rpx;font-size:35rpx;'>￥{{member_send}}</text><text>送积分</text><text style='color:red'>{{integral_send}}</text> </view>
     <view class='naext' bindtap="pay"> 下一步 </view>
     </view>
 </view>
