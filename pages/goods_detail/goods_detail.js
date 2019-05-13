@@ -194,6 +194,10 @@ Page({
 
 					// },
 					success: function(res) {
+              var buy_num = that.data.buy_num + 1;
+              that.setData({
+                buy_num: buy_num
+              })
 						setTimeout(() => {
 							wx.showToast({
 								title: "加入购物车成功",

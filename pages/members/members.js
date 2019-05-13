@@ -53,8 +53,6 @@ Page({
       })
     }
     var tab = that.data.tab;
-    console.log(that.data.level[tab])
-    console.log('-----------------------------')
     that.setData({
       member_send: that.data.level[tab].recharge_member_send,
       integral_send: that.data.level[tab].recharge_integral_send
