@@ -99,10 +99,13 @@ function queryDevMoniData(userData, _this){
     success(res){
       console.log(res.data);
       _this.setData({
-        inTemp: res.data.deviceList[0].sensorList[0].value,
-        outTemp: res.data.deviceList[0].sensorList[2].value,
-        inHumi: res.data.deviceList[0].sensorList[1].value,
-        outHumi: res.data.deviceList[0].sensorList[3].value
+        inTemp: (+res.data.deviceList[0].sensorList[0].value).toFixed(2),
+        outTemp: (+res.data.deviceList[0].sensorList[2].value).toFixed(2),
+        inHumi: (+res.data.deviceList[0].sensorList[1].value).toFixed(2),
+        outHumi: (+res.data.deviceList[0].sensorList[3].value).toFixed(2),
+      })
+      wx.setNavigationBarTitle({
+        title: res.data.deviceList[0].deviceName
       })
     }
   })

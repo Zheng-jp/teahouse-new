@@ -44,8 +44,6 @@ swiper.swiper-container{min-height: 1020rpx;}
 
 
 
-
-
-.temp-echarts{width: 700rpx; height: 500rpx;}
+.temp-echarts{width: 700rpx; height: 500rpx; margin: 0 auto;}
 
 
