@@ -42,6 +42,10 @@
                 </view>
             </view>
         </view>
+        <view class="temp-echarts">
+            <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{ ecOne}}"></ec-canvas>
+            <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ ecTwo }}"></ec-canvas>
+        </view>
     </swiper-item>
     <swiper-item class="overflowYauto">
         <view>历史数据</view>
@@ -50,10 +54,3 @@
         <view>对比数据</view>
     </swiper-item>
 </swiper>
-<!-- <view class="temp-echarts">
-    <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
-</view> -->
-<view class="temp-echarts">
-    <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{ ecOne}}"></ec-canvas>
-    <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ ecTwo }}"></ec-canvas>
-</view>
