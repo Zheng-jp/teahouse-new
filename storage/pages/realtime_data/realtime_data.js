@@ -1,56 +1,75 @@
 // storage/pages/realtime_data/realtime_data.js
 import * as echarts from '../../../component/ec-canvas/echarts';
 var app = getApp();
-function initChart(canvas, width, height){
-  var chart = echarts.init(canvas, null, {
-    width: width,
-    height: height
-  })
-  canvas.setChart(chart);
-
-  var option = {
+function setOption(chart, _this) {
+  const option = {
     title: {
       text: '实时仓储温度(°C)',
-      left: 'center'
+      left: 'center',
+      textStyle: {
+        fontSize: 14,
+        color: '#696969'
+      },
+      top: '10rpx'
     },
-    color: ['#37A2DA'],
+    backgroundColor: "#fff",
+    color: ["#006EFF", "#67E0E3", "#9FE6B8"],
+    animation: true,
     grid: {
-      containLabel: true
+      show: false
     },
-    tooltip: {
-      show: true,
-      trigger: 'axis'
-    },
-    xAxis: {
-      name: '时间',
-      type: 'time',
-      boundaryGap: false,
-      splitLine: {
-        show: false
-      },
-
-    },
+    xAxis: [{
+      type: 'category',
+      boundaryGap: true,
+      // data: xdata,
+      data: (function () {
+        var now = new Date();
+        var res = [];
+        var len = 10;
+        while (len--) {
+          res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+          now = new Date(now - 2000);
+        }
+        return res;
+      })()
+    }],
     yAxis: {
-      name: '温度(℃)',
-      position: 'right',
       type: 'value',
-      axisLine: {
-        show: false
-      },
-      axisTick: {
-        show: false
-      }
+      scale: true,
+      boundaryGap: [0.2, 0.2]
     },
     series: [{
-      name: 'temperature',
       type: 'line',
-      smooth: false, //曲线是否平滑
-      data: [18, 36, 65, 30, 78, 40, 33]
+      data: _this.data.yArr,
     }]
-  }
-  chart.setOption(option);
-  return chart;
+  };
+  // chart.setOption(option);
+  _this.setData({
+    timer: setInterval(function () {
+      var axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+      wx.request({
+        url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html',    //你请求数据的接口地址
+        method: 'POST',
+        data: {               //传的参数，这些都不用多说了吧
+          "userApiKey": _this.data.userLogin.userApikey,
+          "deviceNo": "8606S86YL8295C5Y",
+          "flagCode": _this.data.userLogin.flagCode
+        },
+        success: function (res) {
+          var res = res.data.deviceList[0].sensorList;
+          var data0 = option.series[0].data;
+          data0.shift();
+          data0.push(+res[0].value);
+        }
+      })
+      option.xAxis[0].data.shift();
+      option.xAxis[0].data.push(axisData);
+
+      chart.setOption(option);
+    }, 2100)
+  })
 }
+
 // 获取当前时间
 function getCurrentTime(_this){
   var newDate = new Date();
@@ -78,10 +97,17 @@ function userLogin(_this){
       "password": "zhcc63268696"
     },
     success(res){
-      // console.log(res.data);
       _this.setData({
         userLogin: res.data
       })
+      var len = 0;
+      while(len < 10){
+        _this.getOneOption();
+        len++;
+      }
+      if(len==10){
+        _this.initOne();
+      }
       queryDevMoniData(res.data, _this);
     }
   })
@@ -97,12 +123,15 @@ function queryDevMoniData(userData, _this){
       "flagCode": userData.flagCode
     },
     success(res){
-      console.log(res.data);
+      console.log(res.data.deviceList[0].sensorList);
       _this.setData({
-        inTemp: res.data.deviceList[0].sensorList[0].value,
-        outTemp: res.data.deviceList[0].sensorList[2].value,
-        inHumi: res.data.deviceList[0].sensorList[1].value,
-        outHumi: res.data.deviceList[0].sensorList[3].value
+        inTemp: (+res.data.deviceList[0].sensorList[0].value).toFixed(2),
+        outTemp: (+res.data.deviceList[0].sensorList[2].value).toFixed(2),
+        inHumi: (+res.data.deviceList[0].sensorList[1].value).toFixed(2),
+        outHumi: (+res.data.deviceList[0].sensorList[3].value).toFixed(2),
+      })
+      wx.setNavigationBarTitle({
+        title: res.data.deviceList[0].deviceName
       })
     }
   })
@@ -115,8 +144,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ec: {
-      onInit: initChart
+    ecOne: {
+      lazyLoad: true
+    },
+    ecTwo: {
+      lazyLoad: true
     },
     currentTab: 0,
     beijingTime: '',
@@ -125,7 +157,9 @@ Page({
     outTemp: 26.22,
     inHumi: 79.33,
     outHumi: 79.33,
-
+    timer: '',//因为我要实时刷新，所以设置了个定时器
+    yArr: [], //init 温度
+    yArr2: [], // init湿度
   },
 
   clickTab: function(e){
@@ -170,8 +204,8 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function () { //这一步是一定要注意的
+    this.oneComponent = this.selectComponent('#mychart-one');
   },
 
   /**
@@ -185,7 +219,39 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(this.data.timer)
+  },
+  initOne: function () {           //初始化第一个图表
+    var _this = this;
+    this.oneComponent.init((canvas, width, height) => {
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+      setOption(chart, _this);
+      this.chart = chart;
+      return chart;
+    });
+  },
+  getOneOption: function () {        //这一步其实就要给图表加上数据
+    var _this = this;
+    wx.request({
+      url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html',    //你请求数据的接口地址
+      method: 'POST',
+      header: {
+        "Content-Type": "application/json"
+      },
+      data: {               //传的参数，这些都不用多说了吧
+        "userApiKey": _this.data.userLogin.userApikey,
+        "deviceNo": "8606S86YL8295C5Y",
+        "flagCode": _this.data.userLogin.flagCode
+      },
+      success: function (res) {
+        var res = res.data.deviceList[0].sensorList;
+        _this.data.yArr.push(+res[0].value);
+        _this.data.yArr2.push(+res[1].value);
+      }
+    })
   },
 
   /**
