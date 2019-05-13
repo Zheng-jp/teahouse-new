@@ -156,25 +156,25 @@
         <view class='select_box'>
           <view class='add_information'>
             <view class="list1">
-              <view>仓储编号: {{warehouse.name}}</view>
-              <view>
-                <view class="sava_contents">
-                  <view class="savetitle">仓储费标准:</view>
-                  <view class='scroll_view_border'>
-                    <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="5000">
-                      <block wx:for="{{warehouse.units}}" wx:key="index">
-                        <swiper-item>
-                          <view class="swiper_item">¥{{item.cost}}/{{item.unit}}/天</view>
-                        </swiper-item>
-                      </block>
-                    </swiper>
-                  </view>
+              <view>仓储编号：{{warehouse.name}}</view>
+            </view>
+            <view>
+              <view class="sava_contents">
+                <view class="savetitle">仓储标准：</view>
+                <view class='scroll_view_border'>
+                  <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="5000">
+                    <block wx:for="{{warehouse.units}}" wx:key="index">
+                      <swiper-item>
+                        <view class="swiper_item">¥{{item.cost}}/{{item.unit}}/天</view>
+                      </swiper-item>
+                    </block>
+                  </swiper>
                 </view>
               </view>
             </view>
-            <view class='address'>仓储地址: {{warehouse.adress}}</view>
+            <view class='address'>仓储地址：{{warehouse.adress}}</view>
             <view class="list2">
-              <view class="list2_title" style='width:115rpx;'>仓库描述:</view>
+              <view class="list2_title">仓库描述：</view>
               <view class="list2_content">{{warehouse.describe}}</view>
             </view>
           </view>
@@ -189,8 +189,7 @@
     <view class='is_invoice2'>
       <checkbox-group bindchange="checkboxChanges">
         <label class="checkbox">
-          <checkbox value="选择仓储年限" checked="{{is_checked==true?'true':''}}" />
-          选择仓储年限
+          <checkbox value="选择仓储年限" checked="{{is_checked==true?'true':''}}" /> 选择仓储年限
         </label>
       </checkbox-group>
       <image class="tips_img" src="/pages/settlement/img/u927.png" mode="widthFix"></image>
@@ -215,8 +214,7 @@
     <view class='is_invoice1'>
       <view class="is_invoice11">
         <label class="checkbox">
-          <checkbox value="选择仓储保险" />
-          选择仓储保险
+          <checkbox value="选择仓储保险" /> 选择仓储保险
         </label>
         <image class="tips_img" src="/pages/settlement/img/u927.png" mode="widthFix"></image>
         <view class="" class="tips_content">*可选项，默认1年</view>
@@ -239,8 +237,7 @@
     <view class='is_invoice'>
       <label class="checkbox">
         <checkbox-group bindchange="check_invoice">
-          <checkbox value="0" checked="{{taxes_select==1?'true':''}}" />
-          选择开具发票
+          <checkbox value="0" checked="{{taxes_select==1?'true':''}}" /> 选择开具发票
         </checkbox-group>
       </label>
       <view class='invoice_money text_red'>¥ {{taxes}}</view>

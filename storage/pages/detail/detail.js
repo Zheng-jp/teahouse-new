@@ -295,7 +295,7 @@ Page({
     let nextYear = 0;
     let month = setMonth || now.getMonth();					//没有+1方便后面计算当月总天数
     let nextMonth = (month + 1) > 11 ? 1 : (month + 1);
-    let startWeek = new Date(year + ',' + (month + 1) + ',' + 1).getDay();							//目标月1号对应的星期
+    let startWeek = new Date(year + '/' + (month + 1) + '/' + 1).getDay();							//目标月1号对应的星期
     let dayNums = new Date(year, nextMonth, 0).getDate();				//获取目标月有多少天
     let obj = {};
     let num = 0;
@@ -307,6 +307,8 @@ Page({
       nextYear = year + 1;
       dayNums = new Date(nextYear, nextMonth, 0).getDate();
     }
+    startWeek = Number(startWeek);
+    dayNums = Number(dayNums);
     arrLen = startWeek + dayNums;
     
     months = months + 1;
@@ -333,9 +335,7 @@ Page({
       ins = this.formatDay(timeC[u] * 1000);
       timeArr.push(ins);
     }
-    // console.log(timeArr)
-    // console.log(this.data.information)
-    for (let i = 0; i < arrLen; i++) {
+    for (let i = 0; i < Number(arrLen); i++) {
       if (i >= startWeek) {
         num = i - startWeek + 1;
         if(num < 10) {
@@ -348,7 +348,6 @@ Page({
         var indexId;
         for (let r = 0; r < timeArr.length; r++) {
           if (Number(timeArr[r]) == Number(todayTime)) {
-            // console.log(r)
             state = true;
             weight = this.data.information.day_array[r];
             indexId = r;
@@ -375,7 +374,7 @@ Page({
    
 
 
-    //  console.log(dateArr)
+     console.log(dateArr)
     this.setData({
       dateArr: dateArr
     })

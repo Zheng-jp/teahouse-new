@@ -650,13 +650,14 @@
   
   }
   .sava_contents{
+    margin-top: 10rpx;
     display: flex;
   }
   .sava_list{
     display: flex;
   }
-  .savetitle{
-    width: 280rpx;
+  .savetitle {
+    width: 160rpx;
   }
   .srcoll_view{
     position: absolute;

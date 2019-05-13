@@ -64,8 +64,8 @@
 .sava_list{
   display: flex;
 }
-.savetitle{
-  width: 163rpx;
+.savetitle {
+  width: 168rpx;
 }
 .save_contents {
   margin-top: 10rpx;
