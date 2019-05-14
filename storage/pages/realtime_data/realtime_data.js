@@ -35,6 +35,14 @@ function setOption(chart, _this, yArr) {
     }],
     yAxis: {
       type: 'value',
+      position: 'right',
+      splitNumber: 3,
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
       name: '温度℃',
       scale: true,
       boundaryGap: [0.2, 0.2]
@@ -104,6 +112,14 @@ function setOption2(chart, _this, yArr) {
     yAxis: {
       type: 'value',
       name: '湿度%',
+      position: 'right',
+      splitNumber: 3,
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
       scale: true,
       boundaryGap: [0.2, 0.2]
     },
@@ -231,6 +247,19 @@ Page({
     timer2: '',
     yArr: [], //init 温度
     yArr2: [], // init湿度
+    sdate: '2018-09-01',//开始日期
+    edate: '2018-09-01',//结束日期
+  },
+  // 选择日期
+  sBindDateChange: function (e) {
+    this.setData({
+      sdate: e.detail.value
+    })
+  },
+  eBindDateChange: function (e) {
+    this.setData({
+      edate: e.detail.value
+    })
   },
 
   clickTab: function(e){
@@ -263,6 +292,11 @@ Page({
     setInterval(function(){
       getCurrentTime(_this);
     }, 1000);
+    // 初始化 查看历史日期时间
+    _this.setData({
+      sdate: new Date().toLocaleDateString().replace(/\//g, '-'),
+      edate: new Date().toLocaleDateString().replace(/\//g, '-')
+    })
   },
 
   /**

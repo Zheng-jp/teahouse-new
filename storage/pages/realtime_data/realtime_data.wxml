@@ -43,14 +43,33 @@
             </view>
         </view>
         <view class="temp-echarts">
-            <!-- <view> -->
             <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{ ecOne}}"></ec-canvas>
             <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ ecTwo }}"></ec-canvas>
-            <!-- </view> -->
         </view>
     </swiper-item>
     <swiper-item class="overflowYauto">
-        <view>历史数据</view>
+        <view>
+            <view class="history-nav">
+                日期
+                <view class="history-date">
+                    <view class="section">
+                        <picker mode="date" value="{{sdate}}" start="2018-09-01" bindchange="sBindDateChange">
+                            <view class="picker">{{sdate}}</view>
+                        </picker>
+                    </view>
+                    <view class="section">
+                        <view class="section__title">至</view>
+                        <picker mode="date" value="{{edate}}" start="2018-09-01" bindchange="eBindDateChange">
+                            <view class="picker">{{edate}}</view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="history-btns">
+                    <text>近7天</text>
+                    <text>近14天</text>
+                </view>
+            </view>
+        </view>
     </swiper-item>
     <swiper-item class="overflowYauto">
         <view>对比数据</view>
