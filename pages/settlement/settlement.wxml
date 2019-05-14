@@ -158,13 +158,11 @@
           <image src='img/u1959.png'></image>
         </view>
       </view>
-
       <view class="direct_mail {{selected2?'show':'hidden'}}" bindtap='go_save_tea'>
         <view class='select_box'>
           <view class='add_information'>
             <view class="list1">
-              <view> 仓储编号：{{warehouse.name}} </view>
-              
+              <view>仓储编号：{{warehouse.name}}</view>
             </view>
             <view style='overflow:visible;'>
                 <view class="sava_contents">
@@ -173,23 +171,16 @@
                     <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="5000">
                       <block wx:for="{{warehouse.units}}">
                         <swiper-item>
-                          <view class="swiper_item">¥{{item.cost}}/{{item.unit}}/天 </view>
+                          <view class="swiper_item">¥{{item.cost}}/{{item.unit}}/天</view>
                         </swiper-item>
                       </block>
-
                     </swiper>
                   </view>
-
                 </view>
-
             </view>
-            <view class='address'>
-              仓储地址：{{warehouse.adress}}
-            </view>
+            <view class='address'>仓储地址：{{warehouse.adress}}</view>
             <view class="list2">
-              <view class="list2_title">
-                仓库描述：
-              </view>
+              <view class="list2_title">仓库描述：</view>
               <view class="list2_content">
                 {{warehouse.describe}}
               </view>
@@ -199,9 +190,7 @@
             <image src='img/u1959.png'></image>
           </view>
         </view>
-
       </view>
-
     </view>
   </view>
   <view class="is_insurance {{selected2?'show':'hidden'}}">
