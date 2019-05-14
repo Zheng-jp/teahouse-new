@@ -1,6 +1,7 @@
 // storage/pages/realtime_data/realtime_data.js
 import * as echarts from '../../../component/ec-canvas/echarts';
 var app = getApp();
+// 温度
 function setOption(chart, _this, yArr) {
   const option = {
     title: {
@@ -68,6 +69,74 @@ function setOption(chart, _this, yArr) {
     }, 2100)
   })
 }
+// 湿度
+function setOption2(chart, _this, yArr) {
+  const option = {
+    title: {
+      text: '实时仓储湿度(%)',
+      left: 'center',
+      textStyle: {
+        fontSize: 14,
+        color: '#696969'
+      },
+      top: '10rpx'
+    },
+    backgroundColor: "#fff",
+    color: ["#006EFF", "#67E0E3", "#9FE6B8"],
+    animation: true,
+    grid: {
+      show: false
+    },
+    xAxis: [{
+      type: 'category',
+      boundaryGap: true,
+      data: (function () {
+        var now = new Date();
+        var res = [];
+        var len = 10;
+        while (len--) {
+          res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+          now = new Date(now - 2000);
+        }
+        return res;
+      })()
+    }],
+    yAxis: {
+      type: 'value',
+      name: '湿度%',
+      scale: true,
+      boundaryGap: [0.2, 0.2]
+    },
+    series: [{
+      type: 'line',
+      data: yArr,
+    }]
+  };
+  _this.setData({
+    timer: setInterval(function () {
+      var axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+      wx.request({
+        url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html',    //你请求数据的接口地址
+        method: 'POST',
+        data: {               //传的参数，这些都不用多说了吧
+          "userApiKey": _this.data.userLogin.userApikey,
+          "deviceNo": "8606S86YL8295C5Y",
+          "flagCode": _this.data.userLogin.flagCode
+        },
+        success: function (res) {
+          var res = res.data.deviceList[0].sensorList;
+          var data0 = option.series[0].data;
+          data0.shift();
+          data0.push(+res[1].value);
+        }
+      })
+      option.xAxis[0].data.shift();
+      option.xAxis[0].data.push(axisData);
+
+      chart.setOption(option);
+    }, 2100)
+  })
+}
 
 // 获取当前时间
 function getCurrentTime(_this){
@@ -106,6 +175,7 @@ function userLogin(_this){
       }
       if(len==10){
         _this.initOne();
+        _this.initTwo();
       }
       //获取设备监控数据
       queryDevMoniData(res.data, _this);
@@ -197,15 +267,16 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    
+  onReady: function () {//这一步是一定要注意的
+    this.oneComponent = this.selectComponent('#mychart-one');
+    this.twoComponent = this.selectComponent('#mychart-two');
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () { //这一步是一定要注意的
-    this.oneComponent = this.selectComponent('#mychart-one');
+  onShow: function () { 
+    
   },
 
   /**
@@ -229,6 +300,18 @@ Page({
         height: height
       });
       setOption(chart, _this, _this.data.yArr);
+      this.chart = chart;
+      return chart;
+    });
+  },
+  initTwo: function (xdata, ydata) {        //初始化第二个图表
+    var _this = this;
+    this.twoComponent.init((canvas, width, height) => {
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+      setOption2(chart, _this, _this.data.yArr2)
       this.chart = chart;
       return chart;
     });
