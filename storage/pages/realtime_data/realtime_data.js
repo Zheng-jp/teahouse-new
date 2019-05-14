@@ -113,7 +113,7 @@ function setOption2(chart, _this, yArr) {
     }]
   };
   _this.setData({
-    timer: setInterval(function () {
+    timer2: setInterval(function () {
       var axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
       wx.request({
         url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html',    //你请求数据的接口地址
@@ -228,6 +228,7 @@ Page({
     inHumi: 79.33,
     outHumi: 79.33,
     timer: '',//因为我要实时刷新，所以设置了个定时器
+    timer2: '',
     yArr: [], //init 温度
     yArr2: [], // init湿度
   },
@@ -291,6 +292,7 @@ Page({
    */
   onUnload: function () {
     clearInterval(this.data.timer)
+    clearInterval(this.data.timer2)
   },
   initOne: function () {           //初始化第一个图表
     var _this = this;

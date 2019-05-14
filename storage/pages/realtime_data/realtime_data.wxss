@@ -15,6 +15,6 @@ swiper.swiper-container{min-height: 1020rpx; flex: 1;}
 .temperature,
 .humidity{display: flex; align-items: center; justify-content: space-between; margin-top: 20rpx;}
 .humiture-data .humiture-title{color: #333;}
-.temp-echarts{width: 700rpx; height: 500rpx; margin: 0 auto; flex: 1;}
+.temp-echarts{width: 700rpx; margin: 0 auto; flex: 1; overflow-y: auto;}
 
 
