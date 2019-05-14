@@ -1,7 +1,7 @@
 // storage/pages/realtime_data/realtime_data.js
 import * as echarts from '../../../component/ec-canvas/echarts';
 var app = getApp();
-function setOption(chart, _this) {
+function setOption(chart, _this, yArr) {
   const option = {
     title: {
       text: '实时仓储温度(°C)',
@@ -21,7 +21,6 @@ function setOption(chart, _this) {
     xAxis: [{
       type: 'category',
       boundaryGap: true,
-      // data: xdata,
       data: (function () {
         var now = new Date();
         var res = [];
@@ -35,15 +34,15 @@ function setOption(chart, _this) {
     }],
     yAxis: {
       type: 'value',
+      name: '温度℃',
       scale: true,
       boundaryGap: [0.2, 0.2]
     },
     series: [{
       type: 'line',
-      data: _this.data.yArr,
+      data: yArr,
     }]
   };
-  // chart.setOption(option);
   _this.setData({
     timer: setInterval(function () {
       var axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
@@ -108,6 +107,7 @@ function userLogin(_this){
       if(len==10){
         _this.initOne();
       }
+      //获取设备监控数据
       queryDevMoniData(res.data, _this);
     }
   })
@@ -228,7 +228,7 @@ Page({
         width: width,
         height: height
       });
-      setOption(chart, _this);
+      setOption(chart, _this, _this.data.yArr);
       this.chart = chart;
       return chart;
     });
