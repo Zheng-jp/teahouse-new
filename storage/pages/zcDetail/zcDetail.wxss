@@ -97,5 +97,5 @@ view{overflow: initial;}
 .gears .active{border-color: #f00;}
 .gears .gearAll{line-height: normal;}
 .gears .gear .gearMon{color: #999;}
-.sku-btns{padding-top: 34rpx;}
+.sku-btns{position: absolute; bottom: 0; left: 0; width: 100%;}
 .sku-btns .support{height: 80rpx; text-align: center; line-height: 80rpx; color: #fff; background-color: #ff6700;}

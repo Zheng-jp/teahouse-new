@@ -1,8 +1,8 @@
 /* storage/pages/realtime_data/realtime_data.wxss */
 view{overflow: auto !important;}
-page{height: 100%;}
-swiper.swiper-container{min-height: 1020rpx;}
-.overflowYauto{overflow-y: auto !important;}
+page{height: 100%; display: flex; flex-direction: column;}
+swiper.swiper-container{min-height: 1020rpx; flex: 1;}
+.overflowYauto{overflow-y: auto !important; display: flex; flex-direction: column;}
 .hid-txt-two{overflow: hidden !important; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;}
 .hid-txt-one{overflow: hidden !important; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;}
 .swiper-tab{display: flex; width: 100%;border-bottom: 2rpx solid #ccc;text-align: center;height: 88rpx;line-height: 88rpx;}
@@ -15,35 +15,6 @@ swiper.swiper-container{min-height: 1020rpx;}
 .temperature,
 .humidity{display: flex; align-items: center; justify-content: space-between; margin-top: 20rpx;}
 .humiture-data .humiture-title{color: #333;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.temp-echarts{width: 700rpx; height: 500rpx; margin: 0 auto;}
+.temp-echarts{width: 700rpx; margin: 0 auto; flex: 1; overflow-y: auto;}
 
 

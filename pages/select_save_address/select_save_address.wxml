@@ -1,10 +1,9 @@
-<!--pages/select_address/select_address.wxml-->
+<!-- pages/select_address/select_address.wxml -->
 <view class='all'>
   <radio-group class="radio-group" bindchange="radioChange">
-
     <view class='content_list' bindtap="select" wx:for="{{warehouse}}" data-id="{{item.id}}">
       <view class='radio'>
-        <radio value="{{item.id}}" color='#02A0E6' checked = "{{item.status == 1 ? 'true':''}}"/>
+        <radio value="{{item.id}}" color='#02A0E6' checked="{{item.status == 1 ? 'true':''}}" />
       </view>
       <view class='add_information'>
         <view class="list1">
@@ -17,30 +16,20 @@
               <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="5000">
                 <block wx:for="{{item.units}}">
                   <swiper-item>
-                    <view class="swiper_item"> ¥{{item.cost}}/{{item.unit}}/天 </view>
+                    <view class="swiper_item">¥{{item.cost}}/{{item.unit}}/天</view>
                   </swiper-item>
                 </block>
-
               </swiper>
             </view>
-
           </view>
-
         </view>
-        <view class='address'>
-          仓储地址：{{item.adress}}
-        </view>
+        <view class='address'>仓储地址：{{item.adress}}</view>
         <view class="list2">
-          <view class="list2_title">
-            仓库描述：
-          </view>
-          <view class="list2_content">
-            {{item.describe}}
-          </view>
+          <view class="list2_title">仓库描述：</view>
+          <view class="list2_content">{{item.describe}}</view>
         </view>
       </view>
     </view>
   </radio-group>
-
-  <!--<view class='add_address' bindtap='add_address'>新增收货地址</view>-->
+  <!-- <view class='add_address' bindtap='add_address'>新增收货地址</view> -->
 </view>

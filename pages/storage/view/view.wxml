@@ -109,7 +109,7 @@
   <swiper-item class="overflowYauto">
     <scroll-view>
       <view class="swiper-box">
-        <view class="swiper-title">创意众筹 · 成就希望</view>
+        <view class="swiper-title">期茶众筹，受益共享</view>
         <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="70rpx" next-margin="70rpx" display-multiple-items='1' circular class="zc-swiper">
           <swiper-item wx:for="{{swiperDataList}}" wx:key="index">
             <view class="box">
