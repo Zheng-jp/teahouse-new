@@ -36,12 +36,18 @@ function setOption(chart, _this, yArr) {
     yAxis: {
       type: 'value',
       position: 'right',
-      splitNumber: 3,
+      splitNumber: 8,
       axisLine: {
         show: false,
       },
       axisTick: {
         show: false,
+      },
+      axisLabel: {
+        margin: 0,
+        formatter: function(value, index){
+          return value.toFixed(2);
+        }
       },
       name: '温度℃',
       scale: true,
@@ -113,12 +119,15 @@ function setOption2(chart, _this, yArr) {
       type: 'value',
       name: '湿度%',
       position: 'right',
-      splitNumber: 3,
+      splitNumber: 8,
       axisLine: {
         show: false,
       },
       axisTick: {
         show: false,
+      },
+      axisLabel: {
+        margin: 0,
       },
       scale: true,
       boundaryGap: [0.2, 0.2]
@@ -150,7 +159,7 @@ function setOption2(chart, _this, yArr) {
       option.xAxis[0].data.push(axisData);
 
       chart.setOption(option);
-    }, 2100)
+    }, 5100)
   })
 }
 
