@@ -304,7 +304,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .is_invoice2 {
   display: flex;
   align-items: center;
-  padding: 22rpx 20rpx;
+  padding: 22rpx;
   border-bottom: solid 1rpx #e4e4e4;
 }
 
@@ -592,9 +592,9 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .invoice_money {
-  margin-left: 12rpx;
-  width: 270rpx;
+  /* margin-left: 12rpx; */
   text-align: right;
+  flex: 1;
 }
 
 /* 优惠劵 */
