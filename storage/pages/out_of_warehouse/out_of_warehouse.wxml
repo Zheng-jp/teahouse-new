@@ -9,7 +9,7 @@
             <view>
                 <text class="stock-addr">北京仓</text>
             </view>
-            <view class="tea-date">生产日期:2018.03.05</view>
+            <!-- <view class="tea-date">生产日期:2018.03.05</view> -->
         </view>
         <view class="stock-container">
             <view class="real-time-stock">
@@ -25,6 +25,10 @@
             </view>
             <image src="./img/icon1.png" class="icon-more" />
         </view>
+    </view>
+    <view class="list-item">
+        <view class="list-key">生产日期</view>
+        <view class="list-value">2018.03.05</view>
     </view>
     <view class="list-item">
         <view class="list-key">入仓日期</view>
