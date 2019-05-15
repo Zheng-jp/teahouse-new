@@ -252,7 +252,7 @@
   .is_invoice2{
     display: flex;
     align-items: center;
-    padding: 22rpx 10rpx 22rpx 25rpx;
+    padding: 22rpx;
     border-bottom:solid 1rpx #E4E4E4; 
   }
   .is_invoice{
@@ -448,7 +448,8 @@
     margin-left: 20rpx;
   }
   .invoice_money {
-    margin-left:56rpx;
+    text-align:right;
+    flex:1;
   }
   /* 优惠劵 */
   .flex{

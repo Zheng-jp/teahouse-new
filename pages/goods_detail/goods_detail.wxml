@@ -84,12 +84,6 @@
       <view class='other_info_list'>
         <image class="other_info_img" src="img/u2151.png" mode="widthFix"></image>
         <text class="other_info_text">7*24客服</text>
-        <image class="other_info_img" src="img/u2151.png" mode="widthFix"></image>
-        <text class="other_info_text">7*24客服</text>
-        <image class="other_info_img" src="img/u2151.png" mode="widthFix"></image>
-        <text class="other_info_text">7*24客服</text>
-        <image class="other_info_img" src="img/u2151.png" mode="widthFix"></image>
-        <text class="other_info_text">7*24客服</text>
       </view>
       
     </view>

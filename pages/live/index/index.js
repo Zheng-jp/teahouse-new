@@ -49,17 +49,8 @@ Page({
     var that = this;
     var uniacid = app.globalData.uniacid;
 
-    try {
-      let value = wx.getStorageSync('foot_is');
-      let footinfo = wx.getStorageSync('footinfo');
-      let style = wx.getStorageSync('style');
-      if (value || footinfo || style) {
-        that.setData({
-          foot_is: value,
-          footinfo: footinfo,
-          style: style
-        })
-      } else {
+    
+      
         wx.request({
           url: app.globalData.baseurl + "doPagehomepage",
           cachetime: "30",
@@ -67,10 +58,7 @@ Page({
             uniacid: uniacid
           },
           success: function (t) {
-            wx.setStorage({
-              key: 'foot_is',
-              data: t.data.data.foot_is
-            });
+            console.log(t)
             that.setData({
               foot_is: t.data.data.foot_is
             })
@@ -82,14 +70,7 @@ Page({
                 foot: t.data.data.foot_is
               },
               success: function (t) {
-                wx.setStorage({
-                  key: 'footinfo',
-                  data: t.data.data
-                });
-                wx.setStorage({
-                  key: 'style',
-                  data: t.data.data.style
-                });
+                console.log(t)
                 that.setData({
                   footinfo: t.data.data,
                   style: t.data.data.style,
@@ -104,10 +85,8 @@ Page({
             console.log(t);
           }
         });
-      }
-    } catch (e) {
-      console.error(e)
-    }
+      
+  
   },
   /**
    * 生命周期函数--监听页面显示
