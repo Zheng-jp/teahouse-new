@@ -90,6 +90,14 @@
     display: flex;
     align-items: center;
 }
+
+.tesu .wx-radio-input.wx-radio-input-checked::before{
+    width: auto; 
+    height: auto;
+    font-size: 32rpx;
+    color: #02A0E6;
+    background-color: rgb(229, 229, 229);
+ }
 .input{
     font-size: 24rpx;
 }

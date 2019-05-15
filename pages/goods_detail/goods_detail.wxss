@@ -163,8 +163,7 @@
 .line_price{
   text-decoration: line-through;
 }
-	.show {
-	}
+
 	
 	.hidden {
 		display: none;
@@ -210,9 +209,9 @@
     height: 48rpx;
   }
   .footbar_text{
-    font-size: 20rpx;
+    font-size: 28rpx;
     margin: -7rpx auto;
-    color: #5E5E5E;
+    color: #999;
   }
   .ico_view{
     width: 276rpx;

@@ -6,7 +6,7 @@
         <radio value="{{item.id}}" color='#02A0E6' checked="{{item.status == 1 ? 'true':''}}" />
       </view>
       <view class='add_information'>
-        <view class="list1">
+        <view class="list1">  
           <view>仓储编号：{{item.number}}</view>
         </view>
         <view style='margin-top:15rpx;margin-bottom:-5rpx;'>

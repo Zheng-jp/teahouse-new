@@ -534,8 +534,10 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
   redirectto: function(t) {
     var a = t.currentTarget.dataset.link,
       e = t.currentTarget.dataset.linktype;
-
-    this.newRedirectto(a, e);
+    console.log(a)
+    console.log(e)
+  
+    app.redirectto(a, e);
     
     
 
