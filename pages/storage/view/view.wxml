@@ -85,8 +85,8 @@
             </view>
             <view class="exchange-price">
               <view>
-                <text>购入入仓日期：</text>
-                <text>2018.01.01</text>
+                <text>购入入仓时间：</text>
+                <text>2018.01.01 10:34</text>
               </view>
               <view>
                 <text>当前市场参考价：</text>
