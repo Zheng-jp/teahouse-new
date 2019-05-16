@@ -9,8 +9,8 @@ page{background-color: #fff;}
 .header .stock-addr{font-size: 20rpx; color: #999900; border-radius: 6rpx; border: 2rpx solid #999900; padding: 4rpx 10rpx;}
 .real-time-stock{width: 430rpx; height: 110rpx; border: 2rpx solid #821006; border-radius: 6rpx; overflow: hidden;}
 .real-time-stock .real-time-title{background-color: #821006; font-size: 24rpx; color: #fff; text-align: center; padding: 8rpx 0;}
-.real-time-stock .stock-box{font-size: 24rpx; color: #811006; text-align: center; line-height: 60rpx;}
-.real-time-stock .stock-num{color: #fff; font-size: 26rpx; background-color: #811006; border-radius: 4rpx; padding: 4rpx 22rpx; border-radius: 6rpx;}
+.real-time-stock .stock-box{font-size: 24rpx; color: #811006; text-align: center; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 66rpx;}
+.real-time-stock .stock-num{display: inline-block; width: 90rpx; margin: 0 4rpx; overflow-x: auto; white-space: nowrap; color: #fff; font-size: 26rpx; background-color: #811006; border-radius: 4rpx; padding: 4rpx; border-radius: 6rpx;}
 .icon-more{width: 14rpx; height: 24rpx; margin-left: 10rpx;}
 .stock-container{display: flex; align-items: center;}
 .list-item{display: flex; align-items: center; justify-content: space-between; padding: 30rpx 20rpx;}
