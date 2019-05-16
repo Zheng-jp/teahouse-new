@@ -1,12 +1,14 @@
 <!--pages/code/code.wxml-->
 <view class='all_content' style='height: {{height}}px;'>
-   <view class='code'>
-   <view class='code_content'>
-   <view class='my'>我的会员码（邀请码）</view>
-     <view class='image'><image src='{{information.share_url}}'></image></view>
-     <view class='num_code'>码号:{{information.member_id}}</view>
-     <view class='tip'>温馨提示：分享二维码可获相应积分</view>
-   </view>
- 
-   </view>
+  <view class='code'>
+    <view class='code_content'>
+      <view class='my'>我的会员码（邀请码）</view>
+      <view class='image'>
+        <image src='{{information.share_url}}'></image>
+      </view>
+      <view class='num_code'>码号:{{information.member_id}}</view>
+      <view class='tip'>温馨提示：分享二维码可获相应积分</view>
+    </view>
+
+  </view>
 </view>

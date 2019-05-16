@@ -66,6 +66,7 @@ Page({
     is_checked: true,
     unit_all: [], //报价单位
     ever_storage: [], //单个仓储费
+    fixiPhone: false//苹果底部适配
 
 
   },
@@ -1581,7 +1582,7 @@ Page({
     if (e.detail.value[0] == undefined) {
       that.setData({
         taxes_select: 0,
-        taxes: 0.00,
+        taxes: '0.00',
       })
       that.calculate_money();
     } else {
@@ -1619,6 +1620,7 @@ Page({
     } else {
       goods_money = '0.00';
     }
+    
     that.setData({
       taxes: goods_money,
     })
@@ -1735,6 +1737,14 @@ Page({
     var sava_id = wx.getStorageSync('sava_id');
     var shop_id = wx.getStorageSync('shop_id');
     var receipt_id = wx.getStorageSync('receipt_id');
+    //苹果底部适配
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          fixiPhone: res.model.indexOf('iPhone X') != -1
+        })
+      }
+    })
     //  console.log(receipt_id);
     if (id == '') {
       wx.request({

@@ -132,8 +132,8 @@ Page({
 onLoad:function(){
   var that = this;
   var gmemberid = app.globalData.gmemberid;
-  var uniacid = app.globalData.uniacid;
   this.requesLocalData();
+  var uniacid = app.globalData.uniacid;
   wx.request({
     url: app.globalData.baseurl + "doPagehomepage",
     cachetime: "30",
@@ -165,6 +165,7 @@ onLoad:function(){
             style: t.data.data.style,
           })
         }
+
       });
 
 
@@ -173,6 +174,7 @@ onLoad:function(){
       console.log(t);
     }
   });
+ 
   wx.request({
     url: app.globalData.tiltes + 'my_index',
     data: {

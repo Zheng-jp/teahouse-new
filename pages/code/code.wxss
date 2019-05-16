@@ -10,7 +10,7 @@ image{
   display: flex;
   justify-content: center;
   align-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 .code{
    display: flex;
@@ -21,6 +21,7 @@ image{
   height: 544rpx;
   background: #fff;
   border-radius:20rpx; 
+  margin-top: 25rpx;
 }
 .image{
 

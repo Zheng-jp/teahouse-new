@@ -41,6 +41,14 @@ Page({
       })
     }
   },
+  toda: function() {
+    wx.navigateTo({
+      url: '../contract_detail/contract_detail?id=2',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   radioChange: function(e) {
     var that = this;
     // console.log(e)

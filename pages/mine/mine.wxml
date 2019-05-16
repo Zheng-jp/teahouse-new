@@ -1,4 +1,4 @@
-<!--my.wxml-->
+<!-- my.wxml -->
 <wxs module="phone">
   var toHide = function(array) {
     var mphone = array.substring(0, 3) + '****' + array.substring(7);
@@ -7,7 +7,6 @@
   module.exports.toHide = toHide;
 </wxs>
 <view style='background-color:#ebebeb;'>
-
   <view style='background:{{information.member_background_color}}'>
     <view class='information'>
       <view class='list balance'>
@@ -18,9 +17,7 @@
         </view>
       </view>
       <view class='list' bindtap="go_change">
-        <view class='username'>
-          {{information.member_name}}
-        </view>
+        <view class='username'>{{information.member_name}}</view>
         <view class='head_portrait'>
           <open-data type="userAvatarUrl"></open-data>
         </view>
@@ -42,19 +39,17 @@
           <image src='{{url}}{{information.member_grade_img}}'></image>
         </view>
       </view>
-
     </view>
-
   </view>
   <view style='background:#fff;'>
     <view class='cir' style='background:{{information.member_background_color}}'>
-      <view class='huiyuan' bindtap="bindnume"> {{information.member_grade_name}}</view>
+      <view class='huiyuan' bindtap="bindnume">{{information.member_grade_name}}</view>
     </view>
   </view>
   <view class='order'>
     <view class='order_title'>
       <view class="order_title_content">我的订单</view>
-      <view class="order_title_more" bindtap="go_order" data-id="0"> 查看全部订单></view>
+      <view class="order_title_more" bindtap="go_order" data-id="0">查看全部订单></view>
     </view>
     <view class='order_content'>
       <view wx:for="{{order_nav}}" class='nav_list' bindtap="go_order" data-id="{{item.id}}">
@@ -63,10 +58,8 @@
         </view>
         <view>{{item.text}}</view>
       </view>
-
     </view>
   </view>
-
   <view class='list-content'>
     <view wx:for='{{list}}' class='ifor_list' data-url="{{item.src}}" bindtap="mycollect">
       <view class='left'>
@@ -84,7 +77,7 @@
       </view>
     </view>
   </view>
-  <view class='list-content' >
+  <view class='list-content' style="margin-bottom:100rpx;">
     <view wx:for='{{lista}}' class='ifor_list' data-url="{{item.src}}" bindtap="mycollect">
       <view class='left'>
         <view class='list-ico'>
@@ -101,5 +94,22 @@
       </view>
     </view>
   </view>
- 
+  <block wx:if="{{foot_is==2}}">
+    <view class="hbj footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:9998;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:if="{{footinfo.params.navstyle==0}}">
+      <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+        <span class="iconfont {{item.iconclass}}" style="font-size:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx 0;width:{{footinfo.style.iconfont*2}}rpx;height:{{footinfo.style.iconfont*2}}rpx;line-height:{{footinfo.style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
+        <view style="font-size:{{footinfo.style.textfont*2}}rpx;padding:{{footinfo.style.paddingleft*2}}rpx 0;color:{{footinfo.style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">
+          {{item.text}}
+        </view>
+      </view>
+    </view>
+    <view class="footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:10000;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:elif="{{footinfo.params.navstyle==1}}">
+      <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+        <image mode="widthFix" src="{{item.imgurl}}" style="display:block;margin:0 auto;width:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx;"></image>
+        <view style="font-size:{{footinfo.style.textfont*2}}rpx;color:{{footinfo.style.textcolor}};padding:{{footinfo.style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">
+          {{item.text}}
+        </view>
+      </view>
+    </view>
+  </block>
 </view>

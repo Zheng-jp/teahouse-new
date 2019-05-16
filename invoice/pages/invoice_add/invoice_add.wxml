@@ -47,11 +47,11 @@
          <view class="input">
             <radio-group class="radio-group" bindchange="radioChange10">
                <label class="radio" wx:if="{{statics==3 || statics==1}}">
-                  <radio value="1" checked color='#fff' />
-                  普通发票1
+                  <radio value="1" checked color='#02A0E6' />
+                  普通发票
                </label>
                <label class="radio" wx:if="{{statics==3 || statics==2}}">
-                  <radio value="2" color='#fff' />
+                  <radio value="2" color='#02A0E6' />
                   增值税专用发票
                </label>
             </radio-group>
@@ -96,13 +96,13 @@
       <view class="list">
          <view class="list_name">发票抬头</view>
          <view class="input">
-            <input class="" value="" type="text" placeholder="深圳市环保质量监督局" name="name1"></input>
+            <input class="" value="" type="text" placeholder="请输入姓名" name="name1"></input>
          </view>
       </view>
       <view class="list">
          <view class="list_name">发票税号</view>
          <view class="input">
-            <input class="" value="" type="text" placeholder="请输入纳税人识别号（统一社会信用代码）" name="num1"></input>
+            <input class="" value="" type="text" placeholder="请输入个人身份证号码" name="num1"></input>
          </view>
       </view>
       <!-- <view class="list">
@@ -153,7 +153,7 @@
             <image class="name_img" src="img/u1329.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
             <view class="name_text">户名:</view>
          </view>
-         <view class="list2_text">深圳市环保质量监督局</view>
+         <view class="list2_text">{{enterprise.company}}</view>
       </view>
       <view class="tips">温馨提示：本平台提供发票寄送服务，且不提供发票作废服务，如需重开请联系平台商，如需退货需扣除发票款项；</view>
       <view class="list">
@@ -217,7 +217,7 @@
             <image class="name_img" src="img/u1329.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
             <view class="name_text">户名:</view>
          </view>
-         <view class="list2_text">深圳市环保质量监督局</view>
+         <view class="list2_text">{{personal.name}}</view>
       </view>
       <view class="tips">温馨提示：本平台提供发票寄送服务，且不提供发票作废服务，如需重开请联系平台商，如需退货需扣除发票款项；</view>
       <view class="list">
@@ -238,13 +238,13 @@
       <view class="list">
          <view class="list_name">发票抬头</view>
          <view class="input">
-            <input class="" value="" type="text" placeholder="深圳市环保质量监督局" name="name1"></input>
+            <input class="" value="{{personal.name}}" type="text" placeholder="请输入姓名" name="name1"></input>
          </view>
       </view>
       <view class="list">
          <view class="list_name">发票税号</view>
          <view class="input">
-            <input class="" value="" type="text" placeholder="请输入纳税人识别号（统一社会信用代码）" name="num1"></input>
+            <input class="" value="" type="text" placeholder="请输入个人身份证号码" name="num1"></input>
          </view>
       </view>
       <!-- <view class="list">

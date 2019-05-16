@@ -300,20 +300,20 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   display: flex;
   align-items: center;
 }
-
+/* 
 .is_invoice2 {
   display: flex;
   align-items: center;
-  padding: 22rpx;
+  padding: 26rpx;
   border-bottom: solid 1rpx #e4e4e4;
-}
+} */
 
 .is_invoice {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 26rpx;
-  border-bottom: solid px #e4e4e4;
+  border-bottom: solid 1px #e4e4e4;
 }
 
 .checkbox {
@@ -344,8 +344,6 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .sundry1 {
   background: #fff;
   margin-top: 4rpx;
-  margin-bottom:100rpx;
-
 }
 
 .sundry-li {

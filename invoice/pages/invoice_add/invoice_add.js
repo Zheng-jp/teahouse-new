@@ -91,7 +91,7 @@ Page({
       });
     } else if (e.detail.value.num1 == '') {
       wx.showToast({
-        title: "企业税号不能为空",
+        title: "发票税号不能为空",
         icon: 'none',
       });
     } else {

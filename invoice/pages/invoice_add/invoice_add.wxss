@@ -100,7 +100,9 @@
  }
 .input{
     font-size: 24rpx;
+    width: 100%;
 }
+
 .list{
     border-bottom: #E4E4E4  2rpx solid;
    border-right:  #E4E4E4  2rpx solid;

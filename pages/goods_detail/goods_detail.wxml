@@ -147,7 +147,7 @@
       </view>
     </view>
   </view>
-  <view class='foot_text'>
+  <view class='foot_text' style="{{fixiPhone? 'margin-bottom: 100rpx' : ''}}">
     <view>智慧茶仓提供技术支持</view>
     <view>www.zhihuichacang.com</view>
   </view>

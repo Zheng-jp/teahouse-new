@@ -33,6 +33,7 @@ Page({
 		selected1: false,
 		selected2: false,
 		mask_show: false,
+    fixiPhone: false,//苹果底部适配
 		good_id: 0,
 		buy_num: 0,
 		// 是否有地址，0为没有填写收货地址，1为有，2为未授权
@@ -467,6 +468,7 @@ Page({
 	 */
 	onLoad: function(options) {
 		var that = this;
+    
 		var s_height = wx.getSystemInfoSync().windowHeight;
 		var member_grade_img = app.globalData.member_grade_img;
 		that.setData({
@@ -606,6 +608,13 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function() {
+    wx.getSystemInfo({
+      success: function (res) {
+        this.setData({
+          fixiPhone: res.model.indexOf('iPhone X') != -1
+        })
+      }
+    })
     app.judge_phone();
     app.judge_repay();
 	},

@@ -186,16 +186,15 @@
     </view>
   </view>
   <view class="is_insurance {{selected2?'show':'hidden'}}">
-    <view class='is_invoice2'>
+    <view class='is_invoice'>
       <checkbox-group bindchange="checkboxChanges">
         <label class="checkbox">
-          <checkbox value="选择仓储年限" checked="{{is_checked==true?'true':''}}" />
-          选择仓储年限
+          <checkbox value="选择仓储年限" checked="{{is_checked==true?'true':''}}" />选择仓储年限
         </label>
       </checkbox-group>
       <!-- <image class="tips_img" src="img/u927.png" mode="widthFix"></image>
       <view style='font-size:23rpx;color:#949494;margin-left:8rpx;'>*必选，默认1年</view> -->
-      <view class='invoice_money text_red'>¥ 0.00</view>
+      <view class='invoice_money text_red'>¥ {{storage}}</view>
     </view>
     <view class='go_invoice_information'>
       <view>选择仓储年限</view>
@@ -255,7 +254,7 @@
       </view>
     </view>
   </view>
-  <view class="{{selected2?'sundry':'sundry1'}}">
+  <view class="{{selected2?'sundry':'sundry1'}}" style="{{fixiPhone? '' : 'margin-bottom: 100rpx'}}">
     <view class='sundry-li1' style=' border-bottom: solid 1rpx #E4E4E4;'>
       <view>商品总价</view>
       <view>
