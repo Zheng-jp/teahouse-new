@@ -29,7 +29,7 @@ function switchProject(option, _this){
       console.log(res);
       _this.setData({
         crowdList: res.data.data,
-        Height: 146 * res.data.data.length + 100
+        Height: 146 * res.data.data.length + 50
       })
     },
     fail: function(res){

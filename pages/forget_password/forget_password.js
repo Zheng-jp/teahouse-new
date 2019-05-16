@@ -7,161 +7,143 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+
     customItem: "全部",
-    address:[],
-    title:'',
+    address: [],
+    title: '',
     btntext: '获取验证码',
-    change:true,
-    num:null,
-    oldnum:null,
-    newnum:null,
-
-
+    change: true,
+    num: null,
+    oldnum: null,
+    newnum: null,
   },
- 
+
   formSubmit: function (e) {
-    var that=this;
-      if(e.detail.value.member_phone_num==''){
-        wx.showToast({
-          title:"手机号不能为空",
-          icon:'none',
-        });
-      }
-      else if(e.detail.value.cold==''){
-        wx.showToast({
-          title:"验证码不能为空",
-          icon:'none',
-        });
-      }
-      else{
-        wx.request({
-          url: app.globalData.tiltes + 'user_phone_bingding',
-          data: {
-            member_phone_num: e.detail.value.member_phone_num,
-            code:e.detail.value.cold,
-            member_id: app.globalData.member_id,
-          },
-          method: "post",
-          // header: {
-          //   "Content-Type": "application/x-www-form-urlencoded",
-          //   "Cookie": sessionId
-          // },
-    
-          success: function (res) {
-            
-            if(res.data.status==1){
-              
-              
-              setTimeout(function () {
-                wx.navigateBack();
-              }, 2000)
-             
-            }
-            else{
-  
-            }
-         
-          },
-          fail: function () {
-    
-          },
-          complete: function (res) {
-            wx.showToast({
-              title:res.data.info,
-              icon:'none',
-            });
-          }
-    
-        });
-      }
-    
-    
-    
-  },
-  validateTel:function (tel){
-    var TEL_REGEXP = /^1[3456789]\d{9}$/;
-    if(TEL_REGEXP.test(tel)){
-      return true;
+    var that = this;
+    if (e.detail.value.member_phone_num == '') {
+      wx.showToast({
+        title: "手机号不能为空",
+        icon: 'none',
+      });
     }
-    return false;
-   },
-  bindChange:function (event) {
-     var that=this;
-     that.setData({
-       num:event.detail.value
-     })
-  },
-  bindoldChange:function (event) {
-    var that=this;
-    that.setData({
-      oldnum:event.detail.value
-    })
- },
- bindnewChange:function (event) {
-  var that=this;
-  that.setData({
-    newnum:event.detail.value
-  })
-},
-  send_cold: throttle.throttle( function (e) {
-   var that=this;
-      var _this = this 
-     var is_phone=that.validateTel(that.data.num);
-    console.log(is_phone)
-     if(is_phone){
+    else if (e.detail.value.cold == '') {
+      wx.showToast({
+        title: "验证码不能为空",
+        icon: 'none',
+      });
+    }else {
       wx.request({
-        url: app.globalData.tiltes + 'sendMobileCodePay',
+        url: app.globalData.tiltes + 'user_phone_bingding',
         data: {
-          mobile:that.data.num,
+          member_phone_num: e.detail.value.member_phone_num,
+          code: e.detail.value.cold,
+          member_id: app.globalData.member_id,
         },
         method: "post",
         // header: {
-        //   "Content-Type": "json" // 默认值
-  
+        //   "Content-Type": "application/x-www-form-urlencoded",
+        //   "Cookie": sessionId
         // },
+
         success: function (res) {
-         
-          var coden = 60    // 定义60秒的倒计时
-          var codeV = setInterval(function () {    
-              _this.setData({    // _this这里的作用域不同了
-                btntext: '重新获取' + (--coden) + 's'
-              })
-              if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
-                clearInterval(codeV)
-                _this.setData({
-                  btntext: '获取验证码'
-                })
-              }
-            }, 1000)  //  1000是1秒
-       
+          if (res.data.status == 1) {
+            setTimeout(function () {
+              wx.navigateBack();
+            }, 2000)
+          }
+          else {
+
+          }
+
         },
         fail: function () {
-  
+
+        },
+        complete: function (res) {
+          wx.showToast({
+            title: res.data.info,
+            icon: 'none',
+          });
+        }
+
+      });
+    }
+  },
+  validateTel: function (tel) {
+    var TEL_REGEXP = /^1[345789]\d{9}$/;
+    if (TEL_REGEXP.test(tel)) {
+      return true;
+    }
+    return false;
+  },
+  // bindChange: function (event) {
+  //   var that = this;
+  //   that.setData({
+  //     num: event.detail.value
+  //   })
+  // },
+  bindoldChange: function (event) {
+    var that = this;
+    that.setData({
+      oldnum: event.detail.value
+    })
+  },
+  bindnewChange: function (event) {
+    var that = this;
+    that.setData({
+      newnum: event.detail.value
+    })
+  },
+  send_cold: throttle.throttle(function (e) {
+    var that = this;
+    console.log(that.data.newnum)
+    var is_phone = that.validateTel(that.data.newnum);
+    console.log(is_phone)
+    if (is_phone) {
+      wx.request({
+        url: app.globalData.tiltes + 'sendMobileCodePay',
+        data: {
+          mobile: that.data.newnum,
+        },
+        method: "post",
+        success: function (res) {
+          var coden = 60    // 定义60秒的倒计时
+          var codeV = setInterval(function () {
+            that.setData({    // _this这里的作用域不同了
+              btntext: '重新获取' + (--coden) + 's'
+            })
+            if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
+              clearInterval(codeV)
+              that.setData({
+                btntext: '获取验证码'
+              })
+            }
+          }, 1000)  //  1000是1秒
+        },
+        fail: function () {
+
         },
         complete: function () {
           wx.hideLoading()
         }
-  
       });
-     }
-     else{
+    }else {
       wx.showToast({
         title: '手机格式有问题',
-        icon:'none',
+        icon: 'none',
       })
-     }
-  
-  },5000),
-  
+    }
+
+  }, 5000),
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-   
-    
+    var that = this;
+
+
   },
 
   /**
@@ -175,7 +157,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-     var that=this;
+    var that = this;
     //  that.onLoad();
   },
 
