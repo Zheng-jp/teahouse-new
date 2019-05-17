@@ -12,8 +12,7 @@ Page({
     lastActive: 0,
     s_height: '',
     height_arr: [],
-    category: [
-    ],
+    category: [],
    
   },
   go_gooddetail: function (event) {
@@ -104,7 +103,7 @@ Page({
       // },
       success: function (res) {
       
-       
+       console.log(res)
         that.setData({
           category: res.data.data.goods_type,
         });

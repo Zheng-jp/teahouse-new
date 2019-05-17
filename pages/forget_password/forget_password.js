@@ -13,9 +13,12 @@ Page({
     title: '',
     btntext: '获取验证码',
     change: true,
+    disabled: true,
     num: null,
-    oldnum: null,
-    newnum: null,
+    oldnum: '',
+    newnum: '',
+    oldnum1: '',
+    code_num: ''
   },
 
   formSubmit: function (e) {
@@ -25,8 +28,12 @@ Page({
         title: "手机号不能为空",
         icon: 'none',
       });
-    }
-    else if (e.detail.value.harvester_phone_num1 == '') {
+    }else if (e.detail.value.harvester_password != e.detail.value.harvester_new_password) {
+      wx.showToast({
+        title: "两次密码不一致",
+        icon: 'none',
+      });
+    } else if (e.detail.value.harvester_phone_num1 == '') {
       wx.showToast({
         title: "验证码不能为空",
         icon: 'none',
@@ -70,7 +77,7 @@ Page({
     }
   },
   validateTel: function (tel) {
-    var TEL_REGEXP = /^1[345789]\d{9}$/;
+    var TEL_REGEXP = /^1[3456789]\d{9}$/;
     if (TEL_REGEXP.test(tel)) {
       return true;
     }
@@ -82,23 +89,41 @@ Page({
   //     num: event.detail.value
   //   })
   // },
+  //新密码
   bindoldChange: function (event) {
     var that = this;
     that.setData({
       oldnum: event.detail.value
     })
+    that.show_btn();
   },
+  //第二次新密码
+  bindoldChange1: function (event) {
+    var that = this;
+    that.setData({
+      oldnum1: event.detail.value
+    })
+    that.show_btn();
+  },
+  //手机号
   bindnewChange: function (event) {
     var that = this;
     that.setData({
       newnum: event.detail.value
     })
+    that.show_btn();
+  },
+  //验证码
+  code_num: function (event) {
+    var that = this;
+    that.setData({
+      code_num: event.detail.value
+    })
+    that.show_btn();
   },
   send_cold: throttle.throttle(function (e) {
     var that = this;
-    console.log(that.data.newnum)
     var is_phone = that.validateTel(that.data.newnum);
-    console.log(is_phone)
     if (is_phone) {
       wx.request({
         url: app.globalData.tiltes + 'sendMobileCodePay',
@@ -135,14 +160,25 @@ Page({
     }
 
   }, 5000),
-
-
+  //判断提交按钮是否显示
+  show_btn: function() {
+    var that = this;
+    if(that.data.oldnum != '' && that.data.newnum != '' && that.data.oldnum1 != '' && that.data.code_num != '') {
+      that.setData({
+        disabled: false
+      })
+    } else {
+      that.setData({
+        disabled: true
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
-
+ 
 
   },
 
@@ -150,15 +186,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    //  that.onLoad();
+    
   },
 
   /**

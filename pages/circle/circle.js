@@ -9,14 +9,14 @@ Page({
   data: {
     test: app.data.test,
     url: app.globalData.img_url,
-    ico:[],
+    ico: [],
     share: [],
-    footinfo:[],
-    foot_is:2,
-    style:[],
+    footinfo: [],
+    foot_is: 2,
+    style: [],
 
   },
-  
+
   bindViewTap: function (event) {
     var that = this;
     console.log()
@@ -38,11 +38,11 @@ Page({
 
     })
   },
- 
-  redirectto: function(t) {
+
+  redirectto: function (t) {
     var a = t.currentTarget.dataset.link, e = t.currentTarget.dataset.linktype;
     app.redirectto(a, e);
-},
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -67,6 +67,20 @@ Page({
             foot: t.data.data.foot_is
           },
           success: function (t) {
+            var lujing = [];
+            var num = getCurrentPages().length - 1;
+            var url = getCurrentPages()[num].route; //当前页面路径
+            for (let i in t.data.data.data) {
+              lujing.push(t.data.data.data[i]);
+            }
+            for (let o = 0; o < lujing.length; o++) {
+              if (lujing[o].linkurl.indexOf(url) != -1) {
+                lujing[o].change = true;
+              } else {
+                lujing[o].change = false;
+              }
+            }
+            t.data.data.data = lujing;
             that.setData({
               footinfo: t.data.data,
               style: t.data.data.style,
@@ -85,12 +99,12 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  
+
   onReady: function () {
     var that = this;
     var uniacid = app.globalData.uniacid;
     wx.request({
-      url: app.globalData.tiltes +'teacenter_data',
+      url: app.globalData.tiltes + 'teacenter_data',
       data: {
       },
       method: "post",
@@ -104,7 +118,7 @@ Page({
           ico: res.data.data,
         });
 
-       },
+      },
       fail: function () {
 
       },
@@ -123,7 +137,7 @@ Page({
 
       // },
       success: function (res) {
-       
+
         that.setData({
           share: res.data.data,
         });
@@ -145,7 +159,7 @@ Page({
       }
 
     });
-    
+
 
   },
 

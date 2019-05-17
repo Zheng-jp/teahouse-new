@@ -1,38 +1,38 @@
 // pages/storage/view/view.js
 const app = getApp();
 // get Data
-function getData(_this){
+function getData(_this) {
   // 轮播图
   wx.request({
     url: app.globalData.tiltes + 'crowd_index',
     method: 'POST',
-    success: function(res){
+    success: function (res) {
       console.log(res);
       _this.setData({
         swiperDataList: res.data.data
       })
     },
-    fail: function(res){
+    fail: function (res) {
       console.log(res);
     }
   });
 }
 // switch project
-function switchProject(option, _this){
+function switchProject(option, _this) {
   wx.request({
     url: app.globalData.tiltes + option,
     method: 'POST',
     data: {
       member_id: app.globalData.member_id
     },
-    success: function(res){
+    success: function (res) {
       console.log(res);
       _this.setData({
         crowdList: res.data.data,
         Height: 146 * res.data.data.length + 50
       })
     },
-    fail: function(res){
+    fail: function (res) {
       console.log(res);
     }
   });
@@ -67,11 +67,11 @@ Page({
   },
 
   // 切换 正在众筹 往期众筹
-  bindSwitchProject: function(){
-    if(this.data.switchProject){
+  bindSwitchProject: function () {
+    if (this.data.switchProject) {
       // 切换往期众筹
       switchProject('crowd_period', this);
-    }else{
+    } else {
       switchProject('crowd_now', this);
     }
     this.setData({
@@ -79,31 +79,31 @@ Page({
     })
   },
 
-  clickTab: function(e){
+  clickTab: function (e) {
     // 切换选项卡
     var current = e.target.dataset.current,
-        _this = this;
-    if(_this.data.currentTab !== current){
+      _this = this;
+    if (_this.data.currentTab !== current) {
       _this.setData({
         currentTab: current
       })
     }
   },
   // 去支持
-  support: function(e){
+  support: function (e) {
     var id = e.target.dataset.id;
     wx.navigateTo({
       url: '/storage/pages/zcDetail/zcDetail?id=' + id,
-      success: function(){
+      success: function () {
         console.log('跳转成功');
       },
-      fail: function(){
+      fail: function () {
         console.log('跳转失败');
       }
     })
   },
 
-  swiperTab: function(e){
+  swiperTab: function (e) {
     // 滑动切换选项卡
     var current = e.detail.current;
     this.setData({
@@ -111,47 +111,47 @@ Page({
     })
   },
 
-  showAllStorage: function(){
+  showAllStorage: function () {
     // 全部仓储
     this.setData({
       wareHouseFlag: !this.data.wareHouseFlag
     })
   },
 
-  checkRealTimeData: function(){
+  checkRealTimeData: function () {
     // 查看仓库实时数据（温度湿度）
     wx.navigateTo({
       url: '/storage/pages/realtime_data/realtime_data',
-      success: function(){
+      success: function () {
         console.log('跳转成功');
       },
-      fail: function(){
+      fail: function () {
         console.log('跳转失败');
       }
     })
   },
 
-  toStockDetail: function(){
+  toStockDetail: function () {
     // 仓库详情
     wx.navigateTo({
       url: '/storage/pages/stock_detail/stock_detail',
-      success: function(){
+      success: function () {
         console.log('跳转成功');
       },
-      fail: function(){
+      fail: function () {
         console.log('跳转失败');
       }
     })
   },
 
-  outOfStock: function(){
+  outOfStock: function () {
     // 出仓
     wx.navigateTo({
       url: '/storage/pages/out_of_warehouse/out_of_warehouse',
-      success: function(){
+      success: function () {
         console.log('跳转成功');
       },
-      fail: function(){
+      fail: function () {
         console.log('跳转失败');
       }
     })
@@ -160,7 +160,7 @@ Page({
     var a = t.currentTarget.dataset.link, e = t.currentTarget.dataset.linktype;
     app.redirectto(a, e);
   },
-  onReady: function() {
+  onReady: function () {
     var that = this;
     var uniacid = app.globalData.uniacid;
     wx.request({
@@ -189,7 +189,22 @@ Page({
             foot: t.data.data.foot_is
           },
           success: function (t) {
-            console.log(t)
+            var lujing = [];
+            var num = getCurrentPages().length - 1;
+            var url = getCurrentPages()[num].route; //当前页面路径
+            console.log(url)
+            for (let i in t.data.data.data) {
+              lujing.push(t.data.data.data[i]);
+            }
+            for (let o = 0; o < lujing.length; o++) {
+              if (lujing[o].linkurl.indexOf(url) != -1) {
+                lujing[o].change = true;
+              } else {
+                lujing[o].change = false;
+              }
+            }
+            t.data.data.data = lujing;
+            console.log(t.data.data)
             that.setData({
               footinfo: t.data.data,
               style: t.data.data.style,
@@ -211,5 +226,5 @@ Page({
     this.onReady();
     wx.stopPullDownRefresh();
   }
-  
+
 })

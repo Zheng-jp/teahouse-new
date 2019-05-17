@@ -20,7 +20,9 @@
     <template is="title1" data="{{title:nav_index.name,titleEn:nav_index.ename,base_c:baseinfo.base_color2}}" wx:if="{{nav_index.name_s==0}}"></template>
     <navigator class="nav_one" style="width:{{nav_index.number}}%;margin:0 {{nav_index.box_p_lr}}% {{nav_index.box_p_tb}}%; " url="/sudu8_page/{{item.list_type}}/{{item.list_type}}?cid={{item.id}}" wx:for="{{nav_index.url}}" wx:key="id">
       <image mode="widthFix" src="{{item.catepic}}" style="width:{{nav_index.img_size}}%"></image>
-      <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">{{item.name_n}}</text>
+      <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">
+        {{item.name_n}}
+      </text>
     </navigator>
   </view>
   <view class="nav_box nav_box{{nav_index.style}} bg_f mb10" style="padding:{{nav_index.box_p_tb*nav_index.name_s}}% {{nav_index.box_p_lr}}% 0;" wx:if="{{nav_index.statue==2}}">
@@ -28,34 +30,45 @@
     <block wx:for="{{nav_index.url}}" wx:key="id">
       <navigator class="nav_one" style="width:{{nav_index.number}}%;margin:0 {{nav_index.box_p_lr}}% {{nav_index.box_p_tb}}%; " url="{{item.url}}" wx:if="{{item.type==0}}">
         <image mode="widthFix" src="{{item.pic}}" style="width:{{nav_index.img_size}}%"></image>
-        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">{{item.title}}</text>
+        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">
+          {{item.title}}
+        </text>
       </navigator>
       <view bindtap="makePhoneCallC" class="nav_one" data-tel="{{item.url}}" style="width:{{nav_index.number}}%;margin:0 {{nav_index.box_p_lr}}% {{nav_index.box_p_tb}}%; " wx:if="{{item.type==1}}">
         <image mode="widthFix" src="{{item.pic}}" style="width:{{nav_index.img_size}}%"></image>
-        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">{{item.title}}</text>
+        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">
+          {{item.title}}
+        </text>
       </view>
       <view bindtap="openMap" class="nav_one" style="width:{{nav_index.number}}%;margin:0 {{nav_index.box_p_lr}}% {{nav_index.box_p_tb}}%; " wx:if="{{item.type==2}}">
         <image mode="widthFix" src="{{item.pic}}" style="width:{{nav_index.img_size}}%"></image>
-        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">{{item.title}}</text>
+        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">
+          {{item.title}}
+        </text>
       </view>
       <button class="nav_one nav_btn" openType="contact" style="width:{{nav_index.number}}%;margin:0 {{nav_index.box_p_lr}}% {{nav_index.box_p_tb}}%; " wx:if="{{item.type==3}}">
         <image mode="widthFix" src="{{item.pic}}" style="width:{{nav_index.img_size}}%"></image>
-        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">{{item.title}}</text>
+        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">
+          {{item.title}}
+        </text>
       </button>
       <view bindtap="openApp" class="nav_one" data-id="{{item.url}}" data-path="{{item.url2}}" style="width:{{nav_index.number}}%;margin:0 {{nav_index.box_p_lr}}% {{nav_index.box_p_tb}}%; " wx:if="{{item.type==4}}">
         <image mode="widthFix" src="{{item.pic}}" style="width:{{nav_index.img_size}}%"></image>
-        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">{{item.title}}</text>
+        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">
+          {{item.title}}
+        </text>
       </view>
       <navigator class="nav_one" openType="navigateTo" style="width:{{nav_index.number}}%;margin:0 {{nav_index.box_p_lr}}% {{nav_index.box_p_tb}}%; " url="/sudu8_page/webpage/webpage?url={{item.url}}" wx:if="{{item.type==5}}">
         <image mode="widthFix" src="{{item.pic}}" style="width:{{nav_index.img_size}}%"></image>
-        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">{{item.title}}</text>
+        <text class="nav_t{{nav_index.title_position}}" style="color:{{nav_index.title_color}};background:rgba({{nav_index.title_bg}},.68);padding-top:{{nav_index.box_padding}}0rpx">
+          {{item.title}}
+        </text>
       </navigator>
     </block>
   </view>
   <block wx:if="{{duomerchants==1}}">
     <view class="bg_f mb10">
-      <view class="title3" style="display: flex; justify-content: center;">— 优选商家 —
-      </view>
+      <view class="title3" style="display: flex; justify-content: center;">— 优选商家 —</view>
       <view class="list_pic clearfix">
         <view class="list_picStore" wx:for="{{store.storeHot}}" wx:key="id">
           <navigator url="/sudu8_page_plugin_shop/shop/shop?id={{item.id}}">
@@ -92,7 +105,8 @@
     <template is="title2_no" data="{{title:baseinfo.aboutCN,titleEn:baseinfo.aboutCNen,base_c:baseinfo.base_color2}}" wx:if="{{baseinfo.index_about_title=='title2'}}"></template>
     <view class="index_about">
       <navigator url="/sudu8_page/about/about">
-        <view>{{baseinfo.about}}
+        <view>
+          {{baseinfo.about}}
           <text class="more" style="color:{{baseinfo.base_color2}}">[查看更多]</text>
         </view>
       </navigator>
@@ -104,7 +118,8 @@
       <template is="title2_no" data="{{title:'优惠券专区',titleEn:'Coupon Receipt',base_c:baseinfo.base_color2}}" wx:if="{{baseinfo.copT=='2'}}"></template>
       <navigator class="indexcop" url="/sudu8_page/coupon/coupon">
         <view class="indexcopt" style="background:{{indexCop.color}}">
-          <view class="indexcopt1">{{indexCop.price}}元
+          <view class="indexcopt1">
+            {{indexCop.price}}元
             <span>{{indexCop.title}}</span>
           </view>
           <view class="indexcopt2" wx:if="{{indexCop.pay_money==0}}">任意金额订单可用</view>
@@ -112,9 +127,15 @@
           <view class="indexcopt3" style="color:{{indexCop.color}}">领取</view>
         </view>
         <view class="indexcopb">
-          <view class="indexcopb1" wx:if="{{indexCop.btime!=0&&indexCop.etime!=0}}">有效期：{{indexCop.btime}} 至 {{indexCop.etime}}</view>
-          <view class="indexcopb1" wx:if="{{indexCop.btime==0&&indexCop.etime!=0}}">{{indexCop.etime}} 前有效</view>
-          <view class="indexcopb1" wx:if="{{indexCop.btime!=0&&indexCop.etime==0}}">{{indexCop.btime}} 后有效</view>
+          <view class="indexcopb1" wx:if="{{indexCop.btime!=0&&indexCop.etime!=0}}">
+            有效期：{{indexCop.btime}} 至 {{indexCop.etime}}
+          </view>
+          <view class="indexcopb1" wx:if="{{indexCop.btime==0&&indexCop.etime!=0}}">
+            {{indexCop.etime}} 前有效
+          </view>
+          <view class="indexcopb1" wx:if="{{indexCop.btime!=0&&indexCop.etime==0}}">
+            {{indexCop.btime}} 后有效
+          </view>
           <view class="indexcopb1" wx:if="{{indexCop.btime==0&&indexCop.etime==0}}">永久有效</view>
           <view class="indexcopb2">剩余:{{indexCop.counts==-1?'无限':indexCop.counts}}张</view>
         </view>
@@ -158,7 +179,9 @@
             <image mode="widthFix" src="{{item.thumb}}"></image>
             <view class="title">{{item.title}}</view>
             <text style="color:{{c}}">¥{{item.price}}</text>
-            <view class="btn_buy" style="border:1px solid {{c}};color:{{c}}" wx:if="{{buy_type}}">{{item.buy_type}}</view>
+            <view class="btn_buy" style="border:1px solid {{c}};color:{{c}}" wx:if="{{buy_type}}">
+              {{item.buy_type}}
+            </view>
             <view class="btn_buy" style="border:1px solid {{c}};color:{{c}}" wx:else>购买</view>
           </navigator>
         </view>
@@ -207,14 +230,16 @@
   </view>
   <template is="forms_index" data="{{...formsConfig,sv:single_v,cv:checkbox_v,sv2:single_v2,cv2:checkbox_v2,date_c:date_c,time_c:time_c,co:baseinfo.base_color2}}" wx:if="{{baseinfo.form_index==1}}"></template>
 </block>
-<view style="min-height:{{height}}px;background:{{page.styledata==1?'url('+page.url+')':''}} {{page.styledata==1?page.positiony:''}} {{page.styledata==1?page.positionx:''}} {{page.background}};background-repeat:{{page.repeat}};background-size:{{page.size==1?'cover':page.sizew+'%'}} {{page.size==1?'':page.sizeh+'%'}}"
-  wx:if="{{homepage==2}}">
-  <template is="show_page_{{item.id}}" data="{{...item,tabArr2:tabArr2,yuyin:yuyin,width:width,height:height,left:left,show_page_tcgg:show_page_tcgg,ewmshow:ewmshow,sec:sec,showFad:showFad,content:content,clock:clock,myname:myname,mytel:mytel,myadd:myadd,forminfo:forminfo,formname:formname,foot_is:foot_is,showvideo_diy:showvideo_diy,c:footer.close,i:footer.v_ico,videourl:videourl,msmk:msmk,siteroot:siteroot,content0:content0,content1:content1,content2:content2,content3:content3,content4:content4,picturewH:picturewH,picturewW:picturewW,menuContent:menuContent,subShow:subShow,showMenu:showMenu,content:content,store:store,footer:footer,longitude:longitude,latitude:latitude,markers:markers,pageset:pageset,wxmobile:wxmobile,formdescs:formdescs}}"
-    wx:for="{{list}}"></template>
+<view style="min-height:{{height}}px;background:{{page.styledata==1?'url('+page.url+')':''}} {{page.styledata==1?page.positiony:''}} {{page.styledata==1?page.positionx:''}} {{page.background}};background-repeat:{{page.repeat}};background-size:{{page.size==1?'cover':page.sizew+'%'}} {{page.size==1?'':page.sizeh+'%'}}" wx:if="{{homepage==2}}">
+  <template is="show_page_{{item.id}}" data="{{...item,tabArr2:tabArr2,yuyin:yuyin,width:width,height:height,left:left,show_page_tcgg:show_page_tcgg,ewmshow:ewmshow,sec:sec,showFad:showFad,content:content,clock:clock,myname:myname,mytel:mytel,myadd:myadd,forminfo:forminfo,formname:formname,foot_is:foot_is,showvideo_diy:showvideo_diy,c:footer.close,i:footer.v_ico,videourl:videourl,msmk:msmk,siteroot:siteroot,content0:content0,content1:content1,content2:content2,content3:content3,content4:content4,picturewH:picturewH,picturewW:picturewW,menuContent:menuContent,subShow:subShow,showMenu:showMenu,content:content,store:store,footer:footer,longitude:longitude,latitude:latitude,markers:markers,pageset:pageset,wxmobile:wxmobile,formdescs:formdescs}}" wx:for="{{list}}"></template>
   <block wx:if="{{pageset&&page_is==1}}">
     <view style="width:100%;height:100%;position:fixed;left:0;top:0;z-index:10000" wx:if="{{pageset.kp_is==1}}">
-      <view style="z-index:3000;position:absolute; top: 20rpx;right:10px;font-size:28rpx;padding:10rpx;background-color:rgba(0,0,0,0.5);border-radius:5px;color:#FFF;" wx:if="{{pageset.go_home==1}}">{{sec}}秒跳过</view>
-      <view bindtap="countdown" data-close="0" style="z-index:3000;position:absolute; bottom: 20%;left:50%;font-size:28rpx;width:200rpx;padding:10rpx 0;text-align:center;margin-left:-100rpx;background-color:rgba(0,0,0,0.5);border-radius:5px;color:#FFF;" wx:if="{{pageset.go_home==2}}">点击进入</view>
+      <view style="z-index:3000;position:absolute; top: 20rpx;right:10px;font-size:28rpx;padding:10rpx;background-color:rgba(0,0,0,0.5);border-radius:5px;color:#FFF;" wx:if="{{pageset.go_home==1}}">
+        {{sec}}秒跳过
+      </view>
+      <view bindtap="countdown" data-close="0" style="z-index:3000;position:absolute; bottom: 20%;left:50%;font-size:28rpx;width:200rpx;padding:10rpx 0;text-align:center;margin-left:-100rpx;background-color:rgba(0,0,0,0.5);border-radius:5px;color:#FFF;" wx:if="{{pageset.go_home==2}}">
+        点击进入
+      </view>
       <image bindtap="redirectto" data-link="{{pageset.kp_url}}" data-linktype="{{pageset.kp_urltype}}" src="{{pageset.kp}}" style="width:100%;height:100%;display:block"></image>
     </view>
     <view style="width:100%;height:100%;background:rgba(0,0,0,.68);position:fixed;z-index:10000;left:0;top:0;" wx:if="{{pageset.tc_is==1}}">
@@ -226,11 +251,15 @@
     <view bindtap="redirectto" data-link="{{copyrights.link}}" data-linktype="{{copyrights.linktype}}" style="text-align:center;padding:{{copyrights.paddingtop*2}}rpx 0;margin-top:{{copyrights.mt*2}}rpx;overflow:hidden" wx:if="{{copyrights}}">
       <block wx:if="{{copyrights.copyright_type==1}}">
         <image class="copy_p" mode="widthFix" src="{{copyrights.src}}" style="width:{{copyrights.imgw*2}}rpx;display:block"></image>
-        <view class="copy_t" style="font-size:{{copyrights.text-font*2}}rpx;">{{copyrights.text}}</view>
+        <view class="copy_t" style="font-size:{{copyrights.text-font*2}}rpx;">
+          {{copyrights.text}}
+        </view>
       </block>
       <view style="display:flex; justify-content:center;width:100%" wx:if="{{copyrights.copyright_type==2}}">
         <image mode="widthFix" src="{{copyrights.src}}" style="width:{{copyrights.imgw*2}}rpx;display:block;margin-right:10rpx"></image>
-        <view style="font-size:{{copyrights.text-font*2}}rpx;line-height:{{copyrights.imgw*2}}rpx">{{copyrights.text}}</view>
+        <view style="font-size:{{copyrights.text-font*2}}rpx;line-height:{{copyrights.imgw*2}}rpx">
+          {{copyrights.text}}
+        </view>
       </view>
     </view>
   </block>
@@ -255,29 +284,25 @@
       </view>
     </block>
   </view>
-  <view class="pageNoticeT notice_red" wx:if="{{isover==1}}">
-    对不起，今日已被选完，请查看其它日期
-  </view>
-  <view bindtap="quxiao" class="dibti_qx">
-    返回
-  </view>
-  <view bindtap="save_nb" class="dibti">
-    确定选择
-  </view>
+  <view class="pageNoticeT notice_red" wx:if="{{isover==1}}">对不起，今日已被选完，请查看其它日期</view>
+  <view bindtap="quxiao" class="dibti_qx">返回</view>
+  <view bindtap="save_nb" class="dibti">确定选择</view>
 </view>
 <block wx:if="{{foot_is==2}}">
   <view class="hbj footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:9998;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:if="{{footinfo.params.navstyle==0}}">
-    <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;"
-      wx:for="{{footinfo.data}}">
-      <span class="iconfont {{item.iconclass}}" style="font-size:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx 0;width:{{footinfo.style.iconfont*2}}rpx;height:{{footinfo.style.iconfont*2}}rpx;line-height:{{footinfo.style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
-      <view style="font-size:{{footinfo.style.textfont*2}}rpx;padding:{{footinfo.style.paddingleft*2}}rpx 0;color:{{footinfo.style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+    <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+      <span class="iconfont {{item.iconclass}}" style="color:{{item.change? footinfo.style.iconcoloron : footinfo.style.iconcolor}};font-size:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx 0;width:{{footinfo.style.iconfont*2}}rpx;height:{{footinfo.style.iconfont*2}}rpx;line-height:{{footinfo.style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
+      <view style="font-size:{{footinfo.style.textfont*2}}rpx;padding:{{footinfo.style.paddingleft*2}}rpx 0;color:{{item.change? footinfo.style.textcoloron : footinfo.style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">
+        {{item.text}}
+      </view>
     </view>
   </view>
   <view class="footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:10000;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:elif="{{footinfo.params.navstyle==1}}">
-    <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;"
-      wx:for="{{footinfo.data}}">
+    <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
       <image mode="widthFix" src="{{item.imgurl}}" style="display:block;margin:0 auto;width:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx;"></image>
-      <view style="font-size:{{footinfo.style.textfont*2}}rpx;color:{{footinfo.style.textcolor}};padding:{{footinfo.style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">{{item.text}}</view>
+      <view style="font-size:{{footinfo.style.textfont*2}}rpx;color:{{item.change? footinfo.style.textcolor : footinfo.style.textcoloron}};padding:{{footinfo.style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">
+        {{item.text}}
+      </view>
     </view>
   </view>
 </block>
