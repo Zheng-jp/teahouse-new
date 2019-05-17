@@ -253,14 +253,14 @@
     <block wx:if="{{foot_is==2}}">
         <view class="hbj footmenu" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:9998;border-top:2rpx solid {{style.bordercolor}};" wx:if="{{params.navstyle==0}}">
             <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{style.bdr==1?(750-(count-1)*2)/count+'rpx':100/count+'%'}};float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{data}}">
-                <span class="iconfont {{item.iconclass}}" style="font-size:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx 0;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;line-height:{{style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
-                <view style="font-size:{{style.textfont*2}}rpx;padding:{{style.paddingleft*2}}rpx 0;color:{{style.textcolor}};" wx:if="{{params.textshow==1}}">{{item.text}}</view>
+                <span class="iconfont {{item.iconclass}}" style="color:{{item.change? style.iconcoloron : style.iconcolor}};font-size:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx 0;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;line-height:{{style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
+                <view style="font-size:{{style.textfont*2}}rpx;padding:{{style.paddingleft*2}}rpx 0;color:{{item.change? style.textcoloron : style.textcolor}};" wx:if="{{params.textshow==1}}">{{item.text}}</view>
             </view>
         </view>
         <view class="footmenu2" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:10000;border-top:2rpx solid {{style.bordercolor}};" wx:elif="{{params.navstyle==1}}">
             <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{style.bdr==1?(750-(count-1)*2)/count+'rpx':100/count+'%'}};float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{data}}">
                 <image mode="aspectFill" src="{{item.imgurl}}" style="display:block;margin:0 auto;width:{{style.iconfont*2}}rpx;height:{{style.iconfont*2}}rpx;padding:{{style.paddingtop*2}}rpx;"></image>
-                <view style="font-size:{{style.textfont*2}}rpx;color:{{style.textcolor}};padding:{{style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{params.textshow==1}}">{{item.text}}</view>
+                <view style="font-size:{{style.textfont*2}}rpx;color:{{item.change? style.textcoloron : style.textcolor}};padding:{{style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{params.textshow==1}}">{{item.text}}</view>
             </view>
         </view>
     </block>

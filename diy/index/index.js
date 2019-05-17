@@ -1,7 +1,7 @@
 // const app = getApp();
-var _Page, _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
+var _Page, _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (t) {
   return typeof t;
-} : function(t) {
+} : function (t) {
   return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;
 };
 
@@ -79,8 +79,8 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     homepageid: 0,
 
   },
-  
-  onPullDownRefresh: function() {
+
+  onPullDownRefresh: function () {
     var t = this;
     console.log(t)
     t.refreshSessionkey();
@@ -97,12 +97,12 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     }), t.getfoot(t.data.foot_is)) : this.homepage();
     wx.stopPullDownRefresh();
   },
-  onReady: function(t) {
-    
+  onReady: function (t) {
+
     this.audioCtx = wx.createAudioContext("myAudio");
   },
-  onLoad: function(t) {
-    this.getfoot();
+  onLoad: function (t) {
+    this.getfoot(2);
     (e = this).refreshSessionkey();
     var a = e.data.baseurl.split("/api");
     e.setData({
@@ -113,7 +113,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     t.fxsid && (o = t.fxsid, e.setData({
       fxsid: o
     })), wx.getSystemInfo({
-      success: function(t) {
+      success: function (t) {
         e.setData({
           width: t.windowWidth,
           height: t.windowHeight,
@@ -133,7 +133,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       page_signs: "/sudu8_page/index/index?pageid=" + n
     }), e.getfoot(1)) : e.homepage();
   },
-  homepage: function() {
+  homepage: function () {
     var o = this;
     wx.request({
       url: o.data.baseurl + "doPagehomepage",
@@ -141,7 +141,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       data: {
         uniacid: o.data.uniacid
       },
-      success: function(t) {
+      success: function (t) {
         var a = t.data.data.homepage,
           e = t.data.data.pageid;
         1 == a ? (o.setData({
@@ -155,7 +155,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           title: "提醒",
           content: "diy布局没有设置首页，无法进入",
           showCancel: !1,
-          success: function(t) {
+          success: function (t) {
             return !1;
           }
         }) : (o.getPage(e), app.util(o.getinfos, o.data.fxsid, o.data.uniacid), o.setData({
@@ -170,16 +170,16 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           foot_is: t.data.data.foot_is
         }));
       },
-      fail: function(t) {
+      fail: function (t) {
         console.log(t);
       }
     });
 
   },
-  onShow: function() {
-    
+  onShow: function () {
+
   },
-  getfoot: function(a) {
+  getfoot: function (a) {
     var e = this;
     wx.request({
       url: e.data.baseurl + "doPageGetFoot",
@@ -188,7 +188,21 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         uniacid: e.data.uniacid,
         foot: a
       },
-      success: function(t) {
+      success: function (t) {
+        var lujing = [];
+        var num = getCurrentPages().length - 1;
+        var url = getCurrentPages()[num].route; //当前页面路径
+        for (let i in t.data.data.data) {
+          lujing.push(t.data.data.data[i]);
+        }
+        for (let o = 0; o < lujing.length; o++) {
+          if (lujing[o].linkurl.indexOf(url) != -1) {
+            lujing[o].change = true;
+          } else {
+            lujing[o].change = false;
+          }
+        }
+        t.data.data.data = lujing;
         2 == a && e.setData({
           footinfo: t.data.data
         }), 1 == a && e.setData({
@@ -197,10 +211,10 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  tapMainMenu: function(t) {
+  tapMainMenu: function (t) {
     var a = this,
       e = t.currentTarget.dataset.index;
-    a.data.lastIndex == e ? (a.data.times++, 2 == a.data.times ? a.setData({
+    a.data.lastIndex == e ? (a.data.times++ , 2 == a.data.times ? a.setData({
       showMenu: !1
     }) : a.setData({
       showMenu: !0,
@@ -212,7 +226,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       times: 1
     }), a.data.lastIndex = e;
   },
-  allShopList: function() {
+  allShopList: function () {
     var e = this;
     wx.request({
       url: e.data.baseurl + "doPageselectShopList",
@@ -225,7 +239,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         longitude: e.data.longitude,
         latitude: e.data.latitude
       },
-      success: function(t) {
+      success: function (t) {
         var a = e.data.store;
         a.storeHot = t.data.data, e.setData({
           store: a
@@ -233,7 +247,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  tapSubMenu: function(t) {
+  tapSubMenu: function (t) {
     var a = this,
       e = a.data.menuContent,
       o = t.currentTarget.dataset.index;
@@ -243,7 +257,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       times: 2
     }), a.allShopList();
   },
-  storelist: function() {
+  storelist: function () {
     var o = this;
     wx.request({
       url: o.data.baseurl + "doPagestorelist",
@@ -251,7 +265,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       data: {
         uniacid: o.data.uniacid
       },
-      success: function(t) {
+      success: function (t) {
         if (console.log(t), t.data.data.catelist)
           for (var a = o.data.menuContent, e = 0; e < t.data.data.catelist.length; e++) a[0].content.push(t.data.data.catelist[e].name);
         o.setData({
@@ -261,18 +275,18 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  getinfos: function() {
+  getinfos: function () {
     var a = this;
     wx.getStorage({
       key: "openid",
-      success: function(t) {
+      success: function (t) {
         a.setData({
           openid: t.data
         });
       }
     });
   },
-  getIndex: function() {
+  getIndex: function () {
     var o = this;
     wx.request({
       url: o.data.baseurl + "doPageBase",
@@ -281,51 +295,51 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         vs1: 1
       },
       cachetime: "30",
-      success: function(t) {
+      success: function (t) {
         if (t.data.data.video) var a = "show";
         else a = "hide";
         if (t.data.data.c_b_bg) var e = "bg";
         else e = "";
         wx.setNavigationBarTitle({
-            title: t.data.data.name
-          }), wx.setNavigationBarColor({
-            frontColor: t.data.data.base_tcolor,
-            backgroundColor: t.data.data.base_color
-          }), o.setData({
-            baseinfo: t.data.data,
-            second: t.data.data.bigadCTC,
-            show_v: a,
-            c_b_bg1: e
-          }), 1 == t.data.data.duomerchants ? (o.setData({
-            duomerchants: 1
-          }), o.storelist(), wx.getLocation({
-            type: "wgs84",
-            success: function(t) {
-              o.data.latitude = t.latitude, o.data.longitude = t.longitude;
-            },
-            fail: function(t) {
-              o.getlocation();
-            }
-          })) : o.setData({
-            duomerchants: 0
-          }), "1" == t.data.data.bigadC && o.countdown1(), o.index_nav(), "9" != t.data.data.copT && o.index_cop(),
+          title: t.data.data.name
+        }), wx.setNavigationBarColor({
+          frontColor: t.data.data.base_tcolor,
+          backgroundColor: t.data.data.base_color
+        }), o.setData({
+          baseinfo: t.data.data,
+          second: t.data.data.bigadCTC,
+          show_v: a,
+          c_b_bg1: e
+        }), 1 == t.data.data.duomerchants ? (o.setData({
+          duomerchants: 1
+        }), o.storelist(), wx.getLocation({
+          type: "wgs84",
+          success: function (t) {
+            o.data.latitude = t.latitude, o.data.longitude = t.longitude;
+          },
+          fail: function (t) {
+            o.getlocation();
+          }
+        })) : o.setData({
+          duomerchants: 0
+        }), "1" == t.data.data.bigadC && o.countdown1(), o.index_nav(), "9" != t.data.data.copT && o.index_cop(),
           1 == t.data.data.form_index && o.indexForm();
       },
-      fail: function(t) {
+      fail: function (t) {
         console.log(t);
       }
     });
   },
-  getlocation: function() {
+  getlocation: function () {
     wx.getSetting({
-      success: function(t) {
+      success: function (t) {
         t.authSetting["scope.userLocation"] || wx.showModal({
           title: "请授权获取当前位置",
           content: "附近店铺需要授权此功能",
           showCancel: !1,
-          success: function(t) {
+          success: function (t) {
             t.confirm && wx.openSetting({
-              success: function(t) {
+              success: function (t) {
                 !0 === t.authSetting["scope.userLocation"] ? wx.showToast({
                   title: "授权成功",
                   icon: "success",
@@ -334,7 +348,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
                   title: "授权失败",
                   icon: "success",
                   duration: 1e3,
-                  success: function() {
+                  success: function () {
                     wx.reLaunch({
                       url: "/sudu8_page/index/index"
                     });
@@ -345,7 +359,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           }
         });
       },
-      fail: function(t) {
+      fail: function (t) {
         wx.showToast({
           title: "调用授权窗口失败",
           icon: "success",
@@ -354,7 +368,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  index_nav: function() {
+  index_nav: function () {
     var a = this;
     wx.request({
       url: a.data.baseurl + "doPageNav",
@@ -363,17 +377,17 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         uniacid: a.data.uniacid,
         type: "index"
       },
-      success: function(t) {
+      success: function (t) {
         a.setData({
           nav_index: t.data.data
         }), a.index_hot();
       },
-      fail: function(t) {
+      fail: function (t) {
         console.log(t);
       }
     });
   },
-  index_cop: function() {
+  index_cop: function () {
     var a = this;
     wx.request({
       url: a.data.baseurl + "doPageindexCop",
@@ -381,7 +395,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         uniacid: a.data.uniacid
       },
       cachetime: "30",
-      success: function(t) {
+      success: function (t) {
         console.log(t), 1 == t.data.data ? a.setData({
           indexCop_is: 0
         }) : a.setData({
@@ -389,12 +403,12 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           indexCop_is: 1
         });
       },
-      fail: function(t) {
+      fail: function (t) {
         console.log(t);
       }
     });
   },
-  index_hot: function() {
+  index_hot: function () {
     var a = this;
     wx.request({
       url: a.data.baseurl + "doPageIndex_hot",
@@ -402,17 +416,17 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         uniacid: a.data.uniacid
       },
       cachetime: "30",
-      success: function(t) {
+      success: function (t) {
         a.setData({
           index_hot: t.data.data
         }), a.index_cate();
       },
-      fail: function(t) {
+      fail: function (t) {
         console.log(t);
       }
     });
   },
-  index_cate: function() {
+  index_cate: function () {
     var a = this;
     wx.request({
       url: a.data.baseurl + "doPageIndex_cate",
@@ -420,21 +434,21 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         uniacid: a.data.uniacid
       },
       cachetime: "30",
-      success: function(t) {
+      success: function (t) {
         console.log(t),
           a.setData({
             index_cate: t.data.data
           }), wx.setStorageSync("isShowLoading", !1), wx.hideNavigationBarLoading(), wx.stopPullDownRefresh();
       },
-      fail: function(t) {
+      fail: function (t) {
         console.log(t);
       }
     });
   },
-  countdown1: function() {
+  countdown1: function () {
     var t = this,
       a = t.data.second;
-    if (0 != a) setTimeout(function() {
+    if (0 != a) setTimeout(function () {
       t.setData({
         second: a - 1
       }), t.countdown1();
@@ -443,12 +457,12 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       showFad: 0
     });
   },
-  serachInput: function(t) {
+  serachInput: function (t) {
     this.setData({
       searchtitle: t.detail.value
     });
   },
-  search: function() {
+  search: function () {
     var t = this.data.searchtitle;
     t ? wx.navigateTo({
       url: "/sudu8_page/search/search?title=" + t
@@ -458,20 +472,20 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       showCancel: !1
     });
   },
-  bindDateChange: function(t) {
+  bindDateChange: function (t) {
     this.setData({
       date_c: t.detail.value
     });
   },
-  bindTimeChange: function(t) {
+  bindTimeChange: function (t) {
     this.setData({
       time_c: t.detail.value
     });
   },
-  swiperLoad: function(o) {
+  swiperLoad: function (o) {
     var n = this;
     wx.getSystemInfo({
-      success: function(t) {
+      success: function (t) {
         var a = o.detail.width / o.detail.height,
           e = t.windowWidth / a;
         n.data.heighthave || n.setData({
@@ -481,27 +495,29 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  newRedirectto: function(n, e) {
+  newRedirectto: function (n, e) {
 
     switch (e) {
       case "page":
         wx.navigateTo({
           url: n
         });
-
+        break;
+      case "pages":
+        wx.navigateTo({
+          url: n
+        });
         break;
       case "webs":
         wx.navigateTo({
           url: n
         });
-
         break;
-
       case "tel":
         n = n.slice(4), wx.showModal({
           title: "提示",
           content: "是否拨打电话:" + n,
-          success: function(e) {
+          success: function (e) {
             1 == e.confirm && wx.makePhoneCall({
               phoneNumber: n
             });
@@ -525,82 +541,80 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         wx.navigateToMiniProgram({
           appId: i,
           path: "",
-          success: function(e) {
+          success: function (e) {
             console.log("打开成功"), console.log(i);
           }
         });
     }
   },
-  redirectto: function(t) {
+  redirectto: function (t) {
     var a = t.currentTarget.dataset.link,
       e = t.currentTarget.dataset.linktype;
-    console.log(a)
-    console.log(e)
-  
-    app.redirectto(a, e);
-    
-    
+
+    this.newRedirectto(a, e);
+
+
 
   },
-  showvideo: function() {
+  showvideo: function () {
     this.setData({
       showvideo: 1
     });
   },
-  cvideo: function() {
+  cvideo: function () {
     this.setData({
       showvideo: 0
     });
   },
-  showvideo_diy: function(t) {
+  showvideo_diy: function (t) {
     this.setData({
       showvideo_diy: 1,
       videourl: t.currentTarget.dataset.video
     });
   },
-  cvideo_idy: function() {
+  cvideo_idy: function () {
     this.setData({
       showvideo_diy: 0
     });
   },
-  closeAd: function() {
+  closeAd: function () {
     this.setData({
       showAd: 0
     });
   },
-  closeFAd: function() {
+  closeFAd: function () {
     var t = this.data.pageset;
     null != t && (t.kp_is = 2), this.setData({
       showFad: 0,
       pageset: t
     });
   },
-  openApp: function(t) {
+  openApp: function (t) {
     wx.navigateToMiniProgram({
       appId: t.currentTarget.dataset.id,
       path: t.currentTarget.dataset.path,
-      success: function(t) {}
+      success: function (t) { }
     });
   },
-  makePhoneCall: function(t) {
+  makePhoneCall: function (t) {
     var a = this.data.baseinfo.tel;
     wx.makePhoneCall({
       phoneNumber: a
     });
   },
-  makePhoneCallB: function(t) {
+  makePhoneCallB: function (t) {
     var a = this.data.baseinfo.tel_b;
     wx.makePhoneCall({
       phoneNumber: a
     });
   },
-  makePhoneCallC: function(t) {
+  makePhoneCallC: function (t) {
     var a = t.currentTarget.dataset.tel;
     wx.makePhoneCall({
       phoneNumber: a
     });
   },
-  openMap: function(t) {
+  openMap: function (t) {
     wx.openLocation({
       latitude: parseFloat(this.data.baseinfo.latitude),
       longitude: parseFloat(this.data.baseinfo.longitude),
@@ -609,12 +623,12 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       scale: 22
     });
   },
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return {
       title: this.data.baseinfo.name
     };
   },
-  indexForm: function() {
+  indexForm: function () {
     var l = this;
     wx.request({
       url: l.data.baseurl + "doPageFormsConfig",
@@ -622,7 +636,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         uniacid: l.data.uniacid
       },
       cachetime: "30",
-      success: function(t) {
+      success: function (t) {
         var a = t.data.data,
           e = t.data.data.single_v,
           o = t.data.data.checkbox_v,
@@ -643,7 +657,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  formSubmit: function(t) {
+  formSubmit: function (t) {
     var a = this;
     if (0 == t.detail.value.name.length && 1 == a.data.formsConfig.name_must) return wx.showModal({
       title: "提示",
@@ -730,19 +744,19 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     s ? i - s > a.data.formsConfig.subtime && wx.setStorage({
       key: "mypretime",
       data: i,
-      success: function(t) {
+      success: function (t) {
         console.log("ok_new");
       },
-      fail: function(t) {
+      fail: function (t) {
         console.log("err_new");
       }
     }) : wx.setStorage({
       key: "mypretime",
       data: i,
-      success: function(t) {
+      success: function (t) {
         console.log("ok_first");
       },
-      fail: function(t) {
+      fail: function (t) {
         console.log("err_first");
       }
     }), wx.showToast({
@@ -754,18 +768,18 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       cachetime: "30",
       data: e,
       method: "POST",
-      success: function(t) {
+      success: function (t) {
         wx.showToast({
           title: a.data.formsConfig.success,
           icon: "success",
           duration: 3e3
-        }), setTimeout(function() {
+        }), setTimeout(function () {
           wx.reLaunch({
             url: "/sudu8_page/index/index"
           });
         }, 3e3);
       },
-      fail: function(t) {
+      fail: function (t) {
         wx.showModal({
           title: "提示",
           content: "提交失败！",
@@ -774,7 +788,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  getPage: function(t) {
+  getPage: function (t) {
     var f = this;
     wx.request({
       url: f.data.baseurl + "doPageDiypage",
@@ -784,7 +798,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         open_id: app.globalData.gmemberid,
         member_grade_name: app.globalData.member_grade_name
       },
-      success: function(t) {
+      success: function (t) {
         console.log(t);
         var a = t.data.data;
         if (3 == a) return wx.showModal({
@@ -848,10 +862,10 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           }
         for (r = 0; r < i.length; r++) "multiple" == i[r].id && wx.getLocation({
           type: "wgs84",
-          success: function(t) {
+          success: function (t) {
             f.data.latitude = t.latitude, f.data.longitude = t.longitude;
           },
-          fail: function(t) {
+          fail: function (t) {
             f.getlocation();
           }
         }), "dt" == i[r].id && f.setData({
@@ -890,7 +904,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
 
         wx.hideLoading();
       },
-      fail: function(t) {
+      fail: function (t) {
         wx.hideLoading(), wx.showModal({
           title: "提示",
           content: "加载失败"
@@ -898,7 +912,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  list: function() {
+  list: function () {
     console.log(111);
     var f = this;
     var goods_list = f.data.list;
@@ -916,7 +930,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       list: goods_list
     });
   },
-  daojishi: function() {
+  daojishi: function () {
     for (var t = this, a = t.data.msmk, e = 0; e < a.length; e++) {
       var o = new Date().getTime();
       if (0 == a[e].sale_time && 0 == a[e].sale_end_time);
@@ -926,22 +940,22 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       else {
         var n, i, s, d, r = 1e3 * parseInt(a[e].sale_end_time) - o;
         0 <= r && (n = Math.floor(r / 1e3 / 60 / 60 / 24), i = Math.floor(r / 1e3 / 60 / 60 % 24) < 10 ? "0" + Math.floor(r / 1e3 / 60 / 60 % 24) : Math.floor(r / 1e3 / 60 / 60 % 24),
-            s = Math.floor(r / 1e3 / 60 % 60) < 10 ? "0" + Math.floor(r / 1e3 / 60 % 60) : Math.floor(r / 1e3 / 60 % 60),
-            d = Math.floor(r / 1e3 % 60) < 10 ? "0" + Math.floor(r / 1e3 % 60) : Math.floor(r / 1e3 % 60)),
+          s = Math.floor(r / 1e3 / 60 % 60) < 10 ? "0" + Math.floor(r / 1e3 / 60 % 60) : Math.floor(r / 1e3 / 60 % 60),
+          d = Math.floor(r / 1e3 % 60) < 10 ? "0" + Math.floor(r / 1e3 % 60) : Math.floor(r / 1e3 % 60)),
           a[e].endtime = 0 < n ? n + "天" + i + ":" + s + ":" + d : i + ":" + s + ":" + d;
       }
     }
     t.setData({
       msmk: a
     });
-    setTimeout(function() {
+    setTimeout(function () {
       t.daojishi();
     }, 1e3);
   },
-  weixinadd: function() {
+  weixinadd: function () {
     var s = this;
     wx.chooseAddress({
-      success: function(t) {
+      success: function (t) {
         for (var a = t.provinceName + " " + t.cityName + " " + t.countyName + " " + t.detailInfo, e = t.userName, o = t.telNumber, n = s.data.forminfo, i = 0; i < n.length; i++) 0 == n[i].type && 2 == n[i].tp_text[0].yval && (n[i].val = e),
           0 == n[i].type && 3 == n[i].tp_text[0].yval && (n[i].val = o), 0 == n[i].type && 4 == n[i].tp_text[0].yval && (n[i].val = a);
         console.log(n), s.setData({
@@ -953,7 +967,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  namexz: function(t) {
+  namexz: function (t) {
     for (var a = t.currentTarget.dataset.index, e = this.data.forminfo[a], o = [], n = 0; n < e.tp_text.length; n++) {
       var i = {};
       i.keys = e.tp_text[n], i.val = 1, o.push(i);
@@ -966,7 +980,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       lixuanz: -1
     }), this.riqi();
   },
-  riqi: function() {
+  riqi: function () {
     for (var t = new Date(), a = new Date(t.getTime()), e = a.getFullYear() + "-" + (a.getMonth() + 1) + "-" + a.getDate(), o = this.data.xx, n = 0; n < o.length; n++) o[n].val = 1;
     this.setData({
       xx: o
@@ -989,7 +1003,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       today: e
     });
   },
-  xuanzd: function(t) {
+  xuanzd: function (t) {
     for (var a = t.currentTarget.dataset.index, e = this.data.fallarrs[a], o = this.data.xx, n = 0; n < o.length; n++) o[n].val = 1;
     this.setData({
       xuanz: a,
@@ -998,13 +1012,13 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       xx: o
     }), this.gettoday(e);
   },
-  goux: function(t) {
+  goux: function (t) {
     var a = t.currentTarget.dataset.index;
     console.log(a), this.setData({
       lixuanz: a
     });
   },
-  gettoday: function(t) {
+  gettoday: function (t) {
     var n = this,
       a = n.data.id,
       e = n.data.formindex,
@@ -1021,7 +1035,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       header: {
         "content-type": "application/json"
       },
-      success: function(t) {
+      success: function (t) {
         for (var a = t.data.data, e = 0; e < a.length; e++) i[a[e]].val = 2;
         var o = 0;
         a.length == i.length && (o = 1), n.setData({
@@ -1031,7 +1045,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  save_nb: function() {
+  save_nb: function () {
     var t = this,
       a = t.data.today,
       e = t.data.xx,
@@ -1049,12 +1063,12 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       forminfo: i
     });
   },
-  quxiao: function() {
+  quxiao: function () {
     this.setData({
       ttcxs: 0
     });
   },
-  bindInputChange: function(t) {
+  bindInputChange: function (t) {
     var a = t.detail.value,
       e = t.currentTarget.dataset.index,
       o = this.data.forminfo;
@@ -1062,7 +1076,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       forminfo: o
     });
   },
-  bindPickerChange: function(t) {
+  bindPickerChange: function (t) {
     var a = t.detail.value,
       e = t.currentTarget.dataset.index,
       o = this.data.forminfo;
@@ -1072,7 +1086,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       forminfo: o
     });
   },
-  bindDateChange1: function(t) {
+  bindDateChange1: function (t) {
     var a = t.detail.value,
       e = t.currentTarget.dataset.index,
       o = this.data.forminfo;
@@ -1080,7 +1094,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       forminfo: o
     });
   },
-  bindTimeChange1: function(t) {
+  bindTimeChange1: function (t) {
     var a = t.detail.value,
       e = t.currentTarget.dataset.index,
       o = this.data.forminfo;
@@ -1088,7 +1102,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       forminfo: o
     });
   },
-  checkboxChange: function(t) {
+  checkboxChange: function (t) {
     var a = t.detail.value,
       e = t.currentTarget.dataset.index,
       o = this.data.forminfo;
@@ -1096,7 +1110,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       forminfo: o
     });
   },
-  radioChange: function(t) {
+  radioChange: function (t) {
     var a = t.detail.value,
       e = t.currentTarget.dataset.index,
       o = this.data.forminfo;
@@ -1104,7 +1118,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       forminfo: o
     });
   },
-  delimg: function(t) {
+  delimg: function (t) {
     var a = t.currentTarget.dataset.index,
       e = t.currentTarget.dataset.id,
       o = this.data.forminfo,
@@ -1113,7 +1127,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       forminfo: o
     });
   },
-  formSubmit1: function(t) {
+  formSubmit1: function (t) {
     var a = this.data.forminfo;
     console.log(a);
     for (var e = 0; e < a.length; e++) {
@@ -1137,12 +1151,12 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         forminfo: JSON.stringify(a),
         formid: this.data.formid
       },
-      success: function(t) {
+      success: function (t) {
         1 == t.data.data && wx.showModal({
           title: "提醒",
           content: "表单提交成功",
           showCancel: !1,
-          success: function(t) {
+          success: function (t) {
             wx.reLaunch({
               url: "/sudu8_page/index/index"
             });
@@ -1151,7 +1165,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  choiceimg1111: function(t) {
+  choiceimg1111: function (t) {
     var i = this,
       a = 0,
       s = i.data.zhixin,
@@ -1166,7 +1180,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       count: n,
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
-      success: function(t) {
+      success: function (t) {
         s = !0, i.setData({
           zhixin: s
         }), wx.showLoading({
@@ -1183,7 +1197,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
             url: i.data.baseurl + "wxupimg",
             filePath: a[o],
             name: "file",
-            success: function(t) {
+            success: function (t) {
               var a = t.data;
               c.push(a), r[d].z_val = c, i.setData({
                 forminfo: r,
@@ -1197,7 +1211,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
   },
-  tabFun2: function(t) {
+  tabFun2: function (t) {
     var a = t.target.dataset.id;
     console.log("----" + a + "----");
     var e = {};
@@ -1205,14 +1219,14 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       tabArr2: e
     }), console.log(this.data.tabArr2);
   },
-  audioPlay: function(t) {
+  audioPlay: function (t) {
     1 == this.data.yuyin ? (this.audioCtx.play(), this.setData({
       yuyin: 2
     })) : (this.audioCtx.pause(), this.setData({
       yuyin: 1
     }));
   },
-  countdown: function(t) {
+  countdown: function (t) {
     var a = this;
     if (null != t && "undefined" != t) var e = t.currentTarget.dataset.close;
     else e = 1;
@@ -1224,20 +1238,20 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         pageset: n
       });
     }
-    setTimeout(function() {
+    setTimeout(function () {
       a.setData({
         sec: o - 1
       }), a.countdown();
     }, 1e3);
   },
-  hide_tcgg: function() {
+  hide_tcgg: function () {
     var t = this.data.pageset;
     t.tc_is = 2, this.setData({
       show_page_tcgg: 0,
       pageset: t
     });
   }
-}, "openMap", function(t) {
+}, "openMap", function (t) {
   wx.openLocation({
     latitude: parseFloat(this.data.baseinfo.latitude),
     longitude: parseFloat(this.data.baseinfo.longitude),
@@ -1245,41 +1259,41 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     address: this.data.baseinfo.address,
     scale: 22
   });
-}), _defineProperty(_Page, "ewmshow", function(t) {
+}), _defineProperty(_Page, "ewmshow", function (t) {
   console.log(t.currentTarget.dataset.ewm), wx.previewImage({
     current: t.currentTarget.dataset.ewm,
     urls: [t.currentTarget.dataset.ewm]
   });
-}), _defineProperty(_Page, "swiperh", function() {
+}), _defineProperty(_Page, "swiperh", function () {
   var a = this,
     t = wx.createSelectorQuery();
-  t.select("#mjltest").boundingClientRect(), t.exec(function(t) {
+  t.select("#mjltest").boundingClientRect(), t.exec(function (t) {
     a.setData({
       h: t[0].height
     });
   });
-}), _defineProperty(_Page, "phoneshop", function(t) {
+}), _defineProperty(_Page, "phoneshop", function (t) {
   var a = t.currentTarget.dataset.num;
   wx.makePhoneCall({
     phoneNumber: a,
-    success: function() {
+    success: function () {
       console.log("拨打电话成功！");
     },
-    fail: function() {
+    fail: function () {
       console.log("拨打电话失败！");
     }
   });
-}), _defineProperty(_Page, "refreshSessionkey", function() {
+}), _defineProperty(_Page, "refreshSessionkey", function () {
   var a = this;
   wx.login({
-    success: function(t) {
+    success: function (t) {
       wx.request({
         url: a.data.baseurl + "doPagegetNewSessionkey",
         data: {
           uniacid: a.data.uniacid,
           code: t.code
         },
-        success: function(t) {
+        success: function (t) {
           console.log(t), a.setData({
             newSessionKey: t.data.data
           });
@@ -1287,12 +1301,12 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       });
     }
   });
-}), _defineProperty(_Page, "getPhoneNumber", function(t) {
+}), _defineProperty(_Page, "getPhoneNumber", function (t) {
   var o = this,
     a = t.detail.iv,
     e = t.detail.encryptedData;
   "getPhoneNumber:ok" == t.detail.errMsg ? wx.checkSession({
-    success: function() {
+    success: function () {
       wx.request({
         url: o.data.baseurl + "doPagejiemiNew",
         data: {
@@ -1301,7 +1315,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           iv: a,
           encryptedData: e
         },
-        success: function(t) {
+        success: function (t) {
           if (t.data.data) {
             for (var a = o.data.forminfo, e = 0; e < a.length; e++) 0 == a[e].type && 5 == a[e].tp_text[0].yval && (a[e].val = t.data.data);
             console.log(a), o.setData({
@@ -1313,12 +1327,12 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
             content: "sessionKey已过期，请下拉刷新！"
           });
         },
-        fail: function(t) {
+        fail: function (t) {
           console.log(t);
         }
       });
     },
-    fail: function() {
+    fail: function () {
       wx.showModal({
         title: "提示",
         content: "sessionKey已过期，请下拉刷新！"
