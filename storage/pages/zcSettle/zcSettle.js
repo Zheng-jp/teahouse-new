@@ -66,6 +66,7 @@ Page({
     is_checked: true,
     unit: [],//报价单位
     ever_storage: [],//单个仓储费
+    fixiPhone: false
   },
   // 弹窗
   powerDrawer: function (e) {
@@ -884,6 +885,13 @@ Page({
   onLoad: function (options) {
     var _this = this;
     let user = JSON.parse(options.title);
+    wx.getSystemInfo({
+      success: function(res){
+        _this.setData({
+          fixiPhone: res.model.indexOf('iPhone') != -1
+        })
+      }
+    })
     _this.setData({
       user: user,
     });

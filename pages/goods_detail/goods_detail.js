@@ -608,10 +608,11 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function() {
+		var that = this;
     wx.getSystemInfo({
       success: function (res) {
-        this.setData({
-          fixiPhone: res.model.indexOf('iPhone X') != -1
+        that.setData({
+          fixiPhone: res.model.indexOf('iPhone') != -1
         })
       }
     })

@@ -249,7 +249,7 @@
       </view>
     </view>
   </view>
-  <view class='sundry'>
+  <view class='sundry' style="{{fixiPhone? '':'margin-bottom:100rpx;'}}">
     <view class='sundry-li1' style=' border-bottom: solid 1rpx #E4E4E4;'>
       <view>商品总价</view>
       <view>
