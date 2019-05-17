@@ -20,13 +20,13 @@ Page({
 
   formSubmit: function (e) {
     var that = this;
-    if (e.detail.value.member_phone_num == '') {
+    if (e.detail.value.harvester== '') {
       wx.showToast({
         title: "手机号不能为空",
         icon: 'none',
       });
     }
-    else if (e.detail.value.cold == '') {
+    else if (e.detail.value.harvester_phone_num1 == '') {
       wx.showToast({
         title: "验证码不能为空",
         icon: 'none',
@@ -35,8 +35,8 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'user_phone_bingding',
         data: {
-          member_phone_num: e.detail.value.member_phone_num,
-          code: e.detail.value.cold,
+          member_phone_num: e.detail.value.harvester,
+          code: e.detail.value.harvester_phone_num1,
           member_id: app.globalData.member_id,
         },
         method: "post",

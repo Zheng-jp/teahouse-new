@@ -63,7 +63,7 @@
             <view> 2.您还可以直接等级会员充值，成为会员，充值有赠送哦~；</view>
             <view> 3.更多服务，了解会员权益，请查阅</view>
             <checkbox-group bindchange="read">
-              <view style='color:#6B6B6B;'> <checkbox  value="是否已读" ></checkbox><text style='color:#02A0E6;' bindtap='toda'>我已阅读并同意《会员权益协议》</text></view>
+              <view style='color:#6B6B6B;'> <checkbox  value="是否已读" ></checkbox>我已阅读并同意<text style='color:#02A0E6;' bindtap='toda'>《会员权益协议》</text></view>
             </checkbox-group> 
 
      </view>
