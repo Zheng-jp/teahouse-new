@@ -1,7 +1,7 @@
 // storage/pages/realtime_data/realtime_data.js
 import * as echarts from '../../../component/ec-canvas/echarts';
 var app = getApp();
-// 温度
+// 温度  第一个swiper-item
 function setOption(chart, _this, yArr) {
   const option = {
     title: {
@@ -27,7 +27,10 @@ function setOption(chart, _this, yArr) {
         var res = [];
         var len = 10;
         while (len--) {
-          res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+          // res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+          res.unshift((now.getHours()<10?'0'+now.getHours():now.getHours())+':'+
+          (now.getMinutes()<10?'0'+now.getMinutes():now.getMinutes())+':'+
+          (now.getSeconds()<10?'0'+now.getSeconds():now.getSeconds()));
           now = new Date(now - 2000);
         }
         return res;
@@ -36,7 +39,7 @@ function setOption(chart, _this, yArr) {
     yAxis: {
       type: 'value',
       position: 'right',
-      splitNumber: 8,
+      splitNumber: 3,
       axisLine: {
         show: false,
       },
@@ -44,7 +47,7 @@ function setOption(chart, _this, yArr) {
         show: false,
       },
       axisLabel: {
-        margin: 0,
+        margin: 2,
         formatter: function(value, index){
           return value.toFixed(2);
         }
@@ -60,7 +63,10 @@ function setOption(chart, _this, yArr) {
   };
   _this.setData({
     timer: setInterval(function () {
-      var axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+      var now = new Date();
+      var axisData = ((now.getHours()<10?'0'+now.getHours():now.getHours())+':'+
+      (now.getMinutes()<10?'0'+now.getMinutes():now.getMinutes())+':'+
+      (now.getSeconds()<10?'0'+now.getSeconds():now.getSeconds()));
       wx.request({
         url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html',    //你请求数据的接口地址
         method: 'POST',
@@ -83,7 +89,7 @@ function setOption(chart, _this, yArr) {
     }, 2100)
   })
 }
-// 湿度
+// 湿度  第一个swiper-item
 function setOption2(chart, _this, yArr) {
   const option = {
     title: {
@@ -109,7 +115,9 @@ function setOption2(chart, _this, yArr) {
         var res = [];
         var len = 10;
         while (len--) {
-          res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+          res.unshift((now.getHours()<10?'0'+now.getHours():now.getHours())+':'+
+          (now.getMinutes()<10?'0'+now.getMinutes():now.getMinutes())+':'+
+          (now.getSeconds()<10?'0'+now.getSeconds():now.getSeconds()));
           now = new Date(now - 2000);
         }
         return res;
@@ -119,7 +127,7 @@ function setOption2(chart, _this, yArr) {
       type: 'value',
       name: '湿度%',
       position: 'right',
-      splitNumber: 8,
+      splitNumber: 3,
       axisLine: {
         show: false,
       },
@@ -127,7 +135,7 @@ function setOption2(chart, _this, yArr) {
         show: false,
       },
       axisLabel: {
-        margin: 0,
+        margin: 2,
       },
       scale: true,
       boundaryGap: [0.2, 0.2]
@@ -139,7 +147,10 @@ function setOption2(chart, _this, yArr) {
   };
   _this.setData({
     timer2: setInterval(function () {
-      var axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+      var now = new Date();
+      var axisData = ((now.getHours()<10?'0'+now.getHours():now.getHours())+':'+
+      (now.getMinutes()<10?'0'+now.getMinutes():now.getMinutes())+':'+
+      (now.getSeconds()<10?'0'+now.getSeconds():now.getSeconds()));
       wx.request({
         url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html',    //你请求数据的接口地址
         method: 'POST',
@@ -159,7 +170,7 @@ function setOption2(chart, _this, yArr) {
       option.xAxis[0].data.push(axisData);
 
       chart.setOption(option);
-    }, 5100)
+    }, 2100)
   })
 }
 
@@ -190,6 +201,7 @@ function userLogin(_this){
       "password": "zhcc63268696"
     },
     success(res){
+      console.log(res.data);
       _this.setData({
         userLogin: res.data
       })
@@ -218,7 +230,7 @@ function queryDevMoniData(userData, _this){
       "flagCode": userData.flagCode
     },
     success(res){
-      console.log(res.data.deviceList[0].sensorList);
+      console.log(res.data);
       _this.setData({
         inTemp: (+res.data.deviceList[0].sensorList[0].value).toFixed(2),
         outTemp: (+res.data.deviceList[0].sensorList[2].value).toFixed(2),
@@ -232,6 +244,44 @@ function queryDevMoniData(userData, _this){
   })
 } 
 
+const date = new Date();
+const years = [];
+const months = [];
+const days = [];
+const hours = [];
+const minutes = [];
+//获取年
+for (let i = 2018; i <= date.getFullYear() + 5; i++) {
+  years.push("" + i);
+}
+//获取月份
+for (let i = 1; i <= 12; i++) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  months.push("" + i);
+}
+//获取日期
+for (let i = 1; i <= 31; i++) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  days.push("" + i);
+}
+//获取小时
+for (let i = 0; i < 24; i++) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  hours.push("" + i);
+}
+//获取分钟
+for (let i = 0; i < 60; i++) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  minutes.push("" + i);
+}
 
 Page({
 
@@ -258,16 +308,14 @@ Page({
     yArr2: [], // init湿度
     sdate: '2018-09-01',//开始日期
     edate: '2018-09-01',//结束日期
+    selectHistKey: 0,
+    multiArray: [years, months, days, hours, minutes],
+    multiIndex: [0, 9, 16, 10, 17],
+    choose_year: ''
   },
-  // 选择日期
-  sBindDateChange: function (e) {
+  bindSelectHist: function(e){
     this.setData({
-      sdate: e.detail.value
-    })
-  },
-  eBindDateChange: function (e) {
-    this.setData({
-      edate: e.detail.value
+      selectHistKey: e.target.dataset.current
     })
   },
 
@@ -290,6 +338,100 @@ Page({
     })
   },
 
+  //获取时间日期
+  sbindMultiPickerChange: function(e) {
+    this.setData({
+      multiIndex: e.detail.value
+    })
+    const index = this.data.multiIndex;
+    const year = this.data.multiArray[0][index[0]];
+    const month = this.data.multiArray[1][index[1]];
+    const day = this.data.multiArray[2][index[2]];
+    const hour = this.data.multiArray[3][index[3]];
+    const minute = this.data.multiArray[4][index[4]];
+    this.setData({
+      sdate: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+    })
+  },
+  ebindMultiPickerChange: function(e) {
+    this.setData({
+      multiIndex: e.detail.value
+    })
+    const index = this.data.multiIndex;
+    const year = this.data.multiArray[0][index[0]];
+    const month = this.data.multiArray[1][index[1]];
+    const day = this.data.multiArray[2][index[2]];
+    const hour = this.data.multiArray[3][index[3]];
+    const minute = this.data.multiArray[4][index[4]];
+    this.setData({
+      edate: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+    })
+  },
+  //监听picker的滚动事件
+  bindMultiPickerColumnChange: function(e) {
+    //获取年份
+    if (e.detail.column == 0) {
+      let choose_year = this.data.multiArray[e.detail.column][e.detail.value];
+      this.setData({
+        choose_year
+      })
+    }
+    if (e.detail.column == 1) {
+      let num = parseInt(this.data.multiArray[e.detail.column][e.detail.value]);
+      let temp = [];
+      if (num == 1 || num == 3 || num == 5 || num == 7 || num == 8 || num == 10 || num == 12) { //判断31天的月份
+        for (let i = 1; i <= 31; i++) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          temp.push("" + i);
+        }
+        this.setData({
+          ['multiArray[2]']: temp
+        });
+      } else if (num == 4 || num == 6 || num == 9 || num == 11) { //判断30天的月份
+        for (let i = 1; i <= 30; i++) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          temp.push("" + i);
+        }
+        this.setData({
+          ['multiArray[2]']: temp
+        });
+      } else if (num == 2) { //判断2月份天数
+        let year = parseInt(this.data.choose_year);
+        if (((year % 400 == 0) || (year % 100 != 0)) && (year % 4 == 0)) {
+          for (let i = 1; i <= 29; i++) {
+            if (i < 10) {
+              i = "0" + i;
+            }
+            temp.push("" + i);
+          }
+          this.setData({
+            ['multiArray[2]']: temp
+          });
+        } else {
+          for (let i = 1; i <= 28; i++) {
+            if (i < 10) {
+              i = "0" + i;
+            }
+            temp.push("" + i);
+          }
+          this.setData({
+            ['multiArray[2]']: temp
+          });
+        }
+      }
+    }
+    var data = {
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex
+    };
+    data.multiIndex[e.detail.column] = e.detail.value;
+    this.setData(data);
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -305,6 +447,11 @@ Page({
     _this.setData({
       sdate: new Date().toLocaleDateString().replace(/\//g, '-'),
       edate: new Date().toLocaleDateString().replace(/\//g, '-')
+    })
+
+    //设置默认的年份
+    this.setData({
+      choose_year: this.data.multiArray[0][0]
     })
   },
 
@@ -334,8 +481,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    clearInterval(this.data.timer)
-    clearInterval(this.data.timer2)
+    clearInterval(this.data.timer);
+    clearInterval(this.data.timer2);
   },
   initOne: function () {           //初始化第一个图表
     var _this = this;
