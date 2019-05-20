@@ -83,7 +83,15 @@
 		font-size: 40rpx;
 
 	}
-	
+  .texts {
+    color:#669900;
+    border:solid 1px #669900;
+    border-radius:6rpx;
+    font-size:20rpx;
+    text-align:center;
+    margin:10rpx;
+  }
+  
 	.other_info {
     width: 100%;
 		display: flex;

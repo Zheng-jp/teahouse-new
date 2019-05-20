@@ -51,7 +51,8 @@
     </swiper>
   </view>
   <view class='goods_cont'>
-    <view class='good_name'><text style=''>可存</text>{{goods.goods_name}}</view>
+  <!-- <text class='texts'>可存</text> -->
+    <view class='good_name'>{{goods.goods_name}}</view>
     <view class='selling-point'>{{goods.goods_selling}}</view>
     <view class='price_cont'>
       <view style="display:flex; align-items:flex-end;margin-bottom:-15px">

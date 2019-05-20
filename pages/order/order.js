@@ -194,8 +194,8 @@ Page({
             }); 
            
           },
-          fail: function () {
-         
+          fail: function (e) {
+            console.log(e)
           },
           complete: function () {
             // wx.hideLoading()

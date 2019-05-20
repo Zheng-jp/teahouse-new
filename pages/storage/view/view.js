@@ -170,7 +170,11 @@ Page({
         uniacid: uniacid
       },
       success: function (t) {
-        var version_is;
+        var version_is = '';
+        that.setData({
+          foot_is: t.data.data.foot_is,
+        })
+        // console.log(t)
         if (t.data.data.test_name.goods_name == '茶进阶版')
           version_is = 3;
         else if (t.data.data.test_name.goods_name == '茶行业版')
@@ -178,9 +182,9 @@ Page({
         else
           version_is = 1;
         that.setData({
-          foot_is: t.data.data.foot_is,
           version: version_is
         })
+        
         wx.request({
           url: app.globalData.baseurl + "doPageGetFoot",
           cachetime: "30",
