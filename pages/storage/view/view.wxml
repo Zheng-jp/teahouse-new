@@ -149,7 +149,7 @@
                 {{item.collecting}}人支持 | {{item.centum==100?'已完成':'进行中'}}
               </view>
               <view class="project-price">
-                <text>￥299</text>
+                <text>￥{{item.cost}}</text>
                 <button wx:if="{{switchProject}}" class="join-project" bindtap="support" data-id="{{item.id}}">
                   支持
                 </button>

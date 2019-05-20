@@ -203,8 +203,10 @@ Page({
         id = options.id;
     wx.getSystemInfo({
       success: function(res){
+        var model = res.model;
+        console.log(model.indexOf('iPhone X') != -1)
         _this.setData({
-          fixiPhone: res.model.indexOf('iPhone') != -1
+          fixiPhone: model.indexOf('iPhone X') != -1
         })
       }
     })
