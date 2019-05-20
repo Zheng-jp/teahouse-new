@@ -16,9 +16,13 @@ swiper.swiper-container{min-height: 1020rpx; flex: 1;}
 .humidity{display: flex; align-items: center; justify-content: space-between; margin-top: 20rpx;}
 .humiture-data .humiture-title{color: #333;}
 .temp-echarts{width: 700rpx; margin: 0 auto; flex: 1; overflow-y: auto;}
-
-.history-nav{display: flex; align-items: center; font-size: 28rpx; padding: 20rpx; color: #93291f;}
-.history-nav .history-date{display: flex; border: 1px solid #93291f; border-radius: 6rpx; padding: 12rpx 6rpx; margin-left: 14rpx;}
+.history-nav{display: flex; align-items: center; font-size: 28rpx; padding: 20rpx 10rpx; color: #93291f;}
+.history-nav .history-date{display: flex; height: 35px; box-sizing: border-box; border: 1px solid #93291f; border-radius: 6rpx; padding: 12rpx 6rpx; margin-left: 14rpx; width: 380rpx;}
 .history-nav .history-date .section{display: flex;}
 .history-nav .history-date .section .section__title{margin: 0 10rpx;}
-.history-nav .history-btns text{display: inline-block; padding: 10rpx; text-align: center; background-color: transparent; border: 1px solid #93291f; border-radius: 4rpx; color: #93291f; margin-left: 10rpx;}
+.history-nav .history-date .section .picker{width: 160rpx; overflow-x: auto;}
+.history-nav .history-btns{height: 35px; box-sizing: border-box;}
+.history-nav .history-btns view{display: inline-block; padding: 10rpx; text-align: center; background-color: transparent; border: 1px solid #93291f; border-radius: 4rpx; color: #93291f; margin-left: 10rpx; height: 100%; box-sizing: border-box; line-height: 24px;}
+.history-nav .history-btns view.on{background-color: #93291f; color: #fff;}
+
+

@@ -42,32 +42,43 @@
                 </view>
             </view>
         </view>
-        <view class="temp-echarts">
-            <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{ ecOne}}"></ec-canvas>
-            <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ ecTwo }}"></ec-canvas>
+        <view style="flex: 1; display: flex; flex-direction: column; overflow: auto;">
+            <view class="temp-echarts">
+                <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{ ecOne}}"></ec-canvas>
+            </view>
+            <view class="temp-echarts">
+                <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ ecTwo }}"></ec-canvas>
+            </view>
         </view>
     </swiper-item>
     <swiper-item class="overflowYauto">
         <view>
             <view class="history-nav">
-                日期
                 <view class="history-date">
                     <view class="section">
-                        <picker mode="date" value="{{sdate}}" start="2018-09-01" bindchange="sBindDateChange">
+                        <picker mode="multiSelector" bindchange="sbindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
                             <view class="picker">{{sdate}}</view>
                         </picker>
                     </view>
                     <view class="section">
                         <view class="section__title">至</view>
-                        <picker mode="date" value="{{edate}}" start="2018-09-01" bindchange="eBindDateChange">
+                        <picker mode="multiSelector" bindchange="ebindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
                             <view class="picker">{{edate}}</view>
                         </picker>
                     </view>
                 </view>
                 <view class="history-btns">
-                    <text>近7天</text>
-                    <text>近14天</text>
+                    <view class="on" bind:tap="bindCheckHistory">查询</view>
+                    <view class="{{selectHistKey==0?'on':''}}" bind:tap="bindSelectHist" data-current="0">
+                        近7天
+                    </view>
+                    <view class="{{selectHistKey==1?'on':''}}" bind:tap="bindSelectHist" data-current="1">
+                        近14天
+                    </view>
                 </view>
+            </view>
+            <view class="temp-echarts">
+                <ec-canvas id="mychart-three" canvas-id="mychart-multi-three" ec="{{ ecThree }}"></ec-canvas>
             </view>
         </view>
     </swiper-item>
