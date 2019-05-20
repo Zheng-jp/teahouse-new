@@ -232,6 +232,7 @@ function queryDevMoniData(userData, _this){
     success(res){
       console.log(res.data);
       _this.setData({
+        queryDevMoniData: res.data.deviceList[0],
         inTemp: (+res.data.deviceList[0].sensorList[0].value).toFixed(2),
         outTemp: (+res.data.deviceList[0].sensorList[2].value).toFixed(2),
         inHumi: (+res.data.deviceList[0].sensorList[1].value).toFixed(2),
@@ -242,7 +243,25 @@ function queryDevMoniData(userData, _this){
       })
     }
   })
-} 
+}
+// 获取设备历史数据
+function getHistoryData(_this, param){
+  wx.request({
+    url: 'https://api.dtuip.com/qy/device/querySenHistoryDt.html',
+    method: 'POST',
+    data: {
+      "sensorId": param.sensorId,
+      "startDate": param.startDate,
+      "endDate": param.endDate,
+      "userApiKey": param.userApiKey,
+      "companyKey": param.companyKey,
+      "flagCode": param.flagCode
+    },
+    success(res){
+      console.log(res.data);
+    }
+  })
+}
 
 const date = new Date();
 const years = [];
@@ -250,6 +269,7 @@ const months = [];
 const days = [];
 const hours = [];
 const minutes = [];
+const seconds = [];
 //获取年
 for (let i = 2018; i <= date.getFullYear() + 5; i++) {
   years.push("" + i);
@@ -282,6 +302,13 @@ for (let i = 0; i < 60; i++) {
   }
   minutes.push("" + i);
 }
+// 获取秒
+for(let i = 0; i < 60; i++){
+  if (i < 10) {
+    i = "0" + i;
+  }
+  seconds.push("" + i);
+}
 
 Page({
 
@@ -295,9 +322,14 @@ Page({
     ecTwo: {
       lazyLoad: true
     },
+    ecThree: {
+      // 查看历史数据
+      lazyLoad: true
+    },
     currentTab: 0,
     beijingTime: '',
-    userLogin: {},
+    userLogin: {},  //设备用户登录信息
+    queryDevMoniData: {}, //设备数据
     inTemp: 26.22,
     outTemp: 26.22,
     inHumi: 79.33,
@@ -306,17 +338,31 @@ Page({
     timer2: '',
     yArr: [], //init 温度
     yArr2: [], // init湿度
-    sdate: '2018-09-01',//开始日期
-    edate: '2018-09-01',//结束日期
+    sdate: '',//开始日期
+    edate: '',//结束日期
     selectHistKey: 0,
-    multiArray: [years, months, days, hours, minutes],
-    multiIndex: [0, 9, 16, 10, 17],
+    multiArray: [years, months, days, hours, minutes, seconds],
+    multiIndex: [1, 0, 0, 0, 0, 0],
     choose_year: ''
   },
+
+  // 查询用户选定日期的历史数据
+  bindCheckHistory: function(){
+    console.log(this.data.sdate, this.data.edate);
+  },
+  // 查询7天、14天历史数据
   bindSelectHist: function(e){
+    const curr = e.target.dataset.current
     this.setData({
-      selectHistKey: e.target.dataset.current
+      selectHistKey: curr
     })
+    if(curr == 0){
+      // 七天数据
+      console.log(app.formatDate(new Date() / 1000 - 604800));
+    }else if(curr == 1){
+      // 十四天数据
+      console.log(app.formatDate(new Date() / 1000 - 1209600));
+    }
   },
 
   clickTab: function(e){
@@ -327,6 +373,27 @@ Page({
       _this.setData({
         currentTab: current
       })
+    }
+
+    if(current == 0){
+      _this.initOne();
+      _this.initTwo();
+    }else{
+      clearInterval(this.data.timer);
+      clearInterval(this.data.timer2);
+      if(current == 1){
+        const param = {
+          "sensorId": _this.data.queryDevMoniData.sensorList[0].sensorId,
+          "startDate": _this.data.sdate,
+          "endDate": _this.data.edate,
+          "userApiKey": _this.data.userLogin.userApikey,
+          "companyKey": _this.data.userLogin.companyApiKey,
+          "flagCode": _this.data.userLogin.flagCode
+        }
+        getHistoryData(_this, param);
+      }else if(current == 2){
+
+      }
     }
   },
 
@@ -349,8 +416,9 @@ Page({
     const day = this.data.multiArray[2][index[2]];
     const hour = this.data.multiArray[3][index[3]];
     const minute = this.data.multiArray[4][index[4]];
+    const second = this.data.multiArray[5][index[5]];
     this.setData({
-      sdate: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+      sdate: year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
     })
   },
   ebindMultiPickerChange: function(e) {
@@ -363,8 +431,9 @@ Page({
     const day = this.data.multiArray[2][index[2]];
     const hour = this.data.multiArray[3][index[3]];
     const minute = this.data.multiArray[4][index[4]];
+    const second = this.data.multiArray[5][index[5]];
     this.setData({
-      edate: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+      edate: year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
     })
   },
   //监听picker的滚动事件
@@ -438,21 +507,32 @@ Page({
   onLoad: function (options) {
     var _this = this;
 
+    // 获取设备信息 （用户登录接口）
     userLogin(this);
 
+    // 时间
     setInterval(function(){
       getCurrentTime(_this);
     }, 1000);
     // 初始化 查看历史日期时间
     _this.setData({
-      sdate: new Date().toLocaleDateString().replace(/\//g, '-'),
-      edate: new Date().toLocaleDateString().replace(/\//g, '-')
+      sdate: app.formatDate(new Date()/1000 - 3600),
+      edate: app.formatDate(new Date()/1000)
     })
 
+    const date = new Date();
     //设置默认的年份
+    // 选择picker 初始化日期为当前 年月日时分秒
     this.setData({
-      choose_year: this.data.multiArray[0][0]
+      choose_year: this.data.multiArray[0][0],
+      multiIndex: [app.indexValue(years, date.getFullYear()), 
+                   app.indexValue(months, date.getMonth()+1),
+                   app.indexValue(days, date.getDate()),
+                   app.indexValue(hours, date.getHours()),
+                   app.indexValue(minutes, date.getMinutes()),
+                   app.indexValue(seconds, date.getSeconds())]
     })
+    
   },
 
   /**
@@ -461,6 +541,7 @@ Page({
   onReady: function () {//这一步是一定要注意的
     this.oneComponent = this.selectComponent('#mychart-one');
     this.twoComponent = this.selectComponent('#mychart-two');
+    this.threeComponent = this.selectComponent('#mychart-three');
   },
 
   /**
@@ -496,16 +577,29 @@ Page({
       return chart;
     });
   },
-  initTwo: function (xdata, ydata) {        //初始化第二个图表
+  initTwo: function () {        //初始化第二个图表
     var _this = this;
     this.twoComponent.init((canvas, width, height) => {
-      const chart = echarts.init(canvas, null, {
-        width: width,
-        height: height
-      });
-      setOption2(chart, _this, _this.data.yArr2)
-      this.chart = chart;
-      return chart;
+    const chart = echarts.init(canvas, null, {
+      width: width,
+      height: height
+    });
+    setOption2(chart, _this, _this.data.yArr2);
+    this.chart = chart;
+    return chart;
+    });
+  },
+  // 查看历史数据
+  initThree: function () {        //初始化第3个图表
+    var _this = this;
+    this.threeComponent.init((canvas, width, height) => {
+    const chart = echarts.init(canvas, null, {
+      width: width,
+      height: height
+    });
+    setOption3(chart, _this, _this.data.yArr3);
+    this.chart = chart;
+    return chart;
     });
   },
   getOneOption: function () {        //这一步其实就要给图表加上数据

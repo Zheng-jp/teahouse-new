@@ -47,6 +47,14 @@ App({
     second = second < 10 ? ('0' + second) : second;
     return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
   },
+  // 查询数组索引
+  indexValue: function(arr, arrValue){
+    for(let i = 0; i < arr.length; i++){
+      if(arr[i] == arrValue){
+        return i;
+      }
+    }
+  },
   // 判断绑定支付密码
   judge_repay: function(e) {
     var that = this;

@@ -68,7 +68,7 @@
                     </view>
                 </view>
                 <view class="history-btns">
-                    <view class="on">查询</view>
+                    <view class="on" bind:tap="bindCheckHistory">查询</view>
                     <view class="{{selectHistKey==0?'on':''}}" bind:tap="bindSelectHist" data-current="0">
                         近7天
                     </view>
@@ -76,6 +76,9 @@
                         近14天
                     </view>
                 </view>
+            </view>
+            <view class="temp-echarts">
+                <ec-canvas id="mychart-three" canvas-id="mychart-multi-three" ec="{{ ecThree }}"></ec-canvas>
             </view>
         </view>
     </swiper-item>
