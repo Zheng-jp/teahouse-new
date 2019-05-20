@@ -127,7 +127,8 @@ function setOption2(chart, _this, yArr) {
       type: 'value',
       name: '湿度%',
       position: 'right',
-      splitNumber: 3,
+      min: 0,
+      max: 100,
       axisLine: {
         show: false,
       },
