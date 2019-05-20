@@ -1842,31 +1842,34 @@ Page({
             address_0: a[0],
             address_id: address_id,
           });
-          wx.request({
-            url: app.globalData.tiltes + 'transportation',
-            data: {
-              'goods_id': that.data.user[1].good_id,
-              'goods_standard_id': that.data.user[2].guige,
-              'are': that.data.address_0
-            },
-            method: "post",
-            // header: {
-            //   "Content-Type": "json" // 默认值
+          if (that.data.order_type == 1) {
 
-            // },
-            success: function (res) {
-              that.setData({
-                freight_infor: res.data.data,
-              })
-              that.money_freight();
-              that.calculate_money();
-            },
-            fail: function () {
+            wx.request({
+              url: app.globalData.tiltes + 'transportation',
+              data: {
+                'goods_id': that.data.user[1].good_id,
+                'goods_standard_id': that.data.user[2].guige,
+                'are': that.data.address_0
+              },
+              method: "post",
+              // header: {
+              //   "Content-Type": "json" // 默认值
 
-            },
-            complete: function () { }
+              // },
+              success: function (res) {
+                that.setData({
+                  freight_infor: res.data.data,
+                })
+                that.money_freight();
+                that.calculate_money();
+              },
+              fail: function () {
 
-          });
+              },
+              complete: function () { }
+
+            });
+          }
         },
         fail: function () {
 
