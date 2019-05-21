@@ -110,7 +110,7 @@
     </view>
   </view>
   <view class='way'>
-    <view class='way_select'>
+    <!-- <view class='way_select'>
       <radio-group class="radio-group" bindchange="radioChange">
         <label class="radio">
           <radio value="选择直邮" color='#02A0E6' checked='checked' />
@@ -125,7 +125,7 @@
           <text class='text_radio'>选择存茶</text>
         </label>
       </radio-group>
-    </view>
+    </view> -->
     <view>
       <view class="direct_mail {{selected?'show':'hidden'}}" bindtap='go_direct_mail_address'>
         <view class='direct_mail_infor_all'>
