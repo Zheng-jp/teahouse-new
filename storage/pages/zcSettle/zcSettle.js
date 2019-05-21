@@ -210,8 +210,8 @@ Page({
             title: "您已取消支付",
           })
         }
-        wx.navigateTo({
-          url: '../order/order?title=' + 0,
+        wx.redirectTo({
+          url: '../zcOrder/zcOrder?title=' + 0,
           success: function (res) {
 
           },
@@ -259,9 +259,9 @@ Page({
         url: app.globalData.tiltes + 'order_places',
         data: {
           member_id: app.globalData.member_id,
-          goods_id: _this.data.user[1].good_id,
-          goods_standard_id: _this.data.user[2].guige,
-          order_quantity: _this.data.user[3].num,
+          goods_id: _this.data.user[1].goods_id,
+          goods_standard_id: _this.data.user[0].guige,
+          order_quantity: _this.data.user[2].num,
           address_id: _this.data.address_id,
           order_amount: _this.data.all_money,
           order_type: _this.data.order_type,
@@ -276,6 +276,7 @@ Page({
         success: function (res) {
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
+            console.log(order_number)
             _this.setData({
               order_number: order_number,
             })
@@ -285,8 +286,7 @@ Page({
                 // 账户支付
                 if (res.tapIndex == 0) {
                   _this.showInputLayer();
-                }
-                else if (res.tapIndex == 1) {
+                }else if (res.tapIndex == 1) {
                   wx.request({
                     url: app.globalData.tiltes + 'wx_order_index',
                     data: {
@@ -360,9 +360,9 @@ Page({
         url: app.globalData.tiltes + 'order_places',
         data: {
           member_id: app.globalData.member_id,
-          goods_id: _this.data.user[1].good_id,
-          goods_standard_id: _this.data.user[2].guige,
-          order_quantity: _this.data.user[3].num,
+          goods_id: _this.data.user[1].goods_id,
+          goods_standard_id: _this.data.user[0].guige,
+          order_quantity: _this.data.user[2].num,
           address_id: _this.data.shop_id,
           order_amount: _this.data.all_money,
           order_type: _this.data.order_type,
@@ -459,9 +459,9 @@ Page({
         url: app.globalData.tiltes + 'order_places',
         data: {
           member_id: app.globalData.member_id,
-          goods_id: _this.data.user[1].good_id,
-          goods_standard_id: _this.data.user[2].guige,
-          order_quantity: _this.data.user[3].num,
+          goods_id: _this.data.user[1].goods_id,
+          goods_standard_id: _this.data.user[0].guige,
+          order_quantity: _this.data.user[2].num,
           address_id: _this.data.sava_id,
           order_amount: _this.data.all_money,
           order_type: _this.data.order_type,
@@ -895,6 +895,7 @@ Page({
     _this.setData({
       user: user,
     });
+    console.log(_this.data.user)
     wx.request({
       url: app.globalData.tiltes + 'crowd_order_return',
       data: {
@@ -918,7 +919,6 @@ Page({
           num: _this.data.goods[0].number,
           unit: _this.data.goods[0].unit
         });
-        console.log(user)
         // 优惠券请求
         wx.request({
           url: app.globalData.tiltes + 'coupon_appropriated',
