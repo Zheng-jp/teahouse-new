@@ -31,7 +31,7 @@ Page({
                     code: code,
                     encryptedData: encryptedData,
                     iv: iv,
-                    uniacid:app.globalData.uniacid,
+                    // uniacid:app.globalData.uniacid,
                     gender: res2.userInfo.gender, // 性别  0：未知、1：男、2：女
                     appid: appid.miniProgram.appId
                   },
@@ -44,6 +44,7 @@ Page({
                     app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                     app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;
                     app.globalData.member_id = res.data.data.member_id;
+                    app.globalData.uniacid = res.data.data.uniacid;
                     wx.hideToast();
                     if (res) {
                       wx.redirectTo({
@@ -62,7 +63,6 @@ Page({
                     
                       //   })
                      
-                      
                     }
                     else {
                       console.log("kong")
@@ -133,7 +133,6 @@ Page({
                             code: code,
                             encryptedData: encryptedData,
                             iv: iv,
-                            uniacid:app.globalData.uniacid,
                             appid: appid.miniProgram.appId
                           },
                           method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
@@ -145,8 +144,10 @@ Page({
                             app.globalData.member_grade_img = res.data.data.member_grade_info.member_grade_img;
                             app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;
                             app.globalData.member_id = res.data.data.member_id;
+                            app.globalData.uniacid = res.data.data.uniacid;
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             wx.hideToast();
+
                             if (res) {
                               wx.redirectTo({
                                 url: '../../diy/index/index', // 新首页
