@@ -16,6 +16,7 @@ Page({
             var code = res.code;
             wx.getUserInfo({//getUserInfo流程
               success: function (res2) {//获取userinfo成功
+                var appid = wx.getAccountInfoSync();
                 var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码
                 var iv = res2.iv;
                 //请求自己的服务器
@@ -31,7 +32,8 @@ Page({
                     encryptedData: encryptedData,
                     iv: iv,
                     uniacid:app.globalData.uniacid,
-                    gender: res2.userInfo.gender // 性别  0：未知、1：男、2：女
+                    gender: res2.userInfo.gender, // 性别  0：未知、1：男、2：女
+                    appid: appid.miniProgram.appId
                   },
                   method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                   header: {
@@ -113,6 +115,7 @@ Page({
           });
           wx.getUserInfo({
             success: function (res) {
+              
               //用户已经授权过
               wx.login({//login流程
                 success: function (res) {//登录成功
@@ -120,6 +123,7 @@ Page({
                     var code = res.code;
                     wx.getUserInfo({//getUserInfo流程
                       success: function (res2) {//获取userinfo成功
+                        var appid = wx.getAccountInfoSync();
                         var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码
                         var iv = res2.iv;
                         //请求自己的服务器
@@ -130,6 +134,7 @@ Page({
                             encryptedData: encryptedData,
                             iv: iv,
                             uniacid:app.globalData.uniacid,
+                            appid: appid.miniProgram.appId
                           },
                           method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                           header: {
