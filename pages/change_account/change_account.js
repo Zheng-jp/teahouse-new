@@ -178,6 +178,7 @@ Page({
         url: app.globalData.tiltes + 'sendMobileCode',
         data: {
           mobile:that.data.num,
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         // header: {
@@ -229,6 +230,7 @@ Page({
          url: app.globalData.tiltes + 'sendMobileCode',
          data: {
            mobile:that.data.newnum,
+           uniacid: app.globalData.uniacid
          },
          method: "post",
          success: function (res) {

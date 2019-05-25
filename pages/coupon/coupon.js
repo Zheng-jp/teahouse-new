@@ -19,7 +19,8 @@ Page({
       url: app.globalData.tiltes + 'coupon_goods',
       data: {
         'open_id': app.globalData.gmemberid,
-        'coupon_id': e.currentTarget.dataset.id
+        'coupon_id': e.currentTarget.dataset.id,
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {
@@ -108,6 +109,7 @@ Page({
         data: {
           open_id: app.globalData.gmemberid,
           member_grade_name: app.globalData.member_grade_name,
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         header: {
@@ -148,6 +150,7 @@ Page({
         data: {
           open_id: app.globalData.gmemberid,
           member_grade_name: app.globalData.member_grade_name,
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         header: {
@@ -188,6 +191,7 @@ Page({
         data: {
           open_id: app.globalData.gmemberid,
           member_grade_name: app.globalData.member_grade_name,
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         header: {
@@ -245,6 +249,7 @@ Page({
       data: {
         open_id: app.globalData.gmemberid,
         member_grade_name: app.globalData.member_grade_name,
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       header: {

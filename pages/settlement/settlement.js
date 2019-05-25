@@ -425,7 +425,7 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         success: function (res) {
@@ -543,7 +543,7 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-
+          uniacid: app.globalData.uniacid
         },
         method: "post",
 
@@ -670,7 +670,7 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-
+          uniacid: app.globalData.uniacid
         },
         method: "post",
 
@@ -908,7 +908,7 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         // header: {
@@ -1033,7 +1033,7 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         // header: {
@@ -1158,7 +1158,7 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         // header: {
@@ -1675,6 +1675,7 @@ Page({
             'member_grade_name': app.globalData.member_grade_name,
             "money": all_moneys,
             "coupon_type": 1,
+            uniacid: app.globalData.uniacid
           },
           method: "post",
           // header: {
@@ -1919,7 +1920,8 @@ Page({
 
         url: app.globalData.tiltes + 'tacitly_adress',
         data: {
-          id: sava_id
+          id: sava_id,
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         // header: {
@@ -1955,7 +1957,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'approve_address',
         data: {
-
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         // header: {

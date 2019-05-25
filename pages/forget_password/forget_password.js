@@ -129,6 +129,7 @@ Page({
         url: app.globalData.tiltes + 'sendMobileCodePay',
         data: {
           mobile: that.data.newnum,
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         success: function (res) {

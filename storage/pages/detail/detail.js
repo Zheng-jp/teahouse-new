@@ -439,7 +439,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'activity_order',
         data: {
-          
+          uniacid: app.globalData.uniacid,
           open_id: app.globalData.gmemberid,
           activity_id: that.data.information.id,
           start_time: clickDate,

@@ -197,7 +197,9 @@ Page({
     })
     wx.request({
       url: app.globalData.tiltes + 'teacenter_recommend',
-      data: {},
+      data: {
+        uniacid: app.globalData.uniacid
+      },
       method: "post",
       // header: {
       //   "Content-Type": "json" // 默认值
@@ -232,6 +234,7 @@ Page({
       data: {
         'open_id': app.globalData.gmemberid,
         member_grade_name: app.globalData.member_grade_name,
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {

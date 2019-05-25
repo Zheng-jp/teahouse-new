@@ -106,6 +106,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_data',
       data: {
+        uniacid: uniacid
       },
       method: "post",
       header: {
@@ -130,6 +131,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_alls',
       data: {
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {

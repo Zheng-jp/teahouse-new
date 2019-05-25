@@ -5,6 +5,9 @@ function getData(_this) {
   // 轮播图
   wx.request({
     url: app.globalData.tiltes + 'crowd_index',
+    data:{
+      uniacid: app.globalData.uniacid
+    },
     method: 'POST',
     success: function (res) {
       console.log(res);
@@ -23,7 +26,8 @@ function switchProject(option, _this) {
     url: app.globalData.tiltes + option,
     method: 'POST',
     data: {
-      member_id: app.globalData.member_id
+      member_id: app.globalData.member_id,
+      uniacid: app.globalData.uniacid
     },
     success: function (res) {
       console.log(res);

@@ -46,7 +46,8 @@ Page({
     url: app.globalData.tiltes + 'coupon_goods',
     data: {
       'open_id': app.globalData.gmemberid,
-      'coupon_id': options.title
+      'coupon_id': options.title,
+      uniacid: app.globalData.uniacid
     },
     method: "post",
     // header: {

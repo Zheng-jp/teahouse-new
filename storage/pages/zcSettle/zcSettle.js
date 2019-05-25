@@ -271,6 +271,7 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
+          uniacid: app.globalData.uniacid
         },
         method: "POST",
         success: function (res) {
@@ -372,6 +373,7 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
+          uniacid: app.globalData.uniacid
         },
         method: "POST",
         success: function (res) {
@@ -471,6 +473,7 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
+          uniacid: app.globalData.uniacid
         },
         method: "POST",
         success: function (res) {
@@ -928,6 +931,7 @@ Page({
             'member_grade_name': app.globalData.member_grade_name,
             "money": all_moneys,
             "coupon_type": 1,
+            uniacid: app.globalData.uniacid
           },
           method: "POST",
           success: function (res) {
@@ -1106,7 +1110,8 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'tacitly_adress',
         data: {
-          id: sava_id
+          id: sava_id,
+          uniacid: app.globalData.uniacid
         },
         method: "POST",
         success: function (res) {
@@ -1132,6 +1137,9 @@ Page({
     if (shop_id == '') {
       wx.request({
         url: app.globalData.tiltes + 'approve_address',
+        data: {
+          uniacid: app.globalData.uniacid
+        },
         method: "POST",
         success: function (res) {
           var shop_address = res.data.data;
