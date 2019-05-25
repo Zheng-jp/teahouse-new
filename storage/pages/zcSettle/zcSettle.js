@@ -256,7 +256,7 @@ Page({
     let taxes1 = Number(_this.data.taxes);
     if (_this.data.order_type == "1") {
       wx.request({
-        url: app.globalData.tiltes + 'order_places',
+        url: app.globalData.tiltes + 'crowd_order_place',
         data: {
           member_id: app.globalData.member_id,
           goods_id: _this.data.user[1].goods_id,
@@ -271,6 +271,7 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
+          uniacid: app.globalData.uniacid
         },
         method: "POST",
         success: function (res) {
@@ -357,7 +358,7 @@ Page({
       });
     }else if (_this.data.order_type == "2") {
       wx.request({
-        url: app.globalData.tiltes + 'order_places',
+        url: app.globalData.tiltes + 'crowd_order_place',
         data: {
           member_id: app.globalData.member_id,
           goods_id: _this.data.user[1].goods_id,
@@ -372,6 +373,7 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
+          uniacid: app.globalData.uniacid
         },
         method: "POST",
         success: function (res) {
@@ -456,7 +458,7 @@ Page({
       });
     }else {
       wx.request({
-        url: app.globalData.tiltes + 'order_places',
+        url: app.globalData.tiltes + 'crowd_order_place',
         data: {
           member_id: app.globalData.member_id,
           goods_id: _this.data.user[1].goods_id,
@@ -471,6 +473,7 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
+          uniacid: app.globalData.uniacid
         },
         method: "POST",
         success: function (res) {
