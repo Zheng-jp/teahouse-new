@@ -143,7 +143,7 @@ Page({
       if (orderItems[i].parts_order_number == indexs) {
         orderItems.splice(i, 1);
         wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_del',
+          url: app.globalData.tiltes + 'crowd_order_del',
           data: {
             member_id: app.globalData.gmemberid,
             parts_order_number: indexs
@@ -297,11 +297,11 @@ Page({
             if (orderItems[i].parts_order_number == indexs) {
               orderItems.splice(i, 1);
               wx.request({
-                url: app.globalData.tiltes + 'ios_api_order_no_pay_cancel',
+                url: app.globalData.tiltes + 'crowd_no_pay_cancel',
                 data: {
                   member_id: app.globalData.gmemberid,
                   parts_order_number: indexs,
-                  cancel_order_description: '取消'
+                  // cancel_order_description: '取消'
                 },
                 method: "post",
                 success: function (res) {
@@ -337,7 +337,7 @@ Page({
       if (orderItems[i].parts_order_number == indexs) {
         orderItems.splice(i, 1);
         wx.request({
-          url: app.globalData.tiltes + 'ios_api_order_collect_goods',
+          url: app.globalData.tiltes + 'crowd_collect_goods',
           data: {
             member_id: app.globalData.gmemberid,
             parts_order_number: indexs
@@ -381,9 +381,9 @@ Page({
     var id = event.currentTarget.dataset.id;
     var status = event.currentTarget.dataset.status;
     wx.navigateTo({
-      url: '../order_detail/order_detail?title=' + id + "&status=" + status,
+      url: '../zcOrderDetail/zcOrderDetail?title=' + id + "&status=" + status,
       success: function (res) {
-
+        
       },
       fail: function () {
 
@@ -406,10 +406,10 @@ Page({
         }
         else if (res.tapIndex == 1) {
           wx.request({
-            url: app.globalData.tiltes + 'wx_order_index',
+            url: app.globalData.tiltes + 'crowd_order_index',
             data: {
               member_id: app.globalData.member_id,
-              order_number: indexs
+              parts_order_number: indexs
             },
             dataTypr: 'json',
             method: "post",
@@ -474,7 +474,8 @@ Page({
   go: function (event) {
     var item = event.currentTarget.dataset.id;
     wx.redirectTo({
-      url: item + '?title=' + 0 + '&version=' + this.data.version,
+      // url: item + '?title=' + 0 + '&version=' + this.data.version,
+      url: item + '?title=' + 0,
       success: function (res) {
 
       },
@@ -489,15 +490,14 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    that.setData({
-      version: options.version
-    })
+    // that.setData({
+    //   version: options.version
+    // })
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
     var member_grade_img = app.globalData.member_grade_img;
     this.setData({ member_grade_img: member_grade_img });
     var title = options.title;
-    console.log(title);
     if (title == 0) {
       wx.request({
         url: app.globalData.tiltes + 'crowd_order_all',
@@ -506,6 +506,7 @@ Page({
         },
         method: "post",
         success: function (res) {
+          console.log(res)
           that.setData({
             order: res.data.data,
             tab: '1'
