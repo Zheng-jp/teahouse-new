@@ -496,7 +496,6 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     });
   },
   newRedirectto: function (n, e) {
-
     switch (e) {
       case "page":
         wx.navigateTo({
@@ -549,12 +548,8 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
   },
   redirectto: function (t) {
     var a = t.currentTarget.dataset.link,
-      e = t.currentTarget.dataset.linktype;
-
+        e = t.currentTarget.dataset.linktype;
     this.newRedirectto(a, e);
-
-
-
   },
   showvideo: function () {
     this.setData({
