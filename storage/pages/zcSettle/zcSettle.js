@@ -169,11 +169,11 @@ Page({
             success: function (res) {
               if (res.data.data.status == 1) {
                 wx.request({
-                  url: app.globalData.tiltes + 'balance_payment',
+                  url: app.globalData.tiltes + 'crowd_payment',
                   data: {
                     member_id: app.globalData.member_id,
                     order_num: _this.data.order_number,
-                    passwords: val,
+                    pay_password: val,
                   },
                   method: "POST",
                   success: function (res) {
@@ -289,10 +289,10 @@ Page({
                   _this.showInputLayer();
                 }else if (res.tapIndex == 1) {
                   wx.request({
-                    url: app.globalData.tiltes + 'wx_order_index',
+                    url: app.globalData.tiltes + 'crowd_order_index',
                     data: {
                       member_id: app.globalData.member_id,
-                      order_number: order_number,
+                      parts_order_number: order_number,
                     },
                     dataTypr: 'json',
                     method: "POST",
@@ -309,7 +309,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=' + 0,
+                              url: '../zcOrder/zcOrder?title=' + 0,
                               success: function (res) {
 
                               },
@@ -334,7 +334,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=' + 0,
+                  url: '../zcOrder/zcOrder?title=' + 0,
                   success: function (res) {
 
                   },
@@ -391,10 +391,10 @@ Page({
                 }
                 else if (res.tapIndex == 1) {
                   wx.request({
-                    url: app.globalData.tiltes + 'wx_order_index',
+                    url: app.globalData.tiltes + 'crowd_order_index',
                     data: {
                       member_id: app.globalData.member_id,
-                      order_number: order_number,
+                      parts_order_number: order_number,
                     },
                     dataTypr: 'json',
                     method: "POST",
@@ -410,7 +410,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=' + 0,
+                              url: '../zcOrder/zcOrder?title=' + 0,
                               success: function (res) {
 
                               },
@@ -434,7 +434,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=' + 0,
+                  url: '../zcOrder/zcOrder?title=' + 0,
                   success: function (res) {
 
                   },
@@ -491,10 +491,10 @@ Page({
                 }
                 else if (res.tapIndex == 1) {
                   wx.request({
-                    url: app.globalData.tiltes + 'wx_order_index',
+                    url: app.globalData.tiltes + 'crowd_order_index',
                     data: {
                       member_id: app.globalData.member_id,
-                      order_number: order_number,
+                      parts_order_number: order_number,
                     },
                     dataTypr: 'json',
                     method: "POST",
@@ -511,7 +511,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=' + 0,
+                              url: '../zcOrder/zcOrder?title=' + 0,
                               success: function (res) {
 
                               },
@@ -537,7 +537,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=' + 0,
+                  url: '../zcOrder/zcOrder?title=' + 0,
                   success: function (res) {
 
                   },

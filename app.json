@@ -66,6 +66,7 @@
         "zcDetail/zcDetail",
         "zcSpare/zcSpare",
         "zcOrder/zcOrder",
+        "zcOrderDetail/zcOrderDetail",
         "zcSettle/zcSettle",
         "meeting/meeting",
         "detail/detail"
