@@ -234,6 +234,7 @@ Page({
          url: app.globalData.tiltes + 'sendMobileCodeBank',
          data: {
            member_id:app.globalData.member_id,
+           uniacid: app.globalData.uniacid
          },
          method: "post",
          // header: {

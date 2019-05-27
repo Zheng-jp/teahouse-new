@@ -1,5 +1,7 @@
-
+@import "../../../__wuBaseWxss__/1.wxss"; 
+@import "../../../__wuBaseWxss__/2.wxss";
 /* 导航 */
+
 .all {
   width: 100%;
   height: 100%;
@@ -56,7 +58,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  font-size: 30rpx;
+  font-size: 28rpx;
   align-items: center;
 }
 
@@ -67,7 +69,7 @@
 }
 
 .store_name {
-  font-size: 30rpx;
+  font-size: 28rpx;
   color: rgb(153, 153, 0);
   margin-right: 60rpx;
   padding-bottom: 8rpx;
@@ -80,3 +82,11 @@
 .size .size_last {
   padding-bottom: 12rpx;
 }
+/* 底部文字对齐 */
+.zbj {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  
+  }
+  

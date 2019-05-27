@@ -1,3 +1,12 @@
+@import "../../../__wuBaseWxss__/1.wxss";
+@import "../../../__wuBaseWxss__/2.wxss";
+/* 底部导航文字对齐 */
+.zbj {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  
+  }
 /* pages/storage/view/view.wxss */
 view{overflow: initial !important;}
 page{height: 100%;}
@@ -45,7 +54,7 @@ swiper.swiper-container{height: 93%;}
 .item-left .tea-name{font-size: 36rpx; font-weight: bold; color: #797979;}
 .item-left .tea-date{font-size: 24rpx; color: #333;}
 .item-left .tag-box{display: inline-flex; align-items: flex-end;}
-.item-left .tag-box .tag-text{font-size: 24rpx; color: #999900; border: 1px solid #999900; padding: 4rpx 10rpx; border-radius: 8rpx;}
+.item-left .tag-box .tag-text{font-size: 24rpx; color: #999900; border: 1px solid #999900; padding: 4rpx 0; border-radius: 8rpx; width: 60px; box-sizing: border-box; overflow: hidden; white-space: nowrap;}
 .item-left .tag-box .tag-text:first-of-type{margin-right: 8rpx;}
 .item-right{flex-basis: 65%;}
 .tea-stock{font-size: 24rpx; color: #868686; font-weight: 700; display: flex; align-items: center; justify-content: space-around;}

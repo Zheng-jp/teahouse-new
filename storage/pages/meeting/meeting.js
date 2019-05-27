@@ -30,7 +30,8 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_activity',
       data: {
-        id: id
+        id: id,
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {
@@ -77,7 +78,8 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'teacenter_activity',
         data: {
-          id: id
+          id: id,
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         // header: {
@@ -151,7 +153,8 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_display',
       data: {
-        id: options.title
+        id: options.title,
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {
@@ -182,7 +185,8 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'teacenter_activity',
       data: {
-        id: options.tid
+        id: options.tid,
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {

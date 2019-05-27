@@ -129,8 +129,7 @@ Page({
         var clientHeight = res.windowHeight,
           clientWidth = res.windowWidth,
           rpxR = 750 / clientWidth;
-        var calc = clientHeight * rpxR - 100;
-        console.log(calc)
+        var calc = clientHeight * rpxR - 180;
         that.setData({
           winHeight: calc
         });

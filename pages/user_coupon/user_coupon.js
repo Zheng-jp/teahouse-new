@@ -42,6 +42,7 @@ Page({
         goods_id:user,
         money:allmoney,
         member_grade_name:app.globalData.member_grade_name,
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {

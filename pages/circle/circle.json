@@ -1,6 +1,7 @@
 {
     "navigationBarTitleText": "茶圈",
     "navigationBarBackgroundColor": "#303030",
-    "backgroundTextStyle": "light",
-    "navigationBarTextStyle": "white"
+    "backgroundTextStyle": "dark",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
   }

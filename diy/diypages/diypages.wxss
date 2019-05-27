@@ -16,7 +16,10 @@
 .miniad swiper {
     height: 540rpx;
 }
-
+.initPrice {
+  text-decoration:line-through;
+  color: rgb(161, 161, 161);
+}
 .miniad image {
     width: 100%;
     display: block;
@@ -399,7 +402,9 @@ page {
     width: 110rpx;
     position: absolute;
 }
-
+.price_img{
+    
+}
 .qyxxhead {
     padding: 30rpx;
     background: #fff;

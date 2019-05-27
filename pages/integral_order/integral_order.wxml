@@ -1,9 +1,9 @@
 <view class="all" style='height:{{height}}px;'>
  <view class="nav">
 	   <view  bindtap="go" data-id="../order/order"> 普通订单</view>
-	   <view class="" bindtap="go"> 众筹订单</view>
-	   <view class="" bindtap="go"> 定制订单</view>
-	   <view class="this" bindtap="go"  data-id="../integral_order/integral_order"> 积分订单</view>
+	   <view class="" bindtap="go" data-id="/storage/pages/zcOrder/zcOrder" wx:if="{{version == 3}}"> 众筹订单</view>
+	   <view class="" bindtap="go" wx:if="{{version == 3}}"> 定制订单</view>
+	   <view class="this"> 积分订单</view>
    </view>
 	<view class='title'>
 		<view class="title_list {{tab==1? 'on' : ''}}" data-current="1" bindtap="tab_click">全部</view>

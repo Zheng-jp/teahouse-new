@@ -126,7 +126,8 @@ Page({
             member_id: app.globalData.member_id,
             id:that.data.order_id,
             images_id:imgs,
-            content:e.detail.value.content
+            content:e.detail.value.content,
+            uniacid: app.globalData.uniacid
           },
           method: "post",
           // header: {

@@ -1,21 +1,25 @@
-<!--live/index/index.wxml-->
+<!-- live/index/index.wxml -->
 <view class='main'>
   <view class='nav'>
     <view class='tea'>
-      <text class="sizecolor {{currentTab==0 ? ' change_current ' : 'not_change'}}" data-current="0" bindtap="swichNav">茶仓</text>
+      <text class="sizecolor {{currentTab==0 ? ' change_current ' : 'not_change'}}" data-current="0" bindtap="swichNav">
+        茶仓
+      </text>
     </view>
     <view class='tea'>
-      <text class="sizecolor {{currentTab==1 ? ' change_current ' : 'not_change'}}" data-current="1" bindtap="swichNav">茶山</text>
+      <text class="sizecolor {{currentTab==1 ? ' change_current ' : 'not_change'}}" data-current="1" bindtap="swichNav">
+        茶山
+      </text>
     </view>
     <view class='tea'>
-      <text class="sizecolor {{currentTab==2 ? ' change_current ' : 'not_change'}}" data-current="2" bindtap="swichNav">茶厂</text>
+      <text class="sizecolor {{currentTab==2 ? ' change_current ' : 'not_change'}}" data-current="2" bindtap="swichNav">
+        茶厂
+      </text>
     </view>
   </view>
-
   <view class='swiper_main'>
     <swiper current="{{currentTab}}" style='height: {{winHeight}}rpx' bindchange="bindChange">
       <swiper-item>
-
         <scroll-view scroll-y='true'>
           <block wx:for="{{imgUrls}}" wx:key='index'>
             <view>
@@ -27,22 +31,18 @@
                   <image src='../img/u2133.png' class='tubiao'></image>
                 </view>
                 <text class='store_name'>仓BJ01</text>
-
                 <view class=''>
                   <image src='../img/u5440.png' class='tubiao'></image>
                 </view>
                 <text class='size'>230</text>
-
                 <view class=''>
                   <image src='../img/u5437.png' class='tubiao'></image>
                 </view>
                 <text class='size'>230</text>
-
                 <view class=''>
                   <image src='../img/u5439.png' class='tubiao'></image>
                 </view>
                 <text class='size'>230</text>
-
                 <view class=''>
                   <image src='../img/u5462.png' class='tubiao'></image>
                 </view>
@@ -51,9 +51,7 @@
             </view>
           </block>
         </scroll-view>
-
       </swiper-item>
-
       <swiper-item>
         <view class=''>
           <scroll-view class='scoll-h' scroll-y='true'>
@@ -67,22 +65,18 @@
                     <image src='../img/u2133.png' class='tubiao'></image>
                   </view>
                   <text class='store_name'>仓BJ01</text>
-
                   <view class=''>
                     <image src='../img/u5440.png' class='tubiao'></image>
                   </view>
                   <text class='size'>230</text>
-
                   <view class=''>
                     <image src='../img/u5437.png' class='tubiao'></image>
                   </view>
                   <text class='size'>230</text>
-
                   <view class=''>
                     <image src='../img/u5439.png' class='tubiao'></image>
                   </view>
                   <text class='size'>230</text>
-
                   <view class=''>
                     <image src='../img/u5462.png' class='tubiao'></image>
                   </view>
@@ -106,22 +100,18 @@
                     <image src='../img/u2133.png' class='tubiao'></image>
                   </view>
                   <text class='store_name'>仓BJ01</text>
-
                   <view class=''>
                     <image src='../img/u5440.png' class='tubiao'></image>
                   </view>
                   <text class='size'>230</text>
-
                   <view class=''>
                     <image src='../img/u5437.png' class='tubiao'></image>
                   </view>
                   <text class='size'>230</text>
-
                   <view class=''>
                     <image src='../img/u5439.png' class='tubiao'></image>
                   </view>
                   <text class='size'>230</text>
-
                   <view class=''>
                     <image src='../img/u5462.png' class='tubiao'></image>
                   </view>
@@ -133,8 +123,23 @@
         </view>
       </swiper-item>
     </swiper>
-
-
+    <block wx:if="{{foot_is==2}}">
+      <view class="hbj footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:9998;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:if="{{footinfo.params.navstyle==0}}">
+        <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+          <span class="iconfont {{item.iconclass}}" style="color:{{item.change? footinfo.style.iconcoloron : footinfo.style.iconcolor}};font-size:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx 0;width:{{footinfo.style.iconfont*2}}rpx;height:{{footinfo.style.iconfont*2}}rpx;line-height:{{footinfo.style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
+          <view style="font-size:{{footinfo.style.textfont*2}}rpx;padding:{{footinfo.style.paddingleft*2}}rpx 0;color:{{item.change? footinfo.style.textcoloron : footinfo.style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">
+            {{item.text}}
+          </view>
+        </view>
+      </view>
+      <view class="footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:10000;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:elif="{{footinfo.params.navstyle==1}}">
+        <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+          <image mode="widthFix" src="{{item.imgurl}}" style="display:block;margin:0 auto;width:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx;"></image>
+          <view style="font-size:{{footinfo.style.textfont*2}}rpx;color:{{item.change? footinfo.style.textcolor : footinfo.style.textcoloron}};padding:{{footinfo.style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">
+            {{item.text}}
+          </view>
+        </view>
+      </view>
+    </block>
   </view>
-
 </view>

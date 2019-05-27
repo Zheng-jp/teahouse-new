@@ -28,6 +28,9 @@ Page({
     var _this = this;
     wx.request({
       url: app.globalData.tiltes + 'agreement_contract',
+      data:{
+        uniacid: app.globalData.uniacid
+      },
       method: 'POST',
       success: function(res){
        

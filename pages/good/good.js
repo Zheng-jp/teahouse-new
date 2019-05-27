@@ -12,8 +12,7 @@ Page({
     lastActive: 0,
     s_height: '',
     height_arr: [],
-    category: [
-    ],
+    category: [],
    
   },
   go_gooddetail: function (event) {
@@ -96,6 +95,7 @@ Page({
       url: app.globalData.tiltes + 'commodity_index',
       data: {
         member_grade_name:app.globalData.member_grade_name,
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {
@@ -104,7 +104,7 @@ Page({
       // },
       success: function (res) {
       
-       
+       console.log(res)
         that.setData({
           category: res.data.data.goods_type,
         });

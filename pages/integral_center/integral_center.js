@@ -95,6 +95,7 @@ Page({
     url: app.globalData.tiltes + 'bonus_index',
     data: {
       'open_id': app.globalData.gmemberid,
+      uniacid: app.globalData.uniacid
     },
     method: "post",
     // header: {

@@ -1,3 +1,12 @@
+@import "../../__wuBaseWxss__/1.wxss";
+@import "../../__wuBaseWxss__/2.wxss";
+/* 底部导航文字对齐 */
+.zbj {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  
+  }
 /* my.wxss */
 image{
   width: 100%;
@@ -135,7 +144,7 @@ background-size:80%;
 }
 .list-content{
   margin-top: 20rpx;
-  background: #fff;
+  background-color: #fff;
 }
 .ifor_list{
   width: 638rpx;
@@ -196,3 +205,4 @@ font-weight:bold;
   height: 20rpx;
   position: fixed;
 }
+

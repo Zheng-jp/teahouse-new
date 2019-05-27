@@ -6,8 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
-      warehouse:[],
+    warehouse:[],
 
   },
   select:function(event){
@@ -34,7 +33,7 @@ Page({
 
       // },
       success: function (res) {
-        console.log(res)
+        // console.log(res)
         for(var j=0;j<res.data.data.length;j++){
           var warehousess=[];
           for(var i=0;i<res.data.data[j].unit.length;i++){
@@ -47,11 +46,9 @@ Page({
         }
         
     
-     
         that.setData({
           warehouse: res.data.data,
         });
-
     
       },
       fail: function () {

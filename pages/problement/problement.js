@@ -35,7 +35,8 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'problem_data',
       data: {
-        pid: pid
+        pid: pid,
+        uniacid: app.globalData.uniacid
       },
       method: "POST",
       success: function (res) {
@@ -66,7 +67,8 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'problem_data',
         data: {
-          pid: pid
+          pid: pid,
+          uniacid: app.globalData.uniacid
         },
         method: 'POST',
         success: function(res){
@@ -151,7 +153,8 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'problem_data',
         data: {
-          pid: that.data.initPid
+          pid: that.data.initPid,
+          uniacid: app.globalData.uniacid
         },
         method: 'POST',
         success: function(res){

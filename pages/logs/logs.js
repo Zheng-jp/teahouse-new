@@ -16,6 +16,7 @@ Page({
             var code = res.code;
             wx.getUserInfo({//getUserInfo流程
               success: function (res2) {//获取userinfo成功
+                var appid = wx.getAccountInfoSync();
                 var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码
                 var iv = res2.iv;
                 //请求自己的服务器
@@ -30,7 +31,9 @@ Page({
                     code: code,
                     encryptedData: encryptedData,
                     iv: iv,
-                    uniacid:app.globalData.uniacid,
+                    // uniacid:app.globalData.uniacid,
+                    gender: res2.userInfo.gender, // 性别  0：未知、1：男、2：女
+                    appid: appid.miniProgram.appId
                   },
                   method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                   header: {
@@ -41,10 +44,12 @@ Page({
                     app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                     app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;
                     app.globalData.member_id = res.data.data.member_id;
+                    app.globalData.uniacid = res.data.data.uniacid;
                     wx.hideToast();
                     if (res) {
-                      wx.navigateTo({
-                        url: '../index/index'
+                      wx.redirectTo({
+                        url: '../../diy/index/index' //装修后的首页
+                        // url: '../index/index' //原始首页
                       })
                   
                       // wx.navigateTo({
@@ -58,7 +63,6 @@ Page({
                     
                       //   })
                      
-                      
                     }
                     else {
                       console.log("kong")
@@ -111,6 +115,7 @@ Page({
           });
           wx.getUserInfo({
             success: function (res) {
+              
               //用户已经授权过
               wx.login({//login流程
                 success: function (res) {//登录成功
@@ -118,6 +123,7 @@ Page({
                     var code = res.code;
                     wx.getUserInfo({//getUserInfo流程
                       success: function (res2) {//获取userinfo成功
+                        var appid = wx.getAccountInfoSync();
                         var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码
                         var iv = res2.iv;
                         //请求自己的服务器
@@ -127,7 +133,7 @@ Page({
                             code: code,
                             encryptedData: encryptedData,
                             iv: iv,
-                            uniacid:app.globalData.uniacid,
+                            appid: appid.miniProgram.appId
                           },
                           method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                           header: {
@@ -138,13 +144,15 @@ Page({
                             app.globalData.member_grade_img = res.data.data.member_grade_info.member_grade_img;
                             app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;
                             app.globalData.member_id = res.data.data.member_id;
+                            app.globalData.uniacid = res.data.data.uniacid;
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             wx.hideToast();
+
                             if (res) {
-                              wx.navigateTo({
-                                url: '../index/index',
-                              // wx.navigateTo({
-                              //   url: '/diy/index/index',
+                              wx.redirectTo({
+                                url: '../../diy/index/index', // 新首页
+                              // wx.redirectTo({
+                              //   url: '../index/index', //原始首页
                                 success: function (res) {
                                 },
                                 fail: function () {

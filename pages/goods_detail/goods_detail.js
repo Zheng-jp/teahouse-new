@@ -33,6 +33,7 @@ Page({
 		selected1: false,
 		selected2: false,
 		mask_show: false,
+    fixiPhone: false,//苹果底部适配
 		good_id: 0,
 		buy_num: 0,
 		// 是否有地址，0为没有填写收货地址，1为有，2为未授权
@@ -45,13 +46,12 @@ Page({
 		//  点击添加类
 		// 商品id
 		var current = e.target.dataset.current;
-		//  商品价格
-		var price = e.target.dataset.price;
+		//  商品价格 
 		// 商品库存
 		var stock = e.target.dataset.stock;
 		// 商品销量
-		// var current=e.target.dataset.current;
-		// 商品图片
+    var price = e.target.dataset.price;
+		// 商品图片 
 		var images = e.target.dataset.images;
 		// 规格id
 		// var goods_standard_id=e.target.dataset.id;
@@ -100,7 +100,7 @@ Page({
 
 	},
 	onShareAppMessage: function() {
-		console.log("分享")
+		// console.log("分享")
 		let that = this;
 		return {
 			title: '简直走别拐弯', // 转发后 所显示的title
@@ -134,7 +134,7 @@ Page({
 	// 点击加入购物车
 	add_car: function(event) {
 		var that = this;
-		console.log(that);
+		// console.log(that);
 		if(that.data.goods.goods_standard == 0) {
 			var goods_standard_id = '';
 			that.setData({
@@ -195,6 +195,10 @@ Page({
 
 					// },
 					success: function(res) {
+              var buy_num = that.data.buy_num + 1;
+              that.setData({
+                buy_num: buy_num
+              })
 						setTimeout(() => {
 							wx.showToast({
 								title: "加入购物车成功",
@@ -245,7 +249,7 @@ Page({
 	},
 	go_index: function(e) {
 		wx.navigateTo({
-      url: '../index/index',   //注意navigateTo只能跳转到带有tab的页面，不能跳转到不带tab的页面
+      url: '../../diy/index/index',   //注意navigateTo只能跳转到带有tab的页面，不能跳转到不带tab的页面
     })
 	},
 	/* 点击减号 */
@@ -287,7 +291,7 @@ Page({
 	},
 
 	hideFlag: function(e) {
-		console.log(111);
+		// console.log(111);
 		this.setData({
 			mask_show: false,
 		})
@@ -315,7 +319,6 @@ Page({
 								// complete
 								console.log("nihao////跳转行为结束，未知成功失败")
 							}
-
 						})
 					} else if(res.cancel) {
 						console.log('用户点击取消')
@@ -409,7 +412,6 @@ Page({
               var good_ids = {}
               var ids = {}
               var nums = {}
-              var shop_ids = {}
               var shop_id = new Array();
               var good_id = new Array();
               var id = new Array();
@@ -432,7 +434,7 @@ Page({
               chars.push(good_ids);
               chars.push(ids);
               chars.push(nums);
-              let userStr = JSON.stringify(chars);
+							let userStr = JSON.stringify(chars);
               wx.navigateTo({
                 url: '../settlement/settlement?title=' + userStr,
                 success: function(res) {
@@ -466,6 +468,7 @@ Page({
 	 */
 	onLoad: function(options) {
 		var that = this;
+    
 		var s_height = wx.getSystemInfoSync().windowHeight;
 		var member_grade_img = app.globalData.member_grade_img;
 		that.setData({
@@ -526,7 +529,7 @@ Page({
 
 			// },
 			success: function(res) {
-				console.log(res.data.status);
+				// console.log(res.data.status);
 				that.setData({
 					address: res.data.status,
 				});
@@ -605,6 +608,14 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function() {
+		var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          fixiPhone: res.model.indexOf('iPhone') != -1
+        })
+      }
+    })
     app.judge_phone();
     app.judge_repay();
 	},

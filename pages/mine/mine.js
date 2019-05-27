@@ -8,88 +8,89 @@ Page({
     url: app.globalData.img_url,
     test: app.data.test,
     collects: [],
-   information:[],
+    information: [],
     height: 500,
-    footinfo:[],
-    foot_is:2,
+    footinfo: [],
+    foot_is: 2,
     order_nav: [
       {
         src: app.globalData.url + '/upload/20181115/eb46c126533c9c51a19b9baea16f8523.png',
         text: '待付款',
-        id:1,
+        id: 1,
       },
       {
         src: app.globalData.url + '/upload/20181115/0a2b1ad83a3cb195b5367943f208e667.png',
         text: '待发货',
-        id:2,
+        id: 2,
       },
       {
         src: app.globalData.url + '/upload/20181115/9dd5f4a52c2a77653c7ea3ef05ef7226.png',
         text: '待收货',
-        id:3,
+        id: 3,
       }, {
         src: app.globalData.url + '/upload/20181115/ab9f934b82ab3e9d2ba77b9616501d6a.png',
         text: '待评价',
-        id:4,
+        id: 4,
       }, {
         src: app.globalData.url + '/upload/20181115/fa73c90513036e142b64e3ef2c948a87.png',
         text: '售后/退款',
-        id:5
+        id: 5
       }
     ],
     list: [
       {
         url: app.globalData.url + '/upload/20190104/94debd1c9f7b4c11a58b90b7dd83b402.png',
         text: '会员中心',
-        src:'../members/members',
+        src: '../members/members',
       },
       {
         url: app.globalData.url + '/upload/20181115/872ba6211e755c12088c2e5f92fad232.png',
         text: '消息中心',
-        src:'../news/news',
+        src: '../news/news',
       },
       {
         url: app.globalData.url + '/upload/20181115/f052e232cf2c7629080cacbb20522b50.png',
         text: '地址管理',
-        src:'../select_address/select_address',
+        src: '../select_address/select_address',
       },
       {
         url: app.globalData.url + '/upload/20181115/81c85d2133879add7c6f8ed268410616.png',
         text: '我的收藏',
-        src:'../collection/collection',
-        
+        src: '../collection/collection',
+
       },
       {
         url: app.globalData.url + '/upload/20181115/d0221a688c6699297a1092cec2e1a322.png',
         text: '我的账户',
-        src:'../account/account',
+        src: '../account/account',
       },
     ],
     lista: [
       {
         url: app.globalData.url + '/upload/20181115/38b70a3b147560518f3c46c5294ec19f.png',
         text: '常见问题',
-        src:'../problement/problement',
+        src: '../problement/problement',
       },
       {
         url: app.globalData.url + '/upload/20181115/2505a16ba762f14d5d88d1ddecf2b755.png',
         text: '协议合同',
-        src:'../contract/contract',
-        
+        src: '../contract/contract',
+
       },
       {
         url: app.globalData.url + '/upload/20181115/575a600f599df7b52b16cd3aa5b48d1c.png',
         text: '关于我们',
-        src:'../about/about',
+        src: '../about/about',
       }
     ],
-  /**
-   * 会员卡
-   */
+    version: '' //版本
+    /**
+     * 会员卡
+     */
 
-  
+
   },
-  go_recharge:function(){
+  go_recharge: function () {
     wx.navigateTo({
       url: '../recharge/recharge',
       success: function (res) {
@@ -104,12 +105,12 @@ Page({
 
     })
   },
-  redirectto: function(t) {
+  redirectto: function (t) {
     var a = t.currentTarget.dataset.link, e = t.currentTarget.dataset.linktype;
     app.redirectto(a, e);
-},
+  },
 
-  go_integral_center:function(){
+  go_integral_center: function () {
     wx.navigateTo({
       url: '../integral_center/integral_center',
       success: function (res) {
@@ -128,79 +129,106 @@ Page({
   /**
  * 生命周期函数--监听页面加载
  */
-onLoad:function(){
-  var that = this;
-  var gmemberid = app.globalData.gmemberid;
-    
-  this.requesLocalData();
-  wx.request({
-    url: app.globalData.tiltes + 'my_index',
-    data: {
-      open_id: gmemberid
-    },
-    method: "POST",
-
-    success: function (res) {
-      wx.setNavigationBarColor({
-        frontColor: '#ffffff',
-        backgroundColor: res.data.data.member_background_color
-      });
-      that.setData({
-        information: res.data.data,
-      });
-    },
-    fail: function () {
-
-    },
-    complete: function () {
-      wx.hideLoading()
-    }
-
-  });
-  wx.request({
-    url: app.globalData.baseurl + "doPagehomepage",
-    cachetime: "30",
-    data: {
-        uniacid: 1
-    },
-    success: function(t) {
-          that.setData({
-            foot_is: t.data.data.foot_is
-          })
-          wx.request({
-            url: app.globalData.baseurl + "doPageGetFoot",
-            cachetime: "30",
-            data: {
-                uniacid: 1,
-                foot: t.data.data.foot_is
-            },
-            success: function(t) {
-              that.setData({
-                    footinfo: t.data.data,
-                    style:t.data.data.style,
-                })
+  onLoad: function () {
+    var that = this;
+    var gmemberid = app.globalData.gmemberid;
+    this.requesLocalData();
+    var uniacid = app.globalData.uniacid;
+    wx.request({
+      url: app.globalData.baseurl + "doPagehomepage",
+      cachetime: "30",
+      data: {
+        uniacid: uniacid
+      },
+      success: function (t) {
+        var version_is;
+        if (t.data.data.test_name.goods_name == '茶进阶版')
+          version_is = 3;
+        else if (t.data.data.test_name.goods_name == '茶行业版')
+          version_is = 2;
+        else
+          version_is = 1;
+        that.setData({
+          foot_is: t.data.data.foot_is,
+          version: version_is
+        })
+        wx.request({
+          url: app.globalData.baseurl + "doPageGetFoot",
+          cachetime: "30",
+          data: {
+            uniacid: uniacid,
+            foot: t.data.data.foot_is
+          },
+          success: function (t) {
+            var lujing = [];
+            var num = getCurrentPages().length - 1;
+            var url = getCurrentPages()[num].route; //当前页面路径
+            for (let i in t.data.data.data) {
+              lujing.push(t.data.data.data[i]);
             }
+            for (let o = 0; o < lujing.length; o++) {
+              if (lujing[o].linkurl.indexOf(url) != -1) {
+                lujing[o].change = true;
+              } else {
+                lujing[o].change = false;
+              }
+            }
+            t.data.data.data = lujing;
+            that.setData({
+              footinfo: t.data.data,
+              style: t.data.data.style,
+            })
+          }
+
         });
-            
-        
-    },
-    fail: function(t) {
+
+
+      },
+      fail: function (t) {
         console.log(t);
-    }
-});
+      }
+    });
+
+    wx.request({
+      url: app.globalData.tiltes + 'my_index',
+      data: {
+        open_id: gmemberid
+      },
+      method: "POST",
+
+      success: function (res) {
+        wx.setNavigationBarColor({
+          frontColor: '#ffffff',
+          backgroundColor: res.data.data.member_background_color
+        });
+        that.setData({
+          information: res.data.data,
+        });
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
 
 
-  
- 
 
 
- 
-},
-  onShow: function () {
-   
+
+    var url = getCurrentPages()[1].route;
+    console.log(url)
+
+
+
   },
-  
- 
+  onShow: function () {
+
+  },
+
+
   bindViewTap: function (event) {
     // console.log("nihao////" + event.currentTarget.dataset.item)
     var item = event.currentTarget.dataset.item;
@@ -224,7 +252,7 @@ onLoad:function(){
 
     })
   },
-  
+
   requesLocalData: function () {
     var list = [];
     // var itemOne = {};
@@ -278,9 +306,9 @@ onLoad:function(){
   mycollect: function (event) {
     console.log(event);
     var item = event.currentTarget.dataset.item;
-    var src=event.currentTarget.dataset.url;
+    var src = event.currentTarget.dataset.url;
     wx.navigateTo({
-      url: src+'?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
+      url: src + '?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
       success: function (res) {
         // success
         console.log("nihao////跳转成功")
@@ -298,9 +326,10 @@ onLoad:function(){
   },
   go_order: function (event) {
     var item = event.currentTarget.dataset.id;
-    if(item==5){
+    console.log(this.data.version)
+    if (item == 5) {
       wx.navigateTo({
-        url: '../after_sales/after_sales',
+        url: '../after_sales/after_sales?version=' + this.data.version,
         success: function (res) {
           // success
           console.log("nihao////跳转成功")
@@ -313,12 +342,12 @@ onLoad:function(){
           // complete
           console.log("nihao////跳转行为结束，未知成功失败")
         }
-  
+
       })
     }
-    else{
+    else {
       wx.navigateTo({
-        url: '../order/order?title='+item,
+        url: '../order/order?title=' + item + '&version=' + this.data.version,
         success: function (res) {
           // success
           console.log("nihao////跳转成功")
@@ -331,10 +360,10 @@ onLoad:function(){
           // complete
           console.log("nihao////跳转行为结束，未知成功失败")
         }
-  
+
       })
     }
-    
+
   },
   go_change: function (event) {
     console.log(event);
@@ -392,6 +421,12 @@ onLoad:function(){
 
     })
   },
-
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this.onReady();
+    wx.stopPullDownRefresh();
+  }
 })
 

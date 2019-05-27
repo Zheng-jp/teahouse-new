@@ -15,16 +15,23 @@ Page({
 
   formSubmit: function (e) {
     var that=this;
+
+    var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
     if(e.detail.value.harvester_phone_num==''){
       wx.showToast({
         title:"身份证不能为空",
-        icon:'none',
+        icon:'none'
       });
     }
     else if(e.detail.value.harvester==''){
       wx.showToast({
         title:"姓名不能为空",
-        icon:'none',
+        icon:'none'
+      });
+    } else if (reg.test(e.detail.value.harvester_phone_num) == false) {
+      wx.showToast({
+        title: "身份证号格式有误",
+        icon: 'none'
       });
     }
     else{
@@ -43,13 +50,27 @@ Page({
       
             // },
             success: function (res) {
-      
+              
+              wx.navigateBack({
+                delta:1
+              })
+              wx.showToast({
+                icon: "none",
+                title: res.data.info,
+                duration: 3000
+
+              })
             },
             fail: function () {
-      
+              wx.showToast({
+                icon: "none",
+                title: res.data.info,
+                duration: 3000
+
+              })
             },
             complete: function () {
-              wx.hideLoading()
+              // wx.hideLoading()
             }
       
           });
@@ -68,13 +89,26 @@ Page({
       
             // },
             success: function (res) {
-          
+              
+              wx.navigateBack({
+                delta: 1
+              })
+              wx.showToast({
+                icon: "none",
+                title: res.data.info
+
+              })
             },
             fail: function () {
-      
+              wx.showToast({
+                icon: "none",
+                title: res.data.info,
+                duration: 3000
+
+              })
             },
             complete: function () {
-              wx.hideLoading()
+              // wx.hideLoading()
             }
       
           });

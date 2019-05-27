@@ -1,47 +1,53 @@
-<!--pages/buy/buy.wxml-->
+<!-- pages/buy/buy.wxml -->
 <view class='all' style='height:{{heght}}px'>
-<view class='goods_wrap'>
-   <view class='goods_info_wrap'>
-   <!--如果购物车内没有数据，就显示没有数据-->  
-      <view class="cartList" hidden="{{!iscart}}">  
-          <image src="img/u2890.png" mode='widthFix' style='width:200rpx;' />  
-          <view class='no_good_text'>哎呦，购物车空空如也~</view> 
-          <view class='buton_to'>到商城随便逛逛</view> 
-      </view> 
-       <checkbox-group bindchange="checkboxChange">
-         <view  wx:for='{{goodList}}' class="goodList"> 
-         <view class='content_list'>
-           <view class='radio' >
-              <checkbox  value="{{item.id}}"  color='#fff' checked="{{item.checked}}"/>
+  <view class='goods_wrap'>
+    <view class='goods_info_wrap'>
+      <!-- 如果购物车内没有数据，就显示没有数据 -->
+      <view class="cartList" hidden="{{!iscart}}">
+        <image src="img/u2890.png" mode='widthFix' style='width:200rpx;' />
+        <view class='no_good_text'>哎呦，购物车空空如也~</view>
+        <view class='buton_to'>到商城随便逛逛</view>
+      </view>
+      <checkbox-group bindchange="checkboxChange">
+        <view wx:for='{{goodList}}' class="goodList" wx:key="{{index}}">
+          <view class='content_list'>
+            <view class='radio'>
+              <checkbox value="{{item.id}}" color='#fff' checked="{{item.checked}}" />
             </view>
-            <view class='content_list_img' style='width:220rpx;'><image src='{{url}}{{item.goods_images}}' mode='widthFix'></image></view>
+            <view class='content_list_img' style='width:220rpx;'>
+              <image src='{{url}}{{item.goods_images}}' mode='widthFix'></image>
+            </view>
             <view class='good_infors'>
-                <view class='good_name'>{{item.goods_name}}</view>
-                <view class='good_infor'>{{item.desc}}                    </view>
-                <view class='good_price'>
-                        <view class='price'>
-                            <image src='img/u300.png' mode='widthFix' style='width:40rpx;'></image>
-                            <view class='text_red'>￥{{item.money}}</view>
-                        </view>     
-                         <view class='good_num text_red'>×{{item.goods_unit}}</view>
+              <view class='good_name'>{{item.goods_name}}</view>
+              <view class='good_infor'>{{item.desc}}</view>
+              <view class='good_price'>
+                <view class='price'>
+                  <image src='img/u300.png' mode='widthFix' style='width:40rpx;'></image>
+                  <view class='text_red'>￥{{item.money}}</view>
                 </view>
+                <view class='good_num text_red'>×{{item.goods_unit}}</view>
+              </view>
             </view>
-         </view>
-               <view class='quantity'>
-                  <view class='purchase_quantity'>购买数量</view>
-                <view class='select_quantity'>
-                  <view class='subtract' catchtap="bindMinus" data-id="{{item.tab}}" data-shopid="{{item.id}}">-</view>
-                        <view class='num'><input type="number" placeholder=""  value="{{item.goods_unit}}" /></view>
-                  <view class='add'  catchtap="bindPlus" data-id="{{item.tab}}"  data-shopid="{{item.id}}">+</view>
-                </view>
-              </view>	
+          </view>
+          <view class='quantity'>
+            <view class='purchase_quantity'>购买数量</view>
+            <view class='select_quantity'>
+              <view class='subtract' catchtap="bindMinus" data-id="{{item.tab}}" data-shopid="{{item.id}}">
+                -
+              </view>
+              <view class='num'>
+                <input type="number" placeholder="" value="{{item.goods_unit}}" />
+              </view>
+              <view class='add' catchtap="bindPlus" data-id="{{item.tab}}" data-shopid="{{item.id}}">
+                +
+              </view>
+            </view>
+          </view>
         </view>
-        
-       
       </checkbox-group>
-   </view>
-</view>
-<!--<view class='good_like'>
+    </view>
+  </view>
+  <!-- <view class='good_like'>
      <view class='goods '>
    <view class='like_img'><image src='img/u600.png' mode='widthFix'></image></view>
       <view class='goods-content'>
@@ -70,25 +76,23 @@
   
 </view>
    
-</view>-->  
+</view> -->
   <view class='section-bottom'>
-        <checkbox-group bindchange="selectalltap">
-          <label class='checkbox-allcheck'>
-            <checkbox value="{{!checkAll}}" checked="{{checkAll}}"  />
-            <text class='check-all-text'>全选</text>
-          </label>
-        </checkbox-group>
-        <view class="total">
-         
-          <view class='totalPrice'>合计：
-            <text>¥{{totalPrice}}</text>
-          </view>
-        </view>
-        <view>
-           <view class='delect_btn'   bindtap="deleteList" data-ihdex='1'>删除</view>
-        </view>
-        
-          <view class='go_buy' bindtap="showPopup">结算({{totalCount}})</view>
-       
+    <checkbox-group bindchange="selectalltap">
+      <label class='checkbox-allcheck'>
+        <checkbox value="{{!checkAll}}" checked="{{checkAll}}" />
+        <text class='check-all-text'>全选</text>
+      </label>
+    </checkbox-group>
+    <view class="total">
+      <view class='totalPrice'>
+        合计：
+        <text>¥{{totalPrice}}</text>
       </view>
+    </view>
+    <view>
+      <view class='delect_btn' bindtap="deleteList" data-ihdex='1'>删除</view>
+    </view>
+    <view class='go_buy' bindtap="showPopup">结算({{totalCount}})</view>
+  </view>
 </view>

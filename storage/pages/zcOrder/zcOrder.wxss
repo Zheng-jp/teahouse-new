@@ -1,22 +1,218 @@
-.block{padding: 20rpx 20rpx 0 20rpx;}
-.block .block-bg{padding: 30rpx; padding-bottom: 0; background-color: #f2f2f2;}
-.block-bg .h2{font-size: 34rpx; color: #333; margin-bottom: 20rpx; font-weight: 700;}
-.block-bg .block-txt{font-size: 28rpx; color: #999; word-break: break-all;}
-.block-bg .read{font-size: 24rpx; color: #333; margin-top: 30rpx;}
-.picker-box>view{display: flex; align-items: center; justify-content: space-between; padding: 20rpx 0; border-top: 1px solid #e4e4e4;}
-.picker-box .tit{font-size: 28rpx; color: rbg(121,121,121);}
-.picker-box .supp{position: relative;}
-.picker{background-color: rgb(222,222,222); width: 200rpx; height: 50rpx; line-height: 50rpx; padding-left: 20rpx; box-sizing: border-box; color: #333; font-size: 26rpx;}
-.triangle{position: absolute; width: 0; top: 22rpx; right: 18rpx; height: 0; border: 10rpx solid transparent; border-top-color: #333;}
-.picker-box .input-box{position: relative;}
-.picker-box .input-box input{ width: 200rpx; height: 50rpx; line-height: 50rpx; border: 1px solid rgb(222,222,222); padding: 0 34rpx 0 20rpx; background-color: #fff; box-sizing: border-box; font-size: 28rpx;}
-.input-box .unit{position: absolute; right: 10rpx; top: 10rpx; font-size: 24rpx; color: #666;}
-.fBox{position: fixed; left: 0; bottom: 0; width: 100%; height: 100rpx; border-top: 1px solid rgb(222,222,222); background-color: #fff; display: flex; box-sizing: border-box;}
-.sel{padding-left: 30rpx; color: #333; flex: 1; line-height: 100rpx; font-size: 30rpx;}
-.sel .m{color: rgb(179, 10,7); font-size: 36rpx;}
-.btn{width: 240rpx; height: 100rpx; background-color: rgb(255, 103, 0); color: #fff; text-align: center; line-height: 100rpx; font-size: 28rpx;}
-
-
-
-
-
+/* pages/order/order.wxss */
+/* 顶部导航 */
+.nav{
+    display: flex;
+    margin-top: 10rpx;
+    background: #fff;
+  
+  }
+  .nav view{
+    flex:1;
+    color:#868686;
+    text-align:center;
+    font-size:26rpx;
+    padding:10rpx;
+    line-height:40rpx;
+    margin-top: 16rpx;
+    
+  
+  }
+  .this{
+    color: #fff !important;
+    background: #821006;
+    border-radius:27rpx 27rpx 0 0;
+  }
+  /* 顶部导航 */
+  .on{
+    color: #821006 !important;
+    border-bottom: 1rpx #821006 solid !important;
+  
+  }
+  .flex{
+    width: 670rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+  }
+  
+  .courier{
+      color: #333;
+      font-size: 26rpx;
+  
+  }
+  .type_button{
+    color: #333 !important;
+    border-color:#333 !important; 
+  }
+  .title{
+    display: flex;
+    align-items: center;
+    border-bottom:  1rpx solid #E4E4E4;
+  }
+  .title .title_list{
+    flex: 1;
+    text-align: center;
+    color: #6B6B6B;
+    font-size: 30rpx;
+    padding-bottom: 30rpx;
+    padding-top: 30rpx;
+  }
+  .order_list{
+    background: #fff;
+    border-radius:10rpx;
+    margin: 20rpx;
+    padding: 20rpx; 
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .box_list_one{
+     margin-top: 10rpx;
+    display: flex;
+    align-content: center;
+    font-size: 24rpx;
+    justify-content: space-between;
+    color: #333;
+  }
+  .static{
+    color: #821006;
+  }
+  .img{
+    width: 150rpx;
+    height: 150rpx;
+  
+  }
+  .box_list_two{
+     margin-top: 20rpx;
+    width: 670rpx;
+    display: flex;
+    justify-content: space-between;
+    /* border-bottom:solid 3px #F2F2F2; */
+  
+  }
+  .good_infor{
+    width: 500rpx;
+    font-size: 26rpx;
+    box-sizing: border-box;
+  }
+  .good_selling{
+    color: #999;
+    height: 70rpx;
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
+  }
+  .good_uite{
+    display: flex;
+    align-items:flex-end;
+  }
+  .user_img{
+    width: 50rpx;
+    height: 50rpx;
+  }
+  .good_monye{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .uite{
+    color: #821006;
+    font-size: 30rpx;
+  
+  }
+  .num{
+    color: #821006;
+    font-size: 30rpx;
+  }
+  .box_list_three{
+    margin-top: 20rpx;
+    text-align: right;
+    font-size: 30rpx;
+  
+  }
+  .box_list_four{
+    margin-top: 20rpx;
+    float: right;
+    overflow: hidden;
+  }
+  .box_list_four>view{
+    display: flex;
+    align-items: center;
+  }
+  .cancel{
+    padding: 10rpx 20rpx;
+    border: solid 1px #999;
+    color: #999;
+    font-size: 26rpx;
+    border-radius:13rpx;
+    margin-right:40rpx;
+  }
+  .payment{
+    padding: 10rpx 20rpx;
+    border: solid 1px #821006;
+    color: #821006;
+    font-size: 26rpx;
+    border-radius:13rpx;
+  }
+  /* 支付密码css start */
+  .bg_layer{
+    position: fixed; left: 0; top: 0; bottom: 0; right: 0;
+    background-color: rgba(0, 0, 0, 0.6); z-index: 9998;
+  }
+  .input_main{
+      position: fixed; left: 0; bottom: 500rpx; width: 100%; height: 394rpx;
+      background-color: #fff; z-index: 9999;
+  }
+  .input_title{
+      width: 100%; height: 90rpx; line-height: 90rpx; text-align: center; 
+      font-size: 32rpx; border-bottom: 1rpx solid #e2e2e2;
+  }
+  .input_back{
+      position: absolute; left: 0; top: 0;
+      width: 80rpx; height: 90rpx; display: flex; justify-content: center; align-items: center;
+  }
+  .input_back text{
+    width: 20rpx;
+    height: 20rpx;
+    background-color: white;
+    border: 1rpx solid #aaa;
+    border-width: 5rpx 0 0 5rpx;
+    transform: rotate(-45deg);
+  }
+  
+  .input_tip{  margin: 30rpx; font-size: 24rpx; color: #888; }
+  
+  /* 密码掩码模拟 */
+  .input_row{
+    width: 690rpx; margin: 0 auto; height: 98rpx; position: relative;
+    display: flex; align-items: center; border: 1rpx solid #e2e2e2; border-radius: 20rpx;
+  }
+  .input_row .pwd_item{
+    flex: 1; display: flex; align-items: center; justify-content: center; 
+    height: 100%; border-right: 1rpx solid #e2e2e2; position: relative;
+  }
+  .pwd_item:nth-last-of-type(1) { border-right: 0; } 
+  .pwd_item text { 
+    width: 30rpx; height: 30rpx; border-radius: 30rpx; background-color: #555;
+  }
+  
+  
+  .forget_pwd{ 
+    float: right; margin: 30rpx; width: 100rpx; text-align: right; font-size: 24rpx; color: #ff7800;
+  }
+  /* 文本输入框位置: 设置到左边隐藏 */
+  .input_control { 
+    position: relative; left: -300rpx; bottom: 0; width: 100rpx; height: 100rpx;
+  }
+  .tips_img{
+    width: 30rpx;
+    margin-left: 20rpx;
+  
+  }
+  .tips_content{
+    font-size: 26rpx;
+    color: #a1a1a1;
+    margin-left: 20rpx;
+  }
+  .invoice_money {
+    margin-left:56rpx;
+  }

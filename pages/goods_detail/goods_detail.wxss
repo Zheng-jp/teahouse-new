@@ -81,8 +81,17 @@
 	.sale {
 		color: red;
 		font-size: 40rpx;
+
 	}
-	
+  .texts {
+    color:#669900;
+    border:solid 1px #669900;
+    border-radius:6rpx;
+    font-size:20rpx;
+    text-align:center;
+    margin:10rpx;
+  }
+  
 	.other_info {
     width: 100%;
 		display: flex;
@@ -113,7 +122,7 @@
 	
 	.ser-type {
 		padding: 20rpx;
-		margin: 10rpx 0 10rpx 0;
+		margin-top: 10rpx;
 		display: flex;
 		justify-content: space-between;
 		background: #fff;
@@ -162,8 +171,7 @@
 .line_price{
   text-decoration: line-through;
 }
-	.show {
-	}
+
 	
 	.hidden {
 		display: none;
@@ -173,6 +181,10 @@
 	
 	.bc_white {
 		background: #fff;
+    margin-bottom: 20rpx;
+    margin-top:10rpx;
+    
+
 	}
   	.bc_white>view{
    line-height: 94rpx;
@@ -181,7 +193,7 @@
     border-bottom: 1px solid #DDDDDD;
   }
   .tab-box{
-    margin-bottom: 100rpx;
+    /* margin-bottom: 100rpx; */
   }
   .tab-box>view{
     background: #fff;
@@ -205,9 +217,9 @@
     height: 48rpx;
   }
   .footbar_text{
-    font-size: 20rpx;
+    font-size: 28rpx;
     margin: -7rpx auto;
-    color: #5E5E5E;
+    color: #999;
   }
   .ico_view{
     width: 276rpx;
@@ -570,3 +582,13 @@ overflow:hidden;
   
 }
 
+.foot_text {
+  text-align:center;
+  font-size:28rpx;
+  color:rgba(0, 0, 0, 0.6);
+  background-color:#fff;
+  height:80rpx;
+  padding:15rpx;
+  margin-top: 15rpx;
+  /* margin-bottom: 100rpx; */
+}

@@ -96,6 +96,7 @@ Page({
                     wx.showToast({
                       icon:"none",
                       title: res.data.info, 
+                      duration: 3000
                     })
                     
                   }
@@ -106,6 +107,7 @@ Page({
               wx.showToast({
                 icon:"none",
                 title: res.data.info,
+                duration: 3000
               })
   
             }
@@ -121,6 +123,7 @@ Page({
         wx.showToast({
           icon:"none",
           title: "您已取消支付",
+          duration: 3000
         })
        }
     
@@ -183,18 +186,19 @@ Page({
           success: function (res) {
             wx.showToast({
               title:'删除成功',
-              icon:'none'
+              icon:'none',
+              duration: 3000
             })
             that.setData({
               order: orderItems
             }); 
            
           },
-          fail: function () {
-         
+          fail: function (e) {
+            console.log(e)
           },
           complete: function () {
-            wx.hideLoading()
+            // wx.hideLoading()
           }
     
         });
@@ -361,8 +365,9 @@ Page({
               // },
               success: function (res) {
                 wx.showToast({
-                  title:'操作成功',
-                  icon:'none'
+                  title:'取消成功',
+                  icon:'none',
+                  duration: 3000
                 })
                 that.setData({
                   order: orderItems
@@ -373,7 +378,7 @@ Page({
              
               },
               complete: function () {
-                wx.hideLoading()
+                // wx.hideLoading()
               }
         
             });
@@ -406,7 +411,8 @@ Page({
           success: function (res) {
             wx.showToast({
               title:'收货成功',
-              icon:'none'
+              icon:'none',
+              duration: 3000
             })
             that.setData({
               order: orderItems
@@ -417,7 +423,7 @@ Page({
          
           },
           complete: function () {
-            wx.hideLoading()
+            // wx.hideLoading()
           }
     
         });
@@ -516,7 +522,7 @@ Page({
     
                   },
                   complete: function () {
-                    wx.hideLoading()
+                    // wx.hideLoading()
                   }
                 });   
         }
@@ -544,52 +550,51 @@ Page({
       // },
       success: function (res) {
         wx.showToast({
-          title:'操作成功',
-          icon:'none'
+          title:'提醒成功',
+          icon:'none',
+          duration: 3000
         })
       },
       fail: function () {
      
       },
       complete: function () {
-        wx.hideLoading()
+        // wx.hideLoading()
       }
 
     });
   
   },
-    // 追加评价
-    go: function (event) {
-
-      var that = this;
-      var item = event.currentTarget.dataset.id;
-      wx.navigateTo({
-        url: item+'?title=' + 0,
-        success: function (res) {
+  // 追加评价
+  go: function (event) {
+    var item = event.currentTarget.dataset.id;
+    wx.redirectTo({
+      url: item+'?title=' + 0 + '&version=' + this.data.version,
+      success: function (res) {
+      
+      },
+      fail: function () {
         
-        },
-        fail: function () {
-         
-        },
-        complete: function () {
-        
-        }
-    
-    
-      })
-    },
+      },
+      complete: function () {
+      
+      }
+    })
+  },
   
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+    that.setData({
+      version: options.version
+    })
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
     var member_grade_img=app.globalData.member_grade_img;
     this.setData({ member_grade_img: member_grade_img });
     var title = options.title;
-    console.log(title);
     if(title==0){
       wx.request({
         url: app.globalData.tiltes + 'ios_api_order_all',
@@ -597,12 +602,7 @@ Page({
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-  
-        // },
         success: function (res) {
-         
           that.setData({
             order:res.data.data,
             tab:'1'

@@ -75,17 +75,18 @@ radio .wx-radio-input.wx-radio-input-checked::before{
    width: 16rpx; 
    height: 16rpx; 
    text-align: center;
-   font-size:0rpx; /* 对勾大小 去掉 */
+   font-size:0rpx; 
    background-color: #02A0E6; 
    transform:translate(-50%, -50%) scale(1);
    -webkit-transform:translate(-50%, -50%) scale(1);
+   
 }
 radio{
   border-radius: 50%;
   width: 32rpx;/* 最好是4的倍数，不然会不在中间 */
   height: 32rpx;
   border: 2rpx solid #C4C4C4;/* 设置边框（外圆） */
-  font-size: 0;/* 让边框重合 */
+  font-size: 0rpx;/* 让边框重合 */
   overflow: hidden;
 }
 radio .wx-radio-input{
@@ -260,7 +261,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
  
  } */
   .price_img{
-     width:35rpx;
+     width:30rpx;
  
   }
   .price_text{

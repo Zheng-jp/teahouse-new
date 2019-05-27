@@ -11,7 +11,7 @@
           <scroll-view scroll-y="{{true}}" bindscroll="scroll" wx:for="{{enterprise}}" >
             <label class="radio">
               <view class='left'>
-                <radio value="" checked="{{item.checked}}" color='#fff' />
+                <radio value="" checked="{{item.checked}}" color='#02A0E6' />
               </view>
               <view class='right'>
                 <view bindtap="go_back" data-id="{{item.id}}">
@@ -20,7 +20,7 @@
                         <view class='content'>{{item.company}}</view>
                       </view>
                       <view class='list'>
-                        <view class='label'>企业税号</view>
+                        <view class='label'>发票税号：</view>
                         <view class='content'>{{item.company_number}}</view>
                       </view>
                       <view class='list last-child'>
@@ -48,7 +48,7 @@
         <scroll-view scroll-y="{{true}}" bindscroll="scroll" wx:for="{{personal}}" bindtap="go_back" data-id="{{item.id}}">
           <label class="radio">
             <view class='left'>
-              <radio value="" checked="{{item.checked}}" color='#fff' />
+              <radio value="" checked="{{item.checked}}" color='#02A0E6' />
             </view>
             <view class='right'>
               <view class='list'>

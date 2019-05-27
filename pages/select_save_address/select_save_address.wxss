@@ -51,7 +51,6 @@
   display: flex;
   justify-content: space-between;
   color: #333333;
-  font-size: 25rpx;
 }
 .tips{
   font-size: 24rpx;
@@ -65,8 +64,11 @@
 .sava_list{
   display: flex;
 }
-.savetitle{
-  width: 280rpx;
+.savetitle {
+  width: 168rpx;
+}
+.save_contents {
+  margin-top: 10rpx;
 }
 .srcoll_view{
   position: absolute;

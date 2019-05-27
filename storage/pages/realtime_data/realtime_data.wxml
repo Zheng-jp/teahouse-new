@@ -14,21 +14,75 @@
     <swiper-item class="overflowYauto">
         <view>
             <view class="humiture-data">
-                <view class="time">
-                    <text class="humiture-title">北京时间：</text>
-                    {{beijingTime}}
+                <view>
+                    <view class="time">
+                        <text class="humiture-title">北京时间：</text>
+                        {{beijingTime}}
+                    </view>
+                    <view class="temperature">
+                        <view class="temp-in">
+                            <text class="humiture-title">仓储温度：</text>
+                            {{inTemp}}℃
+                        </view>
+                        <view class="temp-out">
+                            <text class="humiture-title">室外温度：</text>
+                            {{outTemp}}℃
+                        </view>
+                    </view>
+                    <view class="humidity">
+                        <view class="humi-in">
+                            <text class="humiture-title">仓储湿度：</text>
+                            {{inHumi}}%
+                        </view>
+                        <view class="humi-out">
+                            <text class="humiture-title">室外湿度：</text>
+                            {{outHumi}}%
+                        </view>
+                    </view>
                 </view>
-                <view ></view>
+            </view>
+        </view>
+        <view style="flex: 1; display: flex; flex-direction: column; overflow: auto;">
+            <view class="temp-echarts">
+                <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{ ecOne}}"></ec-canvas>
+            </view>
+            <view class="temp-echarts">
+                <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ ecTwo }}"></ec-canvas>
             </view>
         </view>
     </swiper-item>
     <swiper-item class="overflowYauto">
-        <view>历史数据</view>
+        <view>
+            <view class="history-nav">
+                <view class="history-date">
+                    <view class="section">
+                        <picker mode="multiSelector" bindchange="sbindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                            <view class="picker">{{sdate}}</view>
+                        </picker>
+                    </view>
+                    <view class="section">
+                        <view class="section__title">至</view>
+                        <picker mode="multiSelector" bindchange="ebindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                            <view class="picker">{{edate}}</view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="history-btns">
+                    <view class="on" bind:tap="bindCheckHistory">查询</view>
+                    <view class="{{selectHistKey==0?'on':''}}" bind:tap="bindSelectHist" data-current="0">
+                        近7天
+                    </view>
+                    <view class="{{selectHistKey==1?'on':''}}" bind:tap="bindSelectHist" data-current="1">
+                        近14天
+                    </view>
+                </view>
+            </view>
+            <view class="temp-echarts">
+                <ec-canvas id="mychart-three" canvas-id="mychart-multi-three" ec="{{ ecThree }}"></ec-canvas>
+            </view>
+        </view>
     </swiper-item>
     <swiper-item class="overflowYauto">
         <view>对比数据</view>
     </swiper-item>
 </swiper>
-<!-- <view class="temp-echarts">
-    <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
-</view> -->

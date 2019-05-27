@@ -13,7 +13,8 @@ Page({
     card:[],
     id:'',
     selected:true,
-    selected1:false
+    selected1:false,
+    showCard: false
   },
   // 验证银行卡号
  checkCard:function(cardNo) {
@@ -118,6 +119,7 @@ Page({
          url: app.globalData.tiltes + 'sendMobileCodeBank',
          data: {
            member_id:app.globalData.member_id,
+           uniacid: app.globalData.uniacid
          },
          method: "post",
          // header: {
@@ -176,7 +178,19 @@ Page({
      selected:false
     })
   },
-
+  selectCard: function() {
+    var that = this;
+    if (that.data.showCard == false) {
+      that.setData({
+        showCard: true
+      })
+    } else {
+      that.setData({
+        showCard: false
+      })
+    }
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
