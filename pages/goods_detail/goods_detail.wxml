@@ -76,9 +76,9 @@
       </view>
     </view>
     <view class='other_info'>
-      <view class='freight'>运费：免费</view>
-      <view class='inventory'>库存888片</view>
-      <view class='sales'>销量213片</view>
+      <view class='freight'>运费：{{goods.goods_franking==0?'免费':goods.goods_franking}}</view>
+      <view class='inventory'>库存{{goods.goods_repertory}}片</view>
+      <view class='sales'>销量{{goods.goods_volume}}片</view>
     </view>
     
     <view class='other_info'>

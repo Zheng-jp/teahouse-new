@@ -267,7 +267,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .direct_mail {
   font-size: 28rpx;
   padding: 20rpx;
-  line-height: 42rpx;
+  line-height: 40rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -344,13 +344,14 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .sundry1 {
   background: #fff;
   margin-top: 4rpx;
+
 }
 
 .sundry-li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28rpx;
+  padding: 23rpx;
   font-size: 26rpx;
 }
 
