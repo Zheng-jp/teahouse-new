@@ -479,7 +479,8 @@ Page({
 			url: app.globalData.tiltes + 'commodity_detail',
 			data: {
 				open_id: app.globalData.gmemberid,
-				id: options.title
+				id: options.title,
+				uniacid: app.globalData.uniacid
 			},
 			method: "post",
 			// header: {
@@ -568,6 +569,7 @@ Page({
 			url: app.globalData.tiltes + 'limitations_show',
 			data: {
 				goods_id: title,
+				uniacid: app.globalData.uniacid
 			},
 			method: "post",
 			// header: {
