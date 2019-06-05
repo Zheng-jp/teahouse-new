@@ -4,8 +4,8 @@ Page({
     currentTab: '',
     winHeight: 0, //窗口高度
     imgUrls: [
-      '../img/u2404.png',
-      '../img/u2404.png'
+      '/images/u2404.png',
+      '/images/u2404.png'
     ]
   },
 
