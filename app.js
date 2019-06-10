@@ -310,7 +310,7 @@ App({
       data: {
         openid: n,
         fxsid: e,
-        uniacid: uniacid
+        uniacid: this.globalData.uniacid
       },
       success: function(e) {}
     });
