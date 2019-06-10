@@ -23,12 +23,6 @@ Page({
   /**
    * radio监听事件
    */
-
-  // tab_slide: function (e) {//滑动切换tab 
-  //   var that = this;
-
-  //   that.setData({ tab: e.detail.current });
-  // },
   read: function(e) {
     var that = this;
     if (e.detail.value == '') {
@@ -77,9 +71,7 @@ Page({
         })
       }
     }
-
     var member_grade_id = that.data.information.member_grade_id;
-
     if (member_grade_id == that.data.level[tab].member_grade_id) {
       that.setData({
         is: true,
@@ -89,8 +81,6 @@ Page({
         is: false,
       })
     }
-
-
   },
   stopTouchMove: function() {
     return false;
@@ -184,9 +174,7 @@ Page({
                   })
                 }
               },
-              fail: function(e) {
-
-              }
+              fail: function(e) {}
             })
           },
           fail: function(e) {
@@ -196,11 +184,7 @@ Page({
         })
       }
     }
-
-
   },
-
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -208,12 +192,6 @@ Page({
 
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -223,13 +201,10 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'my_show_grade',
       data: {
-        open_id: gmemberid
+        open_id: gmemberid,
+        uniacid: app.globalData.uniacid
       },
       method: "POST",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
       success: function(res) {
         console.log(res.data.data.member_grade)
         that.setData({
@@ -242,14 +217,12 @@ Page({
           that.setData({
             [sexParam]: index,
           })
-
         }
         for (var index in that.data.level) {
           var sexParam = "level[" + index + "].check";
           that.setData({
             [sexParam]: false,
           })
-
         }
         var member_grade_id = that.data.information.member_grade_id;
         // console.log(member_grade_id);
@@ -266,13 +239,6 @@ Page({
             })
           }
         }
-
-
-
-
-
-
-
       },
       fail: function() {
 
@@ -280,45 +246,6 @@ Page({
       complete: function() {
         wx.hideLoading()
       }
-
     });
-
-
-
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
 })
