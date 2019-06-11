@@ -37,33 +37,11 @@ Page({
     if(!app.globalData.judge_phone){
       wx.navigateTo({
         url: '../change_account/change_account?judge_phone='+0,
-        success: function (res) {
-        
-        },
-        fail: function () {
-         
-        },
-        complete: function () {
-        
-        }
-  
-  
       })
     }
     else{
       wx.navigateTo({
         url: '../change_account/change_account?judge_phone='+1,
-        success: function (res) {
-        
-        },
-        fail: function () {
-         
-        },
-        complete: function () {
-        
-        }
-  
-  
       })
     }
   

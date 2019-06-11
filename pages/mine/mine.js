@@ -370,19 +370,6 @@ Page({
     var item = event.currentTarget.dataset.item;
     wx.navigateTo({
       url: '../change/change?jsonStr=' + JSON.stringify(event.currentTarget.dataset.item),
-      success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
-      },
-      fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
-      },
-      complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
-      }
-
     })
   },
 

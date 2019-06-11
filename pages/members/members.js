@@ -206,7 +206,7 @@ Page({
       },
       method: "POST",
       success: function(res) {
-        console.log(res.data.data.member_grade)
+        console.log(res.data)
         that.setData({
           level: res.data.data.member_grade,
           information: res.data.data.information
@@ -228,7 +228,6 @@ Page({
         // console.log(member_grade_id);
         // console.log(that.data.level);
         for (var index in that.data.level) {
-
           if (member_grade_id == that.data.level[index].member_grade_id) {
             var check = "level[" + index + "].check";
             that.setData({
