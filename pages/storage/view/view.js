@@ -60,7 +60,21 @@ Page({
     swiperDataList: [],
     crowdList: [],
     Height: 0,
-    version: 0
+    version: 0,
+    switchPop: false, //显示隐藏续费弹窗
+  },
+  
+  // 显示续费弹窗
+  showRenewPop: function(){
+    this.setData({
+      switchPop: true
+    })
+  },
+  // 关闭续费弹窗
+  closeRenewPop: function(){
+    this.setData({
+      switchPop: false
+    })
   },
   /**
    * 生命周期函数--监听页面加载
