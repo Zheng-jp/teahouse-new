@@ -67,6 +67,12 @@ Page({
     ],
 
   },
+  // 去商城逛逛
+  moveToMarket:function(){
+    wx.reLaunch({
+      url: '../../diy/index/index',
+    })
+  },
   /* 点击减号 */
   bindMinus: function (e) {
     var that = this;
