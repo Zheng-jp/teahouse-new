@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     customItem: "全部",
     address: [],
     title: '',
@@ -16,11 +15,10 @@ Page({
     disabled: true,
     num: null,
     oldnum: '',
-    newnum: '',
+    // newnum: '',
     oldnum1: '',
     code_num: ''
   },
-
   formSubmit: function (e) {
     var that = this;
     if (e.detail.value.harvester== '') {
@@ -42,26 +40,18 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'user_phone_bingding',
         data: {
-          member_phone_num: e.detail.value.harvester,
+          // member_phone_num: e.detail.value.harvester,
           code: e.detail.value.harvester_phone_num1,
           member_id: app.globalData.member_id,
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "application/x-www-form-urlencoded",
-        //   "Cookie": sessionId
-        // },
-
         success: function (res) {
           if (res.data.status == 1) {
             setTimeout(function () {
               wx.navigateBack();
             }, 2000)
           }
-          else {
-
-          }
-
+          else {}
         },
         fail: function () {
 
@@ -72,7 +62,6 @@ Page({
             icon: 'none',
           });
         }
-
       });
     }
   },
@@ -83,12 +72,6 @@ Page({
     }
     return false;
   },
-  // bindChange: function (event) {
-  //   var that = this;
-  //   that.setData({
-  //     num: event.detail.value
-  //   })
-  // },
   //新密码
   bindoldChange: function (event) {
     var that = this;
@@ -106,13 +89,13 @@ Page({
     that.show_btn();
   },
   //手机号
-  bindnewChange: function (event) {
-    var that = this;
-    that.setData({
-      newnum: event.detail.value
-    })
-    that.show_btn();
-  },
+  // bindnewChange: function (event) {
+  //   var that = this;
+  //   that.setData({
+  //     newnum: event.detail.value
+  //   })
+  //   that.show_btn();
+  // },
   //验证码
   code_num: function (event) {
     var that = this;
@@ -123,16 +106,19 @@ Page({
   },
   send_cold: throttle.throttle(function (e) {
     var that = this;
-    var is_phone = that.validateTel(that.data.newnum);
-    if (is_phone) {
-      wx.request({
-        url: app.globalData.tiltes + 'sendMobileCodePay',
-        data: {
-          mobile: that.data.newnum,
-          uniacid: app.globalData.uniacid
-        },
-        method: "post",
-        success: function (res) {
+    // var is_phone = that.validateTel(that.data.newnum);
+    // if (is_phone) {
+    wx.request({
+      url: app.globalData.tiltes + 'sendMobileCodePay',
+      data: {
+        // mobile: that.data.newnum,
+        member_id: app.globalData.member_id,
+        uniacid: app.globalData.uniacid
+      },
+      method: "post",
+      success: function (res) {
+        console.log(res)
+        if(res.data.status == 1){
           var coden = 60    // 定义60秒的倒计时
           var codeV = setInterval(function () {
             that.setData({    // _this这里的作用域不同了
@@ -145,26 +131,33 @@ Page({
               })
             }
           }, 1000)  //  1000是1秒
-        },
-        fail: function () {
-
-        },
-        complete: function () {
-          wx.hideLoading()
+        }else{
+          wx.showToast({
+            title: res.data.info,
+            icon: 'none',
+            duration: 1200
+          })
         }
-      });
-    }else {
-      wx.showToast({
-        title: '手机格式有问题',
-        icon: 'none',
-      })
-    }
+      },
+      fail: function (res) {
+        
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+    });
+    // }else {
+    //   wx.showToast({
+    //     title: '手机格式有问题',
+    //     icon: 'none',
+    //   })
+    // }
 
   }, 5000),
   //判断提交按钮是否显示
   show_btn: function() {
     var that = this;
-    if(that.data.oldnum != '' && that.data.newnum != '' && that.data.oldnum1 != '' && that.data.code_num != '') {
+    if(that.data.oldnum != '' && that.data.oldnum1 != '' && that.data.code_num != '') {
       that.setData({
         disabled: false
       })
@@ -178,57 +171,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
- 
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
