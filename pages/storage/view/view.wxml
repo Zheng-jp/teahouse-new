@@ -101,7 +101,7 @@
                 </view>
                 <view class="btns">
                   <button class="out-storage" bindtap="outOfStock">出仓</button>
-                  <button type="warn" class="renew">续费</button>
+                  <button type="warn" class="renew" bind:tap="showRenewPop">续费</button>
                   <!-- <button type="primary" class="renew">续费</button> -->
                 </view>
               </view>
@@ -175,30 +175,39 @@
     </scroll-view>
   </swiper-item>
 </swiper>
-<view class="mask"></view>
+<view class="mask" wx:if="{{switchPop}}"></view>
 <!-- 续费弹窗 -->
-<view class="renew-pop">
-  <view class="renew-close">×</view>
-  <view class="">
+<view class="renew-pop" wx:if="{{switchPop}}">
+  <view class="renew-close" bind:tap="closeRenewPop">×</view>
+  <view class="bd">
     <view class="title">续费</view>
     <view class="time-view">
       <text class="subtit-text">入仓日期</text>
-      <text class="time-text">20190611</text>
+      <text class="time-text">2019.06.11</text>
     </view>
     <view class="time-view">
       <text class="subtit-text">入仓日期</text>
-      <text class="time-text">20190611</text>
+      <text class="time-text">2019.06.11</text>
     </view>
     <view class="renew-time">
       <text class="subtit-text">续费到期日期</text>
-      <text class="time-text">20200611</text>
+      <text class="time-text">2020.06.11</text>
     </view>
     <view class="renew-time">
       <text class="subtit-text">新增续费年限</text>
-      <text class="time-text">20200611</text>
+      <view class="num-view">
+        <text class="minus">-</text>
+        <input type="number" value="1" />
+        <text class="plus">+</text>
+      </view>
     </view>
   </view>
-  <view ></view>
+  <view class="fd">
+    <view class="renew-cost">
+      续费费用<text>999元</text>
+    </view>
+    <view class="renew-btn">确认续费</view>
+  </view>
 </view>
 <block wx:if="{{foot_is==2}}">
   <view class="hbj footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:9998;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:if="{{footinfo.params.navstyle==0}}">

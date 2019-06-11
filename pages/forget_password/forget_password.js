@@ -17,7 +17,7 @@ Page({
     oldnum: '',
     // newnum: '',
     oldnum1: '',
-    code_num: ''
+    code_num: '',
   },
   formSubmit: function (e) {
     var that = this;
