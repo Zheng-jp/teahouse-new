@@ -119,6 +119,11 @@ Page({
       success: function (res) {
         console.log(res)
         if(res.data.status == 1){
+          wx.showToast({
+            title: res.data.info,
+            icon: 'none',
+            duration: 1200
+          })
           var coden = 60    // 定义60秒的倒计时
           var codeV = setInterval(function () {
             that.setData({    // _this这里的作用域不同了
