@@ -8,32 +8,43 @@
 }
 .nav {
   display: flex;
-  flex-direction: row;
+  justify-content: space-around;
   border-bottom: 3rpx solid rgb(204, 204, 204);
+  height: 40px;
+  line-height: 40px;
 }
 
 .tea {
-  justify-content: center;
-  flex: 3;
+  /* justify-content: center; */
+  flex: 1;
   text-align: center;
-  
-}
-
-.sizecolor {
-  margin-left: 50rpx;
-  display: block;
-  width: 150rpx;
-  line-height: 70rpx;
-}
-
-.change_current {
-  color:rgb(147, 31, 30);
-  border-bottom: 5rpx solid rgb(147, 31, 30);
-  font-weight: 600;
-}
-.not_change {
   color:rgb(204, 204, 204);
 }
+
+/* .sizecolor {
+  margin-left: 50rpx;
+  display: inline-block;
+  width: 150rpx;
+  line-height: 70rpx;
+} */
+
+.change_current {
+  position: relative;
+  color:rgb(147, 31, 30);
+  /* border-bottom: 5rpx solid rgb(147, 31, 30); */
+  font-weight: 600;
+}
+.change_current::after{
+  content: ''; 
+  width: 40%; 
+  position: absolute; 
+  bottom: 0; 
+  left: 50%; 
+  margin-left: -20%; 
+  display: block; 
+  border: 2rpx solid #93291f;
+}
+
 
 /* 视频 */
 /* .scroll_main{

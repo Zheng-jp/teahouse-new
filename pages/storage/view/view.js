@@ -62,6 +62,28 @@ Page({
     Height: 0,
     version: 0,
     switchPop: false, //显示隐藏续费弹窗
+    renewYear: 1, //续费年限
+    inYear: '2018.06.11', // 续费 入仓日期
+    expireYear: '2019.06.11', // 续费 入仓日期
+    renewExpireYear: '2018.06.11', // 续费 入仓日期
+  },
+  // 减
+  minus: function(){
+    var year = +this.data.renewYear;
+    if(year > 1){
+      year --;
+    }
+    this.setData({
+      renewYear: year
+    })
+  },
+  // 加
+  plus: function(){
+    var year = +this.data.renewYear;
+    year++;
+    this.setData({
+      renewYear: year
+    })
   },
   
   // 显示续费弹窗
@@ -82,6 +104,7 @@ Page({
   onLoad: function (options) {
     getData(this);
     switchProject('crowd_now', this);
+    // 续费弹窗 初始化日期
   },
 
   // 切换 正在众筹 往期众筹

@@ -4,9 +4,8 @@ Page({
     // 全局变量的获取
     test: app.data.test,
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
- 
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
@@ -49,34 +48,13 @@ Page({
                     if (res) {
                       wx.redirectTo({
                         url: '../../diy/index/index' //装修后的首页
-                        // url: '../index/index' //原始首页
                       })
-                  
-                      // wx.navigateTo({
-                      //     url: '/diy/index/index',
-                      //     success: function (res) {
-                      //     },
-                      //     fail: function () {
-                      //     },
-                      //     complete: function () {
-                      //     }
-                    
-                      //   })
-                     
-                    }
-                    else {
+                    }else {
                       console.log("kong")
                     }
-                  
-
                   },
-                  fail: function () {
-                    // fail
-                    // wx.hideToast();
-                  },
-                  complete: function () {
-                    // complete
-                  }
+                  fail: function () {},
+                  complete: function () {}
                 })
 
               }
@@ -115,7 +93,6 @@ Page({
           });
           wx.getUserInfo({
             success: function (res) {
-              
               //用户已经授权过
               wx.login({//login流程
                 success: function (res) {//登录成功
@@ -147,54 +124,32 @@ Page({
                             app.globalData.uniacid = res.data.data.uniacid;
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             wx.hideToast();
-
                             if (res) {
                               wx.redirectTo({
                                 url: '../../diy/index/index', // 新首页
-                              // wx.redirectTo({
-                              //   url: '../index/index', //原始首页
-                                success: function (res) {
-                                },
-                                fail: function () {
-                                },
-                                complete: function () {
-                                }
-                          
+                                success: function (res) {},
+                                fail: function () {},
+                                complete: function () {}
                               })
-                            }
-                            else {
+                            }else {
                               console.log("kong")
                             }
-
-
                           },
-                          fail: function () {
-                            // fail
-                            // wx.hideToast();
-                          },
-                          complete: function () {
-                            // complete
-                          }
+                          fail: function () {},
+                          complete: function () {}
                         })
 
                       }
                     })
-                  } else {
+                  }else {
                     console.log('获取用户登录态失败！' + res.errMsg)
                   }
                 }
               });
-              // wx.navigateTo({
-              //   url: '../index/index'
-              // })
             }
           });
         }
       }
     })
-
   },
-  
-  
-
 })

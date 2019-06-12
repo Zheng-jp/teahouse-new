@@ -35,6 +35,10 @@
         <view class="list-value">2019.09.28</view>
     </view>
     <view class="list-item">
+        <view class="list-key">到期日期</view>
+        <view class="list-value">2020.09.28</view>
+    </view>
+    <view class="list-item">
         <view class="list-key">
             包装规格
             <text class="explain">?</text>
@@ -62,7 +66,7 @@
         </view>
         <view class="list-value">整存整取</view>
     </view> -->
-    <view class="list-item">
+    <!-- <view class="list-item">
         <view class="list-key">
             出仓方式
             <text class="explain">?</text>
@@ -70,7 +74,7 @@
         <view class="list-value">
             <view class="way-item">
                 <radio-group>
-                    <!-- wx:for="{{array}}" wx:for-item="item" wx:key="{{item.id}}" -->
+                    wx:for="{{array}}" wx:for-item="item" wx:key="{{item.id}}"
                     <label>
                         <radio value="按件" />
                         按件
@@ -78,22 +82,27 @@
                 </radio-group>
             </view>
         </view>
-    </view>
-    <view class="list-item">
+    </view> -->
+    <view class="list-item outNum">
         <view class="list-key">
             出仓数量
             <text class="explain">?</text>
         </view>
         <view class="list-value">
-            <input type="text" placeholder="请输入您要出仓的数量" />
+            <input type="text" /> 片
         </view>
     </view>
-    <view class="list-item">
+    <view class="list-item mailing">
+        <view class="list-key">
+            直邮地址
+        </view>
+        <view class="list-value">请选择邮寄地址 ></view>
+    </view>
+    <view class="list-item freightCost">
         <view class="list-key">
             出仓运费
-            <text class="explain">?</text>
         </view>
-        <view class="list-value">系统自动核算运费</view>
+        <view class="list-value">应付<text>999元</text></view>
     </view>
     <view class="agreement">
         <label>
@@ -102,5 +111,11 @@
             <text>《某某协议》</text>
         </label>
     </view>
-    <button class="btn">确定出仓</button>
+    <!-- <button class="btn">确定出仓</button> -->
+</view>
+<view class="ft">
+    <view class="outCost">
+        出仓运费<text>999元</text>
+    </view>
+    <view class="outBtn">确认出仓</view>
 </view>

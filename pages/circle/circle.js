@@ -87,8 +87,6 @@ Page({
             })
           }
         });
-
-
       },
       fail: function (t) {
         console.log(t);
@@ -102,23 +100,17 @@ Page({
 
   onReady: function () {
     var that = this;
-    var uniacid = app.globalData.uniacid;
     wx.request({
       url: app.globalData.tiltes + 'teacenter_data',
       data: {
-        uniacid: uniacid
+        uniacid: app.globalData.uniacid
       },
       method: "post",
-      header: {
-        "Content-Type": "json" // 默认值
-
-      },
       success: function (res) {
         console.log(res.data.data);
         that.setData({
           ico: res.data.data,
         });
-
       },
       fail: function () {
 
@@ -126,7 +118,6 @@ Page({
       complete: function () {
         wx.hideLoading()
       }
-
     });
     wx.request({
       url: app.globalData.tiltes + 'teacenter_alls',
@@ -134,10 +125,6 @@ Page({
         uniacid: app.globalData.uniacid
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
       success: function (res) {
 
         that.setData({
@@ -149,9 +136,7 @@ Page({
           that.setData({
             [sexParam]: app.globalData.img_url,
           })
-
         }
-
       },
       fail: function () {
 
