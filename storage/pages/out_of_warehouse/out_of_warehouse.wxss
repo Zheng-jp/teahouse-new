@@ -1,6 +1,7 @@
 /* storage/pages/out_of_warehouse/out_of_warehouse.wxss */
 view{overflow: initial;}
 page{background-color: #fff;}
+.wrapper{margin-bottom: 50px;}
 .header{display: flex; align-items: center; justify-content: space-around; padding: 20rpx;}
 .header .tea-img-box{width: 80rpx; height: 80rpx;}
 .header .tea-img-box image{width: 100%; height: 100%;}
@@ -24,10 +25,12 @@ page{background-color: #fff;}
 .agreement{font-size: 28rpx; margin: 20rpx 0 40rpx; padding: 0 20rpx;}
 .agreement checkbox{box-sizing: border-box;}
 .agreement text{color: #00A0E6; font-weight: 700;}
-
-
-
-
-
-
+.list-item.outNum .list-value{display: flex; align-items: center; color: #811006; font-weight: 700;}
+.list-item.outNum .list-value input{width: 60px; border: 1px solid #811006; border-radius: 3px; box-sizing: border-box; text-align: center; font-weight: normal;}
+.list-item.freightCost .list-value text{color: #ff6700;}
+.list-item.mailing .list-value{color: #999;}
+.ft{position: fixed; bottom: 0; left: 0; width: 100%; height: 50px; background-color: #ebebeb; display: flex; align-items: center; justify-content: space-between;}
+.ft .outCost{padding-left: 10px; color: #000;}
+.ft .outCost text{color: #811006;}
+.ft .outBtn{background-color: #811006; color: #fff; padding: 0 15px; line-height: 50px;}
 
