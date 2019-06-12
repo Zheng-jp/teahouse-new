@@ -9,10 +9,10 @@
         </view>
         <view class="select-goods-info">
           <view class='select-goods-price'>
-            <view class='new_select-goods-price'>￥{{price}}/片</view>
+            <view class='new_select-goods-price'>￥{{price}}/{{goods.unit}}</view>
           </view>
           <view class='select-goods-spec'>
-            <view class='select-goods-stock'>库存{{stock}}片</view>
+            <view class='select-goods-stock'>库存{{stock}}{{goods.unit}}</view>
             <view class='select-goods-sells'>销量213片</view>
           </view>
         </view>
@@ -60,13 +60,13 @@
           <image src='{{url}}{{member_grade_img}}'></image>
         </view>
         <view wx:if="{{goods.goods_standard==0}}">
-          <view class='sale'>￥{{goods.goods_new_money}}/片</view>
+          <view class='sale'>￥{{goods.goods_new_money}}/{{goods.unit}}</view>
         </view>
         <view wx:else>
-          <view class='sale'>￥{{goods.min_price}}/片</view>
+          <view class='sale'>￥{{goods.min_price}}/{{goods.unit}}</view>
         </view>
         <view>
-          <view class='.line_price'>￥{{goods.min_line}}/片</view>
+          <view class='.line_price'>￥{{goods.min_line}}/{{goods.unit}}</view>
         </view>
       </view>
       <view class='share'>
@@ -77,8 +77,8 @@
     </view>
     <view class='other_info'>
       <view class='freight'>运费：{{goods.goods_franking==0?'免费':goods.goods_franking}}</view>
-      <view class='inventory'>库存{{goods.goods_repertory}}片</view>
-      <view class='sales'>销量{{goods.goods_volume}}片</view>
+      <view class='inventory'>库存{{goods.goods_repertory}}{{goods.unit}}</view>
+      <view class='sales'>销量{{goods.goods_volume}}{{goods.unit}}</view>
     </view>
     
     <view class='other_info'>
