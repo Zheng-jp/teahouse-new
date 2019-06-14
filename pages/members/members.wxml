@@ -69,7 +69,7 @@
      </view>
      </view>
     <view class="num_button">
-    <view><text>充值</text> <text style='color: red; font-size:40rpx;padding-right:10rpx;font-size:35rpx;'>￥{{member_send}}</text><text>送积分</text><text style='color:red'>{{integral_send}}</text> </view>
+    <view><text>充值</text> <text style='color: red; font-size:40rpx;padding-right:10rpx;font-size:35rpx;'>￥{{member_send*10000}}</text><text>送积分</text><text style='color:red'>{{integral_send}}</text> </view>
     <view class='naext' bindtap="pay"> 下一步 </view>
     </view>
 </view>

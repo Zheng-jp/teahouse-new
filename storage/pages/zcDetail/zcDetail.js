@@ -216,7 +216,8 @@ Page({
       method: 'POST',
       data: {
         id: id,
-        member_id: app.globalData.member_id
+        member_id: app.globalData.member_id,
+        uniacid: app.globalData.uniacid
       },
       success: function(res){
         console.log(res);
