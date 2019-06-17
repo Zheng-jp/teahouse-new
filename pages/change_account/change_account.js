@@ -7,285 +7,229 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
     customItem: "全部",
-    address:[],
-    title:'',
+    address: [],
+    title: '',
     btntext: '获取验证码',
-    change:true,
-    num:null,
-    oldnum:null,
-    newnum:null,
-
-
+    change: true,
+    num: null,
+    oldnum: null,
+    newnum: null,
   },
- 
+
   formSubmit: function (e) {
-    var that=this;
-    var id=that.data.change;
+    var that = this;
+    var id = that.data.change;
     var sessionId = wx.getStorageSync('sessionId');
-    if(!id){
-      if(e.detail.value.member_phone_num==''){
+    if (!id) {
+      if (e.detail.value.member_phone_num == '') {
         wx.showToast({
-          title:"手机号不能为空",
-          icon:'none',
+          title: "手机号不能为空",
+          icon: 'none',
         });
-      }
-      else if(e.detail.value.cold==''){
+      }else if (e.detail.value.cold == '') {
         wx.showToast({
-          title:"验证码不能为空",
-          icon:'none',
+          title: "验证码不能为空",
+          icon: 'none',
         });
-      }
-      else{
+      }else {
         wx.request({
           url: app.globalData.tiltes + 'user_phone_bingding',
           data: {
             member_phone_num: e.detail.value.member_phone_num,
-            code:e.detail.value.cold,
+            code: e.detail.value.cold,
             member_id: app.globalData.member_id,
           },
           method: "post",
-          // header: {
-          //   "Content-Type": "application/x-www-form-urlencoded",
-          //   "Cookie": sessionId
-          // },
-    
           success: function (res) {
-            
-            if(res.data.status==1){
-              
-              
+            if (res.data.status == 1) {
               setTimeout(function () {
                 wx.navigateBack();
               }, 2000)
-             
+            } else {
+
             }
-            else{
-  
-            }
-         
           },
-          fail: function () {
-    
-          },
+          fail: function () { },
           complete: function (res) {
             wx.showToast({
-              title:res.data.info,
-              icon:'none',
+              title: res.data.info,
+              icon: 'none',
             });
           }
-    
         });
       }
-    
-    }
-    else{
-      if(e.detail.value.harvester==''){
+    } else {
+      if (e.detail.value.harvester == '') {
         wx.showToast({
-          title:"老账号不能为空",
-          icon:'none',
+          title: "老账号不能为空",
+          icon: 'none',
         });
-      }
-      else if(e.detail.value.harvester_phone_num==''){
+      } else if (e.detail.value.harvester_phone_num == '') {
         wx.showToast({
-          title:"新账号不能为空",
-          icon:'none',
+          title: "新账号不能为空",
+          icon: 'none',
         });
-      }
-      else if(e.detail.value.harvester_phone_num1==''){
+      } else if (e.detail.value.harvester_phone_num1 == '') {
         wx.showToast({
-          title:"验证码不能为空",
-          icon:'none',
+          title: "验证码不能为空",
+          icon: 'none',
         });
-      }
-      else{
+      } else {
         wx.request({
           url: app.globalData.tiltes + 'user_phone_bingding_update',
           data: {
-            old_phone_num:e.detail.value.harvester,
+            old_phone_num: e.detail.value.harvester,
             member_phone_num: e.detail.value.harvester_phone_num,
-            code:e.detail.value.harvester_phone_num1,
+            code: e.detail.value.harvester_phone_num1,
             member_id: app.globalData.member_id,
           },
           method: "post",
-          // header: {
-          //   "Content-Type": "application/x-www-form-urlencoded",
-          //   "Cookie": sessionId
-          // },
-    
           success: function (res) {
-            
-            if(res.data.status==1){
-             
-              
+            if (res.data.status == 1) {
               setTimeout(function () {
                 wx.navigateBack();
               }, 2000)
-             
-            }
-            else{
-  
-            }
-         
+            } else { }
           },
-          fail: function () {
-    
-          },
+          fail: function () { },
           complete: function (res) {
             wx.showToast({
-              title:res.data.info,
-              icon:'none',
+              title: res.data.info,
+              icon: 'none',
             });
           }
-    
         });
       }
     }
-    
   },
-  validateTel:function (tel){
+  validateTel: function (tel) {
     var TEL_REGEXP = /^1[3456789]\d{9}$/;
-    if(TEL_REGEXP.test(tel)){
+    if (TEL_REGEXP.test(tel)) {
       return true;
     }
     return false;
-   },
-  bindChange:function (event) {
-     var that=this;
-     that.setData({
-       num:event.detail.value
-     })
   },
-  bindoldChange:function (event) {
-    var that=this;
+  bindChange: function (event) {
+    var that = this;
     that.setData({
-      oldnum:event.detail.value
+      num: event.detail.value
     })
- },
- bindnewChange:function (event) {
-  var that=this;
-  that.setData({
-    newnum:event.detail.value
-  })
-},
-  send_cold: throttle.throttle( function (e) {
-   var that=this;
-      var _this = this 
-     var is_phone=that.validateTel(that.data.num);
-     if(is_phone){
+  },
+  bindoldChange: function (event) {
+    var that = this;
+    that.setData({
+      oldnum: event.detail.value
+    })
+  },
+  bindnewChange: function (event) {
+    var that = this;
+    that.setData({
+      newnum: event.detail.value
+    })
+  },
+  send_cold: throttle.throttle(function (e) {
+    var that = this;
+    var _this = this
+    var is_phone = that.validateTel(that.data.num);
+    if (is_phone) {
       wx.request({
         url: app.globalData.tiltes + 'sendMobileCode',
         data: {
-          mobile:that.data.num,
+          mobile: that.data.num,
           uniacid: app.globalData.uniacid
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "json" // 默认值
-  
-        // },
         success: function (res) {
-         
           var coden = 60    // 定义60秒的倒计时
-          var codeV = setInterval(function () {    
-              _this.setData({    // _this这里的作用域不同了
-                btntext: '重新获取' + (--coden) + 's'
+          var codeV = setInterval(function () {
+            _this.setData({    // _this这里的作用域不同了
+              btntext: '重新获取' + (--coden) + 's'
+            })
+            if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
+              clearInterval(codeV)
+              _this.setData({
+                btntext: '获取验证码'
               })
-              if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
-                clearInterval(codeV)
-                _this.setData({
-                  btntext: '获取验证码'
-                })
-              }
-            }, 1000)  //  1000是1秒
-       
+            }
+          }, 1000)
         },
-        fail: function () {
-  
-        },
+        fail: function () {},
         complete: function (res) {
           wx.showToast({
-            title:res.data.info,
-            icon:'none',
+            title: res.data.info,
+            icon: 'none',
           });
         }
-  
       });
-     }
-     else{
+    }else {
       wx.showToast({
         title: '手机格式有问题',
-        icon:'none',
+        icon: 'none',
       })
-     }
-  
-  },5000),
-  send_cold1: throttle.throttle( function (e) {
-    var that=this;
-       var _this = this 
-      var is_phone=that.validateTel(that.data.newnum);
-      if(is_phone){
-       wx.request({
-         url: app.globalData.tiltes + 'sendMobileCode',
-         data: {
-           mobile:that.data.newnum,
-           uniacid: app.globalData.uniacid
-         },
-         method: "post",
-         success: function (res) {
-           var coden = 60    // 定义60秒的倒计时
-           var codeV = setInterval(function () {    
-               _this.setData({    // _this这里的作用域不同了
-                 btntext: '重新获取' + (--coden) + 's'
-               })
-               if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
-                 clearInterval(codeV)
-                 _this.setData({
-                   btntext: '获取验证码'
-                 })
-               }
-             }, 1000)  //  1000是1秒
-        
-         },
-         fail: function () {
-   
-         },
-         complete: function (res) {
+    }
+
+  }, 5000),
+  send_cold1: throttle.throttle(function (e) {
+    var that = this;
+    var _this = this
+    var is_phone = that.validateTel(that.data.newnum);
+    if (is_phone) {
+      wx.request({
+        url: app.globalData.tiltes + 'sendMobileCode',
+        data: {
+          mobile: that.data.newnum,
+          uniacid: app.globalData.uniacid
+        },
+        method: "post",
+        success: function (res) {
+          var coden = 60    // 定义60秒的倒计时
+          var codeV = setInterval(function () {
+            _this.setData({    // _this这里的作用域不同了
+              btntext: '重新获取' + (--coden) + 's'
+            })
+            if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
+              clearInterval(codeV)
+              _this.setData({
+                btntext: '获取验证码'
+              })
+            }
+          }, 1000)
+        },
+        fail: function () {},
+        complete: function (res) {
           wx.showToast({
-            title:res.data.info,
-            icon:'none',
+            title: res.data.info,
+            icon: 'none',
           });
         }
-   
-       });
-      }
-      else{
-       wx.showToast({
-         title: '手机格式有问题',
-         icon:'none',
-       })
-      }
-   
-   },5000),
+
+      });
+    }
+    else {
+      wx.showToast({
+        title: '手机格式有问题',
+        icon: 'none',
+      })
+    }
+
+  }, 5000),
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
+    var that = this;
     var judge_phone = options.judge_phone;
-    if(judge_phone=='0'){
+    if (judge_phone == '0') {
       that.setData({
         change: false,
       });
-    }
-    else{
+    }else {
       that.setData({
         change: true,
       });
     }
-    
   },
 
   /**
@@ -299,8 +243,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-     var that=this;
-    //  that.onLoad();
+
   },
 
   /**

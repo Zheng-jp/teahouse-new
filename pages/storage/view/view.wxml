@@ -150,7 +150,7 @@
         <view class="zc-item-box" style="height: {{Height}}px">
           <view class="zc-item" wx:for="{{crowdList}}" wx:key="index">
             <view class="left-img">
-              <image src="{{url}}{{item.goods_show_image}}" />
+              <image src="{{url}}{{item.goods_show_image}}" bindtap="support"  data-id="{{item.id}}" />
             </view>
             <view class="right-project-info">
               <view class="project-name hid-txt-one">{{item.project_name}}</view>

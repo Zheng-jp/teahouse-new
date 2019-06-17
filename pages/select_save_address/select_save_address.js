@@ -25,13 +25,9 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'tacitly_list',
       data: {
-       
+        uniacid: app.globalData.uniacid
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
       success: function (res) {
         // console.log(res)
         for(var j=0;j<res.data.data.length;j++){

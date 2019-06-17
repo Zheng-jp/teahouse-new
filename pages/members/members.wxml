@@ -12,7 +12,7 @@
                   <view class='user_infor'>
                     <view class='use_num'>
                         <view>会员码</view>
-                        <view >{{information.member_id}}</view>
+                        <view >{{information.dimension}}</view>
                     </view>
                     <view class='code' bindtap="bindViewTap"><image src='img/u8531.png'></image></view>
                   </view>
