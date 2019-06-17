@@ -119,15 +119,15 @@
     </swiper>
     <block wx:if="{{foot_is==2}}">
       <view class="hbj footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:9998;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:if="{{footinfo.params.navstyle==0}}">
-        <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}" wx:key="index">
-          <span class="iconfont {{item.iconclass}}" style="color:{{item.change? footinfo.style.iconcoloron : footinfo.style.iconcolor}};font-size:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx 0;width:{{footinfo.style.iconfont*2}}rpx;height:{{footinfo.style.iconfont*2}}rpx;line-height:{{footinfo.style.iconfont*2}}rpx;display:block;margin:0 auto"></span>
-          <view style="font-size:{{footinfo.style.textfont*2}}rpx;padding:{{footinfo.style.paddingleft*2}}rpx 0;color:{{item.change? footinfo.style.textcoloron : footinfo.style.textcolor}};" wx:if="{{footinfo.params.textshow==1}}">
+        <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
+          <span class="iconfont {{item.iconclass}}" style="color:{{item.change? footinfo.style.iconcoloron : footinfo.style.iconcolor}};font-size:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx 0;width:{{footinfo.style.iconfont*2}}rpx;height:{{footinfo.style.iconfont*2}}rpx;line-height:{{footinfo.style.iconfont*2}}rpx;width:100%; text-align: center; padding-left: 3px;"></span>
+          <view style="font-size:{{footinfo.style.textfont*2}}rpx;padding:{{footinfo.style.paddingleft*2}}rpx 0;color:{{item.change? footinfo.style.textcoloron : footinfo.style.textcolor}}; width:100%; text-align: center;" wx:if="{{footinfo.params.textshow==1}}">
             {{item.text}}
           </view>
         </view>
       </view>
       <view class="footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:10000;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:elif="{{footinfo.params.navstyle==1}}">
-        <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}" wx:key="index">
+        <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
           <image mode="widthFix" src="{{item.imgurl}}" style="display:block;margin:0 auto;width:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx;"></image>
           <view style="font-size:{{footinfo.style.textfont*2}}rpx;color:{{item.change? footinfo.style.textcolor : footinfo.style.textcoloron}};padding:{{footinfo.style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">
             {{item.text}}
