@@ -95,22 +95,22 @@ Page({
 
       })
     }
-    wx.navigateTo({
-      url: '../change_address/change_address?title=' + event.currentTarget.dataset.id,
-      success: function(res) {
-        // success
-        console.log("nihao////跳转成功")
-      },
-      fail: function() {
-        // fail
-        console.log("nihao////跳转失败")
-      },
-      complete: function() {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
-      }
+    // wx.navigateTo({
+    //   url: '../change_address/change_address?title=' + event.currentTarget.dataset.id,
+    //   success: function(res) {
+    //     // success
+    //     console.log("nihao////跳转成功")
+    //   },
+    //   fail: function() {
+    //     // fail
+    //     console.log("nihao////跳转失败")
+    //   },
+    //   complete: function() {
+    //     // complete
+    //     console.log("nihao////跳转行为结束，未知成功失败")
+    //   }
 
-    })
+    // })
   },
   radioChange: function(e) {
     var that = this;

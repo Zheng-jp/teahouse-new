@@ -28,7 +28,8 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'my_show_grade',
       data: {
-        open_id: gmemberid
+        open_id: gmemberid,
+        uniacid: app.globalData.uniacid
       },
       method: "POST",
       // header: {
