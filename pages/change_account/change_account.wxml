@@ -7,15 +7,15 @@
     <view class='list_a'>
       <view class="section section_top">
         <view class="section_title">老账号</view>
-        <input name="harvester" placeholder="输入旧手机号" value="" bindchange="bindoldChange" />
+        <input type="number" name="harvester" placeholder="输入旧手机号" value="" bindinput="bindoldChange" />
       </view>
       <view class="section">
         <view class="section_title">绑定新账号</view>
-        <input name="harvester_phone_num" placeholder="必须是本人使用手机号" value="" bindchange="bindnewChange" />
+        <input type="number" name="harvester_phone_num" placeholder="必须是本人使用手机号" value="" bindinput="bindnewChange" />
       </view>
       <view class="section">
         <view class="section_title">验证码</view>
-        <input name="harvester_phone_num1" placeholder="请输入验证码" value="" class="cold_input" />
+        <input type="number" name="harvester_phone_num1" placeholder="请输入验证码" value="" class="cold_input" />
         <view class="send_cold" bindtap="send_cold1">{{btntext}}</view>
       </view>
     </view>
@@ -35,11 +35,11 @@
     <view class='list_a'>
       <view class="section">
         <view class="section_title">绑定账号</view>
-        <input name="member_phone_num" placeholder="必须是本人使用手机号" value="" bindchange="bindChange" />
+        <input type="number" name="member_phone_num" placeholder="必须是本人使用手机号" value="" bindinput="bindChange" />
       </view>
       <view class="section">
         <view class="section_title">验证码</view>
-        <input name="cold" placeholder="请输入验证码" value="" class="cold_input" />
+        <input type="number" name="cold" placeholder="请输入验证码" value="" class="cold_input" />
         <view class="send_cold" bindtap="send_cold">{{btntext}}</view>
       </view>
     </view>
