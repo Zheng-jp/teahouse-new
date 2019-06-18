@@ -8,8 +8,8 @@ Page({
   data: {
     img:'img/1.png',
     user_phone:'',
-    user_name:'null'
-
+    user_name:'null',
+    user_code: '',
   },
   // 调用摄像头
   // pic: function (options) {
@@ -76,30 +76,22 @@ Page({
        wx.request({
       url: app.globalData.tiltes + 'user_phone_return',
       data: {
-        dimension: app.globalData.member_id,
+        member_id: app.globalData.member_id,
       },
       method: "post",
-  
       success: function (res) {
-       
         if(res.data.status!="0"){
               that.setData({
                 user_phone:res.data.data
               });
-        }
-        else{
+        }else{
           that.setData({
             user_phone:res.data.status
           });
         }
-        console.log(that);
       },
-      fail: function () {
-
-      },
-      complete: function () {
-      }
-
+      fail: function () {},
+      complete: function () {}
     });
     wx.request({
       url: app.globalData.tiltes + 'user_name_return',
@@ -107,18 +99,13 @@ Page({
         member_id: app.globalData.member_id,
       },
       method: "post",
-  
       success: function (res) {
         that.setData({
           user_name:res.data.data
         });
       },
-      fail: function () {
-
-      },
-      complete: function () {
-      }
-
+      fail: function () {},
+      complete: function () {}
     });
     wx.request({
       url: app.globalData.tiltes + 'user_phone_return',
@@ -126,10 +113,24 @@ Page({
         member_id: app.globalData.member_id,
       },
       method: "post",
-  
       success: function (res) {
         that.setData({
           user_phone:res.data.data
+        });
+      },
+      fail: function () {},
+      complete: function () {}
+    });
+    // 会员吗
+    wx.request({
+      url: app.globalData.tiltes + 'consumerCode',
+      data: {
+        member_id: app.globalData.member_id,
+      },
+      method: "post",
+      success: function (res) {
+        that.setData({
+          user_code:res.data.data
         });
       },
       fail: function () {},
