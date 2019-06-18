@@ -1,5 +1,5 @@
 <form bindsubmit="formSubmit" bindreset="formReset">
-  <view class='form_all' wx:if="{{false}}">
+  <view class='form_all' wx:if="{{change}}">
     <view class='title'>
       <text class='text_red'>*</text>
       修改手机号账号绑定:

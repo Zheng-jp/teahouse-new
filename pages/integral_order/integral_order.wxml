@@ -11,8 +11,7 @@
 		<view class="title_list {{tab==4? 'on' : ''}}" data-current="4" bindtap="tab_click">待收货</view>
 	</view>
 	<view class='content'>
-		<view class='order_list' wx:for="{{order}}">
-		
+		<view class='order_list' wx:for="{{order}}" wx:key="index">
 			<view wx:if="{{item.status==1||item.status==2}}">
 				<view bindtap="go_order_detail" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
 					<view class='box_list_one'>
@@ -110,8 +109,6 @@
 					</view>
 				</view>
 			</view>
-
 		</view>
 	</view>
-
 </view>

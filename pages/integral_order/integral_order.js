@@ -11,8 +11,6 @@ Page({
       static:'5',
       order:[],
       url: app.globalData.img_url,
-
-
       member_grade_img:null,
   },
 
@@ -26,48 +24,36 @@ Page({
             member_id: app.globalData.member_id,
           },
           method: "post",
-          // header: {
-          //   "Content-Type": "application/json" // 默认值
-    
-          // },
           success: function (res) {
-            that.setData({
-              order:res.data.data
-            })
+            if(res.status == 1){
+              that.setData({
+                order:res.data.data
+              })
+            }
           },
-          fail: function () {
-    
-          },
+          fail: function () {},
           complete: function () {
             wx.hideLoading()
           }
-    
         });
-      }
- 
-      else if(e.currentTarget.dataset.current==3){
+      }else if(e.currentTarget.dataset.current==3){
         wx.request({
           url: app.globalData.tiltes + 'integaral_delivered',
           data: {
             member_id: app.globalData.member_id,
           },
           method: "post",
-          header: {
-            "Content-Type": "application/json" // 默认值
-    
-          },
           success: function (res) {
-            that.setData({
-              order:res.data.data
-            })
+            if(res.status == 1){
+              that.setData({
+                order:res.data.data
+              })
+            }
           },
-          fail: function () {
-    
-          },
+          fail: function () {},
           complete: function () {
             wx.hideLoading()
           }
-    
         });
       }
       else if(e.currentTarget.dataset.current==4){
@@ -77,24 +63,18 @@ Page({
             member_id: app.globalData.member_id,
           },
           method: "post",
-          header: {
-            "Content-Type": "application/json" // 默认值
-    
-          },
           success: function (res) {
-            that.setData({
-              order:res.data.data
-            })
+            if(res.status == 1){
+              that.setData({
+                order:res.data.data
+              })
+            }
           },
-          fail: function () {
-    
-          },
+          fail: function () {},
           complete: function () {
             wx.hideLoading()
           }
-    
         });
- 
       } 
   },
  
@@ -113,7 +93,6 @@ Page({
             parts_order_number:indexs
           },
           method: "post",
-          
           success: function (res) {
             wx.showToast({
               title:'收货成功',
@@ -122,24 +101,15 @@ Page({
             that.setData({
               order: orderItems
             }); 
-           
           },
-          fail: function () {
-         
-          },
+          fail: function () {},
           complete: function () {
             wx.hideLoading()
           }
-    
         });
       }
-      
     }
-  
   },
-
-
-
    // 提醒
   tip_order:function (e){
     var that=this;
@@ -151,25 +121,17 @@ Page({
         parts_order_number:indexs,
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "application/json" // 默认值
-
-      // },
       success: function (res) {
         wx.showToast({
           title:'提醒成功',
           icon:'none'
         })
       },
-      fail: function () {
-     
-      },
+      fail: function () {},
       complete: function () {
         wx.hideLoading()
       }
-
     });
-  
   },
     
   
@@ -185,36 +147,27 @@ Page({
     this.setData({ height: height });
     var member_grade_img=app.globalData.member_grade_img;
     this.setData({ member_grade_img: member_grade_img });
-    var title = options.title;
-
+    // var title = options.title;
       wx.request({
         url: app.globalData.tiltes + 'integaral_list',
         data: {
           member_id: app.globalData.member_id,
+          // uniacid: app.globalData.uniacid
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-  
-        // },
         success: function (res) {
-         
-          that.setData({
-            order:res.data.data,
-            tab:'1'
-          })
+          if(res.status == 1){
+            that.setData({
+              order:res.data.data,
+              tab:'1'
+            })
+          }
         },
-        fail: function () {
-  
-        },
+        fail: function () {},
         complete: function () {
           wx.hideLoading()
         }
-  
       });
-    
-    
-   
   },
 
   go: function (event) {
