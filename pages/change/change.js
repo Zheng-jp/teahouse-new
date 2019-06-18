@@ -76,7 +76,7 @@ Page({
        wx.request({
       url: app.globalData.tiltes + 'user_phone_return',
       data: {
-        member_id: app.globalData.member_id,
+        dimension: app.globalData.member_id,
       },
       method: "post",
   
@@ -93,10 +93,6 @@ Page({
           });
         }
         console.log(that);
-        // wx.showToast({
-        //   title:'修改成功',
-        //   icon: 'none'
-        // })
       },
       fail: function () {
 
@@ -113,16 +109,9 @@ Page({
       method: "post",
   
       success: function (res) {
-       
-        // if(res.data.status!="0"){
-              that.setData({
-                user_name:res.data.data
-              });
-        // }
-        // wx.showToast({
-        //   title:'修改成功',
-        //   icon: 'none'
-        // })
+        that.setData({
+          user_name:res.data.data
+        });
       },
       fail: function () {
 
@@ -139,23 +128,12 @@ Page({
       method: "post",
   
       success: function (res) {
-       
-        // if(res.data.status!="0"){
-              that.setData({
-                user_phone:res.data.data
-              });
-        // }
-        // wx.showToast({
-        //   title:'修改成功',
-        //   icon: 'none'
-        // })
+        that.setData({
+          user_phone:res.data.data
+        });
       },
-      fail: function () {
-
-      },
-      complete: function () {
-      }
-
+      fail: function () {},
+      complete: function () {}
     });
   },
 

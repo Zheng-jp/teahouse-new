@@ -138,7 +138,6 @@ Page({
                           fail: function () {},
                           complete: function () {}
                         })
-
                       }
                     })
                   }else {
