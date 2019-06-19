@@ -5,6 +5,7 @@ Page({
     test: app.data.test,
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    logoUrl: '',
   },
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
@@ -44,6 +45,23 @@ Page({
                     app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;
                     app.globalData.member_id = res.data.data.member_id;
                     app.globalData.uniacid = res.data.data.uniacid;
+                    // 获取logo
+                    wx.request({
+                      url: app.globalData.tiltes + 'store_logo_index',
+                      data: {
+                        uniacid: app.globalData.uniacid
+                      },
+                      method: 'POST',
+                      success: function(res){
+                        console.log(res)
+                        if(res.data.status == 1){
+                          _this.setData({
+                            logoUrl: app.globalData.img_url + '/' + res.data.data
+                          })
+                        }
+                      }
+                    })
+
                     wx.hideToast();
                     if (res) {
                       wx.redirectTo({
@@ -80,7 +98,7 @@ Page({
     }
   },
   onLoad: function () {
-    var that = this;
+    var _this = this;
     // 查看是否授权
     wx.getSetting({
       success: function (res) {
@@ -123,6 +141,22 @@ Page({
                             app.globalData.member_id = res.data.data.member_id;
                             app.globalData.uniacid = res.data.data.uniacid;
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
+                            // 获取logo
+                            wx.request({
+                              url: app.globalData.tiltes + 'store_logo_index',
+                              data: {
+                                uniacid: app.globalData.uniacid
+                              },
+                              method: 'POST',
+                              success: function(res){
+                                console.log(res)
+                                if(res.data.status == 1){
+                                  _this.setData({
+                                    logoUrl: app.globalData.img_url + '/' + res.data.data
+                                  })
+                                }
+                              }
+                            })
                             wx.hideToast();
                             if (res) {
                               wx.redirectTo({
