@@ -4,7 +4,7 @@
     <view class='goods_info_wrap'>
       <!-- 如果购物车内没有数据，就显示没有数据 -->
       <view class="cartList" hidden="{{!iscart}}">
-        <image src="img/u2890.png" mode='widthFix' style='width:200rpx;' />
+        <image src="http://ptcb077mt.bkt.clouddn.com/u2890.png" mode='widthFix' style='width:200rpx;' />
         <view class='no_good_text'>哎呦，购物车空空如也~</view>
         <view class='buton_to'>到商城随便逛逛</view>
       </view>
@@ -22,7 +22,7 @@
               <view class='good_infor'>{{item.desc}}</view>
               <view class='good_price'>
                 <view class='price'>
-                  <image src='img/u300.png' mode='widthFix' style='width:40rpx;'></image>
+                  <image src='http://ptcb077mt.bkt.clouddn.com/img1.png' mode='widthFix' style='width:40rpx;'></image>
                   <view class='text_red'>￥{{item.money}}</view>
                 </view>
                 <view class='good_num text_red'>×{{item.goods_unit}}</view>
