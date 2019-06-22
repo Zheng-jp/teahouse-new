@@ -54,7 +54,8 @@
     "pages/seach/seach",
     "pages/live/index/index",
     "sweep/pages/index/index",
-    "sweep/pages/sweep_detail/sweep_detail"
+    "sweep/pages/sweep_detail/sweep_detail",
+    "pages/diy/index/index"
   ],
   "subpackages": [
     {
@@ -94,12 +95,32 @@
       ]
     }
   ],
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/diy/index/index",
+        "text": "首页"
+      },{
+        "pagePath": "pages/storage/view/view",
+        "text": "茶仓"
+      },{
+        "pagePath": "pages/circle/circle",
+        "text": "茶圈"
+      },{
+        "pagePath": "pages/live/index/index",
+        "text": "直播"
+      },{
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#F9F9F9",
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
-    
   },
   "sitemapLocation": "sitemap.json"
 }
