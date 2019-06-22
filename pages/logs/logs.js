@@ -8,6 +8,7 @@ Page({
     logoUrl: '',
   },
   bindGetUserInfo: function (e) {
+    var _this = this;
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       wx.login({//login流程
@@ -64,8 +65,9 @@ Page({
 
                     wx.hideToast();
                     if (res) {
-                      wx.redirectTo({
-                        url: '../../diy/index/index' //装修后的首页
+                      wx.switchTab({
+                        // url: '../../diy/index/index' //装修后的首页
+                        url: '../diy/index/index' //装修后的首页
                       })
                     }else {
                       console.log("kong")
@@ -159,8 +161,9 @@ Page({
                             })
                             wx.hideToast();
                             if (res) {
-                              wx.redirectTo({
-                                url: '../../diy/index/index', // 新首页
+                              wx.switchTab({
+                                // url: '../../diy/index/index', // 新首页
+                                url: '../diy/index/index', // 新首页
                                 success: function (res) {},
                                 fail: function () {},
                                 complete: function () {}
