@@ -21,14 +21,8 @@ Page({
     var that = this;
     if (e.detail.value == "个人") {
       that.geren();
-      // that.setData({
-      //   select: 1,
-      // })
     } else {
       that.qiye();
-      // that.setData({
-      //   select: 0,
-      // })
     }
   },
   radioChange10: function(e) {
@@ -106,10 +100,6 @@ Page({
           status: that.data.invoice10,
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "json" // 默认值
-
-        // },
         success: function(res) {
           wx.setStorageSync('receipt_id', res.data.data.receipt_id);
           wx.navigateBack({
@@ -158,19 +148,13 @@ Page({
           name: e.detail.value.name,
           user_phone: e.detail.value.phone_num,
           email: e.detail.value.email
-
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "json" // 默认值
-
-        // },
         success: function (res) {
           wx.setStorageSync('receipt_id', res.data.data.receipt_id);
           wx.navigateBack({
             delta: 1
           });
-
         },
         fail: function () {
 
@@ -209,10 +193,6 @@ Page({
         // member_id: 1049,
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
       success: function (res) {
         console.log(res);
         if (res.data.status == "1") {
@@ -226,8 +206,6 @@ Page({
             select: 1
           })
         }
-
-
       },
       fail: function () {
 
@@ -243,13 +221,8 @@ Page({
       url: app.globalData.tiltes + 'approve_corporation',
       data: {
         member_id:app.globalData.member_id,
-        // member_id: 1049,
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
       success: function (res) {
         if (res.data.status == "1") {
           that.setData({
@@ -262,8 +235,6 @@ Page({
             select: 0
           })
         }
-
-
       },
       fail: function () {
 
@@ -285,9 +256,6 @@ Page({
       select:0,
     })
   },
-  
-
-
 
   /**
    * 生命周期函数--监听页面加载
@@ -298,15 +266,10 @@ Page({
       url: app.globalData.tiltes + 'receipt_status',
       data: {},
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
       success: function(res) {
         that.setData({
           statics: res.data.data.status
         })
-
       },
       fail: function() {
 
@@ -316,11 +279,6 @@ Page({
       }
     })
     that.qiye();
-  
-   
-
-
-
   },
 
   /**
@@ -336,39 +294,4 @@ Page({
   onShow: function() {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
 })

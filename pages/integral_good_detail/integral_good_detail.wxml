@@ -20,7 +20,7 @@
 			<view class='share' >
 			<button open-type="share" >
 			</button>
-				<image src='img/u1492.png' class='footbar_ico'></image>
+				<image src='http://ptcb077mt.bkt.clouddn.com/u1492.png' class='footbar_ico'></image>
 				<view class='footbar_text' >分享</view>
 			</view>
 		</view>
@@ -57,7 +57,7 @@
 
 			<view class='service' style='margin-right:10px'>
 
-				<image src='img/u1510.png' class='footbar_ico'></image>
+				<image src='http://ptcb077mt.bkt.clouddn.com/u1510.png' class='footbar_ico'></image>
 				<view class='footbar_text'>客服</view>
 			</view>
 
