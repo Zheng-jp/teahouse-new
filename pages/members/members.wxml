@@ -14,7 +14,7 @@
                         <view>会员码</view>
                         <view >{{information.dimension}}</view>
                     </view>
-                    <view class='code' bindtap="bindViewTap"><image src='img/u8531.png'></image></view>
+                    <view class='code' bindtap="bindViewTap"><image src='http://ptcb077mt.bkt.clouddn.com/u8531.png'></image></view>
                   </view>
               </view>
               <view class='name'>{{item.member_grade_name}}</view>
@@ -57,7 +57,7 @@
 
  </view>
       <view class='tips'>
-       <view class="tip_img"><image src='img/u8340.png'></image></view>
+       <view class="tip_img"><image src='http://ptcb077mt.bkt.clouddn.com/u8340.png'></image></view>
        <view class='tip_text'>
             <view>1.当消费达到以上等级，即可成员该等级会员并享受等级会员服务；</view>
             <view> 2.您还可以直接等级会员充值，成为会员，充值有赠送哦~；</view>

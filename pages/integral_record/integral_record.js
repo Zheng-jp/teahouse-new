@@ -20,10 +20,6 @@ Page({
         open_id: app.globalData.gmemberid,
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
       success: function (res) {
         that.setData({
           integrals: res.data.data,

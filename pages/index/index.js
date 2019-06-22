@@ -19,29 +19,29 @@ Page({
     interval: '4000',
     autoplay: 'true',
     // 小喇叭图片地址
-    laba: 'img/u206.png',
+    laba: 'http://ptcb077mt.bkt.clouddn.com/u206.png',
     // 关闭图片地址
-    close: 'img/close.png',
+    close: 'http://ptcb077mt.bkt.clouddn.com/close.png',
     // 更多图片地址
-    more: 'img/more.png',
+    more: 'http://ptcb077mt.bkt.clouddn.com/more2.png',
     nav: [{
-        url: 'img/u103.png',
+        url: 'http://ptcb077mt.bkt.clouddn.com/u103.png',
         text: '商品分类'
       },
       {
-        url: 'img/u266.png',
+        url: 'http://ptcb077mt.bkt.clouddn.com/u266.png',
         text: '我的消息'
       },
       {
-        url: 'img/u105.png',
+        url: 'http://ptcb077mt.bkt.clouddn.com/u105.png',
         text: '买茶入仓'
       },
       {
-        url: 'img/u107.png',
+        url: 'http://ptcb077mt.bkt.clouddn.com/u107.png',
         text: '出仓提货'
       },
       {
-        url: 'img/u242.png',
+        url: 'http://ptcb077mt.bkt.clouddn.com/u242.png',
         text: '茶山走势'
       },
 

@@ -2,7 +2,7 @@
 <view class='all'>
   <view class='mask' wx:if="{{mask_show}}">
     <view class='select-ser-pop'>
-      <image src='img/x.png' mode="widthFix" class='close-select-pop' bindtap="hideFlag" style='hight:44rpx'></image>
+      <image src='http://ptcb077mt.bkt.clouddn.com/x.png' mode="widthFix" class='close-select-pop' bindtap="hideFlag" style='hight:44rpx'></image>
       <view class='select-goods-wrap'>
         <view class='select-goods-img'>
           <image src='{{url}}{{images}}' mode="widthFix"></image>
@@ -71,7 +71,7 @@
       </view>
       <view class='share'>
         <button open-type="share"></button>
-        <image src='img/u1492.png' class='footbar_ico'></image>
+        <image src='http://ptcb077mt.bkt.clouddn.com/u1492.png' class='footbar_ico'></image>
         <view class='footbar_text'>分享</view>
       </view>
     </view>
@@ -83,7 +83,7 @@
     
     <view class='other_info'>
       <view class='other_info_list'>
-        <image class="other_info_img" src="img/u2151.png" mode="widthFix"></image>
+        <image class="other_info_img" src="http://ptcb077mt.bkt.clouddn.com/u2151.png" mode="widthFix"></image>
         <text class="other_info_text">7*24客服</text>
       </view>
       
@@ -94,7 +94,7 @@
       <text>选择：</text>
       <text class='type'>{{select}}</text>
     </view>
-    <image class='more' src='img/u1508.png' mode="widthFix"></image>
+    <image class='more' src='http://ptcb077mt.bkt.clouddn.com/u1508.png' mode="widthFix"></image>
   </view>
   <view class='tab-box'>
     <view class="nav bc_white">
@@ -119,7 +119,7 @@
         <view class='comment_list'>
           <view class='comment_repay'>
             <view class='comment_ico'>
-              <image src='img/photo.png'></image>
+              <image src='http://ptcb077mt.bkt.clouddn.com/photo.png'></image>
             </view>
             <view class='comment_right'>
               <view class='comment_name'>瑞川</view>
@@ -161,12 +161,12 @@
       </view>
       <view class='service'>
         <button open-type="contact" class="line"></button>
-        <image src='img/u1510.png' class='footbar_ico'></image>
+        <image src='http://ptcb077mt.bkt.clouddn.com/u1510.png' class='footbar_ico'></image>
         <view class='footbar_text'>客服</view>
       </view>
       <view class='shopping_cart' bindtap="go_car">
         <view class="buy_num">{{buy_num}}</view>
-        <image src='img/u1494.png' class='footbar_ico'></image>
+        <image src='http://ptcb077mt.bkt.clouddn.com/u1494.png' class='footbar_ico'></image>
         <view class='footbar_text'>购物车</view>
       </view>
     </view>

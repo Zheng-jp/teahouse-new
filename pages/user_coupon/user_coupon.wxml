@@ -6,7 +6,7 @@
 				<view class='order_list_content'>
 				   <!-- <checkbox value="{{item.name}}" checked="{{item.checked}}" /> -->
 					<view class="coupon_box" >
-						<image class="coupon_box_img" src="img/u11123.png" mode="widthFix"></image>
+						<image class="coupon_box_img" src="http://ptcb077mt.bkt.clouddn.com/u11123.png" mode="widthFix"></image>
 						<view class="coupon_money_box">
 							<view><text class="money">{{item.money}}</text><text class="money_unit">元</text></view>
 							<view class="limit">满{{item.use_price}}使用</view>

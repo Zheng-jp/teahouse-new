@@ -12,7 +12,7 @@
             <image class="name_img" src="img/u1329.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
             <view class="name_text">户名:</view>
          </view>
-         <view class="list2_text">深圳市环保质量监督局</view>
+         <view class="list2_text"></view>
       </view>
       <view class="tips">温馨提示：本平台提供发票寄送服务，且不提供发票作废服务，如需重开请联系平台商，如需退货需扣除发票款项；</view>
       <view class="list">
@@ -33,7 +33,7 @@
       <view class="list">
          <view class="list_name">发票抬头</view>
          <view class="input">
-            <input class="" value="" type="text" placeholder="深圳市环保质量监督局" name="name1"></input>
+            <input class="" value="" type="text" placeholder="请输入完整企业名称" name="name1"></input>
          </view>
       </view>
       <view class="list">
@@ -75,7 +75,7 @@
             <image class="name_img" src="img/u1329.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
             <view class="name_text">户名:</view>
          </view>
-         <view class="list2_text">深圳市环保质量监督局</view>
+         <view class="list2_text"></view>
       </view>
       <view class="tips">温馨提示：本平台提供发票寄送服务，且不提供发票作废服务，如需重开请联系平台商，如需退货需扣除发票款项；</view>
       <view class="list">
