@@ -498,7 +498,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
   newRedirectto: function (n, e) {
     switch (e) {
       case "page":
-        wx.switchTab({
+        wx.navigateTo({
           url: n
         });
         break;
