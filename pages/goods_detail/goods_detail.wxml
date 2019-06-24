@@ -56,7 +56,7 @@
     <view class='purchasing_view'>仅剩{{goods.goods_repertory}}{{goods.unit}}</view>
     <view>
       <view>距结束仅剩</view>
-      <view>23天14时01分48秒</view>
+      <view>{{clock}}</view>
     </view>
   </view>
   <view class='goods_cont'>

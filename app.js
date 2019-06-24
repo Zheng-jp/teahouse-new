@@ -99,13 +99,13 @@ App({
   },
   // siteInfo: require("siteinfo.js"),
   onShow: function() {
-    console.log(getCurrentPages());
+    // console.log(getCurrentPages());
   },
   onHide: function() {
-    console.log(getCurrentPages());
+    // console.log(getCurrentPages());
   },
   onError: function(e) {
-    console.log(e);
+    // console.log(e);
   },
   bezier: function(e, n) {
     for (var t, o, a, i = [], c = 0; c <= n; c++) {
@@ -433,7 +433,7 @@ App({
   globalData: {
     userInfo: null,
     baseurl: url,
-    uniacid: 6,
+    uniacid: null,
     userInfo: null,
     gmemberid: null,
     member_grade_img: null,
@@ -447,7 +447,5 @@ App({
     // url:'http://localhost/teahouse.siring.com.cn',
     // tiltes:'http://localhost/teahouse/public/',
     // img_url:' http://localhost/teahouse/public/uploads/'
-
-
   }
 })

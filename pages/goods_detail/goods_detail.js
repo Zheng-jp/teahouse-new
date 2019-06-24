@@ -461,6 +461,50 @@ Page({
 		}
 	},
 
+	// 倒计时
+	countdown: function (that) {
+		// console.log(that.data.goods.limit_time)
+	var EndTime = new Date(Number(that.data.goods.limit_time)* 1000).getTime() || [];
+	
+	var NowTime = new Date().getTime();
+	var total_micro_second = EndTime - NowTime || [];  //单位毫秒
+	if (total_micro_second < 0) {
+	 // console.log('时间初始化小于0，活动已结束状态');
+	 total_micro_second = 1;   //单位毫秒 ------ WHY？
+	}
+	// console.log('剩余时间：' + total_micro_second);
+	// 渲染倒计时时钟
+	that.setData({
+	 clock: that.dateformat(total_micro_second)  //若已结束，此处输出'0天0小时0分钟0秒'
+	});
+	if (total_micro_second <= 0) {
+	 that.setData({
+	  clock: "已经截止"
+	 });
+	 return;
+	}
+	setTimeout(function () {
+		total_micro_second -= 1000;
+	 that.countdown(that);
+	}
+	 , 1000)
+   },
+	 
+   // 时间格式化输出，如11天03小时25分钟19秒 每1s都会调用一次
+   dateformat: function (micro_second) {
+	// 总秒数
+	var second = Math.floor(micro_second / 1000);
+	// 天数
+	var day = Math.floor(second / 3600 / 24);
+	// 小时
+	var hr = Math.floor(second / 3600 % 24);
+	// 分钟
+	var min = Math.floor(second / 60 % 60);
+	// 秒
+	var sec = Math.floor(second % 60);
+	return day + "天" + hr + "小时" + min + "分钟" + sec + "秒";
+   },
+   
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -471,6 +515,7 @@ Page({
 		that.setData({
 			member_grade_img: member_grade_img,
 		})
+		
 		var title = options.title;
 		wx.request({
 			url: app.globalData.tiltes + 'commodity_detail',
@@ -481,7 +526,6 @@ Page({
 			},
 			method: "post",
 			success: function (res) {
-				console.log(res);
 				that.setData({
 					goods: res.data.data[0],
 					good_id: parseInt(options.title),
@@ -490,6 +534,9 @@ Page({
 					stock: res.data.data[0].goods_standard[0].stock,
 					image: res.data.data[0].goods_show_images
 				});
+				// that.countdown(that);
+				// console.log('--------------------------------')
+			  	// console.log(that.countdown(that))
 				var article = res.data.data[0].goods_text;
 				WxParse.wxParse('article', 'html', article, that, 5);
 				//  添加字段到等级数组
@@ -509,6 +556,15 @@ Page({
 				wx.hideLoading()
 			}
 
+		});
+		that.countdown(that);
+		wx.request({
+			success: function(request) {
+			  // 倒计时(获取结束时间后再进行倒计时方法调用)
+			  this.countdown(this);
+			//   console.log('--------------------------------')
+			//   console.log()
+			}
 		});
 		wx.request({
 			url: app.globalData.tiltes + 'member_default_address_return',
