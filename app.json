@@ -87,12 +87,6 @@
         "invoice_add/invoice_add",
         "invoice_select/invoice_select"
       ]
-    },
-    {
-      "root": "diy",
-      "pages": [
-        "index/index"
-      ]
     }
   ],
   "tabBar": {
