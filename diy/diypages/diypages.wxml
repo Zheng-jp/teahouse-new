@@ -594,13 +594,13 @@
 </template>
 <template name="show_page_dnfw">
     <view style="padding:{{style.paddingtop*2}}rpx {{style.paddingleft*2}}rpx;background:{{params.styledata==1?'url('+params.backgroundimg+')':''}} {{params.positiony}} {{params.positionx}} {{params.repeat}} {{style.background}};background-size:{{params.size==1?'cover':style.sizew+'%'}} {{params.size==1?'':style.sizeh+'%'}};margin-top:{{style.mt*2}}rpx;" wx:if="{{params.showtype==0}}">
-        <view class="display-inline-block hbj" style="width:{{100/params.rownum}}%;text-align:center" wx:for="{{data}}">
+        <view class="display-inline-block hbj" style="width:{{100/params.rownum}}%;text-align:center" wx:for="{{data}}" wx:key="index">
             <icon class="iconfont {{item.iconclass}}" style="margin-right:10rpx;font-size:{{style.iconfz*2}}rpx;color:{{style.tbcolor}};background:{{style.tbbg}}"></icon>
             <text style="font-size:{{style.fontsize*2}}rpx;color:{{style.color}}">{{item.text}}</text>
         </view>
     </view>
     <scroll-view scrollX style="white-space:nowrap;box-sizing:border-box;padding:{{style.paddingtop*2}}rpx {{style.paddingleft*2}}rpx;background:{{params.styledata==1?'url('+params.backgroundimg+')':''}} {{params.positiony}} {{params.positionx}} {{params.repeat}} {{style.background}};background-size:{{params.size==1?'cover':style.sizew+'%'}} {{params.size==1?'':style.sizeh+'%'}};margin-top:{{style.mt*2}}rpx;" wx:if="{{params.showtype==1}}">
-        <view class="display-inline-block" style="width:{{100/params.rownum}}%" wx:for="{{data}}">
+        <view class="display-inline-block" style="width:{{100/params.rownum}}%" wx:for="{{data}}" wx:key="index">
             <view class="hbj" style="padding:20rpx 10rpx;">
                 <view class="hbj" style="font-size:{{style.pdl*2}}rpx">
                     <icon class="iconfont {{item.iconclass}}" style="width:40rpx;margin-right:10rpx;color:{{style.tbcolor}};background:{{style.tbbg}};text-align:center"></icon>
@@ -656,7 +656,7 @@
 </template>
 <template name="show_page_msmk">
     <view style="padding:0 {{params.navstyle==1?style.pdw*2:style.pdw}}rpx;background:{{params.styledata==1?'url('+params.backgroundimg+')':''}} {{params.positiony}} {{params.positionx}} {{params.repeat}} {{style.background}};background-size:{{params.size==1?'cover':style.sizew+'%'}} {{params.size==1?'':style.sizeh+'%'}};margin-top:{{style.mt*2}}rpx;box-sizing:border-box;">
-        <view bindtap="redirectto" class="hbj" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="padding:{{style.pdh*2}}rpx 0;background:#fff;border-bottom:1px solid #eee;position:relative;" wx:if="{{params.navstyle==1}}" wx:for="{{msmk}}">
+        <view bindtap="redirectto" class="hbj" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="padding:{{style.pdh*2}}rpx 0;background:#fff;border-bottom:1px solid #eee;position:relative;" wx:if="{{params.navstyle==1}}" wx:for="{{msmk}}" wx:key="index">
             <image mode="{{style.pich==1?'widthFix':''}}" src="{{item.thumb}}" style="width:168rpx;height:{{style.pich==2?'168rpx;':''}}{{style.pich==3?'84rpx;':''}}{{style.pich==4?'126rpx;':''}}"></image>
             <view style="margin-left:30rpx;flex:1">
                 <view style="overflow:hidden;">
@@ -681,7 +681,7 @@
                 </view>
             </view>
         </view>
-        <block wx:if="{{params.navstyle==2}}" wx:for="{{msmk}}">
+        <block wx:if="{{params.navstyle==2}}" wx:for="{{msmk}}" wx:key="index">
             <view bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="display:inline-block;box-sizing:border-box;width:50%;padding:{{style.pdh*2}}rpx {{style.pdw}}rpx" wx:if="{{style.showtype==0}}">
                 <image mode="{{style.pich==1?'widthFix':'aspectFill'}}" src="{{item.thumb}}" style="width:100%;height:{{style.pich==2?(750-style.pdw*6)/2:''}}{{style.pich==3?(750-style.pdw*6)/4:''}}{{style.pich==4?(750-style.pdw*6)*3/8:''}}rpx;display:block"></image>
                 <view style="width:100%;height:48rpx;font-size:20rpx;line-height:48rpx;color:#fff;text-align:center;overflow:hidden;background:#FF4A47" wx:if="{{item.endtime}}">
@@ -749,7 +749,7 @@
 </template>
 <template name="show_page_banner">
     <swiper autoplay="true" indicatorColor="{{style.background}}" indicatorDots="{{params.navstyle==1?false:true}}" interval="{{style.speed*1000}}" style="background:{{params.styledata==1?'url('+params.backgroundimg+')':''}} {{params.positiony}} {{params.positionx}} {{params.repeat}} {{style.background}};background-size:{{params.size==1?'cover':style.sizew+'%'}} {{params.size==1?'':style.sizeh+'%'}};margin-top:{{style.mt*2}}rpx;padding:{{style.paddingtop*2}}rpx {{style.paddingleft*2}}rpx;height:{{imgheight>0?imgheight*2:params.imgh*(750-style.paddingleft*4)/params.imgw}}rpx" wx:if="{{params.navstyle2==0}}">
-        <swiper-item style="position:relative" wx:for="{{data}}">
+        <swiper-item style="position:relative" wx:for="{{data}}" wx:key="index">
             <button openType="contact" style="background:none;border-radius:0;padding:0;line-height:48rpx;position:absolute;left:0;bottom:0;width:100%" wx:if="{{item.linktype=='server'}}">
                 <image bindload="swiperh" bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" id="mjltest" onload="swiperh" src="{{item.imgurl}}" style="width:100%;position:relative;height:{{imgheight>0?imgheight*2:params.imgh*(750-style.paddingleft*4)/params.imgw}}rpx"></image>
                 <view class="hbj" style="position:absolute;left:0;bottom:0;padding:{{style.pdh*2}}rpx {{style.pdw*2}}rpx;color:{{style.text_color}};font-size:28rpx;background:{{style.bg}};opacity:{{style.opacity}};width:100%;box-sizing:border-box;text-align:left;line-height:48rpx;" wx:if="{{params.navstyle==1}}">
@@ -769,7 +769,7 @@
         </swiper-item>
     </swiper>
     <swiper autoplay="true" indicatorColor="{{style.background}}" indicatorDots="{{params.navstyle==1?false:true}}" interval="{{style.speed*1000}}" nextMargin="20rpx" previousMargin="20rpx" style="background:{{params.styledata==1?'url('+params.backgroundimg+')':''}} {{params.positiony}} {{params.positionx}} {{params.repeat}} {{style.background}};background-size:{{params.size==1?'cover':style.sizew+'%'}} {{params.size==1?'':style.sizeh+'%'}};margin-top:{{style.mt*2}}rpx;padding:{{style.paddingtop*2}}rpx {{style.paddingleft*2}}rpx;height:{{imgheight>0?imgheight*2:params.imgh*(750-style.paddingleft*4-40)/params.imgw}}rpx" wx:if="{{params.navstyle2==1}}">
-        <swiper-item style="position:relative" wx:for="{{data}}">
+        <swiper-item style="position:relative" wx:for="{{data}}" wx:key="index">
             <button openType="contact" style="background:none;border-radius:0;padding:0" wx:if="{{item.linktype=='server'}}">
                 <image bindload="swiperh" bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" id="mjltest" mode="widthFix" onload="swiperh" src="{{item.imgurl}}" style="width:100%;position:relative;height:{{imgheight>0?imgheight*2:params.imgh*(750-style.paddingleft*4-40)/params.imgw}}rpx"></image>
                 <view class="hbj" style="position:absolute;left:0;bottom:0;padding:{{style.pdh*2}}rpx {{style.pdw*2}}rpx;color:{{style.text_color}};font-size:28rpx;background:{{style.bg}};opacity:{{style.opacity}};width:100%;box-sizing:border-box" wx:if="{{params.navstyle==1}}">

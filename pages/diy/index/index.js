@@ -139,11 +139,11 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       url: o.data.baseurl + "doPagehomepage",
       cachetime: "30",
       data: {
-        uniacid: o.data.uniacid
+        uniacid: app.globalData.uniacid
       },
       success: function (t) {
         var a = t.data.data.homepage,
-          e = t.data.data.pageid;
+            e = t.data.data.pageid;
         1 == a ? (o.setData({
           homepage: 1,
           foot_is: t.data.data.foot_is
@@ -177,7 +177,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
 
   },
   onShow: function () {
-
+    
   },
   getfoot: function (a) {
     var e = this;
@@ -185,7 +185,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       url: e.data.baseurl + "doPageGetFoot",
       cachetime: "30",
       data: {
-        uniacid: e.data.uniacid,
+        uniacid: app.globalData.uniacid,
         foot: a
       },
       success: function (t) {
@@ -291,7 +291,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     wx.request({
       url: o.data.baseurl + "doPageBase",
       data: {
-        uniacid: o.data.uniacid,
+        uniacid: app.globalData.uniacid,
         vs1: 1
       },
       cachetime: "30",
@@ -788,7 +788,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     wx.request({
       url: f.data.baseurl + "doPageDiypage",
       data: {
-        uniacid: f.data.uniacid,
+        uniacid: app.globalData.uniacid,
         pageid: t,
         open_id: app.globalData.gmemberid,
         member_grade_name: app.globalData.member_grade_name
@@ -1285,11 +1285,12 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       wx.request({
         url: a.data.baseurl + "doPagegetNewSessionkey",
         data: {
-          uniacid: a.data.uniacid,
+          uniacid: app.globalData.uniacid,
           code: t.code
         },
         success: function (t) {
-          console.log(t), a.setData({
+          // console.log(t), 
+          a.setData({
             newSessionKey: t.data.data
           });
         }
