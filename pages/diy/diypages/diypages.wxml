@@ -249,7 +249,7 @@
         </view>
     </view>
 </template>
-<template name="show_page_footmenu">
+<!-- <template name="show_page_footmenu">
     <block wx:if="{{foot_is==2}}">
         <view class="hbj footmenu" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:9998;border-top:2rpx solid {{style.bordercolor}};" wx:if="{{params.navstyle==0}}">
             <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{style.bdr==1?(750-(count-1)*2)/count+'rpx':100/count+'%'}};float:left;border-right:{{style.bdr==1?'2rpx solid '+style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{data}}">
@@ -264,7 +264,7 @@
             </view>
         </view>
     </block>
-</template>
+</template> -->
 <template name="show_page_xfk">
     <view style="position:fixed;bottom:{{style.top*2}}rpx;right:{{style.right*2}}rpx;z-index:9999">
         <block wx:for="{{data}}">
