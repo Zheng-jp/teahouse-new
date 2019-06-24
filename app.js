@@ -433,9 +433,7 @@ App({
   globalData: {
     userInfo: null,
     baseurl: url,
-
     uniacid: null,
-
     userInfo: null,
     gmemberid: null,
     member_grade_img: null,
