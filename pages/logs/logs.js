@@ -109,7 +109,6 @@ Page({
             title: '正在登录...',
             icon: 'loading',
             duration: 10000
-
           });
           wx.getUserInfo({
             success: function (res) {
