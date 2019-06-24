@@ -249,7 +249,7 @@ Page({
 	},
 	go_index: function (e) {
 		wx.navigateTo({
-			url: '../../diy/index/index',   //注意navigateTo只能跳转到带有tab的页面，不能跳转到不带tab的页面
+			url: '../diy/index/index',   //注意navigateTo只能跳转到带有tab的页面，不能跳转到不带tab的页面
 		})
 	},
 	/* 点击减号 */
