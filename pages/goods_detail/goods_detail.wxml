@@ -50,6 +50,15 @@
       </block>
     </swiper>
   </view>
+  <view class='purchasing' wx:if="{{goods.limit_condition== 1}}">
+    <view class='purchasing_view' style='font-size:35rpx;'>限时限购</view>
+    <view class='purchasing_view'>{{goods.limit_number==0?'无限购':'每人限购'+goods.limit_number+goods.unit}}</view>
+    <view class='purchasing_view'>仅剩{{goods.goods_repertory}}{{goods.unit}}</view>
+    <view>
+      <view>距结束仅剩</view>
+      <view>{{clock}}</view>
+    </view>
+  </view>
   <view class='goods_cont'>
   <!-- <text class='texts'>可存</text> -->
     <view class='good_name'>{{goods.goods_name}}</view>

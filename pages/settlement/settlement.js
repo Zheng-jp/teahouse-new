@@ -1512,6 +1512,7 @@ Page({
       success: function (res) {
         that.setData({
           goods: res.data.data,
+          authority: res.data.authority
         });
         var all_moneys = 0;
         var unit = [];
