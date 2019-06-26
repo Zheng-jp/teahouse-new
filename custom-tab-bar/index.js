@@ -19,6 +19,7 @@ Component({
       success: function (res) {
         var data = res.data.data;
         var nowUrl = '/'+getCurrentPages()[0].route;
+        console.log(nowUrl)
         for(let prop in data.data){
           if(data.data[prop].linkurl.indexOf('pages') == -1){
             data.data[prop].linkurl = '/pages' + data.data[prop].linkurl;

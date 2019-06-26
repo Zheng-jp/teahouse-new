@@ -66,7 +66,7 @@ Page({
     is_checked: true,
     unit_all: [], //报价单位
     ever_storage: [], //单个仓储费
-    fixiPhone: false//苹果底部适配
+    fixiPhone: false//苹果底部适配,
   },
   // 弹窗
   powerDrawer: function (e) {
@@ -1498,7 +1498,6 @@ Page({
     that.setData({
       user: user,
     });
-    console.log(user)
     wx.request({
       url: app.globalData.tiltes + 'order_return',
       data: {
@@ -1510,8 +1509,15 @@ Page({
       },
       method: "post",
       success: function (res) {
+        var delivery_a,delivery_b;
+        // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))
+        if(res.data.data[0].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1; 
+        if(res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1; 
         that.setData({
           goods: res.data.data,
+          authority: res.data.authority,
+          delivery_a : delivery_a,
+          delivery_b : delivery_b
         });
         var all_moneys = 0;
         var unit = [];

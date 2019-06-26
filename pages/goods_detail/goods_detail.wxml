@@ -50,8 +50,26 @@
       </block>
     </swiper>
   </view>
+  <view class='purchasing' wx:if="{{goods.limit_condition== 1}}">
+    <view  style='font-size:35rpx;'>限时限购</view>
+    <view class="aa">
+      <view class='purchasing_view'>
+        <view wx:if="{{goods.limit_number != 0}}">每人限购</view>
+        <view>{{goods.limit_number==0?'无限购':goods.limit_number+goods.unit}}</view>
+      </view>
+      <view class='purchasing_view'>
+        <view>仅剩</view>
+        <view>{{goods.goods_repertory}}{{goods.unit}}</view>
+      </view>
+      <view>
+        <view>距结束仅剩</view>
+        <view>{{clock}}</view>
+      </view>
+    </view>
+
+  </view>
   <view class='goods_cont'>
-  <!-- <text class='texts'>可存</text> -->
+    <!-- <text class='texts'>可存</text> -->
     <view class='good_name'>{{goods.goods_name}}</view>
     <view class='selling-point'>{{goods.goods_selling}}</view>
     <view class='price_cont'>
@@ -80,13 +98,13 @@
       <view class='inventory'>库存{{goods.goods_repertory}}{{goods.unit}}</view>
       <view class='sales'>销量{{goods.goods_volume}}{{goods.unit}}</view>
     </view>
-    
+
     <view class='other_info'>
       <view class='other_info_list'>
         <image class="other_info_img" src="http://ptcb077mt.bkt.clouddn.com/u2151.png" mode="widthFix"></image>
         <text class="other_info_text">7*24客服</text>
       </view>
-      
+
     </view>
   </view>
   <view class='ser-type' bindtap='showFlag' wx:if="{{goods.goods_standard!=0}}">
