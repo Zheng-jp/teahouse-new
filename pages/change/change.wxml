@@ -15,7 +15,7 @@
     <view class="list">
         <view class="tilte_text">我的邀请码</view>
         <view class="content">
-            <view class="context">0531</view>
+            <view class="context">{{user_code}}</view>
         </view>
     </view>
     <view class="list">

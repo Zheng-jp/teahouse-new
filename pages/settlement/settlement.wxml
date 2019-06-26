@@ -6,14 +6,14 @@
       <view class="coupon_content_left">您有以下可适用优惠券</view>
       <view class="coupon_content_right" bindtap="no_use">
         暂时不使用优惠券
-        <image class="retrue_ico" src="img/u2014.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+        <image class="retrue_ico" src="http://ptcb077mt.bkt.clouddn.com/u2014.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
       </view>
     </view>
     <view class='order_list' wx:for="{{coupon_order}}" data-id="{{item.id}}" bindtap="checkboxChangess" data-value="{{item.suit_price[0]}}">
       <view class='order_list_content'>
         <checkbox value="{{item.id}}" checked="{{item.checked}}" />
         <view class="coupon_box">
-          <image class="coupon_box_img" src="img/u11123.png" mode="widthFix"></image>
+          <image class="coupon_box_img" src="http://ptcb077mt.bkt.clouddn.com/u11123.png" mode="widthFix"></image>
           <view class="coupon_money_box">
             <view>
               <text class="money">{{item.money}}</text>
@@ -85,7 +85,7 @@
         <view class='unit-price-quantity'>
           <view class='unit-price'>
             <view class='unit-price-img'>
-              <image src='img/u216.png' mode="scaleToFill"></image>
+              <image src='http://ptcb077mt.bkt.clouddn.com/img1.png' mode="scaleToFill"></image>
             </view>
             <view class='unit-price-p text_red' wx:if="{{item.goods_info.goods_standard==0}}">
               ￥{{item.grade_price}}/{{item.goods_info.monomer}}
@@ -99,7 +99,7 @@
       </view>
     </view>
     <view class='quantity' wx:if="{{isnum}}">
-      <view class='purchase_quantity'>购买数量</view>
+      <view class='purchase_quantity'>购买数量{{item.goods_info.goods_delivery[0]}}</view>
       <view class='select_quantity'>
         <view class='subtract' bindtap="bindMinus">-</view>
         <view class='num'>
@@ -112,15 +112,15 @@
   <view class='way'>
     <view class='way_select'>
       <radio-group class="radio-group" bindchange="radioChange">
-        <label class="radio">
-          <radio value="选择直邮" color='#02A0E6' checked='checked' />
+        <label class="radio" wx:if="{{delivery_a == 1}}">
+          <radio value="选择直邮" color='#02A0E6' checked='checked'/>
           <text class='text_radio'>选择直邮</text>
         </label>
-        <label class="radio">
+        <label class="radio" wx:if="{{delivery_b == 1}}">
           <radio value="到店自提" color='#02A0E6' />
           <text class='text_radio'>到店自提</text>
         </label>
-        <label class="radio">
+        <label class="radio" wx:if="{{authority == 1}}">
           <radio value="选择存茶" color='#02A0E6' />
           <text class='text_radio'>选择存茶</text>
         </label>
@@ -137,7 +137,7 @@
           <view class='direct_mail_add'>{{address}}</view>
         </view>
         <view class='more_img' bindtap='go_direct_mail_address'>
-          <image src='img/u1959.png'></image>
+          <image src='http://ptcb077mt.bkt.clouddn.com/u1959.png'></image>
         </view>
       </view>
       <view class="direct_mail {{selected1?'show':'hidden'}}" bindtap='go_shop_address'>
@@ -149,7 +149,7 @@
           <view class='direct_mail_add'>{{shop_address.shop_address}}</view>
         </view>
         <view class='more_img'>
-          <image src='img/u1959.png'></image>
+          <image src='http://ptcb077mt.bkt.clouddn.com/u1959.png'></image>
         </view>
       </view>
       <view class="direct_mail {{selected2?'show':'hidden'}}" bindtap='go_save_tea'>
@@ -179,7 +179,7 @@
             </view>
           </view>
           <view class='more_img'>
-            <image src='img/u1959.png'></image>
+            <image src='http://ptcb077mt.bkt.clouddn.com/u1959.png'></image>
           </view>
         </view>
       </view>
@@ -199,7 +199,7 @@
     <view class='go_invoice_information'>
       <view>选择仓储年限</view>
       <!-- <view class='more_imgs' bindtap="powerDrawer" data-statu="open">
-				<image src='img/u1959.png' mode="scaleToFill"></image>
+				<image src='http://ptcb077mt.bkt.clouddn.com/u1959.png' mode="scaleToFill"></image>
 			</view> -->
       <view class='select_quantity'>
         <view class='subtract' bindtap="bindMinus1">-</view>
@@ -217,7 +217,7 @@
           <checkbox value="选择仓储保险" />
           选择仓储保险
         </label>
-        <image class="tips_img" src="img/u927.png" mode="widthFix"></image>
+        <image class="tips_img" src="http://ptcb077mt.bkt.clouddn.com/u927.png" mode="widthFix"></image>
         <view class="" class="tips_content">*可选项，默认1年</view>
         <view class='invoice_money text_red'>¥ 0.00</view>
       </view>
@@ -226,7 +226,7 @@
     <view class='go_invoice_information'>
       <view>请选择保险年限</view>
       <!-- <view class='more_imgs' bindtap="powerDrawer" data-statu="open">
-				<image src='img/u1959.png' mode="scaleToFill"></image>
+				<image src='http://ptcb077mt.bkt.clouddn.com/u1959.png' mode="scaleToFill"></image>
 			</view> -->
       <view class='select_quantity'>
         <view class='subtract' bindtap="bindMinus2">-</view>
@@ -250,7 +250,7 @@
     <view class='go_invoice_information' bindtap="go_invoice_add">
       <view>请添加发票信息</view>
       <view class='more_imgs'>
-        <image src='img/u1959.png' mode="scaleToFill"></image>
+        <image src='http://ptcb077mt.bkt.clouddn.com/u1959.png' mode="scaleToFill"></image>
       </view>
     </view>
   </view>

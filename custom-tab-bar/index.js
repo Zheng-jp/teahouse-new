@@ -4,7 +4,8 @@ Component({
     // selected: 0,
     color: "#7A7E83",
     selectedColor: "#3cc51f",
-    list: []
+    list: [],
+    baseUrl: app.globalData.img_url
   },
   attached() {
     const _this = this;
@@ -17,8 +18,12 @@ Component({
       },
       success: function (res) {
         var data = res.data.data;
-        var nowUrl = getCurrentPages()[0].route;
+        var nowUrl = '/'+getCurrentPages()[0].route;
+        console.log(nowUrl)
         for(let prop in data.data){
+          if(data.data[prop].linkurl.indexOf('pages') == -1){
+            data.data[prop].linkurl = '/pages' + data.data[prop].linkurl;
+          }
           console.log(data.data[prop].linkurl, nowUrl, nowUrl.indexOf(data.data[prop].linkurl))
           if(data.data[prop].linkurl.indexOf(nowUrl) != -1){
             data.data[prop].change = true;
@@ -29,7 +34,7 @@ Component({
         _this.setData({
           list: data
         })
-        console.log(_this.data.list);
+        // console.log(_this.data.list);
       }
     })
   },
@@ -37,7 +42,7 @@ Component({
     switchTab(e) {
       const data = e.currentTarget.dataset;
       const url = data.path;
-      console.log(url)
+      console.log(this.data.list)
       wx.switchTab({
         url: url
       })

@@ -46,8 +46,6 @@ Page({
               setTimeout(function () {
                 wx.navigateBack();
               }, 2000)
-            } else {
-
             }
           },
           fail: function () { },
@@ -90,7 +88,7 @@ Page({
               setTimeout(function () {
                 wx.navigateBack();
               }, 2000)
-            } else { }
+            }
           },
           fail: function () { },
           complete: function (res) {
@@ -105,10 +103,7 @@ Page({
   },
   validateTel: function (tel) {
     var TEL_REGEXP = /^1[3456789]\d{9}$/;
-    if (TEL_REGEXP.test(tel)) {
-      return true;
-    }
-    return false;
+    return TEL_REGEXP.test(tel);
   },
   bindChange: function (event) {
     var that = this;
@@ -130,9 +125,7 @@ Page({
   },
   send_cold: throttle.throttle(function (e) {
     var that = this;
-    var _this = this
-    var is_phone = that.validateTel(that.data.num);
-    if (is_phone) {
+    if (that.validateTel(that.data.num)) {
       wx.request({
         url: app.globalData.tiltes + 'sendMobileCode',
         data: {
@@ -141,40 +134,39 @@ Page({
         },
         method: "post",
         success: function (res) {
-          var coden = 60    // 定义60秒的倒计时
-          var codeV = setInterval(function () {
-            _this.setData({    // _this这里的作用域不同了
-              btntext: '重新获取' + (--coden) + 's'
-            })
-            if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
-              clearInterval(codeV)
-              _this.setData({
-                btntext: '获取验证码'
+          if(res.data.status == 1){
+            var coden = 60    // 定义60秒的倒计时
+            var codeV = setInterval(function () {
+              that.setData({    // _this这里的作用域不同了
+                btntext: '重新获取' + (--coden) + 's'
               })
-            }
-          }, 1000)
+              if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
+                clearInterval(codeV)
+                that.setData({
+                  btntext: '获取验证码'
+                })
+              }
+            }, 1000)
+          }
         },
         fail: function () {},
         complete: function (res) {
           wx.showToast({
             title: res.data.info,
-            icon: 'none',
+            icon: 'none'
           });
         }
       });
     }else {
       wx.showToast({
-        title: '手机格式有问题',
-        icon: 'none',
-      })
+        title: '手机格式不正确！',
+        icon: 'none'
+      });
     }
-
   }, 5000),
   send_cold1: throttle.throttle(function (e) {
     var that = this;
-    var _this = this
-    var is_phone = that.validateTel(that.data.newnum);
-    if (is_phone) {
+    if (that.validateTel(that.data.newnum)) {
       wx.request({
         url: app.globalData.tiltes + 'sendMobileCode',
         data: {
@@ -185,12 +177,12 @@ Page({
         success: function (res) {
           var coden = 60    // 定义60秒的倒计时
           var codeV = setInterval(function () {
-            _this.setData({    // _this这里的作用域不同了
+            that.setData({    // _this这里的作用域不同了
               btntext: '重新获取' + (--coden) + 's'
             })
             if (coden == -1) {  // 清除setInterval倒计时，这里可以做很多操作，按钮变回原样等
               clearInterval(codeV)
-              _this.setData({
+              that.setData({
                 btntext: '获取验证码'
               })
             }

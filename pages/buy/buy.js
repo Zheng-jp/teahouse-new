@@ -23,8 +23,7 @@ Page({
           '新益号',
           '普洱茶'
         ],
-        price_img: 'img/u300.png',
-
+        price_img: 'http://ptcb077mt.bkt.clouddn.com/img1.png',
       },
       {
         name: '双骄',
@@ -35,7 +34,7 @@ Page({
           '新益号',
           '普洱茶'
         ],
-        price_img: 'img/u300.png',
+        price_img: 'http://ptcb077mt.bkt.clouddn.com/img1.png',
         jiage: '￥120.0/片'
       },
       {
@@ -47,7 +46,7 @@ Page({
           '新益号',
           '普洱茶'
         ],
-        price_img: 'img/u300.png',
+        price_img: 'http://ptcb077mt.bkt.clouddn.com/img1.png',
         jiage: '￥120.0/片'
       },
 
@@ -60,7 +59,7 @@ Page({
           '新益号',
           '普洱茶'
         ],
-        price_img: 'img/u300.png',
+        price_img: 'http://ptcb077mt.bkt.clouddn.com/img1.png',
         jiage: '￥120.0/片'
       },
 
