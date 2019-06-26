@@ -692,6 +692,7 @@
                 <view class="hbj" style="margin-top:10rpx;">
                     <view style="font-size:36rpx;color:#FF4A47;flex:1">
                         <text style="font-size:24rpx;">￥</text>{{item.price}}
+                        <text style="font-size:12px;color: #838383; padding-top:5px;margin-left: 5px;text-decoration: line-through;">￥{{item.market_price}}</text>
             </view>
                     <view style="font-size:24rpx;color:#838383;padding-top:8rpx;margin-left:10rpx;">
                 已抢<text style="color:#FF4A47">
@@ -714,6 +715,7 @@
                     <view class="hbj" style="margin-top:10rpx;">
                         <view style="font-size:36rpx;color:#FF4A47;flex:1">
                             <text style="font-size:24rpx;">￥</text>{{item.price}}
+                            <text style="font-size:12px;color: #838383; padding-top:5px;margin-left: 5px;text-decoration: line-through;">￥{{item.market_price}}</text>
             </view>
                         <view style="font-size:24rpx;color:#838383;padding-top:8rpx;margin-left:10rpx;">
                 已抢<text style="color:#FF4A47">
