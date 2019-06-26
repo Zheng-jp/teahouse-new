@@ -60,7 +60,7 @@ Page({
   // 去首页
   bindSwitchTab: function(){
     wx.reLaunch({
-      url: '/diy/index/index'
+      url: '../../../pages/diy/index/index'
     })
   },
   // 打赏跳转
