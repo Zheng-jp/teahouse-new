@@ -63,6 +63,7 @@
 		font-size: 31rpx;
 		font-weight: bold;
     margin-bottom: 10px;
+    align-items : center;
 	}
 	
 	.selling-point {
@@ -89,7 +90,9 @@
     border-radius:6rpx;
     font-size:20rpx;
     text-align:center;
-    margin:10rpx;
+    margin: 0 5rpx;
+    display: inline-block;
+    padding: 5rpx;
   }
   
 	.other_info {
@@ -614,4 +617,10 @@ overflow:hidden;
   align-items:center;
   justify-content : center;
   width:80%;
+}
+.image_bq {
+  display: inline-block;
+  width: 50rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
 }

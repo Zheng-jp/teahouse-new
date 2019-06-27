@@ -51,7 +51,7 @@
     </swiper>
   </view>
   <view class='purchasing' wx:if="{{goods.limit_condition== 1}}">
-    <view  style='font-size:35rpx;'>限时限购</view>
+    <view style='font-size:35rpx;'>限时限购</view>
     <view class="aa">
       <view class='purchasing_view'>
         <view wx:if="{{goods.limit_number != 0}}">每人限购</view>
@@ -70,7 +70,13 @@
   </view>
   <view class='goods_cont'>
     <!-- <text class='texts'>可存</text> -->
-    <view class='good_name'>{{goods.goods_name}}</view>
+    <view class='good_name'>
+        <image class="image_bq" src="../../images/kecun.png" wx:if="{{kc == 1}}"></image>
+        <image class="image_bq" src="../../images/hot.png" wx:if="{{hot == 1}}"></image>
+        <image class="image_bq" src="../../images/chuxiao.png" wx:if="{{cx == 1}}"></image>
+        <image class="image_bq" src="../../images/qingchang.png" wx:if="{{qc == 1}}"></image>
+        <text class="texts" wx:for="{{goods.goods_sign}}" wx:key="{{index}}">{{item.text}}</text>{{goods.goods_name}}
+    </view>
     <view class='selling-point'>{{goods.goods_selling}}</view>
     <view class='price_cont'>
       <view style="display:flex; align-items:flex-end;margin-bottom:-15px">

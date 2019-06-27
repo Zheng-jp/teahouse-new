@@ -24,7 +24,7 @@ Component({
           if(data.data[prop].linkurl.indexOf('pages') == -1){
             data.data[prop].linkurl = '/pages' + data.data[prop].linkurl;
           }
-          console.log(data.data[prop].linkurl, nowUrl, nowUrl.indexOf(data.data[prop].linkurl))
+          // console.log(data.data[prop].linkurl, nowUrl, nowUrl.indexOf(data.data[prop].linkurl))
           if(data.data[prop].linkurl.indexOf(nowUrl) != -1){
             data.data[prop].change = true;
           }else{
@@ -34,7 +34,7 @@ Component({
         _this.setData({
           list: data
         })
-        // console.log(_this.data.list);
+        console.log(_this.data.list);
       }
     })
   },

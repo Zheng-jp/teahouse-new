@@ -248,8 +248,8 @@ Page({
 		})
 	},
 	go_index: function (e) {
-    wx.redirectTo({
-			url: '../diy/index/index',   //注意navigateTo只能跳转到带有tab的页面，不能跳转到不带tab的页面
+    wx.navigateBack({
+			delta: 2   //注意navigateTo只能跳转到带有tab的页面，不能跳转到不带tab的页面
 		})
 	},
 	/* 点击减号 */
@@ -526,17 +526,37 @@ Page({
 			},
 			method: "post",
 			success: function (res) {
+        let arr = [], kc, hot, cx, qc;
+        var goods_sign = res.data.data[0].goods_sign;
+        for (let i in goods_sign) {
+          if (goods_sign[i].text == '可存') {
+            kc = 1;
+          } else if (goods_sign[i].text == 'HOT') {
+            hot = 1;
+          } else if (goods_sign[i].text == '促销') {
+            cx = 1;
+          } else if (goods_sign[i].text == '清仓') {
+            qc = 1;
+          } else {
+            arr.push(goods_sign[i]);
+          }
+        }
+        res.data.data[0].goods_sign = arr;
+        var goods = res.data.data[0];
+
 				that.setData({
-					goods: res.data.data[0],
+          goods: goods,
 					good_id: parseInt(options.title),
 					images: res.data.data[0].goods_standard[0].images,
 					price: res.data.data[0].goods_standard[0].price,
 					stock: res.data.data[0].goods_standard[0].stock,
-					image: res.data.data[0].goods_show_images
+					image: res.data.data[0].goods_show_images,
+          kc: kc,
+          hot: hot,
+          cx: cx,
+          qc: qc
 				});
-				// that.countdown(that);
-				// console.log('--------------------------------')
-			  	// console.log(that.countdown(that))
+
 				var article = res.data.data[0].goods_text;
 				WxParse.wxParse('article', 'html', article, that, 5);
 				//  添加字段到等级数组
