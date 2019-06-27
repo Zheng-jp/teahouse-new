@@ -429,8 +429,14 @@ Page({
               order_number: order_number,
             })
             wx.showActionSheet({
+<<<<<<< HEAD
               itemList: ['账户支付', '微信支付', ],
               success: function(res) {
+=======
+              itemList: ['账户支付', '微信支付',],
+              itemColor:'#0099ff',
+              success: function (res) {
+>>>>>>> bec06c07986189967a0e043ffe16836aa36ae0c1
                 // 账户支付
                 if (res.tapIndex == 0) {
                   that.showInputLayer();
@@ -539,8 +545,14 @@ Page({
               order_number: order_number,
             })
             wx.showActionSheet({
+<<<<<<< HEAD
               itemList: ['账户支付', '微信支付', ],
               success: function(res) {
+=======
+              itemList: ['账户支付', '微信支付',],
+              itemColor: '#0099ff',
+              success: function (res) {
+>>>>>>> bec06c07986189967a0e043ffe16836aa36ae0c1
 
                 // 账户支付
                 if (res.tapIndex == 0) {
@@ -649,8 +661,14 @@ Page({
               order_number: order_number,
             })
             wx.showActionSheet({
+<<<<<<< HEAD
               itemList: ['账户支付', '微信支付', ],
               success: function(res) {
+=======
+              itemList: ['账户支付', '微信支付',],
+              itemColor: '#0099ff',
+              success: function (res) {
+>>>>>>> bec06c07986189967a0e043ffe16836aa36ae0c1
                 // 账户支付
                 if (res.tapIndex == 0) {
                   that.showInputLayer();
@@ -867,8 +885,14 @@ Page({
               order_number: order_number,
             })
             wx.showActionSheet({
+<<<<<<< HEAD
               itemList: ['账户支付', '微信支付', ],
               success: function(res) {
+=======
+              itemList: ['账户支付', '微信支付',],
+              itemColor: '#0099ff',
+              success: function (res) {
+>>>>>>> bec06c07986189967a0e043ffe16836aa36ae0c1
                 // 账户支付
                 if (res.tapIndex == 0) {
                   that.showInputLayer();
@@ -976,8 +1000,14 @@ Page({
               order_number: order_number,
             })
             wx.showActionSheet({
+<<<<<<< HEAD
               itemList: ['账户支付', '微信支付', ],
               success: function(res) {
+=======
+              itemList: ['账户支付', '微信支付',],
+              itemColor: '#0099ff',
+              success: function (res) {
+>>>>>>> bec06c07986189967a0e043ffe16836aa36ae0c1
                 // 账户支付
                 if (res.tapIndex == 0) {
                   that.showInputLayer();
@@ -1085,8 +1115,14 @@ Page({
               order_number: order_number,
             })
             wx.showActionSheet({
+<<<<<<< HEAD
               itemList: ['账户支付', '微信支付', ],
               success: function(res) {
+=======
+              itemList: ['账户支付', '微信支付',],
+              itemColor: '#0099ff',
+              success: function (res) {
+>>>>>>> bec06c07986189967a0e043ffe16836aa36ae0c1
                 // 账户支付
                 if (res.tapIndex == 0) {
                   that.showInputLayer();
