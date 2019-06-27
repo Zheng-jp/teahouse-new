@@ -106,9 +106,9 @@
     </view>
 
     <view class='other_info'>
-      <view class='other_info_list'>
+      <view class='other_info_list' wx:for="{{goods.server}}" wx:key="{{index}}">
         <image class="other_info_img" src="http://ptcb077mt.bkt.clouddn.com/u2151.png" mode="widthFix"></image>
-        <text class="other_info_text">7*24客服</text>
+        <text class="other_info_text">{{item.text}}</text>
       </view>
 
     </view>
