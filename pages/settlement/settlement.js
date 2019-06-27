@@ -409,6 +409,7 @@ Page({
             })
             wx.showActionSheet({
               itemList: ['账户支付', '微信支付',],
+              itemColor:'#0099ff',
               success: function (res) {
                 // 账户支付
                 if (res.tapIndex == 0) {
@@ -518,7 +519,7 @@ Page({
               order_number: order_number,
             })
             wx.showActionSheet({
-              itemList: ['账户支付', '微信支付',],
+              itemList: ['账户支付123', '微信支付',],
               success: function (res) {
 
                 // 账户支付
@@ -628,7 +629,7 @@ Page({
               order_number: order_number,
             })
             wx.showActionSheet({
-              itemList: ['账户支付', '微信支付',],
+              itemList: ['账户支付123', '微信支付',],
               success: function (res) {
                 // 账户支付
                 if (res.tapIndex == 0) {
@@ -846,7 +847,7 @@ Page({
               order_number: order_number,
             })
             wx.showActionSheet({
-              itemList: ['账户支付', '微信支付',],
+              itemList: ['账户支付123', '微信支付',],
               success: function (res) {
                 // 账户支付
                 if (res.tapIndex == 0) {
@@ -955,7 +956,7 @@ Page({
               order_number: order_number,
             })
             wx.showActionSheet({
-              itemList: ['账户支付', '微信支付',],
+              itemList: ['账户支付123', '微信支付',],
               success: function (res) {
                 // 账户支付
                 if (res.tapIndex == 0) {
@@ -1064,7 +1065,7 @@ Page({
               order_number: order_number,
             })
             wx.showActionSheet({
-              itemList: ['账户支付', '微信支付',],
+              itemList: ['账户支付123', '微信支付',],
               success: function (res) {
                 // 账户支付
                 if (res.tapIndex == 0) {

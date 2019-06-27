@@ -374,7 +374,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   box-sizing: border-box;
   padding-left: 20rpx;
   background: #f2f2f1;
-  border-top: solid 2px #e4e4e4;
+
 }
 
 .buts {
