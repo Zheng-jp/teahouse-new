@@ -80,7 +80,7 @@
     </view>
     <view class="bg_f mb10">
       <view class="storeListTop" style="margin-bottom:0">
-        <view bindtap="tapMainMenu" class="storeListTop1" data-index="{{index}}" wx:for="{{menuContent}}" wx:for-item="value">
+        <view bindtap="tapMainMenu" class="storeListTop1" data-index="{{index}}" wx:for="{{menuContent}}" wx:for-item="value" wx:key="index">
           <text>{{value.title}}</text>
           <i class="{{item.id==cid&&subShow==1?'on':''}}" style="{{item.id==cid&&subShow==1?'border-bottom: 10rpx solid '+baseinfo.base_color2+';border-top:0':''}}"></i>
         </view>
@@ -88,7 +88,7 @@
       <dl class="menu">
         <dd class="font-sm" wx:if="{{showMenu}}">
           <ul>
-            <li bindtap="tapSubMenu" class="font-xs" data-index="{{indexc}}" wx:for="{{content}}" wx:for-index="indexc" wx:for-item="valuec">
+            <li bindtap="tapSubMenu" class="font-xs" data-index="{{indexc}}" wx:for="{{content}}" wx:for-index="indexc" wx:for-item="valuec" wx:key="index">
               {{valuec}}
             </li>
           </ul>
@@ -231,7 +231,7 @@
   <template is="forms_index" data="{{...formsConfig,sv:single_v,cv:checkbox_v,sv2:single_v2,cv2:checkbox_v2,date_c:date_c,time_c:time_c,co:baseinfo.base_color2}}" wx:if="{{baseinfo.form_index==1}}"></template>
 </block>
 <view style="min-height:{{height}}px;background:{{page.styledata==1?'url('+page.url+')':''}} {{page.styledata==1?page.positiony:''}} {{page.styledata==1?page.positionx:''}} {{page.background}};background-repeat:{{page.repeat}};background-size:{{page.size==1?'cover':page.sizew+'%'}} {{page.size==1?'':page.sizeh+'%'}}" wx:if="{{homepage==2}}">
-  <template is="show_page_{{item.id}}" data="{{...item,tabArr2:tabArr2,yuyin:yuyin,width:width,height:height,left:left,show_page_tcgg:show_page_tcgg,ewmshow:ewmshow,sec:sec,showFad:showFad,content:content,clock:clock,myname:myname,mytel:mytel,myadd:myadd,forminfo:forminfo,formname:formname,foot_is:foot_is,showvideo_diy:showvideo_diy,c:footer.close,i:footer.v_ico,videourl:videourl,msmk:msmk,siteroot:siteroot,content0:content0,content1:content1,content2:content2,content3:content3,content4:content4,picturewH:picturewH,picturewW:picturewW,menuContent:menuContent,subShow:subShow,showMenu:showMenu,content:content,store:store,footer:footer,longitude:longitude,latitude:latitude,markers:markers,pageset:pageset,wxmobile:wxmobile,formdescs:formdescs}}" wx:for="{{list}}"></template>
+  <template is="show_page_{{item.id}}" data="{{...item,tabArr2:tabArr2,yuyin:yuyin,width:width,height:height,left:left,show_page_tcgg:show_page_tcgg,ewmshow:ewmshow,sec:sec,showFad:showFad,content:content,clock:clock,myname:myname,mytel:mytel,myadd:myadd,forminfo:forminfo,formname:formname,foot_is:foot_is,showvideo_diy:showvideo_diy,c:footer.close,i:footer.v_ico,videourl:videourl,msmk:msmk,siteroot:siteroot,content0:content0,content1:content1,content2:content2,content3:content3,content4:content4,picturewH:picturewH,picturewW:picturewW,menuContent:menuContent,subShow:subShow,showMenu:showMenu,content:content,store:store,footer:footer,longitude:longitude,latitude:latitude,markers:markers,pageset:pageset,wxmobile:wxmobile,formdescs:formdescs}}" wx:for="{{list}}" wx:key="index"></template>
   <block wx:if="{{pageset&&page_is==1}}">
     <view style="width:100%;height:100%;position:fixed;left:0;top:0;z-index:10000" wx:if="{{pageset.kp_is==1}}">
       <view style="z-index:3000;position:absolute; top: 20rpx;right:10px;font-size:28rpx;padding:10rpx;background-color:rgba(0,0,0,0.5);border-radius:5px;color:#FFF;" wx:if="{{pageset.go_home==1}}">
@@ -270,12 +270,12 @@
 </view>
 <view class="tcc_bb" wx:if="{{ttcxs==1}}">
   <view class="tcc_bb_t">
-    <view bindtap="xuanzd" class="xlld {{index==xuanz?'act':''}}" data-index="{{index}}" wx:for="{{arrs}}">
+    <view bindtap="xuanzd" class="xlld {{index==xuanz?'act':''}}" data-index="{{index}}" wx:for="{{arrs}}" wx:key="index">
       {{item}}
     </view>
   </view>
   <view class="sddds">
-    <block wx:for="{{xx}}">
+    <block wx:for="{{xx}}" wx:key="index">
       <view bindtap="goux" class="nldks {{index==lixuanz?'act':''}}" data-index="{{index}}" wx:if="{{item.val==1}}">
         {{item.keys.yval}}
       </view>
