@@ -26,7 +26,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'approve_list',
       data: {
-       
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {

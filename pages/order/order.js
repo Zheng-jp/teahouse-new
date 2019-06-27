@@ -374,8 +374,8 @@ Page({
                 }); 
                
               },
-              fail: function () {
-             
+              fail: function (e) {
+                cons
               },
               complete: function () {
                 // wx.hideLoading()

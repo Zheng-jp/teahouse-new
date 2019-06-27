@@ -527,23 +527,30 @@ Page({
 			method: "post",
 			success: function (res) {
         let arr = [], kc, hot, cx, qc;
-        var goods_sign = res.data.data[0].goods_sign;
+        let goods_sign = res.data.data[0].goods_sign;
         for (let i in goods_sign) {
-          if (goods_sign[i].text == '可存') {
+          if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
             kc = 1;
-          } else if (goods_sign[i].text == 'HOT') {
+          } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
             hot = 1;
-          } else if (goods_sign[i].text == '促销') {
+          } else if (goods_sign[i].text == '促销' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
             cx = 1;
-          } else if (goods_sign[i].text == '清仓') {
+          } else if (goods_sign[i].text == '清仓' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
             qc = 1;
-          } else {
+          } else if (goods_sign[i].check == '1' && goods_sign[i].check != undefined){
             arr.push(goods_sign[i]);
           }
         }
         res.data.data[0].goods_sign = arr;
-        var goods = res.data.data[0];
 
+        let server = res.data.data[0].server
+        let server_arr = [];
+        for (let i in server) {
+          server_arr.push(server[i]);
+        }
+        res.data.data[0].server = server_arr;
+        
+        var goods = res.data.data[0];
 				that.setData({
           goods: goods,
 					good_id: parseInt(options.title),

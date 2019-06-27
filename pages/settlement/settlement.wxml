@@ -99,7 +99,7 @@
       </view>
     </view>
     <view class='quantity' wx:if="{{isnum}}">
-      <view class='purchase_quantity'>购买数量{{item.goods_info.goods_delivery[0]}}</view>
+      <view class='purchase_quantity'>购买数量</view>
       <view class='select_quantity'>
         <view class='subtract' bindtap="bindMinus">-</view>
         <view class='num'>
