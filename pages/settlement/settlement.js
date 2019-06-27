@@ -1070,6 +1070,7 @@ Page({
             })
             wx.showActionSheet({
               itemList: ['账户支付', '微信支付',],
+              
               itemColor: '#0099ff',
               success: function (res) {
                 // 账户支付
