@@ -105,6 +105,11 @@ Page({
     getData(this);
     switchProject('crowd_now', this);
     // 续费弹窗 初始化日期
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    })
+
   },
 
   // 切换 正在众筹 往期众筹
