@@ -13,9 +13,9 @@
         <view class="uplode_img">
             <view class="imgcontent" wx:for="{{tempFilePaths}}">
                 <image class="" src="{{item}}" mode="widthFix" lazy-load="false"  class="imgs"> </image>
-                <image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false"  class="delect_img"> </image>
+                <image class="" src="http://ptcb077mt.bkt.clouddn.com/a7.png" mode="widthFix" lazy-load="false"  class="delect_img"> </image>
             </view>
-            <image class="" src="../../images/1.png" mode="widthFix" lazy-load="false"  class="uplog" bindtap="up_img" wx:if="{{up_img_lenght}}" data-id="{{item.id}}"> </image>
+            <image class="" src="http://ptcb077mt.bkt.clouddn.com/1.png" mode="widthFix" lazy-load="false"  class="uplog" bindtap="up_img" wx:if="{{up_img_lenght}}" data-id="{{item.id}}"> </image>
         </view>
     </view>
     <view class="btn-area">

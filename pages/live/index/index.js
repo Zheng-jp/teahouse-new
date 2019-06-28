@@ -4,8 +4,8 @@ Page({
     currentTab: '',
     winHeight: 0, //窗口高度
     imgUrls: [
-      '/images/u2404.png',
-      '/images/u2404.png'
+      'http://ptcb077mt.bkt.clouddn.com/u2404.png',
+      'http://ptcb077mt.bkt.clouddn.com/u2404.png'
     ]
   },
 

@@ -219,7 +219,6 @@ Page({
 
 
     var url = getCurrentPages()[1].route;
-    console.log(url)
 
 
 

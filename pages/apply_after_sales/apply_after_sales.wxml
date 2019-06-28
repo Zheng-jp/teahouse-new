@@ -20,9 +20,9 @@
 		<view class="uplode_img">
 			<view class="imgcontent" wx:for="{{tempFilePaths}}">
 				<image class="" src="{{item}}" mode="widthFix" lazy-load="false" class="imgs"> </image>
-				<image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false" class="delect_img" data-id="{{item}}" bindtap="delect_img"> </image>
+				<image class="" src="http://ptcb077mt.bkt.clouddn.com/a7.png" mode="widthFix" lazy-load="false" class="delect_img" data-id="{{item}}" bindtap="delect_img"> </image>
 			</view>
-			<image class="" src="../../images/1.png" mode="widthFix" lazy-load="false" class="uplog" bindtap="up_img" wx:if="{{up_img_lenght}}"> </image>
+			<image class="" src="http://ptcb077mt.bkt.clouddn.com/1.png" mode="widthFix" lazy-load="false" class="uplog" bindtap="up_img" wx:if="{{up_img_lenght}}"> </image>
 		</view>
 		<view class="btn-area">
 			<button form-type="submit" class='button-hovers' >提交</button>
@@ -56,13 +56,13 @@
 		<view class="uplode_img">
 			<view class="imgcontent" wx:for="{{goods.images}}">
 				<image class="" src="{{url}}{{item.url}}" mode="widthFix" lazy-load="false" class="imgs"> </image>
-				<image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false" class="delect_img"  data-id="{{item.id}}" bindtap="delect_img_old"> </image>
+				<image class="" src="http://ptcb077mt.bkt.clouddn.com/a7.png" mode="widthFix" lazy-load="false" class="delect_img"  data-id="{{item.id}}" bindtap="delect_img_old"> </image>
 			</view>
             <view class="imgcontent" wx:for="{{tempFilePathss}}">
 				<image class="" src="{{item}}" mode="widthFix" lazy-load="false" class="imgs"> </image>
-				<image class="" src="../../images/a7.png" mode="widthFix" lazy-load="false" class="delect_img"  bindtap="delect_img_new" data-id="{{item}}"> </image>
+				<image class="" src="http://ptcb077mt.bkt.clouddn.com/a7.png" mode="widthFix" lazy-load="false" class="delect_img"  bindtap="delect_img_new" data-id="{{item}}"> </image>
 			</view>
-			<image class="" src="../../images/1.png" mode="widthFix" lazy-load="false" class="uplog" bindtap="up_imgs" wx:if="{{up_img_lenght}}" > </image>
+			<image class="" src="http://ptcb077mt.bkt.clouddn.com/1.png" mode="widthFix" lazy-load="false" class="uplog" bindtap="up_imgs" wx:if="{{up_img_lenght}}" > </image>
 		</view>
 		<view class="btn-area">
 			<button form-type="submit" class='button-hovers' >提交</button>

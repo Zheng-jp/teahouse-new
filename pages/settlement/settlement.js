@@ -77,9 +77,10 @@ Page({
   radioChange: function(e) {
     var that = this;
     let goods = that.data.goods;
-    this.onLoad();
+    if(that.data.goods_standby.length > 1) goods = that.data.goods_standby;
     if (e.detail.value == "选择直邮") {
       that.setData({
+        goods: goods,
         selected: true,
         selected1: false,
         selected2: false,
@@ -89,6 +90,7 @@ Page({
       that.money_freight();
     } else if (e.detail.value == "到店自提") {
       that.setData({
+        goods: goods,
         selected: false,
         selected1: true,
         selected2: false,
@@ -97,7 +99,7 @@ Page({
         freight: '0.00',
       })
     } else {
-
+      
       let arr = [];
       //购物车结算时，剔除不可存茶商品
       if (goods.length > 1) {
@@ -111,7 +113,7 @@ Page({
         wx.showToast({
           title: '已剔除非存储商品，您可结算可存储商品',
           icon: 'none',
-          duration: 2000
+          duration: 3000
         })
       } else {
         arr = that.data.goods;
@@ -1522,7 +1524,6 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    console.log(options)
     let user = JSON.parse(options.title);
     that.setData({
       user: user,
@@ -1544,12 +1545,11 @@ Page({
         goods = res.data.data;
         //单个商品时，存茶的判断
         if (goods.length < 2) {
+          authority = 0;
           for (let i = 0; i < goods.length; i++) {
             for (let o in goods[i].goods_info.goods_sign) {
               if (goods[i].goods_info.goods_sign[o].text == '可存' && goods[i].goods_info.goods_sign[o].check == '1' && goods[i].goods_info.goods_sign[o].check != undefined) {
                 authority = 1;
-              } else {
-                authority = 0;
               }
             }
           }
@@ -1559,6 +1559,7 @@ Page({
         if (res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;
         that.setData({
           goods: res.data.data,
+          goods_standby: res.data.data,
           authority: authority,
           delivery_a: delivery_a,
           delivery_b: delivery_b
@@ -1886,9 +1887,11 @@ Page({
         },
         method: "post",
         success: function(res) {
+          console.log(res)
           if (res.data.status == "1") {
             that.setData({
-              taxes_id: res.data.data[0].id
+              taxes_id: res.data.data[0].id,
+              company: res.data.data[0].company
             })
             wx.request({
               url: app.globalData.tiltes + 'proportion',
@@ -1897,6 +1900,7 @@ Page({
               },
               method: "post",
               success: function(res) {
+                console.log(res)
                 that.setData({
                   rate: res.data.data
                 })
@@ -1921,7 +1925,6 @@ Page({
 
               // },
               success: function(res) {
-                console.log(res);
                 if (res.data.status == "1") {
                   that.setData({
                     taxes_id: res.data.data[0].id
@@ -2038,7 +2041,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    // this.onShow();
     setTimeout(function() {
       wx.stopPullDownRefresh();
     }, 1000)
