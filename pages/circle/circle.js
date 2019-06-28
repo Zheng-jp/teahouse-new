@@ -92,11 +92,18 @@ Page({
         console.log(t);
       }
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 51e9bacf8d09be87224a4158aa8b9a91303295aa
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
     })
+<<<<<<< HEAD
+=======
+
+>>>>>>> 51e9bacf8d09be87224a4158aa8b9a91303295aa
   },
 
   /**
