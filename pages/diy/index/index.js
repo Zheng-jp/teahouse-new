@@ -300,6 +300,8 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         else a = "hide";
         if (t.data.data.c_b_bg) var e = "bg";
         else e = "";
+        app.globalData.navBarBgColor = t.data.data.base_color;
+        app.globalData.navBarTxtColor = t.data.data.base_tcolor;
         wx.setNavigationBarTitle({
           title: t.data.data.name
         }), wx.setNavigationBarColor({
@@ -833,6 +835,8 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           title: o.title
         });
         var s = 1 == o.topcolor ? "#000000" : "#ffffff";
+        app.globalData.navBarBgColor = o.topbackground;
+        app.globalData.navBarTxtColor = s;
         wx.setNavigationBarColor({
           frontColor: s,
           backgroundColor: o.topbackground,

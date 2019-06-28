@@ -4,8 +4,8 @@ Page({
     currentTab: '',
     winHeight: 0, //窗口高度
     imgUrls: [
-      'http://ptcb077mt.bkt.clouddn.com/u2404.png',
-      'http://ptcb077mt.bkt.clouddn.com/u2404.png'
+      '/images/u2404.png',
+      '/images/u2404.png'
     ]
   },
 
@@ -33,7 +33,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    })
   },
 
 

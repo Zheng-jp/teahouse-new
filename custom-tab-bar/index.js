@@ -22,7 +22,8 @@ Component({
         console.log(nowUrl)
         for(let prop in data.data){
           if(data.data[prop].linkurl.indexOf('pages') == -1){
-            data.data[prop].linkurl = '/pages' + data.data[prop].linkurl;
+            // data.data[prop].linkurl = '/pages' + data.data[prop].linkurl;
+            data.data[prop].linkurl = '/pages/diy/index/index';
           }
           // console.log(data.data[prop].linkurl, nowUrl, nowUrl.indexOf(data.data[prop].linkurl))
           if(data.data[prop].linkurl.indexOf(nowUrl) != -1){
@@ -45,9 +46,6 @@ Component({
       console.log(this.data.list)
       wx.switchTab({
         url: url
-      })
-      this.setData({
-        selected: data.index
       })
     }
   }
