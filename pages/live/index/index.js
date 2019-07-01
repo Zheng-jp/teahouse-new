@@ -4,14 +4,17 @@ Page({
     currentTab: '',
     winHeight: 0, //窗口高度
     imgUrls: [
-      '/images/u2404.png',
-      '/images/u2404.png'
+      'http://ptcb077mt.bkt.clouddn.com/u2404.png',
+      'http://ptcb077mt.bkt.clouddn.com/u2404.png'
     ]
   },
 
   toLive: function () {
+    // wx.navigateTo({
+    //   url: '../synopsis/synopsis'
+    // })
     wx.navigateTo({
-      url: '../synopsis/synopsis'
+      url: '../../limit_more/limit_more'
     })
   },
   /*** 滑动切换tab***/

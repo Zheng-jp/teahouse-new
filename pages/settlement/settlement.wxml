@@ -74,7 +74,7 @@
 </view>
 <view class='all'>
   <view class='titles'>购物清单</view>
-  <view wx:for="{{goods}}" class='good_list'>
+  <view wx:for="{{goods}}" class='good_list' wx:key="index">
     <view class='order-goods-info'>
       <view class='order-goods-img'>
         <image src='{{url}}{{item.goods_info.goods_show_image}}' mode="scaleToFill"></image>
@@ -160,14 +160,14 @@
         <view class='select_box'>
           <view class='add_information'>
             <view class="list1">
-              <view>仓储编号：{{warehouse.name}}</view>
+              <view>仓储编号：{{warehouse.number}}</view>
             </view>
             <view style='overflow:visible;'>
               <view class="sava_contents">
                 <view class="savetitle">仓储标准：</view>
                 <view class='scroll_view_border'>
                   <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="5000">
-                    <block wx:for="{{warehouse.units}}">
+                    <block wx:for="{{warehouse.units}}" wx:key="index">
                       <swiper-item>
                         <view class="swiper_item">¥{{item.cost}}/{{item.unit}}/天</view>
                       </swiper-item>

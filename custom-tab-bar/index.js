@@ -9,35 +9,39 @@ Component({
   },
   attached() {
     const _this = this;
-    wx.request({
-      url: app.globalData.baseurl + "doPageGetFoot",
-      cachetime: "30",
-      data: {
-        uniacid: app.globalData.uniacid,
-        foot: 2
-      },
-      success: function (res) {
-        var data = res.data.data;
-        var nowUrl = '/'+getCurrentPages()[0].route;
-        console.log(nowUrl)
-        for(let prop in data.data){
-          if(data.data[prop].linkurl.indexOf('pages') == -1){
-            // data.data[prop].linkurl = '/pages' + data.data[prop].linkurl;
-            data.data[prop].linkurl = '/pages/diy/index/index';
+    if(app.globalData.uniacid){
+      // console.log('进来了')
+      wx.request({
+        url: app.globalData.baseurl + "doPageGetFoot",
+        cachetime: "30",
+        data: {
+          uniacid: 6,
+          foot: 2
+        },
+        success: function (res) {
+          var data = res.data.data;
+          var nowUrl = '/'+getCurrentPages()[0].route;
+          console.log(res)
+          for(let prop in data.data){
+            if(data.data[prop].linkurl.indexOf('pages') == -1){
+              // data.data[prop].linkurl = '/pages' + data.data[prop].linkurl;
+              data.data[prop].linkurl = '/pages/diy/index/index';
+            }
+            if(data.data[prop].linkurl.indexOf(nowUrl) != -1){
+              data.data[prop].change = true;
+            }else{
+              data.data[prop].change = false;
+            }
           }
-          // console.log(data.data[prop].linkurl, nowUrl, nowUrl.indexOf(data.data[prop].linkurl))
-          if(data.data[prop].linkurl.indexOf(nowUrl) != -1){
-            data.data[prop].change = true;
-          }else{
-            data.data[prop].change = false;
-          }
+          _this.setData({
+            list: data
+          })
+          console.log(_this.data.list);
         }
-        _this.setData({
-          list: data
-        })
-        console.log(_this.data.list);
-      }
-    })
+      })
+    }else{
+      console.log('uniacid为null！')
+    }
   },
   methods: {
     switchTab(e) {

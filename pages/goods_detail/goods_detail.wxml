@@ -9,12 +9,12 @@
         </view>
         <view class="select-goods-info">
           <view class='select-goods-price'>
-            <view class='new_select-goods-price'>￥{{price}}/{{goods.unit}}</view>
+            <view class='new_select-goods-price'>￥{{price}}/{{specifications}}</view>
           </view>
           <view class='select-goods-spec'>
             <view class='select-goods-stock' style="display:flex;align-items: center;">
-              <image style="width:60rpx;height:30rpx;margin-right:10rpx;" src="../../images/kecun.png" wx:if="{{save == 1}}"></image>
-              库存{{stock}}{{goods.unit}}
+              <image style="width:60rpx;height:30rpx;margin-right:10rpx;" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{save == 1}}"></image>
+              库存{{stock}}{{specifications}}
             </view>
             <view class='select-goods-sells'>销量213片</view>
           </view>
@@ -74,20 +74,21 @@
   <view class='goods_cont'>
     <!-- <text class='texts'>可存</text> -->
     <view class='good_name'>
-        <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{kc == 1}}"></image>
-        <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/hot.png" wx:if="{{hot == 1}}"></image>
-        <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/chuxiao.png" wx:if="{{cx == 1}}"></image>
-        <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/qingchang.png" wx:if="{{qc == 1}}"></image>
-        <view class="texts" wx:for="{{goods.goods_sign}}" wx:key="{{index}}">{{item.text}}</view>{{goods.goods_name}}
+      {{goods.goods_name}}
     </view>
-    <view class='selling-point'>{{goods.goods_selling}}</view>
+    <view class='selling-point' >
+      <image class="image_bq" style="vertical-align: middle;" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{kc == 1}}"></image>
+      <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/hot.png" wx:if="{{hot == 1}}"></image>
+      <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/chuxiao.png" wx:if="{{cx == 1}}"></image>
+      <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/qingchang.png" wx:if="{{qc == 1}}"></image>
+      <view class="texts" wx:for="{{goods.goods_sign}}" wx:key="{{index}}">{{item.text}}</view>{{goods.goods_selling}}</view>
     <view class='price_cont'>
       <view style="display:flex; align-items:flex-end;margin-bottom:-15px">
         <view class='level_images' style='margin-bottom:9.5rpx;'>
           <image src='{{url}}{{member_grade_img}}'></image>
         </view>
         <view wx:if="{{goods.goods_standard==0}}">
-          <view class='sale'>￥{{goods.goods_new_money}}/{{goods.unit}}</view>
+          <view class='sale'>￥{{goods.limit_condition == '1'?goods.limit_price:goods.goods_new_money}}/{{goods.unit}}</view>
         </view>
         <view wx:else>
           <view class='sale'>￥{{goods.min_price}}/{{goods.unit}}</view>
@@ -151,7 +152,7 @@
             <view class='comment_right'>
               <view class='comment_name'>瑞川</view>
               <view class='repay_content'>
-               
+
               </view>
               <view class='comment_img_all'>
                 <view class='comment_imgs'>
