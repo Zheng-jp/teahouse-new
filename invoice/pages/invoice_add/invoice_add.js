@@ -121,19 +121,14 @@ Page({
     var that = this;
     console.log(e);
     // 添加
-    if (e.detail.value.email == '') {
+    if (e.detail.value.name1 == '') {
       wx.showToast({
-        title: "邮箱不能为空",
+        title: "发票抬头不能为空",
         icon: 'none',
       });
-    } else if (e.detail.value.name == '') {
+    } else if (e.detail.value.num1 == '') {
       wx.showToast({
-        title: "姓名不能为空",
-        icon: 'none',
-      });
-    } else if (e.detail.value.phone_num == '') {
-      wx.showToast({
-        title: "手机号不能为空",
+        title: "发票税号不能为空",
         icon: 'none',
       });
     } else {
@@ -142,10 +137,10 @@ Page({
         data: {
           member_id: app.globalData.member_id,
           type: 2,
-          company:e.detail.value.name,
-          name: e.detail.value.name,
-          user_phone: e.detail.value.phone_num,
-          email: e.detail.value.email
+          company:e.detail.value.name1,
+          company_number: e.detail.value.num1
+          // user_phone: e.detail.value.phone_num,
+          // email: e.detail.value.email
         },
         method: "post",
         success: function (res) {

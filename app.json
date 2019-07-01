@@ -55,7 +55,8 @@
     "pages/live/index/index",
     "sweep/pages/index/index",
     "sweep/pages/sweep_detail/sweep_detail",
-    "pages/diy/index/index"
+    "pages/diy/index/index",
+    "pages/limit_more/limit_more"
   ],
   "subpackages": [
     {
@@ -121,5 +122,4 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"
- 
 }

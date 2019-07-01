@@ -666,7 +666,7 @@
                             <text wx:if="{{item.sale_num!=null}}">{{item.sale_num}}</text>
                         </text>件</view>
                 </view>
-                <view style="font-size:24rpx;color:#838383;margin-top:10rpx;width:{{750-pdw*4-30-168}}rpx;height:44rpx;overflow:hidden">{{item.goods_selling!=null?item.goods_selling:''}}</view>
+                <view style="font-size:24rpx;color:#838383;margin-top:10rpx;width:{{(750-style.pdw*4-30-168)}}rpx;height:44rpx;overflow:hidden">{{item.goods_selling!=null?item.goods_selling:''}}</view>
                 <view class="hbj">
                     <view style="overflow:hidden;width:260rpx;height:44rpx;text-align:center;line-height:44rpx;color:#fff;font-size:24rpx;background:#FF4A47;{{item.end_time==0?'display:none':''}}" wx:if="{{item.endtime}}">
                         <image mode="widthFix" src="{{siteroot}}/diypage/resource/images/diypage/default/flash.png" style="width:16rpx;margin-right:10rpx;vertical-align:-4rpx"></image>距结束{{item.endtime}}

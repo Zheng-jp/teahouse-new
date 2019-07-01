@@ -10,8 +10,11 @@ Page({
   },
 
   toLive: function () {
+    // wx.navigateTo({
+    //   url: '../synopsis/synopsis'
+    // })
     wx.navigateTo({
-      url: '../synopsis/synopsis'
+      url: '../../limit_more/limit_more'
     })
   },
   /*** 滑动切换tab***/
