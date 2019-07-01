@@ -464,7 +464,13 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       searchtitle: t.detail.value
     });
   },
+  toSearch: function() {
+    wx.navigateTo({
+      url:"../../seach/seach"
+    })
+  },
   search: function () {
+    
     var t = this.data.searchtitle;
     t ? wx.navigateTo({
       url: "/sudu8_page/search/search?title=" + t
@@ -912,7 +918,6 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     });
   },
   list: function () {
-    console.log(111);
     var f = this;
     var goods_list = f.data.list;
     for (var i = 0; i < goods_list.length; i++) {

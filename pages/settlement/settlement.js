@@ -1628,10 +1628,17 @@ Page({
    */
   onShow: function() {
     var that = this;
+    wx.removeStorage({
+      key: 'receipt_id',
+      success(res) {
+        console.log(res)
+      }
+    })
     var id = wx.getStorageSync('id');
     var sava_id = wx.getStorageSync('sava_id');
     var shop_id = wx.getStorageSync('shop_id');
     var receipt_id = wx.getStorageSync('receipt_id');
+    // console.log(receipt_id)
     //苹果底部适配
     wx.getSystemInfo({
       success: function(res) {
@@ -1865,6 +1872,7 @@ Page({
       });
     }
     if (receipt_id == '') {
+      // console.log('-----------------------------------------------')
       wx.request({
         url: app.globalData.tiltes + 'approve_corporation',
         data: {
@@ -1872,7 +1880,7 @@ Page({
         },
         method: "post",
         success: function(res) {
-          console.log(res)
+          // console.log(res)
           if (res.data.status == "1") {
             that.setData({
               taxes_id: res.data.data[0].id,
