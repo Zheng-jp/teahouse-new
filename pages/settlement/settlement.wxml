@@ -113,10 +113,14 @@
     <view class='way_select'>
       <radio-group class="radio-group" bindchange="radioChange">
         <label class="radio" wx:if="{{delivery_a == 1}}">
-          <radio value="选择直邮" color='#02A0E6' checked='checked'/>
+          <radio value="选择直邮" color='#02A0E6' checked='checked' />
           <text class='text_radio'>选择直邮</text>
         </label>
-        <label class="radio" wx:if="{{delivery_b == 1}}">
+        <label class="radio" wx:else="{{delivery_b != 1 && delivery_b == 1}}">
+          <radio value="到店自提" color='#02A0E6' checked='checked'/>
+          <text class='text_radio'>到店自提</text>
+        </label>
+        <label class="radio" wx:if="{{delivery_b == 1 && delivery_a == 1}}">
           <radio value="到店自提" color='#02A0E6' />
           <text class='text_radio'>到店自提</text>
         </label>
@@ -214,8 +218,7 @@
     <view class='is_invoice1'>
       <view class="is_invoice11">
         <label class="checkbox">
-          <checkbox value="选择仓储保险" />
-          选择仓储保险
+          <checkbox value="选择仓储保险" /> 选择仓储保险
         </label>
         <image class="tips_img" src="http://ptcb077mt.bkt.clouddn.com/u927.png" mode="widthFix"></image>
         <view class="" class="tips_content">*可选项，默认1年</view>
@@ -241,17 +244,18 @@
     <view class='is_invoice'>
       <label class="checkbox">
         <checkbox-group bindchange="check_invoice">
-          <checkbox value="0" checked="{{taxes_select==1?'true':''}}" />
-          选择开具发票
+          <checkbox value="0" checked="{{taxes_select==1?'true':''}}" /> 选择开具发票
         </checkbox-group>
       </label>
       <view class='invoice_money text_red'>¥ {{taxes}}</view>
     </view>
     <view class='go_invoice_information' bindtap="go_invoice_add">
-      <view>请添加发票信息</view>
+      <view wx:if="{{company == undefined || company == ''}}">请添加发票信息</view>
+      <view wx:else><text class="" style="color:rgb(134, 134, 134)">纸质发票：</text>{{company}}</view>
       <view class='more_imgs'>
         <image src='http://ptcb077mt.bkt.clouddn.com/u1959.png' mode="scaleToFill"></image>
       </view>
+      
     </view>
   </view>
   <view class="{{selected2?'sundry':'sundry1'}}" style="{{fixiPhone? '' : 'margin-bottom: 100rpx'}}">

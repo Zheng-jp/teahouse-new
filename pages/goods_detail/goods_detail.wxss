@@ -90,9 +90,8 @@
     border-radius:6rpx;
     font-size:20rpx;
     text-align:center;
-    margin: 0 5rpx;
+    margin-right: 10rpx;
     display: inline-block;
-    padding: 5rpx;
   }
   
 	.other_info {
@@ -536,7 +535,7 @@ overflow:hidden;
   position:absolute;
   font-size:20rpx;
   right:10rpx;
-  top:-6rpx;
+  /* top:-6rpx; */
   display:flex;
   align-items:center;
   justify-content:center;

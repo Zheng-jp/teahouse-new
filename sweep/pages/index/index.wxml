@@ -1,4 +1,4 @@
 <!--pages/nfc/index/index.wxml-->
 <view  bindtap='nfc'>
-  <image src='../../../images/u223.png' style='width:400rpx;height:400rpx; margin:400rpx 200rpx;'></image>
+  <image src='http://ptcb077mt.bkt.clouddn.com/u223.png' style='width:400rpx;height:400rpx; margin:400rpx 200rpx;'></image>
 </view>

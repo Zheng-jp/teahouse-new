@@ -240,7 +240,6 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .radio-group {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .radio-group label {
@@ -359,7 +358,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28rpx;
+  padding: 23rpx;
   font-size: 26rpx;
   border-top: solid 2px #e4e4e4;
 }
