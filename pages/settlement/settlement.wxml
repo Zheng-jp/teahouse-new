@@ -160,7 +160,7 @@
         <view class='select_box'>
           <view class='add_information'>
             <view class="list1">
-              <view>仓储编号：{{warehouse.name}}</view>
+              <view>仓储编号：{{warehouse.number}}</view>
             </view>
             <view style='overflow:visible;'>
               <view class="sava_contents">
