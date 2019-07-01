@@ -42,7 +42,7 @@ Page({
     limitations_shows: [],
   },
   labelItemTap: function(e) {
-    console.log(e)
+    // console.log(e)
     var that = this;
     //  点击添加类
     // 商品id
@@ -54,9 +54,8 @@ Page({
     var price = e.target.dataset.price;
     // 商品图片 
     var images = e.target.dataset.images;
-    // 规格id
-    // var goods_standard_id=e.target.dataset.id;
-    // 商品名字
+    //规格
+    var specifications = e.target.dataset.value;
     //是否可存
     var save = e.target.dataset.save;
 
@@ -72,7 +71,8 @@ Page({
         stock: stock,
         images: images,
         select: value,
-        save: save
+        save: save,
+        specifications: specifications
       })
     }
   },
@@ -547,6 +547,13 @@ Page({
         }
         res.data.data[0].goods_sign = arr;
 
+        // let goods_standard = res.data.data[0].goods_standard;
+        // for (let i = 0; i < goods_standard.length; i++) {
+        //   if (goods_standard[i].save == 1) {
+        //     var save = e.target.dataset.save;
+        //   }
+        // }
+
         let server = res.data.data[0].server
         let server_arr = [];
         for (let i in server) {
@@ -555,12 +562,17 @@ Page({
         res.data.data[0].server = server_arr;
 
         var goods = res.data.data[0];
+        console.log(goods)
+
+        
         that.setData({
           goods: goods,
           good_id: parseInt(options.title),
           images: res.data.data[0].goods_standard[0].images,
           price: res.data.data[0].goods_standard[0].price,
           stock: res.data.data[0].goods_standard[0].stock,
+          save : res.data.data[0].goods_standard[0].save,
+          specifications: res.data.data[0].goods_standard[0].name,
           image: res.data.data[0].goods_show_images,
           kc: kc,
           hot: hot,
