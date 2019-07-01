@@ -238,13 +238,13 @@
       <view class="list">
          <view class="list_name">发票抬头</view>
          <view class="input">
-            <input class="" value="{{personal.name}}" type="text" placeholder="请输入姓名" name="name1"></input>
+            <input class="" value="{{personal.company}}" type="text" placeholder="请输入姓名" name="name1"></input>
          </view>
       </view>
       <view class="list">
          <view class="list_name">发票税号</view>
          <view class="input">
-            <input class="" value="" type="text" placeholder="请输入个人身份证号码" name="num1"></input>
+            <input class="" value="{{personal.company_number}}" type="text" placeholder="请输入个人身份证号码" name="num1"></input>
          </view>
       </view>
       <!-- <view class="list">
