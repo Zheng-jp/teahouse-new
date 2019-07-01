@@ -1,8 +1,7 @@
 /* 轮播图 */
 
 	view{
-    overflow:visible;
-
+    overflow:visible !important;
   }
 	.all {
 		background: #F2F2F2;
