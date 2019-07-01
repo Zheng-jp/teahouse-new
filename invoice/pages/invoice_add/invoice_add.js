@@ -93,7 +93,6 @@ Page({
         url: app.globalData.tiltes + 'bill',
         data: {
           member_id: app.globalData.member_id,
-          // member_id: 1049,
           type: 1,
           company: e.detail.value.name1,
           company_number: e.detail.value.num1,
@@ -142,7 +141,6 @@ Page({
         url: app.globalData.tiltes + 'people',
         data: {
           member_id: app.globalData.member_id,
-          // member_id: 1049,
           type: 2,
           company:e.detail.value.name,
           name: e.detail.value.name,
