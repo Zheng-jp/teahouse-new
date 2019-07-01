@@ -88,7 +88,7 @@
           <image src='{{url}}{{member_grade_img}}'></image>
         </view>
         <view wx:if="{{goods.goods_standard==0}}">
-          <view class='sale'>￥{{goods.goods_new_money}}/{{goods.unit}}</view>
+          <view class='sale'>￥{{goods.limit_condition == '1'?goods.limit_price:goods.goods_new_money}}/{{goods.unit}}</view>
         </view>
         <view wx:else>
           <view class='sale'>￥{{goods.min_price}}/{{goods.unit}}</view>

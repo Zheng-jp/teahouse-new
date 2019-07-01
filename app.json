@@ -95,16 +95,20 @@
       {
         "pagePath": "pages/diy/index/index",
         "text": "首页"
-      },{
+      },
+      {
         "pagePath": "pages/storage/view/view",
         "text": "茶仓"
-      },{
+      },
+      {
         "pagePath": "pages/circle/circle",
         "text": "茶圈"
-      },{
+      },
+      {
         "pagePath": "pages/live/index/index",
         "text": "直播"
-      },{
+      },
+      {
         "pagePath": "pages/mine/mine",
         "text": "我的"
       }
@@ -117,4 +121,5 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"
+ 
 }
