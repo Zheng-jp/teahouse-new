@@ -8,7 +8,7 @@
     
   }
 	.all {
-		background: rgb(109, 73, 73);
+		background: #F2F2F2;
     margin-bottom: 100rpx;
     overflow-x: hidden !important;
 	}
