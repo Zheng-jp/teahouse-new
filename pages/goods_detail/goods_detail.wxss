@@ -1,15 +1,16 @@
 /* 轮播图 */
 
   page{
-    overflow-x: hidden;
+    
   }
   view{
-     
+    overflow:visible !important;
+    
   }
 	.all {
 		background: #F2F2F2;
     margin-bottom: 100rpx;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 	}
 	
 	.home_banner {
@@ -274,8 +275,7 @@
     left: 0;
     z-index: 1000;
     background: rgba(0,0,0,0.5);
-    overflow: hidden;
-  
+    overflow: visible;
   }
   .select-ser-pop{
     height: 750rpx;
@@ -307,7 +307,7 @@
     border:#EDEDED solid 1rpx;
     background:#fff;
     border-radius:15rpx;
-    
+    overflow: hidden;
   }
   .select-goods-wrap{
     position: relative;

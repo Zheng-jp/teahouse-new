@@ -1,11 +1,16 @@
 <!--miniprogram/custom-tab-bar/index.wxml-->
 <cover-view class="tab-bar">
   <cover-view class="tab-bar-border"></cover-view>
-  <cover-view wx:for="{{list.data}}" wx:key="index" class="tab-bar-item" data-path="{{item.linkurl}}" data-index="{{index}}" bindtap="switchTab">
+  <!-- <cover-view wx:for="{{list.data}}" wx:key="index" class="tab-bar-item" data-path="{{item.linkurl}}" data-index="{{index}}" bindtap="switchTab">
     <cover-image src="{{index==0?(item.change ? 'http://ptoobf833.bkt.clouddn.com/home4.png' : 'http://ptoobf833.bkt.clouddn.com/home03.png'):(item.change ? item.imgurl2 : item.imgurl)}}"></cover-image>
-    <!-- <cover-view class="iconfont {{item.iconclass}}" style="color:{{item.change? list.style.iconcoloron : list.style.iconcolor}};font-size:{{list.style.iconfont}}px;padding:{{list.style.paddingtop}}px 0;width:{{list.style.iconfont}}px;height:{{list.style.iconfont}}px;line-height:{{list.style.iconfont}}px;display:block;margin:0 auto"></cover-view> -->
     <cover-view style="font-size:{{list.style.textfont}}px;padding:{{list.style.paddingleft}}px 0;color:{{item.change? list.style.textcoloron : list.style.textcolor}};">
         {{item.text}}
+    </cover-view>
+  </cover-view> -->
+  <cover-view wx:for="{{tabBarArr}}" wx:key="{{index}}" class="tab-bar-item" data-index="{{index}}" data-path="{{item.path}}" bindtap="switchTab">
+    <cover-image src="{{item.selected ? item.img2 : item.img}}"></cover-image>
+    <cover-view style="color: {{item.selected ? item.colorOn : item.color}}">
+      {{item.text}}
     </cover-view>
   </cover-view>
 </cover-view>
