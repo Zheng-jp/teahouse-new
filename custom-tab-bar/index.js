@@ -7,7 +7,7 @@ Component({
     baseUrl: app.globalData.img_url,
     tabBarArr: []
   },
-  ready: function() {
+  attached: function() {
     const _this = this;
     // var editionId = wx.getStorageSync('editionId');
     if(app.globalData.uniacid){
