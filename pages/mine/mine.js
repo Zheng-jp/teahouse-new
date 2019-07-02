@@ -214,14 +214,7 @@ Page({
 
     });
 
-
-
-
-
-    var url = getCurrentPages()[1].route;
-
-
-
+    // var url = getCurrentPages()[1].route;
   },
   onShow: function () {
 
