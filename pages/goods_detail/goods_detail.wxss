@@ -4,7 +4,7 @@
     overflow-x: hidden;
   }
   view{
-     overflow:hidden !important;
+     
   }
 	.all {
 		background: #F2F2F2;
