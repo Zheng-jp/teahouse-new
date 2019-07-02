@@ -1,10 +1,10 @@
 /* 轮播图 */
 
-	page{
-    overflow: hidden;
+  page{
+    overflow-x: hidden;
   }
   view{
-    overflow:visible ;
+     overflow:hidden !important;
   }
 	.all {
 		background: #F2F2F2;
