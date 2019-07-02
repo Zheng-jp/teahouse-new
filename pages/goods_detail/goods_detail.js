@@ -562,7 +562,6 @@ Page({
         res.data.data[0].server = server_arr;
 
         var goods = res.data.data[0];
-        console.log(goods)
 
         
         that.setData({
