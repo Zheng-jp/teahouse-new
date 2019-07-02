@@ -34,6 +34,12 @@ Page({
    */
   onLoad: function (options) {
 
+    // wx.request({
+    //   url: app.globalData.tiltes + 'limit_goods_more',
+    //   data: {
+
+    //   }
+    // })
   },
 
   /**

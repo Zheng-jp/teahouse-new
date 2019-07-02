@@ -69,15 +69,15 @@ Page({
     fixiPhone: false, //苹果底部适配,
   },
   // 弹窗
-  powerDrawer: function(e) {
+  powerDrawer: function (e) {
     var currentStatu = e.currentTarget.dataset.statu;
     this.util(currentStatu)
   },
   // 弹窗
-  radioChange: function(e) {
+  radioChange: function (e) {
     var that = this;
     let goods = that.data.goods;
-    if(that.data.goods_standby.length > 1) goods = that.data.goods_standby;
+    if (that.data.goods_standby.length > 1) goods = that.data.goods_standby;
     if (e.detail.value == "选择直邮") {
       that.setData({
         goods: goods,
@@ -86,6 +86,7 @@ Page({
         selected2: false,
         order_type: 1,
         storage: '0.00',
+        sta: 1
       })
       that.money_freight();
     } else if (e.detail.value == "到店自提") {
@@ -97,9 +98,10 @@ Page({
         order_type: 2,
         storage: '0.00',
         freight: '0.00',
+        sta: 2
       })
     } else {
-      
+
       let arr = [];
       //购物车结算时，剔除不可存茶商品
       if (goods.length > 1) {
@@ -125,50 +127,52 @@ Page({
         selected1: false,
         selected2: true,
         order_type: 3,
+        storage: '0.00',
         freight: '0.00',
+        sta: 3
       })
       that.money_storages();
 
     }
     that.calculate_money();
   },
-  go_direct_mail_address: function(e) {
+  go_direct_mail_address: function (e) {
     wx.navigateTo({
       url: '../select_address/select_address',
-      success: function(res) {},
-      fail: function() {},
-      complete: function() {}
+      success: function (res) { },
+      fail: function () { },
+      complete: function () { }
     })
   },
-  go_shop_address: function(e) {
+  go_shop_address: function (e) {
     wx.navigateTo({
       url: '../select_shop_address/select_shop_address',
-      success: function(res) {},
-      fail: function() {},
-      complete: function() {}
+      success: function (res) { },
+      fail: function () { },
+      complete: function () { }
     })
   },
-  go_invoice_add: function(e) {
+  go_invoice_add: function (e) {
     wx.navigateTo({
       url: '/invoice/pages/invoice_add/invoice_add',
-      success: function(res) {},
-      fail: function() {},
-      complete: function() {}
+      success: function (res) { },
+      fail: function () { },
+      complete: function () { }
     })
   },
-  go_save_tea: function(e) {
+  go_save_tea: function (e) {
     wx.navigateTo({
       url: '../select_save_address/select_save_address',
-      success: function(res) {},
-      fail: function() {},
-      complete: function() {}
+      success: function (res) { },
+      fail: function () { },
+      complete: function () { }
     })
   },
   // 弹窗
   /**
    * 显示支付密码输入层
    */
-  showInputLayer: function() {
+  showInputLayer: function () {
     this.setData({
       showPayPwdInput: true,
       payFocus: true
@@ -177,15 +181,15 @@ Page({
   /**
    * 隐藏支付密码输入层
    */
-  hidePayLayer: function() {
+  hidePayLayer: function () {
     var that = this;
     var val = this.data.pwdVal;
     this.setData({
-        showPayPwdInput: false,
-        payFocus: false,
-        pwdVal: ''
-      },
-      function() {
+      showPayPwdInput: false,
+      payFocus: false,
+      pwdVal: ''
+    },
+      function () {
         if (val.length == 6) {
           wx.request({
             url: app.globalData.tiltes + 'check_password',
@@ -194,7 +198,7 @@ Page({
               passwords: val,
             },
             method: "post",
-            success: function(res) {
+            success: function (res) {
               if (res.data.data.status == 1) {
                 wx.request({
                   url: app.globalData.tiltes + 'balance_payment',
@@ -204,13 +208,13 @@ Page({
                     passwords: val,
                   },
                   method: "post",
-                  success: function(res) {
+                  success: function (res) {
 
                   },
-                  fail: function() {
+                  fail: function () {
 
                   },
-                  complete: function(res) {
+                  complete: function (res) {
                     wx.showToast({
                       icon: "none",
                       title: res.data.info,
@@ -226,8 +230,8 @@ Page({
                 })
               }
             },
-            fail: function() {},
-            complete: function() {}
+            fail: function () { },
+            complete: function () { }
           });
         } else {
           wx.showToast({
@@ -237,13 +241,13 @@ Page({
         }
         wx.navigateTo({
           url: '../order/order?title=' + 0,
-          success: function(res) {
+          success: function (res) {
 
           },
-          fail: function() {
+          fail: function () {
 
           },
-          complete: function() {
+          complete: function () {
 
           }
         })
@@ -252,7 +256,7 @@ Page({
   /**
    * 获取焦点
    */
-  getFocus: function() {
+  getFocus: function () {
     this.setData({
       payFocus: true
     });
@@ -260,7 +264,7 @@ Page({
   /**
    * 输入密码监听
    */
-  inputPwd: function(e) {
+  inputPwd: function (e) {
     this.setData({
       pwdVal: e.detail.value
     });
@@ -268,23 +272,23 @@ Page({
       this.hidePayLayer();
     }
   },
-  forget_password: function(e) {
+  forget_password: function (e) {
     wx.navigateTo({
       url: '../forget_password/forget_password',
-      success: function(res) {
+      success: function (res) {
 
       },
-      fail: function() {
+      fail: function () {
 
       },
-      complete: function() {
+      complete: function () {
 
       }
     })
   },
   // 弹窗
   // 立即支付
-  repay: function() {
+  repay: function () {
     var that = this;
     var num = new Array();
     num = [that.data.goods[0].number];
@@ -424,7 +428,7 @@ Page({
           uniacid: app.globalData.uniacid
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
             that.setData({
@@ -432,7 +436,7 @@ Page({
             })
             wx.showActionSheet({
               itemList: ['账户支付', '微信支付',],
-              itemColor:'#0099ff',
+              itemColor: '#0099ff',
               success: function (res) {
                 // 账户支付
                 if (res.tapIndex == 0) {
@@ -447,7 +451,7 @@ Page({
                     },
                     dataTypr: 'json',
                     method: "post",
-                    success: function(res) {
+                    success: function (res) {
                       var result = res;
 
                       if (result) {
@@ -457,46 +461,46 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          'success': function(successret) {
+                          'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
                               url: '../order/order?title=' + 0,
-                              success: function(res) {
+                              success: function (res) {
 
                               },
-                              fail: function() {
+                              fail: function () {
 
                               },
-                              complete: function() {
+                              complete: function () {
 
                               }
                             })
                           },
-                          'fail': function(res) {
+                          'fail': function (res) {
 
                           }
                         })
                       }
                     },
-                    fail: function() {
+                    fail: function () {
 
                     },
-                    complete: function() {
+                    complete: function () {
                       wx.hideLoading()
                     }
                   });
                 }
               },
-              fail: function(res) {
+              fail: function (res) {
                 wx.navigateTo({
                   url: '../order/order?title=' + 0,
-                  success: function(res) {
+                  success: function (res) {
 
                   },
-                  fail: function() {
+                  fail: function () {
 
                   },
-                  complete: function() {
+                  complete: function () {
 
                   }
                 })
@@ -509,10 +513,10 @@ Page({
             })
           }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     } else if (that.data.order_type == "2") {
@@ -535,7 +539,7 @@ Page({
           uniacid: app.globalData.uniacid
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
             that.setData({
@@ -559,7 +563,7 @@ Page({
                     },
                     dataTypr: 'json',
                     method: "post",
-                    success: function(res) {
+                    success: function (res) {
                       var result = res;
                       if (result) {
                         wx.requestPayment({
@@ -568,46 +572,46 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          'success': function(successret) {
+                          'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
                               url: '../order/order?title=' + 0,
-                              success: function(res) {
+                              success: function (res) {
 
                               },
-                              fail: function() {
+                              fail: function () {
 
                               },
-                              complete: function() {
+                              complete: function () {
 
                               }
                             })
                           },
-                          'fail': function(res) {
+                          'fail': function (res) {
 
                           }
                         })
                       }
                     },
-                    fail: function() {
+                    fail: function () {
 
                     },
-                    complete: function() {
+                    complete: function () {
                       wx.hideLoading()
                     }
                   });
                 }
               },
-              fail: function(res) {
+              fail: function (res) {
                 wx.navigateTo({
                   url: '../order/order?title=' + 0,
-                  success: function(res) {
+                  success: function (res) {
 
                   },
-                  fail: function() {
+                  fail: function () {
 
                   },
-                  complete: function() {
+                  complete: function () {
 
                   }
                 })
@@ -620,10 +624,10 @@ Page({
             })
           }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     } else {
@@ -646,7 +650,7 @@ Page({
           uniacid: app.globalData.uniacid
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
             that.setData({
@@ -669,7 +673,7 @@ Page({
                     },
                     dataTypr: 'json',
                     method: "post",
-                    success: function(res) {
+                    success: function (res) {
                       var result = res;
                       if (result) {
                         wx.requestPayment({
@@ -678,46 +682,46 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          'success': function(successret) {
+                          'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
                               url: '../order/order?title=' + 0,
-                              success: function(res) {
+                              success: function (res) {
 
                               },
-                              fail: function() {
+                              fail: function () {
 
                               },
-                              complete: function() {
+                              complete: function () {
 
                               }
                             })
                           },
-                          'fail': function(res) {
+                          'fail': function (res) {
 
                           }
                         })
                       }
                     },
-                    fail: function() {
+                    fail: function () {
 
                     },
-                    complete: function() {
+                    complete: function () {
                       wx.hideLoading()
                     }
                   });
                 }
               },
-              fail: function(res) {
+              fail: function (res) {
                 wx.navigateTo({
                   url: '../order/order?title=' + 0,
-                  success: function(res) {
+                  success: function (res) {
 
                   },
-                  fail: function() {
+                  fail: function () {
 
                   },
-                  complete: function() {
+                  complete: function () {
 
                   }
                 })
@@ -730,16 +734,16 @@ Page({
             })
           }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     }
   },
   // 购物车支付
-  buyrepay: function() {
+  buyrepay: function () {
     var that = this;
     // 下单请求
     // wx.request({
@@ -865,7 +869,7 @@ Page({
           uniacid: app.globalData.uniacid
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
             that.setData({
@@ -887,7 +891,7 @@ Page({
                     },
                     dataTypr: 'json',
                     method: "post",
-                    success: function(res) {
+                    success: function (res) {
                       var result = res;
                       if (result) {
                         wx.requestPayment({
@@ -896,45 +900,45 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          'success': function(successret) {
+                          'success': function (successret) {
                             wx.navigateTo({
                               url: '../order/order?title=' + 0,
-                              success: function(res) {
+                              success: function (res) {
 
                               },
-                              fail: function() {
+                              fail: function () {
 
                               },
-                              complete: function() {
+                              complete: function () {
 
                               }
                             })
                           },
-                          'fail': function(res) {
+                          'fail': function (res) {
 
                           }
                         })
                       }
                     },
-                    fail: function() {
+                    fail: function () {
 
                     },
-                    complete: function() {
+                    complete: function () {
                       wx.hideLoading()
                     }
                   });
                 }
               },
-              fail: function(res) {
+              fail: function (res) {
                 wx.navigateTo({
                   url: '../order/order?title=' + 0,
-                  success: function(res) {
+                  success: function (res) {
 
                   },
-                  fail: function() {
+                  fail: function () {
 
                   },
-                  complete: function() {
+                  complete: function () {
 
                   }
                 })
@@ -947,10 +951,10 @@ Page({
             })
           }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     } else if (that.data.order_type == "2") {
@@ -975,7 +979,7 @@ Page({
           uniacid: app.globalData.uniacid
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
             that.setData({
@@ -997,7 +1001,7 @@ Page({
                     },
                     dataTypr: 'json',
                     method: "post",
-                    success: function(res) {
+                    success: function (res) {
                       var result = res;
                       if (result) {
                         wx.requestPayment({
@@ -1006,39 +1010,39 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          'success': function(successret) {
+                          'success': function (successret) {
                             wx.navigateTo({
                               url: '../order/order?title=' + 0,
-                              success: function(res) {
+                              success: function (res) {
 
                               },
-                              fail: function() {
+                              fail: function () {
 
                               },
-                              complete: function() {
+                              complete: function () {
 
                               }
                             })
                           },
-                          'fail': function(res) {
+                          'fail': function (res) {
 
                           }
                         })
                       }
                     },
-                    fail: function() {
+                    fail: function () {
 
                     },
-                    complete: function() {
+                    complete: function () {
                       wx.navigateTo({
                         url: '../order/order?title=' + 0,
-                        success: function(res) {
+                        success: function (res) {
 
                         },
-                        fail: function() {
+                        fail: function () {
 
                         },
-                        complete: function() {
+                        complete: function () {
 
                         }
                       })
@@ -1046,7 +1050,7 @@ Page({
                   });
                 }
               },
-              fail: function(res) {
+              fail: function (res) {
                 console.log(res.errMsg)
               }
             })
@@ -1057,10 +1061,10 @@ Page({
             })
           }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     } else {
@@ -1085,7 +1089,7 @@ Page({
           uniacid: app.globalData.uniacid
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
             that.setData({
@@ -1107,7 +1111,7 @@ Page({
                     },
                     dataTypr: 'json',
                     method: "post",
-                    success: function(res) {
+                    success: function (res) {
                       var result = res;
                       if (result) {
                         wx.requestPayment({
@@ -1116,45 +1120,45 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          'success': function(successret) {
+                          'success': function (successret) {
                             wx.navigateTo({
                               url: '../order/order?title=' + 0,
-                              success: function(res) {
+                              success: function (res) {
 
                               },
-                              fail: function() {
+                              fail: function () {
 
                               },
-                              complete: function() {
+                              complete: function () {
 
                               }
                             })
                           },
-                          'fail': function(res) {
+                          'fail': function (res) {
 
                           }
                         })
                       }
                     },
-                    fail: function() {
+                    fail: function () {
 
                     },
-                    complete: function() {
+                    complete: function () {
                       wx.hideLoading()
                     }
                   });
                 }
               },
-              fail: function(res) {
+              fail: function (res) {
                 wx.navigateTo({
                   url: '../order/order?title=' + 0,
-                  success: function(res) {
+                  success: function (res) {
 
                   },
-                  fail: function() {
+                  fail: function () {
 
                   },
-                  complete: function() {
+                  complete: function () {
 
                   }
                 })
@@ -1167,23 +1171,23 @@ Page({
             })
           }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     }
   },
 
-  go_coupon: function() {
+  go_coupon: function () {
     var that = this;
     that.setData({
       coupon_mark: true,
     }) /*  */
 
   },
-  checkboxChangess: function(e) {
+  checkboxChangess: function (e) {
     var that = this;
     wx.request({
       url: app.globalData.tiltes + 'coupon_minute',
@@ -1191,7 +1195,7 @@ Page({
         coupon_id: e.currentTarget.dataset.id,
       },
       method: "post",
-      success: function(res) {
+      success: function (res) {
         if (e.currentTarget.dataset.value == "1") {
           if (res.data.data.money <= that.data.goods_money_one) {
             that.setData({
@@ -1231,10 +1235,10 @@ Page({
         that.calculate_money();
 
       },
-      fail: function() {
+      fail: function () {
 
       },
-      complete: function() {}
+      complete: function () { }
 
     });
     that.setData({
@@ -1251,13 +1255,13 @@ Page({
   //  }
   //   that.calculate_money();
   // },
-  checkboxChanges: function(e) {
+  checkboxChanges: function (e) {
     var that = this;
     that.setData({
       is_checked: true
     })
   },
-  no_use: function(e) {
+  no_use: function (e) {
     var that = this;
     that.setData({
       coupon_mark: false,
@@ -1268,7 +1272,7 @@ Page({
     that.calculate_money();
   },
   // 计算商品价格
-  god_money: function() {
+  god_money: function () {
     var that = this;
     var all_moneys = 0;
     // console.log(that.data.goods)
@@ -1281,7 +1285,7 @@ Page({
   },
 
   // 计算钱
-  calculate_money: function() {
+  calculate_money: function () {
     var that = this;
     // var all_moneys = 0;
     // for (var i = 0; i < that.data.goods.length; i++) {
@@ -1302,7 +1306,7 @@ Page({
   },
 
   //  计算仓储费
-  money_storages: function() {
+  money_storages: function () {
     var that = this;
     var storagess = [];
     var ever_storage = [];
@@ -1328,7 +1332,7 @@ Page({
     })
   },
   // 计算运费
-  money_freight: function() {
+  money_freight: function () {
     var that = this;
     var money_freight = 0;
     for (var i = 0; i < that.data.goods.length; i++) {
@@ -1345,7 +1349,7 @@ Page({
   },
 
   /* 点击减号 */
-  bindMinus: function() {
+  bindMinus: function () {
     var that = this;
     var num = this.data.goods[0].number;
     var goods = this.data.goods;
@@ -1372,7 +1376,7 @@ Page({
     }
   },
   /* 点击加号 */
-  bindPlus: function() {
+  bindPlus: function () {
     var that = this;
     var num = this.data.goods[0].number;
     var goods = this.data.goods;
@@ -1399,7 +1403,7 @@ Page({
 
   },
   /* 点击减号 */
-  bindMinus1: function() {
+  bindMinus1: function () {
     var that = this;
     var num1 = this.data.num1;
     // 如果大于1时，才可以减  
@@ -1418,7 +1422,7 @@ Page({
     that.calculate_money();
   },
   /* 点击加号 */
-  bindPlus1: function() {
+  bindPlus1: function () {
     var that = this;
     var num1 = this.data.num1;
     // 不作过多考虑自增1  
@@ -1436,7 +1440,7 @@ Page({
   },
 
   /* 点击减号 */
-  bindMinus2: function() {
+  bindMinus2: function () {
     var that = this;
     var num2 = this.data.num2;
     // 如果大于1时，才可以减  
@@ -1453,7 +1457,7 @@ Page({
     });
   },
   /* 点击加号 */
-  bindPlus2: function() {
+  bindPlus2: function () {
     var that = this;
     var num2 = this.data.num2;
     // 不作过多考虑自增1  
@@ -1467,7 +1471,7 @@ Page({
       minusStatus: minusStatus
     });
   },
-  check_invoice: function(e) {
+  check_invoice: function (e) {
     var that = this;
     if (e.detail.value[0] == undefined) {
       that.setData({
@@ -1495,7 +1499,7 @@ Page({
   },
 
   // 计算发票费用
-  invi: function() {
+  invi: function () {
     var that = this;
     var goods_money = 0.00;
     for (var i = 0; i < that.data.goods.length; i++) {
@@ -1515,7 +1519,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
     let user = JSON.parse(options.title);
     that.setData({
@@ -1531,73 +1535,107 @@ Page({
         'shopping_id': user[0].shop_id,
       },
       method: "post",
-      success: function(res) {
-        let arr = [],
-          delivery_a, delivery_b, authority, goods;
-        authority = res.data.authority;
-        goods = res.data.data;
-        //单个商品时，存茶的判断
-        if (goods.length < 2) {
-          authority = 0;
-          for (let i = 0; i < goods.length; i++) {
-            for (let o in goods[i].goods_info.goods_sign) {
-              if (goods[i].goods_info.goods_sign[o].text == '可存' && goods[i].goods_info.goods_sign[o].check == '1' && goods[i].goods_info.goods_sign[o].check != undefined) {
+      success: function (res) {
+        if (res.data.data != undefined && res.data.data != null && res.data.data != '') {
+          let arr = [],
+            delivery_a, delivery_b, authority, goods, kc, hot, cx, qc;
+          authority = res.data.authority;
+          goods = res.data.data;
+
+          //单个商品时，存茶的判断
+          if (goods.length < 2) {
+            authority = 0;
+            if (goods[0].special_info != undefined && goods[0].special_info != null && goods[0].special_info != '') {
+              if (goods[0].special_info.save == 1) {
+                kc = 1;
                 authority = 1;
               }
             }
+
+            for (let i = 0; i < goods.length; i++) {
+              for (let o in goods[i].goods_info.goods_sign) {
+                if (goods[i].goods_info.goods_sign[o].text == '可存' && goods[i].goods_info.goods_sign[o].check == '1' && goods[i].goods_info.goods_sign[o].check != undefined) {
+                  authority = 1;
+                }
+              }
+            }
+
           }
-        }
-        // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))
-        if (res.data.data[0].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1;
-        if (res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;
-        that.setData({
-          goods: res.data.data,
-          goods_standby: res.data.data,
-          authority: authority,
-          delivery_a: delivery_a,
-          delivery_b: delivery_b
-        });
-        var all_moneys = 0;
-        var unit = [];
-        for (var i = 0; i < that.data.goods.length; i++) {
-          all_moneys += Number(that.data.goods[i].grade_price) * Number(that.data.goods[i].number);
-        }
-        for (var j = 0; j < that.data.goods.length; j++) {
-          unit.push(that.data.goods[j].unit);
-        }
-        that.setData({
-          all_money: all_moneys,
-          num: that.data.goods[0].number,
-          unit_all: unit,
-        });
 
-        wx.request({
-          url: app.globalData.tiltes + 'coupon_appropriated',
-          data: {
-            'open_id': app.globalData.gmemberid,
-            'goods_id': user[1].good_id,
-            'member_grade_name': app.globalData.member_grade_name,
-            "money": all_moneys,
-            "coupon_type": 1,
-            uniacid: app.globalData.uniacid
-          },
-          method: "post",
-          success: function(res) {
-            that.setData({
-              coupon_show: res.data.status,
-              coupon_order: res.data.data,
-            });
-          },
-          fail: function() {
+          
+          let goods_sign = goods[0].goods_info.goods_sign;
+          for (let i in goods_sign) {
+            if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              kc = 1;
+            } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              hot = 1;
+            } else if (goods_sign[i].text == '促销' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              cx = 1;
+            } else if (goods_sign[i].text == '清仓' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              qc = 1;
+            } else if (goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              arr.push(goods_sign[i]);
+            }
+          }
+          
+          res.data.data[0].goods_info.goods_sign = arr;
+          // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))
+          if (res.data.data[0].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1;
+          if (res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;
+          that.setData({
+            goods: res.data.data,
+            goods_standby: res.data.data,
+            authority: authority,
+            delivery_a: delivery_a,
+            delivery_b: delivery_b,
+            kc: kc,
+            hot: hot,
+            cx: cx,
+            qc: qc
+          });
+          var all_moneys = 0;
+          var unit = [];
+          for (var i = 0; i < that.data.goods.length; i++) {
+            all_moneys += Number(that.data.goods[i].grade_price) * Number(that.data.goods[i].number);
+          }
+          for (var j = 0; j < that.data.goods.length; j++) {
+            unit.push(that.data.goods[j].unit);
+          }
+          that.setData({
+            all_money: all_moneys,
+            num: that.data.goods[0].number,
+            unit_all: unit,
+          });
 
-          },
-          complete: function() {}
-        });
+          wx.request({
+            url: app.globalData.tiltes + 'coupon_appropriated',
+            data: {
+              'open_id': app.globalData.gmemberid,
+              'goods_id': user[1].good_id,
+              'member_grade_name': app.globalData.member_grade_name,
+              "money": all_moneys,
+              "coupon_type": 1,
+              uniacid: app.globalData.uniacid
+            },
+            method: "post",
+            success: function (res) {
+              that.setData({
+                coupon_show: res.data.status,
+                coupon_order: res.data.data,
+              });
+            },
+            fail: function () {
+
+            },
+            complete: function () { }
+          });
+        }
+
       },
-      fail: function() {
+      fail: function () {
 
       },
-      complete: function() {}
+      complete: function () { }
 
     });
     // 判读从哪个页面进来
@@ -1619,14 +1657,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     var that = this;
     wx.removeStorage({
       key: 'receipt_id',
@@ -1641,7 +1679,7 @@ Page({
     // console.log(receipt_id)
     //苹果底部适配
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         that.setData({
           fixiPhone: res.model.indexOf('iPhone X') != -1
         })
@@ -1655,7 +1693,7 @@ Page({
           address_id: ''
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           if (res.data.status == 1) {
             var tel = res.data.data.harvester_phone_num;
             var name = res.data.data.harvester;
@@ -1687,25 +1725,25 @@ Page({
                 'are': that.data.address_0
               },
               method: "post",
-              success: function(res) {
+              success: function (res) {
                 that.setData({
                   freight_infor: res.data.data,
                 })
                 that.money_freight();
                 that.calculate_money();
               },
-              fail: function() {
+              fail: function () {
 
               },
-              complete: function() {}
+              complete: function () { }
 
             });
           }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     } else {
@@ -1715,7 +1753,7 @@ Page({
           id: id,
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           var address_names = '';
           var a = res.data.data.address_name.split(",");
           var address_id = res.data.data.id;
@@ -1739,25 +1777,25 @@ Page({
                 'are': that.data.address_0
               },
               method: "post",
-              success: function(res) {
+              success: function (res) {
                 that.setData({
                   freight_infor: res.data.data,
                 })
                 that.money_freight();
                 that.calculate_money();
               },
-              fail: function() {
+              fail: function () {
 
               },
-              complete: function() {}
+              complete: function () { }
 
             });
           }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     }
@@ -1765,7 +1803,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'tacitly_approve',
         method: "post",
-        success: function(res) {
+        success: function (res) {
           var warehousess = [];
           var sava_id = res.data.data.id;
           for (var i = 0; i < res.data.data.unit.length; i++) {
@@ -1779,11 +1817,15 @@ Page({
             warehouse: res.data.data,
             sava_id: sava_id,
           });
+          if(that.data.sta == 3) {
+            that.money_storages();
+            that.calculate_money();
+          }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     } else {
@@ -1794,7 +1836,7 @@ Page({
           uniacid: app.globalData.uniacid
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           var warehousess = [];
           var sava_id = res.data.data.id;
           for (var i = 0; i < res.data.data.unit.length; i++) {
@@ -1808,11 +1850,15 @@ Page({
             warehouse: res.data.data,
             sava_id: sava_id,
           });
+          if(that.data.sta == 3) {
+            that.money_storages();
+            that.calculate_money();
+          }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     }
@@ -1823,7 +1869,7 @@ Page({
           uniacid: app.globalData.uniacid
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           var shop_address = res.data.data;
           var shop_id = res.data.data.id;
           var address_names = '';
@@ -1837,10 +1883,10 @@ Page({
             shop_id: shop_id,
           });
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     } else {
@@ -1850,7 +1896,7 @@ Page({
           id: shop_id
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           var shop_id = res.data.data.id;
           var shop_address = res.data.data;
           var address_names = '';
@@ -1864,10 +1910,10 @@ Page({
             shop_id: shop_id,
           });
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {}
+        complete: function () { }
 
       });
     }
@@ -1879,7 +1925,7 @@ Page({
           member_id: app.globalData.member_id,
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           // console.log(res)
           if (res.data.status == "1") {
             that.setData({
@@ -1892,16 +1938,16 @@ Page({
                 receipt_id: res.data.data[0].id
               },
               method: "post",
-              success: function(res) {
+              success: function (res) {
                 console.log(res)
                 that.setData({
                   rate: res.data.data
                 })
               },
-              fail: function() {
+              fail: function () {
 
               },
-              complete: function() {
+              complete: function () {
 
               }
             })
@@ -1912,7 +1958,7 @@ Page({
                 member_id: app.globalData.member_id,
               },
               method: "post",
-              success: function(res) {
+              success: function (res) {
                 console.log(res);
                 if (res.data.status == "1") {
                   that.setData({
@@ -1924,34 +1970,34 @@ Page({
                       receipt_id: res.data.data[0].id
                     },
                     method: "post",
-                    success: function(res) {
+                    success: function (res) {
                       console.log(res)
                       that.setData({
                         rate: res.data.data
                       })
                     },
-                    fail: function() {
+                    fail: function () {
 
                     },
-                    complete: function() {
+                    complete: function () {
 
                     }
                   })
                 }
               },
-              fail: function() {
+              fail: function () {
 
               },
-              complete: function() {
+              complete: function () {
 
               }
             })
           }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {
+        complete: function () {
 
         }
       })
@@ -1965,7 +2011,7 @@ Page({
           receipt_id: receipt_id
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           console.log(res);
           that.setData({
             rate: res.data.data
@@ -1974,10 +2020,10 @@ Page({
             that.invi();
           }
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {
+        complete: function () {
 
         }
       })
@@ -1987,22 +2033,22 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
-    setTimeout(function() {
+  onPullDownRefresh: function () {
+    setTimeout(function () {
       wx.stopPullDownRefresh();
     }, 1000)
   },
@@ -2010,14 +2056,14 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
