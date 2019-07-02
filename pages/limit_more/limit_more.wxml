@@ -1,6 +1,6 @@
 <view>
-  <view style="padding:0 10px;background: top left repeat #ffffff;background-size:20% 20%;margin-top:10px;box-sizing:border-box;">
-    <view bindtap="redirectto" class="hbj" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="padding:10px 0;background:#fff;border-bottom:1px solid #eee;position:relative;" wx:if="{{params.navstyle==1}}" wx:for="{{msmk}}" wx:key="index">
+  <view style="padding:0 10px;background: top left repeat #ffffff;background-size:20% 20%;margin-top:10px;box-sizing:border-box;" wx:for="{{goods}}" wx:key="index">
+    <view bindtap="redirectto" class="hbj" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="padding:10px 0;background:#fff;border-bottom:1px solid #eee;position:relative;">
       <image mode="{{style.pich==1?'widthFix':''}}" src="{{item.thumb}}" style="width:168rpx;height:168rpx;"></image>
       <view style="margin-left:30rpx;flex:1">
         <view style="overflow:hidden;">
@@ -20,7 +20,7 @@
           {{item.goods_selling!=null?item.goods_selling:''}}
         </view>
         <view class="hbj">
-          <view style="overflow:hidden;width:260rpx;height:44rpx;text-align:center;line-height:44rpx;color:#fff;font-size:24rpx;background:#FF4A47;{{item.end_time==0?'display:none':''}}" wx:if="{{item.endtime}}">
+          <view style="overflow:hidden;width:260rpx;text-align:center;line-height:44rpx;color:#fff;font-size:24rpx;background:#FF4A47;{{item.end_time==0?'display:none':''}}" wx:if="{{item.endtime}}">
             <image mode="widthFix" src="{{siteroot}}/diypage/resource/images/diypage/default/flash.png" style="width:16rpx;margin-right:10rpx;vertical-align:-4rpx"></image>
             距结束{{item.endtime}}
           </view>

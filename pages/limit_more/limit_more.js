@@ -1,3 +1,4 @@
+const app =  getApp();
 // pages/limit_more/limit_more.js
 Page({
 
@@ -5,10 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    goods:[]
   },
   daojishi: function () {
-    for (var t = this, a = t.data.msmk, e = 0; e < a.length; e++) {
+    for (var t = this, a = t.data.goods, e = 0; e < a.length; e++) {
       var o = new Date().getTime();
       if (0 == a[e].sale_time && 0 == a[e].sale_end_time);
       else if (1e3 * a[e].sale_time > o) a[e].t_flag = 1;
@@ -23,7 +24,7 @@ Page({
       }
     }
     t.setData({
-      msmk: a
+      goods: a
     });
     setTimeout(function () {
       t.daojishi();
@@ -33,13 +34,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    // wx.request({
-    //   url: app.globalData.tiltes + 'limit_goods_more',
-    //   data: {
-
-    //   }
-    // })
+    
   },
 
   /**
@@ -53,9 +48,86 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this, siteroot = app.globalData.url;
+    wx.request({  
+      url: app.globalData.url + '/api/limit_goods_more',
+      data: {
+        uniacid:6,
+        pageid:6,
+        open_id:"o_lMv5YLU2TqFvdXwUZBFYyonVB0",
+        member_grade_name: '白金会员'
+      },
+      method: "post",
+      success: function(res) {
+        if(res.data.status == "1") {
+          that.setData({
+            goods:res.data.data,
+            siteroot: siteroot
+          })
+        }
+      },
+      fail: function(e) {
+        console.log(e)
+      }
+    })
+    that.daojishi();
   },
+  newRedirectto: function (n, e) {
+    switch (e) {
+      case "page":
+        wx.navigateTo({
+          url: n
+        });
+        break;
+      case "pages":
+        wx.switchTab({
+          url: n
+        });
+        break;
+      case "webs":
+        wx.navigateTo({
+          url: n
+        });
+        break;
+      case "tel":
+        n = n.slice(4), wx.showModal({
+          title: "提示",
+          content: "是否拨打电话:" + n,
+          success: function (e) {
+            1 == e.confirm && wx.makePhoneCall({
+              phoneNumber: n
+            });
+          }
+        });
+        break;
 
+      case "map":
+        var a = n.split("##");
+        n = a[0].split(","), wx.openLocation({
+          latitude: parseFloat(n[0]),
+          longitude: parseFloat(n[1]),
+          scale: 22,
+          name: a[1],
+          address: a[2]
+        });
+        break;
+
+      case "mini":
+        var i = n.slice(6);
+        wx.navigateToMiniProgram({
+          appId: i,
+          path: "",
+          success: function (e) {
+            console.log("打开成功"), console.log(i);
+          }
+        });
+    }
+  },
+  redirectto: function (t) {
+    var a = t.currentTarget.dataset.link,
+        e = t.currentTarget.dataset.linktype;
+    this.newRedirectto(a, e);
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -10,12 +10,10 @@ Page({
   },
 
   toLive: function () {
-    // wx.navigateTo({
-    //   url: '../synopsis/synopsis'
-    // })
     wx.navigateTo({
-      url: '../../limit_more/limit_more'
+      url: '../synopsis/synopsis'
     })
+    
   },
   /*** 滑动切换tab***/
   bindChange: function (e) {
