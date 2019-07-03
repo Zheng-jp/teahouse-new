@@ -67,7 +67,7 @@ Page({
 
   },
   // 去商城逛逛
-  moveToMarket:function(){
+  moveToMarket: function () {
     wx.reLaunch({
       url: '../../diy/index/index',
     })
@@ -356,9 +356,57 @@ Page({
       },
       method: "post",
       success: function (res) {
-        if(res.data.status == 1){
+        if (res.data.status == 1) {
+          let goods = res.data.data, kc, hot, cx, qc;
+
+          for (let e = 0; e < goods.length; e++) {
+            // console.log(goods)
+            if (goods[e].save == 1) {
+              kc = 1;
+            }
+            // for (let o in goods[i].goods_info.goods_sign) {
+            for (let i in goods[e].goods_sign) {
+              var arr = [];
+              if (goods[e].goods_sign[i].text == '可存' && goods[e].goods_sign[i].check == '1' && goods[e].goods_sign[i].check != undefined) {
+                kc = 1;
+              } else if (goods[e].goods_sign[i].text == 'HOT' && goods[e].goods_sign[i].check == '1' && goods[e].goods_sign[i].check != undefined) {
+                hot = 1;
+              } else if (goods[e].goods_sign[i].text == '促销' && goods[e].goods_sign[i].check == '1' && goods[e].goods_sign[i].check != undefined) {
+                cx = 1;
+              } else if (goods[e].goods_sign[i].text == '清仓' && goods[e].goods_sign[i].check == '1' && goods[e].goods_sign[i].check != undefined) {
+                qc = 1;
+              } else if (goods[e].goods_sign[i].check == '1' && goods[e].goods_sign[i].check != undefined) {
+                arr.push(goods[e].goods_sign[i]);
+              }
+            }
+            res.data.data[e].goods_sign = arr;
+            // }
+          }
+          // let goods_sign = goods[0].goods_info.goods_sign;
+          // for (let i in goods_sign) {
+          //   if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+          //     kc = 1;
+          //   } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+          //     hot = 1;
+          //   } else if (goods_sign[i].text == '促销' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+          //     cx = 1;
+          //   } else if (goods_sign[i].text == '清仓' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+          //     qc = 1;
+          //   } else if (goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+          //     arr.push(goods_sign[i]);
+          //   }
+          // }
+
+          // res.data.data[0].goods_info.goods_sign = arr;
+
+
+
           that.setData({
             goodList: res.data.data,
+            kc: kc,
+            hot: hot,
+            cx: cx,
+            qc: qc
           });
         }
         if (that.data.goodList.length == 0) {
