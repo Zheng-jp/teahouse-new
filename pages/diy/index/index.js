@@ -179,7 +179,11 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
 
   },
   onShow: function () {
-    
+    if(typeof this.getTabBar === 'function' && this.getTabBar()){
+      this.getTabBar().setData({
+        checked: 0
+      })
+    }
   },
   getfoot: function (a) {
     var e = this;

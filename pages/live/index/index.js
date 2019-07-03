@@ -107,13 +107,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-
-
     //  高度自适应
-    that.setData({
+    this.setData({
       winHeight: 380 * this.data.imgUrls.length + 50
     })
+
+    if(typeof this.getTabBar === 'function' && this.getTabBar()){
+      this.getTabBar().setData({
+        checked: 3
+      })
+    }
   },
 
   /**
