@@ -165,7 +165,7 @@ App({
               },
               cachetime: 0,
               success: function(e) {
-                2 == e.data.data.res ? wx.showModal({
+                 1 == e.data.data.res ? wx.showModal({
                   title: "提醒",
                   content: "获取用户信息失败，请检查appid和appsecret是否正确！",
                   showCancel: !1
