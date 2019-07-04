@@ -1671,6 +1671,10 @@ Page({
     var sava_id = (wx.getStorageSync('sava_id') ? wx.getStorageSync('sava_id') : '');
     var shop_id = (wx.getStorageSync('shop_id') ? wx.getStorageSync('shop_id') : '');
     var receipt_id = (wx.getStorageSync('receipt_id') ? wx.getStorageSync('receipt_id') : '');
+    console.log(wx.getStorageSync('receipt_id'), receipt_id)
+    that.setData({
+      taxes_id: -1
+    })
     //苹果底部适配
     wx.getSystemInfo({
       success: function (res) {
@@ -1984,6 +1988,11 @@ Page({
 
                     }
                   })
+                }else{
+                  that.setData({
+                    taxes_id: -1,
+                    rate: 0
+                  })
                 }
               },
               fail: function () {
@@ -2032,7 +2041,7 @@ Page({
       })
     }
     
-    wx.removeStorage({
+    wx.removeStorageSync({
       key: 'receipt_id',
       success(res) {
         console.log(res)
