@@ -28,7 +28,7 @@ Page({
     circular: 'true',
     indicatorDots: 'true',
     interval: '5000',
-    autoplay: 'false',
+    // autoplay: 'false',
     selected: true,
     selected1: false,
     selected2: false,
@@ -293,7 +293,11 @@ Page({
       num: num
     });
   },
-
+  overVideo: function(e) {
+    this.setData({
+      autoplay: true
+    })
+  },
   hideFlag: function(e) {
     // console.log(111);
     this.setData({
@@ -576,7 +580,8 @@ Page({
           kc: kc,
           hot: hot,
           cx: cx,
-          qc: qc
+          qc: qc,
+          id: goods.goods_standard[0].id
         });
 
         var article = res.data.data[0].goods_text;
