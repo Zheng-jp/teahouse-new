@@ -138,6 +138,7 @@
       <button form-type="submit" class='button-hovers btn-area'>提交开票</button>
    </view>
 </form>
+
 <form bindsubmit="formSubmit2" bindreset="formReset" wx:if="{{select==2}}">
    <input type='text' name="id" style="display: none;" value='{{enterprise.id}}'></input>
    <view class="all">
@@ -202,7 +203,7 @@
       <button form-type="submit" class='button-hovers btn-area'>提交开票</button>
    </view>
 </form>
-<form bindsubmit="formSubmit13" bindreset="formReset" wx:if="{{select==3}}">
+<form bindsubmit="formSubmit3" bindreset="formReset" wx:if="{{select==3}}">
    <input type='text' name="id" style="display: none;" value='{{personal.id}}'></input>
    <view class="all">
       <view class="select_name">

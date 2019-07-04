@@ -1,14 +1,14 @@
 <view class="all">
   <view class='nav'>
-    <view wx:for="{{nav}}" class="bre swiper-tab-list " data-current="{{item.tab}}" bindtap="tab_click">
+    <view wx:for="{{nav}}" wx:key="{{index}}" class="bre swiper-tab-list " data-current="{{item.tab}}" bindtap="tab_click">
       <view class="nav_item {{item.tab==tab? 'on' : ''}}">{{item.name}}</view>
     </view>
   </view>
   <swiper current="{{tab}}" class="swiper-box" duration="500" bindchange="tab_slide" bindchange="tab_slide"
     style="height:{{winHeight}}px">
     <swiper-item>
-        <radio-group class="radio-group" bindchange="radioChange">
-          <scroll-view scroll-y="{{true}}" bindscroll="scroll" wx:for="{{enterprise}}" >
+        <radio-group class="radio-group">
+          <scroll-view scroll-y="{{true}}" bindscroll="scroll" wx:for="{{enterprise}}" wx:key="{{index}}" bindtap="go_back" data-id="{{item.id}}">
             <label class="radio">
               <view class='left'>
                 <radio value="" checked="{{item.checked}}" color='#02A0E6' />
@@ -43,9 +43,8 @@
       
     </swiper-item>
     <swiper-item>
-      
-      <radio-group class="radio-group" bindchange="radioChange">
-        <scroll-view scroll-y="{{true}}" bindscroll="scroll" wx:for="{{personal}}" bindtap="go_back" data-id="{{item.id}}">
+      <radio-group class="radio-group">
+        <scroll-view scroll-y="{{true}}" bindscroll="scroll" wx:for="{{personal}}" wx:key="{{index}}" bindtap="go_back" data-id="{{item.id}}">
           <label class="radio">
             <view class='left'>
               <radio value="" checked="{{item.checked}}" color='#02A0E6' />
