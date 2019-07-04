@@ -142,7 +142,6 @@ App({
     wx.getStorage({
       key: "openid",
       success: function(e) {
-        console.log(e);
         a.fxsbindagain(t, e.data), wx.request({
           url: url + "dopageglobaluserinfo",
           data: {

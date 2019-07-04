@@ -28,7 +28,7 @@ Page({
     if (!this.data.searchKey) {
       return
     }
-
+    
     let history = wx.getStorageSync("history") || [], state = true;
     for(let i = 0; i < history.length; i ++) {
       if( _searchKey == history[i]) {

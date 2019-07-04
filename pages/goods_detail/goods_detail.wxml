@@ -144,7 +144,7 @@
       <template is="wxParse" data="{{wxParseData:article.nodes}}" />
     </view>
     <view class="{{selected2?'show':'hidden'}}">
-      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      <template is="wxParse" data="{{wxParseData:article_text.nodes}}" />
     </view>
     <view class="{{selected1?'show':'hidden'}}">
       <view class='comment'>
