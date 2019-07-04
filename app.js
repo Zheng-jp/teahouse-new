@@ -158,14 +158,15 @@ App({
         wx.login({
           success: function(e) {
             wx.request({
-              url: url + "doPageAppbase",
+              url:url+ "doPageAppbase",
               data: {
                 code: e.code,
-                uniacid: o
+                uniacid: o,
               },
               cachetime: 0,
               success: function(e) {
                 2 == e.data.data.res ? wx.showModal({
+                  
                   title: "提醒",
                   content: "获取用户信息失败，请检查appid和appsecret是否正确！",
                   showCancel: !1
