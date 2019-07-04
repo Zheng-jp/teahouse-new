@@ -1,37 +1,26 @@
-<!--pages/seach/seach.wxml-->
-<!-- <view class="all">
+<!-- pages/seach/seach.wxml -->
+<view class="all">
     <view class="seach_title">
         <image class="seach_img" src="http://ptcb077mt.bkt.clouddn.com/seach.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
-        <input type="text" placeholder="搜索商品" class="seach_input"  value=""/>
-     
-        <view class="seach_btu">搜索</view>
+        <input type="text" placeholder="搜索商品" class="seach_input" bindinput='getSearchKey' bindblur='routeToSearchResPage' value="" />
+        <view class="seach_btu" bindinput='getSearchKey'>搜索</view>
     </view>
     <view class="seach_content">
-        <view class="content_title">
-            历史搜索
+        <view style="display:flex;">
+            <view class="content_title">历史搜索</view>
+            <view style="flex:1"></view>
+            <view class="content_title"  bindtap='clearHistory'>清空</view>
         </view>
+        <view class='content_content'>
+            <view class='list' wx:for='{{history}}' data-index='{{index}}' bindtap='routeToSearchResPage'>
+                {{item}}
+            </view>
+        </view>
+    </view>
+    <!-- <view class="seach_content">
+        <view class="content_title">热门搜索</view>
         <view class="content_content">
-            <view class="list"> 龙井</view>  
-
+            <view class="list">龙井</view>
         </view>
-    </view>
-        <view class="seach_content">
-        <view class="content_title">
-            热门搜索
-        </view>
-        <view class="content_content">
-            <view class="list"> 龙井</view>
-        </view>
-    </view>
-</view> -->
-
-<view class="menu">
-    <input class='search' placeholder='输入商品名称' placeholder-class='pla' bindinput='input_txt' bindconfirm='btn_search' value='{{searchValue}}'></input>
-    <button class='btn' bindtap='btn_search'>搜索</button>
-  </view>
-  <view class='history' bindtap='deleteHistory' wx:if="{{showHistory}}">清除搜索历史</view>
-  <view class='h_con' wx:if="{{showHistory}}">
-    <view class='h_con1'>
-      <view class="title" wx:for="{{history}}" bindtap='toSearch' data-value='{{item}}' data-index="{{index}}">{{item}}</view>
-    </view>
-  </view>
+    </view> -->
+</view>

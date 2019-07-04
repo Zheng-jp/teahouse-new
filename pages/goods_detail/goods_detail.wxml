@@ -16,7 +16,7 @@
               <image style="width:60rpx;height:30rpx;margin-right:10rpx;" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{save == 1}}"></image>
               库存{{stock}}{{specifications}}
             </view>
-            <view class='select-goods-sells'>销量213片</view>
+            <view class='select-goods-sells'>销量0{{specifications}}</view>
           </view>
         </view>
       </view>
@@ -144,7 +144,7 @@
       <template is="wxParse" data="{{wxParseData:article.nodes}}" />
     </view>
     <view class="{{selected2?'show':'hidden'}}">
-      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      <template is="wxParse" data="{{wxParseData:article_text.nodes}}" />
     </view>
     <view class="{{selected1?'show':'hidden'}}">
       <view class='comment'>

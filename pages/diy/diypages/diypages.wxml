@@ -481,7 +481,7 @@
 <template name="show_page_ssk" >
     <form bindsubmit="search" class="searchBox" reportSubmit="true" style="padding:{{style.boxpdh*2}}rpx {{style.boxpdz*2}}rpx;background:{{params.styledata==1?'url('+params.backgroundimg+')':''}} {{params.positiony}} {{params.positionx}} {{params.repeat}} {{style.background}};background-size:{{params.size==1?'cover':style.sizew+'%'}} {{params.size==1?'':style.sizeh+'%'}};margin-top:{{style.mt*2}}rpx;">
         <input bindtap="toSearch" bindconfirm="search" bindinput="serachInput" confirmType="search" name="keywords" placeholder="请输入关键词" placeholderStyle="color:{{style.color}}" style="padding:{{style.padding*2}}rpx {{style.padding*2}}rpx {{style.padding*2}}rpx {{style.textalign=='left'?style.padding*2+style.boxpdz*2+20:style.padding*2}}rpx;font-size:{{style.fontsize*2}}rpx;text-align:{{style.textalign}};border-radius:{{style.borderradius*2}}rpx;background:{{style.bg}};color:{{style.color}};text-align:{{style.textalign}};margin-top:0;" type="text"></input>
-        <view class="iconfont icon-x-sousuo1" style="top:{{style.boxpdh*4+style.padding*2}}rpx;left:{{style.boxpdz*2+20}}rpx"></view>
+        <view class="iconfont icon-x-sousuo1" style="top:{{style.boxpdh*3+style.padding*2}}rpx;left:{{style.boxpdz*2+20}}rpx"></view>
     </form>
 </template>
 <template name="show_page_yhq">
@@ -1358,7 +1358,7 @@
         <block wx:for="{{data}}" wx:key="index">
             <view bindtap="redirectto" class="hbj" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="border-bottom:2rpx solid {{style.linecolor}};padding:{{style.padding*2}}rpx 0;box-sizing:border-box;position:relative" wx:if="{{item.linktype!='server'}}">
                 <view class="hbj" style="font-size:28rpx;color:{{style.textcolor}};flex:1">
-                    <icon class="iconfont {{item.iconclass}}" style="color:{{style.iconcolor}};margin-right:10rpx;"></icon>
+                    <icon class="iconfont {{item.iconclass}}" style="color:{{style.iconcolor}};margin-right:10rpx; margin-top:-15rpx;"></icon>
                     <text>{{item.text}}</text>
                 </view>
                 <view style="font-size:24rpx;color:{{style.remarkcolor}};margin-right:28rpx;">{{item.remark}}</view>

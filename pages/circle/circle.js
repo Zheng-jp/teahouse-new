@@ -189,5 +189,13 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  onShow: function () {
+    if(typeof this.getTabBar === 'function' && this.getTabBar()){
+      this.getTabBar().setData({
+        checked: 2
+      })
+    }
+  },
 })

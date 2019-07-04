@@ -1196,6 +1196,7 @@ Page({
       },
       method: "post",
       success: function (res) {
+        console.log(e.currentTarget.dataset.value)
         if (e.currentTarget.dataset.value == "1") {
           if (res.data.data.money <= that.data.goods_money_one) {
             that.setData({
@@ -1211,6 +1212,7 @@ Page({
             });
           }
         } else if (e.currentTarget.dataset.value == "3") {
+          console.log(res.data.data.money)
           if (res.data.data.money <= Number(that.data.storage)) {
             that.setData({
               coupon_content: "-" + res.data.data.money,
@@ -1221,7 +1223,7 @@ Page({
             that.setData({
               coupon_content: "-" + that.data.storage,
               coupon_type: e.currentTarget.dataset.value,
-              money: res.that.data.storage,
+              money: that.data.storage,
             });
           }
         } else if (e.currentTarget.dataset.value == "") {

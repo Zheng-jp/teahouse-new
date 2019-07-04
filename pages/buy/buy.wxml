@@ -19,7 +19,16 @@
             </view>
             <view class='good_infors'>
               <view class='good_name'>{{item.goods_name}}</view>
-              <view class='good_infor'>{{item.desc}}</view>
+              <view class='good_infor'>
+                <image class="image_bq" style="vertical-align: middle;" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{kc == 1}}"></image>
+                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/hot.png" wx:if="{{hot == 1}}"></image>
+                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/chuxiao.png" wx:if="{{cx == 1}}"></image>
+                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/qingchang.png" wx:if="{{qc == 1}}"></image>
+                <view class="texts" wx:for="{{item.goods_sign}}" wx:key="{{index}}">
+                  {{item.text}}
+                </view>
+                {{item.goods_selling}}
+              </view>
               <view class='good_price'>
                 <view class='price'>
                   <image src='http://ptcb077mt.bkt.clouddn.com/img1.png' mode='widthFix' style='width:40rpx;'></image>
