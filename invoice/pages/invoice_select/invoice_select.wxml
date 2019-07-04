@@ -25,7 +25,7 @@
                       </view>
                       <view class='list last-child'>
                         <view class='label'>发票种类：</view>
-                        <view class='content' wx:if="{{status==1}}">普通发票</view>
+                        <view class='content' wx:if="{{item.status==1}}">普通发票</view>
                         <view class='content' wx:else>增值税专用发票</view>
                       </view>
                 </view>
