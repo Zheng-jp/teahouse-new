@@ -1539,8 +1539,7 @@ Page({
       method: "post",
       success: function (res) {
         if (res.data.data != undefined && res.data.data != null && res.data.data != '') {
-          let arr = [],
-            delivery_a, delivery_b, authority, goods, kc, hot, cx, qc;
+          let arr = [], delivery_a, delivery_b, authority, goods, kc, hot, cx, qc;
           authority = res.data.authority;
           goods = res.data.data;
 
@@ -1668,17 +1667,14 @@ Page({
    */
   onShow: function () {
     var that = this;
-    wx.removeStorage({
-      key: 'receipt_id',
-      success(res) {
-        console.log(res)
-      }
+    var id = (wx.getStorageSync('id') ? wx.getStorageSync('id') : '');
+    var sava_id = (wx.getStorageSync('sava_id') ? wx.getStorageSync('sava_id') : '');
+    var shop_id = (wx.getStorageSync('shop_id') ? wx.getStorageSync('shop_id') : '');
+    var receipt_id = (wx.getStorageSync('receipt_id') ? wx.getStorageSync('receipt_id') : '');
+    console.log(wx.getStorageSync('receipt_id'), receipt_id)
+    that.setData({
+      taxes_id: -1
     })
-    var id = wx.getStorageSync('id');
-    var sava_id = wx.getStorageSync('sava_id');
-    var shop_id = wx.getStorageSync('shop_id');
-    var receipt_id = wx.getStorageSync('receipt_id');
-    // console.log(receipt_id)
     //苹果底部适配
     wx.getSystemInfo({
       success: function (res) {
@@ -1930,6 +1926,8 @@ Page({
         success: function (res) {
           // console.log(res)
           if (res.data.status == "1") {
+            console.log('-----------------默认企业户名-----------------');
+            console.log(res.data)
             that.setData({
               taxes_id: res.data.data[0].id,
               company: res.data.data[0].company
@@ -1937,13 +1935,15 @@ Page({
             wx.request({
               url: app.globalData.tiltes + 'proportion',
               data: {
-                receipt_id: res.data.data[0].id
+                receipt_id: res.data.data[0].id,
+                uniacid: app.globalData.uniacid
               },
               method: "post",
               success: function (res) {
                 console.log(res)
                 that.setData({
-                  rate: res.data.data
+                  rate: res.data.data.scale,
+                  company: res.data.data.company
                 })
               },
               fail: function () {
@@ -1961,6 +1961,7 @@ Page({
               },
               method: "post",
               success: function (res) {
+                console.log('-----------------默认个人户名-----------------');
                 console.log(res);
                 if (res.data.status == "1") {
                   that.setData({
@@ -1969,13 +1970,15 @@ Page({
                   wx.request({
                     url: app.globalData.tiltes + 'proportion',
                     data: {
-                      receipt_id: res.data.data[0].id
+                      receipt_id: res.data.data[0].id,
+                      uniacid: app.globalData.uniacid
                     },
                     method: "post",
                     success: function (res) {
                       console.log(res)
                       that.setData({
-                        rate: res.data.data
+                        rate: res.data.data.scale,
+                        company: res.data.data.company
                       })
                     },
                     fail: function () {
@@ -1984,6 +1987,11 @@ Page({
                     complete: function () {
 
                     }
+                  })
+                }else{
+                  that.setData({
+                    taxes_id: -1,
+                    rate: 0
                   })
                 }
               },
@@ -2010,13 +2018,15 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'proportion',
         data: {
-          receipt_id: receipt_id
+          receipt_id: receipt_id,
+          uniacid: app.globalData.uniacid
         },
         method: "post",
         success: function (res) {
           console.log(res);
           that.setData({
-            rate: res.data.data
+            rate: res.data.data.scale,
+            company: res.data.data.company
           })
           if (that.data.taxes_select == 1) {
             that.invi();
@@ -2030,6 +2040,13 @@ Page({
         }
       })
     }
+    
+    wx.removeStorageSync({
+      key: 'receipt_id',
+      success(res) {
+        console.log(res)
+      }
+    })
   },
 
   /**
