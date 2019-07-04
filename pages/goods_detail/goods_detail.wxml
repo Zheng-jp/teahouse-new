@@ -9,11 +9,14 @@
         </view>
         <view class="select-goods-info">
           <view class='select-goods-price'>
-            <view class='new_select-goods-price'>￥{{price}}/{{goods.unit}}</view>
+            <view class='new_select-goods-price'>￥{{price}}/{{specifications}}</view>
           </view>
           <view class='select-goods-spec'>
-            <view class='select-goods-stock'>库存{{stock}}{{goods.unit}}</view>
-            <view class='select-goods-sells'>销量213片</view>
+            <view class='select-goods-stock' style="display:flex;align-items: center;">
+              <image style="width:60rpx;height:30rpx;margin-right:10rpx;" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{save == 1}}"></image>
+              库存{{stock}}{{specifications}}
+            </view>
+            <view class='select-goods-sells'>销量0{{specifications}}</view>
           </view>
         </view>
       </view>
@@ -22,7 +25,7 @@
           <view class='spec_title'>选择规格</view>
           <view class='spec_content_all'>
             <view class='spec_content' wx:for="{{goods.goods_standard}}">
-              <view class="spec_content_text {{item.id==id? 'on' : ''}}" bindtap="labelItemTap" data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}" data-value="{{item.name}}">
+              <view class="spec_content_text {{item.id==id? 'on' : ''}}" bindtap="labelItemTap" data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}" data-value="{{item.name}}" data-save="{{item.save}}">
                 {{item.name}}
               </view>
             </view>
@@ -42,7 +45,11 @@
     </view>
   </view>
   <view class='home_banner'>
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" duration="1000">
+  <!-- interval="{{interval}}" -->
+    <swiper  duration="{{duration}}" indicator-dots="{{indicatorDots}}"  circular="{{circular}}" >
+      <swiper-item wx:if="{{goods.video_link != ''}}">
+        <video id="myVideo" src="{{goods.video_link}}" style="width:100%;height:100%;" controls></video>
+      </swiper-item>
       <block wx:for="{{image}}" wx:key="{{index}}">
         <swiper-item class='swiper-item'>
           <image src="{{url}}{{item}}" class="slide-image" />
@@ -71,20 +78,21 @@
   <view class='goods_cont'>
     <!-- <text class='texts'>可存</text> -->
     <view class='good_name'>
-        <image class="image_bq" src="../../images/kecun.png" wx:if="{{kc == 1}}"></image>
-        <image class="image_bq" src="../../images/hot.png" wx:if="{{hot == 1}}"></image>
-        <image class="image_bq" src="../../images/chuxiao.png" wx:if="{{cx == 1}}"></image>
-        <image class="image_bq" src="../../images/qingchang.png" wx:if="{{qc == 1}}"></image>
-        <text class="texts" wx:for="{{goods.goods_sign}}" wx:key="{{index}}">{{item.text}}</text>{{goods.goods_name}}
+      {{goods.goods_name}}
     </view>
-    <view class='selling-point'>{{goods.goods_selling}}</view>
+    <view class='selling-point' >
+      <image class="image_bq" style="vertical-align: middle;" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{kc == 1}}"></image>
+      <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/hot.png" wx:if="{{hot == 1}}"></image>
+      <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/chuxiao.png" wx:if="{{cx == 1}}"></image>
+      <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/qingchang.png" wx:if="{{qc == 1}}"></image>
+      <view class="texts" wx:for="{{goods.goods_sign}}" wx:key="{{index}}">{{item.text}}</view>{{goods.goods_selling}}</view>
     <view class='price_cont'>
       <view style="display:flex; align-items:flex-end;margin-bottom:-15px">
         <view class='level_images' style='margin-bottom:9.5rpx;'>
           <image src='{{url}}{{member_grade_img}}'></image>
         </view>
         <view wx:if="{{goods.goods_standard==0}}">
-          <view class='sale'>￥{{goods.goods_new_money}}/{{goods.unit}}</view>
+          <view class='sale'>￥{{goods.limit_condition == '1'?goods.limit_price:goods.goods_new_money}}/{{goods.unit}}</view>
         </view>
         <view wx:else>
           <view class='sale'>￥{{goods.min_price}}/{{goods.unit}}</view>
@@ -106,9 +114,9 @@
     </view>
 
     <view class='other_info'>
-      <view class='other_info_list'>
+      <view class='other_info_list' wx:for="{{goods.server}}" wx:key="{{index}}">
         <image class="other_info_img" src="http://ptcb077mt.bkt.clouddn.com/u2151.png" mode="widthFix"></image>
-        <text class="other_info_text">7*24客服</text>
+        <text class="other_info_text">{{item.text}}</text>
       </view>
 
     </view>
@@ -136,7 +144,7 @@
       <template is="wxParse" data="{{wxParseData:article.nodes}}" />
     </view>
     <view class="{{selected2?'show':'hidden'}}">
-      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      <template is="wxParse" data="{{wxParseData:article_text.nodes}}" />
     </view>
     <view class="{{selected1?'show':'hidden'}}">
       <view class='comment'>
@@ -148,7 +156,7 @@
             <view class='comment_right'>
               <view class='comment_name'>瑞川</view>
               <view class='repay_content'>
-                香港就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感。 但在这个全球最密集的城市，“死后能住进棺材”纯属是妄念。
+
               </view>
               <view class='comment_img_all'>
                 <view class='comment_imgs'>
@@ -164,7 +172,7 @@
               <view class='time'>2018-10-06</view>
               <view class='repays_content'>
                 <text class='repay_content_title'>官方回复：</text>
-                <text>香港就如《攻壳机动队》里描绘的那样，垂直，密集的建筑，有着挂毯一样的美丽质感。 但在这个全球最密集的城市，“死后能住进棺材”纯属是妄念。</text>
+                <text></text>
               </view>
             </view>
           </view>
@@ -180,7 +188,7 @@
     <view class='ico_view'>
       <view class='service' bindtap="go_index">
         <button class="line"></button>
-        <image src='../../images/index.png' class='footbar_ico'></image>
+        <image src='http://ptcb077mt.bkt.clouddn.com/index.png' class='footbar_ico'></image>
         <view class='footbar_text'>首页</view>
       </view>
       <view class='service'>

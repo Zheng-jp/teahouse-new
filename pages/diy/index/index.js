@@ -142,12 +142,14 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         uniacid: app.globalData.uniacid
       },
       success: function (t) {
+        var data = t.data.data
+        data.test_name.enter_all_id?wx.setStorageSync('editionId', data.test_name.enter_all_id):'';
         var a = t.data.data.homepage,
             e = t.data.data.pageid;
         1 == a ? (o.setData({
           homepage: 1,
           foot_is: t.data.data.foot_is
-        }), o.getIndex(), app.util(o.getinfos, o.data.fxsid, o.data.uniacid), 2 == t.data.data.foot_is ? (o.setData({
+        }), o.getIndex(), app.util(o.getinfos, o.data.fxsid, app.globalData.uniacid), 2 == t.data.data.foot_is ? (o.setData({
           page_signs: "/sudu8_page/index/index?pageid=" + e
         }), o.getfoot(2)) : o.setData({
           page_signs: "/sudu8_page/index/index"
@@ -158,7 +160,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           success: function (t) {
             return !1;
           }
-        }) : (o.getPage(e), app.util(o.getinfos, o.data.fxsid, o.data.uniacid), o.setData({
+        }) : (o.getPage(e), app.util(o.getinfos, o.data.fxsid, app.globalData.uniacid), o.setData({
           page_signs: "/sudu8_page/index/index?pageid=" + e
         })), 1 == t.data.data.foot_is ? (o.setData({
           page_signs: "/sudu8_page/index/index"
@@ -177,7 +179,11 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
 
   },
   onShow: function () {
-    
+    if(typeof this.getTabBar === 'function' && this.getTabBar()){
+      this.getTabBar().setData({
+        checked: 0
+      })
+    }
   },
   getfoot: function (a) {
     var e = this;
@@ -300,6 +306,8 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         else a = "hide";
         if (t.data.data.c_b_bg) var e = "bg";
         else e = "";
+        app.globalData.navBarBgColor = t.data.data.base_color;
+        app.globalData.navBarTxtColor = t.data.data.base_tcolor;
         wx.setNavigationBarTitle({
           title: t.data.data.name
         }), wx.setNavigationBarColor({
@@ -462,7 +470,13 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       searchtitle: t.detail.value
     });
   },
+  toSearch: function() {
+    wx.navigateTo({
+      url:"../../seach/seach"
+    })
+  },
   search: function () {
+    
     var t = this.data.searchtitle;
     t ? wx.navigateTo({
       url: "/sudu8_page/search/search?title=" + t
@@ -833,6 +847,8 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           title: o.title
         });
         var s = 1 == o.topcolor ? "#000000" : "#ffffff";
+        app.globalData.navBarBgColor = o.topbackground;
+        app.globalData.navBarTxtColor = s;
         wx.setNavigationBarColor({
           frontColor: s,
           backgroundColor: o.topbackground,
@@ -908,7 +924,6 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     });
   },
   list: function () {
-    console.log(111);
     var f = this;
     var goods_list = f.data.list;
     for (var i = 0; i < goods_list.length; i++) {

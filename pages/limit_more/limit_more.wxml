@@ -1,0 +1,46 @@
+<view>
+  <view style="padding:0 10px;background: top left repeat #ffffff;background-size:20% 20%;margin-top:10px;box-sizing:border-box;" wx:for="{{goods}}" wx:key="index">
+    <view bindtap="redirectto" class="hbj" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="padding:10px 0;background:#fff;border-bottom:1px solid #eee;position:relative;">
+      <image mode="{{style.pich==1?'widthFix':''}}" src="{{item.thumb}}" style="width:168rpx;height:168rpx;"></image>
+      <view style="margin-left:30rpx;flex:1">
+        <view style="overflow:hidden;">
+          <view style="font-size:26rpx;color:#434343;max-width:380rpx;height:46rpx;line-height:46rpx;float:left;overflow:hidden">
+            {{item.title}}
+          </view>
+          <view style="font-size:24rpx;float:right;color:#434343;margin-top:4rpx;">
+            已抢
+            <text style="color:#FF4A47">
+              <text wx:if="{{item.sale_num==null}}">0</text>
+              <text wx:if="{{item.sale_num!=null}}">{{item.sale_num}}</text>
+            </text>
+            件
+          </view>
+        </view>
+        <view style="font-size:24rpx;color:#838383;margin-top:10rpx;height:44rpx;overflow:hidden">
+          {{item.goods_selling!=null?item.goods_selling:''}}
+        </view>
+        <view class="hbj">
+          <view style="overflow:hidden;width:260rpx;text-align:center;line-height:44rpx;color:#fff;font-size:24rpx;background:#FF4A47;{{item.end_time==0?'display:none':''}}" wx:if="{{item.endtime}}">
+            <image mode="widthFix" src="{{siteroot}}/diypage/resource/images/diypage/default/flash.png" style="width:16rpx;margin-right:10rpx;vertical-align:-4rpx"></image>
+            距结束{{item.endtime}}
+          </view>
+          <view style="overflow:hidden;width:160rpx;height:44rpx;text-align:center;line-height:44rpx;color:#fff;font-size:24rpx;background:#FF4A47;" wx:if="{{item.t_flag==1}}">
+            活动未开始
+          </view>
+          <view style="overflow:hidden;width:160rpx;height:44rpx;text-align:center;line-height:44rpx;color:#fff;font-size:24rpx;background:#FF4A47;" wx:if="{{item.t_flag==2}}">
+            活动已结束
+          </view>
+          <view style="flex:1;"></view>
+          <view style="font-size:36rpx;color:#FF4A47">
+            <text style="font-size:24rpx;">￥</text>
+            {{item.price}}
+          </view>
+          <view style="font-size:12px;color: #838383; padding-top:5px;margin-left: 5px;text-decoration: line-through;">
+            <text>￥</text>
+            {{item.market_price}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

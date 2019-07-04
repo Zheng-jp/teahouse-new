@@ -14,29 +14,25 @@ Page({
   
 
   formSubmit: function (e) {
-    var that=this;
-
+    var _this=this;
     var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
     if(e.detail.value.harvester_phone_num==''){
       wx.showToast({
         title:"身份证不能为空",
         icon:'none'
       });
-    }
-    else if(e.detail.value.harvester==''){
+    }else if(e.detail.value.harvester==''){
       wx.showToast({
         title:"姓名不能为空",
         icon:'none'
       });
-    } else if (reg.test(e.detail.value.harvester_phone_num) == false) {
+    }else if (reg.test(e.detail.value.harvester_phone_num) == false) {
       wx.showToast({
         title: "身份证号格式有误",
         icon: 'none'
       });
-    }
-    else{
-     
-        if(that.data.status==0){  
+    }else{
+        if(_this.data.status==0){  
           wx.request({
             url: app.globalData.tiltes + 'id_card_add',
             data: {
@@ -45,10 +41,6 @@ Page({
               name :e.detail.value.harvester,
             },
             method: "post",
-            // header: {
-            //   "Content-Type": "json" // 默认值
-      
-            // },
             success: function (res) {
               
               wx.navigateBack({
@@ -58,7 +50,6 @@ Page({
                 icon: "none",
                 title: res.data.info,
                 duration: 3000
-
               })
             },
             fail: function () {
@@ -66,16 +57,13 @@ Page({
                 icon: "none",
                 title: res.data.info,
                 duration: 3000
-
               })
             },
             complete: function () {
               // wx.hideLoading()
             }
-      
           });
-        }
-        else{
+        }else{
           wx.request({
             url: app.globalData.tiltes + 'id_card_edit',
             data: {
@@ -84,10 +72,6 @@ Page({
               name :e.detail.value.harvester,
             },
             method: "post",
-            // header: {
-            //   "Content-Type": "json" // 默认值
-      
-            // },
             success: function (res) {
               
               wx.navigateBack({
@@ -96,7 +80,6 @@ Page({
               wx.showToast({
                 icon: "none",
                 title: res.data.info
-
               })
             },
             fail: function () {
@@ -104,47 +87,36 @@ Page({
                 icon: "none",
                 title: res.data.info,
                 duration: 3000
-
               })
             },
             complete: function () {
               // wx.hideLoading()
             }
-      
           });
         }
-      
     }
-
-    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
+    var _this=this;
     wx.request({
       url: app.globalData.tiltes + 'id_card_return',
       data: {
         member_id: app.globalData.member_id,
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "json" // 默认值
-
-      // },
       success: function (res) {
-        that.setData({
-          status: res.data.status,
-          info: res.data.data,
-        });
-        if(that.data.status==1){
-          that.setData({
+        console.log(res)
+        if(res.data.status==1){
+          res.data.data.ID_card = res.data.data.ID_card.replace(/(\w{6})$/, '******');
+          _this.setData({
+            status: res.data.status,
             info: res.data.data,
           });
         }
-       
       },
       fail: function () {
 
@@ -152,7 +124,6 @@ Page({
       complete: function () {
         wx.hideLoading()
       }
-
     });
   },
   

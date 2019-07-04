@@ -206,7 +206,6 @@ Page({
       url:app.globalData.tiltes+ 'corporation',
       data:{
         member_id:app.globalData.member_id,
-        // member_id:1049,
       },
       method:"post",
       success:function(res){
@@ -226,7 +225,6 @@ Page({
       url:app.globalData.tiltes+"individual",
       data:{
         member_id:app.globalData.member_id,
-        // member_id:1049,
       },
       method:"post",
       success:function(res){

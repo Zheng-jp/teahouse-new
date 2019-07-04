@@ -4,8 +4,8 @@ Page({
     currentTab: '',
     winHeight: 0, //窗口高度
     imgUrls: [
-      '/images/u2404.png',
-      '/images/u2404.png'
+      'http://ptcb077mt.bkt.clouddn.com/u2404.png',
+      'http://ptcb077mt.bkt.clouddn.com/u2404.png'
     ]
   },
 
@@ -13,6 +13,7 @@ Page({
     wx.navigateTo({
       url: '../synopsis/synopsis'
     })
+    
   },
   /*** 滑动切换tab***/
   bindChange: function (e) {
@@ -33,7 +34,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    })
   },
 
 
@@ -103,13 +107,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-
-
     //  高度自适应
-    that.setData({
+    this.setData({
       winHeight: 380 * this.data.imgUrls.length + 50
     })
+
+    if(typeof this.getTabBar === 'function' && this.getTabBar()){
+      this.getTabBar().setData({
+        checked: 3
+      })
+    }
   },
 
   /**

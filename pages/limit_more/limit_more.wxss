@@ -1,0 +1,6 @@
+/* pages/limit_more/limit_more.wxss */
+.hbj {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

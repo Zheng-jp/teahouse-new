@@ -74,14 +74,21 @@
 </view>
 <view class='all'>
   <view class='titles'>购物清单</view>
-  <view wx:for="{{goods}}" class='good_list'>
+  <view wx:for="{{goods}}" class='good_list' wx:key="index">
     <view class='order-goods-info'>
       <view class='order-goods-img'>
         <image src='{{url}}{{item.goods_info.goods_show_image}}' mode="scaleToFill"></image>
       </view>
       <view class='order-info-box'>
         <view class='order-info-title'>{{item.goods_info.goods_name}}</view>
-        <view class='order-goods-p'>{{item.goods_info.goods_selling}}</view>
+        <view class='order-goods-p'>
+          <image class="image_bq" style="vertical-align: middle;" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{kc == 1}}"></image>
+          <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/hot.png" wx:if="{{hot == 1}}"></image>
+          <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/chuxiao.png" wx:if="{{cx == 1}}"></image>
+          <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/qingchang.png" wx:if="{{qc == 1}}"></image>
+          <view class="texts" wx:for="{{item.goods_info.goods_sign}}" wx:key="{{index}}">{{item.text}}</view>
+          {{item.goods_info.goods_selling}}
+        </view>
         <view class='unit-price-quantity'>
           <view class='unit-price'>
             <view class='unit-price-img'>
@@ -99,7 +106,7 @@
       </view>
     </view>
     <view class='quantity' wx:if="{{isnum}}">
-      <view class='purchase_quantity'>购买数量{{item.goods_info.goods_delivery[0]}}</view>
+      <view class='purchase_quantity'>购买数量</view>
       <view class='select_quantity'>
         <view class='subtract' bindtap="bindMinus">-</view>
         <view class='num'>
@@ -113,10 +120,14 @@
     <view class='way_select'>
       <radio-group class="radio-group" bindchange="radioChange">
         <label class="radio" wx:if="{{delivery_a == 1}}">
-          <radio value="选择直邮" color='#02A0E6' checked='checked'/>
+          <radio value="选择直邮" color='#02A0E6' checked='checked' />
           <text class='text_radio'>选择直邮</text>
         </label>
-        <label class="radio" wx:if="{{delivery_b == 1}}">
+        <label class="radio" wx:else="{{delivery_b != 1 && delivery_b == 1}}">
+          <radio value="到店自提" color='#02A0E6' checked='checked' />
+          <text class='text_radio'>到店自提</text>
+        </label>
+        <label class="radio" wx:if="{{delivery_b == 1 && delivery_a == 1}}">
           <radio value="到店自提" color='#02A0E6' />
           <text class='text_radio'>到店自提</text>
         </label>
@@ -156,14 +167,14 @@
         <view class='select_box'>
           <view class='add_information'>
             <view class="list1">
-              <view>仓储编号：{{warehouse.name}}</view>
+              <view>仓储编号：{{warehouse.number}}</view>
             </view>
             <view style='overflow:visible;'>
               <view class="sava_contents">
                 <view class="savetitle">仓储标准：</view>
                 <view class='scroll_view_border'>
                   <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="5000">
-                    <block wx:for="{{warehouse.units}}">
+                    <block wx:for="{{warehouse.units}}" wx:key="index">
                       <swiper-item>
                         <view class="swiper_item">¥{{item.cost}}/{{item.unit}}/天</view>
                       </swiper-item>
@@ -189,7 +200,8 @@
     <view class='is_invoice'>
       <checkbox-group bindchange="checkboxChanges">
         <label class="checkbox">
-          <checkbox value="选择仓储年限" checked="{{is_checked==true?'true':''}}" />选择仓储年限
+          <checkbox value="选择仓储年限" checked="{{is_checked==true?'true':''}}" />
+          选择仓储年限
         </label>
       </checkbox-group>
       <!-- <image class="tips_img" src="img/u927.png" mode="widthFix"></image>
@@ -248,7 +260,11 @@
       <view class='invoice_money text_red'>¥ {{taxes}}</view>
     </view>
     <view class='go_invoice_information' bindtap="go_invoice_add">
-      <view>请添加发票信息</view>
+      <view wx:if="{{company == undefined || company == ''}}">请添加发票信息</view>
+      <view wx:else>
+        <text class="" style="color:rgb(134, 134, 134)">纸质发票：</text>
+        {{company}}
+      </view>
       <view class='more_imgs'>
         <image src='http://ptcb077mt.bkt.clouddn.com/u1959.png' mode="scaleToFill"></image>
       </view>

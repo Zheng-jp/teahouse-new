@@ -348,6 +348,7 @@ Page({
       content: '确定取消订单吗？',
       success: function(res) {
       if (res.confirm) {
+          console.log(orderItems)
         for (var i = 0; i < orderItems.length; i++) {
           if(orderItems[i].parts_order_number == indexs){
             orderItems.splice(i, 1);
@@ -374,8 +375,8 @@ Page({
                 }); 
                
               },
-              fail: function () {
-             
+              fail: function (e) {
+                cons
               },
               complete: function () {
                 // wx.hideLoading()
@@ -604,6 +605,7 @@ Page({
         },
         method: "post",
         success: function (res) {
+          console.log(res)
           that.setData({
             order:res.data.data,
             tab:'1'

@@ -52,16 +52,16 @@
             </view>
             <view class='right'>
               <view class='list'>
-                <view class='label'>姓名：</view>
-                <view class='content'>{{item.name}}</view>
+                <view class='label'>收票抬头：</view>
+                <view class='content'>{{item.company}}</view>
               </view>
               <view class='list'>
-                <view class='label'>收票人手机：</view>
-                <view class='content'>{{item.user_phone}}</view>
+                <view class='label'>收票税号：</view>
+                <view class='content'>{{item.company_number}}</view>
               </view>
               <view class='list last-child'>
-                <view class='label'>收票人邮箱：</view>
-                <view class='content'>{{item.email}}</view>
+                <view class='label'>收票种类</view>
+                <view class='content'>普通发票</view>
               </view>
               <image src='img/u1458.png' mode='widthFix' class='delect' bindtap="delect" data-id="{{item.id}}"></image>
               <view class='reonly'>

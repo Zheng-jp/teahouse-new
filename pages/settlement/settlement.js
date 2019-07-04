@@ -66,7 +66,7 @@ Page({
     is_checked: true,
     unit_all: [], //报价单位
     ever_storage: [], //单个仓储费
-    fixiPhone: false//苹果底部适配,
+    fixiPhone: false, //苹果底部适配,
   },
   // 弹窗
   powerDrawer: function (e) {
@@ -76,32 +76,60 @@ Page({
   // 弹窗
   radioChange: function (e) {
     var that = this;
+    let goods = that.data.goods;
+    if (that.data.goods_standby.length > 1) goods = that.data.goods_standby;
     if (e.detail.value == "选择直邮") {
       that.setData({
+        goods: goods,
         selected: true,
         selected1: false,
         selected2: false,
         order_type: 1,
         storage: '0.00',
+        sta: 1
       })
       that.money_freight();
     } else if (e.detail.value == "到店自提") {
       that.setData({
+        goods: goods,
         selected: false,
         selected1: true,
         selected2: false,
         order_type: 2,
         storage: '0.00',
         freight: '0.00',
+        sta: 2
       })
     } else {
 
+      let arr = [];
+      //购物车结算时，剔除不可存茶商品
+      if (goods.length > 1) {
+        for (let i = 0; i < goods.length; i++) {
+          for (let o in goods[i].goods_info.goods_sign) {
+            if (goods[i].goods_info.goods_sign[o].text == '可存' && goods[i].goods_info.goods_sign[o].check == '1' && goods[i].goods_info.goods_sign[o].check != undefined) {
+              arr.push(goods[i]);
+            }
+          }
+        }
+        wx.showToast({
+          title: '已剔除非存储商品，您可结算可存储商品',
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
+        arr = that.data.goods;
+      }
+      // console.log(arr)
       that.setData({
+        goods: arr,
         selected: false,
         selected1: false,
         selected2: true,
         order_type: 3,
+        storage: '0.00',
         freight: '0.00',
+        sta: 3
       })
       that.money_storages();
 
@@ -263,7 +291,7 @@ Page({
   repay: function () {
     var that = this;
     var num = new Array();
-    num = [that.data.num];
+    num = [that.data.goods[0].number];
     // wx.request({
     //   url: app.globalData.tiltes + 'order_place',
     //   data: {
@@ -381,14 +409,13 @@ Page({
     // });
     let taxes1 = Number(that.data.taxes);
     if (that.data.order_type == "1") {
-
       wx.request({
         url: app.globalData.tiltes + 'order_places',
         data: {
           member_id: app.globalData.member_id,
           goods_id: that.data.user[1].good_id,
           goods_standard_id: that.data.user[2].guige,
-          order_quantity: that.data.user[3].num,
+          order_quantity: num,
           address_id: that.data.address_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
@@ -409,6 +436,7 @@ Page({
             })
             wx.showActionSheet({
               itemList: ['账户支付', '微信支付',],
+              itemColor: '#0099ff',
               success: function (res) {
                 // 账户支付
                 if (res.tapIndex == 0) {
@@ -498,7 +526,7 @@ Page({
           member_id: app.globalData.member_id,
           goods_id: that.data.user[1].good_id,
           goods_standard_id: that.data.user[2].guige,
-          order_quantity: that.data.user[3].num,
+          order_quantity: num,
           address_id: that.data.shop_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
@@ -519,6 +547,7 @@ Page({
             })
             wx.showActionSheet({
               itemList: ['账户支付', '微信支付',],
+              itemColor: '#0099ff',
               success: function (res) {
 
                 // 账户支付
@@ -608,7 +637,7 @@ Page({
           member_id: app.globalData.member_id,
           goods_id: that.data.user[1].good_id,
           goods_standard_id: that.data.user[2].guige,
-          order_quantity: that.data.user[3].num,
+          order_quantity: num,
           address_id: that.data.sava_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
@@ -629,6 +658,7 @@ Page({
             })
             wx.showActionSheet({
               itemList: ['账户支付', '微信支付',],
+              itemColor: '#0099ff',
               success: function (res) {
                 // 账户支付
                 if (res.tapIndex == 0) {
@@ -847,6 +877,7 @@ Page({
             })
             wx.showActionSheet({
               itemList: ['账户支付', '微信支付',],
+              itemColor: '#0099ff',
               success: function (res) {
                 // 账户支付
                 if (res.tapIndex == 0) {
@@ -956,6 +987,7 @@ Page({
             })
             wx.showActionSheet({
               itemList: ['账户支付', '微信支付',],
+              itemColor: '#0099ff',
               success: function (res) {
                 // 账户支付
                 if (res.tapIndex == 0) {
@@ -1065,6 +1097,7 @@ Page({
             })
             wx.showActionSheet({
               itemList: ['账户支付', '微信支付',],
+              itemColor: '#0099ff',
               success: function (res) {
                 // 账户支付
                 if (res.tapIndex == 0) {
@@ -1163,6 +1196,7 @@ Page({
       },
       method: "post",
       success: function (res) {
+        console.log(e.currentTarget.dataset.value)
         if (e.currentTarget.dataset.value == "1") {
           if (res.data.data.money <= that.data.goods_money_one) {
             that.setData({
@@ -1178,6 +1212,7 @@ Page({
             });
           }
         } else if (e.currentTarget.dataset.value == "3") {
+          console.log(res.data.data.money)
           if (res.data.data.money <= Number(that.data.storage)) {
             that.setData({
               coupon_content: "-" + res.data.data.money,
@@ -1188,7 +1223,7 @@ Page({
             that.setData({
               coupon_content: "-" + that.data.storage,
               coupon_type: e.currentTarget.dataset.value,
-              money: res.that.data.storage,
+              money: that.data.storage,
             });
           }
         } else if (e.currentTarget.dataset.value == "") {
@@ -1265,17 +1300,12 @@ Page({
       that.setData({
         all_money: all_moneys_alls,
       });
-      // that.setData({
-      //   all_money: that.data.all_money,
-      // });
     } else {
       that.setData({
         all_money: 0,
       });
     }
-
   },
-
 
   //  计算仓储费
   money_storages: function () {
@@ -1482,7 +1512,6 @@ Page({
     } else {
       goods_money = '0.00';
     }
-
     that.setData({
       taxes: goods_money,
     })
@@ -1509,54 +1538,101 @@ Page({
       },
       method: "post",
       success: function (res) {
-        var delivery_a,delivery_b;
-        // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))
-        if(res.data.data[0].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1; 
-        if(res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1; 
-        that.setData({
-          goods: res.data.data,
-          authority: res.data.authority,
-          delivery_a : delivery_a,
-          delivery_b : delivery_b
-        });
-        var all_moneys = 0;
-        var unit = [];
-        for (var i = 0; i < that.data.goods.length; i++) {
-          all_moneys += Number(that.data.goods[i].grade_price) * Number(that.data.goods[i].number);
+        if (res.data.data != undefined && res.data.data != null && res.data.data != '') {
+          let arr = [],
+            delivery_a, delivery_b, authority, goods, kc, hot, cx, qc;
+          authority = res.data.authority;
+          goods = res.data.data;
+
+          //单个商品时，存茶的判断
+          if (goods.length < 2) {
+            authority = 0;
+            if (goods[0].special_info != undefined && goods[0].special_info != null && goods[0].special_info != '') {
+              if (goods[0].special_info.save == 1) {
+                kc = 1;
+                authority = 1;
+              }
+            }
+
+            for (let i = 0; i < goods.length; i++) {
+              for (let o in goods[i].goods_info.goods_sign) {
+                if (goods[i].goods_info.goods_sign[o].text == '可存' && goods[i].goods_info.goods_sign[o].check == '1' && goods[i].goods_info.goods_sign[o].check != undefined) {
+                  authority = 1;
+                }
+              }
+            }
+
+          }
+
+          
+          let goods_sign = goods[0].goods_info.goods_sign;
+          for (let i in goods_sign) {
+            if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              kc = 1;
+            } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              hot = 1;
+            } else if (goods_sign[i].text == '促销' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              cx = 1;
+            } else if (goods_sign[i].text == '清仓' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              qc = 1;
+            } else if (goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              arr.push(goods_sign[i]);
+            }
+          }
+          
+          res.data.data[0].goods_info.goods_sign = arr;
+          // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))
+          if (res.data.data[0].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1;
+          if (res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;
+          that.setData({
+            goods: res.data.data,
+            goods_standby: res.data.data,
+            authority: authority,
+            delivery_a: delivery_a,
+            delivery_b: delivery_b,
+            kc: kc,
+            hot: hot,
+            cx: cx,
+            qc: qc
+          });
+          var all_moneys = 0;
+          var unit = [];
+          for (var i = 0; i < that.data.goods.length; i++) {
+            all_moneys += Number(that.data.goods[i].grade_price) * Number(that.data.goods[i].number);
+          }
+          for (var j = 0; j < that.data.goods.length; j++) {
+            unit.push(that.data.goods[j].unit);
+          }
+          that.setData({
+            all_money: all_moneys,
+            num: that.data.goods[0].number,
+            unit_all: unit,
+          });
+
+          wx.request({
+            url: app.globalData.tiltes + 'coupon_appropriated',
+            data: {
+              'open_id': app.globalData.gmemberid,
+              'goods_id': user[1].good_id,
+              'member_grade_name': app.globalData.member_grade_name,
+              "money": all_moneys,
+              "coupon_type": 1,
+              uniacid: app.globalData.uniacid
+            },
+            method: "post",
+            success: function (res) {
+              that.setData({
+                coupon_show: res.data.status,
+                coupon_order: res.data.data,
+              });
+            },
+            fail: function () {
+
+            },
+            complete: function () { }
+          });
         }
-        // console.log(all_moneys)
-        for (var j = 0; j < that.data.goods.length; j++) {
 
-          unit.push(that.data.goods[j].unit);
-        }
-        that.setData({
-          all_money: all_moneys,
-          num: that.data.goods[0].number,
-          unit_all: unit,
-        });
-
-        wx.request({
-          url: app.globalData.tiltes + 'coupon_appropriated',
-          data: {
-            'open_id': app.globalData.gmemberid,
-            'goods_id': user[1].good_id,
-            'member_grade_name': app.globalData.member_grade_name,
-            "money": all_moneys,
-            "coupon_type": 1,
-            uniacid: app.globalData.uniacid
-          },
-          method: "post",
-          success: function (res) {
-            that.setData({
-              coupon_show: res.data.status,
-              coupon_order: res.data.data,
-            });
-          },
-          fail: function () {
-
-          },
-          complete: function () { }
-        });
       },
       fail: function () {
 
@@ -1592,15 +1668,22 @@ Page({
    */
   onShow: function () {
     var that = this;
+    wx.removeStorage({
+      key: 'receipt_id',
+      success(res) {
+        console.log(res)
+      }
+    })
     var id = wx.getStorageSync('id');
     var sava_id = wx.getStorageSync('sava_id');
     var shop_id = wx.getStorageSync('shop_id');
     var receipt_id = wx.getStorageSync('receipt_id');
+    // console.log(receipt_id)
     //苹果底部适配
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          fixiPhone: res.model.indexOf('iPhone') != -1
+          fixiPhone: res.model.indexOf('iPhone X') != -1
         })
       }
     })
@@ -1630,15 +1713,12 @@ Page({
               address_0: a[0],
               address_id: address_id,
             });
-
           } else if (res.data.status == 0) {
             that.setData({
               selected: false,
             });
-
           }
           if (that.data.order_type == 1) {
-
             wx.request({
               url: app.globalData.tiltes + 'transportation',
               data: {
@@ -1724,9 +1804,6 @@ Page({
     if (sava_id == '') {
       wx.request({
         url: app.globalData.tiltes + 'tacitly_approve',
-        data: {
-
-        },
         method: "post",
         success: function (res) {
           var warehousess = [];
@@ -1742,6 +1819,10 @@ Page({
             warehouse: res.data.data,
             sava_id: sava_id,
           });
+          if(that.data.sta == 3) {
+            that.money_storages();
+            that.calculate_money();
+          }
         },
         fail: function () {
 
@@ -1771,6 +1852,10 @@ Page({
             warehouse: res.data.data,
             sava_id: sava_id,
           });
+          if(that.data.sta == 3) {
+            that.money_storages();
+            that.calculate_money();
+          }
         },
         fail: function () {
 
@@ -1835,6 +1920,7 @@ Page({
       });
     }
     if (receipt_id == '') {
+      // console.log('-----------------------------------------------')
       wx.request({
         url: app.globalData.tiltes + 'approve_corporation',
         data: {
@@ -1842,9 +1928,11 @@ Page({
         },
         method: "post",
         success: function (res) {
+          // console.log(res)
           if (res.data.status == "1") {
             that.setData({
-              taxes_id: res.data.data[0].id
+              taxes_id: res.data.data[0].id,
+              company: res.data.data[0].company
             })
             wx.request({
               url: app.globalData.tiltes + 'proportion',
@@ -1853,6 +1941,7 @@ Page({
               },
               method: "post",
               success: function (res) {
+                console.log(res)
                 that.setData({
                   rate: res.data.data
                 })
@@ -1869,13 +1958,8 @@ Page({
               url: app.globalData.tiltes + 'approve_individual',
               data: {
                 member_id: app.globalData.member_id,
-                // member_id: 1049,
               },
               method: "post",
-              // header: {
-              //   "Content-Type": "json" // 默认值
-
-              // },
               success: function (res) {
                 console.log(res);
                 if (res.data.status == "1") {
@@ -1885,16 +1969,11 @@ Page({
                   wx.request({
                     url: app.globalData.tiltes + 'proportion',
                     data: {
-                      //  member_id:app.globalData.member_id,
-                      // member_id: 1049,
                       receipt_id: res.data.data[0].id
                     },
                     method: "post",
-                    // header: {
-                    //   "Content-Type": "json" // 默认值
-
-                    // },
                     success: function (res) {
+                      console.log(res)
                       that.setData({
                         rate: res.data.data
                       })
@@ -1907,9 +1986,6 @@ Page({
                     }
                   })
                 }
-
-
-
               },
               fail: function () {
 
@@ -1918,10 +1994,7 @@ Page({
 
               }
             })
-
           }
-
-
         },
         fail: function () {
 
@@ -1930,11 +2003,6 @@ Page({
 
         }
       })
-
-
-
-
-
     } else {
       that.setData({
         taxes_id: receipt_id
@@ -1942,24 +2010,17 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'proportion',
         data: {
-          //  member_id:app.globalData.member_id,
-          // member_id: 1049,
           receipt_id: receipt_id
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "json" // 默认值
-
-        // },
         success: function (res) {
-          // console.log(res.data.data);
+          console.log(res);
           that.setData({
             rate: res.data.data
           })
           if (that.data.taxes_select == 1) {
             that.invi();
           }
-
         },
         fail: function () {
 
@@ -1968,12 +2029,7 @@ Page({
 
         }
       })
-
     }
-
-
-
-
   },
 
   /**
@@ -1994,7 +2050,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    // this.onShow();
     setTimeout(function () {
       wx.stopPullDownRefresh();
     }, 1000)

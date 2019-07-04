@@ -92,6 +92,10 @@ Page({
         console.log(t);
       }
     });
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    })
   },
 
   /**
@@ -185,5 +189,13 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  onShow: function () {
+    if(typeof this.getTabBar === 'function' && this.getTabBar()){
+      this.getTabBar().setData({
+        checked: 2
+      })
+    }
+  },
 })

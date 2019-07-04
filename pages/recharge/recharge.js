@@ -59,7 +59,7 @@ Page({
           data: {
             member_id: app.globalData.member_id,
             recharge_order_number: order_number,
-         
+            
           },
           dataTypr: 'json',
           method: "post",

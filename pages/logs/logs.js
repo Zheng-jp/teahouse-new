@@ -41,6 +41,7 @@ Page({
                     'content-type': 'application/json'
                   }, // 设置请求的 header
                   success: function (res) {
+                    console.log('登录', res.data)
                     app.globalData.gmemberid = res.data.data.openid;
                     app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                     app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;
@@ -136,6 +137,7 @@ Page({
                             'content-type': 'application/json'
                           }, // 设置请求的 header
                           success: function (res) {
+                            console.log('登录', res.data)
                             app.globalData.gmemberid = res.data.data.openid;
                             app.globalData.member_grade_img = res.data.data.member_grade_info.member_grade_img;
                             app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;

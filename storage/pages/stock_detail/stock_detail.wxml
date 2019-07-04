@@ -97,5 +97,5 @@
             <view class="item-value">100%</view>
         </view>
     </view>
-    <image src="./img/img2.png" class="chart-img" />
+    <image src="http://ptcb077mt.bkt.clouddn.com/img2.png" class="chart-img" />
 </view>

@@ -142,7 +142,6 @@ App({
     wx.getStorage({
       key: "openid",
       success: function(e) {
-        console.log(e);
         a.fxsbindagain(t, e.data), wx.request({
           url: url + "dopageglobaluserinfo",
           data: {
@@ -165,7 +164,7 @@ App({
               },
               cachetime: 0,
               success: function(e) {
-                2 == e.data.data.res ? wx.showModal({
+                 1 == e.data.data.res ? wx.showModal({
                   title: "提醒",
                   content: "获取用户信息失败，请检查appid和appsecret是否正确！",
                   showCancel: !1
@@ -447,5 +446,7 @@ App({
     // url:'http://localhost/teahouse.siring.com.cn',
     // tiltes:'http://localhost/teahouse/public/',
     // img_url:' http://localhost/teahouse/public/uploads/'
+    navBarBgColor: '',
+    navBarTxtColor: '',
   }
 })

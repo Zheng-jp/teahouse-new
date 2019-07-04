@@ -229,6 +229,7 @@ page {
     display: flex;
     flex-direction: row;
     align-items: center;
+    vertical-align: middle;
 }
 
 .hbj1 {

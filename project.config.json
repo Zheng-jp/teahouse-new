@@ -9,11 +9,19 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
+		"coverView": true,
 		"autoAudits": false,
-		"checkInvalidKey": true
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.1",
+	"libVersion": "2.7.3",
 	"appid": "wx301c1368929fdba8",
 	"projectname": "fan",
 	"debugOptions": {
@@ -39,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -72,7 +80,14 @@
 				{
 					"id": -1,
 					"name": "测试",
-					"pathName": "pages/test/test"
+					"pathName": "pages/test/test",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/buy/buy",
+					"pathName": "pages/buy/buy",
+					"scene": null
 				}
 			]
 		}

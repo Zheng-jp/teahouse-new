@@ -478,10 +478,10 @@
         </view>
     </form>
 </template>
-<template name="show_page_ssk">
+<template name="show_page_ssk" >
     <form bindsubmit="search" class="searchBox" reportSubmit="true" style="padding:{{style.boxpdh*2}}rpx {{style.boxpdz*2}}rpx;background:{{params.styledata==1?'url('+params.backgroundimg+')':''}} {{params.positiony}} {{params.positionx}} {{params.repeat}} {{style.background}};background-size:{{params.size==1?'cover':style.sizew+'%'}} {{params.size==1?'':style.sizeh+'%'}};margin-top:{{style.mt*2}}rpx;">
-        <input bindconfirm="search" bindinput="serachInput" confirmType="search" name="keywords" placeholder="请输入关键词" placeholderStyle="color:{{style.color}}" style="padding:{{style.padding*2}}rpx {{style.padding*2}}rpx {{style.padding*2}}rpx {{style.textalign=='left'?style.padding*2+style.boxpdz*2+20:style.padding*2}}rpx;font-size:{{style.fontsize*2}}rpx;text-align:{{style.textalign}};border-radius:{{style.borderradius*2}}rpx;background:{{style.bg}};color:{{style.color}};text-align:{{style.textalign}};margin-top:0;" type="text"></input>
-        <view class="iconfont icon-x-sousuo1" style="top:{{style.boxpdh*2+style.padding*2}}rpx;left:{{style.boxpdz*2+20}}rpx"></view>
+        <input bindtap="toSearch" bindconfirm="search" bindinput="serachInput" confirmType="search" name="keywords" placeholder="请输入关键词" placeholderStyle="color:{{style.color}}" style="padding:{{style.padding*2}}rpx {{style.padding*2}}rpx {{style.padding*2}}rpx {{style.textalign=='left'?style.padding*2+style.boxpdz*2+20:style.padding*2}}rpx;font-size:{{style.fontsize*2}}rpx;text-align:{{style.textalign}};border-radius:{{style.borderradius*2}}rpx;background:{{style.bg}};color:{{style.color}};text-align:{{style.textalign}};margin-top:0;" type="text"></input>
+        <view class="iconfont icon-x-sousuo1" style="top:{{style.boxpdh*3+style.padding*2}}rpx;left:{{style.boxpdz*2+20}}rpx"></view>
     </form>
 </template>
 <template name="show_page_yhq">
@@ -666,7 +666,7 @@
                             <text wx:if="{{item.sale_num!=null}}">{{item.sale_num}}</text>
                         </text>件</view>
                 </view>
-                <view style="font-size:24rpx;color:#838383;margin-top:10rpx;width:{{750-pdw*4-30-168}}rpx;height:44rpx;overflow:hidden">{{item.goods_selling!=null?item.goods_selling:''}}</view>
+                <view style="font-size:24rpx;color:#838383;margin-top:10rpx;width:{{(750-style.pdw*4-30-168)}}rpx;height:44rpx;overflow:hidden">{{item.goods_selling!=null?item.goods_selling:''}}</view>
                 <view class="hbj">
                     <view style="overflow:hidden;width:260rpx;height:44rpx;text-align:center;line-height:44rpx;color:#fff;font-size:24rpx;background:#FF4A47;{{item.end_time==0?'display:none':''}}" wx:if="{{item.endtime}}">
                         <image mode="widthFix" src="{{siteroot}}/diypage/resource/images/diypage/default/flash.png" style="width:16rpx;margin-right:10rpx;vertical-align:-4rpx"></image>距结束{{item.endtime}}
@@ -1358,7 +1358,7 @@
         <block wx:for="{{data}}" wx:key="index">
             <view bindtap="redirectto" class="hbj" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="border-bottom:2rpx solid {{style.linecolor}};padding:{{style.padding*2}}rpx 0;box-sizing:border-box;position:relative" wx:if="{{item.linktype!='server'}}">
                 <view class="hbj" style="font-size:28rpx;color:{{style.textcolor}};flex:1">
-                    <icon class="iconfont {{item.iconclass}}" style="color:{{style.iconcolor}};margin-right:10rpx;"></icon>
+                    <icon class="iconfont {{item.iconclass}}" style="color:{{style.iconcolor}};margin-right:10rpx; margin-top:-15rpx;"></icon>
                     <text>{{item.text}}</text>
                 </view>
                 <view style="font-size:24rpx;color:{{style.remarkcolor}};margin-right:28rpx;">{{item.remark}}</view>

@@ -214,18 +214,14 @@ Page({
 
     });
 
-
-
-
-
-    var url = getCurrentPages()[1].route;
-    console.log(url)
-
-
-
+    // var url = getCurrentPages()[1].route;
   },
   onShow: function () {
-
+    if(typeof this.getTabBar === 'function' && this.getTabBar()){
+      this.getTabBar().setData({
+        checked: 4
+      })
+    }
   },
 
 
