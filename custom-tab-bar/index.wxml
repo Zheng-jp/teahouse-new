@@ -1,6 +1,6 @@
 <!--miniprogram/custom-tab-bar/index.wxml-->
-<!-- <cover-view class="tab-bar">
-  <cover-view class="tab-bar-border"></cover-view> -->
+<cover-view class="tab-bar">
+  <cover-view class="tab-bar-border"></cover-view>
 
   <!-- <cover-view wx:for="{{list.data}}" wx:key="index" class="tab-bar-item" data-path="{{item.linkurl}}" data-index="{{index}}" bindtap="switchTab">
     <cover-image src="{{item.change ? item.imgurl2 : item.imgurl}}"></cover-image>
@@ -9,16 +9,6 @@
     </cover-view>
   </cover-view> -->
 
-  <!-- <cover-view wx:for="{{tabBarArr}}" wx:key="{{index}}" class="tab-bar-item" data-index="{{index}}" data-path="{{item.path}}" bindtap="switchTab">
-    <cover-image src="{{index == checked ? item.img2 : item.img}}"></cover-image>
-    <cover-view style="color: {{index == checked ? item.colorOn : item.color}}">
-      {{item.text}}
-    </cover-view>
-  </cover-view>
-</cover-view> -->
- 
-<cover-view class="tab-bar">
-  <cover-view class="tab-bar-border"></cover-view>
   <cover-view wx:for="{{tabBarArr}}" wx:key="{{index}}" class="tab-bar-item" data-index="{{index}}" data-path="{{item.path}}" bindtap="switchTab">
     <cover-image src="{{index == checked ? item.img2 : item.img}}"></cover-image>
     <cover-view style="color: {{index == checked ? item.colorOn : item.color}}">
@@ -26,4 +16,3 @@
     </cover-view>
   </cover-view>
 </cover-view>
- 
