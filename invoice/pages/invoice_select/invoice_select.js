@@ -83,7 +83,10 @@ Page({
          title:'删除成功',
          icon: 'none'
        })
-       that.onShow()
+      //  that.onShow()
+      wx.navigateBack({
+        delta: 2,
+      });
      },
      fail: function () {
 

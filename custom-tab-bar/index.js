@@ -26,14 +26,14 @@ Component({
       "color": "#ababab",
       "colorOn": "#D81E06",
     },
-    {
-      "img": "http://ptoobf833.bkt.clouddn.com/broadcast03.png",
-      "img2": "http://ptoobf833.bkt.clouddn.com/broadcast4.png",
-      "text": "直播",
-      "path": "/pages/live/index/index",
-      "color": "#ababab",
-      "colorOn": "#D81E06",
-    },
+    // {
+    //   "img": "http://ptoobf833.bkt.clouddn.com/broadcast03.png",
+    //   "img2": "http://ptoobf833.bkt.clouddn.com/broadcast4.png",
+    //   "text": "直播",
+    //   "path": "/pages/live/index/index",
+    //   "color": "#ababab",
+    //   "colorOn": "#D81E06",
+    // },
     {
       "img": "http://ptoobf833.bkt.clouddn.com/me03.png",
       "img2": "http://ptoobf833.bkt.clouddn.com/me4.png",
