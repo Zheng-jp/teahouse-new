@@ -114,3 +114,11 @@
     border-radius: 0.1rem;
     margin: 3%;
   }
+  .hbj {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.noshow {
+  display: none;
+}

@@ -463,6 +463,7 @@ height:108rpx;
 border-radius:50%;
 overflow:hidden;
 }
+
 .on{
   background-color: #FF0036;
   color: #fff;

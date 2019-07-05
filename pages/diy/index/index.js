@@ -143,7 +143,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       },
       success: function (t) {
         var data = t.data.data
-        data.test_name.enter_all_id?wx.setStorageSync('editionId', data.test_name.enter_all_id):'';
+        // data.test_name.enter_all_id?wx.setStorageSync('editionId', data.test_name.enter_all_id):'';
         var a = t.data.data.homepage,
             e = t.data.data.pageid;
         1 == a ? (o.setData({
