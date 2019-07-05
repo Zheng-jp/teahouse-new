@@ -566,8 +566,11 @@ Page({
         res.data.data[0].server = server_arr;
 
         var goods = res.data.data[0];
-
-        
+        if(goods.video_link == '' || goods.video_link == null || goods.video_link == undefined) {
+          that.setData({
+            autoplay: true
+          })
+        }
         that.setData({
           goods: goods,
           good_id: parseInt(options.title),

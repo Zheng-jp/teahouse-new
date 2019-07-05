@@ -107,7 +107,7 @@ Page({
       if (goods.length > 1) {
         for (let i = 0; i < goods.length; i++) {
           for (let o in goods[i].goods_info.goods_sign) {
-            if (goods[i].goods_info.goods_sign[o].text == '可存' && goods[i].goods_info.goods_sign[o].check == '1' && goods[i].goods_info.goods_sign[o].check != undefined) {
+            if (goods[i].goods_info.bq_arr[o].kc == 1 && goods[i].goods_info.bq_arr[o].kc != null && goods[i].goods_info.bq_arr[o].kc != undefined) {
               arr.push(goods[i]);
             }
           }
@@ -1196,7 +1196,6 @@ Page({
       },
       method: "post",
       success: function (res) {
-        console.log(e.currentTarget.dataset.value)
         if (e.currentTarget.dataset.value == "1") {
           if (res.data.data.money <= that.data.goods_money_one) {
             that.setData({
@@ -1212,7 +1211,6 @@ Page({
             });
           }
         } else if (e.currentTarget.dataset.value == "3") {
-          console.log(res.data.data.money)
           if (res.data.data.money <= Number(that.data.storage)) {
             that.setData({
               coupon_content: "-" + res.data.data.money,
@@ -1539,59 +1537,74 @@ Page({
       method: "post",
       success: function (res) {
         if (res.data.data != undefined && res.data.data != null && res.data.data != '') {
-          let arr = [], delivery_a, delivery_b, authority, goods, kc, hot, cx, qc;
+          let  delivery_a, delivery_b, authority, goods,  kc, hot, qc, cx;
           authority = res.data.authority;
           goods = res.data.data;
 
-          //单个商品时，存茶的判断
-          if (goods.length < 2) {
-            authority = 0;
-            if (goods[0].special_info != undefined && goods[0].special_info != null && goods[0].special_info != '') {
-              if (goods[0].special_info.save == 1) {
-                kc = 1;
+          // //单个商品时，存茶的判断
+          // if (goods.length < 2) {
+          //   authority = 0;
+          //   if (goods[0].special_info != undefined && goods[0].special_info != null && goods[0].special_info != '') {
+          //     if (goods[0].special_info.save == 1) {
+          //       kc = 1;
+          //       authority = 1;
+          //     }
+          //   }
+
+          //   for (let i = 0; i < goods.length; i++) {
+          //     for (let o in goods[i].goods_info.goods_sign) {
+          //       if (goods[i].goods_info.goods_sign[o].text == '可存' && goods[i].goods_info.goods_sign[o].check == '1' && goods[i].goods_info.goods_sign[o].check != undefined) {
+                  
+          //       }
+          //     }
+          //   }
+
+          // }
+          for(let o = 0; o < goods.length; o ++) {
+            let arr = [], bq_arr = [], goods_sign = goods[o].goods_info.goods_sign,bq_dgg = {};
+            //多规格的可存
+            if (goods[o].special_info != undefined && goods[o].special_info != null && goods[o].special_info != '') {
+              if (goods[o].special_info.save == 1) {
                 authority = 1;
+                bq_dgg.kc = 1;
+                bq_arr.push(bq_dgg);
               }
             }
-
-            for (let i = 0; i < goods.length; i++) {
-              for (let o in goods[i].goods_info.goods_sign) {
-                if (goods[i].goods_info.goods_sign[o].text == '可存' && goods[i].goods_info.goods_sign[o].check == '1' && goods[i].goods_info.goods_sign[o].check != undefined) {
-                  authority = 1;
-                }
+            //正常规格
+            for (let i in goods_sign) {
+              let bq = {};
+              if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+                authority = 1;
+                bq.kc = 1;
+                bq_arr.push(bq);
+              } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+                bq.hot = 1;
+                bq_arr.push(bq);
+              } else if (goods_sign[i].text == '促销' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+                bq.cx = 1;
+                bq_arr.push(bq);
+              } else if (goods_sign[i].text == '清仓' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+                bq.qc = 1;
+                bq_arr.push(bq);
+              } else if (goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+                arr.push(goods_sign[i]);
               }
             }
+            res.data.data[o].goods_info.goods_sign = arr;
+            res.data.data[o].goods_info.bq_arr = bq_arr;
+            // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))
+            if (res.data.data[o].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1;
+            if (res.data.data[o].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;
+          }
+          
 
-          }
           
-          let goods_sign = goods[0].goods_info.goods_sign;
-          for (let i in goods_sign) {
-            if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-              kc = 1;
-            } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-              hot = 1;
-            } else if (goods_sign[i].text == '促销' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-              cx = 1;
-            } else if (goods_sign[i].text == '清仓' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-              qc = 1;
-            } else if (goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-              arr.push(goods_sign[i]);
-            }
-          }
-          
-          res.data.data[0].goods_info.goods_sign = arr;
-          // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))
-          if (res.data.data[0].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1;
-          if (res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;
           that.setData({
             goods: res.data.data,
             goods_standby: res.data.data,
             authority: authority,
             delivery_a: delivery_a,
-            delivery_b: delivery_b,
-            kc: kc,
-            hot: hot,
-            cx: cx,
-            qc: qc
+            delivery_b: delivery_b
           });
           var all_moneys = 0;
           var unit = [];

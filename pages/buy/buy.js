@@ -360,28 +360,43 @@ Page({
           let goods = res.data.data, kc, hot, cx, qc;
 
           for (let e = 0; e < goods.length; e++) {
+            let arr = [], bq_arr = [], bq_dgg = {};
             // console.log(goods)
             if (goods[e].save == 1) {
-              kc = 1;
+              bq_dgg.kc = 1;
+              bq_arr.push(bq_dgg);
             }
+            //多规格的可存
+            // if (goods[e].special_info != undefined && goods[e].special_info != null && goods[e].special_info != '') {
+            //   if (goods[e].special_info.save == 1) {
+            //     bq_dgg.kc = 1;
+            //     bq_arr.push(bq_dgg);
+            //   }
+            // }
             // for (let o in goods[i].goods_info.goods_sign) {
             for (let i in goods[e].goods_sign) {
-              var arr = [];
+              var arr = [], bq = {};
               if (goods[e].goods_sign[i].text == '可存' && goods[e].goods_sign[i].check == '1' && goods[e].goods_sign[i].check != undefined) {
-                kc = 1;
+                bq.kc = 1;
+                bq_arr.push(bq);
               } else if (goods[e].goods_sign[i].text == 'HOT' && goods[e].goods_sign[i].check == '1' && goods[e].goods_sign[i].check != undefined) {
-                hot = 1;
+                bq.hot = 1;
+                bq_arr.push(bq);
               } else if (goods[e].goods_sign[i].text == '促销' && goods[e].goods_sign[i].check == '1' && goods[e].goods_sign[i].check != undefined) {
-                cx = 1;
+                bq.cx = 1;
+                bq_arr.push(bq);
               } else if (goods[e].goods_sign[i].text == '清仓' && goods[e].goods_sign[i].check == '1' && goods[e].goods_sign[i].check != undefined) {
-                qc = 1;
+                bq.qc = 1;
+                bq_arr.push(bq);
               } else if (goods[e].goods_sign[i].check == '1' && goods[e].goods_sign[i].check != undefined) {
                 arr.push(goods[e].goods_sign[i]);
               }
             }
             res.data.data[e].goods_sign = arr;
+            res.data.data[e].bq_arr = bq_arr;
             // }
           }
+          console.log(res.data.data)
           // let goods_sign = goods[0].goods_info.goods_sign;
           // for (let i in goods_sign) {
           //   if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
