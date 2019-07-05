@@ -104,13 +104,13 @@
         </view>
         <view class="list-value">应付<text>999元</text></view>
     </view>
-    <view class="agreement">
+    <!-- <view class="agreement">
         <label>
             <checkbox />
             我已阅读
             <text>《某某协议》</text>
         </label>
-    </view>
+    </view> -->
     <!-- <button class="btn">确定出仓</button> -->
 </view>
 <view class="ft">
