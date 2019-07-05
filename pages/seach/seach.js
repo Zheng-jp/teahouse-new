@@ -1,4 +1,6 @@
 //index.js
+const app = getApp();
+
 Page({
   data: {
     searchKey: "",
@@ -68,6 +70,14 @@ Page({
       history.push(this.data.searchKey)
       wx.setStorageSync("history", history);
     }
+    wx.request({
+      url: app.globalData.tiltes + "",
+      data: {},
+      method: "post",
+      success: function(res) {},
+      fail: function() {},
+      complete: function() {}
+    })
     this.onShow()
   },
   //每次显示钩子函数都去读一次本地storage
