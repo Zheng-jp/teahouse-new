@@ -1562,7 +1562,6 @@ Page({
             }
 
           }
-
           
           let goods_sign = goods[0].goods_info.goods_sign;
           for (let i in goods_sign) {
@@ -1667,14 +1666,15 @@ Page({
    */
   onShow: function () {
     var that = this;
+    
     var id = (wx.getStorageSync('id') ? wx.getStorageSync('id') : '');
     var sava_id = (wx.getStorageSync('sava_id') ? wx.getStorageSync('sava_id') : '');
     var shop_id = (wx.getStorageSync('shop_id') ? wx.getStorageSync('shop_id') : '');
     var receipt_id = (wx.getStorageSync('receipt_id') ? wx.getStorageSync('receipt_id') : '');
-    console.log(wx.getStorageSync('receipt_id'), receipt_id)
-    that.setData({
-      taxes_id: -1
-    })
+    wx.removeStorageSync('receipt_id');
+    // that.setData({
+    //   taxes_id: -1
+    // })
     //苹果底部适配
     wx.getSystemInfo({
       success: function (res) {
@@ -1965,7 +1965,7 @@ Page({
                 console.log(res);
                 if (res.data.status == "1") {
                   that.setData({
-                    taxes_id: res.data.data[0].id
+                    taxes_id: res.data.data[0].id,
                   })
                   wx.request({
                     url: app.globalData.tiltes + 'proportion',
@@ -1991,7 +1991,8 @@ Page({
                 }else{
                   that.setData({
                     taxes_id: -1,
-                    rate: 0
+                    rate: 0,
+                    company: ''
                   })
                 }
               },
@@ -2040,13 +2041,6 @@ Page({
         }
       })
     }
-    
-    wx.removeStorageSync({
-      key: 'receipt_id',
-      success(res) {
-        console.log(res)
-      }
-    })
   },
 
   /**
