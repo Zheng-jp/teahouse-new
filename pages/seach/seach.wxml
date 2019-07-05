@@ -19,25 +19,26 @@
     </view>
     <view class="{{noshow? '' : 'noshow'}}"  style="padding:0 10px;background: top left repeat #ffffff;background-size:20% 20%;margin-top:10px;box-sizing:border-box;" wx:for="{{goods}}" wx:key="index">
         <view bindtap="redirectto" class="hbj" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="padding:10px 0;background:#fff;border-bottom:1px solid #eee;position:relative;">
-            <image mode="{{style.pich==1?'widthFix':''}}" src="{{item.thumb}}" style="width:168rpx;height:168rpx;"></image>
+            <image mode="{{style.pich==1?'widthFix':''}}" src="{{url}}{{item.goods_show_image}}" style="width:168rpx;height:168rpx;"></image>
             <view style="margin-left:30rpx;flex:1">
                 <view style="overflow:hidden;">
                     <view style="font-size:26rpx;color:#434343;max-width:380rpx;height:46rpx;line-height:46rpx;float:left;overflow:hidden">
-                        {{item.title}}
+                        {{item.goods_name}}
                     </view>
                 </view>
-                <view style="font-size:24rpx;color:#838383;margin-top:10rpx;height:44rpx;overflow:hidden">
+                <view style="font-size:24rpx;color:#838383;margin-top:10rpx;overflow:hidden">
                     {{item.goods_selling!=null?item.goods_selling:''}}
                 </view>
                 <view class="hbj">
+                    <view style="font-size:12px;color: #434343;">销量：{{item.goods_volume}}</view>
                     <view style="flex:1;"></view>
                     <view style="font-size:36rpx;color:#FF4A47">
                         <text style="font-size:24rpx;">￥</text>
-                        {{item.price}}
+                        {{item.goods_new_money}}
                     </view>
                     <view style="font-size:12px;color: #838383; padding-top:5px;margin-left: 5px;text-decoration: line-through;">
                         <text>￥</text>
-                        {{item.market_price}}
+                        {{item.goods_bottom_money}}
                     </view>
                 </view>
             </view>
