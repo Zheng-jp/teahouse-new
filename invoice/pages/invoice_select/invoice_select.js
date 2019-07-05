@@ -18,15 +18,10 @@ Page({
     },{
       name: "个人",
       tab:1
-  },
-    
-     
-    ],
+    }],
     enterprise:[],
     personal:[],
     shares: [],
-
- 
   },
   tab_slide: function (e) {//滑动切换tab 
     var that = this;
@@ -41,7 +36,8 @@ Page({
 
   },
   go_back:function(e){
-    wx.setStorageSync('receipt_id', e.currentTarget.dataset.id );
+    console.log('选择',e)
+    wx.setStorageSync('receipt_id', e.currentTarget.dataset.id);
     wx.navigateBack({
       delta: 2,
     });
@@ -70,7 +66,7 @@ Page({
   },
    delect:function(e){
     var that = this;
-     var receipt_id = wx.getStorageSync('receipt_id');
+    var receipt_id = wx.getStorageSync('receipt_id');
     wx.request({
      url: app.globalData.tiltes + 'bill_delete',
      data: {

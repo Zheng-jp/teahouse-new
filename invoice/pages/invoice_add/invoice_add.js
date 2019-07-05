@@ -8,7 +8,7 @@ Page({
   data: {
     select: 0,
     statics: 0,
-    invoice: 1,
+    // invoice: 1,
     invoice1: 1,
     enterprise: [],
     personal: [],
@@ -27,34 +27,35 @@ Page({
   },
   radioChange10: function(e) {
     var that = this;
-   that.setData({
-        invoice10: e.detail.value,
-      })
+    that.setData({
+      invoice10: e.detail.value,
+    })
   },
-  radioChange3: function (e) {
-    var that = this;
-    if (e.detail.value == "个人") {
-      that.setData({
-        select: 1,
-      })
-    } else {
-      that.setData({
-        select: 0,
-      })
-    }
-  },
-  radioChange1: function(e) {
-    var that = this;
-    if (e.detail.value == "普通发票") {
-      that.setData({
-        invoice: 1,
-      })
-    } else {
-      that.setData({
-        invoice: 2,
-      })
-    }
-  },
+  // radioChange3: function (e) {
+  //   var that = this;
+  //   if (e.detail.value == "个人") {
+  //     that.setData({
+  //       select: 1,
+  //     })
+  //   } else {
+  //     that.setData({
+  //       select: 0,
+  //     })
+  //   }
+  // },
+  
+  // radioChange1: function(e) {
+  //   var that = this;
+  //   if (e.detail.value == "普通发票") {
+  //     that.setData({
+  //       invoice: 1,
+  //     })
+  //   } else {
+  //     that.setData({
+  //       invoice: 2,
+  //     })
+  //   }
+  // },
   radioChange2: function(e) {
     var that = this;
     if (e.detail.value == "普通发票") {
@@ -76,6 +77,7 @@ Page({
     })
   },
   formSubmit: function(e) {
+    console.log(e.detail)
     var that = this;
     // 添加
     if (e.detail.value.name1 == '') {
@@ -100,6 +102,7 @@ Page({
         },
         method: "post",
         success: function(res) {
+          console.log(res)
           wx.setStorageSync('receipt_id', res.data.data.receipt_id);
           wx.navigateBack({
             delta: 1
@@ -118,6 +121,7 @@ Page({
     }
   },
   formSubmit1: function (e) {
+    console.log(e.detail)
     var that = this;
     console.log(e);
     // 添加
@@ -144,6 +148,7 @@ Page({
         },
         method: "post",
         success: function (res) {
+          console.log(res)
           wx.setStorageSync('receipt_id', res.data.data.receipt_id);
           wx.navigateBack({
             delta: 1
@@ -161,22 +166,21 @@ Page({
         }
       })
     }
-
-
-
   },
   formSubmit2: function (e) {
-      wx.setStorageSync('receipt_id', e.detail.value.id);
-          wx.navigateBack({
-            delta: 1
-          });
+    console.log('formSubmit2', e)
+    wx.setStorageSync('receipt_id', e.detail.value.id);
+    wx.navigateBack({
+      delta: 1
+    });
   },
   formSubmit3: function (e) {
+    console.log('formSubmit3', e)
     wx.setStorageSync('receipt_id', e.detail.value.id);
-        wx.navigateBack({
-          delta: 1
-        });
-},
+    wx.navigateBack({
+      delta: 1
+    });
+  },
   geren:function(){
     var that=this;
     wx.request({
