@@ -101,8 +101,9 @@ Page({
         sta: 2
       })
     } else {
-
-      let arr = [];
+      console.log(goods)
+      console.log(this.data.user)
+      let arr = [],unit = [];
       //购物车结算时，剔除不可存茶商品
       if (goods.length > 1) {
         for (let i = 0; i < goods.length; i++) {
@@ -111,6 +112,7 @@ Page({
               arr.push(goods[i]);
             }
           }
+          unit.push(goods[i].unit);
         }
         wx.showToast({
           title: '已剔除非存储商品，您可结算可存储商品',
@@ -129,7 +131,8 @@ Page({
         order_type: 3,
         storage: '0.00',
         freight: '0.00',
-        sta: 3
+        sta: 3,
+        unit_all: unit
       })
       that.money_storages();
 
@@ -1318,6 +1321,7 @@ Page({
         }
       }
     }
+
     that.setData({
       storages: storagess,
     })
@@ -1537,7 +1541,7 @@ Page({
       method: "post",
       success: function (res) {
         if (res.data.data != undefined && res.data.data != null && res.data.data != '') {
-          let  delivery_a, delivery_b, authority, goods,  kc, hot, qc, cx;
+          let delivery_a, delivery_b, authority, goods, kc, hot, qc, cx;
           authority = res.data.authority;
           goods = res.data.data;
 
@@ -1554,14 +1558,14 @@ Page({
           //   for (let i = 0; i < goods.length; i++) {
           //     for (let o in goods[i].goods_info.goods_sign) {
           //       if (goods[i].goods_info.goods_sign[o].text == '可存' && goods[i].goods_info.goods_sign[o].check == '1' && goods[i].goods_info.goods_sign[o].check != undefined) {
-                  
+
           //       }
           //     }
           //   }
 
           // }
-          for(let o = 0; o < goods.length; o ++) {
-            let arr = [], bq_arr = [], goods_sign = goods[o].goods_info.goods_sign,bq_dgg = {};
+          for (let o = 0; o < goods.length; o++) {
+            let arr = [], bq_arr = [], goods_sign = goods[o].goods_info.goods_sign, bq_dgg = {};
             //多规格的可存
             if (goods[o].special_info != undefined && goods[o].special_info != null && goods[o].special_info != '') {
               if (goods[o].special_info.save == 1) {
@@ -1593,12 +1597,17 @@ Page({
             res.data.data[o].goods_info.goods_sign = arr;
             res.data.data[o].goods_info.bq_arr = bq_arr;
             // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))
-            if (res.data.data[o].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1;
-            if (res.data.data[o].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;
-          }
-          
 
-          
+          }
+          if (goods.length > 2) {
+            delivery_a = 1;
+            delivery_b = 1;
+          } else {
+            if (res.data.data[0].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1;
+            if (res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;
+          }
+
+
           that.setData({
             goods: res.data.data,
             goods_standby: res.data.data,
@@ -1679,7 +1688,7 @@ Page({
    */
   onShow: function () {
     var that = this;
-    
+
     var id = (wx.getStorageSync('id') ? wx.getStorageSync('id') : '');
     var sava_id = (wx.getStorageSync('sava_id') ? wx.getStorageSync('sava_id') : '');
     var shop_id = (wx.getStorageSync('shop_id') ? wx.getStorageSync('shop_id') : '');
@@ -1828,7 +1837,7 @@ Page({
             warehouse: res.data.data,
             sava_id: sava_id,
           });
-          if(that.data.sta == 3) {
+          if (that.data.sta == 3) {
             that.money_storages();
             that.calculate_money();
           }
@@ -1861,7 +1870,7 @@ Page({
             warehouse: res.data.data,
             sava_id: sava_id,
           });
-          if(that.data.sta == 3) {
+          if (that.data.sta == 3) {
             that.money_storages();
             that.calculate_money();
           }
@@ -2001,7 +2010,7 @@ Page({
 
                     }
                   })
-                }else{
+                } else {
                   that.setData({
                     taxes_id: -1,
                     rate: 0,

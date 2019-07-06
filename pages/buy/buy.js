@@ -396,7 +396,6 @@ Page({
             res.data.data[e].bq_arr = bq_arr;
             // }
           }
-          console.log(res.data.data)
           // let goods_sign = goods[0].goods_info.goods_sign;
           // for (let i in goods_sign) {
           //   if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
