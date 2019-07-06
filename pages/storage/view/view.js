@@ -66,6 +66,9 @@ Page({
     inYear: '2018.06.11', // 续费 入仓日期
     expireYear: '2019.06.11', // 续费 入仓日期
     renewExpireYear: '2018.06.11', // 续费 入仓日期
+    totalValueNum: 0,  //总价值
+    allStorageArr: [], //所有仓库
+    storageDataArr: [],  // 显示仓库数据
   },
   // 减
   minus: function(){
@@ -116,12 +119,104 @@ Page({
 
   },
 
+  // 选择显示仓库
+  selectStorageData: function(e){
+    var _this = this;
+    // 折叠所有仓库
+    _this.showAllStorage();
+    var id = e.currentTarget.dataset.id;
+    wx.request({
+      url: app.globalData.tiltes + 'doHouseOrder',
+      method: 'POST',
+      data: {
+        member_id: app.globalData.member_id,
+        uniacid: app.globalData.uniacid,
+      },
+      success: function(res){
+        console.log('选择显示仓库', res)
+      },
+      fail: function(){}
+    })
+  },
+  // 显示仓库数据
+  showStorageData: function(){
+    var _this = this;
+    wx.request({
+      url: app.globalData.tiltes + 'getStoreData',
+      method: 'POST',
+      data: {
+        member_id: app.globalData.member_id,
+        uniacid: app.globalData.uniacid
+      },
+      success: function(res){
+        console.log('显示仓库数据：', res)
+        if(res.data.status == 1){
+          res.data.data.forEach((v, i) => {
+              v.end_time = app.formatDate(v.end_time);
+          });
+          _this.setData({
+            storageDataArr: res.data.data
+          })
+        }
+      },
+      fail: function(){}
+    })
+  },
+  // 所有仓库
+  allStorage: function(){
+    var _this = this;
+    wx.request({
+      url: app.globalData.tiltes + 'getStoreHouse',
+      method: 'POST',
+      data: {
+        member_id: app.globalData.member_id,
+        uniacid: app.globalData.uniacid
+      },
+      success: function(res){
+        console.log('所有仓库：', res)
+        if(res.data.status == 1){
+          _this.setData({
+            allStorageArr: res.data.data
+          })
+        }
+      },
+      fail: function(){}
+    })
+  },
+  // 总价值
+  totalValue: function(){
+    var _this = this;
+    wx.request({
+      url: app.globalData.tiltes + 'theStoreValue',
+      method: 'POST',
+      data: {
+        member_id: app.globalData.member_id,
+        uniacid: app.globalData.uniacid
+      },
+      success: function(res){
+        console.log('总价值：', res)
+        if(res.data.status == 1){
+          _this.setData({
+            totalValueNum: res.data.data.order_real_pay.toFixed(2)
+          })
+        }
+      },
+      fail: function(){}
+    })
+  },
+
   onShow: function () {
     if(typeof this.getTabBar === 'function' && this.getTabBar()){
       this.getTabBar().setData({
         checked: 1
       })
     }
+    // 总价值
+    this.totalValue();
+    // 所有仓库
+    this.allStorage();
+    // 显示仓库数据
+    this.showStorageData();
   },
 
   // 切换 正在众筹 往期众筹
