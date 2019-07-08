@@ -22,7 +22,19 @@ Page({
           success(res) {
             if (res.confirm) {
               console.log('用户点击确定')
-              
+              const buffer = new ArrayBuffer(1)
+              const dataView = new DataView(buffer)
+              dataView.setUint8(0, 0)
+
+              wx.startHCE({
+                success(res) {
+                  wx.onHCEMessage(function (res) {
+                    if (res.messageType === 1) {
+                      wx.sendHCEMessage({ data: buffer })
+                    }
+                  })
+                }
+              })
             } else if (res.cancel) {
               console.log('用户点击取消')
               wx.scanCode({
@@ -37,7 +49,7 @@ Page({
                       duration: 2500
                     })
                   } else {
-        
+
                     wx.navigateTo({
                       url: '../../../sweep/pages/sweep_detail/sweep_detail',
                       success: function (res) { },
@@ -45,7 +57,7 @@ Page({
                       complete: function () { }
                     })
                   }
-        
+
                 }
               });
             }
@@ -53,11 +65,11 @@ Page({
         })
       },
       fail(err) {
-        console.error('NfcHCECore-->getNfcStatus::fail:', err)
+        // console.error('NfcHCECore-->getNfcStatus::fail:', err)
         wx.scanCode({
           onlyFromCamera: false,
           success(res) {
-  
+
             var code_url = res.result.split('/')[2];
             var com_url = app.globalData.url.split('/')[2];
             if (code_url != com_url) {
@@ -67,7 +79,7 @@ Page({
                 duration: 2500
               })
             } else {
-  
+
               wx.navigateTo({
                 url: '../../../sweep/pages/sweep_detail/sweep_detail',
                 success: function (res) { },
@@ -75,15 +87,15 @@ Page({
                 complete: function () { }
               })
             }
-  
+
           }
         });
       }
     });
     // if (this.data.isNfc) {
-      
+
     // } else {
-      
+
     // }
 
 

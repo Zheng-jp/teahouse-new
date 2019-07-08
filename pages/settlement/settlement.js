@@ -1539,7 +1539,7 @@ Page({
       method: "post",
       success: function (res) {
         if (res.data.data != undefined && res.data.data != null && res.data.data != '') {
-          let delivery_a, delivery_b, authority, goods, kc, hot, qc, cx;
+          let delivery_a, delivery_b, authority, goods, kc, hot, qc, cx, authority_new = 0;
           authority = res.data.authority;
           goods = res.data.data;
 
@@ -1567,19 +1567,20 @@ Page({
             //多规格的可存
             if (goods[o].special_info != undefined && goods[o].special_info != null && goods[o].special_info != '') {
               if (goods[o].special_info.save == 1) {
-                authority = 1;
+                authority_new = 1;
                 bq_dgg.kc = 1;
                 bq_arr.push(bq_dgg);
               }
             }
-            //正常规格
+            //正常规
             for (let i in goods_sign) {
               let bq = {};
               if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-                authority = 1;
+                authority_new = 1;
                 bq.kc = 1;
                 bq_arr.push(bq);
-              } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              }
+              if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
                 bq.hot = 1;
                 bq_arr.push(bq);
               } else if (goods_sign[i].text == '促销' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
@@ -1610,6 +1611,7 @@ Page({
             goods: res.data.data,
             goods_standby: res.data.data,
             authority: authority,
+            authority_new: authority_new,
             delivery_a: delivery_a,
             delivery_b: delivery_b,
             enter_all_id: res.data.enter_all_id

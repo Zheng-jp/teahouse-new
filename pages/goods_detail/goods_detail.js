@@ -41,7 +41,7 @@ Page({
     limitations_show: null, //是否有限时限购
     limitations_shows: [],
   },
-  labelItemTap: function(e) {
+  labelItemTap: function (e) {
     // console.log(e)
     var that = this;
     //  点击添加类
@@ -76,34 +76,34 @@ Page({
       })
     }
   },
-  selected: function(e) {
+  selected: function (e) {
     this.setData({
       selected2: false,
       selected1: false,
       selected: true
     })
   },
-  selected2: function(e) {
+  selected2: function (e) {
     this.setData({
       selected: false,
       selected1: false,
       selected2: true
     })
   },
-  selected1: function(e) {
+  selected1: function (e) {
     this.setData({
       selected: false,
       selected2: false,
       selected1: true
     })
   },
-  showFlag: function(e) {
+  showFlag: function (e) {
     this.setData({
       mask_show: true,
     })
 
   },
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     // console.log("分享")
     let that = this;
     return {
@@ -121,22 +121,22 @@ Page({
             })
             // console.log(that.setData.isShow)
           },
-          fail: function(res) {
+          fail: function (res) {
             console.log(res)
           },
-          complete: function(res) {
+          complete: function (res) {
             console.log(res)
           }
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         // 分享失败
         console.log(res)
       }
     }
   },
   // 点击加入购物车
-  add_car: function(event) {
+  add_car: function (event) {
     var that = this;
     // console.log(that);
     if (that.data.goods.goods_standard == 0) {
@@ -147,14 +147,14 @@ Page({
     } else {
       var goods_standard_id = that.data.id;
     }
-    
+
     if (that.data.select == '规格') {
 
       this.setData({
         mask_show: true,
       })
-      
-      if(that.data.id != 0) {
+
+      if (that.data.id != 0) {
         that.setData({
           select: that.data.goods.goods_standard[0].name
         })
@@ -170,19 +170,19 @@ Page({
           title: '提示',
           content: '请先添加收货地址',
           confirmText: '立即添加',
-          success: function(res) {
+          success: function (res) {
             if (res.confirm) {
               wx.navigateTo({
                 url: '../add_address/add_address',
-                success: function(res) {
+                success: function (res) {
                   // success
                   console.log("nihao////跳转成功")
                 },
-                fail: function() {
+                fail: function () {
                   // fail
                   console.log("nihao////跳转失败")
                 },
-                complete: function() {
+                complete: function () {
                   // complete
                   console.log("nihao////跳转行为结束，未知成功失败")
                 }
@@ -207,7 +207,7 @@ Page({
           //   "Content-Type": "json" // 默认值
 
           // },
-          success: function(res) {
+          success: function (res) {
             var buy_num = that.data.buy_num + 1;
             that.setData({
               buy_num: buy_num
@@ -223,10 +223,10 @@ Page({
               }, 2000)
             }, 0);
           },
-          fail: function() {
+          fail: function () {
 
           },
-          complete: function() {
+          complete: function () {
             wx.hideLoading()
           }
 
@@ -242,31 +242,31 @@ Page({
 
   },
   // 点击购物车
-  go_car: function(e) {
+  go_car: function (e) {
     wx.navigateTo({
       url: '../buy/buy',
-      success: function(res) {
+      success: function (res) {
         // success
         console.log("nihao////跳转成功")
       },
-      fail: function() {
+      fail: function () {
         // fail
         console.log("nihao////跳转失败")
       },
-      complete: function() {
+      complete: function () {
         // complete
         console.log("nihao////跳转行为结束，未知成功失败")
       }
 
     })
   },
-  go_index: function(e) {
+  go_index: function (e) {
     wx.navigateBack({
       delta: 2 //注意navigateTo只能跳转到带有tab的页面，不能跳转到不带tab的页面
     })
   },
   /* 点击减号 */
-  bindMinus: function() {
+  bindMinus: function () {
     var num = this.data.num;
     // 如果大于1时，才可以减  
     if (num > 1) {
@@ -281,7 +281,7 @@ Page({
     });
   },
   /* 点击加号 */
-  bindPlus: function() {
+  bindPlus: function () {
     var num = this.data.num;
     // 不作过多考虑自增1  
     num++;
@@ -294,7 +294,7 @@ Page({
     });
   },
   /* 输入框事件 */
-  bindManual: function(e) {
+  bindManual: function (e) {
     var num = e.detail.value;
     // 将数值与状态写回  
 
@@ -302,37 +302,37 @@ Page({
       num: num
     });
   },
-  overVideo: function(e) {
+  overVideo: function (e) {
     this.setData({
       autoplay: true
     })
   },
-  hideFlag: function(e) {
+  hideFlag: function (e) {
     // console.log(111);
     this.setData({
       mask_show: false,
     })
   },
 
-  showPopup: function(e) {
+  showPopup: function (e) {
     var that = this;
     if (that.data.address == 0) {
       wx.showModal({
         title: '提示',
         content: '请先添加收货地址',
-        success: function(res) {
+        success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
               url: '../add_address/add_address',
-              success: function(res) {
+              success: function (res) {
                 // success
                 console.log("nihao////跳转成功")
               },
-              fail: function() {
+              fail: function () {
                 // fail
                 console.log("nihao////跳转失败")
               },
-              complete: function() {
+              complete: function () {
                 // complete
                 console.log("nihao////跳转行为结束，未知成功失败")
               }
@@ -350,17 +350,17 @@ Page({
           confirmText: '马上绑定',
           confirmColor: '#3399FF',
           cancelColor: '#bbb',
-          success: function(res) {
+          success: function (res) {
             if (res.confirm) {
               wx.navigateTo({
                 url: '../change_account/change_acco unt?judge_phone=' + 0,
-                success: function(res) {
+                success: function (res) {
 
                 },
-                fail: function() {
+                fail: function () {
 
                 },
-                complete: function() {
+                complete: function () {
 
                 }
 
@@ -385,15 +385,16 @@ Page({
           this.setData({
             mask_show: true,
           })
-          // if(that.data.id != 0) {
-          //   that.setData({
-          //     select: that.data.goods.goods_standard[0].name
-          //   })
-          // }
-          // wx.showToast({
-          //   title: '请选择规格',
-          //   icon: 'none',
-          // })
+          if (that.data.id != 0) {
+            that.setData({
+              select: that.data.goods.goods_standard[0].name
+            })
+          } else {
+            wx.showToast({
+              title: '请选择规格',
+              icon: 'none',
+            })
+          }
         } else {
           var chars = [];
           // var char = {};
@@ -407,7 +408,6 @@ Page({
           var num = new Array();
           //  添加good_id字段到传值数组
           good_id.push(that.data.good_id);
-          console.log(that.data.id)
           if (that.data.id == 0 || that.data.id == '') {
             id.push(0);
           } else {
@@ -427,15 +427,15 @@ Page({
           let userStr = JSON.stringify(chars);
           wx.navigateTo({
             url: '../settlement/settlement?title=' + userStr,
-            success: function(res) {
+            success: function (res) {
               // success
               console.log("nihao////跳转成功")
             },
-            fail: function() {
+            fail: function () {
               // fail
               console.log("nihao////跳转失败")
             },
-            complete: function() {
+            complete: function () {
               // complete
               console.log("nihao////跳转行为结束，未知成功失败")
             }
@@ -451,7 +451,7 @@ Page({
   },
 
   // 倒计时
-  countdown: function(that) {
+  countdown: function (that) {
     // console.log(that.data.goods.limit_time)
     if (Number(that.data.goods.limit_time) <= 0) {
       that.setData({
@@ -476,7 +476,7 @@ Page({
         });
         return;
       }
-      setTimeout(function() {
+      setTimeout(function () {
         total_micro_second -= 1000;
         that.countdown(that);
       }, 1000)
@@ -485,7 +485,7 @@ Page({
   },
 
   // 时间格式化输出，如11天03小时25分钟19秒 每1s都会调用一次
-  dateformat: function(micro_second) {
+  dateformat: function (micro_second) {
     // 总秒数
     var second = Math.floor(micro_second / 1000);
     // 天数
@@ -502,7 +502,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
     var s_height = wx.getSystemInfoSync().windowHeight;
     var member_grade_img = app.globalData.member_grade_img;
@@ -519,7 +519,7 @@ Page({
         uniacid: app.globalData.uniacid
       },
       method: "post",
-      success: function(res) {
+      success: function (res) {
         let arr = [],
           kc, hot, cx, qc;
         let goods_sign = res.data.data[0].goods_sign;
@@ -552,12 +552,12 @@ Page({
         res.data.data[0].server = server_arr;
 
         var goods = res.data.data[0];
-        if(goods.video_link == '' || goods.video_link == null || goods.video_link == undefined) {
+        if (goods.video_link == '' || goods.video_link == null || goods.video_link == undefined) {
           that.setData({
             autoplay: true
           })
         }
-        if(goods.goods_standard[0].id == undefined || goods.goods_standard[0].id == null) {
+        if (goods.goods_standard[0].id == undefined || goods.goods_standard[0].id == null) {
           id = goods.goods_standard;
         } else {
           id = goods.goods_standard[0].id
@@ -568,7 +568,7 @@ Page({
           images: res.data.data[0].goods_standard[0].images,
           price: res.data.data[0].goods_standard[0].price,
           stock: res.data.data[0].goods_standard[0].stock,
-          save : res.data.data[0].goods_standard[0].save,
+          save: res.data.data[0].goods_standard[0].save,
           specifications: res.data.data[0].goods_standard[0].name,
           image: res.data.data[0].goods_show_images,
           kc: kc,
@@ -594,17 +594,17 @@ Page({
         // }
 
       },
-      fail: function() {
+      fail: function () {
 
       },
-      complete: function() {
+      complete: function () {
         wx.hideLoading()
       }
 
     });
     that.countdown(that);
     wx.request({
-      success: function(request) {
+      success: function (request) {
         // 倒计时(获取结束时间后再进行倒计时方法调用)
         this.countdown(this);
         //   console.log('--------------------------------')
@@ -618,15 +618,15 @@ Page({
         address_id: ''
       },
       method: "post",
-      success: function(res) {
+      success: function (res) {
         that.setData({
           address: res.data.status,
         });
       },
-      fail: function() {
+      fail: function () {
 
       },
-      complete: function() {}
+      complete: function () { }
 
     });
     wx.request({
@@ -636,15 +636,15 @@ Page({
 
       },
       method: "post",
-      success: function(res) {
+      success: function (res) {
         that.setData({
           buy_num: res.data.data,
         });
       },
-      fail: function() {
+      fail: function () {
 
       },
-      complete: function() {}
+      complete: function () { }
 
     });
     wx.request({
@@ -654,7 +654,7 @@ Page({
         uniacid: app.globalData.uniacid
       },
       method: "post",
-      success: function(res) {
+      success: function (res) {
         console.log(res);
         that.setData({
           limitations_show: res.data.status,
@@ -665,27 +665,27 @@ Page({
           });
         }
       },
-      fail: function() {
+      fail: function () {
 
       },
-      complete: function() {}
+      complete: function () { }
     });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     var that = this;
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         that.setData({
           fixiPhone: res.model.indexOf('iPhone') != -1
         })
