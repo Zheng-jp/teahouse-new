@@ -101,8 +101,6 @@ Page({
         sta: 2
       })
     } else {
-      console.log(goods)
-      console.log(this.data.user)
       let arr = [],unit = [];
       //购物车结算时，剔除不可存茶商品
       if (goods.length > 1) {
@@ -243,7 +241,7 @@ Page({
           })
         }
         wx.navigateTo({
-          url: '../order/order?title=' + 0,
+          url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
           success: function (res) {
 
           },
@@ -467,7 +465,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=' + 0,
+                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -496,7 +494,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=' + 0,
+                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -578,7 +576,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=' + 0,
+                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -607,7 +605,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=' + 0,
+                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -688,7 +686,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=' + 0,
+                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -717,7 +715,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=' + 0,
+                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -905,7 +903,7 @@ Page({
                           paySign: result.data.paySign,
                           'success': function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=' + 0,
+                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -934,7 +932,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=' + 0,
+                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -1015,7 +1013,7 @@ Page({
                           paySign: result.data.paySign,
                           'success': function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=' + 0,
+                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -1038,7 +1036,7 @@ Page({
                     },
                     complete: function () {
                       wx.navigateTo({
-                        url: '../order/order?title=' + 0,
+                        url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                         success: function (res) {
 
                         },
@@ -1125,7 +1123,7 @@ Page({
                           paySign: result.data.paySign,
                           'success': function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=' + 0,
+                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -1154,7 +1152,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=' + 0,
+                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -1613,7 +1611,8 @@ Page({
             goods_standby: res.data.data,
             authority: authority,
             delivery_a: delivery_a,
-            delivery_b: delivery_b
+            delivery_b: delivery_b,
+            enter_all_id: res.data.enter_all_id
           });
           var all_moneys = 0;
           var unit = [];
