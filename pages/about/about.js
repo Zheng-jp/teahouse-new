@@ -19,6 +19,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'about_us',
       data: {
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {

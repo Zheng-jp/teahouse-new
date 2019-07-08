@@ -348,7 +348,6 @@ Page({
       content: '确定取消订单吗？',
       success: function(res) {
       if (res.confirm) {
-          console.log(orderItems)
         for (var i = 0; i < orderItems.length; i++) {
           if(orderItems[i].parts_order_number == indexs){
             orderItems.splice(i, 1);
@@ -587,9 +586,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
+    let that = this, version;
+    if(options.version == undefined || options.version == null) version = options.enter_all_id;
+    else if(options.enter_all_id == undefined || options.enter_all_id == null) version = options.version;
     that.setData({
-      version: options.version
+      version: version
     })
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });

@@ -474,8 +474,8 @@ Page({
   go: function (event) {
     var item = event.currentTarget.dataset.id;
     wx.redirectTo({
-      // url: item + '?title=' + 0 + '&version=' + this.data.version,
-      url: item + '?title=' + 0,
+      url: item + '?title=' + 0 + '&version=' + this.data.version,
+      // url: item + '?title=' + 0,
       success: function (res) {
 
       },
@@ -490,9 +490,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    // that.setData({
-    //   version: options.version
-    // })
+    if(options.version != undefined ||options.version != null) {
+      that.setData({
+        version: options.version
+      })
+    }
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
     var member_grade_img = app.globalData.member_grade_img;
