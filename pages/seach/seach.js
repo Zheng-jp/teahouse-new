@@ -1,22 +1,12 @@
 //index.js
+const app = getApp();
+
 Page({
   data: {
     searchKey: "",
     history: [],
     record: '',
-    goods:[{
-      goods_selling: "茶叶特惠",
-      linktype: "page",
-      linkurl: "/pages/goods_detail/goods_detail?title=295",
-      market_price: 22,
-      price: 0.5,
-      pro_kc: 321,
-      // sale_end_time: "1564502400",
-      sale_num: 0,
-      // sale_time: "1561996800",
-      thumb: "https://teahouse.siring.com.cn//uploads/20190627/807cac6d8e70d27d45d3fab4b24a2b3f.jpg",
-      title: "丁香花",
-      video_link: ""}]
+    goods:[]
   },
   //获取input文本
   getSearchKey: function(e) {
@@ -31,6 +21,62 @@ Page({
         searchKey: e.detail.value
       })
     }
+  },
+  newRedirectto: function (n, e) {
+    switch (e) {
+      case "page":
+        wx.navigateTo({
+          url: n
+        });
+        break;
+      case "pages":
+        wx.switchTab({
+          url: n
+        });
+        break;
+      case "webs":
+        wx.navigateTo({
+          url: n
+        });
+        break;
+      case "tel":
+        n = n.slice(4), wx.showModal({
+          title: "提示",
+          content: "是否拨打电话:" + n,
+          success: function (e) {
+            1 == e.confirm && wx.makePhoneCall({
+              phoneNumber: n
+            });
+          }
+        });
+        break;
+
+      case "map":
+        var a = n.split("##");
+        n = a[0].split(","), wx.openLocation({
+          latitude: parseFloat(n[0]),
+          longitude: parseFloat(n[1]),
+          scale: 22,
+          name: a[1],
+          address: a[2]
+        });
+        break;
+
+      case "mini":
+        var i = n.slice(6);
+        wx.navigateToMiniProgram({
+          appId: i,
+          path: "",
+          success: function (e) {
+            console.log("打开成功"), console.log(i);
+          }
+        });
+    }
+  },
+  redirectto: function (t) {
+    var a = t.currentTarget.dataset.link,
+        e = t.currentTarget.dataset.linktype;
+    this.newRedirectto(a, e);
   },
   // 清空page对象data的history数组 重置缓存为[]
   clearHistory: function() {
@@ -68,7 +114,35 @@ Page({
       history.push(this.data.searchKey)
       wx.setStorageSync("history", history);
     }
-    this.onShow()
+    wx.request({
+      url: app.globalData.tiltes + "getSearchGood",
+      data: {
+        member_id: app.globalData.member_id,
+        uniacid: app.globalData.uniacid,
+        goods_name: _searchKey
+      },
+      method: "post",
+      success: function(res) {
+        // console.log(res.data)
+        let goods = res.data.data, arr = [], url = app.globalData.img_url;
+        if(res.data.status == 1) {
+          // console.log(goods)
+          for(let i = 0; i < goods.length; i ++) {
+            res.data.data[i].linktype = "page";
+            res.data.data[i].linkurl = "/pages/goods_detail/goods_detail?title=" + goods[i].id;
+            // console.log(res.data.data)
+          }
+          _this.setData({
+            goods: res.data.data,
+            url: url
+          })
+          // console.log(_this.data.goods)
+        }
+      },
+      fail: function() {},
+      complete: function() {}
+    })
+    // this.onShow()
   },
   //每次显示钩子函数都去读一次本地storage
   onShow: function() {

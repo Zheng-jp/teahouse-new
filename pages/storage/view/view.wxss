@@ -1,11 +1,11 @@
-@import "../../../__wuBaseWxss__/1.wxss";
-@import "../../../__wuBaseWxss__/2.wxss";
+/* @import "../../../__wuBaseWxss__/1.wxss";
+@import "../../../__wuBaseWxss__/2.wxss"; */
 /* 底部导航文字对齐 */
-.zbj {
+/* .zbj {
   display:flex;
   flex-direction:column;
   align-items:center;
-}
+} */
 /* pages/storage/view/view.wxss */
 view{overflow: initial !important;}
 page{height: 100%;}
@@ -27,18 +27,18 @@ swiper.swiper-container{height: 93%;}
 .gross-container .choice-warehouse{font-size: 24rpx; color: #bcbcbc; padding-left: 40rpx; border-left: 2rpx solid #bcbcbc;}
 .icon-choice{float: right; width: 25rpx; height: 14rpx; margin: 10rpx 0 0 10rpx;}
 .scaley-img{transform: scaleY(-1);}
-.warehouse-container{position: absolute; top: 100%; width: 100%; background-color: #f9f9f9;}
+.warehouse-container{position: absolute; top: 100%; width: 100%; background-color: #f9f9f9; z-index: 999;}
 .item-box{display: flex; padding: 40rpx 20rpx 0; font-size: 32rpx;}
 .warehouse-left{flex-basis: 20%; text-align: center; align-items: center; padding-top: 8rpx;}
 .warehouse-left text{color: #93291f; font-weight: 700;}
 .warehouse-right{flex-basis: 80%; display: flex; align-items: center; flex-wrap: wrap;}
-.warehouse-right .warehouse-item{color: #93291f; background-color: #fff; text-align: center; padding: 8rpx 30rpx; margin: 0 40rpx 20rpx 0; box-sizing: border-box;}
+.warehouse-right .warehouse-item{color: #93291f; background-color: #fff; text-align: center; padding: 8rpx 20rpx; margin: 0 10rpx 20rpx 0; box-sizing: border-box;}
 .retract{text-align: center; background-color: #d7d7d7;}
 .retract .icon-retract{width: 50rpx; height: 50rpx;}
 .storage-enviroment{border: 1px solid #d7d7d7; box-sizing: border-box; height: 60rpx; display: flex; align-items: center;}
 .storage-enviroment .storage-name-box{display: flex; align-items: center; flex-basis: 25%; height: 100%;}
 .storage-enviroment .storage-name-box image{width: 40rpx; height: 40rpx; margin: 0 10rpx;}
-.storage-enviroment .storage-name-box .storage-name{color: #999900; font-size: 28rpx;}
+.storage-enviroment .storage-name-box .storage-name{color: #999900; font-size: 28rpx; white-space: nowrap;}
 .enviroment-data-box{flex: 75%; height: 100%; background-color: #d7d7d7; display: flex; align-items: center; justify-content: space-between; padding-right: 20rpx;}
 .enviroment-data-box .icon-temperature,
 .enviroment-data-box .icon-humidity,
@@ -68,8 +68,8 @@ swiper.swiper-container{height: 93%;}
 .exchange-price>view{display: flex; justify-content: space-between; align-items: center; margin-bottom: 16rpx;}
 .btns{display: flex; justify-content: space-between; font-size: 32rpx;}
 .btns button{ height: 70rpx; line-height: 70rpx;}
-.btns .out-storage{background-color: #00bbff; flex-basis: 65%; color: #fff;}
-.btns .renew{flex-basis: 30%;}
+.btns .out-storage{background-color: #00bbff; flex: 1; color: #fff;}
+.btns .renew{flex-basis: 30%; margin-left: 5px;}
 /* 众筹 */
 .swiper-box{background-color: #000; box-sizing: border-box; height: 400rpx;}
 .swiper-box swiper{height: 160px;}
