@@ -10,10 +10,9 @@ Page({
   },
   nfc: function(e) {
     //获取当前状态
-    var that = this
+    var that = this;
     wx.getHCEState({
       success(res) {
-        console.log(res)
         that.setData({
           isNfc: true
         })
@@ -21,33 +20,34 @@ Page({
       },
       fail(err) {
         console.error('NfcHCECore-->getNfcStatus::fail:', err)
-        wx.scanCode({
-          onlyFromCamera: false,
-          success(res) {
-            var code_url = res.result.split('/')[2];
-            var com_url = app.globalData.url.split('/')[2];
-            console.log(code_url)
-            console.log(com_url)
-            if (code_url != com_url) {
-              wx.showToast({
-                title: '非在下产品,恕在下无法识别',
-                icon: 'none',
-                duration: 2500
-              })
-            } else {
-
-              wx.navigateTo({
-                url: '../../../sweep/pages/sweep_detail/sweep_detail',
-                success: function(res) {},
-                fail: function() {},
-                complete: function() {}
-              })
-            }
-
-          }
-        });
+        
       }
     })
+    wx.scanCode({
+      onlyFromCamera: false,
+      success(res) {
+          
+        var code_url = res.result.split('/')[2];
+        var com_url = app.globalData.url.split('/')[2];
+        if (code_url != com_url) {
+          wx.showToast({
+            title: '非在下产品,恕在下无法识别',
+            icon: 'none',
+            duration: 2500
+          })
+        } else {
+
+          wx.navigateTo({
+            url: '../../../sweep/pages/sweep_detail/sweep_detail',
+            success: function(res) {},
+            fail: function() {},
+            complete: function() {}
+          })
+        }
+
+      }
+    });
+    
 
 
 
