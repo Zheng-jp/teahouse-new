@@ -385,11 +385,11 @@ Page({
           this.setData({
             mask_show: true,
           })
-          if(that.data.id != 0) {
-            that.setData({
-              select: that.data.goods.goods_standard[0].name
-            })
-          }
+          // if(that.data.id != 0) {
+          //   that.setData({
+          //     select: that.data.goods.goods_standard[0].name
+          //   })
+          // }
           // wx.showToast({
           //   title: '请选择规格',
           //   icon: 'none',
@@ -407,6 +407,7 @@ Page({
           var num = new Array();
           //  添加good_id字段到传值数组
           good_id.push(that.data.good_id);
+          console.log(that.data.id)
           if (that.data.id == 0 || that.data.id == '') {
             id.push(0);
           } else {
@@ -544,8 +545,7 @@ Page({
         //   }
         // }
 
-        let server = res.data.data[0].server
-        let server_arr = [];
+        let server = res.data.data[0].server, server_arr = [], id;
         for (let i in server) {
           server_arr.push(server[i]);
         }
@@ -556,6 +556,11 @@ Page({
           that.setData({
             autoplay: true
           })
+        }
+        if(goods.goods_standard[0].id == undefined || goods.goods_standard[0].id == null) {
+          id = goods.goods_standard;
+        } else {
+          id = goods.goods_standard[0].id
         }
         that.setData({
           goods: goods,
@@ -570,7 +575,7 @@ Page({
           hot: hot,
           cx: cx,
           qc: qc,
-          id: goods.goods_standard[0].id,
+          id: id,
           // select: goods.goods_standard[0].name
         });
 
