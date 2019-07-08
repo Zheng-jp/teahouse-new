@@ -147,14 +147,23 @@ Page({
     } else {
       var goods_standard_id = that.data.id;
     }
+    
     if (that.data.select == '规格') {
+
       this.setData({
         mask_show: true,
       })
-      wx.showToast({
-        title: '请选择规格',
-        icon: 'none',
-      })
+      
+      if(that.data.id != 0) {
+        that.setData({
+          select: that.data.goods.goods_standard[0].name
+        })
+      } else {
+        wx.showToast({
+          title: '请选择规格',
+          icon: 'none',
+        })
+      }
     } else {
       if (that.data.address == 0) {
         wx.showModal({
@@ -362,34 +371,6 @@ Page({
             }
           }
         })
-      } else if (!app.globalData.judge_repay) {
-        wx.showModal({
-          title: '支付密码',
-          content: '您还没有资金账号，为了保证您的资金安全，请先设置资金账号支付密码。设置后才可以进行充值、余额消费等操作',
-          confirmText: '马上设置',
-          confirmColor: '#3399FF',
-          cancelColor: '#bbb',
-          success: function(res) {
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '../password/password?judge_phone=' + 0,
-                success: function(res) {
-
-                },
-                fail: function() {
-
-                },
-                complete: function() {
-
-                }
-
-
-              })
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
-        })
       } else {
         if (that.data.goods.goods_standard == 0) {
           var goods_standard_id = '';
@@ -404,10 +385,15 @@ Page({
           this.setData({
             mask_show: true,
           })
-          wx.showToast({
-            title: '请选择规格',
-            icon: 'none',
-          })
+          if(that.data.id != 0) {
+            that.setData({
+              select: that.data.goods.goods_standard[0].name
+            })
+          }
+          // wx.showToast({
+          //   title: '请选择规格',
+          //   icon: 'none',
+          // })
         } else {
           var chars = [];
           // var char = {};
@@ -566,8 +552,11 @@ Page({
         res.data.data[0].server = server_arr;
 
         var goods = res.data.data[0];
-
-        
+        if(goods.video_link == '' || goods.video_link == null || goods.video_link == undefined) {
+          that.setData({
+            autoplay: true
+          })
+        }
         that.setData({
           goods: goods,
           good_id: parseInt(options.title),
@@ -581,7 +570,8 @@ Page({
           hot: hot,
           cx: cx,
           qc: qc,
-          id: goods.goods_standard[0].id
+          id: goods.goods_standard[0].id,
+          // select: goods.goods_standard[0].name
         });
 
         var article = res.data.data[0].goods_text;

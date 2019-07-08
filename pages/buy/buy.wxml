@@ -20,10 +20,12 @@
             <view class='good_infors'>
               <view class='good_name'>{{item.goods_name}}</view>
               <view class='good_infor'>
-                <image class="image_bq" style="vertical-align: middle;" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{kc == 1}}"></image>
-                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/hot.png" wx:if="{{hot == 1}}"></image>
-                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/chuxiao.png" wx:if="{{cx == 1}}"></image>
-                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/qingchang.png" wx:if="{{qc == 1}}"></image>
+              <block wx:for="{{item.bq_arr}}" wx:key="index">
+                <image class="image_bq" style="vertical-align: middle;" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{item.kc == 1}}"></image>
+                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/hot.png" wx:if="{{item.hot == 1}}"></image>
+                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/chuxiao.png" wx:if="{{item.cx == 1}}"></image>
+                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/qingchang.png" wx:if="{{item.qc == 1}}"></image>
+                </block>
                 <view class="texts" wx:for="{{item.goods_sign}}" wx:key="{{index}}">
                   {{item.text}}
                 </view>

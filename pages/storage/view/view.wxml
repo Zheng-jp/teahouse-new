@@ -15,32 +15,33 @@
     <scroll-view style="margin-bottom: 50px;">
       <view class="gross-container">
         <view class="gross-item gross-title">总价值</view>
-        <view class="gross-item gross-number">￥123456.00</view>
+        <view class="gross-item gross-number">￥{{totalValueNum}}</view>
         <view class="gross-item choice-warehouse choice-down" bindtap="showAllStorage">
           <text>全部仓储</text>
           <image src="http://ptcb077mt.bkt.clouddn.com/icon-c.png" class="icon-choice {{scaleImg?'scaley-img':''}}" />
         </view>
         <view class="warehouse-container" style="display: {{wareHouseFlag?'':'none'}};">
           <view class="item-box">
-            <view class="warehouse-left">
-              <text>全部</text>
-            </view>
-            <view class="warehouse-right">
-              <view class="warehouse-item">北京仓01仓</view>
-              <view class="warehouse-item">北京仓01仓</view>
-              <view class="warehouse-item">北京仓01仓</view>
-            </view>
+            <!-- 是否存查 -->
+            <block wx:if="{{allStorageArr}}">
+              <view class="warehouse-left">
+                <text>全部</text>
+              </view>
+              <view class="warehouse-right">
+                <view class="warehouse-item" wx:for="{{allStorageArr}}" wx:key="{{index}}" data-id="{{item.store_house_id}}" bind:tap="selectStorageData">{{item.name}}{{item.number}}</view>
+              </view>
+            </block>
           </view>
           <view class="retract" bindtap="showAllStorage">
             <image src="http://ptcb077mt.bkt.clouddn.com/icon4.png" class="icon-retract" />
           </view>
         </view>
       </view>
-      <!-- <block wx:for="{{2}}"> -->
+      <block wx:for="{{storageDataArr}}" wx:key="{{index}}">
         <view class="storage-enviroment">
           <view class="storage-name-box">
             <image src="http://ptcb077mt.bkt.clouddn.com/icon1.png" class="" />
-            <text class="storage-name">仓JB01</text>
+            <text class="storage-name">{{item.store_name}}{{item.number}}</text>
           </view>
           <view class="enviroment-data-box">
             <view class="enviroment-item item-video">
@@ -66,49 +67,49 @@
           <view class="storage-manage">
             <view class="storage-item">
               <view class="item-left">
-                <image src="http://ptcb077mt.bkt.clouddn.com/u852.png" class="display-img" />
-                <text class="tea-name">大观</text>
-                <text class="tea-date">生产日期：2018.08.09</text>
+                <image src="{{url}}{{item.goods_image}}" class="display-img" />
+                <text class="tea-name">{{item.brand}}</text>
+                <text class="tea-date">生产日期：{{item.date}}</text>
                 <view class="tag-box">
-                  <text class="tag-text">北京仓</text>
-                  <text class="tag-text">古树生茶</text>
+                  <text class="tag-text">{{item.store_name}}</text>
+                  <text class="tag-text">{{item.name}}</text>
                 </view>
               </view>
               <view class="item-right">
                 <view class="tea-stock">
                   <text class="stock-title">实时库存</text>
-                  <text class="stock-num">11</text>
+                  <text class="stock-num">1</text>
                   件
-                  <text class="stock-num">11</text>
+                  <text class="stock-num">1</text>
                   提
-                  <text class="stock-num">11</text>
+                  <text class="stock-num">1</text>
                   片
                   <text class="stock-more" bindtap="toStockDetail">详情></text>
                 </view>
                 <view class="exchange-price">
                   <view>
                     <text>存茶到期时间：</text>
-                    <text>2018.01.01</text>
+                    <text>{{item.end_time}}</text>
                   </view>
                   <view>
                     <text>当前市场参考价：</text>
-                    <text class="out-price">￥5000/片</text>
+                    <text class="out-price">￥{{item.goods_bottom_money}}/{{item.store_unit}}</text>
                   </view>
                   <view>
                     <text>您的初始购入价：</text>
-                    <text>￥20000/片</text>
+                    <text>￥{{item.goods_money}}/{{item.store_unit}}</text>
                   </view>
                 </view>
                 <view class="btns">
                   <button class="out-storage" bindtap="outOfStock">出仓</button>
-                  <button type="warn" class="renew" bind:tap="showRenewPop">续费</button>
+                  <!-- <button type="warn" class="renew" bind:tap="showRenewPop">续费</button> -->
                   <!-- <button type="primary" class="renew">续费</button> -->
                 </view>
               </view>
             </view>
           </view>
         <!-- </block> -->
-      <!-- </block> -->
+      </block>
     </scroll-view>
   </swiper-item>
   <swiper-item class="overflowYauto">
