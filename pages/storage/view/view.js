@@ -131,16 +131,23 @@ Page({
       data: {
         member_id: app.globalData.member_id,
         uniacid: app.globalData.uniacid,
+        store_house_id: id
       },
       success: function(res){
         console.log('选择显示仓库', res)
+        if(res.data.status == 1){
+          _this.setData({
+            storageDataArr: res.data.data
+          })
+        }
       },
       fail: function(){}
     })
   },
   // 显示仓库数据
-  showStorageData: function(){
+  showStorageData: function(e){
     var _this = this;
+    e ? (e.currentTarget.dataset.key ? _this.showAllStorage() : '') : '';
     wx.request({
       url: app.globalData.tiltes + 'getStoreData',
       method: 'POST',

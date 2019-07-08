@@ -24,7 +24,7 @@
           <view class="item-box">
             <!-- 是否存查 -->
             <block wx:if="{{allStorageArr}}">
-              <view class="warehouse-left">
+              <view class="warehouse-left" bind:tap="showStorageData" data-key="true">
                 <text>全部</text>
               </view>
               <view class="warehouse-right">
