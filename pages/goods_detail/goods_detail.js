@@ -554,7 +554,8 @@ Page({
         var goods = res.data.data[0];
         if (goods.video_link == '' || goods.video_link == null || goods.video_link == undefined) {
           that.setData({
-            autoplay: true
+            autoplay: true,
+            isvideo: false
           })
         }
         if (goods.goods_standard[0].id == undefined || goods.goods_standard[0].id == null) {
