@@ -118,6 +118,23 @@ background-size:80%;
   width: 70rpx;
   height: 70rpx;
   margin: 0 auto;
+  position: relative;
+  overflow: visible;
+}
+.nav_view {
+  position: absolute;
+  top: 0;
+  right: -15rpx;
+  color: #fff;
+  background: red;
+  border-radius: 50%;
+  font-size: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 .order_content{
   width: 94%;
