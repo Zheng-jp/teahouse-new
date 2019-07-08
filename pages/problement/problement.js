@@ -131,6 +131,9 @@ Page({
     // navList
     wx.request({
       url: app.globalData.tiltes + 'problem_list',
+      data: {
+        uniacid: app.globalData.uniacid
+      },
       method: "POST",
       success: function(res){
         console.log(res)
