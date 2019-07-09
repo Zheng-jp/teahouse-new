@@ -9,7 +9,7 @@
     </cover-view>
   </cover-view> -->
 
-  <cover-view wx:for="{{tabBarArr}}" wx:key="{{index}}" class="tab-bar-item" data-index="{{index}}" data-path="{{item.path}}" bindtap="switchTab">
+  <cover-view wx:for="{{editionId==1?tabBarArr2:tabBarArr}}" wx:key="{{index}}" class="tab-bar-item" data-index="{{index}}" data-path="{{item.path}}" bindtap="switchTab">
     <cover-image src="{{index == checked ? item.img2 : item.img}}"></cover-image>
     <cover-view style="color: {{index == checked ? item.colorOn : item.color}}">
       {{item.text}}
