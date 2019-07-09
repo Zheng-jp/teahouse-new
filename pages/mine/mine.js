@@ -249,9 +249,15 @@ Page({
   },
   onShow: function () {
     if(typeof this.getTabBar === 'function' && this.getTabBar()){
-      this.getTabBar().setData({
-        checked: 3
-      })
+      if(wx.getStorageSync('editionId') == 1){
+        this.getTabBar().setData({
+          checked: 3
+        })
+      }else{
+        this.getTabBar().setData({
+          checked: 4
+        })
+      }
     }
   },
 
