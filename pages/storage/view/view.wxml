@@ -84,7 +84,7 @@
                   提
                   <text class="stock-num">1</text>
                   片
-                  <text class="stock-more" bindtap="toStockDetail">详情></text>
+                  <text class="stock-more" bindtap="toStockDetail" data-id="{{item.id}}">详情></text>
                 </view>
                 <view class="exchange-price">
                   <view>

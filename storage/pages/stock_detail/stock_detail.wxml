@@ -1,7 +1,7 @@
 <!-- storage/pages/stock_detail/stock_detail.wxml -->
-<view class="wrapper">
+<view class="wrapper" wx:for="{{dataObj}}" wx:key="index">
     <view class="header">
-        <view class="header-title">双骄</view>
+        <view class="header-title">{{item.brand}}</view>
         <view class="transaction">
             <text class="transaction-text">交易明细</text>
             <image src="./img/icon1.png" />
@@ -12,36 +12,36 @@
             <image src="./img/img1.png" />
         </view>
         <view class="right-info">
-            <view class="tea-name">新境茶叶 云南普洱茶熟茶 饼茶2010勐海古树茶宫廷普洱8年特技</view>
+            <view class="tea-name">{{item.goods_name}}</view>
             <view class="tea-init">
                 单位：
-                <text>片</text>
+                <text>{{item.store_unit}}</text>
             </view>
             <view class="tag-box">
-                <text class="tag-item">古树生茶</text>
+                <text class="tag-item">{{item.name}}</text>
             </view>
             <view class="price-number">
                 <view class="tea-price">
                     您的会员价
-                    <text>￥45.0</text>
+                    <text>￥{{item.goods_new_money}}</text>
                 </view>
-                <view class="tea-number">×1</view>
+                <view class="tea-number">×{{item.order_quantity}}</view>
             </view>
         </view>
     </view>
     <view class="other-info">
         <view class="other-item">
             <view class="item-key">生产日期：</view>
-            <view class="item-value">2019.03.05</view>
+            <view class="item-value">{{item.date}}</view>
         </view>
         <view class="other-item">
             <view class="item-key">初始订单：</view>
-            <view class="item-value">DJ94868686868</view>
+            <view class="item-value">{{item.parts_order_number}}</view>
         </view>
         <view class="other-item">
             <view class="item-key">实时库存：</view>
             <view class="item-value stock">
-                4件；4提；4片
+                {{item.store_number}}
                 <image src="./img/icon2.png" class="icon-more" />
             </view>
         </view>
@@ -51,7 +51,7 @@
         </view> -->
         <view class="other-item">
             <view class="item-key">入仓日期：</view>
-            <view class="item-value">2019.03.05</view>
+            <view class="item-value">{{item.end_time}}</view>
         </view>
         <!-- <view class="other-item">
             <view class="item-key">换手锁定：<text class="explain">?</text></view>
@@ -63,12 +63,12 @@
         </view>
         <view class="other-item">
             <view class="item-key">仓储地址：</view>
-            <view class="item-value">王府井1号</view>
+            <view class="item-value">{{item.adress}}</view>
         </view>
         <view class="other-item">
             <view class="item-key">仓储库名：</view>
             <view class="item-value">
-                北京仓
+                {{item.store_name}}{{item.number}}
                 <image src="./img/icon2.png" class="icon-more" />
             </view>
         </view>
@@ -82,20 +82,20 @@
         </view>
         <view class="other-item">
             <view class="item-key">当前参考价：<text class="explain">?</text></view>
-            <view class="item-value">¥3000.00/件</view>
+            <view class="item-value">¥{{item.goods_bottom_money}}/{{item.store_unit}}</view>
         </view>
         <view class="other-item">
             <view class="item-key">当前折扣价：<text class="explain">?</text></view>
-            <view class="item-value">2000.00/件</view>
+            <view class="item-value">￥999/{{item.store_unit}}</view>
         </view>
         <view class="other-item">
             <view class="item-key">购买入仓价：<text class="explain">?</text></view>
-            <view class="item-value">¥1000.00/件</view>
+            <view class="item-value">¥{{item.goods_money}}/{{item.store_unit}}</view>
         </view>
         <view class="other-item">
             <view class="item-key">价格涨幅比：<text class="explain">?</text></view>
             <view class="item-value">100%</view>
         </view>
     </view>
-    <image src="http://ptcb077mt.bkt.clouddn.com/img2.png" class="chart-img" />
+    <image src="{{url}}{{item.goods_image}}" class="chart-img" />
 </view>
