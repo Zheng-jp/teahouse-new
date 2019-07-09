@@ -13,6 +13,7 @@ Page({
     url: app.globalData.img_url,
     goodList: [],
     // 商品信息
+    fixiPhone: false,
     routers: [
       {
         name: '双骄',
@@ -490,6 +491,15 @@ Page({
         })
       }
     }
+    var _this = this;
+    //苹果底部适配
+    wx.getSystemInfo({
+      success: function (res) {
+        _this.setData({
+          fixiPhone: res.model.indexOf('iPhone X') != -1
+        })
+      }
+    })
   },
 
   /**
