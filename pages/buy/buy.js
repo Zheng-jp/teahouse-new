@@ -270,12 +270,16 @@ Page({
     var good_ids = {};
     var ids = {};
     var nums = {};
+    
+    var shopAddids = {};
     var shop_id = new Array();
     var good_id = new Array();
     var id = new Array();
     var num = new Array();
+    var shopAddid = new Array();
     //  添加good_id字段到传值数组
     for (var index in goodList) {
+      var add = {};
       if (goodList[index].checked == true) {
         good_id.push(goodList[index].goods_id);
         if (goodList[index].goods_standard_id == 0 || goodList[index].goods_standard_id == '') {
@@ -286,17 +290,21 @@ Page({
         }
         num.push(goodList[index].goods_unit);
         shop_id.push(goodList[index].id);
+        add.goods_id = goodList[index].goods_id;
+        add.shop_id = goodList[index].id;
+        shopAddid.push(add)
       }
     }
-
     good_ids['good_id'] = good_id;
     shop_ids['shop_id'] = shop_id;
+    shopAddids['shopAddids'] = shopAddid;
     ids['guige'] = id;
     nums['num'] = num;
     chars.push(shop_ids);
     chars.push(good_ids);
     chars.push(ids);
     chars.push(nums);
+    chars.push(shopAddids);
     let userStr = JSON.stringify(chars);
     if (chars[0].shop_id.length == 0) {
       wx.showToast({
@@ -414,7 +422,7 @@ Page({
 
           // res.data.data[0].goods_info.goods_sign = arr;
 
-
+console.log(res.data.data)
 
           that.setData({
             goodList: res.data.data,
