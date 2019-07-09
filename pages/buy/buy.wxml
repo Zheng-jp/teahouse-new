@@ -88,7 +88,7 @@
 </view>
    
 </view> -->
-  <view class='section-bottom'>
+  <view class='section-bottom' style="{{fixiPhone? 'bottom: 82px' : ''}}">
     <checkbox-group bindchange="selectalltap">
       <label class='checkbox-allcheck'>
         <checkbox value="{{!checkAll}}" checked="{{checkAll}}" />
