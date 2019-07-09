@@ -9,7 +9,62 @@ Page({
     url: app.globalData.img_url,
     order:[]
   },
+  newRedirectto: function (n, e) {
+    switch (e) {
+      case "page":
+        wx.navigateTo({
+          url: n
+        });
+        break;
+      case "pages":
+        wx.switchTab({
+          url: n
+        });
+        break;
+      case "webs":
+        wx.navigateTo({
+          url: n
+        });
+        break;
+      case "tel":
+        n = n.slice(4), wx.showModal({
+          title: "提示",
+          content: "是否拨打电话:" + n,
+          success: function (e) {
+            1 == e.confirm && wx.makePhoneCall({
+              phoneNumber: n
+            });
+          }
+        });
+        break;
 
+      case "map":
+        var a = n.split("##");
+        n = a[0].split(","), wx.openLocation({
+          latitude: parseFloat(n[0]),
+          longitude: parseFloat(n[1]),
+          scale: 22,
+          name: a[1],
+          address: a[2]
+        });
+        break;
+
+      case "mini":
+        var i = n.slice(6);
+        wx.navigateToMiniProgram({
+          appId: i,
+          path: "",
+          success: function (e) {
+            console.log("打开成功"), console.log(i);
+          }
+        });
+    }
+  },
+  redirectto: function (t) {
+    var a = t.currentTarget.dataset.link,
+        e = t.currentTarget.dataset.linktype;
+    this.newRedirectto(a, e);
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -31,6 +86,12 @@ Page({
       var data=res.data.data;
       data.create_time=app.formatDate(data.create_time);
       data.pay_time=app.formatDate(data.pay_time);
+      for(let i = 0; i < data.data.length; i ++) {
+        data.data[i].linktype = "page";
+        data.data[i].linkurl = "/pages/goods_detail/goods_detail?title=" + data.data[i].goods_id;
+        // console.log(res.data.data)
+      }
+      console.log(data)
       that.setData({
         order:data,
       })

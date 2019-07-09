@@ -22,7 +22,6 @@ Page({
         src: app.globalData.url + '/upload/20181115/0a2b1ad83a3cb195b5367943f208e667.png',
         text: '待发货',
         id: 2,
-        show: true
       },
       {
         src: app.globalData.url + '/upload/20181115/9dd5f4a52c2a77653c7ea3ef05ef7226.png',
