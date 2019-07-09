@@ -291,10 +291,11 @@ Page({
     })
   },
 
-  toStockDetail: function () {
+  toStockDetail: function (e) {
+    var id = e.target.dataset.id;
     // 仓库详情
     wx.navigateTo({
-      url: '/storage/pages/stock_detail/stock_detail',
+      url: '/storage/pages/stock_detail/stock_detail?id='+id,
       success: function () {
         console.log('跳转成功');
       },
