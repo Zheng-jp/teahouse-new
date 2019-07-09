@@ -243,13 +243,14 @@ Page({
   },
   // 点击购物车
   go_car: function (e) {
-    wx.navigateTo({
+    wx.reLaunch({
       url: '../buy/buy',
       success: function (res) {
         // success
         console.log("nihao////跳转成功")
       },
-      fail: function () {
+      fail: function (e) {
+        console.log(e)
         // fail
         console.log("nihao////跳转失败")
       },
