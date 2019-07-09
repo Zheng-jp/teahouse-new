@@ -364,6 +364,7 @@ Page({
       },
       method: "post",
       success: function (res) {
+        console.log(res)
         if (res.data.status == 1) {
           let goods = res.data.data, kc, hot, cx, qc;
 
@@ -420,8 +421,6 @@ Page({
           // }
 
           // res.data.data[0].goods_info.goods_sign = arr;
-
-console.log(res.data.data)
 
           that.setData({
             goodList: res.data.data,
@@ -511,7 +510,10 @@ console.log(res.data.data)
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad();
+    setTimeout(function () {
+      wx.stopPullDownRefresh();
+    }, 1000)
   },
 
   /**

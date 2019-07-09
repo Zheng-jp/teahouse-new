@@ -138,7 +138,7 @@ Page({
         } else {
           goods_standard_id.push(goods[0].special_info.id);
         }
-        goods_num.push(goods[i].number);
+        goods_num.push(goods[i].number); 
         //购物车id
         if(goods[0].goods_info.id == that.data.user[4].shopAddids[0].goods_id) {
           shoppinds_id.push(that.data.user[4].shopAddids[0].shop_id)
