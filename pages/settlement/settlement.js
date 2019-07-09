@@ -131,18 +131,15 @@ Page({
           duration: 3000
         })
       } else {
-        goods_id.push(goods[i].goods_info.id);
+        goods_id.push(goods[0].goods_info.id);
         unit.push(goods[0].unit);
         if (goods[0].special_info == undefined || goods[0].special_info == null) {
           goods_standard_id.push('0');
         } else {
           goods_standard_id.push(goods[0].special_info.id);
         }
-        goods_num.push(goods[i].number);
-        //购物车id
-        if (goods[0].goods_info.id == that.data.user[4].shopAddids[0].goods_id) {
-          shoppinds_id.push(that.data.user[4].shopAddids[0].shop_id)
-        }
+        goods_num.push(goods[0].number);
+        
         arr = that.data.goods;
       }
       that.setData({

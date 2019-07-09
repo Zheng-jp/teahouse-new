@@ -82,7 +82,6 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
 
   onPullDownRefresh: function () {
     var t = this;
-    console.log(t)
     t.refreshSessionkey();
     var a = t.data.baseurl.split("/api");
     t.setData({
@@ -122,16 +121,20 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       }
     });
     var n = t.pageid;
+
     null != n && "undefined" != n ? (e.data.homepageid == n ? e.setData({
       foot_is: e.data.foot_is
     }) : e.setData({
       foot_is: 1
-    }), e.getPage(n), e.setData({
+    }), e.getPage(n),
+     e.setData({
       homepage: 2,
       page_is: 2,
       pageid: n,
       page_signs: "/sudu8_page/index/index?pageid=" + n
     }), e.getfoot(1)) : e.homepage();
+   
+    
   },
   homepage: function () {
     var o = this;
@@ -799,6 +802,10 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
   },
   getPage: function (t) {
     var f = this;
+    wx.setStorage({
+      key:"pageid",
+      data:t
+    }),
     wx.request({
       url: f.data.baseurl + "doPageDiypage",
       data: {

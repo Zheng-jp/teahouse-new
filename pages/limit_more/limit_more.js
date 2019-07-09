@@ -48,14 +48,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let that = this, siteroot = app.globalData.url;
+    let that = this, siteroot = app.globalData.url, n = wx.getStorageSync("openid"), t = wx.getStorageSync("pageid");
     wx.request({  
       url: app.globalData.url + '/api/limit_goods_more',
       data: {
-        uniacid:6,
-        pageid:6,
-        open_id:"o_lMv5YLU2TqFvdXwUZBFYyonVB0",
-        member_grade_name: '白金会员'
+        uniacid: app.globalData.uniacid,
+        pageid: t,
+        open_id: n,
+        member_grade_name: app.globalData.member_grade_name
       },
       method: "post",
       success: function(res) {
