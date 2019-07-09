@@ -101,30 +101,30 @@ Page({
         sta: 2
       })
     } else {
-      let arr = [],unit = [], goods_id = [], goods_standard_id= [], goods_num = [], shoppinds_id = [];
+      let arr = [], unit = [], goods_id = [], goods_standard_id = [], goods_num = [], shoppinds_id = [];
       //购物车结算时，剔除不可存茶商品
       if (goods.length > 1) {
         for (let i = 0; i < goods.length; i++) {
-          for (let o in goods[i].goods_info.goods_sign) {
-            if (goods[i].goods_info.bq_arr[o].kc == 1 && goods[i].goods_info.bq_arr[o].kc != null && goods[i].goods_info.bq_arr[o].kc != undefined) {
-              arr.push(goods[i]);
-              unit.push(goods[i].unit);
-              goods_id.push(goods[i].goods_info.id);
-              if(goods[i].special_info == undefined || goods[i].special_info == null) {
-                goods_standard_id.push('0');
-              } else {
-                goods_standard_id.push(goods[i].special_info.id);
-              }             
-              goods_num.push(goods[i].number);
-              //购物车id
-              if(goods[i].goods_info.id == that.data.user[4].shopAddids[i].goods_id) {
-                shoppinds_id.push(that.data.user[4].shopAddids[i].shop_id)
+          for (let o in goods[i].goods_info.bq_arr) {
+              if (goods[i].goods_info.bq_arr[o].kc == 1 && goods[i].goods_info.bq_arr[o].kc != null && goods[i].goods_info.bq_arr[o].kc != undefined) {
+                arr.push(goods[i]);
+                
+                unit.push(goods[i].unit);
+                goods_id.push(goods[i].goods_info.id);
+                if (goods[i].special_info == undefined || goods[i].special_info == null) {
+                  goods_standard_id.push('0');
+                } else {
+                  goods_standard_id.push(goods[i].special_info.id);
+                }
+                goods_num.push(goods[i].number);
+                //购物车id
+                if (goods[i].goods_info.id == that.data.user[4].shopAddids[i].goods_id) {
+                  shoppinds_id.push(that.data.user[4].shopAddids[i].shop_id)
+                }
               }
-            }
           }
-          
         }
-        
+
         wx.showToast({
           title: '已剔除非存储商品，您可结算可存储商品',
           icon: 'none',
@@ -133,14 +133,14 @@ Page({
       } else {
         goods_id.push(goods[i].goods_info.id);
         unit.push(goods[0].unit);
-        if(goods[0].special_info == undefined || goods[0].special_info == null) {
+        if (goods[0].special_info == undefined || goods[0].special_info == null) {
           goods_standard_id.push('0');
         } else {
           goods_standard_id.push(goods[0].special_info.id);
         }
-        goods_num.push(goods[i].number); 
+        goods_num.push(goods[i].number);
         //购物车id
-        if(goods[0].goods_info.id == that.data.user[4].shopAddids[0].goods_id) {
+        if (goods[0].goods_info.id == that.data.user[4].shopAddids[0].goods_id) {
           shoppinds_id.push(that.data.user[4].shopAddids[0].shop_id)
         }
         arr = that.data.goods;
@@ -269,7 +269,7 @@ Page({
           })
         }
         wx.navigateTo({
-          url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+          url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
           success: function (res) {
 
           },
@@ -493,7 +493,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -522,7 +522,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -604,7 +604,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -633,7 +633,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -659,12 +659,12 @@ Page({
         complete: function () { }
 
       });
-    } else { 
+    } else {
       wx.request({
         url: app.globalData.tiltes + 'order_places',
         data: {
           member_id: app.globalData.member_id,
-          
+
           goods_id: that.data.goods_id,
           goods_standard_id: that.data.goods_standard_id,
           order_quantity: that.data.goods_num,
@@ -716,7 +716,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -745,7 +745,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -933,7 +933,7 @@ Page({
                           paySign: result.data.paySign,
                           'success': function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -962,7 +962,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -1043,7 +1043,7 @@ Page({
                           paySign: result.data.paySign,
                           'success': function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -1066,7 +1066,7 @@ Page({
                     },
                     complete: function () {
                       wx.navigateTo({
-                        url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                        url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                         success: function (res) {
 
                         },
@@ -1153,7 +1153,7 @@ Page({
                           paySign: result.data.paySign,
                           'success': function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -1182,7 +1182,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -2077,7 +2077,6 @@ Page({
         },
         method: "post",
         success: function (res) {
-          console.log(res);
           that.setData({
             rate: res.data.data.scale,
             company: res.data.data.company
