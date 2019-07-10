@@ -902,3 +902,9 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   vertical-align: middle;
   line-height: 29rpx;
 }
+.limit_style {
+  color: rgb(161, 161, 177);
+  font-size: 24rpx;
+  padding-top:12rpx;
+  margin-left: 8rpx;
+}

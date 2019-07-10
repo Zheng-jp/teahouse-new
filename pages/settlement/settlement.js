@@ -1562,6 +1562,7 @@ Page({
         'guige': user[2].guige,
         'num': user[3].num,
         'shopping_id': user[0].shop_id,
+        'uniacid' : app.globalData.uniacid
       },
       method: "post",
       success: function (res) {
@@ -1569,7 +1570,7 @@ Page({
           let delivery_a, delivery_b, authority, goods, kc, hot, qc, cx, authority_new = 0;
           authority = res.data.authority;
           goods = res.data.data;
-
+          
           // //单个商品时，存茶的判断
           // if (goods.length < 2) {
           //   authority = 0;
@@ -1619,7 +1620,7 @@ Page({
                 arr.push(goods_sign[i]);
               }
             }
-
+            
             res.data.data[o].goods_info.goods_sign = arr;
             res.data.data[o].goods_info.bq_arr = bq_arr;
             // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))
