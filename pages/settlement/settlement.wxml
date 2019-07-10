@@ -133,7 +133,7 @@
           <radio value="到店自提" color='#02A0E6' />
           <text class='text_radio'>到店自提</text>
         </label>
-        <label class="radio" wx:if="{{authority == 1}}">
+        <label class="radio" wx:if="{{authority == 1 && authority_new == 1}}">
           <radio value="选择存茶" color='#02A0E6' />
           <text class='text_radio'>选择存茶</text>
         </label>

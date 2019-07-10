@@ -24,7 +24,7 @@
           <view class="item-box">
             <!-- 是否存查 -->
             <block wx:if="{{allStorageArr}}">
-              <view class="warehouse-left">
+              <view class="warehouse-left" bind:tap="showStorageData" data-key="true">
                 <text>全部</text>
               </view>
               <view class="warehouse-right">
@@ -84,7 +84,7 @@
                   提
                   <text class="stock-num">1</text>
                   片
-                  <text class="stock-more" bindtap="toStockDetail">详情></text>
+                  <text class="stock-more" bindtap="toStockDetail" data-id="{{item.id}}">详情></text>
                 </view>
                 <view class="exchange-price">
                   <view>
@@ -154,7 +154,7 @@
               <image src="{{url}}{{item.goods_show_image}}" bindtap="support"  data-id="{{item.id}}" />
             </view>
             <view class="right-project-info">
-              <view class="project-name hid-txt-one">{{item.project_name}}</view>
+              <view class="project-name hid-txt-one">放假快乐我前几天离开王经理开关机阿叔定理开发工具萨拉克</view>
               <wxzx-progress class="wxzx-progress" percent="{{item.centum>100?100:item.centum}}" show-info border-radius="4px" width="300" stroke-width='12' radius='6' active-color="#ff9600,#ff1000,#ff0000"></wxzx-progress>
               <text class="percent-num">{{item.centum}}%</text>
               <view class="project-people">

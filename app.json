@@ -102,12 +102,12 @@
         "text": "茶仓"
       },
       {
-        "pagePath": "pages/circle/circle",
-        "text": "茶圈"
+        "pagePath": "pages/good/good",
+        "text": "分类"
       },
       {
-        "pagePath": "pages/live/index/index",
-        "text": "直播"
+        "pagePath": "pages/buy/buy",
+        "text": "购物车"
       },
       {
         "pagePath": "pages/mine/mine",

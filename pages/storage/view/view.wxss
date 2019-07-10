@@ -49,7 +49,7 @@ swiper.swiper-container{height: 93%;}
 .enviroment-item .humidity{font-size: 28rpx; color: #66CC00;}
 .more image{width: 28rpx; height: 30rpx;margin-top: 4px;}
 
-.storage-item{padding: 40rpx 10rpx; border-bottom: 4rpx solid #f9f9f9; display: flex;}
+.storage-item{padding: 40rpx 10rpx; border-bottom: 4rpx solid #f9f9f9; display: flex; justify-content: space-between;}
 .item-left{text-align: center; flex-basis: 35%; display: flex; flex-direction: column; align-items: center; justify-content: space-between;}
 .item-left .display-img{width: 120rpx; height: 120rpx;}
 .item-left .tea-name{font-size: 36rpx; font-weight: bold; color: #797979;}
@@ -57,7 +57,7 @@ swiper.swiper-container{height: 93%;}
 .item-left .tag-box{display: inline-flex; align-items: flex-end;}
 .item-left .tag-box .tag-text{font-size: 24rpx; color: #999900; border: 1px solid #999900; padding: 4rpx 0; border-radius: 8rpx; width: 60px; box-sizing: border-box; overflow: hidden; white-space: nowrap;}
 .item-left .tag-box .tag-text:first-of-type{margin-right: 8rpx;}
-.item-right{flex-basis: 65%;}
+.item-right{flex-basis: 63%;}
 .tea-stock{font-size: 24rpx; color: #868686; font-weight: 700; display: flex; align-items: center; justify-content: space-around;}
 .tea-stock .stock-title{font-size: 24rpx; font-weight: 700; color: #000;}
 .tea-stock .stock-num{font-size: 44rpx; font-weight: 700; color: #93291E;}
@@ -99,7 +99,7 @@ swiper.swiper-container{height: 93%;}
 .zc-item .right-project-info{flex: 1;}
 .wxzx-progress{display: inline-block; margin-right: 16rpx;}
 .percent-num{font-size: 30rpx; color: #aeaeae; vertical-align: middle;}
-.right-project-info .project-name{font-size: 30rpx; color: #333; line-height: 1em;}
+.right-project-info .project-name{font-size: 30rpx; color: #333; line-height: 38rpx;}
 .right-project-info .project-people{font-size: 26rpx; color: #aeaeae; margin: 20rpx 0 40rpx;}
 .right-project-info .project-price text{font-size: 36rpx; color: #b50000;}
 .right-project-info .project-price button{width: 150rpx; height: 50rpx; text-align: center; box-sizing: border-box; font-size: 26rpx; float: right; line-height: 50rpx; padding: 0; border-radius: 0;}

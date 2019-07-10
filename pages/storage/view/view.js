@@ -131,16 +131,23 @@ Page({
       data: {
         member_id: app.globalData.member_id,
         uniacid: app.globalData.uniacid,
+        store_house_id: id
       },
       success: function(res){
         console.log('选择显示仓库', res)
+        if(res.data.status == 1){
+          _this.setData({
+            storageDataArr: res.data.data
+          })
+        }
       },
       fail: function(){}
     })
   },
   // 显示仓库数据
-  showStorageData: function(){
+  showStorageData: function(e){
     var _this = this;
+    e ? (e.currentTarget.dataset.key ? _this.showAllStorage() : '') : '';
     wx.request({
       url: app.globalData.tiltes + 'getStoreData',
       method: 'POST',
@@ -208,7 +215,7 @@ Page({
   onShow: function () {
     if(typeof this.getTabBar === 'function' && this.getTabBar()){
       this.getTabBar().setData({
-        checked: 1
+        checked: 2
       })
     }
     // 总价值
@@ -284,10 +291,11 @@ Page({
     })
   },
 
-  toStockDetail: function () {
+  toStockDetail: function (e) {
+    var id = e.target.dataset.id;
     // 仓库详情
     wx.navigateTo({
-      url: '/storage/pages/stock_detail/stock_detail',
+      url: '/storage/pages/stock_detail/stock_detail?id='+id,
       success: function () {
         console.log('跳转成功');
       },
