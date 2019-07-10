@@ -159,7 +159,9 @@ Page({
         console.log('显示仓库数据：', res)
         if(res.data.status == 1){
           res.data.data.forEach((v, i) => {
-              v.end_time = app.formatDate(v.end_time);
+              v.getArr.forEach((i, j) => {
+                i.end_time = app.formatDate(i.end_time);
+              })
           });
           _this.setData({
             storageDataArr: res.data.data
