@@ -12,7 +12,7 @@
 </view>
 <swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
   <swiper-item class="overflowYauto">
-    <scroll-view style="margin-bottom: 50px;">
+    <scroll-view style="{{fixiPhone?'margin-bottom: 82px': 'margin-bottom: 50px'}}">
       <view class="gross-container">
         <view class="gross-item gross-title">总价值</view>
         <view class="gross-item gross-number">￥{{totalValueNum}}</view>
@@ -102,8 +102,16 @@
                 </view>
                 <view class="btns">
                   <button class="out-storage" bindtap="outOfStock">出仓</button>
-                  <button type="warn" class="renew" bind:tap="showRenewPop" wx:if="{{item.limit_time == 2}}">续费</button>
-                  <button type="primary" class="renew" wx:if="{{item.limit_time == 1}}">续费</button>
+                  <button type="warn" class="renew" 
+                    data-inTime="{{item.pay_time}}" 
+                    data-outTime="{{item.end_time}}"
+                    data-price="{{item.unit_price}}"
+                    bind:tap="showRenewPop" wx:if="{{item.limit_time == 2}}">续费</button>
+                  <button type="primary" class="renew" 
+                    data-inTime="{{item.pay_time}}" 
+                    data-outTime="{{item.end_time}}"
+                    data-price="{{item.unit_price}}"
+                    bind:tap="showRenewPop">续费</button>
                 </view>
               </view>
             </view>
@@ -205,7 +213,7 @@
   </view>
   <view class="fd">
     <view class="renew-cost">
-      续费费用<text>{{999*renewYear}}元</text>
+      续费费用<text>{{savePrice}}元</text>
     </view>
     <view class="renew-btn">确认续费</view>
   </view>
