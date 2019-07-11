@@ -70,7 +70,7 @@ Page({
   // 去商城逛逛
   moveToMarket: function () {
     wx.reLaunch({
-      url: '../../diy/index/index',
+      url: '../diy/index/index',
     })
   },
   /* 点击减号 */
@@ -362,10 +362,10 @@ Page({
       url: app.globalData.tiltes + 'shopping_index',
       data: {
         open_id: app.globalData.gmemberid,
+        uniacid : app.globalData.uniacid
       },
       method: "post",
       success: function (res) {
-        console.log(res)
         if (res.data.status == 1) {
           let goods = res.data.data, kc, hot, cx, qc;
 

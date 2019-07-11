@@ -41,7 +41,7 @@
         <view class="storage-enviroment">
           <view class="storage-name-box">
             <image src="http://ptcb077mt.bkt.clouddn.com/icon1.png" class="" />
-            <text class="storage-name">{{item.store_name}}{{item.number}}</text>
+            <text class="storage-name">{{item.name}}</text>
           </view>
           <view class="enviroment-data-box">
             <view class="enviroment-item item-video">
@@ -63,7 +63,7 @@
             </view>
           </view>
         </view>
-        <!-- <block wx:for="{{3}}"> -->
+        <block wx:for="{{item.getArr}}" wx:key="{{index}}">
           <view class="storage-manage">
             <view class="storage-item">
               <view class="item-left">
@@ -78,12 +78,12 @@
               <view class="item-right">
                 <view class="tea-stock">
                   <text class="stock-title">实时库存</text>
-                  <text class="stock-num">1</text>
-                  件
-                  <text class="stock-num">1</text>
-                  提
-                  <text class="stock-num">1</text>
-                  片
+                  <text class="stock-num">{{item.store_number[0]?item.store_number[0]:''}}</text>
+                  {{item.store_number[1]?item.store_number[1]:''}}
+                  <text class="stock-num">{{item.store_number[2]?item.store_number[2]:''}}</text>
+                  {{item.store_number[3]?item.store_number[3]:''}}
+                  <text class="stock-num">{{item.store_number[4]?item.store_number[4]:''}}</text>
+                  {{item.store_number[5]?item.store_number[5]:''}}
                   <text class="stock-more" bindtap="toStockDetail" data-id="{{item.id}}">详情></text>
                 </view>
                 <view class="exchange-price">
@@ -102,13 +102,13 @@
                 </view>
                 <view class="btns">
                   <button class="out-storage" bindtap="outOfStock">出仓</button>
-                  <!-- <button type="warn" class="renew" bind:tap="showRenewPop">续费</button> -->
-                  <!-- <button type="primary" class="renew">续费</button> -->
+                  <button type="warn" class="renew" bind:tap="showRenewPop" wx:if="{{item.limit_time == 2}}">续费</button>
+                  <button type="primary" class="renew" wx:if="{{item.limit_time == 1}}">续费</button>
                 </view>
               </view>
             </view>
           </view>
-        <!-- </block> -->
+        </block>
       </block>
     </scroll-view>
   </swiper-item>
