@@ -661,13 +661,13 @@ Page({
         url: app.globalData.tiltes + 'order_places',
         data: {
           member_id: app.globalData.member_id,
-
+          store_house_id:that.data.sava_id,
           goods_id: that.data.goods_id,
           goods_standard_id: that.data.goods_standard_id,
           order_quantity: that.data.goods_num,
           unit: that.data.unit_all,
 
-          address_id: that.data.sava_id,
+          address_id: that.data.address_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
           coupon_id: that.data.coupon_id,
@@ -1104,7 +1104,8 @@ Page({
           goods_id: that.data.goods_id,
           goods_standard_id: that.data.goods_standard_id,
           order_quantity: that.data.goods_num,
-          address_id: that.data.sava_id,
+          address_id: that.data.address_id,
+          store_house_id:that.data.sava_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
           coupon_id: that.data.coupon_id,
