@@ -85,7 +85,7 @@ Page({
         id: this.data.orderId,
         never_time: this.data.renewExpireYear,
         year_number: this.data.renewYear,
-        series_price: this.data.savePrice
+        series_price: 0.01
       },
       success: function(res){
         console.log(res);
