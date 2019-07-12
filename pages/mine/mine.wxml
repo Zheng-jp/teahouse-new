@@ -13,7 +13,7 @@
         <view class='balance bbla'>余额</view>
         <view class='balance_num nnum'>￥{{information.member_wallet}}</view>
         <view class='balance_btn bbtn' bindtap="go_recharge">
-          <button style='background:{{information.member_background_color}}'>充值</button>
+          <button style='background:{{information.member_background_color}}'>预存</button>
         </view>
       </view>
       <view class='list' bindtap="go_change">
