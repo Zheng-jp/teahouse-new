@@ -566,9 +566,11 @@ Page({
   
   },
   //查看物流
-  to_logistics: function() {
+  to_logistics: function(e) {
+    var that = this;
+    var item = e.currentTarget.dataset.id;
     wx.redirectTo({
-      url:'../logistics/logistics'
+      url:'../logistics/logistics?title=' + e.currentTarget.dataset.id
     })
   },
   // 追加评价

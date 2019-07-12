@@ -92,6 +92,7 @@ Page({
 
   },
   go_recharge: function () {
+    
     if (!app.globalData.judge_repay) {
       wx.showModal({
         title: '支付密码',
@@ -162,6 +163,7 @@ Page({
  */
   onLoad: function () {
     var that = this;
+    app.judge_repay();
     var gmemberid = app.globalData.gmemberid;
     this.requesLocalData();
     var uniacid = app.globalData.uniacid;

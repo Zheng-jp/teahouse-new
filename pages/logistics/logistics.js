@@ -28,6 +28,7 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
+    console.log(options)
     // 页面初始化 options为页面跳转所带来的参数
     wx.request({
       url: app.globalData.tiltes + 'express_hundred',
