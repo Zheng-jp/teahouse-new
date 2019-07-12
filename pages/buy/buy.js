@@ -13,6 +13,7 @@ Page({
     url: app.globalData.img_url,
     goodList: [],
     // 商品信息
+    fixiPhone: false,
     routers: [
       {
         name: '双骄',
@@ -69,7 +70,7 @@ Page({
   // 去商城逛逛
   moveToMarket: function () {
     wx.reLaunch({
-      url: '../../diy/index/index',
+      url: '../diy/index/index',
     })
   },
   /* 点击减号 */
@@ -269,12 +270,16 @@ Page({
     var good_ids = {};
     var ids = {};
     var nums = {};
+    
+    var shopAddids = {};
     var shop_id = new Array();
     var good_id = new Array();
     var id = new Array();
     var num = new Array();
+    var shopAddid = new Array();
     //  添加good_id字段到传值数组
     for (var index in goodList) {
+      var add = {};
       if (goodList[index].checked == true) {
         good_id.push(goodList[index].goods_id);
         if (goodList[index].goods_standard_id == 0 || goodList[index].goods_standard_id == '') {
@@ -285,17 +290,21 @@ Page({
         }
         num.push(goodList[index].goods_unit);
         shop_id.push(goodList[index].id);
+        add.goods_id = goodList[index].goods_id;
+        add.shop_id = goodList[index].id;
+        shopAddid.push(add)
       }
     }
-
     good_ids['good_id'] = good_id;
     shop_ids['shop_id'] = shop_id;
+    shopAddids['shopAddids'] = shopAddid;
     ids['guige'] = id;
     nums['num'] = num;
     chars.push(shop_ids);
     chars.push(good_ids);
     chars.push(ids);
     chars.push(nums);
+    chars.push(shopAddids);
     let userStr = JSON.stringify(chars);
     if (chars[0].shop_id.length == 0) {
       wx.showToast({
@@ -353,6 +362,7 @@ Page({
       url: app.globalData.tiltes + 'shopping_index',
       data: {
         open_id: app.globalData.gmemberid,
+        uniacid : app.globalData.uniacid
       },
       method: "post",
       success: function (res) {
@@ -413,8 +423,6 @@ Page({
 
           // res.data.data[0].goods_info.goods_sign = arr;
 
-
-
           that.setData({
             goodList: res.data.data,
             kc: kc,
@@ -472,7 +480,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(typeof this.getTabBar === 'function' && this.getTabBar()){
+      if(wx.getStorageSync('editionId') == 1){
+        this.getTabBar().setData({
+          checked: 2
+        })
+      }else{
+        this.getTabBar().setData({
+          checked: 3
+        })
+      }
+    }
+    var _this = this;
+    //苹果底部适配
+    wx.getSystemInfo({
+      success: function (res) {
+        _this.setData({
+          fixiPhone: res.model.indexOf('iPhone X') != -1
+        })
+      }
+    })
   },
 
   /**
@@ -493,7 +520,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad();
+    setTimeout(function () {
+      wx.stopPullDownRefresh();
+    }, 1000)
   },
 
   /**

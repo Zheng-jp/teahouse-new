@@ -96,12 +96,15 @@
             <view class='unit-price-img'>
               <image src='http://ptcb077mt.bkt.clouddn.com/img1.png' mode="scaleToFill"></image>
             </view>
+            
             <view class='unit-price-p text_red' wx:if="{{item.goods_info.goods_standard==0}}">
               ￥{{item.grade_price}}/{{item.goods_info.monomer}}
             </view>
             <view class='unit-price-p text_red' wx:else>
               ￥{{item.grade_price}}/{{item.special_info.offer}}
             </view>
+            <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number > 0}}">限购数量：{{item.limit_number}}</view>
+            <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number == 0}}">不限购</view>
           </view>
           <view class='quantity-p text_red'>×{{item.number}}</view>
         </view>
@@ -133,7 +136,7 @@
           <radio value="到店自提" color='#02A0E6' />
           <text class='text_radio'>到店自提</text>
         </label>
-        <label class="radio" wx:if="{{authority == 1}}">
+        <label class="radio" wx:if="{{authority == 1 && authority_new == 1}}">
           <radio value="选择存茶" color='#02A0E6' />
           <text class='text_radio'>选择存茶</text>
         </label>

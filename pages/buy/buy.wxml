@@ -20,11 +20,11 @@
             <view class='good_infors'>
               <view class='good_name'>{{item.goods_name}}</view>
               <view class='good_infor'>
-              <block wx:for="{{item.bq_arr}}" wx:key="index">
-                <image class="image_bq" style="vertical-align: middle;" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{item.kc == 1}}"></image>
-                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/hot.png" wx:if="{{item.hot == 1}}"></image>
-                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/chuxiao.png" wx:if="{{item.cx == 1}}"></image>
-                <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/qingchang.png" wx:if="{{item.qc == 1}}"></image>
+                <block wx:for="{{item.bq_arr}}" wx:key="index">
+                  <image class="image_bq" style="vertical-align: middle;" src="http://ptcb077mt.bkt.clouddn.com/kecun.png" wx:if="{{item.kc == 1}}"></image>
+                  <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/hot.png" wx:if="{{item.hot == 1}}"></image>
+                  <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/chuxiao.png" wx:if="{{item.cx == 1}}"></image>
+                  <image class="image_bq" src="http://ptcb077mt.bkt.clouddn.com/qingchang.png" wx:if="{{item.qc == 1}}"></image>
                 </block>
                 <view class="texts" wx:for="{{item.goods_sign}}" wx:key="{{index}}">
                   {{item.text}}
@@ -35,6 +35,12 @@
                 <view class='price'>
                   <image src='http://ptcb077mt.bkt.clouddn.com/img1.png' mode='widthFix' style='width:40rpx;'></image>
                   <view class='text_red'>￥{{item.money}}</view>
+                  <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number > 0}}">
+                    限购数量：{{item.limit_number}}
+                  </view>
+                  <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number == 0}}">
+                    不限购
+                  </view>
                 </view>
                 <view class='good_num text_red'>×{{item.goods_unit}}</view>
               </view>
@@ -88,7 +94,7 @@
 </view>
    
 </view> -->
-  <view class='section-bottom'>
+  <view class='section-bottom' style="{{fixiPhone? 'bottom: 82px' : ''}}">
     <checkbox-group bindchange="selectalltap">
       <label class='checkbox-allcheck'>
         <checkbox value="{{!checkAll}}" checked="{{checkAll}}" />

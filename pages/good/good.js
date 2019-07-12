@@ -86,6 +86,13 @@ Page({
       }
     }
   },
+  onShow: function(){
+    if(typeof this.getTabBar === 'function' && this.getTabBar()){
+      this.getTabBar().setData({
+        checked: 1
+      })
+    }
+  },
   onLoad: function () {
     var that=this;
     var s_height = wx.getSystemInfoSync().windowHeight;

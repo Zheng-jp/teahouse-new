@@ -101,26 +101,47 @@ Page({
         sta: 2
       })
     } else {
-      let arr = [],unit = [];
+      let arr = [], unit = [], goods_id = [], goods_standard_id = [], goods_num = [], shoppinds_id = [];
       //购物车结算时，剔除不可存茶商品
       if (goods.length > 1) {
         for (let i = 0; i < goods.length; i++) {
-          for (let o in goods[i].goods_info.goods_sign) {
-            if (goods[i].goods_info.bq_arr[o].kc == 1 && goods[i].goods_info.bq_arr[o].kc != null && goods[i].goods_info.bq_arr[o].kc != undefined) {
-              arr.push(goods[i]);
-            }
+          for (let o in goods[i].goods_info.bq_arr) {
+              if (goods[i].goods_info.bq_arr[o].kc == 1 && goods[i].goods_info.bq_arr[o].kc != null && goods[i].goods_info.bq_arr[o].kc != undefined) {
+                arr.push(goods[i]);
+                
+                unit.push(goods[i].unit);
+                goods_id.push(goods[i].goods_info.id);
+                if (goods[i].special_info == undefined || goods[i].special_info == null) {
+                  goods_standard_id.push('0');
+                } else {
+                  goods_standard_id.push(goods[i].special_info.id);
+                }
+                goods_num.push(goods[i].number);
+                //购物车id
+                if (goods[i].goods_info.id == that.data.user[4].shopAddids[i].goods_id) {
+                  shoppinds_id.push(that.data.user[4].shopAddids[i].shop_id)
+                }
+              }
           }
-          unit.push(goods[i].unit);
         }
+
         wx.showToast({
           title: '已剔除非存储商品，您可结算可存储商品',
           icon: 'none',
           duration: 3000
         })
       } else {
+        goods_id.push(goods[0].goods_info.id);
+        unit.push(goods[0].unit);
+        if (goods[0].special_info == undefined || goods[0].special_info == null) {
+          goods_standard_id.push('0');
+        } else {
+          goods_standard_id.push(goods[0].special_info.id);
+        }
+        goods_num.push(goods[0].number);
+        
         arr = that.data.goods;
       }
-      // console.log(arr)
       that.setData({
         goods: arr,
         selected: false,
@@ -130,7 +151,11 @@ Page({
         storage: '0.00',
         freight: '0.00',
         sta: 3,
-        unit_all: unit
+        unit_all: unit,
+        goods_id: goods_id,
+        goods_standard_id: goods_standard_id,
+        goods_num: goods_num,
+        shoppinds_id: shoppinds_id
       })
       that.money_storages();
 
@@ -241,7 +266,7 @@ Page({
           })
         }
         wx.navigateTo({
-          url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+          url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
           success: function (res) {
 
           },
@@ -465,7 +490,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -494,7 +519,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -510,7 +535,7 @@ Page({
           } else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none
+              icon: 'none'
             })
           }
         },
@@ -576,7 +601,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -605,7 +630,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -636,14 +661,16 @@ Page({
         url: app.globalData.tiltes + 'order_places',
         data: {
           member_id: app.globalData.member_id,
-          goods_id: that.data.user[1].good_id,
-          goods_standard_id: that.data.user[2].guige,
-          order_quantity: num,
+
+          goods_id: that.data.goods_id,
+          goods_standard_id: that.data.goods_standard_id,
+          order_quantity: that.data.goods_num,
+          unit: that.data.unit_all,
+
           address_id: that.data.sava_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
           coupon_id: that.data.coupon_id,
-          unit: that.data.unit_all,
           year: that.data.num2,
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
@@ -686,7 +713,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -715,7 +742,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -903,7 +930,7 @@ Page({
                           paySign: result.data.paySign,
                           'success': function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -932,7 +959,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -1013,7 +1040,7 @@ Page({
                           paySign: result.data.paySign,
                           'success': function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -1036,7 +1063,7 @@ Page({
                     },
                     complete: function () {
                       wx.navigateTo({
-                        url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                        url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                         success: function (res) {
 
                         },
@@ -1073,10 +1100,10 @@ Page({
         url: app.globalData.tiltes + 'order_place_by_shoppings',
         data: {
           member_id: app.globalData.member_id,
-          shopping_id: that.data.user[0].shop_id,
-          goods_id: that.data.user[1].good_id,
-          goods_standard_id: that.data.user[2].guige,
-          order_quantity: that.data.user[3].num,
+          shopping_id: that.data.shoppinds_id,
+          goods_id: that.data.goods_id,
+          goods_standard_id: that.data.goods_standard_id,
+          order_quantity: that.data.goods_num,
           address_id: that.data.sava_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
@@ -1123,7 +1150,7 @@ Page({
                           paySign: result.data.paySign,
                           'success': function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -1152,7 +1179,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id='+ that.data.enter_all_id,
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -1535,14 +1562,15 @@ Page({
         'guige': user[2].guige,
         'num': user[3].num,
         'shopping_id': user[0].shop_id,
+        'uniacid' : app.globalData.uniacid
       },
       method: "post",
       success: function (res) {
         if (res.data.data != undefined && res.data.data != null && res.data.data != '') {
-          let delivery_a, delivery_b, authority, goods, kc, hot, qc, cx;
+          let delivery_a, delivery_b, authority, goods, kc, hot, qc, cx, authority_new = 0;
           authority = res.data.authority;
           goods = res.data.data;
-
+          
           // //单个商品时，存茶的判断
           // if (goods.length < 2) {
           //   authority = 0;
@@ -1567,16 +1595,16 @@ Page({
             //多规格的可存
             if (goods[o].special_info != undefined && goods[o].special_info != null && goods[o].special_info != '') {
               if (goods[o].special_info.save == 1) {
-                authority = 1;
+                authority_new = 1;
                 bq_dgg.kc = 1;
                 bq_arr.push(bq_dgg);
               }
             }
-            //正常规格
+            //正常规
             for (let i in goods_sign) {
               let bq = {};
               if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-                authority = 1;
+                authority_new = 1;
                 bq.kc = 1;
                 bq_arr.push(bq);
               } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
@@ -1592,6 +1620,7 @@ Page({
                 arr.push(goods_sign[i]);
               }
             }
+            
             res.data.data[o].goods_info.goods_sign = arr;
             res.data.data[o].goods_info.bq_arr = bq_arr;
             // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))
@@ -1610,6 +1639,7 @@ Page({
             goods: res.data.data,
             goods_standby: res.data.data,
             authority: authority,
+            authority_new: authority_new,
             delivery_a: delivery_a,
             delivery_b: delivery_b,
             enter_all_id: res.data.enter_all_id
@@ -2045,7 +2075,6 @@ Page({
         },
         method: "post",
         success: function (res) {
-          console.log(res);
           that.setData({
             rate: res.data.data.scale,
             company: res.data.data.company

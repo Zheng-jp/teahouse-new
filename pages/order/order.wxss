@@ -41,6 +41,10 @@
     font-size: 26rpx;
 
 }
+.logistics {
+  color: rgb(172, 35, 6);
+  font-size: 24rpx;
+}
 .type_button{
   color: #333 !important;
   border-color:#333 !important; 
@@ -144,7 +148,7 @@
   color: #999;
   font-size: 26rpx;
   border-radius:13rpx;
-  margin-right:40rpx;
+  /* margin-right:40rpx; */
 }
 .payment{
   padding: 10rpx 20rpx;
@@ -152,6 +156,7 @@
   color: #821006;
   font-size: 26rpx;
   border-radius:13rpx;
+  margin-left: 40rpx;
 }
 /* 支付密码css start */
 .bg_layer{

@@ -12,7 +12,7 @@
 </view>
 <swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
   <swiper-item class="overflowYauto">
-    <scroll-view style="margin-bottom: 50px;">
+    <scroll-view style="{{fixiPhone?'margin-bottom: 82px': 'margin-bottom: 50px'}}">
       <view class="gross-container">
         <view class="gross-item gross-title">总价值</view>
         <view class="gross-item gross-number">￥{{totalValueNum}}</view>
@@ -24,7 +24,7 @@
           <view class="item-box">
             <!-- 是否存查 -->
             <block wx:if="{{allStorageArr}}">
-              <view class="warehouse-left">
+              <view class="warehouse-left" bind:tap="showStorageData" data-key="true">
                 <text>全部</text>
               </view>
               <view class="warehouse-right">
@@ -41,7 +41,7 @@
         <view class="storage-enviroment">
           <view class="storage-name-box">
             <image src="http://ptcb077mt.bkt.clouddn.com/icon1.png" class="" />
-            <text class="storage-name">{{item.store_name}}{{item.number}}</text>
+            <text class="storage-name">{{item.name}}</text>
           </view>
           <view class="enviroment-data-box">
             <view class="enviroment-item item-video">
@@ -63,7 +63,7 @@
             </view>
           </view>
         </view>
-        <!-- <block wx:for="{{3}}"> -->
+        <block wx:for="{{item.getArr}}" wx:key="{{index}}">
           <view class="storage-manage">
             <view class="storage-item">
               <view class="item-left">
@@ -78,13 +78,13 @@
               <view class="item-right">
                 <view class="tea-stock">
                   <text class="stock-title">实时库存</text>
-                  <text class="stock-num">1</text>
-                  件
-                  <text class="stock-num">1</text>
-                  提
-                  <text class="stock-num">1</text>
-                  片
-                  <text class="stock-more" bindtap="toStockDetail">详情></text>
+                  <text class="stock-num">{{item.store_number[0]?item.store_number[0]:''}}</text>
+                  {{item.store_number[1]?item.store_number[1]:''}}
+                  <text class="stock-num">{{item.store_number[2]?item.store_number[2]:''}}</text>
+                  {{item.store_number[3]?item.store_number[3]:''}}
+                  <text class="stock-num">{{item.store_number[4]?item.store_number[4]:''}}</text>
+                  {{item.store_number[5]?item.store_number[5]:''}}
+                  <text class="stock-more" bindtap="toStockDetail" data-id="{{item.id}}">详情></text>
                 </view>
                 <view class="exchange-price">
                   <view>
@@ -102,13 +102,21 @@
                 </view>
                 <view class="btns">
                   <button class="out-storage" bindtap="outOfStock">出仓</button>
-                  <!-- <button type="warn" class="renew" bind:tap="showRenewPop">续费</button> -->
-                  <!-- <button type="primary" class="renew">续费</button> -->
+                  <button type="warn" class="renew" 
+                    data-inTime="{{item.pay_time}}" 
+                    data-outTime="{{item.end_time}}"
+                    data-price="{{item.unit_price}}"
+                    bind:tap="showRenewPop" wx:if="{{item.limit_time == 2}}">续费</button>
+                  <button type="primary" class="renew" 
+                    data-inTime="{{item.pay_time}}" 
+                    data-outTime="{{item.end_time}}"
+                    data-price="{{item.unit_price}}"
+                    bind:tap="showRenewPop">续费</button>
                 </view>
               </view>
             </view>
           </view>
-        <!-- </block> -->
+        </block>
       </block>
     </scroll-view>
   </swiper-item>
@@ -154,7 +162,7 @@
               <image src="{{url}}{{item.goods_show_image}}" bindtap="support"  data-id="{{item.id}}" />
             </view>
             <view class="right-project-info">
-              <view class="project-name hid-txt-one">{{item.project_name}}</view>
+              <view class="project-name hid-txt-one">放假快乐我前几天离开王经理开关机阿叔定理开发工具萨拉克</view>
               <wxzx-progress class="wxzx-progress" percent="{{item.centum>100?100:item.centum}}" show-info border-radius="4px" width="300" stroke-width='12' radius='6' active-color="#ff9600,#ff1000,#ff0000"></wxzx-progress>
               <text class="percent-num">{{item.centum}}%</text>
               <view class="project-people">
@@ -205,7 +213,7 @@
   </view>
   <view class="fd">
     <view class="renew-cost">
-      续费费用<text>{{999*renewYear}}元</text>
+      续费费用<text>{{savePrice}}元</text>
     </view>
     <view class="renew-btn">确认续费</view>
   </view>

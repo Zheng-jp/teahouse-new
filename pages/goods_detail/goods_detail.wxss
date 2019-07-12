@@ -91,13 +91,13 @@
     color:#669900;
     border:solid 1px #669900;
     border-radius:6rpx;
-    font-size:24rpx;
+    font-size:22rpx;
     text-align:center;
     margin-right: 10rpx;
     margin-bottom: 8rpx;
     display: inline-block;
     vertical-align: middle;
-    padding: 5rpx;
+    /* padding: 5rpx; */
   }
   
 	.other_info {
@@ -628,6 +628,6 @@ overflow:hidden;
   width: 60rpx;
   height: 30rpx;
   margin-right: 10rpx;
-  margin-bottom: 7rpx;
+  margin-bottom: 11rpx;
   vertical-align: middle;
 }

@@ -57,7 +57,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>等待买家付款</view>
             </view>
-            <view class='box_list_two'>
+            <view class='box_list_two' bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}">
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -82,7 +82,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>买家已付款</view>
             </view>
-            <view class='box_list_two'>
+            <view class='box_list_two' bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}">
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -107,7 +107,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>卖家已发货</view>
             </view>
-          <view class='box_list_two'>
+          <view class='box_list_two' bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}">
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -135,7 +135,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>交易成功</view>
             </view>
-          <view class='box_list_two'>
+          <view class='box_list_two' bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}">
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -165,7 +165,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>交易成功</view>
             </view>
-            <view class='box_list_two'>
+            <view class='box_list_two' bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}">
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -190,7 +190,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>交易成功</view>
             </view>
-            <view class='box_list_two'>
+           <view class='box_list_two' bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}">
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
@@ -216,7 +216,7 @@
                 <view>订单编号：{{item.parts_order_number}} </view>
                 <view class='static'>交易关闭</view>
             </view>
-            <view class='box_list_two'>
+            <view class='box_list_two' bindtap="redirectto" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}">
                 <view class='img'>
                     <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
                 </view>
