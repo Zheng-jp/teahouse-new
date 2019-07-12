@@ -27,7 +27,7 @@ Page({
     url: app.globalData.img_url,
     circular: 'true',
     indicatorDots: 'true',
-    interval: '5000',
+    interval: '3000',
     // autoplay: 'false',
     selected: true,
     selected1: false,
@@ -368,7 +368,7 @@ Page({
           success: function (res) {
             if (res.confirm) {
               wx.navigateTo({
-                url: '../change_account/change_acco unt?judge_phone=' + 0,
+                url: '../change_account/change_account?judge_phone=' + 0,
                 success: function (res) {
 
                 },
@@ -560,7 +560,7 @@ Page({
         //   }
         // }
 
-        let server = res.data.data[0].server, server_arr = [], id;
+        let server = res.data.data[0].server, server_arr = [], id,price,stock,specifications,images,save;
         for (let i in server) {
           server_arr.push(server[i]);
         }
@@ -576,16 +576,36 @@ Page({
         if (goods.goods_standard[0].id == undefined || goods.goods_standard[0].id == null) {
           id = goods.goods_standard;
         } else {
-          id = goods.goods_standard[0].id
+          if(goods.goods_standard[0].stock == 0) {
+          for(let u = 0; u < goods.goods_standard.length; u ++) {
+            if(goods.goods_standard[u].stock == 0) {
+              id = goods.goods_standard[u + 1].id;
+              price = goods.goods_standard[u + 1].price;
+              stock = goods.goods_standard[u + 1].stock;
+              specifications = goods.goods_standard[u + 1].name;
+              images = goods.goods_standard[u + 1].images;
+              save = goods.goods_standard[u + 1].save;
+              break;
+            }
+          }
+        } else {
+            id = goods.goods_standard[0].id;
+            price = goods.goods_standard[0].price;
+            stock = goods.goods_standard[0].stock;
+            specifications = goods.goods_standard[0].name;
+            images = goods.goods_standard[0].images;
+            save = goods.goods_standard[0].save;
+        }
+          
         }
         that.setData({
           goods: goods,
           good_id: parseInt(options.title),
-          images: res.data.data[0].goods_standard[0].images,
-          price: res.data.data[0].goods_standard[0].price,
-          stock: res.data.data[0].goods_standard[0].stock,
-          save: res.data.data[0].goods_standard[0].save,
-          specifications: res.data.data[0].goods_standard[0].name,
+          images: images,
+          price: price,
+          stock: stock,
+          save: save,
+          specifications: specifications,
           image: res.data.data[0].goods_show_images,
           kc: kc,
           hot: hot,
@@ -706,7 +726,25 @@ Page({
           fixiPhone: res.model.indexOf('iPhone') != -1
         })
       }
-    })
+    });
+    wx.request({
+      url: app.globalData.tiltes + 'member_default_address_return',
+      data: {
+        open_id: app.globalData.gmemberid,
+        address_id: ''
+      },
+      method: "post",
+      success: function (res) {
+        that.setData({
+          address: res.data.status,
+        });
+      },
+      fail: function () {
+
+      },
+      complete: function () { }
+
+    });
     app.judge_phone();
     app.judge_repay();
   }

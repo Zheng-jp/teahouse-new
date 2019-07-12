@@ -72,6 +72,180 @@ Page({
     allStorageArr: [], //所有仓库
     storageDataArr: [],  // 显示仓库数据
     fixiPhone: false,
+    orderId: null, //订单id
+    showPayPwdInput: false,  //是否展示密码输入层
+    pwdVal: '',  //输入的密码
+    payFocus: true, //余额支付文本框焦点
+    order_number: null, //订单号
+  },
+  
+  //输入密码监听
+  inputPwd: function (e) {
+    this.setData({
+      pwdVal: e.detail.value
+    });
+    if (e.detail.value.length >= 6) {
+      this.hidePayLayer();
+    }
+  },
+  // 忘记密码
+  forget_password: function (e) {
+    wx.navigateTo({
+      url: '/pages/forget_password/forget_password',
+      success: function (res) { }
+    })
+  },
+  // 获取焦点
+  getFocus: function () {
+    this.setData({ payFocus: true });
+  },
+
+  //显示支付密码输入层
+  showInputLayer: function () {
+    this.setData({
+      showPayPwdInput: true,
+      payFocus: true
+    });
+  },
+
+  //隐藏支付密码输入层
+  hidePayLayer: function () {
+    var _this = this;
+    var val = this.data.pwdVal;
+    this.setData({
+      showPayPwdInput: false,
+      payFocus: false,
+      pwdVal: ''
+    },
+    function () {
+      if (val.length == 6) {
+        wx.request({
+          url: app.globalData.tiltes + 'check_password',
+          data: {
+            member_id: app.globalData.member_id,
+            passwords: val,
+          },
+          method: "POST",
+          success: function (res) {
+            // if (res.data.data.status == 1) {
+            //   wx.request({
+            //     url: app.globalData.tiltes + 'remainder_pay',
+            //     data: {
+            //       member_id: app.globalData.member_id,
+            //       order_num: _this.data.order_number,
+            //       passwords: val,
+            //     },
+            //     method: "POST",
+            //     success: function (res) { },
+            //     fail: function () { },
+            //     complete: function (res) {
+            //       wx.showToast({
+            //         icon: "none",
+            //         title: res.data.info,
+            //         duration: 2000
+            //       })
+            //     }
+            //   });
+            // }else {
+            //   wx.showToast({
+            //     icon: "none",
+            //     title: res.data.info,
+            //     duration: 2000
+            //   })
+            // }
+          },
+          fail: function () {
+          },
+          complete: function () { }
+        });
+      }else {
+        wx.showToast({
+          icon: "none",
+          title: "您已取消支付",
+        })
+      }
+    });
+  },
+
+  // 确定续费
+  bindRenewEvent: function(){
+    var _this = this;
+    wx.request({
+      url: app.globalData.tiltes + 'series_pay',
+      method: 'post',
+      data: {
+        member_id: app.globalData.member_id,
+        id: this.data.orderId,
+        never_time: this.data.renewExpireYear,
+        year_number: this.data.renewYear,
+        series_price: 0.01
+      },
+      success: function(res){
+        console.log(res);
+        if(res.statusCode === 200){
+          // 调用微信支付接口
+          wx.showActionSheet({
+            itemList: ['微信支付'],
+            success: function(data){
+              console.log(data)
+              if(data.tapIndex === 0){
+                // 微信支付
+                _this.wechatPay(res);
+              }else{
+                // 余额支付
+                _this.showInputLayer();
+              }
+            },
+            fail: function(data){
+              console.log('fail', data);
+              wx.showToast({
+                title: '支付失败!',
+                icon: 'none',
+                duration: 1500
+              })
+            }
+          })
+        }else{
+          wx.showToast({
+            title: '请求参数失败！',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function(res){
+        console.log('确定续费:fail', res);
+      }
+    })
+  }, 
+  wechatPay: function(res){
+    wx.requestPayment({
+      timeStamp: res.data.timeStamp,
+      nonceStr: res.data.nonceStr,
+      package: res.data.package,
+      signType: res.data.signType,
+      paySign: res.data.paySign,
+      success: function(res){
+        wx.showToast({
+          title: '支付成功!',
+          icon: 'none',
+          duration: 1500
+        })
+        setTimeout(function(){
+          _this.onShow();
+          _this.setData({
+            switchPop: false
+          })
+        }, 1600)
+      },
+      fail: function(res){
+        wx.showToast({
+          title: '支付失败!',
+          icon: 'none',
+          duration: 1500
+        })
+      }
+    })
   },
   // 计算续费到期日期
   calcRenewTime: function(year){
@@ -116,7 +290,8 @@ Page({
       expireYear: dataset.outtime,
       renewExpireYear: renewTime.join('-'),
       oneYearPrice: (dataset.price * 365).toFixed(2),
-      savePrice: (dataset.price * 365).toFixed(2)
+      savePrice: (dataset.price * 365).toFixed(2),
+      orderId: dataset.id
     })
   },
   // 关闭续费弹窗

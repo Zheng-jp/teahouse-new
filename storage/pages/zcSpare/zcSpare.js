@@ -100,10 +100,6 @@ Page({
           title: "您已取消支付",
         })
       }
-      // wx.reLaunch({
-      //   url: '/storage/pages/zcOrder/zcOrder?title=' + 0,
-      //   success: function (res) {},
-      // })
     });
   },
 
@@ -145,7 +141,9 @@ Page({
       success: function (res) {
         console.log(res);
         var data = res.data;
-        _this.data.order_number = data.data.order_number;
+        _this.setData({
+          order_number: data.data.order_number
+        })
         if (data.status == 1) {
           wx.showActionSheet({
             itemList: ['账户支付', '微信支付'],
