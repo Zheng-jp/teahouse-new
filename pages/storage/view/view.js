@@ -219,6 +219,7 @@ Page({
     })
   }, 
   wechatPay: function(res){
+    var _this = this;
     wx.requestPayment({
       timeStamp: res.data.timeStamp,
       nonceStr: res.data.nonceStr,
