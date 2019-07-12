@@ -25,7 +25,8 @@
           <view class='spec_title'>选择规格</view>
           <view class='spec_content_all'>
             <view class='spec_content' wx:for="{{goods.goods_standard}}">
-              <view class="spec_content_text {{item.id==id? 'on' : ''}}" bindtap="labelItemTap" data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}" data-value="{{item.name}}" data-save="{{item.save}}">
+              <view class="spec_content_text {{item.id==id? 'on' : ''}}" bindtap="labelItemTap" data-current="{{item.id}}" data-price="{{item.price}}"
+               data-stock="{{item.stock}}" data-images="{{item.images}}" data-value="{{item.name}}" data-save="{{item.save}}" wx:if="{{item.stock != 0}}">
                 {{item.name}}
               </view>
             </view>
