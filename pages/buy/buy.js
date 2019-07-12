@@ -111,15 +111,9 @@ Page({
             }
 
           });
-
         }
-
       }
-
     }
-
-
-
   },
   /* 点击加号 */
   bindPlus: function (e) {
@@ -231,18 +225,15 @@ Page({
             shopping_id: checkboxItems[i].id,
           },
           method: "post",
-          // header: {
-          //   "Content-Type": "json" // 默认值
-
-          // },
           success: function (res) {
             checkboxItems.splice(index, 1);
             that.setData({
-              goodList: checkboxItems
+              goodList: checkboxItems,
+              checkAll: false,
             });
             if (!checkboxItems.length) {
               that.setData({
-                iscart: true
+                iscart: true,
               });
             } else {
               that.calculateTotal();
@@ -358,11 +349,17 @@ Page({
     this.setData({
       heght: wx.getSystemInfoSync().windowHeight,
     })
+    
+
+  },
+
+  getGoodsInfo: function(){
+    var that = this;
     wx.request({
       url: app.globalData.tiltes + 'shopping_index',
       data: {
         open_id: app.globalData.gmemberid,
-        uniacid : app.globalData.uniacid
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       success: function (res) {
@@ -466,9 +463,7 @@ Page({
         wx.hideLoading()
       }
     });
-
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -480,6 +475,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getGoodsInfo();
     if(typeof this.getTabBar === 'function' && this.getTabBar()){
       if(wx.getStorageSync('editionId') == 1){
         this.getTabBar().setData({
