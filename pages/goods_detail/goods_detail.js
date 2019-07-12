@@ -27,7 +27,7 @@ Page({
     url: app.globalData.img_url,
     circular: 'true',
     indicatorDots: 'true',
-    interval: '5000',
+    interval: '3000',
     // autoplay: 'false',
     selected: true,
     selected1: false,
