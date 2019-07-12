@@ -107,7 +107,7 @@ Page({
     // console.log("分享")
     let that = this;
     return {
-      title: '简直走别拐弯', // 转发后 所显示的title
+      title: '', // 转发后 所显示的title
       path: '/pages/logs/logs', // 相对的路径
       success: (res) => { // 成功后要做的事情
         // console.log(res.shareTickets[0])
@@ -262,8 +262,22 @@ Page({
     })
   },
   go_index: function (e) {
-    wx.navigateBack({
-      delta: 2 //注意navigateTo只能跳转到带有tab的页面，不能跳转到不带tab的页面
+
+      wx.reLaunch({
+        url: '../diy/index/index',
+        success: function (res) {
+          // success
+          console.log("nihao////跳转成功")
+        },
+        fail: function (e) {
+          console.log(e)
+          // fail
+          console.log("nihao////跳转失败")
+        },
+        complete: function () {
+          // complete
+          console.log("nihao////跳转行为结束，未知成功失败")
+        }
     })
   },
   /* 点击减号 */
