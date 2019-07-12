@@ -63,12 +63,24 @@ Page({
     version: 0,
     switchPop: false, //显示隐藏续费弹窗
     renewYear: 1, //续费年限
-    inYear: '2018.06.11', // 续费 入仓日期
-    expireYear: '2019.06.11', // 续费 入仓日期
-    renewExpireYear: '2018.06.11', // 续费 入仓日期
+    inYear: '', //  入仓日期
+    expireYear: '', //  到期日期
+    renewExpireYear: '', //  续费到期日期
+    oneYearPrice: 0, //仓储一年的价格
+    savePrice: 0, // 仓储价格年费
     totalValueNum: 0,  //总价值
     allStorageArr: [], //所有仓库
     storageDataArr: [],  // 显示仓库数据
+    fixiPhone: false,
+  },
+  // 计算续费到期日期
+  calcRenewTime: function(year){
+    var endTime = this.data.expireYear.split('-');
+    endTime[0] = +endTime[0] + year;
+    var newEndTime = endTime.join('-');
+    this.setData({
+      renewExpireYear: newEndTime
+    })
   },
   // 减
   minus: function(){
@@ -76,29 +88,42 @@ Page({
     if(year > 1){
       year --;
     }
+    this.calcRenewTime(year);
     this.setData({
-      renewYear: year
+      renewYear: year,
+      savePrice: (this.data.oneYearPrice * year).toFixed(2)
     })
   },
   // 加
   plus: function(){
     var year = +this.data.renewYear;
     year++;
+    this.calcRenewTime(year);
     this.setData({
-      renewYear: year
+      renewYear: year,
+      savePrice: (this.data.oneYearPrice * year).toFixed(2)
     })
   },
   
   // 显示续费弹窗
-  showRenewPop: function(){
+  showRenewPop: function(e){
+    var dataset= e.currentTarget.dataset;
+    var renewTime = dataset.outtime.split('-');
+    renewTime[0] = +renewTime[0] + 1;
     this.setData({
-      switchPop: true
+      switchPop: true,
+      inYear: dataset.intime,
+      expireYear: dataset.outtime,
+      renewExpireYear: renewTime.join('-'),
+      oneYearPrice: (dataset.price * 365).toFixed(2),
+      savePrice: (dataset.price * 365).toFixed(2)
     })
   },
   // 关闭续费弹窗
   closeRenewPop: function(){
     this.setData({
-      switchPop: false
+      switchPop: false,
+      renewYear: 1
     })
   },
   /**
@@ -161,6 +186,7 @@ Page({
           res.data.data.forEach((v, i) => {
               v.getArr.forEach((i, j) => {
                 i.end_time = app.formatDate(i.end_time);
+                i.pay_time = app.formatDate(i.pay_time);
               })
           });
           _this.setData({
@@ -226,6 +252,15 @@ Page({
     this.allStorage();
     // 显示仓库数据
     this.showStorageData();
+    //苹果底部适配
+    var _this = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        _this.setData({
+          fixiPhone: res.model.indexOf('iPhone X') != -1
+        })
+      }
+    })
   },
 
   // 切换 正在众筹 往期众筹
