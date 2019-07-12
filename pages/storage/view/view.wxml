@@ -220,6 +220,26 @@
     <view class="renew-btn" bind:tap="bindRenewEvent">确认续费</view>
   </view>
 </view>
+
+<!-- 余额支付 -->
+<view wx:if='{{showPayPwdInput}}'>
+	<view class='bg_layer'></view>
+	<view class='input_main'>
+		<view class='input_title'>
+			<view class='input_back' catchtap='hidePayLayer'><text></text></view>
+			<text>输入支付密码</text>
+		</view>
+		<view class='input_tip'><text>请输入账户余额支付密码</text></view>
+		<view class='input_row' catchtap='getFocus'>
+			<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+				<text wx:if='{{pwdVal.length>i}}'></text>
+			</view>
+		</view>
+		<view class='forget_pwd' catchtap='forget_password'>忘记密码</view>
+		<input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
+	</view>
+</view>
+
 <!-- <block wx:if="{{foot_is==2}}">
   <view class="hbj footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:9998;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:if="{{footinfo.params.navstyle==0}}">
     <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">

@@ -23,7 +23,7 @@
               </view>
                 <view class="box"  bindtap="go"  data-src="../recharge/recharge" >
                 <image src="http://ptcb077mt.bkt.clouddn.com/u9489.png"  class="ico" />
-                <text class="text">充值</text>
+                <text class="text">预存</text>
               </view>
                 <view class="box"  bindtap="go"  data-src="../withdrawal/withdrawal">
                 <image src="http://ptcb077mt.bkt.clouddn.com/u9493.png"  class="ico" />
