@@ -72,7 +72,81 @@ Page({
     allStorageArr: [], //所有仓库
     storageDataArr: [],  // 显示仓库数据
     fixiPhone: false,
+    orderId: null, //订单id
   },
+  // 确定续费
+  bindRenewEvent: function(){
+    var _this = this;
+    wx.request({
+      url: app.globalData.tiltes + 'series_pay',
+      method: 'post',
+      data: {
+        member_id: app.globalData.member_id,
+        id: this.data.orderId,
+        never_time: this.data.renewExpireYear,
+        year_number: this.data.renewYear,
+        series_price: this.data.savePrice
+      },
+      success: function(res){
+        console.log(res);
+        if(res.statusCode === 200){
+          // 调用微信支付接口
+          wx.showActionSheet({
+            itemList: ['微信支付'],
+            success: function(data){
+              console.log(data)
+              if(data.tapIndex === 0){
+                wx.requestPayment({
+                  timeStamp: res.data.timeStamp,
+                  nonceStr: res.data.nonceStr,
+                  package: res.data.package,
+                  signType: res.data.signType,
+                  paySign: res.data.paySign,
+                  success: function(res){
+                    wx.showToast({
+                      title: '支付成功!',
+                      icon: 'none',
+                      duration: 1500
+                    })
+                    setTimeout(function(){
+                      _this.onShow();
+                      _this.setData({
+                        switchPop: false
+                      })
+                    }, 1600)
+                  },
+                  fail: function(res){
+                    wx.showToast({
+                      title: '支付失败!',
+                      icon: 'none',
+                      duration: 1500
+                    })
+                  }
+                })
+              }
+            },
+            fail: function(data){
+              console.log('fail', data);
+              wx.showToast({
+                title: '支付失败!',
+                icon: 'none',
+                duration: 1500
+              })
+            }
+          })
+        }else{
+          wx.showToast({
+            title: '请求参数失败！',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function(res){
+        console.log('确定续费:fail', res);
+      }
+    })
+  }, 
   // 计算续费到期日期
   calcRenewTime: function(year){
     var endTime = this.data.expireYear.split('-');
@@ -116,7 +190,8 @@ Page({
       expireYear: dataset.outtime,
       renewExpireYear: renewTime.join('-'),
       oneYearPrice: (dataset.price * 365).toFixed(2),
-      savePrice: (dataset.price * 365).toFixed(2)
+      savePrice: (dataset.price * 365).toFixed(2),
+      orderId: dataset.id
     })
   },
   // 关闭续费弹窗
