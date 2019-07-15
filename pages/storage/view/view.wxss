@@ -52,7 +52,7 @@ swiper.swiper-container{height: 93%;}
 .storage-item{padding: 40rpx 10rpx; border-bottom: 4rpx solid #f9f9f9; display: flex; justify-content: space-between;}
 .item-left{text-align: center; flex-basis: 35%; display: flex; flex-direction: column; align-items: center; justify-content: space-between;}
 .item-left .display-img{width: 120rpx; height: 120rpx;}
-.item-left .tea-name{font-size: 36rpx; font-weight: bold; color: #797979;}
+.item-left .tea-name{font-size: 28rpx; font-weight: bold; color: #797979;}
 .item-left .tea-date{font-size: 24rpx; color: #333;}
 .item-left .tag-box{display: inline-flex; align-items: flex-end;}
 .item-left .tag-box .tag-text{font-size: 24rpx; color: #999900; border: 1px solid #999900; padding: 4rpx 0; border-radius: 8rpx; width: 60px; box-sizing: border-box; overflow: hidden; white-space: nowrap;}

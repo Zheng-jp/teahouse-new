@@ -68,7 +68,7 @@
             <view class="storage-item">
               <view class="item-left">
                 <image src="{{url}}{{item.goods_image}}" class="display-img" />
-                <text class="tea-name">{{item.brand}}</text>
+                <text class="tea-name">{{item.goods_name}}</text>
                 <text class="tea-date">生产日期：{{item.date}}</text>
                 <view class="tag-box">
                   <text class="tag-text">{{item.store_name}}</text>
