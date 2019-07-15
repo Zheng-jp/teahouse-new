@@ -105,8 +105,9 @@
             </view>
             <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number > 0}}">限购数量：{{item.limit_number}}</view>
             <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number == 0}}">不限购</view>
+             <view class='quantity-p text_red'>×{{item.number}}</view>
           </view>
-          <view class='quantity-p text_red'>×{{item.number}}</view>
+         
         </view>
       </view>
     </view>
