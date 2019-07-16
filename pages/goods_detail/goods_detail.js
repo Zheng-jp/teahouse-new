@@ -540,6 +540,7 @@ Page({
       },
       method: "post",
       success: function (res) {
+        console.log(res)
         let arr = [],
           kc, hot, cx, qc;
         let goods_sign = res.data.data[0].goods_sign;
@@ -581,26 +582,26 @@ Page({
         if (goods.goods_standard[0].id == undefined || goods.goods_standard[0].id == null) {
           id = goods.goods_standard;
         } else {
-          if(goods.goods_standard[0].stock == 0) {
-          for(let u = 0; u < goods.goods_standard.length; u ++) {
-            if(goods.goods_standard[u].stock == 0) {
-              id = goods.goods_standard[u + 1].id;
-              price = goods.goods_standard[u + 1].price;
-              stock = goods.goods_standard[u + 1].stock;
-              specifications = goods.goods_standard[u + 1].name;
-              images = goods.goods_standard[u + 1].images;
-              save = goods.goods_standard[u + 1].save;
-              break;
+            if(goods.goods_standard[0].stock == 0) {
+            for(let u = 0; u < goods.goods_standard.length; u ++) {
+              if(goods.goods_standard[u].stock == 0) {
+                id = goods.goods_standard[u + 1].id;
+                price = goods.goods_standard[u + 1].price;
+                stock = goods.goods_standard[u + 1].stock;
+                specifications = goods.goods_standard[u + 1].name;
+                images = goods.goods_standard[u + 1].images;
+                save = goods.goods_standard[u + 1].save;
+                break;
+              }
             }
+          } else {
+              id = goods.goods_standard[0].id;
+              price = goods.goods_standard[0].price;
+              stock = goods.goods_standard[0].stock;
+              specifications = goods.goods_standard[0].name;
+              images = goods.goods_standard[0].images;
+              save = goods.goods_standard[0].save;
           }
-        } else {
-            id = goods.goods_standard[0].id;
-            price = goods.goods_standard[0].price;
-            stock = goods.goods_standard[0].stock;
-            specifications = goods.goods_standard[0].name;
-            images = goods.goods_standard[0].images;
-            save = goods.goods_standard[0].save;
-        }
           
         }
         that.setData({
@@ -617,6 +618,7 @@ Page({
           cx: cx,
           qc: qc,
           id: id,
+          evolution:res.data.data[0].evolution
           // select: goods.goods_standard[0].name
         });
 
