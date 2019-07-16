@@ -614,12 +614,12 @@ Page({
           id: id,
           // select: goods.goods_standard[0].name
         });
-
+        console.log(111, res.data.data[0])
         var article = res.data.data[0].goods_text;
-        WxParse.wxParse('article', 'html', article, that, 5);
+        if (article) WxParse.wxParse('article', 'html', article, that, 5);
 
         var article_text = res.data.data[0].text;
-        WxParse.wxParse('article_text', 'html', article_text, that, 5);
+        if (article_text) WxParse.wxParse('article_text', 'html', article_text, that, 5);
         //  添加字段到等级数组
         // for (var index in that.data.goods.goods_standard) {
         //   var sexParam = "goods_standard[" + index + "].tab";
