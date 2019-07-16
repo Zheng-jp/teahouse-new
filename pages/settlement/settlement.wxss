@@ -224,7 +224,8 @@
 .quantity-p {
   font-size: 28rpx;
   margin-left: 75rpx;
-  margin-top: 11rpx;
+  line-height: 48rpx;
+  
 }
 
 .order-goods-info {
