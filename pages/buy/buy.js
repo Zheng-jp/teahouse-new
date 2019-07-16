@@ -123,36 +123,70 @@ Page({
       var nums = that.data.goodList[tab].goods_unit;
       var num = 'goodList[' + index + '].goods_unit'
       if (index == tab) {
+        if (that.data.goodList[index].is_limit == 1 && Number(that.data.goodList[index].limit_number) > 0) {
+          if (nums < Number(that.data.goodList[index].limit_number)) {
+            nums++;
+            that.setData({
+              [num]: nums
+            });
+            wx.request({
+              url: app.globalData.tiltes + 'shopping_information_add',
+              data: {
+                open_id: app.globalData.gmemberid,
+                goods_unit: 1,
+                shopping_id: e.currentTarget.dataset.shopid,
 
-        nums++;
-        that.setData({
-          [num]: nums
-        });
-        wx.request({
-          url: app.globalData.tiltes + 'shopping_information_add',
-          data: {
-            open_id: app.globalData.gmemberid,
-            goods_unit: 1,
-            shopping_id: e.currentTarget.dataset.shopid,
+              },
+              method: "post",
+              // header: {
+              //   "Content-Type": "json" // 默认值
 
-          },
-          method: "post",
-          // header: {
-          //   "Content-Type": "json" // 默认值
+              // },
+              success: function (res) {
+                that.calculateTotal();
 
-          // },
-          success: function (res) {
-            that.calculateTotal();
+              },
+              fail: function () {
 
-          },
-          fail: function () {
+              },
+              complete: function () {
+                wx.hideLoading()
+              }
 
-          },
-          complete: function () {
-            wx.hideLoading()
+            });
           }
+        } else {
 
-        });
+          nums++;
+          that.setData({
+            [num]: nums
+          });
+          wx.request({
+            url: app.globalData.tiltes + 'shopping_information_add',
+            data: {
+              open_id: app.globalData.gmemberid,
+              goods_unit: 1,
+              shopping_id: e.currentTarget.dataset.shopid,
+
+            },
+            method: "post",
+            // header: {
+            //   "Content-Type": "json" // 默认值
+
+            // },
+            success: function (res) {
+              that.calculateTotal();
+
+            },
+            fail: function () {
+
+            },
+            complete: function () {
+              wx.hideLoading()
+            }
+
+          });
+        }
 
 
       }
@@ -261,7 +295,7 @@ Page({
     var good_ids = {};
     var ids = {};
     var nums = {};
-    
+
     var shopAddids = {};
     var shop_id = new Array();
     var good_id = new Array();
@@ -349,11 +383,11 @@ Page({
     this.setData({
       heght: wx.getSystemInfoSync().windowHeight,
     })
-    
+
 
   },
 
-  getGoodsInfo: function(){
+  getGoodsInfo: function () {
     var that = this;
     wx.request({
       url: app.globalData.tiltes + 'shopping_index',
@@ -476,12 +510,12 @@ Page({
    */
   onShow: function () {
     this.getGoodsInfo();
-    if(typeof this.getTabBar === 'function' && this.getTabBar()){
-      if(wx.getStorageSync('editionId') == 1){
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      if (wx.getStorageSync('editionId') == 1) {
         this.getTabBar().setData({
           checked: 2
         })
-      }else{
+      } else {
         this.getTabBar().setData({
           checked: 3
         })

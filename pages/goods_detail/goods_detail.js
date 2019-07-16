@@ -511,6 +511,11 @@ Page({
     var min = Math.floor(second / 60 % 60);
     // 秒
     var sec = Math.floor(second % 60);
+
+    day = day < 10 ? '0'+ day : day;
+    hr = hr < 10 ? '0'+ hr : hr;
+    min = min < 10 ? '0'+ min : min;
+    sec = sec < 10 ? '0'+ sec : sec;
     return day + "天" + hr + "小时" + min + "分钟" + sec + "秒";
   },
 

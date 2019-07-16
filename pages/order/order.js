@@ -565,6 +565,12 @@ Page({
     });
   
   },
+  //入仓跳转茶仓
+  to_warehouse: function(e) {
+    wx.reLaunch({
+      url: '../storage/view/view'
+    })
+  },
   //查看物流
   to_logistics: function(e) {
     var that = this;
