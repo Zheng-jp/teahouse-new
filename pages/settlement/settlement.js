@@ -106,22 +106,22 @@ Page({
       if (goods.length > 1) {
         for (let i = 0; i < goods.length; i++) {
           for (let o in goods[i].goods_info.bq_arr) {
-              if (goods[i].goods_info.bq_arr[o].kc == 1 && goods[i].goods_info.bq_arr[o].kc != null && goods[i].goods_info.bq_arr[o].kc != undefined) {
-                arr.push(goods[i]);
-                
-                unit.push(goods[i].unit);
-                goods_id.push(goods[i].goods_info.id);
-                if (goods[i].special_info == undefined || goods[i].special_info == null) {
-                  goods_standard_id.push('0');
-                } else {
-                  goods_standard_id.push(goods[i].special_info.id);
-                }
-                goods_num.push(goods[i].number);
-                //购物车id
-                if (goods[i].goods_info.id == that.data.user[4].shopAddids[i].goods_id) {
-                  shoppinds_id.push(that.data.user[4].shopAddids[i].shop_id)
-                }
+            if (goods[i].goods_info.bq_arr[o].kc == 1 && goods[i].goods_info.bq_arr[o].kc != null && goods[i].goods_info.bq_arr[o].kc != undefined) {
+              arr.push(goods[i]);
+
+              unit.push(goods[i].unit);
+              goods_id.push(goods[i].goods_info.id);
+              if (goods[i].special_info == undefined || goods[i].special_info == null) {
+                goods_standard_id.push('0');
+              } else {
+                goods_standard_id.push(goods[i].special_info.id);
               }
+              goods_num.push(goods[i].number);
+              //购物车id
+              if (goods[i].goods_info.id == that.data.user[4].shopAddids[i].goods_id) {
+                shoppinds_id.push(that.data.user[4].shopAddids[i].shop_id)
+              }
+            }
           }
         }
 
@@ -139,7 +139,7 @@ Page({
           goods_standard_id.push(goods[0].special_info.id);
         }
         goods_num.push(goods[0].number);
-        
+
         arr = that.data.goods;
       }
       that.setData({
@@ -661,7 +661,7 @@ Page({
         url: app.globalData.tiltes + 'order_places',
         data: {
           member_id: app.globalData.member_id,
-          store_house_id:that.data.sava_id,
+          store_house_id: that.data.sava_id,
           goods_id: that.data.goods_id,
           goods_standard_id: that.data.goods_standard_id,
           order_quantity: that.data.goods_num,
@@ -1105,7 +1105,7 @@ Page({
           goods_standard_id: that.data.goods_standard_id,
           order_quantity: that.data.goods_num,
           address_id: that.data.address_id,
-          store_house_id:that.data.sava_id,
+          store_house_id: that.data.sava_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
           coupon_id: that.data.coupon_id,
@@ -1395,7 +1395,6 @@ Page({
       goods: goods,
       minusStatus: minusStatus
     });
-    console.log(that.data.order_type)
     that.invi();
     if (that.data.order_type == "1") {
       that.money_freight();
@@ -1410,25 +1409,52 @@ Page({
     var that = this;
     var num = this.data.goods[0].number;
     var goods = this.data.goods;
-    // 不作过多考虑自增1  
-    num++;
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num < 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    goods[0].number = num;
-    this.setData({
-      goods: goods,
-      minusStatus: minusStatus
-    });
-    that.invi();
-    if (that.data.order_type == "1") {
-      that.money_freight();
-      that.calculate_money();
-    } else if (that.data.order_type == "3") {
-      that.money_storages();
-      that.calculate_money();
+    if (goods[0].is_limit == 1 && Number(goods[0].limit_number) > 0) {
+      if (num < Number(goods[0].limit_number)) {
+        // 不作过多考虑自增1  
+        num++;
+        // 只有大于一件的时候，才能normal状态，否则disable状态  
+        var minusStatus = num < 1 ? 'disabled' : 'normal';
+
+        // 将数值与状态写回  
+        goods[0].number = num;
+        this.setData({
+          goods: goods,
+          minusStatus: minusStatus
+        });
+        that.invi();
+        if (that.data.order_type == "1") {
+          that.money_freight();
+          that.calculate_money();
+        } else if (that.data.order_type == "3") {
+          that.money_storages();
+          that.calculate_money();
+        } else {
+          that.calculate_money();
+        }
+      }
     } else {
-      that.calculate_money();
+        // 不作过多考虑自增1  
+        num++;
+        // 只有大于一件的时候，才能normal状态，否则disable状态  
+        var minusStatus = num < 1 ? 'disabled' : 'normal';
+    
+        // 将数值与状态写回  
+        goods[0].number = num;
+        this.setData({
+          goods: goods,
+          minusStatus: minusStatus
+        });
+        that.invi();
+        if (that.data.order_type == "1") {
+          that.money_freight();
+          that.calculate_money();
+        } else if (that.data.order_type == "3") {
+          that.money_storages();
+          that.calculate_money();
+        } else {
+          that.calculate_money();
+        }
     }
 
   },
@@ -1563,7 +1589,7 @@ Page({
         'guige': user[2].guige,
         'num': user[3].num,
         'shopping_id': user[0].shop_id,
-        'uniacid' : app.globalData.uniacid
+        'uniacid': app.globalData.uniacid
       },
       method: "post",
       success: function (res) {
@@ -1571,7 +1597,7 @@ Page({
           let delivery_a, delivery_b, authority, goods, kc, hot, qc, cx, authority_new = 0;
           authority = res.data.authority;
           goods = res.data.data;
-          
+
           // //单个商品时，存茶的判断
           // if (goods.length < 2) {
           //   authority = 0;
@@ -1621,7 +1647,7 @@ Page({
                 arr.push(goods_sign[i]);
               }
             }
-            
+
             res.data.data[o].goods_info.goods_sign = arr;
             res.data.data[o].goods_info.bq_arr = bq_arr;
             // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))

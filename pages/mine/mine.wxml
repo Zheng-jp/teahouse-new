@@ -55,7 +55,7 @@
       <view wx:for="{{order_nav}}" wx:key="{{index}}" class='nav_list' bindtap="go_order" data-id="{{item.id}}">
         <view class='nav_img'>
           <image src='{{item.src}}'></image>
-          <view class="nav_view">0</view>
+          <view class="nav_view" wx:if="{{item.num > 0}}">{{item.num}}</view>
         </view>
         <view>{{item.text}}</view>
       </view>

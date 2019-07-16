@@ -101,6 +101,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     this.audioCtx = wx.createAudioContext("myAudio");
   },
   onLoad: function (t) {
+    
     this.getfoot(2);
     (e = this).refreshSessionkey();
     var a = e.data.baseurl.split("/api");
