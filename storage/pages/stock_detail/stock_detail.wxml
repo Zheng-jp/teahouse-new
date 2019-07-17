@@ -42,7 +42,7 @@
             <view class="item-key">实时库存：</view>
             <view class="item-value stock">
                 {{item.store_number}}
-                <image src="./img/icon2.png" class="icon-more" />
+                <!-- <image src="./img/icon2.png" class="icon-more" /> -->
             </view>
         </view>
         <!-- <view class="other-item">
@@ -59,7 +59,11 @@
         </view> -->
         <view class="other-item">
             <view class="item-key">商品规格：<text class="explain">?</text></view>
-            <view class="item-value">7片/提；84片/件</view>
+            <view class="item-value">
+              <text wx:if="{{item.num[0]}}">{{item.num[0]}}/{{item.unit[0]}}</text>
+              <text wx:if="{{item.num[1]}}">{{item.num[1]}}/{{item.unit[1]}}</text>
+              <text wx:if="{{item.num[2]}}">{{item.num[2]}}/{{item.unit[2]}}</text>
+            </view>
         </view>
         <view class="other-item">
             <view class="item-key">仓储地址：</view>
@@ -69,7 +73,7 @@
             <view class="item-key">仓储库名：</view>
             <view class="item-value">
                 {{item.store_name}}{{item.number}}
-                <image src="./img/icon2.png" class="icon-more" />
+                <!-- <image src="./img/icon2.png" class="icon-more" /> -->
             </view>
         </view>
         <view class="other-item">
@@ -77,7 +81,7 @@
             <view class="item-value">
                 <image src="./img/icon4.png" class="temperature" />25.55°C
                 <image src="./img/u2173.png" class="humidity" />78.35%
-                <image src="./img/icon2.png" class="icon-more" />
+                <!-- <image src="./img/icon2.png" class="icon-more" /> -->
             </view>
         </view>
         <view class="other-item">
@@ -94,7 +98,7 @@
         </view>
         <view class="other-item">
             <view class="item-key">价格涨幅比：<text class="explain">?</text></view>
-            <view class="item-value">100%</view>
+            <view class="item-value">{{item.scale}}%</view>
         </view>
     </view>
     <image src="{{url}}{{item.goods_image}}" class="chart-img" />

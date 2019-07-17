@@ -101,7 +101,7 @@
                   </view>
                 </view>
                 <view class="btns">
-                  <button class="out-storage" bindtap="outOfStock">出仓</button>
+                  <button class="out-storage" bindtap="outOfStock" data-id="{{item.id}}">出仓</button>
                   <button type="warn" class="renew" 
                     data-inTime="{{item.pay_time}}" 
                     data-outTime="{{item.end_time}}"

@@ -518,16 +518,11 @@ Page({
     })
   },
 
-  outOfStock: function () {
+  outOfStock: function (e) {
+    var id = e.currentTarget.dataset.id;
     // 出仓
     wx.navigateTo({
-      url: '/storage/pages/out_of_warehouse/out_of_warehouse',
-      success: function () {
-        console.log('跳转成功');
-      },
-      fail: function () {
-        console.log('跳转失败');
-      }
+      url: '/storage/pages/out_of_warehouse/out_of_warehouse?id=' + id
     })
   },
   redirectto: function (t) {
