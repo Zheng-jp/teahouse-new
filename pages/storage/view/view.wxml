@@ -113,7 +113,7 @@
                     data-outTime="{{item.end_time}}"
                     data-price="{{item.unit_price}}"
                     data-id="{{item.id}}"
-                    bind:tap="showRenewPop">续费</button>
+                    bind:tap="showRenewPop" wx:if="{{item.limit_time == 1}}">续费</button>
                 </view>
               </view>
             </view>

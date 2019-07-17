@@ -311,7 +311,7 @@ Page({
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
-    })
+    });
     // 续费弹窗 初始化日期
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,

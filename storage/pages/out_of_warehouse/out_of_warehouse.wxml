@@ -96,7 +96,14 @@
         <view class="list-key">
             直邮地址
         </view>
-        <view class="list-value">请选择邮寄地址 ></view>
+        <view class="list-value address" bind:tap="toAddressList">
+          <!-- <text class="icon-more"> > </text> -->
+          <image src="./img/icon1.png" class="icon-more" />
+          <!-- <text>请选择邮寄地址</text> -->
+          <view>
+            
+          </view>
+        </view>
     </view>
     <view class="list-item freightCost">
         <view class="list-key">

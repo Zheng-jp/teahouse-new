@@ -1,4 +1,5 @@
 // storage/pages/out_of_warehouse/out_of_warehouse.js
+const app = getApp();
 Page({
 
   /**
@@ -22,11 +23,40 @@ Page({
 
   },
 
+  // 获取默认地址
+  getDefaultAddress: function(){
+    wx.request({
+      url: app.globalData.tiltes + 'member_default_address_return',
+      method: 'POST',
+      data: {
+        open_id: app.globalData.gmemberid,
+      },
+      success: function(res){
+        console.log('获取默认地址：', res);
+        if(res.data.status == 1){
+
+        }
+      },
+      fail: function(res){
+        console.log('获取默认地址失败：', res);
+      }
+    })
+  },
+
+  // 跳转地址列表
+  toAddressList: function(){
+    wx.navigateTo({
+      url: '../../../pages/select_address/select_address',
+      success: function (res) { },
+      fail: function () {}
+    })
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getDefaultAddress();
   },
 
   /**

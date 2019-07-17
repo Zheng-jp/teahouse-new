@@ -496,6 +496,12 @@ Page({
         })
       }
     })
+
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    });
+
   },
 
   /**

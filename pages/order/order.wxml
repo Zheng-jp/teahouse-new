@@ -96,7 +96,7 @@
 					</view>
 				</view>
 				<view wx:if="{{item.order_type==3}}" class='box_list_four'>
-					<view class='remind_delivery cancel type_button' bindtap="tip_order" data-id="{{item.parts_order_number}}">已入仓</view>
+					<view class='remind_delivery cancel type_button' data-id="{{item.parts_order_number}}">已入仓</view>
 				</view>
 				<view wx:if="{{item.order_type==1 || item.order_type==2}}" class='box_list_four'>
 					<view class='remind_delivery cancel type_button' bindtap="tip_order" data-id="{{item.parts_order_number}}">提醒发货</view>

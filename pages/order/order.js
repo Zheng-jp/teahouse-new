@@ -511,6 +511,14 @@ Page({
                   paySign:  result.data.paySign,
                   'success': function (successret) {
                     console.log('支付成功');
+                    wx.showToast({
+                      title: '支付成功',
+                      icon: 'success',
+                      duration: 1500
+                    })
+                    setTimeout(function(){
+                      that.onShow();
+                    }, 1600)
                   },
                   'fail': function (res) {
                    
@@ -626,8 +634,7 @@ Page({
         }
   
       });
-    }
-    else if(title==1){
+    }else if(title==1){
       wx.request({
         url: app.globalData.tiltes + 'ios_api_order_wait_pay',
         data: {
@@ -635,10 +642,6 @@ Page({
           tab:'2'
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-  
-        // },
         success: function (res) {
          
           that.setData({
@@ -653,18 +656,13 @@ Page({
         }
   
       });
-    }
-    else if(title==2){
+    }else if(title==2){
       wx.request({
         url: app.globalData.tiltes + 'ios_api_order_wait_send',
         data: {
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-  
-        // },
         success: function (res) {
          
           that.setData({
@@ -680,18 +678,13 @@ Page({
         }
   
       });
-    }
-    else if(title==3){
+    }else if(title==3){
       wx.request({
         url: app.globalData.tiltes + 'ios_api_order_wait_deliver',
         data: {
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-  
-        // },
         success: function (res) {
          
           that.setData({
@@ -707,20 +700,14 @@ Page({
         }
   
       });
-    }
-    else{
+    }else{
       wx.request({
         url: app.globalData.tiltes + 'ios_api_order_wait_evaluate',
         data: {
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-  
-        // },
         success: function (res) {
-         
           that.setData({
             order:res.data.data,
             tab:'5'
@@ -749,7 +736,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
