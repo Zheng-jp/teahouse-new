@@ -27,7 +27,7 @@ Page({
         src: app.globalData.url + '/upload/20181115/9dd5f4a52c2a77653c7ea3ef05ef7226.png',
         text: '待收货',
         id: 3,
-        
+
       }, {
         src: app.globalData.url + '/upload/20181115/ab9f934b82ab3e9d2ba77b9616501d6a.png',
         text: '待评价',
@@ -92,7 +92,7 @@ Page({
 
   },
   go_recharge: function () {
-    
+
     if (!app.globalData.judge_repay) {
       wx.showModal({
         title: '支付密码',
@@ -100,17 +100,17 @@ Page({
         confirmText: '马上设置',
         confirmColor: '#3399FF',
         cancelColor: '#bbb',
-        success: function(res) {
+        success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
               url: '../password/password?judge_phone=' + 0,
-              success: function(res) {
+              success: function (res) {
 
               },
-              fail: function() {
+              fail: function () {
 
               },
-              complete: function() {
+              complete: function () {
 
               }
 
@@ -133,7 +133,7 @@ Page({
         complete: function () {
           // complete
         }
-  
+
       })
     }
   },
@@ -166,56 +166,9 @@ Page({
     let url = "https://teahouse.siring.com.cn/api/";
     // var open_id
     var gmemberid = app.globalData.gmemberid;
-    this.requesLocalData();
     var uniacid = app.globalData.uniacid;
-
-    //各订单数量接口
-    wx.request({
-      url: url + "order_count",
-      data : {
-        uniacid: uniacid,
-        open_id: gmemberid
-      },
-      success: function(res) {
-        let order_nav = [
-          {
-            src: app.globalData.url + '/upload/20181115/eb46c126533c9c51a19b9baea16f8523.png',
-            text: '待付款',
-            id: 1,
-            num: res.data.data.dai_num
-          },
-          {
-            src: app.globalData.url + '/upload/20181115/0a2b1ad83a3cb195b5367943f208e667.png',
-            text: '待发货',
-            id: 2,
-            num: res.data.data.fa_num
-          },
-          {
-            src: app.globalData.url + '/upload/20181115/9dd5f4a52c2a77653c7ea3ef05ef7226.png',
-            text: '待收货',
-            id: 3,
-            num: res.data.data.shou_num
-          }, {
-            src: app.globalData.url + '/upload/20181115/ab9f934b82ab3e9d2ba77b9616501d6a.png',
-            text: '待评价',
-            id: 4,
-            num: res.data.data.ping_num
-          }, {
-            src: app.globalData.url + '/upload/20181115/fa73c90513036e142b64e3ef2c948a87.png',
-            text: '售后/退款',
-            id: 5,
-            num: res.data.data.tui_num
-          }
-        ]
-        that.setData({
-          // order_count: res.data.data,
-          order_nav: order_nav
-        })
-      },
-      fail: function(e) {
-        console.error(e)
-      }
-    });
+    this.requesLocalData();
+    that.orderCount();
     wx.request({
       url: app.globalData.baseurl + "doPagehomepage",
       cachetime: "30",
@@ -299,20 +252,79 @@ Page({
     // var url = getCurrentPages()[1].route;
   },
   onShow: function () {
+    
+    let that = this;
+    that.orderCount();
     app.judge_repay();
-    if(typeof this.getTabBar === 'function' && this.getTabBar()){
-      if(wx.getStorageSync('editionId') == 1){
+
+    
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      if (wx.getStorageSync('editionId') == 1) {
         this.getTabBar().setData({
           checked: 3
         })
-      }else{
+      } else {
         this.getTabBar().setData({
           checked: 4
         })
       }
     }
-  },
 
+
+  },
+  //各订单数量接口
+  orderCount: function() {
+    let url = "https://teahouse.siring.com.cn/api/";
+    let gmemberid = app.globalData.gmemberid;
+    let uniacid = app.globalData.uniacid;
+    let that = this;
+    wx.request({
+      url: url + "order_count",
+      data: {
+        uniacid: uniacid,
+        open_id: gmemberid
+      },
+      success: function (res) {
+        let order_nav = [
+          {
+            src: app.globalData.url + '/upload/20181115/eb46c126533c9c51a19b9baea16f8523.png',
+            text: '待付款',
+            id: 1,
+            num: res.data.data.dai_num
+          },
+          {
+            src: app.globalData.url + '/upload/20181115/0a2b1ad83a3cb195b5367943f208e667.png',
+            text: '待发货',
+            id: 2,
+            num: res.data.data.fa_num
+          },
+          {
+            src: app.globalData.url + '/upload/20181115/9dd5f4a52c2a77653c7ea3ef05ef7226.png',
+            text: '待收货',
+            id: 3,
+            num: res.data.data.shou_num
+          }, {
+            src: app.globalData.url + '/upload/20181115/ab9f934b82ab3e9d2ba77b9616501d6a.png',
+            text: '待评价',
+            id: 4,
+            num: res.data.data.ping_num
+          }, {
+            src: app.globalData.url + '/upload/20181115/fa73c90513036e142b64e3ef2c948a87.png',
+            text: '售后/退款',
+            id: 5,
+            num: res.data.data.tui_num
+          }
+        ]
+        that.setData({
+          // order_count: res.data.data,
+          order_nav: order_nav
+        })
+      },
+      fail: function (e) {
+        console.error(e)
+      }
+    });
+  },
 
   bindViewTap: function (event) {
     // console.log("nihao////" + event.currentTarget.dataset.item)

@@ -898,7 +898,7 @@ Page({
     _this.setData({
       user: user,
     });
-    console.log(_this.data.user)
+    // console.log(_this.data.user)
     wx.request({
       url: app.globalData.tiltes + 'crowd_order_return',
       data: {
@@ -1200,7 +1200,8 @@ Page({
             wx.request({
               url: app.globalData.tiltes + 'proportion',
               data: {
-                receipt_id: res.data.data[0].id
+                receipt_id: res.data.data[0].id,
+                uniacid: app.globalData.uniacid
               },
               method: "POST",
               success: function (res) {
@@ -1220,7 +1221,6 @@ Page({
               },
               method: "POST",
               success: function (res) {
-                console.log(res);
                 if (res.data.status == "1") {
                   _this.setData({
                     taxes_id: res.data.data[0].id
@@ -1228,7 +1228,8 @@ Page({
                   wx.request({
                     url: app.globalData.tiltes + 'proportion',
                     data: {
-                      receipt_id: res.data.data[0].id
+                      receipt_id: res.data.data[0].id,
+                      uniacid: app.globalData.uniacid
                     },
                     method: "POST",
                     success: function (res) {
@@ -1259,7 +1260,8 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'proportion',
         data: {
-          receipt_id: receipt_id
+          receipt_id: receipt_id,
+          uniacid: app.globalData.uniacid
         },
         method: "POST",
         success: function (res) {

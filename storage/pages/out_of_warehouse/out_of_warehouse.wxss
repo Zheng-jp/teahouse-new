@@ -11,13 +11,13 @@ page{background-color: #fff;}
 .real-time-stock{width: 430rpx; height: 110rpx; border: 2rpx solid #821006; border-radius: 6rpx; overflow: hidden;}
 .real-time-stock .real-time-title{background-color: #821006; font-size: 24rpx; color: #fff; text-align: center; padding: 8rpx 0;}
 .real-time-stock .stock-box{font-size: 24rpx; color: #811006; text-align: center; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 66rpx;}
-.real-time-stock .stock-num{display: inline-block; width: 90rpx; margin: 0 4rpx; overflow-x: auto; white-space: nowrap; color: #fff; font-size: 26rpx; background-color: #811006; border-radius: 4rpx; padding: 4rpx; border-radius: 6rpx;}
+.real-time-stock .stock-num{display: inline-block; width: 90rpx; margin: 0 4rpx; overflow-x: auto; white-space: nowrap; color: #fff; font-size: 26rpx; background-color: #811006; border-radius: 6rpx;}
 .icon-more{width: 14rpx; height: 24rpx; margin-left: 10rpx;}
 .stock-container{display: flex; align-items: center;}
 .list-item{display: flex; align-items: center; justify-content: space-between; padding: 30rpx 20rpx;}
 .list-item .list-key{font-size: 26rpx; font-weight: 700; color: #00a0e6;}
 .list-item .list-key .explain{display: inline-block; width: 30rpx; height: 30rpx; text-align: center; line-height: 30rpx; border-radius: 50%; background-color: #bbb; color: #fff; margin-left: 6rpx; font-size: 24rpx;}
-.list-item .list-value{font-size: 26rpx; color: #333;}
+.list-item .list-value{font-size: 26rpx; color: #333; position: relative;}
 .list-item .list-value.price{color: #CD300E;}
 .list-item .list-value radio{vertical-align: middle;}
 .list-item .list-value input{text-align: right;}
@@ -28,7 +28,9 @@ page{background-color: #fff;}
 .list-item.outNum .list-value{display: flex; align-items: center; color: #811006; font-weight: 700;}
 .list-item.outNum .list-value input{width: 60px; border: 1px solid #811006; border-radius: 3px; box-sizing: border-box; text-align: center; font-weight: normal;}
 .list-item.freightCost .list-value text{color: #ff6700;}
-.list-item.mailing .list-value{color: #999;}
+.list-item.mailing .list-value{color: #999; text-align: right; padding-right: 30rpx;}
+.list-item.mailing view{flex: 1;}
+.list-item.mailing .address .icon-more{position: absolute; right: 0; top: 50%; margin-top: -5px;}
 .ft{position: fixed; bottom: 0; left: 0; width: 100%; height: 50px; background-color: #ebebeb; display: flex; align-items: center; justify-content: space-between;}
 .ft .outCost{padding-left: 10px; color: #000;}
 .ft .outCost text{color: #811006;}

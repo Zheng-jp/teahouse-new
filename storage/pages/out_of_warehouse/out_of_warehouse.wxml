@@ -2,12 +2,12 @@
 <view class="wrapper">
     <view class="header">
         <view class="tea-img-box">
-            <image src="./img/img1.png" class="tea-img" />
+            <image src="{{url}}{{orderInfo.goods_image}}" class="tea-img" />
         </view>
         <view>
-            <view class="tea-name">大观</view>
+            <view class="tea-name">{{orderInfo.brand}}</view>
             <view>
-                <text class="stock-addr">北京仓</text>
+                <text class="stock-addr">{{orderInfo.store_name}}</text>
             </view>
             <!-- <view class="tea-date">生产日期:2018.03.05</view> -->
         </view>
@@ -15,49 +15,53 @@
             <view class="real-time-stock">
                 <view class="real-time-title">您的实时存茶</view>
                 <view class="stock-box">
-                    <text class="stock-num">1222211</text>
-                    件
-                    <text class="stock-num">222</text>
-                    提
-                    <text class="stock-num">11</text>
-                    片
+                    <text class="stock-num">{{orderInfo.store_number[4]?orderInfo.store_number[4]:''}}</text>
+                    {{orderInfo.store_number[5]?orderInfo.store_number[5]:''}}
+                    <text class="stock-num">{{orderInfo.store_number[2]?orderInfo.store_number[2]:''}}</text>
+                    {{orderInfo.store_number[3]?orderInfo.store_number[3]:''}}
+                    <text class="stock-num">{{orderInfo.store_number[0]?orderInfo.store_number[0]:''}}</text>
+                    {{orderInfo.store_number[1]?orderInfo.store_number[1]:''}}
                 </view>
             </view>
-            <image src="./img/icon1.png" class="icon-more" />
+            <!-- <image src="./img/icon1.png" class="icon-more" /> -->
         </view>
     </view>
     <view class="list-item">
         <view class="list-key">生产日期</view>
-        <view class="list-value">2018.03.05</view>
+        <view class="list-value">{{orderInfo.date}}</view>
     </view>
     <view class="list-item">
         <view class="list-key">入仓日期</view>
-        <view class="list-value">2019.09.28</view>
+        <view class="list-value">{{orderInfo.pay_time}}</view>
     </view>
     <view class="list-item">
         <view class="list-key">到期日期</view>
-        <view class="list-value">2020.09.28</view>
+        <view class="list-value">{{orderInfo.end_time}}</view>
     </view>
     <view class="list-item">
         <view class="list-key">
             包装规格
             <text class="explain">?</text>
         </view>
-        <view class="list-value">7片/提；84片/件</view>
+        <view class="list-value">
+            <text wx:if="{{orderInfo.num[0]}}">{{orderInfo.num[0]}}{{orderInfo.unit[0]}};</text>
+            <text wx:if="{{orderInfo.num[1]}}">{{orderInfo.num[1]}}{{orderInfo.unit[1]}};</text>
+            <text wx:if="{{orderInfo.num[2]}}">{{orderInfo.num[2]}}{{orderInfo.unit[2]}}</text>
+        </view>
     </view>
     <view class="list-item">
         <view class="list-key">
             当前参考价
             <text class="explain">?</text>
         </view>
-        <view class="list-value price">￥20000/件；￥10000/提；￥5000/片</view>
+        <view class="list-value price">￥{{orderInfo.goods_bottom_money}}/{{orderInfo.unit[0]}}</view>
     </view>
     <view class="list-item">
         <view class="list-key">
             初始购入价
             <text class="explain">?</text>
         </view>
-        <view class="list-value">￥40000/件×20</view>
+        <view class="list-value">￥{{orderInfo.goods_money}}/{{orderInfo.store_unit}}×{{orderInfo.order_quantity}}</view>
     </view>
     <!-- <view class="list-item">
         <view class="list-key">
@@ -89,20 +93,32 @@
             <text class="explain">?</text>
         </view>
         <view class="list-value">
-            <input type="text" /> 片
+            <input type="text" />
+            片
         </view>
     </view>
     <view class="list-item mailing">
-        <view class="list-key">
-            直邮地址
+        <view class="list-key">直邮地址</view>
+        <view class="list-value address" bind:tap="toAddressList">
+            <!-- <text class="icon-more"> > </text> -->
+            <image src="./img/icon1.png" class="icon-more" />
+            <text wx:if="{{!defaultAddress}}">请选择邮寄地址</text>
+            <view wx:else>
+                <view>
+                    <text>{{defaultAddress.harvester_phone_num}} {{defaultAddress.harvester}}</text>
+                </view>
+                <view>
+                    {{defaultAddress.address_name}} {{defaultAddress.harvester_real_address}}
+                </view>
+            </view>
         </view>
-        <view class="list-value">请选择邮寄地址 ></view>
     </view>
     <view class="list-item freightCost">
-        <view class="list-key">
-            出仓运费
+        <view class="list-key">出仓运费</view>
+        <view class="list-value">
+            应付
+            <text>999元</text>
         </view>
-        <view class="list-value">应付<text>999元</text></view>
     </view>
     <!-- <view class="agreement">
         <label>
@@ -115,7 +131,8 @@
 </view>
 <view class="ft">
     <view class="outCost">
-        出仓运费<text>999元</text>
+        出仓运费
+        <text>999元</text>
     </view>
     <view class="outBtn">确认出仓</view>
 </view>

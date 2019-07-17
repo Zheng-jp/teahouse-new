@@ -43,6 +43,7 @@ Page({
           // member_phone_num: e.detail.value.harvester,
           code: e.detail.value.harvester_phone_num1,
           member_id: app.globalData.member_id,
+          password: e.detail.value.harvester_password
         },
         method: "post",
         success: function (res) {

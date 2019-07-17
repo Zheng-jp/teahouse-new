@@ -311,7 +311,7 @@ Page({
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
-    })
+    });
     // 续费弹窗 初始化日期
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
@@ -518,16 +518,11 @@ Page({
     })
   },
 
-  outOfStock: function () {
+  outOfStock: function (e) {
+    var id = e.currentTarget.dataset.id;
     // 出仓
     wx.navigateTo({
-      url: '/storage/pages/out_of_warehouse/out_of_warehouse',
-      success: function () {
-        console.log('跳转成功');
-      },
-      fail: function () {
-        console.log('跳转失败');
-      }
+      url: '/storage/pages/out_of_warehouse/out_of_warehouse?id=' + id
     })
   },
   redirectto: function (t) {

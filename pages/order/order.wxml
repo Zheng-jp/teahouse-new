@@ -96,7 +96,7 @@
 					</view>
 				</view>
 				<view wx:if="{{item.order_type==3}}" class='box_list_four'>
-					<view class='remind_delivery cancel type_button' bindtap="to_warehouse" data-id="{{item.parts_order_number}}">已入仓</view>
+					<view class='remind_delivery cancel type_button' data-id="{{item.parts_order_number}}">已入仓</view>
 				</view>
 				<view wx:if="{{item.order_type==1 || item.order_type==2}}" class='box_list_four'>
 					<view class='remind_delivery cancel type_button' bindtap="tip_order" data-id="{{item.parts_order_number}}">提醒发货</view>
@@ -130,7 +130,7 @@
 				</view>
 				<view class='box_list_four'>
 					<view class="flex">
-						<view class="courier">顺丰：799394904004040</view>
+						<view class="courier">{{item.info[0].express_name_ch}}：{{item.info[0].courier_number}}</view>
 						<view class="logistics" bindtap="to_logistics" data-id="{{item.info[0].id}}">查看物流></view>
 						<view class='remind_delivery cancel type_button' bindtap="confirm_receipt" data-id="{{item.parts_order_number}}">确认收货</view>
 					</view>
