@@ -437,4 +437,5 @@ text-align: center;
 }
 .text_red{
   padding-top:10rpx;
+  margin-right:115rpx;
 }

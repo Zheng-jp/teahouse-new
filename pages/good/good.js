@@ -92,6 +92,10 @@ Page({
         checked: 1
       })
     }
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    });
   },
   onLoad: function () {
     var that=this;
