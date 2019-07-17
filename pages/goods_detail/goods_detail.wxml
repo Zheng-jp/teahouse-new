@@ -147,27 +147,21 @@
     </view>
     <view class="{{selected1?'show':'hidden'}}">
       <view class='comment'>
-        <view class='comment_list'>
+        <view class='comment_list' wx:for="{{evolution}}" wx:key="{{index}}">
           <view class='comment_repay'>
             <view class='comment_ico'>
-              <image src='http://ptcb077mt.bkt.clouddn.com/photo.png'></image>
+              <image src='{{item.head_pic}}'></image>
             </view>
             <view class='comment_right'>
-              <view class='comment_name'>瑞川</view>
-              <view class='repay_content'>上课时间看见爱上看见谁看你可能是快乐那看来是快乐是哪里开始你离开是哪里难受了呢</view>
-              <view class='comment_img_all'>
-                <view class='comment_imgs'>
-                  <image src='http://ptcb077mt.bkt.clouddn.com/photo.png'></image>
-                </view>
-                <view class='comment_imgs'>
-                  <image src='http://ptcb077mt.bkt.clouddn.com/photo.png'></image>
-                </view>
-                <view class='comment_imgs'>
-                  <image src='http://ptcb077mt.bkt.clouddn.com/photo.png'></image>
+              <view class='comment_name'>{{item.user_name}}</view>
+              <view class='repay_content'>{{item.evaluate_content}}</view>
+              <view class='comment_img_all' >
+                <view class='comment_imgs' wx:for="{{item.images}}" wx:key="{{index}}">
+                  <image src='{{url}}{{item.images}}'></image>
                 </view>
               </view>
-              <view class='time'>2018-10-06</view>
-              <view class='repays_content'>
+              <view class='time'>{{item.create_time}}</view>
+              <view class='repays_content' wx:if="{{ea==0}}">
                 <text class='repay_content_title'>官方回复：</text>
                 <text>牛逼</text>
               </view>

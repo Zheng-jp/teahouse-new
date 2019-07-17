@@ -9,6 +9,7 @@ Page({
   },
   bindGetUserInfo: function (e) {
     var _this = this;
+    console.log(e)
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       wx.login({//login流程
@@ -41,7 +42,7 @@ Page({
                     'content-type': 'application/json'
                   }, // 设置请求的 header
                   success: function (res) {
-                    console.log('登录', res.data)
+                    console.log('登录1', res.data)
                     app.globalData.gmemberid = res.data.data.openid;
                     app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                     app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;
@@ -130,6 +131,7 @@ Page({
                             code: code,
                             encryptedData: encryptedData,
                             iv: iv,
+                            gender: res2.userInfo.gender, // 性别  0：未知、1：男、2：女
                             appid: appid.miniProgram.appId
                           },
                           method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
@@ -137,7 +139,7 @@ Page({
                             'content-type': 'application/json'
                           }, // 设置请求的 header
                           success: function (res) {
-                            console.log('登录', res.data)
+                            console.log('登录2', res.data)
                             app.globalData.gmemberid = res.data.data.openid;
                             app.globalData.member_grade_img = res.data.data.member_grade_info.member_grade_img;
                             app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;

@@ -3,7 +3,7 @@
   <radio-group class="radio-group" bindchange="radioChange">
     <view class='content_list' bindtap="select" wx:for="{{warehouse}}" wx:key="index" data-id="{{item.id}}">
       <view class='radio'>
-        <radio value="{{item.id}}" color='#02A0E6' checked="{{item.status == 1 ? 'true':''}}" />
+        <radio value="{{item.id}}" color='#02A0E6' checked="{{item.label == 1 ? 'true':''}}" />
       </view>
       <view class='add_information'>
         <view class="list1">  
@@ -24,7 +24,7 @@
           </view>
         </view>
         <view class='address'>仓储地址：{{item.adress}}</view>
-        <view class="list2">
+        <view class="list2"> 
           <view class="list2_title">仓库描述：</view>
           <view class="list2_content">{{item.describe}}</view>
         </view>

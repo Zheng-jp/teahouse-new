@@ -511,6 +511,11 @@ Page({
     var min = Math.floor(second / 60 % 60);
     // 秒
     var sec = Math.floor(second % 60);
+
+    day = day < 10 ? '0'+ day : day;
+    hr = hr < 10 ? '0'+ hr : hr;
+    min = min < 10 ? '0'+ min : min;
+    sec = sec < 10 ? '0'+ sec : sec;
     return day + "天" + hr + "小时" + min + "分钟" + sec + "秒";
   },
 
@@ -535,6 +540,7 @@ Page({
       },
       method: "post",
       success: function (res) {
+        console.log(res)
         let arr = [],
           kc, hot, cx, qc;
         let goods_sign = res.data.data[0].goods_sign;
@@ -576,26 +582,26 @@ Page({
         if (goods.goods_standard[0].id == undefined || goods.goods_standard[0].id == null) {
           id = goods.goods_standard;
         } else {
-          if(goods.goods_standard[0].stock == 0) {
-          for(let u = 0; u < goods.goods_standard.length; u ++) {
-            if(goods.goods_standard[u].stock == 0) {
-              id = goods.goods_standard[u + 1].id;
-              price = goods.goods_standard[u + 1].price;
-              stock = goods.goods_standard[u + 1].stock;
-              specifications = goods.goods_standard[u + 1].name;
-              images = goods.goods_standard[u + 1].images;
-              save = goods.goods_standard[u + 1].save;
-              break;
+            if(goods.goods_standard[0].stock == 0) {
+            for(let u = 0; u < goods.goods_standard.length; u ++) {
+              if(goods.goods_standard[u].stock == 0) {
+                id = goods.goods_standard[u + 1].id;
+                price = goods.goods_standard[u + 1].price;
+                stock = goods.goods_standard[u + 1].stock;
+                specifications = goods.goods_standard[u + 1].name;
+                images = goods.goods_standard[u + 1].images;
+                save = goods.goods_standard[u + 1].save;
+                break;
+              }
             }
+          } else {
+              id = goods.goods_standard[0].id;
+              price = goods.goods_standard[0].price;
+              stock = goods.goods_standard[0].stock;
+              specifications = goods.goods_standard[0].name;
+              images = goods.goods_standard[0].images;
+              save = goods.goods_standard[0].save;
           }
-        } else {
-            id = goods.goods_standard[0].id;
-            price = goods.goods_standard[0].price;
-            stock = goods.goods_standard[0].stock;
-            specifications = goods.goods_standard[0].name;
-            images = goods.goods_standard[0].images;
-            save = goods.goods_standard[0].save;
-        }
           
         }
         that.setData({
@@ -612,14 +618,15 @@ Page({
           cx: cx,
           qc: qc,
           id: id,
+          evolution:res.data.data[0].evolution
           // select: goods.goods_standard[0].name
         });
-
+        console.log(111, res.data.data[0])
         var article = res.data.data[0].goods_text;
-        WxParse.wxParse('article', 'html', article, that, 5);
+        if (article) WxParse.wxParse('article', 'html', article, that, 5);
 
         var article_text = res.data.data[0].text;
-        WxParse.wxParse('article_text', 'html', article_text, that, 5);
+        if (article_text) WxParse.wxParse('article_text', 'html', article_text, that, 5);
         //  添加字段到等级数组
         // for (var index in that.data.goods.goods_standard) {
         //   var sexParam = "goods_standard[" + index + "].tab";
