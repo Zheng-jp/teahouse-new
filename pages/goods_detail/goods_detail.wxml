@@ -161,9 +161,9 @@
                 </view>
               </view>
               <view class='time'>{{item.create_time}}</view>
-              <view class='repays_content' wx:if="{{ea==0}}">
+              <view class='repays_content' wx:if="{{item.business_repay != '' || item.business_repay != undefined}}">
                 <text class='repay_content_title'>官方回复：</text>
-                <text>牛逼</text>
+                <text>{{item.business_repay}}</text>
               </view>
             </view>
           </view>

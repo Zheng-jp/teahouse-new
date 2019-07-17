@@ -540,7 +540,6 @@ Page({
       },
       method: "post",
       success: function (res) {
-        console.log(res)
         let arr = [],
           kc, hot, cx, qc;
         let goods_sign = res.data.data[0].goods_sign;
