@@ -495,6 +495,10 @@ Page({
       that.setData({
         version: options.version
       })
+    } else if (options.enter_all_id != undefined || options.enter_all_id != null) {
+      that.setData({
+        version: options.enter_all_id
+      })
     }
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({ height: height });
