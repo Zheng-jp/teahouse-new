@@ -132,7 +132,7 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'recharge_setting_return',
       data: {
-       
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {

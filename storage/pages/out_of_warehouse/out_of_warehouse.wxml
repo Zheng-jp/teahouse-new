@@ -1,14 +1,10 @@
 <!-- storage/pages/out_of_warehouse/out_of_warehouse.wxml -->
 <view class="wrapper">
     <view class="header">
-        <view class="tea-img-box">
-            <image src="{{url}}{{orderInfo.goods_image}}" class="tea-img" />
-        </view>
+        <view class="tea-img-box"><image src="{{url}}{{orderInfo.goods_image}}" class="tea-img" /></view>
         <view>
             <view class="tea-name">{{orderInfo.brand}}</view>
-            <view>
-                <text class="stock-addr">{{orderInfo.store_name}}</text>
-            </view>
+            <view class="stock-addr">{{orderInfo.store_name}}</view>
             <!-- <view class="tea-date">生产日期:2018.03.05</view> -->
         </view>
         <view class="stock-container">
