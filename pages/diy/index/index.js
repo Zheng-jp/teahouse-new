@@ -520,7 +520,12 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           url: n
         });
         break;
-      case "pages":
+        case "pages":
+          wx.switchTab({
+            url: n
+          });
+          break;
+        case "pagess":
         wx.switchTab({
           url: n
         });
