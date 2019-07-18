@@ -280,6 +280,7 @@ Page({
         }
     })
   },
+  
   /* 点击减号 */
   bindMinus: function () {
     var num = this.data.num;

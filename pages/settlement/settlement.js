@@ -1378,6 +1378,48 @@ Page({
     })
   },
 
+  //获取input文本
+  getSearchKey: function(e) {
+      this.setData({
+        searchKey: e.detail.value
+      })
+  },
+  shift_out: function() {
+    let that = this;
+    let num = this.data.goods[0].number;
+    let goods = this.data.goods;
+    if(that.data.searchKey <= 0 || that.data.searchKey == '' || that.data.searchKey == null || that.data.searchKey == undefined) {
+      goods[0].number = 1;
+      that.setData({
+        goods: goods
+      });
+    } else {
+      if (goods[0].is_limit == 1 && Number(goods[0].limit_number) > 0) {
+        if (that.data.searchKey > Number(goods[0].limit_number)) {
+            goods[0].number = goods[0].limit_number;
+            that.setData({
+              goods: goods
+            });
+        }
+      } else {
+        goods[0].number = that.data.searchKey;
+        that.setData({
+          goods: goods
+        });
+      }
+    }
+    that.invi();
+    if (that.data.order_type == "1") {
+          that.money_freight();
+          that.calculate_money();
+        } else if (that.data.order_type == "3") {
+          that.money_storages();
+          that.calculate_money();
+        } else {
+          that.calculate_money();
+        }
+  },
+
   /* 点击减号 */
   bindMinus: function () {
     var that = this;

@@ -211,7 +211,7 @@ Page({
           })
         }
         wx.redirectTo({
-          url: '../zcOrder/zcOrder?title=' + 0,
+          url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
           success: function (res) {
 
           },
@@ -309,7 +309,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../zcOrder/zcOrder?title=' + 0,
+                              url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -334,7 +334,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../zcOrder/zcOrder?title=' + 0,
+                  url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -410,7 +410,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../zcOrder/zcOrder?title=' + 0,
+                              url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -434,7 +434,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../zcOrder/zcOrder?title=' + 0,
+                  url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -511,7 +511,7 @@ Page({
                           'success': function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../zcOrder/zcOrder?title=' + 0,
+                              url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
                               success: function (res) {
 
                               },
@@ -537,7 +537,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../zcOrder/zcOrder?title=' + 0,
+                  url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
                   success: function (res) {
 
                   },
@@ -906,14 +906,17 @@ Page({
         "goods_id": user[1].goods_id,
         "num": user[2].num,
         "member_id": user[3].member_id[0],
+        "uniacid": app.globalData.uniacid
       },
       method: "POST",
       success: function (res) {
+        // console.log(res.data.enter_all_id)
         _this.setData({
           goods: res.data.data,
+          enter_all_id: res.data.enter_all_id
         });
         var all_moneys = 0;
-        console.log(_this.data.goods);
+        // console.log(_this.data.goods);
         // 商品总价
         all_moneys = +_this.data.goods[0].grade_price * +_this.data.goods[0].number;
         
@@ -952,7 +955,6 @@ Page({
     // 判读从哪个页面进来
     var pages = getCurrentPages();
     var prevpage = pages[pages.length - 2];
-    console.log(prevpage)
     if (prevpage.route == "storage/pages/zcDetail/zcDetail") {
       _this.setData({
         isnum: true,
