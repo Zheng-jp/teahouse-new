@@ -8,36 +8,44 @@ Page({
   data: {
     url: app.globalData.img_url, 
     defaultAddress: {}, //默认地址
+    province: null,  //省份
     id: null, //出仓订单id
     orderInfo: {}, //出仓订单信息
+    postage: 0, //邮费
   },
 
+  myRequest: function(url, params, callback){
+    wx.request({
+      url: app.globalData.tiltes + url,
+      method: 'POST',
+      data: params,
+      success: function(res){
+        callback(res);
+      },
+      fail: function(res){
+        console.log('fail:', res);
+      }
+    })
+  },
 
   // 出仓订单信息
   outPositionOrder: function(){
     var _this = this;
-    wx.request({
-      url: app.globalData.tiltes + 'outPositionOrder',
-      method: 'POST',
-      data: {
-        member_id: app.globalData.member_id,
-        uniacid: app.globalData.uniacid,
-        id: _this.data.id,
-      },
-      success: function(res){
-        if(res.data.status == 1){
-          var data = res.data.data;
-          console.log('出仓订单信息：', data);
-          data.end_time = app.formatDate(data.end_time);
-          data.pay_time = app.formatDate(data.pay_time);
-
-          _this.setData({
-            orderInfo: res.data.data
-          })
-        }
-      },
-      fail: function(res){
-        console.log('获取默认地址失败：', res);
+    var params = {
+      member_id: app.globalData.member_id,
+      uniacid: app.globalData.uniacid,
+      id: _this.data.id,
+    }
+    _this.myRequest('outPositionOrder', params, function(res){
+      console.log('出仓订单信息：', res);
+      if(res.data.status == 1){
+        var data = res.data.data;
+        data.end_time = app.formatDate(data.end_time);
+        data.pay_time = app.formatDate(data.pay_time);
+        _this.setData({
+          orderInfo: res.data.data
+        })
+        _this.getHousePrice(); // 获取运费模板
       }
     })
   },
@@ -53,28 +61,20 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   // 获取默认地址
   getDefaultAddress: function(){
     var _this = this;
-    wx.request({
-      url: app.globalData.tiltes + 'member_default_address_return',
-      method: 'POST',
-      data: {
-        open_id: app.globalData.gmemberid,
-      },
-      success: function(res){
-        console.log('获取默认地址：', res);
-        if(res.data.status == 1){
-          _this.setData({
-            defaultAddress: res.data.data
-          })
-        }
-      },
-      fail: function(res){
-        console.log('获取默认地址失败：', res);
+    var params = {open_id: app.globalData.gmemberid}
+    _this.myRequest('member_default_address_return', params, function(res){
+      console.log('获取默认地址：', res);
+      if(res.data.status == 1){
+        _this.setData({
+          defaultAddress: res.data.data,
+          province: res.data.data.address_name.split(',')[0]
+        })
       }
     })
   },
@@ -88,13 +88,42 @@ Page({
     })
   },
 
+  // 获取运费模板
+  getHousePrice: function(){
+    var _this = this;
+    var params = {
+      member_id: app.globalData.member_id,
+      goods_id: _this.data.orderInfo.goods_id,
+      are: _this.data.province
+    }
+    _this.myRequest('getHousePrice', params, function(res){
+      console.log('获取运费模板', res);
+      if(res.data.status == 1){
+        // 计算邮费
+        _this.calcPostage(res.data);
+      }
+    })
+  },
+
+  // 计算邮费
+  calcPostage: function(data){
+    //固定邮费
+    if(data.franking_type == 2){
+      this.setData({
+        postage: data.data.collect
+      })
+    }else{
+
+    }
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     this.getDefaultAddress(); //获取默认地址
     this.outPositionOrder(); //出仓订单信息
-  },
+   },
 
   /**
    * 生命周期函数--监听页面隐藏
