@@ -78,10 +78,6 @@ Page({
       status:options.status
     },
     method: "post",
-    // header: {
-    //   "Content-Type": "application/json" // 默认值
-
-    // },
     success: function (res) {
       var data=res.data.data;
       data.create_time=app.formatDate(data.create_time);
@@ -95,8 +91,6 @@ Page({
       that.setData({
         order:data,
       })
-      
-    
     },
     fail: function () {
    
@@ -110,7 +104,6 @@ Page({
  
 
   go_logistics: function (event) {
-
     var that = this;
     var item = event.currentTarget.dataset.id;
     wx.navigateTo({
@@ -121,16 +114,10 @@ Page({
       fail: function () {
        
       },
-      complete: function () {
-      
-      }
-  
-  
     })
   },
   // 追加评价
   go_evaluation: function (event) {
-
     var that = this;
     var item = event.currentTarget.dataset.id;
     wx.navigateTo({
@@ -141,16 +128,10 @@ Page({
       fail: function () {
        
       },
-      complete: function () {
-      
-      }
-  
-  
     })
   },
 // 申请售后
   go_apply_after_sales: function (event) {
-
     var that = this;
     var item = event.currentTarget.dataset.id;
     wx.request({
@@ -159,10 +140,6 @@ Page({
         order_id:item,
       },
       method: "post",
-      // header: {
-      //   "Content-Type": "application/json" // 默认值
-  
-      // },
       success: function (res) {
        if(res.data.status=="1"){
          wx.navigateTo({
@@ -173,10 +150,6 @@ Page({
           fail: function () {
           
           },
-          complete: function (res) {
-           
-          }
-      
         })
        }
       },

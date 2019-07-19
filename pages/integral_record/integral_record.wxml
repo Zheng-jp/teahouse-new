@@ -1,9 +1,9 @@
 <!--pages/bill/bill.wxml-->
 <view class="all">
    <view class="heading">
-        <view class="head_img"><image src="http://ptcb077mt.bkt.clouddn.com/u5282.png"  mode="widthFix"/></view>
+        <view class="head_img"><image src="http://teahouse.siring.cn/u5282.png"  mode="widthFix"/></view>
         <view class="head_text">积分记录</view>
-        <view class="head_img"><image src="http://ptcb077mt.bkt.clouddn.com/u5294.png"   mode="widthFix"/></view>
+        <view class="head_img"><image src="http://teahouse.siring.cn/u5294.png"   mode="widthFix"/></view>
    </view>
    <view class="content_list">
         <view class="list"  wx:for="{{integrals}}">

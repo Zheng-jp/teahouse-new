@@ -130,7 +130,7 @@ Page({
         house_charges: _this.data.postage,
         order_quantity: _this.data.outNum,
         store_unit: _this.data.minUnit,
-        address_id: _this.data.defaultAddress.address_name + _this.data.defaultAddress.harvester_real_address
+        address_id: _this.data.defaultAddress.id
       }
       _this.myRequest('setContinuAtion', params, function(res){
         console.log(res);
