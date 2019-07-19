@@ -1930,6 +1930,9 @@ Page({
     if (sava_id == '') {
       wx.request({
         url: app.globalData.tiltes + 'tacitly_approve',
+        data: {
+          uniacid: app.globalData.uniacid
+        },
         method: "post",
         success: function (res) {
           var warehousess = [];
