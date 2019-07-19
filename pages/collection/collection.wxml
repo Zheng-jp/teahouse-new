@@ -1,8 +1,8 @@
 <import src="../../utils/template.wxml" />
 <view class="all-content">
  <view class='nav'>
- <view  class="img hide{{showView?'show':''}}" bindtap="onChangeShowState"><image src='http://ptcb077mt.bkt.clouddn.com/u5282.png'></image></view>
-  <view  class="img hide{{showView?'':'show'}}" bindtap="onChangeShowState"><image src='http://ptcb077mt.bkt.clouddn.com/u5282.png'></image></view>
+ <view  class="img hide{{showView?'show':''}}" bindtap="onChangeShowState"><image src='http://teahouse.siring.cn/u5282.png'></image></view>
+  <view  class="img hide{{showView?'':'show'}}" bindtap="onChangeShowState"><image src='http://teahouse.siring.cn/u5282.png'></image></view>
      <scroll-view  class="swiper-tab" scroll-x="true" >
       <view wx:for="{{nav}}"  class="bre swiper-tab-list "  bindtap="tab_click" >{{item.name}}</view>  
    </scroll-view>

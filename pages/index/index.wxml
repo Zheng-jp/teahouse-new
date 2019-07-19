@@ -4,15 +4,15 @@
   <view class='title'>
     <view style='float: left;' bindtap="nfc">
       <view class="nfc">
-        <image src="http://ptcb077mt.bkt.clouddn.com/u270.png"></image>
+        <image src="http://teahouse.siring.cn/u270.png"></image>
       </view>
       <view class='fangwei'>溯源</view>
     </view>
-    <image src="http://ptcb077mt.bkt.clouddn.com/seach.png" class="seach_img" mode="widthFix" />
+    <image src="http://teahouse.siring.cn/seach.png" class="seach_img" mode="widthFix" />
     <input type='text' class='seach' placeholder="请输入" bindfocus="go_seach" readonly="readonly"></input>
     <view style='float: left;' bindtap="bindViewTaps">
       <view class="ma">
-        <image src="http://ptcb077mt.bkt.clouddn.com/u180.png"></image>
+        <image src="http://teahouse.siring.cn/u180.png"></image>
       </view>
       <view class='fangwei'>会员码</view>
     </view>
@@ -74,7 +74,7 @@
       </view>
     </view>
   </view>
-  <image class="buy" src="http://ptcb077mt.bkt.clouddn.com/buy.png" mode="widthFix" lazy-load="false" binderror="" bindload="" bindtap="go_car"></image>
+  <image class="buy" src="http://teahouse.siring.cn/buy.png" mode="widthFix" lazy-load="false" binderror="" bindload="" bindtap="go_car"></image>
   <view style='font-size: 25rpx; color: #725E5E;text-align:center;margin-bottom:20rpx'>宣铭科技www.xuanmingkeji.cn提供技术支持</view>
   <view wx:if="{{foot_is==2}}">
     <view class="hbj footmenu" style="background:{{style.bgcolor}};position:fixed;left:0;bottom:0;width:750rpx;z-index:9998;border-top:2rpx solid {{style.bordercolor}};display:flex;" wx:if="{{footinfo.params.navstyle==0}}">

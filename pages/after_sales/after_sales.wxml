@@ -25,7 +25,7 @@
 							</view>
 							<view class="tb-price clearfix">
 								<view class="price fl">
-									<image src="http://ptcb077mt.bkt.clouddn.com/img1.png" />￥{{item.goods_money}}/片
+									<image src="http://teahouse.siring.cn/img1.png" />￥{{item.goods_money}}/片
 								</view>
 								<view class="quantity fr">×{{item.order_quantity}}</view>
 							</view>

@@ -2,10 +2,10 @@
 <view class="all-content">
     <view class='nav'>
         <view class="img hide{{showView?'show':''}}" bindtap="onChangeShowState">
-            <image src='http://ptcb077mt.bkt.clouddn.com/u5282.png'></image>
+            <image src='http://teahouse.siring.cn/u5282.png'></image>
         </view>
         <view class="img hide{{showView?'':'show'}}" bindtap="onChangeShowState">
-            <image src='http://ptcb077mt.bkt.clouddn.com/u5282.png'></image>
+            <image src='http://teahouse.siring.cn/u5282.png'></image>
         </view>
         <scroll-view class="swiper-tab" scroll-x="true">
             <view wx:for="{{nav}}" class="bre swiper-tab-list {{item.tab==tab? 'on' : ''}}" data-current="{{item.tab}}" bindtap="tab_click">
@@ -21,7 +21,7 @@
                         <text class="contract_num">Q{{index + 1}}.</text>
                         <text class="contract_name">{{item.title}}</text>
                     </view>
-                    <image class="more" src="http://ptcb077mt.bkt.clouddn.com/more.png" mode="aspectFill"></image>
+                    <image class="more" src="http://teahouse.siring.cn/more.png" mode="aspectFill"></image>
                 </view>
             </scroll-view>
         </swiper-item>
