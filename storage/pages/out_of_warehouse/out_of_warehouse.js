@@ -14,6 +14,7 @@ Page({
     postage: 0, //邮费
     outNum: 0,  //出仓数量
     housePrice: {}, // 运费模板数据
+    minUnit: '', //最小单位
     minUnitStock: 0, // 库存换算成最小单位
     conversion: false, //是否换算
     conversionStr: '', //换算后展示
@@ -80,7 +81,6 @@ Page({
    */
   onLoad: function (options) {
     if(options) this.setData({id: options.id});
-    this.outPositionOrder(); //出仓订单信息
   },
 
   /**
@@ -115,6 +115,67 @@ Page({
     })
   },
 
+  // 支付 确认出仓
+  payment: function(){
+    var _this = this;
+    this.data.outNum == 0 ? wx.showToast({
+      title: '请填入出仓数量！',
+      icon: 'none',
+      duration: 1200
+    }) : (function(){
+      var params = {
+        id: _this.data.id,
+        member_id: app.globalData.member_id,
+        uniacid: app.globalData.uniacid,
+        house_charges: 0.01,
+        order_quantity: _this.data.outNum,
+        store_unit: _this.data.minUnit,
+        address_id: _this.data.defaultAddress.address_name + _this.data.defaultAddress.harvester_real_address
+      }
+      _this.myRequest('setContinuAtion', params, function(res){
+        console.log(res);
+        if(res.statusCode == 200){
+          _this.wechatPay(res);
+        }else{
+          wx.showToast({
+            title: '生成订单失败，请退出后重试！',
+            icon: 'none',
+            duration: 1200
+          })
+        }
+      })
+    })()
+  },
+
+  // 微信支付
+  wechatPay: function (res) {
+    var _this = this;
+    wx.requestPayment({
+      timeStamp: res.data.timeStamp,
+      nonceStr: res.data.nonceStr,
+      package: res.data.package,
+      signType: res.data.signType,
+      paySign: res.data.paySign,
+      success: function (res) {
+        wx.showToast({
+          title: '支付成功!',
+          icon: 'none',
+          duration: 1500
+        })
+        setTimeout(function () {
+          wx.navigateBack({ delta: 1 })
+        }, 1600)
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '支付失败!',
+          icon: 'none',
+          duration: 1500
+        })
+      }
+    })
+  },
+
   // 输入数量
   bindManual: function (e) {
     var num = e.detail.value;
@@ -129,9 +190,9 @@ Page({
       })
     } else {
       wx.showToast({
-        title: '您填写的数量超过库存！',
+        title: '您填写的数量超过库存,已为您自动填入最大库存！',
         icon: 'none',
-        duration: 1500
+        duration: 1800
       })
       this.setData({
         outNum: stock
@@ -198,7 +259,6 @@ Page({
         var maxPostage = maxUnitNum > 0 ? (maxUnitNum - 1) * data.data[0].markup + data.data[0].collect : '';
         var minPostage = minUnitNum > 0 ? (minUnitNum - 1) * data.data[1].markup + data.data[1].collect : '';
         postage = maxPostage + minPostage;
-        console.log(maxPostage, minPostage)
         this.setData({
           postage: postage
         });
@@ -221,8 +281,8 @@ Page({
     }
   },
 
+  // 返回换算后的字符串
   returnConvStr: function(len, outNum){
-    console.log(len)
     // 订单信息
     var orderInfo = this.data.orderInfo;
     var conversionStr = '';
@@ -252,7 +312,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.outPositionOrder(); //出仓订单信息
   },
 
   /**
