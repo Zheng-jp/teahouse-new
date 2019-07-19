@@ -466,6 +466,10 @@ Page({
           that.setData({
             iscart: true,
           });
+        } else {
+          that.setData({
+            iscart: false,
+          });
         }
         //  添加字段到等级数组
         for (var index in that.data.goodList) {
