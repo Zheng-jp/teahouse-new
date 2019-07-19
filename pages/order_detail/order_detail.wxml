@@ -51,7 +51,7 @@
     </view>
 </view>
 <view class="order_informatin">
-    <view class='order_list' wx:for="{{order.data}}">
+    <view class='order_list' wx:for="{{order.data}}" wx:key="{{index}}">
         <view wx:if="{{item.status==1}}">
             <view class='box_list_one'>
                 <view>订单编号：{{item.parts_order_number}} </view>

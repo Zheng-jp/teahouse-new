@@ -11,12 +11,12 @@
             <view class="real-time-stock">
                 <view class="real-time-title">您的实时存茶</view>
                 <view class="stock-box">
-                    <text class="stock-num">{{orderInfo.store_number[4]?orderInfo.store_number[4]:''}}</text>
-                    {{orderInfo.store_number[5]?orderInfo.store_number[5]:''}}
-                    <text class="stock-num">{{orderInfo.store_number[2]?orderInfo.store_number[2]:''}}</text>
-                    {{orderInfo.store_number[3]?orderInfo.store_number[3]:''}}
-                    <text class="stock-num">{{orderInfo.store_number[0]?orderInfo.store_number[0]:''}}</text>
-                    {{orderInfo.store_number[1]?orderInfo.store_number[1]:''}}
+                    <text class="stock-num" wx:if="{{orderInfo.store_number[0]}}">{{orderInfo.store_number[0]}}</text>
+                    <text>{{orderInfo.store_number[1]?orderInfo.store_number[1]:''}}</text>
+                    <text class="stock-num" wx:if="{{orderInfo.store_number[2]}}">{{orderInfo.store_number[2]}}</text>
+                    <text>{{orderInfo.store_number[3]?orderInfo.store_number[3]:''}}</text>
+                    <text class="stock-num" wx:if="{{orderInfo.store_number[4]}}">{{orderInfo.store_number[4]}}</text>
+                    <text>{{orderInfo.store_number[5]?orderInfo.store_number[5]:''}}</text>
                 </view>
             </view>
             <!-- <image src="./img/icon1.png" class="icon-more" /> -->
@@ -136,5 +136,24 @@
         出仓运费
         <text>{{postage}}元</text>
     </view>
-    <view class="outBtn">确认出仓</view>
+    <view class="outBtn" bind:tap="payment">确认出仓</view>
+</view>
+
+<!-- 余额支付 -->
+<view wx:if='{{showPayPwdInput}}'>
+	<view class='bg_layer'></view>
+	<view class='input_main'>
+		<view class='input_title'>
+			<view class='input_back' catchtap='hidePayLayer'><text></text></view>
+			<text>输入支付密码</text>
+		</view>
+		<view class='input_tip'><text>请输入账户余额支付密码</text></view>
+		<view class='input_row' catchtap='getFocus'>
+			<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+				<text wx:if='{{pwdVal.length>i}}'></text>
+			</view>
+		</view>
+		<view class='forget_pwd' catchtap='forget_password'>忘记密码</view>
+		<input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
+	</view>
 </view>

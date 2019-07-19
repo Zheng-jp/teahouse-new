@@ -56,7 +56,7 @@ Page({
                       wx.request({
                         url: app.globalData.tiltes + 'ios_api_order_all',
                         data: {
-                          member_id: app.globalData.gmemberid,
+                          member_id: app.globalData.member_id,
                         },
                         method: "post",
                         success: function (res) {
@@ -145,7 +145,7 @@ Page({
         wx.request({
           url: app.globalData.tiltes + 'crowd_order_del',
           data: {
-            member_id: app.globalData.gmemberid,
+            member_id: app.globalData.member_id,
             parts_order_number: indexs
           },
           method: "post",
@@ -175,7 +175,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'crowd_order_all',
         data: {
-          member_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
         },
         method: "post",
         header: {
@@ -197,7 +197,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'crowd_wait_pay',
         data: {
-          member_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
         },
         method: "post",
         header: {
@@ -219,7 +219,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'crowd_wait_send',
         data: {
-          member_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
         },
         method: "post",
         header: {
@@ -241,7 +241,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'crowd_wait_deliver',
         data: {
-          member_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
         },
         method: "post",
         header: {
@@ -263,7 +263,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'crowd_wait_evaluate',
         data: {
-          member_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
         },
         method: "post",
         header: {
@@ -299,7 +299,7 @@ Page({
               wx.request({
                 url: app.globalData.tiltes + 'crowd_no_pay_cancel',
                 data: {
-                  member_id: app.globalData.gmemberid,
+                  member_id: app.globalData.member_id,
                   parts_order_number: indexs,
                   // cancel_order_description: '取消'
                 },
@@ -339,7 +339,7 @@ Page({
         wx.request({
           url: app.globalData.tiltes + 'crowd_collect_goods',
           data: {
-            member_id: app.globalData.gmemberid,
+            member_id: app.globalData.member_id,
             parts_order_number: indexs
           },
           method: "post",
@@ -509,11 +509,11 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'crowd_order_all',
         data: {
-          member_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
         },
         method: "post",
         success: function (res) {
-          console.log(res)
+          console.log(111, res)
           that.setData({
             order: res.data.data,
             tab: '1'
@@ -530,7 +530,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'crowd_wait_pay',
         data: {
-          member_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
           tab: '2'
         },
         method: "post",
@@ -550,7 +550,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'crowd_wait_send',
         data: {
-          member_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
         },
         method: "post",
         success: function (res) {
@@ -571,7 +571,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'crowd_wait_deliver',
         data: {
-          member_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
         },
         method: "post",
         success: function (res) {
@@ -591,7 +591,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'crowd_wait_evaluate',
         data: {
-          member_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
         },
         method: "post",
         success: function (res) {
