@@ -41,7 +41,9 @@
         <view class="other-item">
             <view class="item-key">实时库存：</view>
             <view class="item-value stock">
-                {{item.store_number}}
+                <text wx:if="{{item.num[0]}}">{{item.num[0]}}{{item.unit[0]}};</text>
+                <text wx:if="{{item.num[1]}}">{{item.num[1]}}{{item.unit[1]}};</text>
+                <text wx:if="{{item.num[2]}}">{{item.num[2]}}{{item.unit[2]}}</text>
                 <!-- <image src="./img/icon2.png" class="icon-more" /> -->
             </view>
         </view>
