@@ -546,116 +546,125 @@ Page({
 
       });
     } else if (that.data.order_type == "2") {
-      wx.request({
-        url: app.globalData.tiltes + 'order_places',
-        data: {
-          member_id: app.globalData.member_id,
-          goods_id: that.data.user[1].good_id,
-          goods_standard_id: that.data.user[2].guige,
-          order_quantity: num,
-          address_id: that.data.shop_id,
-          order_amount: that.data.all_money,
-          order_type: that.data.order_type,
-          coupon_id: that.data.coupon_id,
-          unit: that.data.unit_all,
-          year: that.data.num2,
-          receipt_id: that.data.taxes_id,
-          receipt_price: taxes1,
-          receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid
-        },
-        method: "post",
-        success: function (res) {
-          if (res.data.status == 1) {
-            var order_number = res.data.data.parts_order_number;
-            that.setData({
-              order_number: order_number,
-            })
-            wx.showActionSheet({
-              itemList: ['账户支付', '微信支付',],
-              itemColor: '#0099ff',
-              success: function (res) {
+      //到店自提地址
+      if(that.data.shop_id != '' && that.data.shop_id != null && that.data.shop_id != undefined) {
 
-                // 账户支付
-                if (res.tapIndex == 0) {
-                  that.showInputLayer();
-                } else if (res.tapIndex == 1) {
-                  wx.request({
-                    // url: app.globalData.tiltes + 'wxpay',
-                    url: app.globalData.tiltes + 'wx_order_index',
-                    data: {
-                      member_id: app.globalData.member_id,
-                      order_number: order_number,
-                    },
-                    dataTypr: 'json',
-                    method: "post",
-                    success: function (res) {
-                      var result = res;
-                      if (result) {
-                        wx.requestPayment({
-                          timeStamp: String(result.data.timeStamp),
-                          nonceStr: result.data.nonceStr,
-                          package: result.data.package,
-                          signType: result.data.signType,
-                          paySign: result.data.paySign,
-                          'success': function (successret) {
-                            console.log('支付成功');
-                            wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                              success: function (res) {
-
-                              },
-                              fail: function () {
-
-                              },
-                              complete: function () {
-
-                              }
-                            })
-                          },
-                          'fail': function (res) {
-
-                          }
-                        })
+        wx.request({
+          url: app.globalData.tiltes + 'order_places',
+          data: {
+            member_id: app.globalData.member_id,
+            goods_id: that.data.user[1].good_id,
+            goods_standard_id: that.data.user[2].guige,
+            order_quantity: num,
+            address_id: that.data.shop_id,
+            order_amount: that.data.all_money,
+            order_type: that.data.order_type,
+            coupon_id: that.data.coupon_id,
+            unit: that.data.unit_all,
+            year: that.data.num2,
+            receipt_id: that.data.taxes_id,
+            receipt_price: taxes1,
+            receipt_status: that.data.taxes_select,
+            uniacid: app.globalData.uniacid
+          },
+          method: "post",
+          success: function (res) {
+            if (res.data.status == 1) {
+              var order_number = res.data.data.parts_order_number;
+              that.setData({
+                order_number: order_number,
+              })
+              wx.showActionSheet({
+                itemList: ['账户支付', '微信支付',],
+                itemColor: '#0099ff',
+                success: function (res) {
+  
+                  // 账户支付
+                  if (res.tapIndex == 0) {
+                    that.showInputLayer();
+                  } else if (res.tapIndex == 1) {
+                    wx.request({
+                      // url: app.globalData.tiltes + 'wxpay',
+                      url: app.globalData.tiltes + 'wx_order_index',
+                      data: {
+                        member_id: app.globalData.member_id,
+                        order_number: order_number,
+                      },
+                      dataTypr: 'json',
+                      method: "post",
+                      success: function (res) {
+                        var result = res;
+                        if (result) {
+                          wx.requestPayment({
+                            timeStamp: String(result.data.timeStamp),
+                            nonceStr: result.data.nonceStr,
+                            package: result.data.package,
+                            signType: result.data.signType,
+                            paySign: result.data.paySign,
+                            'success': function (successret) {
+                              console.log('支付成功');
+                              wx.navigateTo({
+                                url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
+                                success: function (res) {
+  
+                                },
+                                fail: function () {
+  
+                                },
+                                complete: function () {
+  
+                                }
+                              })
+                            },
+                            'fail': function (res) {
+  
+                            }
+                          })
+                        }
+                      },
+                      fail: function () {
+  
+                      },
+                      complete: function () {
+                        wx.hideLoading()
                       }
+                    });
+                  }
+                },
+                fail: function (res) {
+                  wx.navigateTo({
+                    url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
+                    success: function (res) {
+  
                     },
                     fail: function () {
-
+  
                     },
                     complete: function () {
-                      wx.hideLoading()
+  
                     }
-                  });
+                  })
                 }
-              },
-              fail: function (res) {
-                wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                  success: function (res) {
-
-                  },
-                  fail: function () {
-
-                  },
-                  complete: function () {
-
-                  }
-                })
-              }
-            })
-          } else {
-            wx.showToast({
-              title: "下单失败，请联系管理员",
-              icon: none,
-            })
-          }
-        },
-        fail: function () {
-
-        },
-        complete: function () { }
-
-      });
+              })
+            } else {
+              wx.showToast({
+                title: "下单失败，请联系管理员",
+                icon: 'none',
+              })
+            }
+          },
+          fail: function () {
+  
+          },
+          complete: function () { }
+  
+        });
+      } else {
+        wx.showToast({
+          title: "请选择到店自提地址",
+          icon: 'none',
+        })
+      }
     } else {
       wx.request({
         url: app.globalData.tiltes + 'order_places',
@@ -758,7 +767,7 @@ Page({
           } else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none,
+              icon: 'none',
             })
           }
         },
@@ -975,7 +984,7 @@ Page({
           } else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none,
+              icon: 'none',
             })
           }
         },
@@ -1085,7 +1094,7 @@ Page({
           } else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none,
+              icon: 'none',
             })
           }
         },
@@ -1196,7 +1205,7 @@ Page({
           } else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none,
+              icon: 'none',
             })
           }
         },
@@ -1384,6 +1393,7 @@ Page({
         searchKey: e.detail.value
       })
   },
+  //修改数量
   shift_out: function() {
     let that = this;
     let num = this.data.goods[0].number;

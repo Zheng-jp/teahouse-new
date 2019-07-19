@@ -694,7 +694,6 @@ Page({
       ever_storage.push(_this.data.storages[j] * _this.data.goods[j].number * _this.data.num1 * 365);
       money_storages += _this.data.storages[j] * _this.data.goods[j].number;
     }
-    console.log(money_storages);
     var storage1 = (money_storages * _this.data.num1 * 365).toFixed(2);
     _this.setData({
       storage: storage1,
@@ -875,9 +874,10 @@ Page({
     var _this = this;
     var goods_money = 0.00;
     for (var i = 0; i < _this.data.goods.length; i++) {
-      goods_money += _this.data.goods[i].grade_price * _this.data.goods[i].number;
+      goods_money += Number(_this.data.goods[i].grade_price) * Number(_this.data.goods[i].number);
     } 
-    goods_money = (goods_money * _this.data.rate / 100).toFixed(2);
+    
+    goods_money = (Number(goods_money) * Number(_this.data.rate.scale) / 100).toFixed(2);
     _this.setData({
       taxes: goods_money,
     })
@@ -933,7 +933,7 @@ Page({
             'goods_id': user[1].goods_id,
             'member_grade_name': app.globalData.member_grade_name,
             "money": all_moneys,
-            "coupon_type": 1,
+            "coupon_type": 2,
             uniacid: app.globalData.uniacid
           },
           method: "POST",
@@ -1011,7 +1011,7 @@ Page({
             });
           }
           wx.request({
-            url: app.globalData.tiltes + 'transportation',
+            url: app.globalData.tiltes + 'getaAnsporTation',
             data: {
               'goods_id': _this.data.user[1].goods_id,
               'goods_standard_id': _this.data.user[0].guige,
@@ -1057,7 +1057,7 @@ Page({
             address_id: address_id,
           });
           wx.request({
-            url: app.globalData.tiltes + 'transportation',
+            url: app.globalData.tiltes + 'getaAnsporTation',
             data: {
               'goods_id': _this.data.user[1].good_id,
               'goods_standard_id': _this.data.user[2].guige,
