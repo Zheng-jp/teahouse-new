@@ -107,5 +107,5 @@
             <view class="item-value">{{item.scale}}%</view>
         </view>
     </view>
-    <image src="{{url}}{{item.goods_image}}" class="chart-img" />
+    <canvas canvas-id="columnCanvas" class="canvas"></canvas>
 </view>
