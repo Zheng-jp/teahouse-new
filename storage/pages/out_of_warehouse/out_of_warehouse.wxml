@@ -89,8 +89,14 @@
             <text class="explain">?</text>
         </view>
         <view class="list-value">
-            <input type="text" />
-            片
+            <block wx:if="{{!conversion}}">
+                <input type="number" bindblur="bindManual" value="{{outNum}}" />
+                片
+            </block>
+            <block wx:else>
+                {{conversionStr}}
+                <button bind:tap="reset">重置</button>
+            </block>
         </view>
     </view>
     <view class="list-item mailing">
@@ -113,7 +119,7 @@
         <view class="list-key">出仓运费</view>
         <view class="list-value">
             应付
-            <text>999元</text>
+            <text>{{postage}}元</text>
         </view>
     </view>
     <!-- <view class="agreement">
@@ -128,7 +134,7 @@
 <view class="ft">
     <view class="outCost">
         出仓运费
-        <text>999元</text>
+        <text>{{postage}}元</text>
     </view>
     <view class="outBtn">确认出仓</view>
 </view>

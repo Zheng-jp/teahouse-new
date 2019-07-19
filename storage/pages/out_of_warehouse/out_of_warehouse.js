@@ -12,6 +12,11 @@ Page({
     id: null, //出仓订单id
     orderInfo: {}, //出仓订单信息
     postage: 0, //邮费
+    outNum: 0,  //出仓数量
+    housePrice: {}, // 运费模板数据
+    minUnitStock: 0, // 库存换算成最小单位
+    conversion: false, //是否换算
+    conversionStr: '', //换算后展示
   },
 
   myRequest: function(url, params, callback){
@@ -40,12 +45,32 @@ Page({
       console.log('出仓订单信息：', res);
       if(res.data.status == 1){
         var data = res.data.data;
+        var unitLen = data.unit.length;
         data.end_time = app.formatDate(data.end_time);
         data.pay_time = app.formatDate(data.pay_time);
         _this.setData({
-          orderInfo: res.data.data
+          orderInfo: data,
+          minUnit: data.unit[unitLen - 1]
         })
-        _this.getHousePrice(); // 获取运费模板
+        _this.getDefaultAddress(); //获取默认地址
+        // 把库存换算成最小单位
+        switch(unitLen){
+          case 1:
+            _this.setData({
+              minUnitStock: +data.store_number[0]}
+            ); 
+            break;
+          case 2:
+            _this.setData({
+              minUnitStock: +data.store_number[0] + (+data.num[0] * +data.num[1] * data.store_number[2])}
+            ); 
+            break;
+          case 3: 
+            _this.setData({
+              minUnitStock: +data.store_number[0] + (+data.num[0] * +data.num[1] * data.store_number[2]) + (+data.num[0] * +data.num[1] * data.store_number[4])
+            }); 
+            break;
+        }
       }
     })
   },
@@ -55,6 +80,7 @@ Page({
    */
   onLoad: function (options) {
     if(options) this.setData({id: options.id});
+    this.outPositionOrder(); //出仓订单信息
   },
 
   /**
@@ -75,6 +101,7 @@ Page({
           defaultAddress: res.data.data,
           province: res.data.data.address_name.split(',')[0]
         })
+        _this.getHousePrice(); // 获取运费模板
       }
     })
   },
@@ -85,6 +112,43 @@ Page({
       url: '../../../pages/select_address/select_address',
       success: function (res) { },
       fail: function () {}
+    })
+  },
+
+  // 输入数量
+  bindManual: function (e) {
+    var num = e.detail.value;
+    var stock = this.data.minUnitStock;
+    if (num <= 0) {
+      this.setData({
+        outNum: 1
+      })
+    } else if (num <= stock) {
+      this.setData({
+        outNum: num
+      })
+    } else {
+      wx.showToast({
+        title: '您填写的数量超过库存！',
+        icon: 'none',
+        duration: 1500
+      })
+      this.setData({
+        outNum: stock
+      })
+    }
+    this.setData({
+      conversion: true,
+    })
+    this.calcPostage(this.data.outNum);
+  },
+  // 重置数量
+  reset: function(){
+    this.setData({
+      conversion: false,
+      conversionStr: '',
+      postage: 0,
+      outNum: 0
     })
   },
 
@@ -99,31 +163,97 @@ Page({
     _this.myRequest('getHousePrice', params, function(res){
       console.log('获取运费模板', res);
       if(res.data.status == 1){
-        // 计算邮费
-        _this.calcPostage(res.data);
+        _this.setData({
+          housePrice: res.data
+        })
       }
     })
   },
 
   // 计算邮费
-  calcPostage: function(data){
+  calcPostage: function(outNum){
+    var data = this.data.housePrice;
+    // 订单信息
+    var orderInfo = this.data.orderInfo;
+    var len = orderInfo.unit.length;
     //固定邮费
     if(data.franking_type == 2){
       this.setData({
         postage: data.data.collect
       })
+      this.returnConvStr(len, outNum);
     }else{
-
+      var postage = 0;
+      // 一个单位
+      if(len === 1){
+        postage = (outNum - 1) * data.data[0].markup + data.data[0].collect;
+        this.setData({
+          postage: postage
+        });
+        this.returnConvStr(1, outNum);
+      }else if(len === 2){
+        //两个单位
+        var maxUnitNum = Math.floor(outNum / orderInfo.num[1]);
+        var minUnitNum = outNum % orderInfo.num[1];
+        var maxPostage = maxUnitNum > 0 ? (maxUnitNum - 1) * data.data[0].markup + data.data[0].collect : '';
+        var minPostage = minUnitNum > 0 ? (minUnitNum - 1) * data.data[1].markup + data.data[1].collect : '';
+        postage = maxPostage + minPostage;
+        console.log(maxPostage, minPostage)
+        this.setData({
+          postage: postage
+        });
+        this.returnConvStr(2, outNum);
+      }else if(len === 3){
+        // 三个单位
+        var maxUnitNum = Math.floor(outNum / (orderInfo.num[1] * orderInfo.num[2]));
+        var midUnitNum = Math.floor(outNum % (orderInfo.num[1] * orderInfo.num[2]) / orderInfo.num[2]);
+        var minUnitNum = outNum % (orderInfo.num[1] * orderInfo.num[2]) % orderInfo.num[2];
+        var maxPostage = maxUnitNum > 0 ? (maxUnitNum - 1) * data.data[0].markup + data.data[0].collect : '';
+        var midPostage = midUnitNum > 0 ? (midUnitNum - 1) * data.data[1].markup + data.data[1].collect : '';
+        var minPostage = minUnitNum > 0 ? (minUnitNum - 1) * data.data[2].markup + data.data[2].collect : '';
+        postage = maxPostage + midPostage + minPostage;
+        // 换算的字符串
+        this.setData({
+          postage: postage
+        });
+        this.returnConvStr(3, outNum);
+      }
     }
+  },
+
+  returnConvStr: function(len, outNum){
+    console.log(len)
+    // 订单信息
+    var orderInfo = this.data.orderInfo;
+    var conversionStr = '';
+    if(len == 1){
+      // 换算的字符串
+      conversionStr = outNum + orderInfo.unit[0];
+    }else if(len == 2){
+      var maxUnitNum = Math.floor(outNum / orderInfo.num[1]);
+      var minUnitNum = outNum % orderInfo.num[1];
+      // 换算的字符串
+      conversionStr = maxUnitNum + orderInfo.unit[0] + minUnitNum + orderInfo.unit[1];
+
+    }else{
+      // 三个单位
+      var maxUnitNum = Math.floor(outNum / (orderInfo.num[1] * orderInfo.num[2]));
+      var midUnitNum = Math.floor(outNum % (orderInfo.num[1] * orderInfo.num[2]) / orderInfo.num[2]);
+      var minUnitNum = outNum % (orderInfo.num[1] * orderInfo.num[2]) % orderInfo.num[2];
+      // 换算的字符串
+      conversionStr = maxUnitNum + orderInfo.unit[0] + midUnitNum + orderInfo.unit[1] + minUnitNum + orderInfo.unit[2];
+    }
+    this.setData({
+      conversionStr: conversionStr
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getDefaultAddress(); //获取默认地址
-    this.outPositionOrder(); //出仓订单信息
-   },
+    
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

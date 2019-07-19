@@ -78,12 +78,14 @@
               <view class="item-right">
                 <view class="tea-stock">
                   <text class="stock-title">实时库存</text>
-                  <text class="stock-num">{{item.store_number[4]?item.store_number[4]:''}}</text>
-                  {{item.store_number[5]?item.store_number[5]:''}}
-                  <text class="stock-num">{{item.store_number[2]?item.store_number[2]:''}}</text>
-                  {{item.store_number[3]?item.store_number[3]:''}}
-                  <text class="stock-num">{{item.store_number[0]?item.store_number[0]:''}}</text>
-                  {{item.store_number[1]?item.store_number[1]:''}}
+                  <view style="flex: 1; display: flex; align-items: center; justify-content: flex-start;">
+                    <text class="stock-num" wx:if="{{item.store_number[0]}}">{{item.store_number[0]}}</text>
+                    {{item.store_number[1]?item.store_number[1]:''}}
+                    <text class="stock-num" wx:if="{{item.store_number[2]}}">{{item.store_number[2]}}</text>
+                    {{item.store_number[3]?item.store_number[3]:''}}
+                    <text class="stock-num" wx:if="{{item.store_number[4]}}">{{item.store_number[4]}}</text>
+                    {{item.store_number[5]?item.store_number[5]:''}}
+                  </view>
                   <text class="stock-more" bindtap="toStockDetail" data-id="{{item.id}}">详情></text>
                 </view>
                 <view class="exchange-price">
