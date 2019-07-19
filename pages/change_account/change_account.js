@@ -34,7 +34,7 @@ Page({
         });
       }else {
         wx.request({
-          url: app.globalData.tiltes + 'user_phone_bingding',
+          url: app.globalData.tiltes + 'user_phone_bangding',
           data: {
             member_phone_num: e.detail.value.member_phone_num,
             code: e.detail.value.cold,
