@@ -223,9 +223,9 @@ Page({
         console.log(res);
         var data = res.data.data[0];
         var richTextArr = [];
-        richTextArr.push(data.goods_text);
-        richTextArr.push(data.team);
-        richTextArr.push(data.text);
+        data.goods_text ? richTextArr.push(data.goods_text) : '';
+        data.team ? richTextArr.push(data.team) : '';
+        data.text ? richTextArr.push(data.text): '';
         // 循环 转换 html -> wxml
         for(var i = 0; i < richTextArr.length; i++){
           richTextArr[i]?WxParse.wxParse('richText' + i, 'html', richTextArr[i], _this):'';
