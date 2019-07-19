@@ -645,26 +645,35 @@ Page({
                     }
                   })
                 }
-              })
-            } else {
-              wx.showToast({
-                title: "下单失败，请联系管理员",
-                icon: 'none',
-              })
-            }
-          },
-          fail: function () {
-  
-          },
-          complete: function () { }
-  
-        });
-      } else {
-        wx.showToast({
-          title: "请选择到店自提地址",
-          icon: 'none',
-        })
-      }
+              },
+              fail: function (res) {
+                wx.navigateTo({
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
+                  success: function (res) {
+
+                  },
+                  fail: function () {
+
+                  },
+                  complete: function () {
+
+                  }
+                })
+              }
+            })
+          } else {
+            wx.showToast({
+              title: "下单失败，请联系管理员",
+              icon: 'none',
+            })
+          }
+        },
+        fail: function () {
+
+        },
+        complete: function () { }
+
+      });
     } else {
       wx.request({
         url: app.globalData.tiltes + 'order_places',
