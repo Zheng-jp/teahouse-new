@@ -62,7 +62,7 @@
                 <block wx:for="{{dataObj.reply}}" wx:key="">
                     <view class="official" wx:if="{{item.is_who==1}}">
                         <view class="official-left">
-                            <image src="http://ptcb077mt.bkt.clouddn.com/img2.png" />
+                            <image src="http://teahouse.siring.cn/img2.png" />
                             <view>官方回复</view>
                         </view>
                         <view class="official-right">{{item.content}}</view>

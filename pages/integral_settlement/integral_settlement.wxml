@@ -27,7 +27,7 @@
 	<view  class='good_list'>
 		<view class='order-goods-info'>
 			<view class='order-goods-img'>
-				<image src='http://ptcb077mt.bkt.clouddn.com/u852.png' mode="scaleToFill"></image>
+				<image src='http://teahouse.siring.cn/u852.png' mode="scaleToFill"></image>
 			</view>
 			<view class='order-info-box'>
 				<view class='order-info-title'>{{goods.goods_name}}</view>
@@ -35,7 +35,7 @@
 				<view class='unit-price-quantity'>
 					<view class='unit-price'>
 						<view class='unit-price-img'>
-							<image src='http://ptcb077mt.bkt.clouddn.com/img1.png' mode="scaleToFill"></image>
+							<image src='http://teahouse.siring.cn/img1.png' mode="scaleToFill"></image>
 						</view>
 
 						<view class='unit-price-p text_red' wx:if="{{goods.goods_standard==0}}"> 积分{{goods.grade_price}}/片</view>
@@ -78,7 +78,7 @@
 					<view class='direct_mail_add'>{{address}}</view>
 				</view>
 				<view class='more_img' bindtap='go_direct_mail_address'>
-					<image src='http://ptcb077mt.bkt.clouddn.com/u1959.png'></image>
+					<image src='http://teahouse.siring.cn/u1959.png'></image>
 				</view>
 			</view>
 			<view class="direct_mail {{selected1?'show':'hidden'}}" bindtap='go_shop_address'>
@@ -90,7 +90,7 @@
 					<view class='direct_mail_add'>北京市朝阳区天鹅湾小区5号楼3单元201</view>
 				</view>
 				<view class='more_img' >
-					<image src='http://ptcb077mt.bkt.clouddn.com/u1959.png'></image>
+					<image src='http://teahouse.siring.cn/u1959.png'></image>
 				</view>
 			</view>
 			

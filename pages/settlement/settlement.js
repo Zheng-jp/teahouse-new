@@ -646,7 +646,7 @@ Page({
           } else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none,
+              icon: 'none',
             })
           }
         },
@@ -758,7 +758,7 @@ Page({
           } else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none,
+              icon: 'none',
             })
           }
         },
@@ -975,7 +975,7 @@ Page({
           } else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none,
+              icon: 'none',
             })
           }
         },
@@ -1085,7 +1085,7 @@ Page({
           } else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none,
+              icon: 'none',
             })
           }
         },
@@ -1196,7 +1196,7 @@ Page({
           } else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none,
+              icon: 'none',
             })
           }
         },

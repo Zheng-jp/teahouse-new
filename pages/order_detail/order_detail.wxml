@@ -2,7 +2,7 @@
 <view class="all">
 <view wx:if="{{order.order_type==1}}">
     <view class="address">
-        <image src="http://ptcb077mt.bkt.clouddn.com/u6095.png" mode="widthFix"  class="address_ico"/>
+        <image src="http://teahouse.siring.cn/u6095.png" mode="widthFix"  class="address_ico"/>
         <view class="address_content">
             <view class="name_phone">
                 <text class="name">{{order.name}} </text>
@@ -20,14 +20,14 @@
             <view class="repay_time"> 付款时间：{{order.pay_time}}</view>
         </view>
         <view class="left">
-                <image class="zy_ico" src="http://ptcb077mt.bkt.clouddn.com/u8165.png" mode="widthFix"></image>
+                <image class="zy_ico" src="http://teahouse.siring.cn/u8165.png" mode="widthFix"></image>
                 <text class="zy_text">直邮</text>
         </view>
     </view>
 </view>
 <view wx:elif="{{order.order_type==2}}">
     <view class="address">
-        <image src="http://ptcb077mt.bkt.clouddn.com/u6095.png" mode="widthFix"  class="address_ico"/>
+        <image src="http://teahouse.siring.cn/u6095.png" mode="widthFix"  class="address_ico"/>
         <view class="address_content">
             <view class="name_phone">
                 <text class="name">{{order.name}} </text>
@@ -45,7 +45,7 @@
             <view class="repay_time"> 付款时间：{{order.pay_time}}</view>
         </view>
         <view class="left">
-                <image class="zy_ico" src="http://ptcb077mt.bkt.clouddn.com/u8165.png" mode="widthFix"></image>
+                <image class="zy_ico" src="http://teahouse.siring.cn/u8165.png" mode="widthFix"></image>
                 <text class="zy_text">直邮</text>
         </view>
     </view>

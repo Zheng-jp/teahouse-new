@@ -1,7 +1,7 @@
 <view class="">
   <view class="list" bindtap="go_news_detail" data-pid="1">
     <view class="tilte_img">
-      <image src="http://ptcb077mt.bkt.clouddn.com/u9279.png" mode="widthFix" class="img" />
+      <image src="http://teahouse.siring.cn/u9279.png" mode="widthFix" class="img" />
     </view>
     <view class="new_content">
       <view class="new_content_title">个人提醒</view>
@@ -10,7 +10,7 @@
   </view>
   <view class="list" bindtap="go_news_detail" data-pid="2">
     <view class="tilte_img3">
-      <image src="http://ptcb077mt.bkt.clouddn.com/u9249.png" mode="widthFix" class="img3" />
+      <image src="http://teahouse.siring.cn/u9249.png" mode="widthFix" class="img3" />
     </view>
     <view class="new_content">
       <view class="new_content_title">系统消息</view>

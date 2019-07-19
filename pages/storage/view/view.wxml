@@ -18,7 +18,7 @@
         <view class="gross-item gross-number">￥{{totalValueNum}}</view>
         <view class="gross-item choice-warehouse choice-down" bindtap="showAllStorage">
           <text>全部仓储</text>
-          <image src="http://ptcb077mt.bkt.clouddn.com/icon-c.png" class="icon-choice {{scaleImg?'scaley-img':''}}" />
+          <image src="http://teahouse.siring.cn/icon-c.png" class="icon-choice {{scaleImg?'scaley-img':''}}" />
         </view>
         <view class="warehouse-container" style="display: {{wareHouseFlag?'':'none'}};">
           <view class="item-box">
@@ -33,32 +33,32 @@
             </block>
           </view>
           <view class="retract" bindtap="showAllStorage">
-            <image src="http://ptcb077mt.bkt.clouddn.com/icon4.png" class="icon-retract" />
+            <image src="http://teahouse.siring.cn/icon4.png" class="icon-retract" />
           </view>
         </view>
       </view>
       <block wx:for="{{storageDataArr}}" wx:key="{{index}}">
         <view class="storage-enviroment">
           <view class="storage-name-box">
-            <image src="http://ptcb077mt.bkt.clouddn.com/icon1.png" class="" />
+            <image src="http://teahouse.siring.cn/icon1.png" class="" />
             <text class="storage-name">{{item.name}}</text>
           </view>
           <view class="enviroment-data-box">
             <view class="enviroment-item item-video">
-              <image src="http://ptcb077mt.bkt.clouddn.com/gif1.gif" class="icon-video" />
+              <image src="http://teahouse.siring.cn/gif1.gif" class="icon-video" />
               <text class="temperature">实时视频</text>
             </view>
             <view class="enviroment-item" bindtap="checkRealTimeData">
-              <image src="http://ptcb077mt.bkt.clouddn.com/icon2.png" class="icon-temperature" />
+              <image src="http://teahouse.siring.cn/icon2.png" class="icon-temperature" />
               <text class="temperature" style='color:#D9250E'>25.55°C</text>
             </view>
             <view class="enviroment-item" bindtap="checkRealTimeData">
-              <image src="http://ptcb077mt.bkt.clouddn.com/u2173.png" class="icon-humidity" />
+              <image src="http://teahouse.siring.cn/u2173.png" class="icon-humidity" />
               <text class="humidity" style='color:#669900'>78.99%</text>
             </view>
             <view>
               <view class="more" bindtap="checkRealTimeData">
-                <image src="http://ptcb077mt.bkt.clouddn.com/icon5.png" />
+                <image src="http://teahouse.siring.cn/icon5.png" />
               </view>
             </view>
           </view>
@@ -154,11 +154,11 @@
       <view class="zc-project">
         <view class="switch-project" bind:tap="bindSwitchProject">
           <view class="switch-btn switch-prev" hidden="{{!switchProject}}">
-            <image src="http://ptcb077mt.bkt.clouddn.com/icon6.png" />
+            <image src="http://teahouse.siring.cn/icon6.png" />
             <text>查看往期众筹</text>
           </view>
           <view class="switch-btn switch-now" hidden="{{switchProject}}">
-            <image src="http://ptcb077mt.bkt.clouddn.com/icon7.png" />
+            <image src="http://teahouse.siring.cn/icon7.png" />
             <text>查看正在众筹</text>
           </view>
         </view>
