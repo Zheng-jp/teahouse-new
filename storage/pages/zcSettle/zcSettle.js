@@ -85,7 +85,7 @@ Page({
         storage: '0.00',
       })
       _this.money_freight();
-    }else if (e.detail.value == "到店自提") {
+    } else if (e.detail.value == "到店自提") {
       _this.setData({
         selected: false,
         selected1: true,
@@ -94,7 +94,7 @@ Page({
         storage: '0.00',
         freight: '0.00',
       })
-    }else {
+    } else {
       _this.setData({
         selected: false,
         selected1: false,
@@ -190,7 +190,7 @@ Page({
                     })
                   }
                 });
-              }else {
+              } else {
                 wx.showToast({
                   icon: "none",
                   title: res.data.info,
@@ -220,7 +220,7 @@ Page({
           }
         })
       });
-    },
+  },
   /**
    * 获取焦点
    */
@@ -287,7 +287,7 @@ Page({
                 // 账户支付
                 if (res.tapIndex == 0) {
                   _this.showInputLayer();
-                }else if (res.tapIndex == 1) {
+                } else if (res.tapIndex == 1) {
                   wx.request({
                     url: app.globalData.tiltes + 'crowd_order_index',
                     data: {
@@ -356,7 +356,7 @@ Page({
 
         },
       });
-    }else if (_this.data.order_type == "2") {
+    } else if (_this.data.order_type == "2") {
       wx.request({
         url: app.globalData.tiltes + 'crowd_order_place',
         data: {
@@ -456,7 +456,7 @@ Page({
 
         },
       });
-    }else {
+    } else {
       wx.request({
         url: app.globalData.tiltes + 'crowd_order_place',
         data: {
@@ -585,28 +585,28 @@ Page({
               coupon_type: e.currentTarget.dataset.value,
               money: res.data.data.money,
             });
-          }else {
+          } else {
             _this.setData({
               coupon_content: "-" + _this.data.goods_money_one,
               coupon_type: e.currentTarget.dataset.value,
               money: res._this.data.goods_money_one,
             });
           }
-        }else if (e.currentTarget.dataset.value == "3") {
+        } else if (e.currentTarget.dataset.value == "3") {
           if (res.data.data.money <= Number(_this.data.storage)) {
             _this.setData({
               coupon_content: "-" + res.data.data.money,
               coupon_type: e.currentTarget.dataset.value,
               money: res.data.data.money,
             });
-          }else {
+          } else {
             _this.setData({
               coupon_content: "-" + _this.data.storage,
               coupon_type: e.currentTarget.dataset.value,
               money: res._this.data.storage,
             });
           }
-        }else if (e.currentTarget.dataset.value == "") {
+        } else if (e.currentTarget.dataset.value == "") {
           _this.setData({
             coupon_content: "-" + res.data.data.money,
             coupon_type: e.currentTarget.dataset.value,
@@ -694,7 +694,6 @@ Page({
       ever_storage.push(_this.data.storages[j] * _this.data.goods[j].number * _this.data.num1 * 365);
       money_storages += _this.data.storages[j] * _this.data.goods[j].number;
     }
-    console.log(money_storages);
     var storage1 = (money_storages * _this.data.num1 * 365).toFixed(2);
     _this.setData({
       storage: storage1,
@@ -717,7 +716,50 @@ Page({
       freight: money_freight,
     })
   },
-
+  //获取input文本
+  getSearchKey: function (e) {
+    this.setData({
+      searchKey: e.detail.value
+    })
+  },
+  //修改数量
+  shift_out: function () {
+    let that = this;
+    // let num = this.data.goods[0].number;
+    let goods = this.data.goods;
+    if (that.data.searchKey <= 0 || that.data.searchKey == '' && that.data.searchKey == null && that.data.searchKey == undefined) {
+      goods[0].number = 1;
+      that.setData({
+        goods: goods
+      });
+    } else {
+      // if (goods[0].is_limit == 1 && Number(goods[0].limit_number) > 0) {
+      //   if (that.data.searchKey > Number(goods[0].limit_number)) {
+      //     goods[0].number = goods[0].limit_number;
+      //     that.setData({
+      //       goods: goods
+      //     });
+      //   }
+      // } else {
+        goods[0].number = that.data.searchKey;
+        this.setData({
+          goods: goods
+        });
+      // }
+    }
+    if (that.data.taxes_select == 1) {
+      that.invi();
+    }
+    if (that.data.order_type == "1") {
+      that.money_freight();
+      that.calculate_money();
+    } else if (that.data.order_type == "3") {
+      that.money_storages();
+      that.calculate_money();
+    } else {
+      that.calculate_money();
+    }
+  },
   /* 点击减号 */
   bindMinus: function () {
     var _this = this;
@@ -743,7 +785,9 @@ Page({
       _this.money_storages();
       _this.calculate_money();
     }
-    _this.invi();
+    if (_this.data.taxes_select == 1) {
+      _this.invi();
+    }
 
   },
   /* 点击加号 */
@@ -772,7 +816,9 @@ Page({
     else {
       _this.calculate_money();
     }
-    _this.invi();
+    if (_this.data.taxes_select == 1) {
+      _this.invi();
+    }
   },
   /* 点击减号 */
   bindMinus1: function () {
@@ -850,7 +896,7 @@ Page({
         taxes: 0.00,
       })
       _this.calculate_money();
-    }else {
+    } else {
       if (_this.data.taxes_id == -1) {
         _this.setData({
           taxes_select: 0,
@@ -859,7 +905,7 @@ Page({
           title: '请添加户名',
           icon: 'none'
         })
-      }else {
+      } else {
         _this.setData({
           taxes_select: 1,
         })
@@ -875,9 +921,10 @@ Page({
     var _this = this;
     var goods_money = 0.00;
     for (var i = 0; i < _this.data.goods.length; i++) {
-      goods_money += _this.data.goods[i].grade_price * _this.data.goods[i].number;
-    } 
-    goods_money = (goods_money * _this.data.rate / 100).toFixed(2);
+      goods_money += Number(_this.data.goods[i].grade_price) * Number(_this.data.goods[i].number);
+    }
+
+    goods_money = (Number(goods_money) * Number(_this.data.rate.scale) / 100).toFixed(2);
     _this.setData({
       taxes: goods_money,
     })
@@ -889,7 +936,7 @@ Page({
     var _this = this;
     let user = JSON.parse(options.title);
     wx.getSystemInfo({
-      success: function(res){
+      success: function (res) {
         _this.setData({
           fixiPhone: res.model.indexOf('iPhone') != -1
         })
@@ -919,7 +966,7 @@ Page({
         // console.log(_this.data.goods);
         // 商品总价
         all_moneys = +_this.data.goods[0].grade_price * +_this.data.goods[0].number;
-        
+
         _this.setData({
           all_money: all_moneys,
           num: _this.data.goods[0].number,
@@ -933,7 +980,7 @@ Page({
             'goods_id': user[1].goods_id,
             'member_grade_name': app.globalData.member_grade_name,
             "money": all_moneys,
-            "coupon_type": 1,
+            "coupon_type": 2,
             uniacid: app.globalData.uniacid
           },
           method: "POST",
@@ -1005,13 +1052,13 @@ Page({
               address_0: a[0],
               address_id: address_id,
             });
-          }else if (res.data.status == 0) {
+          } else if (res.data.status == 0) {
             _this.setData({
               selected: false,
             });
           }
           wx.request({
-            url: app.globalData.tiltes + 'transportation',
+            url: app.globalData.tiltes + 'getaAnsporTation',
             data: {
               'goods_id': _this.data.user[1].goods_id,
               'goods_standard_id': _this.data.user[0].guige,
@@ -1034,7 +1081,7 @@ Page({
 
         },
       });
-    }else {
+    } else {
       wx.request({
         url: app.globalData.tiltes + 'member_address_edit_information',
         data: {
@@ -1057,14 +1104,14 @@ Page({
             address_id: address_id,
           });
           wx.request({
-            url: app.globalData.tiltes + 'transportation',
+            url: app.globalData.tiltes + 'getaAnsporTation',
             data: {
               'goods_id': _this.data.user[1].good_id,
               'goods_standard_id': _this.data.user[2].guige,
               'are': _this.data.address_0
             },
             method: "POST",
-            
+
             success: function (res) {
               _this.setData({
                 freight_infor: res.data.data,
@@ -1108,7 +1155,7 @@ Page({
 
         },
       });
-    }else {
+    } else {
       wx.request({
         url: app.globalData.tiltes + 'tacitly_adress',
         data: {
@@ -1161,7 +1208,7 @@ Page({
 
         },
       });
-    }else {
+    } else {
       wx.request({
         url: app.globalData.tiltes + 'approve_detailed',
         data: {
@@ -1215,7 +1262,7 @@ Page({
 
               }
             })
-          }else {
+          } else {
             wx.request({
               url: app.globalData.tiltes + 'approve_individual',
               data: {
@@ -1255,7 +1302,7 @@ Page({
 
         }
       })
-    }else {
+    } else {
       _this.setData({
         taxes_id: receipt_id
       })

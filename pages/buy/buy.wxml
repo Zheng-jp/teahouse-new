@@ -53,7 +53,7 @@
                 -
               </view>
               <view class='num'>
-                <input type="number" placeholder="" value="{{item.goods_unit}}" />
+                <input type="number" placeholder="" value="{{item.goods_unit}}"   bindinput='getSearchKey' bindblur='shift_out'/>
               </view>
               <view class='add' catchtap="bindPlus" data-id="{{item.tab}}" data-shopid="{{item.id}}">
                 +
