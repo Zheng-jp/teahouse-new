@@ -73,6 +73,39 @@ Page({
       url: '../diy/index/index',
     })
   },
+  // //获取input文本
+  // getSearchKey: function (e) {
+  //   this.setData({
+  //     searchKey: e.detail.value
+  //   })
+  // },
+  // //修改数量
+  // shift_out: function () {
+  //   let that = this;
+  //   // let num = this.data.goods[0].number;
+  //   // let goods = this.data.goods;
+  //   if (that.data.searchKey <= 0 || that.data.searchKey == '' || that.data.searchKey == null || that.data.searchKey == undefined) {
+  //     goods[0].number = 1;
+  //     that.setData({
+  //       goods: goods
+  //     });
+  //   } else {
+  //     if (goods[0].is_limit == 1 && Number(goods[0].limit_number) > 0) {
+  //       if (that.data.searchKey > Number(goods[0].limit_number)) {
+  //         goods[0].number = goods[0].limit_number;
+  //         that.setData({
+  //           goods: goods
+  //         });
+  //       }
+  //     } else {
+  //       goods[0].number = that.data.searchKey;
+  //       that.setData({
+  //         goods: goods
+  //       });
+  //     }
+  //   }
+    
+  // },
   /* 点击减号 */
   bindMinus: function (e) {
     var that = this;
@@ -465,6 +498,10 @@ Page({
         if (that.data.goodList.length == 0) {
           that.setData({
             iscart: true,
+          });
+        } else {
+          that.setData({
+            iscart: false,
           });
         }
         //  添加字段到等级数组

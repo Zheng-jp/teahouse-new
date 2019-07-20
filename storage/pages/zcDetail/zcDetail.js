@@ -204,7 +204,7 @@ Page({
     wx.getSystemInfo({
       success: function(res){
         var model = res.model;
-        console.log(model.indexOf('iPhone X') != -1)
+        // console.log(model.indexOf('iPhone X') != -1)
         _this.setData({
           fixiPhone: model.indexOf('iPhone X') != -1
         })
