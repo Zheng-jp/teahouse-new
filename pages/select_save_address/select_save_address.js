@@ -10,6 +10,7 @@ Page({
 
   },
   select:function(event){
+    console.log(111)
     var id=event.currentTarget.dataset.id;
     wx.setStorageSync('sava_id', id);
     wx.navigateBack({

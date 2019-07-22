@@ -78,7 +78,7 @@
               <view class="item-right">
                 <view class="tea-stock">
                   <text class="stock-title">实时库存</text>
-                  <view style="flex: 1; display: flex; align-items: center; justify-content: flex-start; padding: 0 20px;">
+                  <view style="flex: 1; display: flex; align-items: center; justify-content: flex-start; padding: 0 10px;">
                     <text class="stock-num" wx:if="{{item.store_number[0]}}">{{item.store_number[0]}}</text>
                     <text>{{item.store_number[1]?item.store_number[1]:''}}</text>
                     
