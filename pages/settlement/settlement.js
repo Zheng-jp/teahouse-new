@@ -104,6 +104,7 @@ Page({
       let arr = [], unit = [], goods_id = [], goods_standard_id = [], goods_num = [], shoppinds_id = [];
       //购物车结算时，剔除不可存茶商品
       if (goods.length > 1) {
+
         for (let i = 0; i < goods.length; i++) {
           for (let o in goods[i].goods_info.bq_arr) {
             if (goods[i].goods_info.bq_arr[o].kc == 1 && goods[i].goods_info.bq_arr[o].kc != null && goods[i].goods_info.bq_arr[o].kc != undefined) {
@@ -139,7 +140,11 @@ Page({
           goods_standard_id.push(goods[0].special_info.id);
         }
         goods_num.push(goods[0].number);
-
+        if(that.data.user.length < 5) {
+            shoppinds_id.push(that.data.user[0].shop_id)
+        } else {
+          shoppinds_id.push(that.data.user[4].shopAddids[0].shop_id)
+        }
         arr = that.data.goods;
       }
       that.setData({

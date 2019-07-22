@@ -104,7 +104,7 @@ Page({
   //       });
   //     }
   //   }
-    
+
   // },
   /* 点击减号 */
   bindMinus: function (e) {
@@ -239,18 +239,19 @@ Page({
         if (checkboxItems[i].id == values[j]) {
           checkboxItems[i].checked = true;
           break;
+        } else {
+          checkboxItems[i].checked = false;
         }
       }
     }
-
     var checkAll = false;
     if (checkboxItems.length == values.length) {
       checkAll = true;
     }
 
     this.setData({
-      'goodList': checkboxItems,
-      'checkAll': checkAll
+      goodList: checkboxItems,
+      checkAll: checkAll
     });
     that.calculateTotal();
   },
@@ -270,8 +271,8 @@ Page({
     }
 
     this.setData({
-      'checkAll': checkAll,
-      'goodList': goodList
+      checkAll: checkAll,
+      goodList: goodList
     });
     that.calculateTotal();
   },
@@ -280,45 +281,50 @@ Page({
  */
   deleteList(e) {
     var that = this;
-    var checkboxItems = this.data.goodList;
+    var checkboxItems = that.data.goodList;
+    var shopping_id = [];
     for (var i = 0; i < checkboxItems.length; ++i) {
       if (checkboxItems[i].checked == true) {
-        const index = checkboxItems[i].tab;
-
-        wx.request({
-          url: app.globalData.tiltes + 'shopping_del',
-          data: {
-            // open_id: app.globalData.gmemberid,
-            shopping_id: checkboxItems[i].id,
-          },
-          method: "post",
-          success: function (res) {
-            checkboxItems.splice(index, 1);
-            that.setData({
-              goodList: checkboxItems,
-              checkAll: false,
-            });
-            if (!checkboxItems.length) {
-              that.setData({
-                iscart: true,
-              });
-            } else {
-              that.calculateTotal();
-            }
-
-          },
-          fail: function () {
-
-          },
-          complete: function () {
-            wx.hideLoading()
+        shopping_id.push(checkboxItems[i].id);
+      }
+    }
+    wx.request({
+      url: app.globalData.tiltes + 'shopping_del',
+      data: {
+        // open_id: app.globalData.gmemberid,
+        shopping_id: shopping_id,
+      },
+      method: "post",
+      success: function (res) {
+        for (var i = 0; i < checkboxItems.length; ++i) {
+          if (checkboxItems[i].checked == true) {
+            const index = checkboxItems[i].tab;
+            checkboxItems.splice(index);
           }
-
+        }
+        that.setData({
+          goodList: checkboxItems,
+          checkAll: false,
         });
+        if (!that.data.goodList.length) {
+          that.setData({
+            iscart: true,
+          });
+          that.calculateTotal();
+        } else {
+          that.calculateTotal();
+        }
+
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
       }
 
-    }
-
+    });
+    this.getGoodsInfo();
   },
   showPopup: function (e) {
     var that = this;
