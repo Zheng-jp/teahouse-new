@@ -51,27 +51,10 @@ Page({
         data.pay_time = app.formatDate(data.pay_time);
         _this.setData({
           orderInfo: data,
-          minUnit: data.unit[unitLen - 1]
+          minUnit: data.unit[unitLen - 1],
+          minUnitStock: +data.order_quantity  //最小单位库存
         })
         _this.getDefaultAddress(); //获取默认地址
-        // 把库存换算成最小单位
-        switch(unitLen){
-          case 1:
-            _this.setData({
-              minUnitStock: +data.store_number[0]}
-            ); 
-            break;
-          case 2:
-            _this.setData({
-              minUnitStock: +data.store_number[0] + (+data.num[0] * +data.num[1] * data.store_number[2])}
-            ); 
-            break;
-          case 3: 
-            _this.setData({
-              minUnitStock: +data.store_number[0] + (+data.num[0] * +data.num[1] * data.store_number[2]) + (+data.num[0] * +data.num[1] * data.store_number[4])
-            }); 
-            break;
-        }
       }
     })
   },
@@ -178,7 +161,7 @@ Page({
 
   // 输入数量
   bindManual: function (e) {
-    var num = e.detail.value;
+    var num = Number(e.detail.value);
     var stock = this.data.minUnitStock;
     if (num <= 0) {
       this.setData({
@@ -265,9 +248,10 @@ Page({
         this.returnConvStr(2, outNum);
       }else if(len === 3){
         // 三个单位
-        var maxUnitNum = Math.floor(outNum / (orderInfo.num[1] * orderInfo.num[2]));
-        var midUnitNum = Math.floor(outNum % (orderInfo.num[1] * orderInfo.num[2]) / orderInfo.num[2]);
-        var minUnitNum = outNum % (orderInfo.num[1] * orderInfo.num[2]) % orderInfo.num[2];
+        var maxUnitNum = Math.floor(outNum / (orderInfo.num[2] / orderInfo.num[1]) / (orderInfo.num[1] / orderInfo.num[0]));
+        var midUnitNum = Math.floor(outNum / (orderInfo.num[2] / orderInfo.num[1]) % (orderInfo.num[1] / orderInfo.num[0]));
+        var minUnitNum = outNum % (orderInfo.num[2] / orderInfo.num[1]) % (orderInfo.num[1] / orderInfo.num[0]);
+        
         var maxPostage = maxUnitNum > 0 ? (maxUnitNum - 1) * data.data[0].markup + data.data[0].collect : '';
         var midPostage = midUnitNum > 0 ? (midUnitNum - 1) * data.data[1].markup + data.data[1].collect : '';
         var minPostage = minUnitNum > 0 ? (minUnitNum - 1) * data.data[2].markup + data.data[2].collect : '';
@@ -297,9 +281,11 @@ Page({
 
     }else{
       // 三个单位
-      var maxUnitNum = Math.floor(outNum / (orderInfo.num[1] * orderInfo.num[2]));
-      var midUnitNum = Math.floor(outNum % (orderInfo.num[1] * orderInfo.num[2]) / orderInfo.num[2]);
-      var minUnitNum = outNum % (orderInfo.num[1] * orderInfo.num[2]) % orderInfo.num[2];
+      var maxUnitNum = Math.floor(outNum / (orderInfo.num[2] / orderInfo.num[1]) / (orderInfo.num[1] / orderInfo.num[0]));
+      var midUnitNum = Math.floor(outNum / (orderInfo.num[2] / orderInfo.num[1]) % (orderInfo.num[1] / orderInfo.num[0]));
+      var minUnitNum = outNum % (orderInfo.num[2] / orderInfo.num[1]) % (orderInfo.num[1] / orderInfo.num[0]);
+
+      console.log(maxUnitNum, midUnitNum, minUnitNum);
       // 换算的字符串
       conversionStr = maxUnitNum + orderInfo.unit[0] + midUnitNum + orderInfo.unit[1] + minUnitNum + orderInfo.unit[2];
     }
