@@ -678,7 +678,7 @@ Page({
           store_house_id: that.data.sava_id,
           goods_id: that.data.goods_id,
           goods_standard_id: that.data.goods_standard_id,
-          order_quantity: that.data.goods_num,
+          order_quantity: num,
           unit: that.data.unit_all,
 
           address_id: that.data.address_id,
