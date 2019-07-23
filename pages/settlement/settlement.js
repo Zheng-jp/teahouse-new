@@ -457,7 +457,9 @@ Page({
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
           uniacid: app.globalData.uniacid,
-          freight: that.data.freight
+          freight: that.data.freight,
+          storage: that.data.storage
+
         },
         method: "post",
         success: function (res) {
@@ -572,8 +574,8 @@ Page({
             receipt_price: taxes1,
             receipt_status: that.data.taxes_select,
             uniacid: app.globalData.uniacid,
-          freight: that.data.freight
-
+          freight: that.data.freight,
+          storage: that.data.storage
           },
           method: "post",
           success: function (res) {
@@ -693,7 +695,8 @@ Page({
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
           uniacid: app.globalData.uniacid,
-          freight: that.data.freight
+          freight: that.data.freight,
+          storage: that.data.storage
 
         },
         method: "post",
@@ -914,7 +917,9 @@ Page({
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
           uniacid: app.globalData.uniacid,
-          freight: that.data.freight
+          freight: that.data.freight,
+          storage: that.data.storage
+
         },
         method: "post",
         success: function (res) {
@@ -1025,7 +1030,9 @@ Page({
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
           uniacid: app.globalData.uniacid,
-          freight: that.data.freight
+          freight: that.data.freight,
+          storage: that.data.storage
+
         },
         method: "post",
         success: function (res) {
@@ -1038,6 +1045,7 @@ Page({
               itemList: ['账户支付', '微信支付',],
               itemColor: '#0099ff',
               success: function (res) {
+                
                 // 账户支付
                 if (res.tapIndex == 0) {
                   that.showInputLayer();
@@ -1083,24 +1091,36 @@ Page({
 
                     },
                     complete: function () {
-                      wx.navigateTo({
-                        url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                        success: function (res) {
+                      wx.hideLoading();
+                      // wx.navigateTo({
+                      //   url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
+                      //   success: function (res) {
 
-                        },
-                        fail: function () {
+                      //   },
+                      //   fail: function () {
 
-                        },
-                        complete: function () {
+                      //   },
+                      //   complete: function () {
 
-                        }
-                      })
+                      //   }
+                      // })
                     }
                   });
                 }
               },
               fail: function (res) {
-                console.log(res.errMsg)
+                wx.navigateTo({
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
+                  success: function (res) {
+
+                  },
+                  fail: function () {
+
+                  },
+                  complete: function () {
+
+                  }
+                })
               }
             })
           } else {
@@ -1137,7 +1157,8 @@ Page({
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
           uniacid: app.globalData.uniacid,
-          freight: that.data.freight
+          freight: that.data.freight,
+          storage: that.data.storage
         },
         method: "post",
         success: function (res) {

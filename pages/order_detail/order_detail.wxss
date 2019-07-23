@@ -2,7 +2,7 @@
 .address{
     background: #fff;
     display: flex;
-    font-size: 30rpx;
+    font-size: 26rpx;
     padding: 20rpx 20rpx;
 }
 .address_ico{
@@ -10,6 +10,10 @@
 }
 .name_phone{
    
+}
+.lift {
+  color: rgb(134, 134, 134);
+  font-size: 25rpx;
 }
 .address_detail{
     font-size: 26rpx;
