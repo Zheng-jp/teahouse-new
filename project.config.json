@@ -22,7 +22,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.3",
-	"appid": "wxc265cd4269f01dce",
+	"appid": "wx301c1368929fdba8",
 	"projectname": "fan",
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {
@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -85,9 +85,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "pages/buy/buy",
-					"pathName": "pages/buy/buy",
+					"id": 5,
+					"name": "payment",
+					"pathName": "component/payment/payment",
 					"query": "",
 					"scene": null
 				}
