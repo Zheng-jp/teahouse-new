@@ -76,7 +76,7 @@ Page({
   // 获取默认地址
   getDefaultAddress: function(){
     var _this = this;
-    var params = {open_id: app.globalData.gmemberid}
+    var params = { member_id: app.globalData.member_id }
     _this.myRequest('member_default_address_return', params, function(res){
       console.log('获取默认地址：', res);
       if(res.data.status == 1){

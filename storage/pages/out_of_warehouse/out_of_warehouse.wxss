@@ -15,9 +15,9 @@ page{background-color: #fff;}
 .icon-more{width: 14rpx; height: 24rpx; margin-left: 10rpx;}
 .stock-container{display: flex; align-items: center;}
 .list-item{display: flex; align-items: center; justify-content: space-between; padding: 30rpx 20rpx;}
-.list-item .list-key{font-size: 26rpx; font-weight: 700; color: #00a0e6;}
+.list-item .list-key{font-size: 32rpx; font-weight: 700; color: #00a0e6;}
 .list-item .list-key .explain{display: inline-block; width: 30rpx; height: 30rpx; text-align: center; line-height: 30rpx; border-radius: 50%; background-color: #bbb; color: #fff; margin-left: 6rpx; font-size: 24rpx;}
-.list-item .list-value{font-size: 26rpx; color: #333; position: relative;}
+.list-item .list-value{font-size: 32rpx; color: #333; position: relative;}
 .list-item .list-value.price{color: #CD300E;}
 .list-item .list-value radio{vertical-align: middle;}
 .list-item .list-value input{text-align: right;}
