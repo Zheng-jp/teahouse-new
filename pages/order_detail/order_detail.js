@@ -7,7 +7,8 @@ Page({
    */
   data: {
     url: app.globalData.img_url,
-    order:[]
+    order:[],
+    selected2: false,
   },
   newRedirectto: function (n, e) {
     switch (e) {
@@ -87,9 +88,19 @@ Page({
         data.data[i].linkurl = "/pages/goods_detail/goods_detail?title=" + data.data[i].goods_id;
         // console.log(res.data.data)
       }
-      console.log(data)
+      let selected2;
+      if(data.order_type == 1 || data.order_type == 2 ) {
+        selected2 = false
+      } else {
+        selected2 = true
+      }
       that.setData({
         order:data,
+        all_money:data.data[0].order_real_pay,
+        freight:data.data[0].freight,
+        receipt_price:data.data[0].receipt_price,
+        coupon_deductible:data.data[0].coupon_deductible,
+        selected2: selected2
       })
     },
     fail: function () {

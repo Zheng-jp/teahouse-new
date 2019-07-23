@@ -456,7 +456,8 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          freight: that.data.freight
         },
         method: "post",
         success: function (res) {
@@ -570,7 +571,9 @@ Page({
             receipt_id: that.data.taxes_id,
             receipt_price: taxes1,
             receipt_status: that.data.taxes_select,
-            uniacid: app.globalData.uniacid
+            uniacid: app.globalData.uniacid,
+          freight: that.data.freight
+
           },
           method: "post",
           success: function (res) {
@@ -689,7 +692,9 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          freight: that.data.freight
+
         },
         method: "post",
         success: function (res) {
@@ -908,7 +913,8 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          freight: that.data.freight
         },
         method: "post",
         success: function (res) {
@@ -1018,7 +1024,8 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          freight: that.data.freight
         },
         method: "post",
         success: function (res) {
@@ -1129,7 +1136,8 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          freight: that.data.freight
         },
         method: "post",
         success: function (res) {
