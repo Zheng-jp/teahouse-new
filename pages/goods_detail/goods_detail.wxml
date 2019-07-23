@@ -16,7 +16,7 @@
               <image style="width:60rpx;height:30rpx;margin-right:10rpx;" src="http://teahouse.siring.cn/kecun.png" wx:if="{{save == 1}}"></image>
               库存{{stock}}{{specifications}}
             </view>
-            <view class='select-goods-sells'>销量0{{specifications}}</view>
+            <view class='select-goods-sells'>销量{{volume}}{{specifications}}</view>
           </view>
         </view>
       </view>

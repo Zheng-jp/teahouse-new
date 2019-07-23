@@ -566,7 +566,7 @@ Page({
         //   }
         // }
 
-        let server = res.data.data[0].server, server_arr = [], id,price,stock,specifications,images,save;
+        let server = res.data.data[0].server, server_arr = [], id,price,stock,specifications,images,save,volume;
         for (let i in server) {
           server_arr.push(server[i]);
         }
@@ -589,6 +589,7 @@ Page({
                 price = goods.goods_standard[u + 1].price;
                 stock = goods.goods_standard[u + 1].stock;
                 specifications = goods.goods_standard[u + 1].name;
+                volume = goods.goods_standard[u + 1].volume;
                 images = goods.goods_standard[u + 1].images;
                 save = goods.goods_standard[u + 1].save;
                 break;
@@ -599,6 +600,7 @@ Page({
               price = goods.goods_standard[0].price;
               stock = goods.goods_standard[0].stock;
               specifications = goods.goods_standard[0].name;
+              volume = goods.goods_standard[0].volume;
               images = goods.goods_standard[0].images;
               save = goods.goods_standard[0].save;
           }
@@ -618,7 +620,8 @@ Page({
           cx: cx,
           qc: qc,
           id: id,
-          evolution:res.data.data[0].evolution
+          evolution:res.data.data[0].evolution,
+          volume: volume
           // select: goods.goods_standard[0].name
         });
         console.log(111, res.data.data[0])

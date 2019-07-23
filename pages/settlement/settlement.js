@@ -327,7 +327,10 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          freight: that.data.freight,
+          storage: that.data.storage
+
         },
         method: "post",
         success: function (res) {
@@ -412,7 +415,9 @@ Page({
             receipt_id: that.data.taxes_id,
             receipt_price: taxes1,
             receipt_status: that.data.taxes_select,
-            uniacid: app.globalData.uniacid
+            uniacid: app.globalData.uniacid,
+          freight: that.data.freight,
+          storage: that.data.storage
           },
           method: "post",
           success: function (res) {
@@ -502,7 +507,10 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          freight: that.data.freight,
+          storage: that.data.storage
+
         },
         method: "post",
         success: function (res) {
@@ -597,7 +605,10 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          freight: that.data.freight,
+          storage: that.data.storage
+
         },
         method: "post",
         success: function (res) {
@@ -683,7 +694,10 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          freight: that.data.freight,
+          storage: that.data.storage
+
         },
         method: "post",
         success: function (res) {
@@ -696,6 +710,7 @@ Page({
               itemList: ['账户支付', '微信支付',],
               itemColor: '#0099ff',
               success: function (res) {
+                
                 // 账户支付
                 if (res.tapIndex == 0) {
                   that.showInputLayer();
@@ -726,12 +741,45 @@ Page({
                       }
                     },
                     complete: function () {
+<<<<<<< HEAD
                       wx.navigateTo({
                         url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                       })
                     }
                   });
                 }
+=======
+                      wx.hideLoading();
+                      // wx.navigateTo({
+                      //   url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
+                      //   success: function (res) {
+
+                      //   },
+                      //   fail: function () {
+
+                      //   },
+                      //   complete: function () {
+
+                      //   }
+                      // })
+                    }
+                  });
+                }
+              },
+              fail: function (res) {
+                wx.navigateTo({
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
+                  success: function (res) {
+
+                  },
+                  fail: function () {
+
+                  },
+                  complete: function () {
+
+                  }
+                })
+>>>>>>> 1222e54b5794f04e72729532a13497db293af316
               }
             })
           } else {
@@ -762,7 +810,9 @@ Page({
           receipt_id: that.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          freight: that.data.freight,
+          storage: that.data.storage
         },
         method: "post",
         success: function (res) {
