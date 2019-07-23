@@ -1,4 +1,40 @@
 <!--pages/order_detail/order_detail.wxml-->
+<!-- 弹窗 -->
+<view class="coupon_content_all" wx:if="{{coupon_mark}}">
+  <view class="coupon_content">
+    <view class="coupon_content_tip">
+      <view class="coupon_content_left">您有以下可适用优惠券</view>
+      <view class="coupon_content_right" bindtap="no_use">
+        暂时不使用优惠券
+        <image class="retrue_ico" src="http://teahouse.siring.cn/u2014.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+      </view>
+    </view>
+    <view class='order_list' wx:for="{{coupon_order}}" data-id="{{item.id}}" bindtap="checkboxChangess" data-value="{{item.suit_price[0]}}">
+      <view class='order_list_content'>
+        <checkbox value="{{item.id}}" checked="{{item.checked}}" />
+        <view class="coupon_box">
+          <image class="coupon_box_img" src="http://teahouse.siring.cn/u11123.png" mode="widthFix"></image>
+          <view class="coupon_money_box">
+            <view>
+              <text class="money">{{item.money}}</text>
+              <text class="money_unit">元</text>
+            </view>
+            <view class="limit">满{{item.use_price}}使用</view>
+          </view>
+          <view class="coupon_info_box">
+            <view class="coupon_name">{{item.label}}</view>
+            <view class="validity">有效期：{{item.start_time}}-{{item.end_time}}</view>
+            <view class="range">
+              适用范围：
+              <text wx:for="{{item.suit_price}}">{{item}}</text>
+            </view>
+            <view class="go_use">立即使用>></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
 <view class="all">
 <view wx:if="{{order.order_type==1}}">
     <view class="address">

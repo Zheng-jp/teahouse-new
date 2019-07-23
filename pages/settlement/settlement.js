@@ -1683,26 +1683,7 @@ Page({
           let delivery_a, delivery_b, authority, goods, kc, hot, qc, cx, authority_new = 0;
           authority = res.data.authority;
           goods = res.data.data;
-
-          // //单个商品时，存茶的判断
-          // if (goods.length < 2) {
-          //   authority = 0;
-          //   if (goods[0].special_info != undefined && goods[0].special_info != null && goods[0].special_info != '') {
-          //     if (goods[0].special_info.save == 1) {
-          //       kc = 1;
-          //       authority = 1;
-          //     }
-          //   }
-
-          //   for (let i = 0; i < goods.length; i++) {
-          //     for (let o in goods[i].goods_info.goods_sign) {
-          //       if (goods[i].goods_info.goods_sign[o].text == '可存' && goods[i].goods_info.goods_sign[o].check == '1' && goods[i].goods_info.goods_sign[o].check != undefined) {
-
-          //       }
-          //     }
-          //   }
-
-          // }
+          
           for (let o = 0; o < goods.length; o++) {
             let arr = [], bq_arr = [], goods_sign = goods[o].goods_info.goods_sign, bq_dgg = {};
             //多规格的可存

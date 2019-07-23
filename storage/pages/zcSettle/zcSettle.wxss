@@ -196,7 +196,7 @@
   .radio-group{
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     
   }
   .radio-group label{
@@ -707,4 +707,12 @@
   .list2_content{
     font-size: 25rpx;
     color: #6B6B6B;
+  }
+  .image_bq {
+    display: inline-block;
+    width: 60rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+    margin-bottom: 11rpx;
+    vertical-align: middle;
   }
