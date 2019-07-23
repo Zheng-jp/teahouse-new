@@ -1,75 +1,89 @@
-<!--pages/members/members.wxml-->
+<!-- pages/members/members.wxml -->
 <view class='all'>
- <swiper current="{{tab}}" class="swiper-box" duration="300"  bindchange="tab_slide" catchtouchmove="stopTouchMove">
-    <swiper-item  wx:for="{{level}}" catchtouchmove='catchTouchMove'>
-            <view class='card' style='background:{{item.member_background_color}}'>  
-                <view class='card_a'>
-                  <view class='img_cir'>
-                        <view class='card_img'>
-                            <image src='{{url}}{{item.member_grade_img}}'></image>
-                        </view>
-                  </view>
-                  <view class='user_infor'>
-                    <view class='use_num'>
-                        <view>会员码</view>
-                        <view >{{information.dimension}}</view>
-                    </view>
-                    <view class='code' bindtap="bindViewTap"><image src='http://teahouse.siring.cn/u8531.png'></image></view>
-                  </view>
-              </view>
-              <view class='name'>{{item.member_grade_name}}</view>
-              <view class='card_c'>
-              <view class='data'>
-              <text  wx:if="{{is}}">生效日期：{{information.member_grade_create_time}}</text>
-              </view>
-              <view class='max-data'>有效期：{{item.member_finite_period}}年</view>
-              </view>
+  <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide" catchtouchmove="stopTouchMove">
+    <swiper-item wx:for="{{level}}" catchtouchmove='catchTouchMove'>
+      <view class='card' style='background:{{item.member_background_color}}'>
+        <view class='card_a'>
+          <view class='img_cir'>
+            <view class='card_img'>
+              <image src='{{url}}{{item.member_grade_img}}'></image>
             </view>
+          </view>
+          <view class='user_infor'>
+            <view class='use_num'>
+              <view>会员码</view>
+              <view>{{information.dimension}}</view>
+            </view>
+            <view class='code' bindtap="bindViewTap">
+              <image src='http://teahouse.siring.cn/u8531.png'></image>
+            </view>
+          </view>
+        </view>
+        <view class='name'>{{item.member_grade_name}}</view>
+        <view class='card_c'>
+          <view class='data'>
+            <text wx:if="{{is}}">生效日期：{{information.member_grade_create_time}}</text>
+          </view>
+          <view class='max-data'>有效期：{{item.member_finite_period}}年</view>
+        </view>
+      </view>
     </swiper-item>
-  </swiper> 
+  </swiper>
   <view class='level'>
-     <view class='level_title'>
-     <view>等级名</view>
+    <view class='level_title'>
+      <view>等级名</view>
       <view>等级图标</view>
-       <view>有效期</view>
-        <view>消费满</view>
-     </view>
-     <view class='level_content'>
-     <radio-group class="radio-group" bindchange="radioChange">
-     <view class='content_list' wx:for="{{level}}" > 
-        <view class='radio' >
-          <checkbox value="{{item.tab}}" checked="{{item.check}}" color='#fff'/>
-          <text class='radio_text'>{{item.member_grade_name}}</text>
-        </view>
-        <view >
-        <view class='level_img'> <image src='{{url}}{{item.member_grade_img}}'></image></view>
-      
-        </view>
-        <view>
-        <text>{{item.member_finite_period}}年</text>
-        </view>
-        <view>
-        <text>{{item.first_year_pay_full}}万/年</text>
-        </view>
-     </view>
-      </radio-group>
-     </view>
-
- </view>
-      <view class='tips'>
-       <view class="tip_img"><image src='http://teahouse.siring.cn/u8340.png'></image></view>
-       <view class='tip_text'>
-            <view>1.当消费达到以上等级，即可成员该等级会员并享受等级会员服务；</view>
-            <view> 2.您还可以直接等级会员充值，成为会员，充值有赠送哦~；</view>
-            <view> 3.更多服务，了解会员权益，请查阅</view>
-            <checkbox-group bindchange="read">
-              <view style='color:#6B6B6B;'> <checkbox  value="是否已读" ></checkbox>我已阅读并同意<text style='color:#02A0E6;' bindtap='toda'>《会员权益协议》</text></view>
-            </checkbox-group> 
-
-     </view>
-     </view>
-    <view class="num_button">
-    <view><text>充值</text> <text style='color: red; font-size:40rpx;padding-right:10rpx;font-size:35rpx;'>￥{{member_send*10000}}</text><text>送积分</text><text style='color:red'>{{integral_send}}</text> </view>
-    <view class='naext' bindtap="pay"> 下一步 </view>
+      <view>有效期</view>
+      <view>消费满</view>
     </view>
+    <view class='level_content'>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <view class='content_list' wx:for="{{level}}">
+          <view class='radio'>
+            <checkbox value="{{item.tab}}" checked="{{item.check}}" color='#fff' />
+            <text class='radio_text'>{{item.member_grade_name}}</text>
+          </view>
+          <view>
+            <view class='level_img'>
+              <image src='{{url}}{{item.member_grade_img}}'></image>
+            </view>
+          </view>
+          <view>
+            <text>{{item.member_finite_period}}年</text>
+          </view>
+          <view>
+            <text>{{item.first_year_pay_full}}万/年</text>
+          </view>
+        </view>
+      </radio-group>
+    </view>
+  </view>
+  <view class='tips'>
+    <view class="tip_img">
+      <image src='http://teahouse.siring.cn/u8340.png'></image>
+    </view>
+    <view class='tip_text'>
+      <view>1.当消费达到以上等级，即可成员该等级会员并享受等级会员服务；</view>
+      <view>2.您还可以直接等级会员充值，成为会员，充值有赠送哦~；</view>
+      <view>3.更多服务，了解会员权益，请查阅</view>
+      <checkbox-group bindchange="read">
+        <view style='color:#6B6B6B;'>
+          <checkbox value="是否已读"></checkbox>
+          我已阅读并同意
+          <text style='color:#02A0E6;' bindtap='toda'>《会员权益协议》</text>
+        </view>
+      </checkbox-group>
+    </view>
+  </view>
+  <view class="num_button">
+    <view>
+      <text>充值</text>
+      <text style='color: red; font-size:40rpx;padding-right:10rpx;font-size:35rpx;'>
+        ￥{{member_send*10000}}
+      </text>
+      <text>送积分</text>
+      <text style='color:red'>{{integral_send}}</text>
+    </view>
+    <view class='naext' bindtap="pay">下一步</view>
+  </view>
 </view>
