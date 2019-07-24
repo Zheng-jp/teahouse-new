@@ -24,7 +24,7 @@ Page({
           '新益号',
           '普洱茶'
         ],
-        price_img: 'http://teahouse.siring.cn/img1.png',
+        price_img: 'http://zhihuichacang.com/img1.png',
       },
       {
         name: '双骄',
@@ -35,7 +35,7 @@ Page({
           '新益号',
           '普洱茶'
         ],
-        price_img: 'http://teahouse.siring.cn/img1.png',
+        price_img: 'http://zhihuichacang.com/img1.png',
         jiage: '￥120.0/片'
       },
       {
@@ -47,7 +47,7 @@ Page({
           '新益号',
           '普洱茶'
         ],
-        price_img: 'http://teahouse.siring.cn/img1.png',
+        price_img: 'http://zhihuichacang.com/img1.png',
         jiage: '￥120.0/片'
       },
 
@@ -60,7 +60,7 @@ Page({
           '新益号',
           '普洱茶'
         ],
-        price_img: 'http://teahouse.siring.cn/img1.png',
+        price_img: 'http://zhihuichacang.com/img1.png',
         jiage: '￥120.0/片'
       },
 

@@ -228,7 +228,8 @@ delect_img_old:function(e){
               order_id: that.data.order_id,
               after_image_ids: imgs,
               return_reason: e.detail.value.content,
-              is_return_goods: that.data.is_return_goods
+              is_return_goods: that.data.is_return_goods,
+              uniacid:app.globalData.uniacid
             },
             method: "post",
             success: function (res) {

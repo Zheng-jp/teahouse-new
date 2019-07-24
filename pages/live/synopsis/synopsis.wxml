@@ -15,27 +15,27 @@
 
   <view class='status_bar'>
     <view>
-      <image src='http://teahouse.siring.cn/u2133.png' class='tubiao'></image>
+      <image src='http://zhihuichacang.com/u2133.png' class='tubiao'></image>
     </view>
     <text class='store_name'>仓BJ01</text>
 
     <view>
-      <image src='http://teahouse.siring.cn/u5440.png' class='tubiao'></image>
+      <image src='http://zhihuichacang.com/u5440.png' class='tubiao'></image>
     </view>
     <text class='size'>230</text>
 
     <view>
-      <image src='http://teahouse.siring.cn/u5437.png' class='tubiao'></image>
+      <image src='http://zhihuichacang.com/u5437.png' class='tubiao'></image>
     </view>
     <text class='size'>230</text>
 
     <view>
-      <image src='http://teahouse.siring.cn/u5439.png' class='tubiao'></image>
+      <image src='http://zhihuichacang.com/u5439.png' class='tubiao'></image>
     </view>
     <text class='size'>230</text>
 
     <view>
-      <image src='http://teahouse.siring.cn/u5462.png' class='tubiao'></image>
+      <image src='http://zhihuichacang.com/u5462.png' class='tubiao'></image>
     </view>
     <text class='size_last'>230</text>
   </view>
@@ -55,13 +55,13 @@
         <view class='comment'>
           <view class='comment_repay'>
             <view class='comment_ico'>
-              <image src='http://teahouse.siring.cn/u100.jpg'></image>
+              <image src='http://zhihuichacang.com/u100.jpg'></image>
               <view class='comment_name'>林三也</view>
             </view>
 
             <view class='zan'>赞</view>
             <view class='comment_img' bindtap='good'>
-              <image src='http://teahouse.siring.cn/u4942.png'></image>
+              <image src='http://zhihuichacang.com/u4942.png'></image>
             </view>
             <!-- <view class='zhan' wx:else>
           <view class='comment_img' bindtap='good' data-id="{{item.id}}">
@@ -80,13 +80,13 @@
           </view>
           <view class='comment_repay'>
             <view class='comment_ico'>
-              <image src='http://teahouse.siring.cn/u100.jpg'></image>
+              <image src='http://zhihuichacang.com/u100.jpg'></image>
               <view class='comment_name'>林三也</view>
             </view>
 
             <view class='zan'>赞</view>
             <view class='comment_img' bindtap='good'>
-              <image src='http://teahouse.siring.cn/u4942.png'></image>
+              <image src='http://zhihuichacang.com/u4942.png'></image>
             </view>
 
             <!-- <view class='zhan' wx:else>
@@ -133,7 +133,7 @@
   </view>
   <view class='buttom_nav'>
     <view class='star'>
-      <image src='http://teahouse.siring.cn/u4976.png'></image>
+      <image src='http://zhihuichacang.com/u4976.png'></image>
     </view>
     <!-- <view class='star' bindtap="delect_collection" wx:else>
       <image src='../img/u1001.png'></image>
@@ -142,7 +142,7 @@
     <view class='share'>
       <button open-type="share">
       </button>
-      <image src='http://teahouse.siring.cn/u4977.png'></image>
+      <image src='http://zhihuichacang.com/u4977.png'></image>
     </view>
   </view>
 </view>

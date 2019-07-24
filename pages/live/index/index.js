@@ -4,8 +4,8 @@ Page({
     currentTab: '',
     winHeight: 0, //窗口高度
     imgUrls: [
-      'http://teahouse.siring.cn/u2404.png',
-      'http://teahouse.siring.cn/u2404.png'
+      'http://zhihuichacang.com/u2404.png',
+      'http://zhihuichacang.com/u2404.png'
     ]
   },
 

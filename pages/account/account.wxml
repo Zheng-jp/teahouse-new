@@ -14,39 +14,39 @@
           <view class="assets_management_title"> 资产管理</view>
           <view class="table" >
               <view class="box" bindtap="go"  data-src="../identity_authentication/identity_authentication">
-                <image src="http://teahouse.siring.cn/u9491.png"  class="ico" />
+                <image src="http://zhihuichacang.com/u9491.png"  class="ico" />
                 <text class="text">身份认证</text>
               </view>
                 <view class="box"  bindtap="go"  data-src="../card/card">
-                <image src="http://teahouse.siring.cn/u9479.png"  class="ico" />
+                <image src="http://zhihuichacang.com/u9479.png"  class="ico" />
                 <text class="text">银行卡管理</text>
               </view>
                 <view class="box"  bindtap="go"  data-src="../recharge/recharge" >
-                <image src="http://teahouse.siring.cn/u9489.png"  class="ico" />
+                <image src="http://zhihuichacang.com/u9489.png"  class="ico" />
                 <text class="text">预存</text>
               </view>
                 <view class="box"  bindtap="go"  data-src="../withdrawal/withdrawal">
-                <image src="http://teahouse.siring.cn/u9493.png"  class="ico" />
+                <image src="http://zhihuichacang.com/u9493.png"  class="ico" />
                 <text class="text">提现</text>
               </view>
               <view class="box"  bindtap="go"  data-src="../bill/bill">
-                <image src="http://teahouse.siring.cn/u9483.png"  class="ico" />
+                <image src="http://zhihuichacang.com/u9483.png"  class="ico" />
                 <text class="text">账单</text>
               </view >
                 <view class="box"   bindtap="go"  data-src="../integral_record/integral_record">
-                <image src="http://teahouse.siring.cn/u9499.png"  class="ico" />
+                <image src="http://zhihuichacang.com/u9499.png"  class="ico" />
                 <text class="text">积分</text>
               </view>
                   <view class="box"  bindtap="go"  data-src="../integral_center/integral_center">
-                <image src="http://teahouse.siring.cn/u9495.png"  class="ico" />
+                <image src="http://zhihuichacang.com/u9495.png"  class="ico" />
                 <text class="text">积分商城</text>
               </view>
               <view class="box"  bindtap="go"   data-src="../coupon/coupon">
-                <image src="http://teahouse.siring.cn/u9517.png"  class="ico" />
+                <image src="http://zhihuichacang.com/u9517.png"  class="ico" />
                 <text class="text">优惠券</text>
               </view>
               <view class="box"  bindtap="go"   data-src="../forget_password/forget_password">
-                <image src="http://teahouse.siring.cn/u8288.png"  class="ico" />
+                <image src="http://zhihuichacang.com/u8288.png"  class="ico" />
                 <text class="text">支付密码</text>
               </view>
 

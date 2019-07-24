@@ -15,7 +15,7 @@
               <view>{{information.dimension}}</view>
             </view>
             <view class='code' bindtap="bindViewTap">
-              <image src='http://teahouse.siring.cn/u8531.png'></image>
+              <image src='http://zhihuichacang.com/u8531.png'></image>
             </view>
           </view>
         </view>
@@ -60,7 +60,7 @@
   </view>
   <view class='tips'>
     <view class="tip_img">
-      <image src='http://teahouse.siring.cn/u8340.png'></image>
+      <image src='http://zhihuichacang.com/u8340.png'></image>
     </view>
     <view class='tip_text'>
       <view>1.当消费达到以上等级，即可成员该等级会员并享受等级会员服务；</view>

@@ -4,7 +4,7 @@
     <view class='goods_info_wrap'>
       <!-- 如果购物车内没有数据，就显示没有数据 -->
       <view class="cartList" hidden="{{!iscart}}">
-        <image src="http://teahouse.siring.cn/u2890.png" mode='widthFix' style='width:200rpx;' />
+        <image src="http://zhihuichacang.com/u2890.png" mode='widthFix' style='width:200rpx;' />
         <view class='no_good_text'>哎呦，购物车空空如也~</view>
         <view class='buton_to' bindtap='moveToMarket'>到商城随便逛逛</view>
       </view>
@@ -21,10 +21,10 @@
               <view class='good_name'>{{item.goods_name}}</view>
               <view class='good_infor'>
                 <block wx:for="{{item.bq_arr}}" wx:key="index">
-                  <image class="image_bq" style="vertical-align: middle;" src="http://teahouse.siring.cn/kecun.png" wx:if="{{item.kc == 1}}"></image>
-                  <image class="image_bq" src="http://teahouse.siring.cn/hot.png" wx:if="{{item.hot == 1}}"></image>
-                  <image class="image_bq" src="http://teahouse.siring.cn/chuxiao.png" wx:if="{{item.cx == 1}}"></image>
-                  <image class="image_bq" src="http://teahouse.siring.cn/qingchang.png" wx:if="{{item.qc == 1}}"></image>
+                  <image class="image_bq" style="vertical-align: middle;" src="http://zhihuichacang.com/kecun.png" wx:if="{{item.kc == 1}}"></image>
+                  <image class="image_bq" src="http://zhihuichacang.com/hot.png" wx:if="{{item.hot == 1}}"></image>
+                  <image class="image_bq" src="http://zhihuichacang.com/chuxiao.png" wx:if="{{item.cx == 1}}"></image>
+                  <image class="image_bq" src="http://zhihuichacang.com/qingchang.png" wx:if="{{item.qc == 1}}"></image>
                 </block>
                 <view class="texts" wx:for="{{item.goods_sign}}" wx:key="{{index}}">
                   {{item.text}}
@@ -33,7 +33,7 @@
               </view>
               <view class='good_price'>
                 <view class='price'>
-                  <image src='http://teahouse.siring.cn/img1.png' mode='widthFix' style='width:40rpx;'></image>
+                  <image src='http://zhihuichacang.com/img1.png' mode='widthFix' style='width:40rpx;'></image>
                   <view class='text_red'>￥{{item.money}}</view>
                   <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number > 0}}">
                     限购数量：{{item.limit_number}}
