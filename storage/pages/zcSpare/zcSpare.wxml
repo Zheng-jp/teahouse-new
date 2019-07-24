@@ -68,3 +68,25 @@
 		<input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
 	</view>
 </view>
+
+<!-- 支付弹窗 -->
+<view class="mask" wx:if="{{pmKey}}"></view>
+<view class="pm-content" wx:if="{{pmKey}}">
+  <view class="pm-account">
+    <view class="pm-inner-view" data-tapIndex="0" bindtap="selectMethod">
+      <image src="http://teahouse.siring.cn/u1272.png"></image>
+      <view class="pm-o">
+        <view>账户支付</view>
+        <text class="pm-y">(余额：￥{{balance}})</text>
+      </view>
+    </view>
+  </view>
+  <view class="pm-wxpay">
+    <view class="pm-inner-view" data-tapIndex="1" bindtap="selectMethod">
+      <image src="http://teahouse.siring.cn/u1273.png"></image>
+      <view class="pm-o">微信支付</view>
+    </view>
+  </view>
+  <view class="cancel" bindtap="hideMethod">取消</view>
+</view>
+<!-- 支付弹窗 -->

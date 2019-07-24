@@ -1,7 +1,6 @@
 // pages/settlement/settlement.js
 const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -66,7 +65,9 @@ Page({
     is_checked: true,
     unit: [],//报价单位
     ever_storage: [],//单个仓储费
-    fixiPhone: false
+    fixiPhone: false,
+    pmKey: false, // switch支付弹窗
+    balance: 0.00, //余额
   },
   // 弹窗
   powerDrawer: function (e) {
@@ -108,38 +109,22 @@ Page({
   },
   go_direct_mail_address: function (e) {
     wx.navigateTo({
-      url: '/pages/select_address/select_address',
-      success: function (res) {
-      },
-      fail: function () {
-      }
+      url: '/pages/select_address/select_address'
     })
   },
   go_shop_address: function (e) {
     wx.navigateTo({
-      url: '/pages/select_shop_address/select_shop_address',
-      success: function (res) {
-      },
-      fail: function () {
-      }
+      url: '/pages/select_shop_address/select_shop_address'
     })
   },
   go_invoice_add: function (e) {
     wx.navigateTo({
-      url: '/invoice/pages/invoice_add/invoice_add',
-      success: function (res) {
-      },
-      fail: function () {
-      }
+      url: '/invoice/pages/invoice_add/invoice_add'
     })
   },
   go_save_tea: function (e) {
     wx.navigateTo({
-      url: '/pages/select_save_address/select_save_address',
-      success: function (res) {
-      },
-      fail: function () {
-      }
+      url: '/pages/select_save_address/select_save_address'
     })
   },
   // 弹窗
@@ -157,69 +142,53 @@ Page({
     var _this = this;
     var val = this.data.pwdVal;
     this.setData({ showPayPwdInput: false, payFocus: false, pwdVal: '' },
-      function () {
-        if (val.length == 6) {
-          wx.request({
-            url: app.globalData.tiltes + 'check_password',
-            data: {
-              member_id: app.globalData.member_id,
-              passwords: val,
-            },
-            method: "POST",
-            success: function (res) {
-              if (res.data.data.status == 1) {
-                wx.request({
-                  url: app.globalData.tiltes + 'crowd_payment',
-                  data: {
-                    member_id: app.globalData.member_id,
-                    order_num: _this.data.order_number,
-                    pay_password: val,
-                  },
-                  method: "POST",
-                  success: function (res) {
-
-                  },
-                  fail: function () {
-
-                  },
-                  complete: function (res) {
-                    wx.showToast({
-                      icon: "none",
-                      title: res.data.info,
-                      duration: 2000
-                    })
-                  }
-                });
-              } else {
-                wx.showToast({
-                  icon: "none",
-                  title: res.data.info,
-                  duration: 2000
-                })
-              }
-            },
-            fail: function () {
-            },
-            complete: function () {
-            }
-          });
-        }
-        else {
-          wx.showToast({
-            icon: "none",
-            title: "您已取消支付",
-          })
-        }
-        wx.redirectTo({
-          url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
-          success: function (res) {
-
+    function () {
+      if (val.length == 6) {
+        wx.request({
+          url: app.globalData.tiltes + 'check_password',
+          data: {
+            member_id: app.globalData.member_id,
+            passwords: val,
           },
-          fail: function () {
-
+          method: "POST",
+          success: function (res) {
+            if (res.data.data.status == 1) {
+              wx.request({
+                url: app.globalData.tiltes + 'crowd_payment',
+                data: {
+                  member_id: app.globalData.member_id,
+                  order_num: _this.data.order_number,
+                  pay_password: val,
+                },
+                method: "POST",
+                complete: function (res) {
+                  wx.showToast({
+                    icon: "none",
+                    title: res.data.info,
+                    duration: 2000
+                  })
+                }
+              });
+            } else {
+              wx.showToast({
+                title: res.data.info,
+                icon: "none",
+                duration: 2000
+              })
+            }
           }
+        });
+      }
+      else {
+        wx.showToast({
+          icon: "none",
+          title: "您已取消支付",
         })
-      });
+      }
+      wx.redirectTo({
+        url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id
+      })
+    });
   },
   /**
    * 获取焦点
@@ -238,14 +207,72 @@ Page({
   },
   forget_password: function (e) {
     wx.navigateTo({
-      url: '../forget_password/forget_password',
-      success: function (res) {
+      url: '../forget_password/forget_password'
+    })
+  },
 
+  
+  // 微信支付
+  wxpay: function(){
+    var _this = this;
+    wx.request({
+      url: app.globalData.tiltes + 'crowd_order_index',
+      data: {
+        member_id: app.globalData.member_id,
+        order_number: this.data.order_number
       },
-      fail: function () {
-
+      method: "post",
+      success: function (res) {
+        if (res) {
+          wx.requestPayment({
+            timeStamp: String(res.data.timeStamp),
+            nonceStr: res.data.nonceStr,
+            package: res.data.package,
+            signType: res.data.signType,
+            paySign: res.data.paySign,
+            success: function(){
+              wx.navigateTo({
+                url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id
+              })
+            }
+          })
+        }
+      },
+      complete: function () {
+        wx.hideLoading()
       }
     })
+  },
+
+  // 取消支付
+  hideMethod: function(){
+    this.setData({
+      pmKey: false
+    })
+    wx.request({
+      url: app.globalData.tiltes + 'del_order',
+      data: {
+        parts_order_number: this.data.order_number,
+        order_type: this.data.order_type
+      },
+      method: "post",
+      success: function(res){
+        console.log(res);
+      }
+    })
+  },
+
+  // 选择支付方式
+  selectMethod: function(e){
+    var tapindex = +e.currentTarget.dataset.tapindex;
+    this.setData({
+      pmKey: false
+    })
+    if(tapindex == 0){
+      this.showInputLayer();
+    }else{
+      this.wxpay();
+    }
   },
   // 弹窗
   // 立即支付
@@ -277,84 +304,20 @@ Page({
         success: function (res) {
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
-            console.log(order_number)
             _this.setData({
               order_number: order_number,
-            })
-            wx.showActionSheet({
-              itemList: ['账户支付', '微信支付',],
-              success: function (res) {
-                // 账户支付
-                if (res.tapIndex == 0) {
-                  _this.showInputLayer();
-                } else if (res.tapIndex == 1) {
-                  wx.request({
-                    url: app.globalData.tiltes + 'crowd_order_index',
-                    data: {
-                      member_id: app.globalData.member_id,
-                      parts_order_number: order_number,
-                    },
-                    dataTypr: 'json',
-                    method: "POST",
-                    success: function (res) {
-                      var result = res;
-
-                      if (result) {
-                        wx.requestPayment({
-                          timeStamp: String(result.data.timeStamp),
-                          nonceStr: result.data.nonceStr,
-                          package: result.data.package,
-                          signType: result.data.signType,
-                          paySign: result.data.paySign,
-                          'success': function (successret) {
-                            console.log('支付成功');
-                            wx.navigateTo({
-                              url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
-                              success: function (res) {
-
-                              },
-                              fail: function () {
-
-                              }
-                            })
-                          },
-                          'fail': function (res) {
-                          }
-                        })
-                      }
-                    },
-                    fail: function () {
-
-                    },
-                    complete: function () {
-                      wx.hideLoading()
-                    }
-                  });
-                }
-              },
-              fail: function (res) {
-                wx.navigateTo({
-                  url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
-                  success: function (res) {
-
-                  },
-                  fail: function () {
-
-                  }
-                })
-              }
+              order_type: res.data.data.order_type,
+              pmKey: true,
+              balance: res.data.data.balance
             })
           }
           else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none
+              icon: 'none'
             })
           }
-        },
-        fail: function () {
-
-        },
+        }
       });
     } else if (_this.data.order_type == "2") {
       wx.request({
@@ -381,80 +344,17 @@ Page({
             var order_number = res.data.data.parts_order_number;
             _this.setData({
               order_number: order_number,
+              order_type: res.data.data.order_type,
+              pmKey: true,
+              balance: res.data.data.balance
             })
-            wx.showActionSheet({
-              itemList: ['账户支付', '微信支付',],
-              success: function (res) {
-                // 账户支付
-                if (res.tapIndex == 0) {
-                  _this.showInputLayer();
-                }
-                else if (res.tapIndex == 1) {
-                  wx.request({
-                    url: app.globalData.tiltes + 'crowd_order_index',
-                    data: {
-                      member_id: app.globalData.member_id,
-                      parts_order_number: order_number,
-                    },
-                    dataTypr: 'json',
-                    method: "POST",
-                    success: function (res) {
-                      var result = res;
-                      if (result) {
-                        wx.requestPayment({
-                          timeStamp: String(result.data.timeStamp),
-                          nonceStr: result.data.nonceStr,
-                          package: result.data.package,
-                          signType: result.data.signType,
-                          paySign: result.data.paySign,
-                          'success': function (successret) {
-                            console.log('支付成功');
-                            wx.navigateTo({
-                              url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
-                              success: function (res) {
-
-                              },
-                              fail: function () {
-
-                              },
-                            })
-                          },
-                          'fail': function (res) {
-                          }
-                        })
-                      }
-                    },
-                    fail: function () {
-                    },
-                    complete: function () {
-                      wx.hideLoading()
-                    }
-                  });
-                }
-              },
-              fail: function (res) {
-                wx.navigateTo({
-                  url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
-                  success: function (res) {
-
-                  },
-                  fail: function () {
-
-                  },
-                })
-              }
-            })
-          }
-          else {
+          }else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none,
+              icon: 'none',
             })
           }
-        },
-        fail: function () {
-
-        },
+        }
       });
     } else {
       wx.request({
@@ -481,83 +381,17 @@ Page({
             var order_number = res.data.data.parts_order_number;
             _this.setData({
               order_number: order_number,
+              order_type: res.data.data.order_type,
+              pmKey: true,
+              balance: res.data.data.balance
             })
-            wx.showActionSheet({
-              itemList: ['账户支付', '微信支付',],
-              success: function (res) {
-                // 账户支付
-                if (res.tapIndex == 0) {
-                  _this.showInputLayer();
-                }
-                else if (res.tapIndex == 1) {
-                  wx.request({
-                    url: app.globalData.tiltes + 'crowd_order_index',
-                    data: {
-                      member_id: app.globalData.member_id,
-                      parts_order_number: order_number,
-                    },
-                    dataTypr: 'json',
-                    method: "POST",
-                    success: function (res) {
-                      var result = res;
-
-                      if (result) {
-                        wx.requestPayment({
-                          timeStamp: String(result.data.timeStamp),
-                          nonceStr: result.data.nonceStr,
-                          package: result.data.package,
-                          signType: result.data.signType,
-                          paySign: result.data.paySign,
-                          'success': function (successret) {
-                            console.log('支付成功');
-                            wx.navigateTo({
-                              url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
-                              success: function (res) {
-
-                              },
-                              fail: function () {
-
-                              },
-                            })
-                          },
-                          'fail': function (res) {
-
-                          }
-                        })
-                      }
-                    },
-                    fail: function () {
-
-                    },
-                    complete: function () {
-                      wx.hideLoading()
-                    }
-                  });
-                }
-              },
-              fail: function (res) {
-                wx.navigateTo({
-                  url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
-                  success: function (res) {
-
-                  },
-                  fail: function () {
-
-                  },
-                })
-              }
-            })
-          }
-          else {
+          }else {
             wx.showToast({
               title: "下单失败，请联系管理员",
-              icon: none,
+              icon: 'none',
             })
           }
-        },
-        fail: function () {
-
-        },
+        }
       });
     }
   },
@@ -567,7 +401,6 @@ Page({
     _this.setData({
       coupon_mark: true,
     })
-
   },
   checkboxChangess: function (e) {
     var _this = this;
@@ -733,19 +566,10 @@ Page({
         goods: goods
       });
     } else {
-      // if (goods[0].is_limit == 1 && Number(goods[0].limit_number) > 0) {
-      //   if (that.data.searchKey > Number(goods[0].limit_number)) {
-      //     goods[0].number = goods[0].limit_number;
-      //     that.setData({
-      //       goods: goods
-      //     });
-      //   }
-      // } else {
-        goods[0].number = that.data.searchKey;
-        this.setData({
-          goods: goods
-        });
-      // }
+      goods[0].number = that.data.searchKey;
+      this.setData({
+        goods: goods
+      });
     }
     if (that.data.taxes_select == 1) {
       that.invi();
@@ -911,7 +735,6 @@ Page({
         })
         _this.invi();
         _this.calculate_money();
-
       }
     }
   },
@@ -1072,7 +895,7 @@ Page({
       wx.request({
         url: app.globalData.tiltes + 'member_default_address_return',
         data: {
-          open_id: app.globalData.gmemberid,
+          member_id: app.globalData.member_id,
           address_id: ''
         },
         method: "POST",
@@ -1114,14 +937,8 @@ Page({
               _this.money_freight();
               _this.calculate_money();
             },
-            fail: function () {
-
-            },
           });
-        },
-        fail: function () {
-
-        },
+        }
       });
     } else {
       wx.request({
@@ -1153,7 +970,6 @@ Page({
               'are': _this.data.address_0
             },
             method: "POST",
-
             success: function (res) {
               _this.setData({
                 freight_infor: res.data.data,
@@ -1161,23 +977,17 @@ Page({
               _this.money_freight();
               _this.calculate_money();
             },
-            fail: function () {
-
-            },
-            complete: function () {
-            }
-
           });
-        },
-        fail: function () {
-
-        },
+        }
       });
     }
     if (sava_id == '') {
       wx.request({
         url: app.globalData.tiltes + 'tacitly_approve',
         method: "POST",
+        data: {
+          uniacid: app.globalData.uniacid
+        },
         success: function (res) {
           var warehousess = [];
           var sava_id = res.data.data.id;
@@ -1192,10 +1002,7 @@ Page({
             warehouse: res.data.data,
             sava_id: sava_id,
           });
-        },
-        fail: function () {
-
-        },
+        }
       });
     } else {
       wx.request({
@@ -1219,10 +1026,7 @@ Page({
             warehouse: res.data.data,
             sava_id: sava_id,
           });
-        },
-        fail: function () {
-
-        },
+        }
       });
     }
     if (shop_id == '') {
@@ -1245,10 +1049,7 @@ Page({
             shop_address: shop_address,
             shop_id: shop_id,
           });
-        },
-        fail: function () {
-
-        },
+        }
       });
     } else {
       wx.request({
@@ -1270,10 +1071,7 @@ Page({
             shop_address: shop_address,
             shop_id: shop_id,
           });
-        },
-        fail: function () {
-
-        },
+        }
       });
     }
     if (receipt_id == '') {
@@ -1299,9 +1097,6 @@ Page({
                 _this.setData({
                   rate: res.data.data
                 })
-              },
-              fail: function () {
-
               }
             })
           } else {
@@ -1327,21 +1122,12 @@ Page({
                       _this.setData({
                         rate: res.data.data
                       })
-                    },
-                    fail: function () {
-
                     }
                   })
                 }
-              },
-              fail: function () {
-
               }
             })
           }
-        },
-        fail: function () {
-
         }
       })
     } else {
@@ -1363,10 +1149,6 @@ Page({
           if (_this.data.taxes_select == 1) {
             _this.invi();
           }
-
-        },
-        fail: function () {
-
         }
       })
     }

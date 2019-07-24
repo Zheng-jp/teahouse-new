@@ -17,6 +17,8 @@ Page({
     pwdVal: '',  //输入的密码
     payFocus: true, //文本框焦点
     order_number: null,//付款点击的订单编号
+    pmKey: false, // switch支付弹窗
+    balance: 0.00, //余额
   },
   // 弹窗
   /**
@@ -390,58 +392,79 @@ Page({
       }
     })
   },
+
+  // 微信支付
+  wxpay: function(){
+    wx.request({
+      url: app.globalData.tiltes + 'crowd_order_index',
+      data: {
+        member_id: app.globalData.member_id,
+        order_number: this.data.order_number
+      },
+      method: "post",
+      success: function (res) {
+        if (res) {
+          wx.requestPayment({
+            timeStamp: String(res.data.timeStamp),
+            nonceStr: res.data.nonceStr,
+            package: res.data.package,
+            signType: res.data.signType,
+            paySign: res.data.paySign,
+            success: function(){
+              wx.showToast({
+                title: '支付成功',
+                icon: success,
+                duration: 1500
+              })
+              setTimeout(function() {
+                that.onShow();
+              }, 1600)
+            }
+          })
+        }
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+    })
+  },
+
+  // 取消支付
+  hideMethod: function(){
+    this.setData({
+      pmKey: false
+    })
+  },
+
+  // 选择支付方式
+  selectMethod: function(e){
+    var tapindex = +e.currentTarget.dataset.tapindex;
+    this.setData({
+      pmKey: false
+    })
+    if(tapindex == 0){
+      this.showInputLayer();
+    }else{
+      this.wxpay();
+    }
+  },
+
   // 付款
   repay: function (e) {
     var that = this;
     var indexs = e.currentTarget.dataset.id;
-    that.setData({
-      order_number: indexs,
-    })
-    wx.showActionSheet({
-      itemList: ['账户支付', '微信支付',],
-      success: function (res) {
-        // 账户支付
-        if (res.tapIndex == 0) {
-          that.showInputLayer();
-        }
-        else if (res.tapIndex == 1) {
-          wx.request({
-            url: app.globalData.tiltes + 'crowd_order_index',
-            data: {
-              member_id: app.globalData.member_id,
-              parts_order_number: indexs
-            },
-            dataTypr: 'json',
-            method: "post",
-            success: function (res) {
-              var result = res;
-              if (result) {
-                wx.requestPayment({
-                  timeStamp: String(result.data.timeStamp),
-                  nonceStr: result.data.nonceStr,
-                  package: result.data.package,
-                  signType: result.data.signType,
-                  paySign: result.data.paySign,
-                  'success': function (successret) {
-                    console.log('支付成功');
-                  },
-                  'fail': function (res) {
-
-                  }
-                })
-              }
-            },
-            fail: function () {
-
-            },
-            complete: function () {
-              wx.hideLoading()
-            }
-          });
-        }
+    wx.request({
+      url: app.globalData.tiltes + 'get_member_banlance',
+      data: {
+        member_id: app.globalData.member_id
       },
-      fail: function (res) {
-        console.log(res.errMsg)
+      success: function(res){
+        console.log(res)
+        that.setData({
+          order_number: indexs,
+          pmKey: true,
+          balance: res.data.data.balance
+        })
       }
     })
   },

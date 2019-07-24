@@ -13,6 +13,8 @@ Page({
     pwdVal: '',  //输入的密码
     payFocus: true, //余额支付文本框焦点
     order_number: null, //订单号
+    pmKey: false, // switch支付弹窗
+    balance: 0.00, //余额
   },
 
   //输入密码监听
@@ -125,6 +127,39 @@ Page({
       })
     }
   },
+
+
+  // 取消支付
+  hideMethod: function(){
+    this.setData({
+      pmKey: false
+    })
+    wx.request({
+      url: app.globalData.tiltes + 'del_order',
+      data: {
+        parts_order_number: this.data.order_number,
+        order_type: this.data.order_type
+      },
+      method: "post",
+      success: function(res){
+        console.log(res);
+      }
+    })
+  },
+
+  // 选择支付方式
+  selectMethod: function(e){
+    var tapindex = +e.currentTarget.dataset.tapindex;
+    this.setData({
+      pmKey: false
+    })
+    if(tapindex == 0){
+      this.showInputLayer();
+    }else{
+      this.wxpay();
+    }
+  },
+
   // 去支付
   payment: function () {
     var _this = this;
@@ -142,36 +177,23 @@ Page({
         console.log(res);
         var data = res.data;
         _this.setData({
-          order_number: data.data.order_number
+          order_number: data.data.order_number,
+          order_type: data.data.order_type,
+          pmKey: true,
+          balance: data.data.balance
         })
-        if (data.status == 1) {
-          wx.showActionSheet({
-            itemList: ['账户支付', '微信支付'],
-            success(res) {
-              if (res.tapIndex == 0) {
-                // 余额支付
-                _this.showInputLayer();
-              } else {
-                // 调用微信支付
-                _this.wechatPay(data);
-              }
-            }
-          })
-        }
       },
-      fail: function (res) { console.log(res) }
     })
   },
   // 调用微信支付
-  wechatPay: function (data) {
+  wechatPay: function () {
     // 调起支付
-    console.log(data)
     wx.request({
       url: app.globalData.tiltes + 'reward_pay',
       method: 'POST',
       data: {
         member_id: app.globalData.member_id,
-        order_number: data.data.order_number
+        order_number: this.data.order_number
       },
       success: function (res) {
         console.log(res);
@@ -189,15 +211,11 @@ Page({
               // 支付成功 跳转众筹订单
               wx.reLaunch({
                 url: '/storage/pages/zcOrder/zcOrder?title=' + 0,
-                success: function (res) {},
-                fail: function () {},
               })
             },
-            fail(res) { console.log(res) }
           })
         }
       },
-      fail: function (res) { console.log(res); }
     })
   },
 
