@@ -9,6 +9,7 @@ Page({
     url: app.globalData.img_url,
     order:[],
     selected2: false,
+    coupon_mark: false,
   },
   newRedirectto: function (n, e) {
     switch (e) {
@@ -203,7 +204,97 @@ Page({
   
   },
  
+  go_coupon: function () {
+    var that = this;
+    that.setData({
+      coupon_mark: true,
+    }) /*  */
 
+  },
+  checkboxChangess: function (e) {
+    var that = this;
+    wx.request({
+      url: app.globalData.tiltes + 'coupon_minute',
+      data: {
+        coupon_id: e.currentTarget.dataset.id,
+      },
+      method: "post",
+      success: function (res) {
+        if (e.currentTarget.dataset.value == "1") {
+          if (res.data.data.money <= that.data.all_money) {
+            that.setData({
+              coupon_content: "-" + res.data.data.money,
+              coupon_type: e.currentTarget.dataset.value,
+              money: res.data.data.money,
+            });
+          } else {
+            that.setData({
+              coupon_content: "-" + that.data.all_money,
+              coupon_type: e.currentTarget.dataset.value,
+              money: res.that.data.all_money,
+            });
+          }
+        } else if (e.currentTarget.dataset.value == "3") {
+          if (res.data.data.money <= Number(that.data.storage)) {
+            that.setData({
+              coupon_content: "-" + res.data.data.money,
+              coupon_type: e.currentTarget.dataset.value,
+              money: res.data.data.money,
+            });
+          } else {
+            that.setData({
+              coupon_content: "-" + that.data.storage,
+              coupon_type: e.currentTarget.dataset.value,
+              money: that.data.storage,
+            });
+          }
+        } else if (e.currentTarget.dataset.value == "") {
+          that.setData({
+            coupon_content: "-" + res.data.data.money,
+            coupon_type: e.currentTarget.dataset.value,
+            money: res.data.data.money,
+          });
+        }
+
+        that.calculate_money();
+
+      },
+      fail: function () {
+
+      },
+      complete: function () { }
+
+    });
+    that.setData({
+      coupon_mark: false,
+      coupon_id: parseInt(e.currentTarget.dataset.id),
+    })
+  },
+  //  // 计算优惠劵
+  //  coupon:function(){
+  //  if(that.data.coupon_type=="1"){
+  //    that.setData({
+
+  //    })
+  //  }
+  //   that.calculate_money();
+  // },
+  checkboxChanges: function (e) {
+    var that = this;
+    that.setData({
+      is_checked: true
+    })
+  },
+  no_use: function (e) {
+    var that = this;
+    that.setData({
+      coupon_mark: false,
+      coupon_content: "有可适用优惠券",
+      coupon_id: 0,
+      money: 0,
+    })
+    that.calculate_money();
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

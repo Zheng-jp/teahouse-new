@@ -56,7 +56,8 @@
     "sweep/pages/index/index",
     "sweep/pages/sweep_detail/sweep_detail",
     "pages/diy/index/index",
-    "pages/limit_more/limit_more"
+    "pages/limit_more/limit_more",
+    "component/payment/payment"
   ],
   "subpackages": [
     {

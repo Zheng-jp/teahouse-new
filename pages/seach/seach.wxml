@@ -1,7 +1,7 @@
 <!-- pages/seach/seach.wxml -->
 <view class="all">
     <view class="seach_title">
-        <image class="seach_img" src="http://teahouse.siring.cn/seach.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+        <image class="seach_img" src="http://zhihuichacang.com/seach.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
         <input type="text" placeholder="搜索商品" class="seach_input" bindinput='getSearchKey' bindblur='routeToSearchResPage' value="{{searchKey}}" />
         <view class="seach_btu" bindinput='getSearchKey'>搜索</view>
     </view>

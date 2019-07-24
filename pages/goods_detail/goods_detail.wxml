@@ -2,7 +2,7 @@
 <view class='all'>
   <view class='mask' wx:if="{{mask_show}}">
     <view class='select-ser-pop'>
-      <image src='http://teahouse.siring.cn/x.png' mode="widthFix" class='close-select-pop' bindtap="hideFlag" style='hight:44rpx'></image>
+      <image src='http://zhihuichacang.com/x.png' mode="widthFix" class='close-select-pop' bindtap="hideFlag" style='hight:44rpx'></image>
       <view class='select-goods-wrap'>
         <view class='select-goods-img'>
           <image src='{{url}}{{images}}' mode="widthFix"></image>
@@ -13,7 +13,7 @@
           </view>
           <view class='select-goods-spec'>
             <view class='select-goods-stock' style="display:flex;align-items: center;">
-              <image style="width:60rpx;height:30rpx;margin-right:10rpx;" src="http://teahouse.siring.cn/kecun.png" wx:if="{{save == 1}}"></image>
+              <image style="width:60rpx;height:30rpx;margin-right:10rpx;" src="http://zhihuichacang.com/kecun.png" wx:if="{{save == 1}}"></image>
               库存{{stock}}{{specifications}}
             </view>
             <view class='select-goods-sells'>销量{{volume}}{{specifications}}</view>
@@ -78,10 +78,10 @@
     <!-- <text class='texts'>可存</text> -->
     <view class='good_name'>{{goods.goods_name}}</view>
     <view class='selling-point'>
-      <image class="image_bq" style="vertical-align: middle;" src="http://teahouse.siring.cn/kecun.png" wx:if="{{kc == 1}}"></image>
-      <image class="image_bq" src="http://teahouse.siring.cn/hot.png" wx:if="{{hot == 1}}"></image>
-      <image class="image_bq" src="http://teahouse.siring.cn/chuxiao.png" wx:if="{{cx == 1}}"></image>
-      <image class="image_bq" src="http://teahouse.siring.cn/qingchang.png" wx:if="{{qc == 1}}"></image>
+      <image class="image_bq" style="vertical-align: middle;" src="http://zhihuichacang.com/kecun.png" wx:if="{{kc == 1}}"></image>
+      <image class="image_bq" src="http://zhihuichacang.com/hot.png" wx:if="{{hot == 1}}"></image>
+      <image class="image_bq" src="http://zhihuichacang.com/chuxiao.png" wx:if="{{cx == 1}}"></image>
+      <image class="image_bq" src="http://zhihuichacang.com/qingchang.png" wx:if="{{qc == 1}}"></image>
       <view class="texts" wx:for="{{goods.goods_sign}}" wx:key="{{index}}">{{item.text}}</view>
       {{goods.goods_selling}}
     </view>
@@ -104,7 +104,7 @@
       </view>
       <view class='share'>
         <button open-type="share"></button>
-        <image src='http://teahouse.siring.cn/u1492.png' class='footbar_ico'></image>
+        <image src='http://zhihuichacang.com/u1492.png' class='footbar_ico'></image>
         <view class='footbar_text'>分享</view>
       </view>
     </view>
@@ -115,7 +115,7 @@
     </view>
     <view class='other_info'>
       <view class='other_info_list' wx:for="{{goods.server}}" wx:key="{{index}}">
-        <image class="other_info_img" src="http://teahouse.siring.cn/u2151.png" mode="widthFix"></image>
+        <image class="other_info_img" src="http://zhihuichacang.com/u2151.png" mode="widthFix"></image>
         <text class="other_info_text">{{item.text}}</text>
       </view>
     </view>
@@ -125,7 +125,7 @@
       <text>选择：</text>
       <text class='type'>{{select}}</text>
     </view>
-    <image class='more' src='http://teahouse.siring.cn/u1508.png' mode="widthFix"></image>
+    <image class='more' src='http://zhihuichacang.com/u1508.png' mode="widthFix"></image>
   </view>
   <view class='tab-box'>
     <view class="nav bc_white">
@@ -179,17 +179,17 @@
     <view class='ico_view'>
       <view class='service' bindtap="go_index">
         <button class="line"></button>
-        <image src='http://teahouse.siring.cn/index.png' class='footbar_ico'></image>
+        <image src='http://zhihuichacang.com/index.png' class='footbar_ico'></image>
         <view class='footbar_text'>首页</view>
       </view>
       <view class='service'>
         <button open-type="contact" class="line"></button>
-        <image src='http://teahouse.siring.cn/u1510.png' class='footbar_ico'></image>
+        <image src='http://zhihuichacang.com/u1510.png' class='footbar_ico'></image>
         <view class='footbar_text'>客服</view>
       </view>
       <view class='shopping_cart' bindtap="go_car">
         <view class="buy_num">{{buy_num}}</view>
-        <image src='http://teahouse.siring.cn/u1494.png' class='footbar_ico'></image>
+        <image src='http://zhihuichacang.com/u1494.png' class='footbar_ico'></image>
         <view class='footbar_text'>购物车</view>
       </view>
     </view>

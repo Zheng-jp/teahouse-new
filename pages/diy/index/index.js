@@ -520,13 +520,13 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           url: n
         });
         break;
-        case "pages":
-          wx.switchTab({
-            url: n
-          });
-          break;
-        case "pagess":
-        wx.switchTab({
+      case "pages":
+        wx.navigateTo({
+          url: n
+        });
+        break;
+      case "pagess":
+        wx.reLaunch({
           url: n
         });
         break;
@@ -572,6 +572,8 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
   redirectto: function (t) {
     var a = t.currentTarget.dataset.link,
         e = t.currentTarget.dataset.linktype;
+        console.log(a)
+        console.log(e)
     this.newRedirectto(a, e);
   },
   showvideo: function () {

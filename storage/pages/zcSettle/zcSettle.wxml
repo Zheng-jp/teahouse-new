@@ -81,7 +81,16 @@
       </view>
       <view class='order-info-box'>
         <view class='order-info-title'>{{item.goods_info.project_name}}</view>
-        <view class='order-goods-p'>{{item.goods_info.goods_describe}}</view>
+        <view class='order-goods-p'>
+          <block wx:for="{{item.goods_info.bq_arr}}" wx:key="{{index}}">
+          <image class="image_bq" style="vertical-align: middle;" src="http://zhihuichacang.com/kecun.png" wx:if="{{item.kc == 1}}"></image>
+          <image class="image_bq" src="http://zhihuichacang.com/hot.png" wx:if="{{item.hot == 1}}"></image>
+          <image class="image_bq" src="http://zhihuichacang.com/chuxiao.png" wx:if="{{item.cx == 1}}"></image>
+          <image class="image_bq" src="http://zhihuichacang.com/qingchang.png" wx:if="{{item.qc == 1}}"></image>
+          </block>
+          <view class="texts" wx:for="{{item.goods_info.goods_sign}}" wx:key="{{index}}">{{item.text}}</view>
+          {{item.goods_info.goods_describe}}
+          </view>
         <view class='unit-price-quantity'>
           <view class='unit-price'>
             <view class='unit-price-img'>
@@ -112,15 +121,19 @@
   <view class='way'>
     <view class='way_select'>
       <radio-group class="radio-group" bindchange="radioChange">
-        <label class="radio">
+        <label class="radio" wx:if="{{delivery_a == 1}}">
           <radio value="选择直邮" color='#02A0E6' checked='checked' />
           <text class='text_radio'>选择直邮</text>
         </label>
-        <label class="radio">
+        <label class="radio" wx:else="{{delivery_b != 1 && delivery_b == 1}}">
+          <radio value="到店自提" color='#02A0E6' checked='checked' />
+          <text class='text_radio'>到店自提</text>
+        </label>
+        <label class="radio" wx:if="{{delivery_b == 1 && delivery_a == 1}}">
           <radio value="到店自提" color='#02A0E6' />
           <text class='text_radio'>到店自提</text>
         </label>
-        <label class="radio">
+        <label class="radio" wx:if="{{authority_new == 1}}">
           <radio value="选择存茶" color='#02A0E6' />
           <text class='text_radio'>选择存茶</text>
         </label>

@@ -67,7 +67,13 @@ Page({
     unit_all: [], //报价单位
     ever_storage: [], //单个仓储费
     fixiPhone: false, //苹果底部适配,
+    pmKey: false, // switch支付弹窗
   },
+  // 隐藏支付弹窗
+  hideMethod: function(){
+    this.data.pmKey = false;
+  },
+
   // 弹窗
   powerDrawer: function (e) {
     var currentStatu = e.currentTarget.dataset.statu;
@@ -260,9 +266,7 @@ Page({
                   duration: 2000
                 })
               }
-            },
-            fail: function () { },
-            complete: function () { }
+            }
           });
         } else {
           wx.showToast({
@@ -271,16 +275,7 @@ Page({
           })
         }
         wx.navigateTo({
-          url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-          success: function (res) {
-
-          },
-          fail: function () {
-
-          },
-          complete: function () {
-
-          }
+          url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
         })
       });
   },
@@ -305,16 +300,7 @@ Page({
   },
   forget_password: function (e) {
     wx.navigateTo({
-      url: '../forget_password/forget_password',
-      success: function (res) {
-
-      },
-      fail: function () {
-
-      },
-      complete: function () {
-
-      }
+      url: '../forget_password/forget_password'
     })
   },
   // 弹窗
@@ -323,121 +309,6 @@ Page({
     var that = this;
     var num = new Array();
     num = [that.data.goods[0].number];
-    // wx.request({
-    //   url: app.globalData.tiltes + 'order_place',
-    //   data: {
-    //     open_id: app.globalData.gmemberid,
-    //     goods_id: that.data.user[1].good_id,
-    //     goods_standard_id: that.data.user[2].guige,
-    //     order_quantity: that.data.user[3].num,
-    //     address_id: that.data.address_id,
-    //     order_amount: that.data.all_money,
-    //     order_type: that.data.order_type,
-    //     coupon_id: that.data.coupon_id
-
-    //   },
-    //   method: "post",
-
-    //   // header: {
-    //   //   "Content-Type": "json" // 默认值
-
-    //   // },
-    //   success: function (res) {
-    //     var order_number = res.data.data.parts_order_number;
-    //     that.setData({
-    //       order_number: order_number,
-    //     })
-    //     wx.showActionSheet({
-    //       itemList: ['账户支付', '微信支付',],
-    //       success: function (res) {
-
-    //         // 账户支付
-    //         if (res.tapIndex == 0) {
-    //           that.showInputLayer();
-    //         }
-    //         else if (res.tapIndex == 1) {
-    //           wx.request({
-    //             // url: app.globalData.tiltes + 'wxpay',
-    //             url: app.globalData.tiltes + 'wx_order_index',
-    //             data: {
-    //               member_id: app.globalData.member_id,
-    //               order_number: order_number,
-
-    //             },
-    //             dataTypr: 'json',
-    //             method: "post",
-    //             // header: {
-    //             //   "Content-Type": "application/json" // 默认值
-    //             // },
-    //             success: function (res) {
-    //               var result = res;
-
-    //               if (result) {
-    //                 wx.requestPayment({
-    //                   timeStamp: String(result.data.timeStamp),
-    //                   nonceStr: result.data.nonceStr,
-    //                   package: result.data.package,
-    //                   signType: result.data.signType,
-    //                   paySign: result.data.paySign,
-    //                   'success': function (successret) {
-    //                     console.log('支付成功');
-    //                     wx.navigateTo({
-    //                       url: '../order/order?title=' + 0,
-    //                       success: function (res) {
-
-    //                       },
-    //                       fail: function () {
-
-    //                       },
-    //                       complete: function () {
-
-    //                       }
-
-
-    //                     })
-
-    //                   },
-    //                   'fail': function (res) {
-
-    //                   }
-    //                 })
-    //               }
-    //             },
-    //             fail: function () {
-
-    //             },
-    //             complete: function () {
-    //               wx.hideLoading()
-    //             }
-    //           });
-    //         }
-
-    //       },
-    //       fail: function (res) {
-    //         wx.navigateTo({
-    //           url: '../order/order?title=' + 0,
-    //           success: function (res) {
-
-    //           },
-    //           fail: function () {
-
-    //           },
-    //           complete: function () {
-
-    //           }
-
-
-    //         })
-    //       }
-    //     })
-    //   },
-    //   fail: function () {
-
-    //   },
-    //   complete: function () {
-    //   }
-
-    // });
     let taxes1 = Number(that.data.taxes);
     if (that.data.order_type == "1") {
       wx.request({
@@ -495,29 +366,14 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          'success': function (successret) {
+                          success: function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                              success: function (res) {
-
-                              },
-                              fail: function () {
-
-                              },
-                              complete: function () {
-
-                              }
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                             })
-                          },
-                          'fail': function (res) {
-
                           }
                         })
                       }
-                    },
-                    fail: function () {
-
                     },
                     complete: function () {
                       wx.hideLoading()
@@ -527,16 +383,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                  success: function (res) {
-
-                  },
-                  fail: function () {
-
-                  },
-                  complete: function () {
-
-                  }
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                 })
               }
             })
@@ -546,14 +393,9 @@ Page({
               icon: 'none'
             })
           }
-        },
-        fail: function () {
-
-        },
-        complete: function () { }
-
+        }
       });
-    } else if (that.data.order_type == "2") {
+    }else if (that.data.order_type == "2") {
       //到店自提地址
       if(that.data.shop_id != '' && that.data.shop_id != null && that.data.shop_id != undefined) {
 
@@ -611,29 +453,14 @@ Page({
                             package: result.data.package,
                             signType: result.data.signType,
                             paySign: result.data.paySign,
-                            'success': function (successret) {
+                            success: function (successret) {
                               console.log('支付成功');
                               wx.navigateTo({
-                                url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                                success: function (res) {
-  
-                                },
-                                fail: function () {
-  
-                                },
-                                complete: function () {
-  
-                                }
+                                url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                               })
-                            },
-                            'fail': function (res) {
-  
                             }
                           })
                         }
-                      },
-                      fail: function () {
-  
                       },
                       complete: function () {
                         wx.hideLoading()
@@ -643,16 +470,7 @@ Page({
                 },
                 fail: function (res) {
                   wx.navigateTo({
-                    url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                    success: function (res) {
-  
-                    },
-                    fail: function () {
-  
-                    },
-                    complete: function () {
-  
-                    }
+                    url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                   })
                 }
               })
@@ -662,12 +480,7 @@ Page({
                 icon: 'none',
               })
             }
-          },
-          fail: function () {
-  
-          },
-          complete: function () { }
-  
+          }
         });
       } else {
         wx.showToast({
@@ -732,29 +545,14 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          'success': function (successret) {
+                          success: function (successret) {
                             console.log('支付成功');
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                              success: function (res) {
-
-                              },
-                              fail: function () {
-
-                              },
-                              complete: function () {
-
-                              }
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                             })
-                          },
-                          'fail': function (res) {
-
                           }
                         })
                       }
-                    },
-                    fail: function () {
-
                     },
                     complete: function () {
                       wx.hideLoading()
@@ -764,16 +562,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                  success: function (res) {
-
-                  },
-                  fail: function () {
-
-                  },
-                  complete: function () {
-
-                  }
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                 })
               }
             })
@@ -796,106 +585,6 @@ Page({
   buyrepay: function () {
     var that = this;
     // 下单请求
-    // wx.request({
-    //   url: app.globalData.tiltes + 'order_place_by_shopping',
-    //   data: {
-    //     open_id: app.globalData.gmemberid,
-    //     shopping_id: that.data.user[0].shop_id,
-    //     goods_id: that.data.user[1].good_id,
-    //     goods_standard_id: that.data.user[2].guige,
-    //     order_quantity: that.data.user[3].num,
-    //     address_id: that.data.address_id,
-    //     order_amount: that.data.all_money,
-    //     order_type: that.data.order_type,
-    //     coupon_id: that.data.coupon_id
-
-    //   },
-    //   method: "post",
-    //   // header: {
-    //   //   "Content-Type": "json" // 默认值
-
-    //   // },
-    //   success: function (res) {
-    //     var order_number = res.data.data.parts_order_number;
-    //     that.setData({
-    //       order_number: order_number,
-    //     })
-    //     wx.showActionSheet({
-    //       itemList: ['账户支付', '微信支付',],
-    //       success: function (res) {
-    //         // 账户支付
-    //         if (res.tapIndex == 0) {
-
-    //           that.showInputLayer();
-    //         }
-    //         else if (res.tapIndex == 1) {
-    //           wx.request({
-    //             url: app.globalData.tiltes + 'wx_order_index',
-    //             data: {
-    //               member_id: app.globalData.member_id,
-    //               order_number: order_number
-    //             },
-    //             dataTypr: 'json',
-    //             method: "post",
-    //             // header: {
-    //             //   "Content-Type": "application/json" // 默认值
-    //             // },
-    //             success: function (res) {
-    //               var result = res;
-
-    //               if (result) {
-    //                 wx.requestPayment({
-    //                   timeStamp: String(result.data.timeStamp),
-    //                   nonceStr: result.data.nonceStr,
-    //                   package: result.data.package,
-    //                   signType: result.data.signType,
-    //                   paySign: result.data.paySign,
-    //                   'success': function (successret) {
-    //                     wx.navigateTo({
-    //                       url: '../order/order?title=' + 0,
-    //                       success: function (res) {
-
-    //                       },
-    //                       fail: function () {
-
-    //                       },
-    //                       complete: function () {
-
-    //                       }
-
-
-    //                     })
-
-    //                   },
-    //                   'fail': function (res) {
-
-    //                   }
-    //                 })
-    //               }
-    //             },
-    //             fail: function () {
-
-    //             },
-    //             complete: function () {
-    //               wx.hideLoading()
-    //             }
-    //           });
-    //         }
-
-
-    //       },
-    //       fail: function (res) {
-    //         console.log(res.errMsg)
-    //       }
-    //     })
-    //   },
-    //   fail: function () {
-
-    //   },
-    //   complete: function () {
-    //   }
-
-    // });
     let taxes1 = Number(that.data.taxes)
     if (that.data.order_type == "1") {
       wx.request({
@@ -953,28 +642,13 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          'success': function (successret) {
+                          success: function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                              success: function (res) {
-
-                              },
-                              fail: function () {
-
-                              },
-                              complete: function () {
-
-                              }
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                             })
-                          },
-                          'fail': function (res) {
-
                           }
                         })
                       }
-                    },
-                    fail: function () {
-
                     },
                     complete: function () {
                       wx.hideLoading()
@@ -984,16 +658,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                  success: function (res) {
-
-                  },
-                  fail: function () {
-
-                  },
-                  complete: function () {
-
-                  }
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                 })
               }
             })
@@ -1067,28 +732,13 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          'success': function (successret) {
+                          success: function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                              success: function (res) {
-
-                              },
-                              fail: function () {
-
-                              },
-                              complete: function () {
-
-                              }
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                             })
                           },
-                          'fail': function (res) {
-
-                          }
                         })
                       }
-                    },
-                    fail: function () {
-
                     },
                     complete: function () {
                       wx.hideLoading();
@@ -1130,11 +780,6 @@ Page({
             })
           }
         },
-        fail: function () {
-
-        },
-        complete: function () { }
-
       });
     } else {
       wx.request({
@@ -1192,28 +837,13 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          'success': function (successret) {
+                          success: function (successret) {
                             wx.navigateTo({
-                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                              success: function (res) {
-
-                              },
-                              fail: function () {
-
-                              },
-                              complete: function () {
-
-                              }
+                              url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                             })
-                          },
-                          'fail': function (res) {
-
                           }
                         })
                       }
-                    },
-                    fail: function () {
-
                     },
                     complete: function () {
                       wx.hideLoading()
@@ -1223,16 +853,7 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                  success: function (res) {
-
-                  },
-                  fail: function () {
-
-                  },
-                  complete: function () {
-
-                  }
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                 })
               }
             })
@@ -1242,12 +863,7 @@ Page({
               icon: 'none',
             })
           }
-        },
-        fail: function () {
-
-        },
-        complete: function () { }
-
+        }
       });
     }
   },
@@ -1256,7 +872,7 @@ Page({
     var that = this;
     that.setData({
       coupon_mark: true,
-    }) /*  */
+    })
 
   },
   checkboxChangess: function (e) {
@@ -1347,7 +963,6 @@ Page({
   god_money: function () {
     var that = this;
     var all_moneys = 0;
-    // console.log(that.data.goods)
     for (var i = 0; i < that.data.goods.length; i++) {
       all_moneys += Number(that.data.goods[i].grade_price) * Number(that.data.goods[i].number);
     }
@@ -1359,10 +974,6 @@ Page({
   // 计算钱
   calculate_money: function () {
     var that = this;
-    // var all_moneys = 0;
-    // for (var i = 0; i < that.data.goods.length; i++) {
-    //   all_moneys += that.data.goods[i].grade_price * that.data.goods[i].number;
-    // }
     that.god_money();
     var all_moneys_alls = Number(that.data.goods_money_one) + Number(that.data.storage) + Number(that.data.freight) - Number(that.data.money) + Number(that.data.taxes);
     all_moneys_alls = Number(all_moneys_alls).toFixed(2);
@@ -1657,7 +1268,6 @@ Page({
     })
   },
 
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -1683,26 +1293,6 @@ Page({
           let delivery_a, delivery_b, authority, goods, kc, hot, qc, cx, authority_new = 0;
           authority = res.data.authority;
           goods = res.data.data;
-
-          // //单个商品时，存茶的判断
-          // if (goods.length < 2) {
-          //   authority = 0;
-          //   if (goods[0].special_info != undefined && goods[0].special_info != null && goods[0].special_info != '') {
-          //     if (goods[0].special_info.save == 1) {
-          //       kc = 1;
-          //       authority = 1;
-          //     }
-          //   }
-
-          //   for (let i = 0; i < goods.length; i++) {
-          //     for (let o in goods[i].goods_info.goods_sign) {
-          //       if (goods[i].goods_info.goods_sign[o].text == '可存' && goods[i].goods_info.goods_sign[o].check == '1' && goods[i].goods_info.goods_sign[o].check != undefined) {
-
-          //       }
-          //     }
-          //   }
-
-          // }
           for (let o = 0; o < goods.length; o++) {
             let arr = [], bq_arr = [], goods_sign = goods[o].goods_info.goods_sign, bq_dgg = {};
             //多规格的可存
@@ -1733,11 +1323,8 @@ Page({
                 arr.push(goods_sign[i]);
               }
             }
-
             res.data.data[o].goods_info.goods_sign = arr;
             res.data.data[o].goods_info.bq_arr = bq_arr;
-            // console.log(res.data.data[0].goods_info.goods_delivery.indexOf('1'))
-
           }
           if (goods.length > 2) {
             delivery_a = 1;
@@ -1746,8 +1333,6 @@ Page({
             if (res.data.data[0].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1;
             if (res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;
           }
-
-
           that.setData({
             goods: res.data.data,
             goods_standby: res.data.data,
@@ -1787,20 +1372,10 @@ Page({
                 coupon_show: res.data.status,
                 coupon_order: res.data.data,
               });
-            },
-            fail: function () {
-
-            },
-            complete: function () { }
+            }
           });
         }
-
-      },
-      fail: function () {
-
-      },
-      complete: function () { }
-
+      }
     });
     // 判读从哪个页面进来
     var pages = getCurrentPages();
@@ -1839,6 +1414,7 @@ Page({
     // that.setData({
     //   taxes_id: -1
     // })
+    
     //苹果底部适配
     wx.getSystemInfo({
       success: function (res) {
@@ -1893,20 +1469,10 @@ Page({
                 })
                 that.money_freight();
                 that.calculate_money();
-              },
-              fail: function () {
-
-              },
-              complete: function () { }
-
+              }
             });
           }
-        },
-        fail: function () {
-
-        },
-        complete: function () { }
-
+        }
       });
     } else {
       wx.request({
@@ -1945,20 +1511,10 @@ Page({
                 })
                 that.money_freight();
                 that.calculate_money();
-              },
-              fail: function () {
-
-              },
-              complete: function () { }
-
+              }
             });
           }
         },
-        fail: function () {
-
-        },
-        complete: function () { }
-
       });
     }
     if (sava_id == '') {
@@ -1986,12 +1542,7 @@ Page({
             that.money_storages();
             that.calculate_money();
           }
-        },
-        fail: function () {
-
-        },
-        complete: function () { }
-
+        }
       });
     } else {
       wx.request({
@@ -2019,12 +1570,7 @@ Page({
             that.money_storages();
             that.calculate_money();
           }
-        },
-        fail: function () {
-
-        },
-        complete: function () { }
-
+        }
       });
     }
     if (shop_id == '') {
@@ -2047,12 +1593,7 @@ Page({
             shop_address: shop_address,
             shop_id: shop_id,
           });
-        },
-        fail: function () {
-
-        },
-        complete: function () { }
-
+        }
       });
     } else {
       wx.request({
@@ -2074,16 +1615,11 @@ Page({
             shop_address: shop_address,
             shop_id: shop_id,
           });
-        },
-        fail: function () {
-
-        },
-        complete: function () { }
+        }
 
       });
     }
     if (receipt_id == '') {
-      // console.log('-----------------------------------------------')
       wx.request({
         url: app.globalData.tiltes + 'approve_corporation',
         data: {
@@ -2112,12 +1648,6 @@ Page({
                   rate: res.data.data.scale,
                   company: res.data.data.company
                 })
-              },
-              fail: function () {
-
-              },
-              complete: function () {
-
               }
             })
           } else {
@@ -2147,12 +1677,6 @@ Page({
                         rate: res.data.data.scale,
                         company: res.data.data.company
                       })
-                    },
-                    fail: function () {
-
-                    },
-                    complete: function () {
-
                     }
                   })
                 } else {
@@ -2162,21 +1686,9 @@ Page({
                     company: ''
                   })
                 }
-              },
-              fail: function () {
-
-              },
-              complete: function () {
-
               }
             })
           }
-        },
-        fail: function () {
-
-        },
-        complete: function () {
-
         }
       })
     } else {
@@ -2198,31 +1710,10 @@ Page({
           if (that.data.taxes_select == 1) {
             that.invi();
           }
-        },
-        fail: function () {
-
-        },
-        complete: function () {
-
         }
       })
     }
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -2231,14 +1722,6 @@ Page({
       wx.stopPullDownRefresh();
     }, 1000)
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
   /**
    * 用户点击右上角分享
    */
