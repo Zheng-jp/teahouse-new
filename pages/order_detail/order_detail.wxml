@@ -6,14 +6,14 @@
       <view class="coupon_content_left">您有以下可适用优惠券</view>
       <view class="coupon_content_right" bindtap="no_use">
         暂时不使用优惠券
-        <image class="retrue_ico" src="http://teahouse.siring.cn/u2014.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+        <image class="retrue_ico" src="http://zhihuichacang.com/u2014.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
       </view>
     </view>
     <view class='order_list' wx:for="{{coupon_order}}" data-id="{{item.id}}" bindtap="checkboxChangess" data-value="{{item.suit_price[0]}}">
       <view class='order_list_content'>
         <checkbox value="{{item.id}}" checked="{{item.checked}}" />
         <view class="coupon_box">
-          <image class="coupon_box_img" src="http://teahouse.siring.cn/u11123.png" mode="widthFix"></image>
+          <image class="coupon_box_img" src="http://zhihuichacang.com/u11123.png" mode="widthFix"></image>
           <view class="coupon_money_box">
             <view>
               <text class="money">{{item.money}}</text>
@@ -38,7 +38,7 @@
 <view class="all">
 <view wx:if="{{order.order_type==1}}">
     <view class="address">
-        <image src="http://teahouse.siring.cn/u250.png" mode="widthFix"  class="address_ico"/>
+        <image src="http://zhihuichacang.com/u6095.png" mode="widthFix"  class="address_ico"/>
         <view class="address_content">
             <view class="name_phone">
                 <text class="name">{{order.name}} </text>
@@ -56,14 +56,14 @@
             <view class="repay_time"> 付款时间：{{order.pay_time}}</view>
         </view>
         <view class="left">
-                <image class="zy_ico" src="http://teahouse.siring.cn/u8165.png" mode="widthFix"></image>
+                <image class="zy_ico" src="http://zhihuichacang.com/u8165.png" mode="widthFix"></image>
                 <text class="zy_text">直邮</text>
         </view>
     </view>
 </view>
 <view wx:elif="{{order.order_type==2}}">
     <view class="address">
-        <image src="http://teahouse.siring.cn/u250.png" mode="widthFix"  class="address_ico"/>
+        <image src="http://zhihuichacang.com/u6095.png" mode="widthFix"  class="address_ico"/>
         <view class="address_content">
             <view class="lift">
                 <text>自提点：</text>     
@@ -84,14 +84,14 @@
             <view class="repay_time"> 付款时间：{{order.pay_time}}</view>
         </view>
         <view class="left">
-                <image class="zy_ico" src="http://teahouse.siring.cn/u8483.png" mode="widthFix"></image>
+                <image class="zy_ico" src="http://zhihuichacang.com/u8483.png" mode="widthFix"></image>
                 <text class="zy_text">到店自提</text>
         </view>
     </view>
 </view>
 <view wx:elif="{{order.order_type==3}}">
     <view class="address">
-        <image src="http://teahouse.siring.cn/u250.png" mode="widthFix"  class="address_ico"/>
+        <image src="http://zhihuichacang.com/u6095.png" mode="widthFix"  class="address_ico"/>
         <view class="address_content">
             <view class="lift">
                 <text>仓储点： </text>
@@ -108,7 +108,7 @@
             <view class="repay_time"> 付款时间：{{order.pay_time}}</view>
         </view>
         <view class="left">
-                <image class="zy_ico" src="http://teahouse.siring.cn/u7044.png" mode="widthFix"></image>
+                <image class="zy_ico" src="http://zhihuichacang.com/u7044.png" mode="widthFix"></image>
                 <text class="zy_text">存茶</text>
         </view>
     </view>

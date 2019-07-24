@@ -83,10 +83,10 @@
         <view class='order-info-title'>{{item.goods_info.project_name}}</view>
         <view class='order-goods-p'>
           <block wx:for="{{item.goods_info.bq_arr}}" wx:key="{{index}}">
-          <image class="image_bq" style="vertical-align: middle;" src="http://teahouse.siring.cn/kecun.png" wx:if="{{item.kc == 1}}"></image>
-          <image class="image_bq" src="http://teahouse.siring.cn/hot.png" wx:if="{{item.hot == 1}}"></image>
-          <image class="image_bq" src="http://teahouse.siring.cn/chuxiao.png" wx:if="{{item.cx == 1}}"></image>
-          <image class="image_bq" src="http://teahouse.siring.cn/qingchang.png" wx:if="{{item.qc == 1}}"></image>
+          <image class="image_bq" style="vertical-align: middle;" src="http://zhihuichacang.com/kecun.png" wx:if="{{item.kc == 1}}"></image>
+          <image class="image_bq" src="http://zhihuichacang.com/hot.png" wx:if="{{item.hot == 1}}"></image>
+          <image class="image_bq" src="http://zhihuichacang.com/chuxiao.png" wx:if="{{item.cx == 1}}"></image>
+          <image class="image_bq" src="http://zhihuichacang.com/qingchang.png" wx:if="{{item.qc == 1}}"></image>
           </block>
           <view class="texts" wx:for="{{item.goods_info.goods_sign}}" wx:key="{{index}}">{{item.text}}</view>
           {{item.goods_info.goods_describe}}

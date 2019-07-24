@@ -19,29 +19,29 @@ Page({
     interval: '4000',
     autoplay: 'true',
     // 小喇叭图片地址
-    laba: 'http://teahouse.siring.cn/u206.png',
+    laba: 'http://zhihuichacang.com/u206.png',
     // 关闭图片地址
-    close: 'http://teahouse.siring.cn/close.png',
+    close: 'http://zhihuichacang.com/close.png',
     // 更多图片地址
-    more: 'http://teahouse.siring.cn/more2.png',
+    more: 'http://zhihuichacang.com/more2.png',
     nav: [{
-        url: 'http://teahouse.siring.cn/u103.png',
+        url: 'http://zhihuichacang.com/u103.png',
         text: '商品分类'
       },
       {
-        url: 'http://teahouse.siring.cn/u266.png',
+        url: 'http://zhihuichacang.com/u266.png',
         text: '我的消息'
       },
       {
-        url: 'http://teahouse.siring.cn/u105.png',
+        url: 'http://zhihuichacang.com/u105.png',
         text: '买茶入仓'
       },
       {
-        url: 'http://teahouse.siring.cn/u107.png',
+        url: 'http://zhihuichacang.com/u107.png',
         text: '出仓提货'
       },
       {
-        url: 'http://teahouse.siring.cn/u242.png',
+        url: 'http://zhihuichacang.com/u242.png',
         text: '茶山走势'
       },
 

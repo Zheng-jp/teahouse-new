@@ -9,6 +9,6 @@
             <text class="contract_num">C{{index + 1}}.</text>
             <text class="contract_name">《{{item.title}}》</text>
         </view>
-        <image class="more" src="http://teahouse.siring.cn/more.png" mode="aspectFill"></image>
+        <image class="more" src="http://zhihuichacang.com/more.png" mode="aspectFill"></image>
     </view>
 </view>
