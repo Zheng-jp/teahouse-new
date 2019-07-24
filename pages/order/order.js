@@ -393,6 +393,42 @@ Page({
       url: '../order_detail/order_detail?title=' + id + "&status=" + status,
     })
   },
+  // 申请售后
+  go_apply_after_sales: function (event) {
+    var that = this;
+    var item = event.currentTarget.dataset.id;
+    wx.request({
+      url: app.globalData.tiltes + 'after_sale_is_set',
+      data: {
+        order_id:item,
+      },
+      method: "post",
+      success: function (res) {
+       if(res.data.status=="1"){
+         wx.navigateTo({
+          url: '../apply_after_sales/apply_after_sales?title=' + event.currentTarget.dataset.id,
+          success: function (res) {
+          
+          },
+          fail: function () {
+          
+          },
+        })
+       }
+      },
+      fail: function () {
+      },
+      complete: function (res) {
+        wx.showToast({
+          title:res.data.info,
+          icon:'none',
+        });
+      }
+  
+    });
+    
+  
+  },
   // 付款
   repay: function(e) {
     var that = this;

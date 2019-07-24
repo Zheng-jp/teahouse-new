@@ -82,13 +82,15 @@
       <view class='order-info-box'>
         <view class='order-info-title'>{{item.goods_info.goods_name}}</view>
         <view class='order-goods-p'>
-        <block wx:for="{{item.goods_info.bq_arr}}" wx:key="{{index}}">
-          <image class="image_bq" style="vertical-align: middle;" src="http://teahouse.siring.cn/kecun.png" wx:if="{{item.kc == 1}}"></image>
-          <image class="image_bq" src="http://teahouse.siring.cn/hot.png" wx:if="{{item.hot == 1}}"></image>
-          <image class="image_bq" src="http://teahouse.siring.cn/chuxiao.png" wx:if="{{item.cx == 1}}"></image>
-          <image class="image_bq" src="http://teahouse.siring.cn/qingchang.png" wx:if="{{item.qc == 1}}"></image>
+          <block wx:for="{{item.goods_info.bq_arr}}" wx:key="{{index}}">
+            <image class="image_bq" style="vertical-align: middle;" src="http://teahouse.siring.cn/kecun.png" wx:if="{{item.kc == 1}}"></image>
+            <image class="image_bq" src="http://teahouse.siring.cn/hot.png" wx:if="{{item.hot == 1}}"></image>
+            <image class="image_bq" src="http://teahouse.siring.cn/chuxiao.png" wx:if="{{item.cx == 1}}"></image>
+            <image class="image_bq" src="http://teahouse.siring.cn/qingchang.png" wx:if="{{item.qc == 1}}"></image>
           </block>
-          <view class="texts" wx:for="{{item.goods_info.goods_sign}}" wx:key="{{index}}">{{item.text}}</view>
+          <view class="texts" wx:for="{{item.goods_info.goods_sign}}" wx:key="{{index}}">
+            {{item.text}}
+          </view>
           {{item.goods_info.goods_selling}}
         </view>
         <view class='unit-price-quantity'>
@@ -96,18 +98,20 @@
             <view class='unit-price-img'>
               <image src='http://teahouse.siring.cn/img1.png' mode="scaleToFill"></image>
             </view>
-            
             <view class='unit-price-p text_red' wx:if="{{item.goods_info.goods_standard==0}}">
               ￥{{item.grade_price}}/{{item.goods_info.monomer}}
             </view>
             <view class='unit-price-p text_red' wx:else>
               ￥{{item.grade_price}}/{{item.special_info.offer}}
             </view>
-            <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number > 0}}">限购数量：{{item.limit_number}}</view>
-            <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number == 0}}">不限购</view>
-             <view class='quantity-p text_red'>×{{item.number}}</view>
+            <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number > 0}}">
+              限购数量：{{item.limit_number}}
+            </view>
+            <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number == 0}}">
+              不限购
+            </view>
           </view>
-         
+          <view class='quantity-p text_red'>×{{item.number}}</view>
         </view>
       </view>
     </view>
@@ -118,7 +122,7 @@
         <view class='num'>
           <input style=" {{minusStatus}}" type="number" placeholder="" value="{{item.number}}" bindinput='getSearchKey' bindblur='shift_out' />
         </view>
-        <view class='add ' bindtap="bindPlus"    >+</view>
+        <view class='add ' bindtap="bindPlus">+</view>
       </view>
     </view>
   </view>
@@ -326,7 +330,6 @@
     <view class='buts' bindtap='buyrepay' wx:else>立即支付</view>
   </view>
 </view>
-
 <!-- 支付弹窗 -->
 <view class="mask" wx:if="{{pmKey}}"></view>
 <view class="pm-content" wx:if="{{pmKey}}">

@@ -22,7 +22,7 @@
 .good_price{
    display: flex;
    justify-content: space-between;
-   width: 474rpx;
+   /* width: 474rpx; */
 }
 .price{
   display: flex;
@@ -437,5 +437,5 @@ text-align: center;
 }
 .text_red{
   padding-top:10rpx;
-  margin-right:50rpx;
+  /* margin-right:50rpx; */
 }
