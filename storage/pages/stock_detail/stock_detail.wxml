@@ -9,7 +9,7 @@
     </view>
     <view class="tea-info-container">
         <view class="left-img">
-            <image src="./img/img1.png" />
+            <image src="{{url}}{{item.goods_image}}" />
         </view>
         <view class="right-info">
             <view class="tea-name">{{item.goods_name}}</view>
@@ -31,23 +31,30 @@
     </view>
     <view class="other-info">
         <view class="other-item">
+            <view class="item-key">初始订单：</view>
+            <view class="item-value">{{item.parts_order_number}}</view>
+        </view>
+        <view class="other-item">
             <view class="item-key">生产日期：</view>
             <view class="item-value">{{item.date}}</view>
+        </view>
+        <view class="other-item">
+            <view class="item-key">入仓日期：</view>
+            <view class="item-value">{{item.pay_time}}</view>
         </view>
         <view class="other-item">
             <view class="item-key">到期日期：</view>
             <view class="item-value">{{item.end_time}}</view>
         </view>
         <view class="other-item">
-            <view class="item-key">初始订单：</view>
-            <view class="item-value">{{item.parts_order_number}}</view>
-        </view>
-        <view class="other-item">
             <view class="item-key">实时库存：</view>
             <view class="item-value stock">
-                <text wx:if="{{item.num[0]}}">{{item.num[0]}}{{item.unit[0]}};</text>
-                <text wx:if="{{item.num[1]}}">{{item.num[1]}}{{item.unit[1]}};</text>
-                <text wx:if="{{item.num[2]}}">{{item.num[2]}}{{item.unit[2]}}</text>
+                <text class="rect" wx:if="{{item.store_number[0]}}">{{item.store_number[0]}}</text>
+                <text>{{item.store_number[1]}}</text>
+                <text class="rect" wx:if="{{item.store_number[2]}}">{{item.store_number[2]}}</text>
+                <text>{{item.store_number[3]}}</text>
+                <text class="rect" wx:if="{{item.store_number[4]}}">{{item.store_number[4]}}</text>
+                <text>{{item.store_number[5]}}</text>
                 <!-- <image src="./img/icon2.png" class="icon-more" /> -->
             </view>
         </view>
@@ -55,20 +62,16 @@
             <view class="item-key">出仓属性：<text class="explain">?</text></view>
             <view class="item-value">整存整取</view>
         </view> -->
-        <view class="other-item">
-            <view class="item-key">入仓日期：</view>
-            <view class="item-value">{{item.end_time}}</view>
-        </view>
         <!-- <view class="other-item">
             <view class="item-key">换手锁定：<text class="explain">?</text></view>
             <view class="item-value">2019.03.05</view>
         </view> -->
         <view class="other-item">
-            <view class="item-key">商品规格：<text class="explain">?</text></view>
+            <view class="item-key">包装规格：<text class="explain">?</text></view>
             <view class="item-value">
-              <text wx:if="{{item.num[0]}}">{{item.num[0]}}/{{item.unit[0]}}</text>
-              <text wx:if="{{item.num[1]}}">{{item.num[1]}}/{{item.unit[1]}}</text>
-              <text wx:if="{{item.num[2]}}">{{item.num[2]}}/{{item.unit[2]}}</text>
+              <text wx:if="{{item.num[0]}}">{{item.num[0]}}{{item.unit[0]}}</text>
+              <text wx:if="{{item.num[1]}}">={{item.num[1]}}{{item.unit[1]}}</text>
+              <text wx:if="{{item.num[2]}}">={{item.num[2]}}{{item.unit[2]}}</text>
             </view>
         </view>
         <view class="other-item">

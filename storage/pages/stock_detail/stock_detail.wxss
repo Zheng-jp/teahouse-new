@@ -23,7 +23,8 @@
 .other-item .item-key .explain{color: #fff; font-size: 32rpx; display: inline-block; background-color: #bbb; text-align: center; height: 36rpx; width: 36rpx; line-height: 36rpx; border-radius: 50%;}
 .other-item .item-value{font-size: 32rpx; color: #333;}
 .other-item .item-value .icon-more{width: 15rpx; height: 25rpx;}
-.other-item .item-value.stock{color: #93291E;}
+.other-item .item-value.stock{color: #821006; font-size: 12px;}
+.other-item .item-value.stock .rect{display: inline-block; background-color: #821006; color: #fff; border-radius: 3px; padding: 2px 10px;}
 .other-item .item-value .temperature{width: 40rpx; height: 40rpx;}
 .other-item .item-value .humidity{width: 40rpx; height: 40rpx;}
 .chart-img{width: 750rpx; height: 500rpx;}

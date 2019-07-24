@@ -56,6 +56,7 @@ Page({
         if(res.data.status == 1){
           var dataArr = [];
           res.data.data.end_time = app.formatDate(res.data.data.end_time);
+          res.data.data.pay_time = app.formatDate(res.data.data.pay_time);
           dataArr.push(res.data.data);
           _this.setData({
             dataObj: dataArr

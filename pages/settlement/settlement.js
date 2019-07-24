@@ -70,7 +70,7 @@ Page({
     pmKey: false, // switch支付弹窗
   },
   // 隐藏支付弹窗
-  hideMethod: function(){
+  hideMethod: function () {
     this.data.pmKey = false;
   },
 
@@ -110,7 +110,6 @@ Page({
       let arr = [], unit = [], goods_id = [], goods_standard_id = [], goods_num = [], shoppinds_id = [];
       //购物车结算时，剔除不可存茶商品
       if (goods.length > 1) {
-
         for (let i = 0; i < goods.length; i++) {
           for (let o in goods[i].goods_info.bq_arr) {
             if (goods[i].goods_info.bq_arr[o].kc == 1 && goods[i].goods_info.bq_arr[o].kc != null && goods[i].goods_info.bq_arr[o].kc != undefined) {
@@ -146,8 +145,8 @@ Page({
           goods_standard_id.push(goods[0].special_info.id);
         }
         goods_num.push(goods[0].number);
-        if(that.data.user.length < 5) {
-            shoppinds_id.push(that.data.user[0].shop_id)
+        if (that.data.user.length < 5) {
+          shoppinds_id.push(that.data.user[0].shop_id)
         } else {
           shoppinds_id.push(that.data.user[4].shopAddids[0].shop_id)
         }
@@ -245,12 +244,6 @@ Page({
                     passwords: val,
                   },
                   method: "post",
-                  success: function (res) {
-
-                  },
-                  fail: function () {
-
-                  },
                   complete: function (res) {
                     wx.showToast({
                       icon: "none",
@@ -303,6 +296,8 @@ Page({
       url: '../forget_password/forget_password'
     })
   },
+
+
   // 弹窗
   // 立即支付
   repay: function () {
@@ -330,7 +325,6 @@ Page({
           uniacid: app.globalData.uniacid,
           freight: that.data.freight,
           storage: that.data.storage
-
         },
         method: "post",
         success: function (res) {
@@ -348,7 +342,6 @@ Page({
                   that.showInputLayer();
                 } else if (res.tapIndex == 1) {
                   wx.request({
-                    // url: app.globalData.tiltes + 'wxpay',
                     url: app.globalData.tiltes + 'wx_order_index',
                     data: {
                       member_id: app.globalData.member_id,
@@ -358,7 +351,6 @@ Page({
                     method: "post",
                     success: function (res) {
                       var result = res;
-
                       if (result) {
                         wx.requestPayment({
                           timeStamp: String(result.data.timeStamp),
@@ -366,7 +358,7 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          success: function (successret) {
+                          success: function () {
                             console.log('支付成功');
                             wx.navigateTo({
                               url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
@@ -380,11 +372,6 @@ Page({
                     }
                   });
                 }
-              },
-              fail: function (res) {
-                wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
-                })
               }
             })
           } else {
@@ -395,10 +382,9 @@ Page({
           }
         }
       });
-    }else if (that.data.order_type == "2") {
+    } else if (that.data.order_type == "2") {
       //到店自提地址
-      if(that.data.shop_id != '' && that.data.shop_id != null && that.data.shop_id != undefined) {
-
+      if (that.data.shop_id != '' && that.data.shop_id != null && that.data.shop_id != undefined) {
         wx.request({
           url: app.globalData.tiltes + 'order_places',
           data: {
@@ -416,8 +402,8 @@ Page({
             receipt_price: taxes1,
             receipt_status: that.data.taxes_select,
             uniacid: app.globalData.uniacid,
-          freight: that.data.freight,
-          storage: that.data.storage
+            freight: that.data.freight,
+            storage: that.data.storage
           },
           method: "post",
           success: function (res) {
@@ -430,13 +416,12 @@ Page({
                 itemList: ['账户支付', '微信支付',],
                 itemColor: '#0099ff',
                 success: function (res) {
-  
+
                   // 账户支付
                   if (res.tapIndex == 0) {
                     that.showInputLayer();
                   } else if (res.tapIndex == 1) {
                     wx.request({
-                      // url: app.globalData.tiltes + 'wxpay',
                       url: app.globalData.tiltes + 'wx_order_index',
                       data: {
                         member_id: app.globalData.member_id,
@@ -467,11 +452,6 @@ Page({
                       }
                     });
                   }
-                },
-                fail: function (res) {
-                  wx.navigateTo({
-                    url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
-                  })
                 }
               })
             } else {
@@ -498,7 +478,6 @@ Page({
           goods_standard_id: that.data.goods_standard_id,
           order_quantity: num,
           unit: that.data.unit_all,
-
           address_id: that.data.address_id,
           order_amount: that.data.all_money,
           order_type: that.data.order_type,
@@ -510,7 +489,6 @@ Page({
           uniacid: app.globalData.uniacid,
           freight: that.data.freight,
           storage: that.data.storage
-
         },
         method: "post",
         success: function (res) {
@@ -528,7 +506,6 @@ Page({
                   that.showInputLayer();
                 } else if (res.tapIndex == 1) {
                   wx.request({
-                    // url: app.globalData.tiltes + 'wxpay',
                     url: app.globalData.tiltes + 'wx_order_index',
                     data: {
                       member_id: app.globalData.member_id,
@@ -559,11 +536,6 @@ Page({
                     }
                   });
                 }
-              },
-              fail: function (res) {
-                wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
-                })
               }
             })
           } else {
@@ -642,7 +614,7 @@ Page({
                           package: result.data.package,
                           signType: result.data.signType,
                           paySign: result.data.paySign,
-                          success: function (successret) {
+                          success: function (res) {
                             wx.navigateTo({
                               url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                             })
@@ -655,11 +627,6 @@ Page({
                     }
                   });
                 }
-              },
-              fail: function (res) {
-                wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
-                })
               }
             })
           } else {
@@ -697,7 +664,6 @@ Page({
           uniacid: app.globalData.uniacid,
           freight: that.data.freight,
           storage: that.data.storage
-
         },
         method: "post",
         success: function (res) {
@@ -710,7 +676,7 @@ Page({
               itemList: ['账户支付', '微信支付',],
               itemColor: '#0099ff',
               success: function (res) {
-                
+
                 // 账户支付
                 if (res.tapIndex == 0) {
                   that.showInputLayer();
@@ -742,26 +708,9 @@ Page({
                     },
                     complete: function () {
                       wx.hideLoading();
-                      // wx.navigateTo({
-                      //   url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                      //   success: function (res) {
-
-                      //   },
-                      //   fail: function () {
-
-                      //   },
-                      //   complete: function () {
-
-                      //   }
-                      // })
                     }
                   });
                 }
-              },
-              fail: function (res) {
-                wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
-                })
               }
             })
           } else {
@@ -841,11 +790,6 @@ Page({
                     }
                   });
                 }
-              },
-              fail: function (res) {
-                wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
-                })
               }
             })
           } else {
@@ -1024,17 +968,17 @@ Page({
   },
 
   //获取input文本
-  getSearchKey: function(e) {
-      this.setData({
-        searchKey: e.detail.value
-      })
+  getSearchKey: function (e) {
+    this.setData({
+      searchKey: e.detail.value
+    })
   },
   //修改数量
-  shift_out: function() {
+  shift_out: function () {
     let that = this;
     let num = this.data.goods[0].number;
     let goods = this.data.goods;
-    if(that.data.searchKey <= 0 || that.data.searchKey == '' || that.data.searchKey == null || that.data.searchKey == undefined) {
+    if (that.data.searchKey <= 0 || that.data.searchKey == '' || that.data.searchKey == null || that.data.searchKey == undefined) {
       goods[0].number = 1;
       that.setData({
         goods: goods
@@ -1042,10 +986,10 @@ Page({
     } else {
       if (goods[0].is_limit == 1 && Number(goods[0].limit_number) > 0) {
         if (that.data.searchKey > Number(goods[0].limit_number)) {
-            goods[0].number = goods[0].limit_number;
-            that.setData({
-              goods: goods
-            });
+          goods[0].number = goods[0].limit_number;
+          that.setData({
+            goods: goods
+          });
         }
       } else {
         goods[0].number = that.data.searchKey;
@@ -1056,14 +1000,14 @@ Page({
     }
     that.invi();
     if (that.data.order_type == "1") {
-          that.money_freight();
-          that.calculate_money();
-        } else if (that.data.order_type == "3") {
-          that.money_storages();
-          that.calculate_money();
-        } else {
-          that.calculate_money();
-        }
+      that.money_freight();
+      that.calculate_money();
+    } else if (that.data.order_type == "3") {
+      that.money_storages();
+      that.calculate_money();
+    } else {
+      that.calculate_money();
+    }
   },
 
   /* 点击减号 */
@@ -1122,27 +1066,27 @@ Page({
         }
       }
     } else {
-        // 不作过多考虑自增1  
-        num++;
-        // 只有大于一件的时候，才能normal状态，否则disable状态  
-        var minusStatus = num < 1 ? 'disabled' : 'normal';
-    
-        // 将数值与状态写回  
-        goods[0].number = num;
-        this.setData({
-          goods: goods,
-          minusStatus: minusStatus
-        });
-        that.invi();
-        if (that.data.order_type == "1") {
-          that.money_freight();
-          that.calculate_money();
-        } else if (that.data.order_type == "3") {
-          that.money_storages();
-          that.calculate_money();
-        } else {
-          that.calculate_money();
-        }
+      // 不作过多考虑自增1  
+      num++;
+      // 只有大于一件的时候，才能normal状态，否则disable状态  
+      var minusStatus = num < 1 ? 'disabled' : 'normal';
+
+      // 将数值与状态写回  
+      goods[0].number = num;
+      this.setData({
+        goods: goods,
+        minusStatus: minusStatus
+      });
+      that.invi();
+      if (that.data.order_type == "1") {
+        that.money_freight();
+        that.calculate_money();
+      } else if (that.data.order_type == "3") {
+        that.money_storages();
+        that.calculate_money();
+      } else {
+        that.calculate_money();
+      }
     }
 
   },
@@ -1405,7 +1349,7 @@ Page({
     // that.setData({
     //   taxes_id: -1
     // })
-    
+
     //苹果底部适配
     wx.getSystemInfo({
       success: function (res) {
