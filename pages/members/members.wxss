@@ -172,6 +172,10 @@ align-items: center;
   justify-content: space-between;
   font-size: 24rpx;
 }
+.tik{
+  display: flex;
+
+}
 .naext{
   width:160rpx;
   font-size:28rpx;
