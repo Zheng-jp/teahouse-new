@@ -741,14 +741,6 @@ Page({
                       }
                     },
                     complete: function () {
-<<<<<<< HEAD
-                      wx.navigateTo({
-                        url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
-                      })
-                    }
-                  });
-                }
-=======
                       wx.hideLoading();
                       // wx.navigateTo({
                       //   url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
@@ -768,18 +760,8 @@ Page({
               },
               fail: function (res) {
                 wx.navigateTo({
-                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id,
-                  success: function (res) {
-
-                  },
-                  fail: function () {
-
-                  },
-                  complete: function () {
-
-                  }
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
                 })
->>>>>>> 1222e54b5794f04e72729532a13497db293af316
               }
             })
           } else {
