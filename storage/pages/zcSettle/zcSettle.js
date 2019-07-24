@@ -957,10 +957,52 @@ Page({
       },
       method: "POST",
       success: function (res) {
-        // console.log(res.data.enter_all_id)
+        let delivery_a, delivery_b, authority, goods, authority_new = 0;
+        goods = res.data.data;
+        // for (let o = 0; o < goods.length; o++) {
+          let arr = [], bq_arr = [], goods_sign = goods[0].goods_info.goods_sign, bq_dgg = {};
+          // //多规格的可存
+          // if (goods[o].special_info != undefined && goods[o].special_info != null && goods[o].special_info != '') {
+          //   if (goods[o].special_info.save == 1) {
+          //     authority_new = 1;
+          //     bq_dgg.kc = 1;
+          //     bq_arr.push(bq_dgg);
+          //   }
+          // }
+          //正常规
+          for (let i in goods_sign) {
+            let bq = {};
+            if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              authority_new = 1;
+              bq.kc = 1;
+              bq_arr.push(bq);
+            } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              bq.hot = 1;
+              bq_arr.push(bq);
+            } else if (goods_sign[i].text == '促销' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              bq.cx = 1;
+              bq_arr.push(bq);
+            } else if (goods_sign[i].text == '清仓' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              bq.qc = 1;
+              bq_arr.push(bq);
+            } else if (goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+              arr.push(goods_sign[i]);
+            }
+          }
+
+          res.data.data[0].goods_info.goods_sign = arr;
+          res.data.data[0].goods_info.bq_arr = bq_arr;
+
+          if (res.data.data[0].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1;//直邮
+          if (res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;//自提
+          // console.log(delivery_a,delivery_b,authority_new)
+        // }
         _this.setData({
           goods: res.data.data,
-          enter_all_id: res.data.enter_all_id
+          enter_all_id: res.data.enter_all_id,
+          authority_new: authority_new,
+          delivery_a: delivery_a,
+          delivery_b: delivery_b,
         });
         var all_moneys = 0;
         // console.log(_this.data.goods);
