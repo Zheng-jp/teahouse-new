@@ -102,7 +102,7 @@
       <!-- <text class="icon-more"> > </text> -->
       <image src="./img/icon1.png" class="icon-more" />
       <text wx:if="{{!defaultAddress}}">请选择邮寄地址</text>
-      <view wx:else>
+      <view wx:else style="font-size: 12px;">
         <view>
           <text>{{defaultAddress.harvester_phone_num}} {{defaultAddress.harvester}}</text>
         </view>
