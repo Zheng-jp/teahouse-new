@@ -36,7 +36,7 @@
     <view class='bg1'>
       <view class='big-img'>
         <view class='bd_img'>
-          <image src='{{url}}{{information.member_grade_img}}'></image>
+          <image src='{{information.member_grade_img}}'></image>
         </view>
       </view>
     </view>

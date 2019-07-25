@@ -379,6 +379,7 @@ Page({
         },
         method: "post",
         success: function (res) {
+          console.log(res)
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
             that.setData({
@@ -420,6 +421,7 @@ Page({
           },
           method: "post",
           success: function (res) {
+            console.log(res)
             if (res.data.status == 1) {
               var order_number = res.data.data.parts_order_number;
               that.setData({
@@ -466,6 +468,7 @@ Page({
         },
         method: "post",
         success: function (res) {
+          console.log(res)
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
             that.setData({
