@@ -38,7 +38,7 @@
 <view class="all">
 <view wx:if="{{order.order_type==1}}">
     <view class="address">
-        <image src="http://zhihuichacang.com/u6095.png" mode="widthFix"  class="address_ico"/>
+        <image src="http://zhihuichacang.com/u250.png" mode="widthFix"  class="address_ico"/>
         <view class="address_content">
             <view class="name_phone">
                 <text class="name">{{order.name}} </text>
@@ -63,7 +63,7 @@
 </view>
 <view wx:elif="{{order.order_type==2}}">
     <view class="address">
-        <image src="http://zhihuichacang.com/u6095.png" mode="widthFix"  class="address_ico"/>
+        <image src="http://zhihuichacang.com/u250.png" mode="widthFix"  class="address_ico"/>
         <view class="address_content">
             <view class="lift">
                 <text>自提点：</text>     
@@ -91,7 +91,7 @@
 </view>
 <view wx:elif="{{order.order_type==3}}">
     <view class="address">
-        <image src="http://zhihuichacang.com/u6095.png" mode="widthFix"  class="address_ico"/>
+        <image src="http://zhihuichacang.com/u250.png" mode="widthFix"  class="address_ico"/>
         <view class="address_content">
             <view class="lift">
                 <text>仓储点： </text>
