@@ -41,9 +41,9 @@
       <text class="explain">?</text>
     </view>
     <view class="list-value">
-      <text wx:if="{{orderInfo.num[0]}}">{{orderInfo.num[0]}}{{orderInfo.unit[0]}};</text>
-      <text wx:if="{{orderInfo.num[1]}}">{{orderInfo.num[1]}}{{orderInfo.unit[1]}};</text>
-      <text wx:if="{{orderInfo.num[2]}}">{{orderInfo.num[2]}}{{orderInfo.unit[2]}}</text>
+      <text wx:if="{{orderInfo.num[0]}}">{{orderInfo.num[0]}}{{orderInfo.unit[0]}}</text>
+      <text wx:if="{{orderInfo.num[1]}}">={{orderInfo.num[1]}}{{orderInfo.unit[1]}}</text>
+      <text wx:if="{{orderInfo.num[2]}}">={{orderInfo.num[2]}}{{orderInfo.unit[2]}}</text>
     </view>
   </view>
   <view class="list-item">
@@ -102,7 +102,7 @@
       <!-- <text class="icon-more"> > </text> -->
       <image src="./img/icon1.png" class="icon-more" />
       <text wx:if="{{!defaultAddress}}">请选择邮寄地址</text>
-      <view wx:else>
+      <view wx:else style="font-size: 12px;">
         <view>
           <text>{{defaultAddress.harvester_phone_num}} {{defaultAddress.harvester}}</text>
         </view>
@@ -158,3 +158,25 @@
     <input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
   </view>
 </view>
+
+<!-- 支付弹窗 -->
+<view class="mask" wx:if="{{pmKey}}"></view>
+<view class="pm-content" wx:if="{{pmKey}}">
+  <view class="pm-account">
+    <view class="pm-inner-view" data-tapIndex="0" bindtap="selectMethod">
+      <image src="http://zhihuichacang.com/u1272.png"></image>
+      <view class="pm-o">
+        <view>账户支付</view>
+        <text class="pm-y">(余额：￥{{balance}})</text>
+      </view>
+    </view>
+  </view>
+  <view class="pm-wxpay">
+    <view class="pm-inner-view" data-tapIndex="1" bindtap="selectMethod">
+      <image src="http://zhihuichacang.com/u1273.png"></image>
+      <view class="pm-o">微信支付</view>
+    </view>
+  </view>
+  <view class="cancel" bindtap="hideMethod">取消</view>
+</view>
+<!-- 支付弹窗 -->

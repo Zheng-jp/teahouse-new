@@ -156,7 +156,7 @@ Page({
     if(tapindex == 0){
       this.showInputLayer();
     }else{
-      this.wxpay();
+      this.wechatPay();
     }
   },
 

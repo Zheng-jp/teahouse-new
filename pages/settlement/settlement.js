@@ -175,34 +175,22 @@ Page({
   },
   go_direct_mail_address: function (e) {
     wx.navigateTo({
-      url: '../select_address/select_address',
-      success: function (res) { },
-      fail: function () { },
-      complete: function () { }
+      url: '../select_address/select_address'
     })
   },
   go_shop_address: function (e) {
     wx.navigateTo({
-      url: '../select_shop_address/select_shop_address',
-      success: function (res) { },
-      fail: function () { },
-      complete: function () { }
+      url: '../select_shop_address/select_shop_address'
     })
   },
   go_invoice_add: function (e) {
     wx.navigateTo({
-      url: '/invoice/pages/invoice_add/invoice_add',
-      success: function (res) { },
-      fail: function () { },
-      complete: function () { }
+      url: '/invoice/pages/invoice_add/invoice_add'
     })
   },
   go_save_tea: function (e) {
     wx.navigateTo({
-      url: '../select_save_address/select_save_address',
-      success: function (res) { },
-      fail: function () { },
-      complete: function () { }
+      url: '../select_save_address/select_save_address'
     })
   },
   // 弹窗
@@ -391,6 +379,7 @@ Page({
         },
         method: "post",
         success: function (res) {
+          console.log(res)
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
             that.setData({
@@ -432,6 +421,7 @@ Page({
           },
           method: "post",
           success: function (res) {
+            console.log(res)
             if (res.data.status == 1) {
               var order_number = res.data.data.parts_order_number;
               that.setData({
@@ -478,6 +468,7 @@ Page({
         },
         method: "post",
         success: function (res) {
+          console.log(res)
           if (res.data.status == 1) {
             var order_number = res.data.data.parts_order_number;
             that.setData({

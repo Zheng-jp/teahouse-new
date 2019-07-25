@@ -396,7 +396,7 @@ Page({
   // 微信支付
   wxpay: function(){
     wx.request({
-      url: app.globalData.tiltes + 'crowd_order_index',
+      url: app.globalData.tiltes + 'crowd_order',
       data: {
         member_id: app.globalData.member_id,
         order_number: this.data.order_number
