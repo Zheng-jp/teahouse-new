@@ -96,7 +96,7 @@
         <view class='unit-price-quantity'>
           <view class='unit-price'>
             <view class='unit-price-img'>
-              <image src='http://zhihuichacang.com/img1.png' mode="scaleToFill"></image>
+              <image src='{{item.user_grade_image}}' mode="scaleToFill"></image>
             </view>
             <view class='unit-price-p text_red' wx:if="{{item.goods_info.goods_standard==0}}">
               ￥{{item.grade_price}}/{{item.goods_info.monomer}}
