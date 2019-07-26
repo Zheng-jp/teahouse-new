@@ -237,7 +237,7 @@ Page({
           backgroundColor: res.data.data.member_background_color
         });
         let information = res.data.data;
-        if(information.member_grade_img.indexOf('http') == -1) {
+        if (information.member_grade_img && information.member_grade_img.indexOf('http') == -1) {
           information.member_grade_img = app.globalData.tiltes + information.member_grade_img;
         }
         that.setData({
