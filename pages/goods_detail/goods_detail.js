@@ -624,10 +624,9 @@ Page({
           volume: volume
           // select: goods.goods_standard[0].name
         });
-        console.log(111, res.data.data[0])
         var article = res.data.data[0].goods_text;
         if (article) WxParse.wxParse('article', 'html', article, that, 5);
-
+        
         var article_text = res.data.data[0].text;
         if (article_text) WxParse.wxParse('article_text', 'html', article_text, that, 5);
         //  添加字段到等级数组
@@ -694,29 +693,28 @@ Page({
       complete: function () { }
 
     });
-    wx.request({
-      url: app.globalData.tiltes + 'limitations_show',
-      data: {
-        goods_id: title,
-        uniacid: app.globalData.uniacid
-      },
-      method: "post",
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          limitations_show: res.data.status,
-        });
-        if (res.data.status == 1) {
-          that.setData({
-            limitations_shows: res.data.data,
-          });
-        }
-      },
-      fail: function () {
+    // wx.request({
+    //   url: app.globalData.tiltes + 'limitations_show',
+    //   data: {
+    //     goods_id: title,
+    //     uniacid: app.globalData.uniacid
+    //   },
+    //   method: "post",
+    //   success: function (res) {
+    //     that.setData({
+    //       limitations_show: res.data.status,
+    //     });
+    //     if (res.data.status == 1) {
+    //       that.setData({
+    //         limitations_shows: res.data.data,
+    //       });
+    //     }
+    //   },
+    //   fail: function () {
 
-      },
-      complete: function () { }
-    });
+    //   },
+    //   complete: function () { }
+    // });
   },
 
   /**
