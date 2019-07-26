@@ -22,7 +22,11 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.3",
+<<<<<<< HEAD
+	"appid": "wxd233c27fe5c70f82",
+=======
 	"appid": "wxc265cd4269f01dce",
+>>>>>>> 27141e637c2fc5baadc94a79939039b76588097b
 	"projectname": "fan",
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {

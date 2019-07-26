@@ -88,7 +88,7 @@
     <view class='price_cont'>
       <view style="display:flex; align-items:flex-end;margin-bottom:-15px">
         <view class='level_images' style='margin-bottom:9.5rpx;'>
-          <image src='{{url}}{{member_grade_img}}'></image>
+          <image src='{{member_grade_img}}'></image>
         </view>
         <view wx:if="{{goods.goods_standard==0}}">
           <view class='sale'>
