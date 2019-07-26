@@ -182,7 +182,7 @@
                 <view class='box_list_four'>
                     <view class="flex" style="justify-content:flex-start;">
                         <view class="courier">{{item.express_name_ch}}：{{item.courier_number}}</view>
-                         <view class="more_look" bindtap="go_logistics" data-id="{{item.id}}">查看物流></view>
+                         <view class="more_look" catchtap="go_logistics" data-id="{{item.id}}">查看物流></view>
                     </view>
                 </view>
             </view>    
