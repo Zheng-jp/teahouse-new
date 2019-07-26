@@ -49,7 +49,7 @@
    align-items: center;
    justify-content: center;
    flex-direction: column;
-   color: #00B6D1;
+   color: red;
    z-index: 9999999999;
  }
  .coupon_info_box{
@@ -71,20 +71,29 @@
    font-size: 24rpx;
  }
  .coupon_name{
-   font-size: 26rpx;
+   font-size: 35rpx;
    line-height: 50rpx;
+   font-weight: 700;
+ }
+ .coupon_name,
+ .validity,
+ .range {
+  color: rgb(153, 0, 0);
+
  }
  .validity,
  .range,
  .go_use
  {
    font-size: 20rpx;
-   color: #949494;
-   line-height: 40rpx;
-
+   line-height: 45rpx;
  }
  .go_use{
    text-align: right;
+   margin-right: 10rpx;
+ }
+ .color-red {
+   color: red;
  }
  .range{
   text-overflow: ellipsis;

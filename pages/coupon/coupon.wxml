@@ -9,7 +9,7 @@
 		<view class='order_list' wx:for="{{order}}" >
 			<view wx:if="{{item.status==1}}">
 				<view class="coupon_box" >
-				<image class="coupon_box_img" src="http://zhihuichacang.com/u11123.png" mode="widthFix"></image>
+				<image class="coupon_box_img" src="http://zhihuichacang.com/u129.png" mode="widthFix"></image>
 					<view class="coupon_money_box">
 						 <view><text class="money">{{item.money}}</text><text class="money_unit">元</text></view>
 						 <view class="limit">满{{item.use_price}}使用</view>
@@ -18,37 +18,37 @@
 						<view class="coupon_name">{{item.label}}</view>
 						<view class="validity">有效期：{{item.start_time}}-{{item.end_time}}</view>
 						<view class="range">适用范围：<text wx:for="{{item.scope}}">{{item}}</text></view>
-						<view class="go_use" bindtap="go_coupon_good" data-id='{{item.id}}'>立即使用>></view>
+						<view class="go_use color-red" bindtap="go_coupon_good" data-id='{{item.id}}'>立即使用>></view>
 				   </view>
 				</view>
 			</view>
 			<view wx:elif="{{item.status==2}}">
 				<view class="coupon_box" >
-					<image class="coupon_box_img" src="http://zhihuichacang.com/u11124.png" mode="widthFix"></image>
+					<image class="coupon_box_img" src="http://zhihuichacang.com/u89.png" mode="widthFix"></image>
 						<view class="coupon_money_box">
-						 <view><text class="money hui">{{item.money}}</text><text class="money_unit hui">元</text></view>
-						 <view class="limit hui">满{{item.use_price}}使用</view>
+						<view><text class="money hui">{{item.money}}</text><text class="money_unit hui">元</text></view>
+						<view class="limit hui">满{{item.use_price}}使用</view>
 					</view>
-					<view class="coupon_info_box">
-						<view class="coupon_name">{{item.label}}</view>
-						<view class="validity">有效期：{{item.start_time}}-{{item.end_time}}</view>
-						<view class="range">适用范围：<text wx:for="{{item.scope}}"></text></view>
-						<view class="go_use">已使用</view>
+					<view class="coupon_info_box ">
+						<view class="coupon_name hui">{{item.label}}</view>
+						<view class="validity hui">有效期：{{item.start_time}}-{{item.end_time}}</view>
+						<view class="range hui">适用范围：<text wx:for="{{item.scope}}"></text></view>
+						<view class="go_use hui">已使用</view>
 				   </view>
 				</view>
 			</view>
 			<view wx:elif="{{item.status==3}}">
 				<view class="coupon_box">
-				<image class="coupon_box_img" src="http://zhihuichacang.com/u11124.png" mode="widthFix"></image>
+				<image class="coupon_box_img" src="http://zhihuichacang.com/u89.png" mode="widthFix"></image>
 						<view class="coupon_money_box">
 						 <view><text class="money hui">{{item.money}}</text><text class="money_unit hui">元</text></view>
 						 <view class="limit hui">满{{item.use_price}}使用</view>
 					</view>
 					<view class="coupon_info_box">
-						<view class="coupon_name">{{item.label}}</view>
-						<view class="validity">有效期：{{item.start_time}}-{{item.end_time}}</view>
-						<view class="range">适用范围：<text wx:for="{{item.scope}}"></text></view>
-						<view class="go_use">已过期</view>
+						<view class="coupon_name hui">{{item.label}}</view>
+						<view class="validity hui">有效期：{{item.start_time}}-{{item.end_time}}</view>
+						<view class="range hui">适用范围：<text wx:for="{{item.scope}}"></text></view>
+						<view class="go_use hui">已过期</view>
 				   </view>
 				</view>
 	     	</view>

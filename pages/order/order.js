@@ -319,11 +319,62 @@ Page({
       }
     }
   },
-  // 追加评价
-  go_evaluation: function(event) {
+  // // 追加评价
+  // go_evaluation: function(event) {
+  //   wx.navigateTo({
+  //     url: '../evaluation/evaluation?title=' + event.currentTarget.dataset.id
+  //   })
+  // },
+   // 追加评价
+   go_evaluation: function (event) {
+    var that = this;
+    var item = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../evaluation/evaluation?title=' + event.currentTarget.dataset.id
+      url: '../evaluation/evaluation?title=' + event.currentTarget.dataset.id,
+      success: function (res) {
+      
+      },
+      fail: function () {
+       
+      },
     })
+  },
+// 申请售后
+  go_apply_after_sales: function (event) {
+    var that = this;
+    var item = event.currentTarget.dataset.id;
+    console.log(item)
+    wx.request({
+      url: app.globalData.tiltes + 'after_sale_is_set',
+      data: {
+        order_id:item,
+      },
+      method: "post",
+      success: function (res) {
+       if(res.data.status=="1"){
+         wx.navigateTo({
+          url: '../apply_after_sales/apply_after_sales?title=' + event.currentTarget.dataset.id,
+          success: function (res) {
+          
+          },
+          fail: function () {
+          
+          },
+        })
+       }
+      },
+      fail: function () {
+      },
+      complete: function (res) {
+        wx.showToast({
+          title:res.data.info,
+          icon:'none',
+        });
+      }
+  
+    });
+    
+  
   },
   go_order_detail: function(event) {
     var id = event.currentTarget.dataset.id;
@@ -444,14 +495,14 @@ Page({
   to_logistics: function(e) {
     var that = this;
     var item = e.currentTarget.dataset.id;
-    wx.redirectTo({
-      url: '../logistics/logistics?title=' + e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../logistics/logistics?title=' + item
     })
   },
   // 追加评价
   go: function(event) {
     var item = event.currentTarget.dataset.id;
-    wx.redirectTo({
+    wx.navigateTo({
       url: item + '?title=' + 0 + '&version=' + this.data.version,
       success: function(res) {
 
