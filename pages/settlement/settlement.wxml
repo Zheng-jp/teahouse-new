@@ -9,8 +9,8 @@
         <image class="retrue_ico" src="http://zhihuichacang.com/u2014.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
       </view>
     </view>
-    <view class='order_list' wx:for="{{coupon_order}}" data-id="{{item.id}}" bindtap="checkboxChangess" data-value="{{item.suit_price[0]}}">
-      <view class='order_list_content'>
+    <view class='order_list' wx:for="{{coupon_order}}" data-id="{{item.id}}" bindtap="checkboxChangess" data-value="{{item.suit_price}}">
+      <view class='order_list_content' wx:if="{{item.authority == 1}}">
         <checkbox value="{{item.id}}" checked="{{item.checked}}" />
         <view class="coupon_box">
           <image class="coupon_box_img" src="http://zhihuichacang.com/u129.png" mode="widthFix"></image>
@@ -19,14 +19,14 @@
               <text class="money">{{item.money}}</text>
               <text class="money_unit">元</text>
             </view>
-            <view class="limit color-red">满{{item.use_price}}使用</view>
+            <view class="limit color-red">满{{item.use_price > 0 ? item.use_price : "任意金额"}}使用</view>
           </view>
           <view class="coupon_info_box">
             <view class="coupon_name">{{item.label}}</view>
-            <view class="validity">有效期：{{item.start_time}}-{{item.end_time}}</view>
+            <view class="validity">有效期：{{item.start_time}}--{{item.end_time}}</view>
             <view class="range">
               适用范围：
-              <text wx:for="{{item.suit_price}}">{{item}}</text>
+              <text wx:for="{{item.suit_price2}}">{{item}}</text>
             </view>
             <view class="go_use">立即使用>></view>
           </view>
@@ -290,7 +290,7 @@
     <view class='sundry-li'>
       <view class='text_red'>优惠券</view>
       <view wx:if="{{coupon_show==1}}" bindtap="go_coupon">
-        <text style='color:#FF7E4A;'>{{coupon_content}}</text>
+        <text style='color:#FF7E4A;'>{{coupon_content}}元</text>
       </view>
       <view wx:else>
         <text style='color:#FF7E4A;'>无可适用优惠券</text>

@@ -109,6 +109,7 @@ Page({
       })
     } else {
       let arr = [], unit = [], goods_id = [], goods_standard_id = [], goods_num = [], shoppinds_id = [];
+      console.log(that.data.coupon_order)
       //购物车结算时，剔除不可存茶商品
       if (goods.length > 1) {
         for (let i = 0; i < goods.length; i++) {
@@ -131,7 +132,7 @@ Page({
             }
           }
         }
-
+        
         wx.showToast({
           title: '已剔除非存储商品，您可结算可存储商品',
           icon: 'none',
@@ -635,41 +636,69 @@ Page({
       },
       method: "post",
       success: function (res) {
-        if (e.currentTarget.dataset.value == "1") {
-          if (res.data.data.money <= that.data.goods_money_one) {
-            that.setData({
-              coupon_content: "-" + res.data.data.money,
-              coupon_type: e.currentTarget.dataset.value,
-              money: res.data.data.money,
-            });
-          } else {
-            that.setData({
-              coupon_content: "-" + that.data.goods_money_one,
-              coupon_type: e.currentTarget.dataset.value,
-              money: res.that.data.goods_money_one,
-            });
-          }
-        } else if (e.currentTarget.dataset.value == "3") {
-          if (res.data.data.money <= Number(that.data.storage)) {
-            that.setData({
-              coupon_content: "-" + res.data.data.money,
-              coupon_type: e.currentTarget.dataset.value,
-              money: res.data.data.money,
-            });
-          } else {
-            that.setData({
-              coupon_content: "-" + that.data.storage,
-              coupon_type: e.currentTarget.dataset.value,
-              money: that.data.storage,
-            });
-          }
-        } else if (e.currentTarget.dataset.value == "") {
+        let range = e.currentTarget.dataset.value;
+        let for_goods = range.indexOf('1'), insurance_costs = range.indexOf('2'), storage_charges = range.indexOf('3');
+        if(range.length == 3) {//使用所有范围
           that.setData({
             coupon_content: "-" + res.data.data.money,
-            coupon_type: e.currentTarget.dataset.value,
             money: res.data.data.money,
           });
+        } else if(range.length == 2){
+          if(for_goods > -1 && insurance_costs == -1 && storage_charges > -1) {//没有2
+            that.setData({
+              coupon_content: "-" + res.data.data.money,
+              money: res.data.data.money,
+            });
+          } else if (for_goods > -1 && insurance_costs > -1 && storage_charges == -1){//没有3
+            that.setData({
+              coupon_content: "-" + res.data.data.money,
+              money: res.data.data.money,
+            });
+          } else {
+            that.setData({
+              coupon_content: "-" + res.data.data.money,
+              money: res.data.data.money,
+            });
+          }
+        } else {
+          if(for_goods > -1 && insurance_costs == -1 && storage_charges == -1) {//只有1
+            if (res.data.data.money <= that.data.goods_money_one) {
+              that.setData({
+                coupon_content: "-" + res.data.data.money,
+                // coupon_type: e.currentTarget.dataset.value,
+                money: res.data.data.money,
+              });
+            } else {
+              that.setData({
+                coupon_content: "-" + that.data.goods_money_one,
+                // coupon_type: e.currentTarget.dataset.value,
+                money: that.data.goods_money_one,
+              });
+            }
+          } else if (for_goods == -1 && insurance_costs == -1 && storage_charges > -1) {//只有3
+            if (res.data.data.money <= Number(that.data.storage)) {
+              that.setData({
+                coupon_content: "-" + res.data.data.money,
+                // coupon_type: e.currentTarget.dataset.value,
+                money: res.data.data.money,
+              });
+            } else {
+              that.setData({
+                coupon_content: "-" + that.data.storage,
+                // coupon_type: e.currentTarget.dataset.value,
+                money: that.data.storage,
+              });
+            }
+          } else {
+            that.setData({
+              coupon_content: "-" + res.data.data.money,
+              // coupon_type: e.currentTarget.dataset.value,
+              money: res.data.data.money,
+            });
+          }
         }
+
+          
         that.calculate_money();
       },
     });
@@ -1099,7 +1128,7 @@ Page({
             num: that.data.goods[0].number,
             unit_all: unit,
           });
-
+          //优惠券
           wx.request({
             url: app.globalData.tiltes + 'coupon_appropriated',
             data: {
@@ -1112,9 +1141,26 @@ Page({
             },
             method: "post",
             success: function (res) {
+              let order = res.data.data;
+              for(let z = 0; z < order.length; z ++) {
+                let arr = [];
+                if(order[z].suit_price2[i].indexOf('3') > -1 && that.data.authority != 1 && that.data.authority_new != 1) order[z].authority = 0;
+                else order[z].authority = 1;
+                for(let i = 0; i < order[z].suit_price2.length; i++) {
+                  if(order[z].suit_price2[i] == 1) arr.push('商品费用');
+                  else if (order[z].suit_price2[i] == 2) arr.push('保险费用');
+                  else arr.push('仓储费用');
+                }
+                let end_time = that.formatDate(order[z].end_time);
+                let start_time = that.formatDate(order[z].start_time);
+                order[z].suit_price2 = arr;
+                order[z].end_time = end_time;
+                order[z].start_time = start_time;
+              }
+              // for(order)
               that.setData({
                 coupon_show: res.data.status,
-                coupon_order: res.data.data,
+                coupon_order: order,
               });
             }
           });
@@ -1136,7 +1182,22 @@ Page({
       });
     }
   },
-
+  //格式化时间
+  formatDate: function(inputTime) {
+    var date = new Date(inputTime * 1000);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    var h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    return y + '/' + m + '/' + d ;
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
