@@ -9,10 +9,10 @@
 		<view class='order_list' wx:for="{{order}}" >
 			<view wx:if="{{item.status==1}}">
 				<view class="coupon_box" >
-				<image class="coupon_box_img" src="http://zhihuichacang.com/u129.png" mode="widthFix"></image>
+				<image class="coupon_box_img" src="http://zhihuichacang.com/y6112.png" mode="widthFix"></image>
 					<view class="coupon_money_box">
 						 <view><text class="money">{{item.money}}</text><text class="money_unit">元</text></view>
-						 <view class="limit">满{{item.use_price}}使用</view>
+						 <view class="limit">满{{item.use_price > 0 ? item.use_price : "任意金额"}}使用</view>
 					</view>
 					<view class="coupon_info_box">
 						<view class="coupon_name">{{item.label}}</view>
@@ -24,10 +24,10 @@
 			</view>
 			<view wx:elif="{{item.status==2}}">
 				<view class="coupon_box" >
-					<image class="coupon_box_img" src="http://zhihuichacang.com/u89.png" mode="widthFix"></image>
+					<image class="coupon_box_img" src="http://zhihuichacang.com/y6113.png" mode="widthFix"></image>
 						<view class="coupon_money_box">
-						<view><text class="money hui">{{item.money}}</text><text class="money_unit hui">元</text></view>
-						<view class="limit hui">满{{item.use_price}}使用</view>
+						<view><text class="money ">{{item.money}}</text><text class="money_unit">元</text></view>
+						<view class="limit ">满{{item.use_price > 0 ? item.use_price + '元' : "任意金额"}}使用</view>
 					</view>
 					<view class="coupon_info_box ">
 						<view class="coupon_name hui">{{item.label}}</view>
@@ -39,10 +39,10 @@
 			</view>
 			<view wx:elif="{{item.status==3}}">
 				<view class="coupon_box">
-				<image class="coupon_box_img" src="http://zhihuichacang.com/u89.png" mode="widthFix"></image>
+				<image class="coupon_box_img" src="http://zhihuichacang.com/y6113.png" mode="widthFix"></image>
 						<view class="coupon_money_box">
-						 <view><text class="money hui">{{item.money}}</text><text class="money_unit hui">元</text></view>
-						 <view class="limit hui">满{{item.use_price}}使用</view>
+						 <view><text class="money ">{{item.money}}</text><text class="money_unit">元</text></view>
+						 <view class="limit ">满{{item.use_price > 0 ? item.use_price : "任意金额"}}使用</view>
 					</view>
 					<view class="coupon_info_box">
 						<view class="coupon_name hui">{{item.label}}</view>

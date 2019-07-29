@@ -158,12 +158,12 @@ Page({
 
         },
         success: function(res) {
-          if (res.data.status != 0) {
-            for (let i = 0; i < res.data.data.length; i++) {
-              res.data.data[i].start_time = that.formatDate(res.data.data[i].start_time);
-              res.data.data[i].end_time = that.formatDate(res.data.data[i].end_time);
-            }
-          }
+          // if (res.data.status != 0) {
+          //   for (let i = 0; i < res.data.data.length; i++) {
+          //     res.data.data[i].start_time = that.formatDate(res.data.data[i].start_time);
+          //     res.data.data[i].end_time = that.formatDate(res.data.data[i].end_time);
+          //   }
+          // }
           that.setData({
             order: res.data.data
           })

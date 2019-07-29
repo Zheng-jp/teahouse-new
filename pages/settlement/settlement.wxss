@@ -723,7 +723,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: #00b6d1;
+  color: #fff;
   z-index: 9999999999;
 }
 
@@ -767,7 +767,6 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .go_use {
   text-align: right;
-  margin-right: 10rpx;
 }
 
 .range {
