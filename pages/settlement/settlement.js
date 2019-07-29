@@ -637,6 +637,7 @@ Page({
       method: "post",
       success: function (res) {
         let range = e.currentTarget.dataset.value;
+        res.data.data.money = (res.data.data.money).toFixed(2);
         let for_goods = range.indexOf('1'), insurance_costs = range.indexOf('2'), storage_charges = range.indexOf('3');
         if(range.length == 3) {//使用所有范围
           that.setData({
@@ -662,7 +663,7 @@ Page({
           }
         } else {
           if(for_goods > -1 && insurance_costs == -1 && storage_charges == -1) {//只有1
-            if (res.data.data.money <= that.data.goods_money_one) {
+            if (Number(res.data.data.money) <= that.data.goods_money_one) {
               that.setData({
                 coupon_content: "-" + res.data.data.money,
                 // coupon_type: e.currentTarget.dataset.value,
@@ -676,7 +677,7 @@ Page({
               });
             }
           } else if (for_goods == -1 && insurance_costs == -1 && storage_charges > -1) {//只有3
-            if (res.data.data.money <= Number(that.data.storage)) {
+            if (Number(res.data.data.money) <= Number(that.data.storage)) {
               that.setData({
                 coupon_content: "-" + res.data.data.money,
                 // coupon_type: e.currentTarget.dataset.value,

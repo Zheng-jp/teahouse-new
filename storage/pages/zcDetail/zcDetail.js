@@ -220,7 +220,7 @@ Page({
         uniacid: app.globalData.uniacid
       },
       success: function(res){
-        console.log(res);
+        
         var data = res.data.data[0];
         var richTextArr = [];
         data.goods_text ? richTextArr.push(data.goods_text) : '';
@@ -233,6 +233,14 @@ Page({
             WxParse.wxParseTemArray("richTextTemArray",'richText', richTextArr.length, _this)
           }
         }
+        let standard = [];
+        for(let o = 0; o < data.standard.length; o ++) {
+          if(data.standard[o].stock > 0) {
+            standard.push(data.standard[o]);
+          }
+        }
+        res.data.data[0].standard = standard;
+        // console.log(res.data.data);
         _this.setData({
           proArr: res.data.data
         })
