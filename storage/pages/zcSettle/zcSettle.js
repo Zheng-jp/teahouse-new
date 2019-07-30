@@ -308,6 +308,7 @@ Page({
             _this.setData({
               order_number: order_number,
               order_type: res.data.data.order_type,
+              coupon_type: res.data.data.coupon_type,
               pmKey: true,
               balance: res.data.data.balance
             })
@@ -346,6 +347,7 @@ Page({
             _this.setData({
               order_number: order_number,
               order_type: res.data.data.order_type,
+              coupon_type: res.data.data.coupon_type,
               pmKey: true,
               balance: res.data.data.balance
             })
@@ -383,6 +385,7 @@ Page({
             _this.setData({
               order_number: order_number,
               order_type: res.data.data.order_type,
+              coupon_type: res.data.data.coupon_type,
               pmKey: true,
               balance: res.data.data.balance
             })
