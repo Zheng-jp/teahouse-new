@@ -158,7 +158,7 @@
                     <image src="{{url}}{{item.standard[specActive].images}}" />
                   </view>
                   <view class="sku-pro-info">
-                    <view>
+                    <view> 
                       <view class="h">￥{{item.standard[specActive].cost}}</view>
                       <view class="sku-txt">
                         <image style="width:60rpx;height:30rpx;margin-right:-60rpx;" src="../../../images/kecun.png" ></image>

@@ -1,12 +1,12 @@
 <!-- pages/members/members.wxml -->
 <view class='all'>
   <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide" catchtouchmove="stopTouchMove">
-    <swiper-item wx:for="{{level}}" catchtouchmove='catchTouchMove'>
+    <swiper-item wx:for="{{level}}" wx:key="{{index}}" catchtouchmove='catchTouchMove'>
       <view class='card' style='background:{{item.member_background_color}}'>
         <view class='card_a'>
           <view class='img_cir'>
             <view class='card_img'>
-              <image src='{{url}}{{item.member_grade_img}}'></image>
+              <image src='{{item.member_grade_img}}'></image>
             </view>
           </view>
           <view class='user_infor'>
@@ -38,14 +38,14 @@
     </view>
     <view class='level_content'>
       <radio-group class="radio-group" bindchange="radioChange">
-        <view class='content_list' wx:for="{{level}}">
+        <view class='content_list' wx:for="{{level}}" wx:key="{{index}}">
           <view class='radio'>
             <checkbox value="{{item.tab}}" checked="{{item.check}}" color='#fff' />
             <text class='radio_text'>{{item.member_grade_name}}</text>
           </view>
           <view>
             <view class='level_img'>
-              <image src='{{url}}{{item.member_grade_img}}'></image>
+              <image src='{{item.member_grade_img}}'></image>
             </view>
           </view>
           <view>

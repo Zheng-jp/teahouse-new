@@ -355,6 +355,7 @@ Page({
 
   // 计算邮费
   calcPostage: function (outNum) {
+    console.log(outNum)
     var data = this.data.housePrice;
     // 订单信息
     var orderInfo = this.data.orderInfo;
