@@ -71,7 +71,9 @@ view{overflow: initial !important;}
 .tb-sku-container{display: flex; width: 100%; height: 100%; -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; font-size: 28rpx; color: #333; box-sizing: border-box; padding: 20rpx 0;}
 .sku-pro{position: relative; padding-bottom: 32rpx; border-bottom: 2rpx solid #f2f2f2;}
 .sku-pro .sku-img{position: absolute; left: 20rpx; top: -120rpx; padding: 10rpx; background-color: #fff; box-sizing: border-box; width: 240rpx; height: 240rpx; box-shadow: 2rpx 2rpx 4rpx 4rpx rgba(0,0,0,.3); display: none;}
+.sku-pro .outstock{position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, .7); z-index: 9;}
 .sku-pro .sku-img image{width: 100%; height: 100%;}
+.sku-pro .sku-img .outstock image{position: absolute; right: 0; bottom: 0; width: 50%; height: 50%;}
 .sku-pro-info{margin: 20rpx 0 0 300rpx;}
 .sku-pro-info .h{font-size: 40rpx; color: #ff2d00;}
 .sku-pro-info .sku-txt{display: flex; justify-content: space-between; align-items: center; color: #949494;}
@@ -99,3 +101,4 @@ view{overflow: initial !important;}
 .gears .gear .gearMon{color: #999;}
 .sku-btns{position: absolute; bottom: 0; left: 0; width: 100%;}
 .sku-btns .support{height: 80rpx; text-align: center; line-height: 80rpx; color: #fff; background-color: #ff6700;}
+.sku-btns .outstockbtn{background-color: rgba(0,0,0,.3);}

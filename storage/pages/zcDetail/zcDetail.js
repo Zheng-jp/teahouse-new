@@ -23,7 +23,10 @@ Page({
   },
 
   // 支持项目
-  supProj: function(){
+  supProj: function (e) {
+    // 库存
+    var stock = e.currentTarget.dataset.stock;
+    if(stock == 0) {wx.showToast({ title: '该商品已售罄！', icon: 'none' }); return;}
     var guige = this.data.proArr[0].standard[this.data.specActive].id;
     var goods_id = this.data.proArr[0].id;
     var num = this.data.buyNum;
@@ -64,7 +67,11 @@ Page({
     })
   },
   // 打赏跳转
-  supportProject: function(){
+  supportProject: function (e) {
+    // 库存
+    var stock = e.currentTarget.dataset.stock;
+    if (stock == 0) {wx.showToast({ title: '该商品已售罄！', icon: 'none' }); return;}
+    
     var standardId = this.data.proArr[0].standard[this.data.specActive].id;
     wx.navigateTo({
       url: '/storage/pages/zcSpare/zcSpare?standardId=' + standardId,

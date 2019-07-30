@@ -155,6 +155,9 @@
               <view class="sku-pro">
                 <view>
                   <view class="sku-img">
+                    <view wx:if="{{item.standard[specActive].stock==0}}" class="outstock">
+                      <image src="http://zhihuichacang.com/outStock.png"></image>
+                    </view>
                     <image src="{{url}}{{item.standard[specActive].images}}" />
                   </view>
                   <view class="sku-pro-info">
@@ -222,7 +225,7 @@
                           <text class="gearMon">{{item.standard[specActive].cost}}元</text>
                         </view>
                       </view>
-                      <view class="gear" bind:tap="supportProject">
+                      <view class="gear" bind:tap="supportProject" data-stock="{{item.standard[specActive].stock}}">
                         <text>打赏</text>
                       </view>
                     </view>
@@ -231,7 +234,7 @@
               </scroll-view>
               <view>
                 <view class="sku-btns">
-                  <view class="sku-btn support" bind:tap="supProj">支持项目</view>
+                  <view class="sku-btn support {{item.standard[specActive].stock==0?'outstockbtn':''}}" bind:tap="supProj" data-stock="{{item.standard[specActive].stock}}">支持项目</view>
                 </view>
               </view>
             </view>

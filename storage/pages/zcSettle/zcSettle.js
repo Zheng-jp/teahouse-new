@@ -253,7 +253,8 @@ Page({
       url: app.globalData.tiltes + 'del_order',
       data: {
         parts_order_number: this.data.order_number,
-        order_type: this.data.order_type
+        order_type: this.data.order_type,
+        coupon_type: this.data.coupon_type
       },
       method: "post",
       success: function(res){
