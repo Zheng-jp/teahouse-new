@@ -174,13 +174,7 @@ Page({
     var that = this;
     var item = event.currentTarget.dataset.id;
     wx.redirectTo({
-      url: item + '?title=' + 0 + '&version=' + this.data.version,
-      success: function (res) {
-
-      },
-      fail: function () {
-
-      }
+      url: item + '?title=' + 0 + '&version=' + this.data.version
     })
   },
   /**

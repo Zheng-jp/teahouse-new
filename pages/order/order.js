@@ -502,17 +502,8 @@ Page({
   // 追加评价
   go: function(event) {
     var item = event.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: item + '?title=' + 0 + '&version=' + this.data.version,
-      success: function(res) {
-
-      },
-      fail: function() {
-
-      },
-      complete: function() {
-
-      }
+    wx.redirectTo({
+      url: item + '?title=' + 0 + '&version=' + this.data.version
     })
   },
 
