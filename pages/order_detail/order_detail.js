@@ -89,7 +89,8 @@ Page({
         data.data[i].linkurl = "/pages/goods_detail/goods_detail?title=" + data.data[i].goods_id;
         // console.log(res.data.data)
       }
-      let selected2;
+      let selected,selected2;
+      if(data.order_type == 1) selected = true;
       if(data.order_type == 1 || data.order_type == 2 ) {
         selected2 = false
       } else {
@@ -102,31 +103,32 @@ Page({
         receipt_price:data.data[0].receipt_price,
         coupon_deductible:data.data[0].coupon_deductible,
         selected2: selected2,
+        selected: selected,
         storage:data.data[0].storage
       })
-       //优惠券
-      wx.request({
-        url: app.globalData.tiltes + 'coupon_appropriated',
-        data: {
-          open_id: app.globalData.gmemberid,
-          goods_id: data.data[0].goods_id,
-          member_grade_name: app.globalData.member_grade_name,
-          money: data.data[0].order_real_pay,
-          coupon_type: 1,
-          uniacid: app.globalData.uniacid
-        },
-        method: "post",
-        success: function (res) {
-          that.setData({
-            coupon_show: res.data.status,
-            coupon_order: res.data.data,
-          });
-        },
-        fail: function (e) {
+      //  //优惠券
+      // wx.request({
+      //   url: app.globalData.tiltes + 'coupon_appropriated',
+      //   data: {
+      //     open_id: app.globalData.gmemberid,
+      //     goods_id: data.data[0].goods_id,
+      //     member_grade_name: app.globalData.member_grade_name,
+      //     money: data.data[0].order_real_pay,
+      //     coupon_type: 1,
+      //     uniacid: app.globalData.uniacid
+      //   },
+      //   method: "post",
+      //   success: function (res) {
+      //     that.setData({
+      //       coupon_show: res.data.status,
+      //       coupon_order: res.data.data,
+      //     });
+      //   },
+      //   fail: function (e) {
 
-        },
-        complete: function () { }
-      });
+      //   },
+      //   complete: function () { }
+      // });
     },
     fail: function () {
    
