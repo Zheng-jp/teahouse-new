@@ -109,7 +109,7 @@ Page({
       })
     } else {
       let arr = [], unit = [], goods_id = [], goods_standard_id = [], goods_num = [], shoppinds_id = [];
-      console.log(that.data.coupon_order)
+      // console.log(that.data.coupon_order)
       //购物车结算时，剔除不可存茶商品
       if (goods.length > 1) {
         for (let i = 0; i < goods.length; i++) {
