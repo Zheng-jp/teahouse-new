@@ -1,5 +1,7 @@
 /* pages/settlement/settlement.wxss */
-
+.scrollBool{
+  overflow-y: hidden;
+}
 /* 支付start */
 .pm-content{
   position: absolute;

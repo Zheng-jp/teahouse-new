@@ -328,7 +328,8 @@ Page({
       url: app.globalData.tiltes + 'del_order',
       data: {
         parts_order_number: this.data.order_number,
-        order_type: this.data.order_type
+        order_type: this.data.order_type,
+        coupon_type: this.data.coupon_type,
       },
       method: "post",
       success: function(res){
@@ -386,6 +387,7 @@ Page({
             that.setData({
               order_number: order_number,
               order_type: res.data.data.order_type,
+              coupon_type: res.data.data.coupon_type,
               pmKey: true,
               balance: res.data.data.balance
             })
@@ -428,6 +430,7 @@ Page({
               that.setData({
                 order_number: order_number,
                 order_type: res.data.data.order_type,
+                coupon_type: res.data.data.coupon_type,
                 pmKey: true,
                 balance: res.data.data.balance
               })
@@ -475,6 +478,7 @@ Page({
             that.setData({
               order_number: order_number,
               order_type: res.data.data.order_type,
+              coupon_type: res.data.data.coupon_type,
               pmKey: true,
               balance: res.data.data.balance
             })
@@ -524,6 +528,7 @@ Page({
             that.setData({
               order_number: order_number,
               order_type: res.data.data.order_type,
+              coupon_type: res.data.data.coupon_type,
               pmKey: true,
               balance: res.data.data.balance
             })
@@ -565,6 +570,7 @@ Page({
             that.setData({
               order_number: order_number,
               order_type: res.data.data.order_type,
+              coupon_type: res.data.data.coupon_type,
               pmKey: true,
               balance: res.data.data.balance
             })
@@ -607,6 +613,7 @@ Page({
             that.setData({
               order_number: order_number,
               order_type: res.data.data.order_type,
+              coupon_type: res.data.data.coupon_type,
               pmKey: true,
               balance: res.data.data.balance
             })
