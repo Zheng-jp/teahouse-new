@@ -260,7 +260,7 @@ Page({
     let that = this;
     that.orderCount();
     app.judge_repay();
-
+    that.onLoad();
     
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       if (wx.getStorageSync('editionId') == 1) {

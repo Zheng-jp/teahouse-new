@@ -18,13 +18,15 @@ Page({
     if(event.detail.value==''){
       that.setData({
         money:that.data.oldmoney,
-        indexs:that.data.oldeindexs
+        indexs:that.data.oldeindexs,
+        type:0
       })
     }
     else{
       that.setData({
         money:event.detail.value,
-        indexs:0
+        indexs:0,
+        type:0
       })
     }
      
@@ -78,6 +80,9 @@ Page({
                 signType: result.data.signType,
                 paySign:  result.data.paySign,
                 'success': function (successret) {
+                  wx.navigateBack({
+                    delta: 1
+                  })
                   console.log('支付成功');
                 },
                 'fail': function (res) {
