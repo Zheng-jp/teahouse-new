@@ -356,50 +356,12 @@ Page({
     var that = this;
     var num = new Array();
     num = [that.data.goods[0].number];
+    console.log(that.data.goods[0])
+    let stock = Number(that.data.goods[0].goods_info.goods_repertory);
     let taxes1 = Number(that.data.taxes);
-    if (that.data.order_type == "1") {
-      wx.request({
-        url: app.globalData.tiltes + 'order_places',
-        data: {
-          member_id: app.globalData.member_id,
-          goods_id: that.data.user[1].good_id,
-          goods_standard_id: that.data.user[2].guige,
-          order_quantity: num,
-          address_id: that.data.address_id,
-          order_amount: that.data.all_money,
-          order_type: that.data.order_type,
-          coupon_id: that.data.coupon_id,
-          unit: that.data.unit_all,
-          year: that.data.num2,
-          receipt_id: that.data.taxes_id,
-          receipt_price: taxes1,
-          receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid,
-          freight: that.data.freight,
-          storage: that.data.storage
-        },
-        method: "post",
-        success: function (res) {
-          console.log(res)
-          if (res.data.status == 1) {
-            var order_number = res.data.data.parts_order_number;
-            that.setData({
-              order_number: order_number,
-              order_type: res.data.data.order_type,
-              pmKey: true,
-              balance: res.data.data.balance
-            })
-          } else {
-            wx.showToast({
-              title: "下单失败，请联系管理员",
-              icon: 'none'
-            })
-          }
-        }
-      });
-    } else if (that.data.order_type == "2") {
-      //到店自提地址
-      if (that.data.shop_id != '' && that.data.shop_id != null && that.data.shop_id != undefined) {
+    if(Number(num[0]) <= stock) {
+
+      if (that.data.order_type == "1") {
         wx.request({
           url: app.globalData.tiltes + 'order_places',
           data: {
@@ -407,7 +369,7 @@ Page({
             goods_id: that.data.user[1].good_id,
             goods_standard_id: that.data.user[2].guige,
             order_quantity: num,
-            address_id: that.data.shop_id,
+            address_id: that.data.address_id,
             order_amount: that.data.all_money,
             order_type: that.data.order_type,
             coupon_id: that.data.coupon_id,
@@ -422,7 +384,93 @@ Page({
           },
           method: "post",
           success: function (res) {
-            console.log(res)
+            if (res.data.status == 1) {
+              var order_number = res.data.data.parts_order_number;
+              that.setData({
+                order_number: order_number,
+                order_type: res.data.data.order_type,
+                pmKey: true,
+                balance: res.data.data.balance
+              })
+            } else {
+              wx.showToast({
+                title: "下单失败，请联系管理员",
+                icon: 'none'
+              })
+            }
+          }
+        });
+      } else if (that.data.order_type == "2") {
+        //到店自提地址
+        if (that.data.shop_id != '' && that.data.shop_id != null && that.data.shop_id != undefined) {
+          wx.request({
+            url: app.globalData.tiltes + 'order_places',
+            data: {
+              member_id: app.globalData.member_id,
+              goods_id: that.data.user[1].good_id,
+              goods_standard_id: that.data.user[2].guige,
+              order_quantity: num,
+              address_id: that.data.shop_id,
+              order_amount: that.data.all_money,
+              order_type: that.data.order_type,
+              coupon_id: that.data.coupon_id,
+              unit: that.data.unit_all,
+              year: that.data.num2,
+              receipt_id: that.data.taxes_id,
+              receipt_price: taxes1,
+              receipt_status: that.data.taxes_select,
+              uniacid: app.globalData.uniacid,
+              freight: that.data.freight,
+              storage: that.data.storage
+            },
+            method: "post",
+            success: function (res) {
+              if (res.data.status == 1) {
+                var order_number = res.data.data.parts_order_number;
+                that.setData({
+                  order_number: order_number,
+                  order_type: res.data.data.order_type,
+                  pmKey: true,
+                  balance: res.data.data.balance
+                })
+              } else {
+                wx.showToast({
+                  title: "下单失败，请联系管理员",
+                  icon: 'none',
+                })
+              }
+            }
+          });
+        } else {
+          wx.showToast({
+            title: "请选择到店自提地址",
+            icon: 'none',
+          })
+        }
+      } else {
+        wx.request({
+          url: app.globalData.tiltes + 'order_places',
+          data: {
+            member_id: app.globalData.member_id,
+            store_house_id: that.data.sava_id,
+            goods_id: that.data.goods_id,
+            goods_standard_id: that.data.goods_standard_id,
+            order_quantity: num,
+            unit: that.data.unit_all,
+            address_id: that.data.address_id,
+            order_amount: that.data.all_money,
+            order_type: that.data.order_type,
+            coupon_id: that.data.coupon_id,
+            year: that.data.num2,
+            receipt_id: that.data.taxes_id,
+            receipt_price: taxes1,
+            receipt_status: that.data.taxes_select,
+            uniacid: app.globalData.uniacid,
+            freight: that.data.freight,
+            storage: that.data.storage
+          },
+          method: "post",
+          success: function (res) {
             if (res.data.status == 1) {
               var order_number = res.data.data.parts_order_number;
               that.setData({
@@ -437,55 +485,14 @@ Page({
                 icon: 'none',
               })
             }
-          }
+          },
         });
-      } else {
-        wx.showToast({
-          title: "请选择到店自提地址",
-          icon: 'none',
-        })
       }
     } else {
-      wx.request({
-        url: app.globalData.tiltes + 'order_places',
-        data: {
-          member_id: app.globalData.member_id,
-          store_house_id: that.data.sava_id,
-          goods_id: that.data.goods_id,
-          goods_standard_id: that.data.goods_standard_id,
-          order_quantity: num,
-          unit: that.data.unit_all,
-          address_id: that.data.address_id,
-          order_amount: that.data.all_money,
-          order_type: that.data.order_type,
-          coupon_id: that.data.coupon_id,
-          year: that.data.num2,
-          receipt_id: that.data.taxes_id,
-          receipt_price: taxes1,
-          receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid,
-          freight: that.data.freight,
-          storage: that.data.storage
-        },
-        method: "post",
-        success: function (res) {
-          console.log(res)
-          if (res.data.status == 1) {
-            var order_number = res.data.data.parts_order_number;
-            that.setData({
-              order_number: order_number,
-              order_type: res.data.data.order_type,
-              pmKey: true,
-              balance: res.data.data.balance
-            })
-          } else {
-            wx.showToast({
-              title: "下单失败，请联系管理员",
-              icon: 'none',
-            })
-          }
-        },
-      });
+      wx.showToast({
+        title: "库存不足，请修改数量",
+        icon: 'none',
+      })
     }
   },
 
@@ -493,7 +500,8 @@ Page({
   buyrepay: function () {
     var that = this;
     // 下单请求
-    let taxes1 = Number(that.data.taxes)
+    let taxes1 = Number(that.data.taxes);
+    console.log(taxes1)
     if (that.data.order_type == "1") {
       wx.request({
         url: app.globalData.tiltes + 'order_place_by_shoppings',
@@ -817,6 +825,7 @@ Page({
     let that = this;
     let num = this.data.goods[0].number;
     let goods = this.data.goods;
+    let stock = Number(this.data.goods[0].goods_info.goods_repertory);
     if (that.data.searchKey <= 0 || that.data.searchKey == '' || that.data.searchKey == null || that.data.searchKey == undefined) {
       goods[0].number = 1;
       that.setData({
@@ -831,7 +840,8 @@ Page({
           });
         }
       } else {
-        goods[0].number = that.data.searchKey;
+        if(that.data.searchKey >= stock) goods[0].number = stock;
+        else goods[0].number = that.data.searchKey;
         that.setData({
           goods: goods
         });
@@ -1145,7 +1155,7 @@ Page({
               let order = res.data.data;
               for(let z = 0; z < order.length; z ++) {
                 let arr = [];
-                if(order[z].suit_price2[i].indexOf('3') > -1 && that.data.authority != 1 && that.data.authority_new != 1) order[z].authority = 0;
+                if(order[z].suit_price2.indexOf('3') > -1 && that.data.authority != 1 && that.data.authority_new != 1) order[z].authority = 0;
                 else order[z].authority = 1;
                 for(let i = 0; i < order[z].suit_price2.length; i++) {
                   if(order[z].suit_price2[i] == 1) arr.push('商品费用');
