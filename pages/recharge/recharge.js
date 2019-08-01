@@ -35,7 +35,7 @@ Page({
      that.setData({
       indexs:e.currentTarget.dataset.id,
       money:e.currentTarget.dataset.value,
-      type: 1
+      type: -1
      })
   },
   submit: function (options) {
