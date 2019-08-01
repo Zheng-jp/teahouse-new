@@ -11,6 +11,7 @@ Page({
     money:null,  
     oldmoney:null,
     oldeindexs:null,
+    type:0
   },
   bindoldChange:function (event) {
     var that=this;
@@ -33,9 +34,9 @@ Page({
     var that=this;
      that.setData({
       indexs:e.currentTarget.dataset.id,
-      money:e.currentTarget.dataset.value
+      money:e.currentTarget.dataset.value,
+      type: 1
      })
-     console.log(that)
   },
   submit: function (options) {
     var that=this;
@@ -43,7 +44,8 @@ Page({
       url: app.globalData.tiltes + 'member_balance_recharge',
       data: {
         member_id: app.globalData.member_id,
-        money:that.data.money
+        money:that.data.money,
+        type: that.data.type
       },
       method: "post",
       // header: {

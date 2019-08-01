@@ -74,8 +74,8 @@
 </view>
 <view class='all'>
   <view class='titles'>购物清单</view>
-  <view wx:for="{{goods}}" class='good_list' wx:key="index">
-    <view class='order-goods-info'>
+  <view wx:for="{{goods}}" class="good_list {{item.is_err ? 'is_err' : ''}}" wx:key="index">
+    <view class="order-goods-info " >
       <view class='order-goods-img'>
         <image src='{{url}}{{item.goods_info.goods_show_image}}' mode="scaleToFill"></image>
       </view>
@@ -331,7 +331,7 @@
   </view>
 </view>
 <!-- 支付弹窗 -->
-<view class="mask" wx:if="{{pmKey}}"></view>
+<view class="mask" wx:if="{{pmKey}}" catchtouchmove="return"></view>
 <view class="pm-content" wx:if="{{pmKey}}">
   <view class="pm-account">
     <view class="pm-inner-view" data-tapIndex="0" bindtap="selectMethod">

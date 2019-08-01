@@ -438,7 +438,6 @@ Page({
       success: function (res) {
         if (res.data.status == 1) {
           let goods = res.data.data, kc, hot, cx, qc;
-
           for (let e = 0; e < goods.length; e++) {
             let arr = [], bq_arr = [], bq_dgg = {};
             // console.log(goods)
@@ -476,22 +475,7 @@ Page({
             res.data.data[e].bq_arr = bq_arr;
             // }
           }
-          // let goods_sign = goods[0].goods_info.goods_sign;
-          // for (let i in goods_sign) {
-          //   if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-          //     kc = 1;
-          //   } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-          //     hot = 1;
-          //   } else if (goods_sign[i].text == '促销' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-          //     cx = 1;
-          //   } else if (goods_sign[i].text == '清仓' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-          //     qc = 1;
-          //   } else if (goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-          //     arr.push(goods_sign[i]);
-          //   }
-          // }
-
-          // res.data.data[0].goods_info.goods_sign = arr;
+         
 
           that.setData({
             goodList: res.data.data,

@@ -328,7 +328,8 @@ Page({
       url: app.globalData.tiltes + 'del_order',
       data: {
         parts_order_number: this.data.order_number,
-        order_type: this.data.order_type
+        order_type: this.data.order_type,
+        coupon_type: this.data.coupon_type,
       },
       method: "post",
       success: function(res){
@@ -356,7 +357,6 @@ Page({
     var that = this;
     var num = new Array();
     num = [that.data.goods[0].number];
-    console.log(that.data.goods[0])
     let stock = Number(that.data.goods[0].goods_info.goods_repertory);
     let taxes1 = Number(that.data.taxes);
     if(Number(num[0]) <= stock) {
@@ -389,6 +389,7 @@ Page({
               that.setData({
                 order_number: order_number,
                 order_type: res.data.data.order_type,
+                coupon_type: res.data.data.coupon_type,
                 pmKey: true,
                 balance: res.data.data.balance
               })
@@ -499,133 +500,156 @@ Page({
   // 购物车支付
   buyrepay: function () {
     var that = this;
-    // 下单请求
-    let taxes1 = Number(that.data.taxes);
-    console.log(taxes1)
-    if (that.data.order_type == "1") {
-      wx.request({
-        url: app.globalData.tiltes + 'order_place_by_shoppings',
-        data: {
-          member_id: app.globalData.member_id,
-          shopping_id: that.data.user[0].shop_id,
-          goods_id: that.data.user[1].good_id,
-          goods_standard_id: that.data.user[2].guige,
-          order_quantity: that.data.user[3].num,
-          address_id: that.data.address_id,
-          order_amount: that.data.all_money,
-          order_type: that.data.order_type,
-          coupon_id: that.data.coupon_id,
-          unit: that.data.unit_all,
-          year: that.data.num2,
-          house_price: that.data.ever_storage,
-          receipt_id: that.data.taxes_id,
-          receipt_price: taxes1,
-          receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid,
-          freight: that.data.freight,
-          storage: that.data.storage
-        },
-        method: "post",
-        success: function (res) {
-          if (res.data.status == 1) {
-            var order_number = res.data.data.parts_order_number;
-            that.setData({
-              order_number: order_number,
-              order_type: res.data.data.order_type,
-              pmKey: true,
-              balance: res.data.data.balance
-            })
-          } else {
-            wx.showToast({
-              title: "下单失败，请联系管理员",
-              icon: 'none',
-            })
+    let goods = that.data.goods, goods_num = that.data.goods_num ,is_data = false;
+    if (goods_num == undefined) goods_num = that.data.user[3].num;
+    for(let i = 0; i < goods.length; i ++) {
+      let stock;
+      if(goods[i].goods_info.goods_standard == 0) stock = goods[i].goods_info.goods_repertory;
+      else stock = goods[i].goods_info.goods_repertory;
+
+      if(goods_num >= stock) goods[i].is_err = true, is_data = true;
+      else goods[i].is_err = false;
+    }
+    that.setData({
+      goods: goods
+    })
+    
+    if(!is_data) {
+      // 下单请求
+      let taxes1 = Number(that.data.taxes);
+      if (that.data.order_type == "1") {
+        wx.request({
+          url: app.globalData.tiltes + 'order_place_by_shoppings',
+          data: {
+            member_id: app.globalData.member_id,
+            shopping_id: that.data.user[0].shop_id,
+            goods_id: that.data.user[1].good_id,
+            goods_standard_id: that.data.user[2].guige,
+            order_quantity: that.data.user[3].num,
+            address_id: that.data.address_id,
+            order_amount: that.data.all_money,
+            order_type: that.data.order_type,
+            coupon_id: that.data.coupon_id,
+            unit: that.data.unit_all,
+            year: that.data.num2,
+            house_price: that.data.ever_storage,
+            receipt_id: that.data.taxes_id,
+            receipt_price: taxes1,
+            receipt_status: that.data.taxes_select,
+            uniacid: app.globalData.uniacid,
+            freight: that.data.freight,
+            storage: that.data.storage
+          },
+          method: "post",
+          success: function (res) {
+            if (res.data.status == 1) {
+              var order_number = res.data.data.parts_order_number;
+              that.setData({
+                order_number: order_number,
+                order_type: res.data.data.order_type,
+                coupon_type: res.data.data.coupon_type,
+                pmKey: true,
+                balance: res.data.data.balance
+              })
+            } else {
+              wx.showToast({
+                title: "下单失败，请联系管理员",
+                icon: 'none',
+              })
+            }
+          },
+        });
+      } else if (that.data.order_type == "2") {
+        wx.request({
+          url: app.globalData.tiltes + 'order_place_by_shoppings',
+          data: {
+            member_id: app.globalData.member_id,
+            shopping_id: that.data.user[0].shop_id,
+            goods_id: that.data.user[1].good_id,
+            goods_standard_id: that.data.user[2].guige,
+            order_quantity: that.data.user[3].num,
+            address_id: that.data.shop_id,
+            order_amount: that.data.all_money,
+            order_type: that.data.order_type,
+            coupon_id: that.data.coupon_id,
+            unit: that.data.unit_all,
+            year: that.data.num2,
+            house_price: that.data.ever_storage,
+            receipt_id: that.data.taxes_id,
+            receipt_price: taxes1,
+            receipt_status: that.data.taxes_select,
+            uniacid: app.globalData.uniacid,
+            freight: that.data.freight,
+            storage: that.data.storage
+          },
+          method: "post",
+          success: function (res) {
+            if (res.data.status == 1) {
+              var order_number = res.data.data.parts_order_number;
+              that.setData({
+                order_number: order_number,
+                order_type: res.data.data.order_type,
+                coupon_type: res.data.data.coupon_type,
+                pmKey: true,
+                balance: res.data.data.balance
+              })
+            } else {
+              wx.showToast({
+                title: "下单失败，请联系管理员",
+                icon: 'none',
+              })
+            }
+          },
+        });
+      } else {
+        wx.request({
+          url: app.globalData.tiltes + 'order_place_by_shoppings',
+          data: {
+            member_id: app.globalData.member_id,
+            shopping_id: that.data.shoppinds_id,
+            goods_id: that.data.goods_id,
+            goods_standard_id: that.data.goods_standard_id,
+            order_quantity: that.data.goods_num,
+            address_id: that.data.address_id,
+            store_house_id: that.data.sava_id,
+            order_amount: that.data.all_money,
+            order_type: that.data.order_type,
+            coupon_id: that.data.coupon_id,
+            unit: that.data.unit_all,
+            year: that.data.num2,
+            house_price: that.data.ever_storage,
+            receipt_id: that.data.taxes_id,
+            receipt_price: taxes1,
+            receipt_status: that.data.taxes_select,
+            uniacid: app.globalData.uniacid,
+            freight: that.data.freight,
+            storage: that.data.storage
+          },
+          method: "post",
+          success: function (res) {
+            if (res.data.status == 1) {
+              var order_number = res.data.data.parts_order_number;
+              that.setData({
+                order_number: order_number,
+                order_type: res.data.data.order_type,
+                coupon_type: res.data.data.coupon_type,
+                pmKey: true,
+                balance: res.data.data.balance
+              })
+            } else {
+              wx.showToast({
+                title: "下单失败，请联系管理员",
+                icon: 'none',
+              })
+            }
           }
-        },
-      });
-    } else if (that.data.order_type == "2") {
-      wx.request({
-        url: app.globalData.tiltes + 'order_place_by_shoppings',
-        data: {
-          member_id: app.globalData.member_id,
-          shopping_id: that.data.user[0].shop_id,
-          goods_id: that.data.user[1].good_id,
-          goods_standard_id: that.data.user[2].guige,
-          order_quantity: that.data.user[3].num,
-          address_id: that.data.shop_id,
-          order_amount: that.data.all_money,
-          order_type: that.data.order_type,
-          coupon_id: that.data.coupon_id,
-          unit: that.data.unit_all,
-          year: that.data.num2,
-          house_price: that.data.ever_storage,
-          receipt_id: that.data.taxes_id,
-          receipt_price: taxes1,
-          receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid,
-          freight: that.data.freight,
-          storage: that.data.storage
-        },
-        method: "post",
-        success: function (res) {
-          if (res.data.status == 1) {
-            var order_number = res.data.data.parts_order_number;
-            that.setData({
-              order_number: order_number,
-              order_type: res.data.data.order_type,
-              pmKey: true,
-              balance: res.data.data.balance
-            })
-          } else {
-            wx.showToast({
-              title: "下单失败，请联系管理员",
-              icon: 'none',
-            })
-          }
-        },
-      });
+        });
+      }
     } else {
-      wx.request({
-        url: app.globalData.tiltes + 'order_place_by_shoppings',
-        data: {
-          member_id: app.globalData.member_id,
-          shopping_id: that.data.shoppinds_id,
-          goods_id: that.data.goods_id,
-          goods_standard_id: that.data.goods_standard_id,
-          order_quantity: that.data.goods_num,
-          address_id: that.data.address_id,
-          store_house_id: that.data.sava_id,
-          order_amount: that.data.all_money,
-          order_type: that.data.order_type,
-          coupon_id: that.data.coupon_id,
-          unit: that.data.unit_all,
-          year: that.data.num2,
-          house_price: that.data.ever_storage,
-          receipt_id: that.data.taxes_id,
-          receipt_price: taxes1,
-          receipt_status: that.data.taxes_select,
-          uniacid: app.globalData.uniacid,
-          freight: that.data.freight,
-          storage: that.data.storage
-        },
-        method: "post",
-        success: function (res) {
-          if (res.data.status == 1) {
-            var order_number = res.data.data.parts_order_number;
-            that.setData({
-              order_number: order_number,
-              order_type: res.data.data.order_type,
-              pmKey: true,
-              balance: res.data.data.balance
-            })
-          } else {
-            wx.showToast({
-              title: "下单失败，请联系管理员",
-              icon: 'none',
-            })
-          }
-        }
-      });
+      wx.showToast({
+        title: "红框商品数量库存不足，请修改",
+        icon: 'none',
+      })
     }
   },
 
@@ -824,8 +848,9 @@ Page({
   shift_out: function () {
     let that = this;
     let num = this.data.goods[0].number;
-    let goods = this.data.goods;
-    let stock = Number(this.data.goods[0].goods_info.goods_repertory);
+    let goods = this.data.goods, stock;
+    if(goods[0].goods_info.goods_standard == 1) stock = Number(goods[0].special_info.stock);//库存
+    else stock = Number(goods[0].goods_info.goods_repertory);//库存
     if (that.data.searchKey <= 0 || that.data.searchKey == '' || that.data.searchKey == null || that.data.searchKey == undefined) {
       goods[0].number = 1;
       that.setData({
@@ -864,12 +889,13 @@ Page({
     var that = this;
     var num = this.data.goods[0].number;
     var goods = this.data.goods;
+    let minusStatus;
     // 如果大于1时，才可以减  
     if (num > 1) {
       num--;
     }
     // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num <= 1 ? 'disabled' : 'normal';
+    minusStatus = num <= 1 ? 'disabled' : 'normal';
     // 将数值与状态写回  
     goods[0].number = num;
     this.setData({
@@ -890,12 +916,15 @@ Page({
     var that = this;
     var num = this.data.goods[0].number;
     var goods = this.data.goods;
+    let stock, minusStatus;
+    if(goods[0].goods_info.goods_standard == 1) stock = Number(goods[0].special_info.stock);//库存
+    else stock = Number(goods[0].goods_info.goods_repertory);//库存
     if (goods[0].is_limit == 1 && Number(goods[0].limit_number) > 0) {
       if (num < Number(goods[0].limit_number)) {
         // 不作过多考虑自增1  
         num++;
         // 只有大于一件的时候，才能normal状态，否则disable状态  
-        var minusStatus = num < 1 ? 'disabled' : 'normal';
+        minusStatus = num < 1 ? 'disabled' : 'normal';
 
         // 将数值与状态写回  
         goods[0].number = num;
@@ -915,13 +944,18 @@ Page({
         }
       }
     } else {
-      // 不作过多考虑自增1  
-      num++;
-      // 只有大于一件的时候，才能normal状态，否则disable状态  
-      var minusStatus = num < 1 ? 'disabled' : 'normal';
-
-      // 将数值与状态写回  
-      goods[0].number = num;
+      if(num >= stock) {
+        
+        goods[0].number = stock;
+      } else {
+        // 不作过多考虑自增1  
+        num++;
+        // 只有大于一件的时候，才能normal状态，否则disable状态  
+        
+        // 将数值与状态写回  
+        goods[0].number = num;
+      }
+      minusStatus = num < 1 ? 'disabled' : 'normal';
       this.setData({
         goods: goods,
         minusStatus: minusStatus

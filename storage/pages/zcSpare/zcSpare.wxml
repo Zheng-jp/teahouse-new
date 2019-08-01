@@ -70,7 +70,7 @@
 </view>
 
 <!-- 支付弹窗 -->
-<view class="mask" wx:if="{{pmKey}}"></view>
+<view class="mask" wx:if="{{pmKey}}" catchtouchmove="return"></view>
 <view class="pm-content" wx:if="{{pmKey}}">
   <view class="pm-account">
     <view class="pm-inner-view" data-tapIndex="0" bindtap="selectMethod">
