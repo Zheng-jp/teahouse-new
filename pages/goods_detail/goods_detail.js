@@ -297,7 +297,10 @@ Page({
     });
   },
   /* 点击加号 */
-  bindPlus: function () {
+  bindPlus: function (e) {
+    let that = this, stock;
+    console.log(that.data.goods.goods_standard)
+    // stock = that.data.goods.goods_standard
     var num = this.data.num;
     // 不作过多考虑自增1  
     num++;

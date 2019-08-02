@@ -11,19 +11,22 @@ Page({
     money:null,  
     oldmoney:null,
     oldeindexs:null,
+    type:0
   },
   bindoldChange:function (event) {
     var that=this;
     if(event.detail.value==''){
       that.setData({
         money:that.data.oldmoney,
-        indexs:that.data.oldeindexs
+        indexs:that.data.oldeindexs,
+        type:0
       })
     }
     else{
       that.setData({
         money:event.detail.value,
-        indexs:0
+        indexs:0,
+        type:0
       })
     }
      
@@ -33,9 +36,9 @@ Page({
     var that=this;
      that.setData({
       indexs:e.currentTarget.dataset.id,
-      money:e.currentTarget.dataset.value
+      money:e.currentTarget.dataset.value,
+      type: -1
      })
-     console.log(that)
   },
   submit: function (options) {
     var that=this;
@@ -43,7 +46,8 @@ Page({
       url: app.globalData.tiltes + 'member_balance_recharge',
       data: {
         member_id: app.globalData.member_id,
-        money:that.data.money
+        money:that.data.money,
+        type: that.data.type
       },
       method: "post",
       // header: {
@@ -76,6 +80,9 @@ Page({
                 signType: result.data.signType,
                 paySign:  result.data.paySign,
                 'success': function (successret) {
+                  wx.navigateBack({
+                    delta: 1
+                  })
                   console.log('支付成功');
                 },
                 'fail': function (res) {

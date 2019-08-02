@@ -995,3 +995,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   padding-top:12rpx;
   margin-left: 8rpx;
 }
+.is_err {
+  border:1px solid red;
+  
+}
