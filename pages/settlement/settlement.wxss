@@ -272,8 +272,8 @@
 }
 
 .unit-price-img {
-  width: 30rpx;
-  height: 36rpx;
+  width: 44rpx;
+  height: 44rpx;
 }
 
 .unit-price-quantity {
