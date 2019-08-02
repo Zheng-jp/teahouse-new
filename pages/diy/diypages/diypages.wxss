@@ -403,9 +403,9 @@ page {
     width: 110rpx;
     position: absolute;
 }
-.price_img{
+/* .price_img{
     
-}
+} */
 .qyxxhead {
     padding: 30rpx;
     background: #fff;
@@ -982,3 +982,5 @@ button::after {
 .diy_picture_img4:nth-child(4n) {
     margin-right: 0rpx!important;
 }
+
+.hot{border: 1px solid #04a6f8; border-radius: 2px; padding: 0 2px;}

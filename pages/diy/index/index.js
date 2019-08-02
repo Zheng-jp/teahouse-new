@@ -823,7 +823,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         member_grade_name: app.globalData.member_grade_name
       },
       success: function (t) {
-        console.log(t);
+        console.log('xixixi',t.data.data);
         var a = t.data.data;
         if (3 == a) return wx.showModal({
           title: "提示",
@@ -857,6 +857,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           pageset: e,
           page: o
         });
+        // 插眼
         var i = t.data.data.items;
         wx.setNavigationBarTitle({
           title: o.title
@@ -873,6 +874,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           }
         });
         for (var d = 0, r = 0; r < i.length; r++)
+          // console.log(i[r]);
           if ("mlist" == i[r].id) {
             var c = i[r].data.catelist,
               l = i[r].data;

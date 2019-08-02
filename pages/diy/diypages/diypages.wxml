@@ -1111,7 +1111,10 @@
                     </image>
                     <view class="goodsBottom">
                         <view class="goodsTitle" style="color:{{style.titlecolor}}" wx:if="{{params.showtitle==1}}">{{item.title}}</view>
-                        <view class="goodsDesc">{{item.goods_selling!=null?item.goods_selling:''}}</view>
+                        <view class="goodsDesc">
+                            <!-- <text class="hot">{{JSON.parse(item.goods_sign).text}}</text> -->
+                            {{item.goods_selling!=null?item.goods_selling:''}}
+                        </view>
                         <view style="font-size:24rpx;color:{{style.pricecolor}};">
                           <image class="price_img" style='margin-bottom:-1rpx;' src="{{item.member_grade_img}}" mode="widthFix" >
                              </image>
