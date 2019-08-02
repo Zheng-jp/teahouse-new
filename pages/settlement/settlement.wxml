@@ -9,7 +9,7 @@
         <image class="retrue_ico" src="http://zhihuichacang.com/u2014.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
       </view>
     </view>
-    <view class='order_list' wx:for="{{coupon_order}}" data-id="{{item.id}}" bindtap="checkboxChangess" data-value="{{item.suit_price}}">
+    <view class='order_list' wx:for="{{coupon_order}}" data-id="{{item.id}}" bindtap="checkboxChangess" data-value="{{item.suit_price}}" >
       <view class='order_list_content' wx:if="{{item.authority == 1}}">
         <checkbox value="{{item.id}}" checked="{{item.checked}}" />
         <view class="coupon_box">

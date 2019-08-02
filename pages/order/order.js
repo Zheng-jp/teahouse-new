@@ -307,7 +307,7 @@ Page({
           method: "post",
           success: function(res) {
             wx.showToast({
-              title: '收货成功',
+              title: '确认收货成功',
               icon: 'none',
               duration: 3000
             })

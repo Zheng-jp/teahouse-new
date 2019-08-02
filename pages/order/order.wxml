@@ -1,6 +1,5 @@
 <view class="all" style='height:{{height}}px;'>
   <!-- 弹窗 -->
-
   <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
   <view wx:if='{{showPayPwdInput}}'>
     <view class='bg_layer'></view>
@@ -23,13 +22,14 @@
       <input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
     </view>
   </view>
-
-  <!--content-->
+  <!-- content -->
   <view class="nav">
-    <view class="this"> 普通订单</view>
-    <view class="" bindtap="go" data-id="/storage/pages/zcOrder/zcOrder" wx:if="{{version == 3}}"> 众筹订单</view>
-    <view class="" bindtap="go" wx:if="{{version == 3}}"> 定制订单</view>
-    <view class="" bindtap="go" data-id="../integral_order/integral_order"> 积分订单</view>
+    <view class="this">普通订单</view>
+    <view class="" bindtap="go" data-id="/storage/pages/zcOrder/zcOrder" wx:if="{{version == 3}}">
+      众筹订单
+    </view>
+    <view class="" bindtap="go" wx:if="{{version == 3}}">定制订单</view>
+    <view class="" bindtap="go" data-id="../integral_order/integral_order">积分订单</view>
   </view>
   <view class='title'>
     <view class="title_list {{tab==1? 'on' : ''}}" data-current="1" bindtap="tab_click">全部</view>
@@ -43,7 +43,7 @@
       <view wx:if="{{item.status==1}}">
         <view bindtap="go_order_detail" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
           <view class='box_list_one'>
-            <view>订单编号：{{item.parts_order_number}} </view>
+            <view>订单编号：{{item.parts_order_number}}</view>
             <view class='static'>等待买家付款</view>
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
@@ -65,13 +65,15 @@
           <view class='box_list_three'>
             <view>
               <text>共{{item.all_numbers}}件商品</text>
-              <text>合计：￥{{item.all_order_real_pay}}</text> </view>
+              <text>合计：￥{{item.all_order_real_pay}}</text>
+            </view>
           </view>
         </view>
-
         <view class='box_list_four'>
           <view>
-            <view class='cancel' bindtap="cancel_order" data-id="{{item.parts_order_number}}">取消订单</view>
+            <view class='cancel' bindtap="cancel_order" data-id="{{item.parts_order_number}}">
+              取消订单
+            </view>
             <view class='payment' bindtap="repay" data-id="{{item.parts_order_number}}">付款</view>
           </view>
         </view>
@@ -79,7 +81,7 @@
       <view wx:elif="{{item.status==2 || item.status==3}}">
         <view bindtap="go_order_detail" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
           <view class='box_list_one'>
-            <view>订单编号：{{item.parts_order_number}} </view>
+            <view>订单编号：{{item.parts_order_number}}</view>
             <view class='static'>买家已付款</view>
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
@@ -101,20 +103,25 @@
           <view class='box_list_three'>
             <view>
               <text>共{{item.all_numbers}}件商品</text>
-              <text>合计：￥{{item.all_order_real_pay}}</text> </view>
+              <text>合计：￥{{item.all_order_real_pay}}</text>
+            </view>
           </view>
         </view>
         <view wx:if="{{item.order_type==3}}" class='box_list_four'>
-          <view class='remind_delivery cancel type_button' data-id="{{item.parts_order_number}}" bindtap="to_warehouse">已入仓</view>
+          <view class='remind_delivery cancel type_button' data-id="{{item.parts_order_number}}" bindtap="to_warehouse">
+            已入仓
+          </view>
         </view>
         <view wx:if="{{item.order_type==1 || item.order_type==2}}" class='box_list_four'>
-          <view class='remind_delivery cancel type_button' bindtap="tip_order" data-id="{{item.parts_order_number}}">提醒发货</view>
+          <view class='remind_delivery cancel type_button' bindtap="tip_order" data-id="{{item.parts_order_number}}">
+            提醒发货
+          </view>
         </view>
       </view>
       <view wx:elif="{{item.status==4 || item.status==5}}">
         <view bindtap="go_order_detail" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
           <view class='box_list_one'>
-            <view>订单编号：{{item.parts_order_number}} </view>
+            <view>订单编号：{{item.parts_order_number}}</view>
             <view class='static'>卖家已发货</view>
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
@@ -136,23 +143,43 @@
           <view class='box_list_three'>
             <view>
               <text>共{{item.all_numbers}}件商品</text>
-              <text>合计：￥{{item.all_order_real_pay}}</text> </view>
+              <text>合计：￥{{item.all_order_real_pay}}</text>
+            </view>
           </view>
         </view>
         <view class='box_list_four'>
           <view class="flex">
             <block wx:if="{{item.info[0].order_type != 2}}">
-              <view class="courier">{{item.info[0].express_name_ch}}：{{item.info[0].courier_number}}</view>
-              <view class="logistics" bindtap="to_logistics" data-id="{{item.info[0].id}}">查看物流></view>
+              <view class="courier">
+                {{item.info[0].express_name_ch}}：{{item.info[0].courier_number}}
+              </view>
+              <view class="logistics" bindtap="to_logistics" data-id="{{item.info[0].id}}">
+                查看物流>
+              </view>
+              <view class='remind_delivery cancel type_button' bindtap="confirm_receipt" data-id="{{item.parts_order_number}}">
+                确认收货
+              </view>
             </block>
-            <view class='remind_delivery cancel type_button' bindtap="confirm_receipt" data-id="{{item.parts_order_number}}">确认收货</view>
+            <block wx:elif="{{item.info[0].order_type == 2}}">
+              <view class="courier" style="display:flex;">
+                <view style="width:110rpx;">自提点：</view>
+                <view style="width:400rpx;">
+                  <text style="margin-right:20rpx;">{{item.info[0].harvester}}</text>
+                  <text>{{item.info[0].harvest_phone_num}}</text>
+                  <view>{{item.info[0].harvester_address}}</view>
+                </view>
+              </view>
+              <view class='remind_delivery cancel type_button' bindtap="confirm_receipt" data-id="{{item.parts_order_number}}">
+                自提确认
+              </view>
+            </block>
           </view>
         </view>
       </view>
       <view wx:elif="{{item.status==6 || item.status==7}}">
         <view bindtap="go_order_detail" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
           <view class='box_list_one'>
-            <view>订单编号：{{item.parts_order_number}} </view>
+            <view>订单编号：{{item.parts_order_number}}</view>
             <view class='static'>交易成功</view>
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
@@ -174,20 +201,25 @@
           <view class='box_list_three'>
             <view>
               <text>共{{item.all_numbers}}件商品</text>
-              <text>合计：￥{{item.all_order_real_pay}}</text> </view>
+              <text>合计：￥{{item.all_order_real_pay}}</text>
+            </view>
           </view>
         </view>
         <view class='box_list_four'>
           <view>
-            <view class='cancel type_button' bindtap="go_apply_after_sales" data-id="{{item.info[0].id}}" data-status="{{item.status}}">售后</view>
-            <view class='payment' bindtap="go_evaluation" data-id="{{item.info[0].id}}" data-status="{{item.status}}">追加评价</view>
+            <view class='cancel type_button' bindtap="go_apply_after_sales" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
+              售后
+            </view>
+            <view class='payment' bindtap="go_evaluation" data-id="{{item.info[0].id}}" data-status="{{item.status}}">
+              追加评价
+            </view>
           </view>
         </view>
       </view>
       <view wx:elif="{{item.status==0 || item.status==9 || item.status==10}}">
         <view bindtap="go_order_detail" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
           <view class='box_list_one'>
-            <view>订单编号：{{item.parts_order_number}} </view>
+            <view>订单编号：{{item.parts_order_number}}</view>
             <view class='static'>交易成功</view>
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
@@ -209,19 +241,22 @@
           <view class='box_list_three'>
             <view>
               <text>共{{item.all_numbers}}件商品</text>
-              <text>合计：￥{{item.all_order_real_pay}}</text> </view>
+              <text>合计：￥{{item.all_order_real_pay}}</text>
+            </view>
           </view>
         </view>
         <view class='box_list_four'>
           <view>
-            <view class='cancel type_button' bindtap="delete_order" data-id="{{item.parts_order_number}}">删除</view>
+            <view class='cancel type_button' bindtap="delete_order" data-id="{{item.parts_order_number}}">
+              删除
+            </view>
           </view>
         </view>
       </view>
       <view wx:elif="{{item.status==8}}">
         <view bindtap="go_order_detail" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
           <view class='box_list_one'>
-            <view>订单编号：{{item.parts_order_number}} </view>
+            <view>订单编号：{{item.parts_order_number}}</view>
             <view class='static'>交易成功</view>
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
@@ -243,7 +278,8 @@
           <view class='box_list_three'>
             <view>
               <text>共{{item.all_numbers}}件商品</text>
-              <text>合计：￥{{item.all_order_real_pay}}</text> </view>
+              <text>合计：￥{{item.all_order_real_pay}}</text>
+            </view>
           </view>
         </view>
         <view class='box_list_four'>
@@ -255,7 +291,7 @@
       <view wx:else>
         <view bindtap="go_order_detail" data-id="{{item.parts_order_number}}" data-status="{{item.status}}">
           <view class='box_list_one'>
-            <view>订单编号：{{item.parts_order_number}} </view>
+            <view>订单编号：{{item.parts_order_number}}</view>
             <view class='static'>交易关闭</view>
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
@@ -277,19 +313,21 @@
           <view class='box_list_three'>
             <view>
               <text>共{{item.all_numbers}}件商品</text>
-              <text>合计：￥{{item.all_order_real_pay}}</text> </view>
+              <text>合计：￥{{item.all_order_real_pay}}</text>
+            </view>
           </view>
         </view>
         <view class='box_list_four'>
           <view>
-            <view class='cancel type_button' bindtap="delete_order" data-id="{{item.parts_order_number}}">删除</view>
+            <view class='cancel type_button' bindtap="delete_order" data-id="{{item.parts_order_number}}">
+              删除
+            </view>
           </view>
         </view>
       </view>
     </view>
   </view>
 </view>
-
 <!-- 支付弹窗 -->
 <view class="mask" wx:if="{{pmKey}}"></view>
 <view class="pm-content" wx:if="{{pmKey}}">
