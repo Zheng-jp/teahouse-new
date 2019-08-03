@@ -17,9 +17,10 @@ view{overflow: initial !important;}
 .hd-bar .hd-bar-box .wxzx-progress{width: 100%;}
 .hd-bar-status{display: flex; align-items: center; justify-content: space-between;}
 .hd-bar .stillTime{color: #f00;}
-.hd-share{text-align: right; font-size: 0; width: 100rpx;}
+.hd-share{position: relative; text-align: right; font-size: 0; width: 100rpx;}
 .hd-share image{width: 48rpx; height: 48rpx;}
 .hd-share view{font-size: 24rpx;}
+.hd-share button{position: absolute;top: 0; left: 0; width: 100%; height: 100%; opacity: 0;}
 .ser-promise{position: relative; padding: 0 20rpx;}
 .ser-promise .metatit{position: absolute; left: 20rpx; top: 20rpx;}
 .ser-promise .serList{padding: 20rpx 0 10rpx 100rpx;}

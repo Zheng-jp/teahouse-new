@@ -39,6 +39,7 @@
             </view>
           </view>
           <view class="hd-share" wx:if="{{item.state==1}}">
+            <button open-type="share"></button>
             <image src="./img/share.png" />
             <view>分享</view>
           </view>

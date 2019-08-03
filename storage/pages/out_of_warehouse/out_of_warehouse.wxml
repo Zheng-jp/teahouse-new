@@ -4,7 +4,7 @@
     <view class="tea-img-box">
       <image src="{{url}}{{orderInfo.goods_image}}" class="tea-img" />
     </view>
-    <view>
+    <view style="text-align: center;">
       <view class="tea-name">{{orderInfo.brand}}</view>
       <view class="stock-addr">{{orderInfo.store_name}}</view>
       <!-- <view class="tea-date">生产日期:2018.03.05</view> -->
