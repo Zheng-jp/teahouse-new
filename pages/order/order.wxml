@@ -169,7 +169,7 @@
                   <view>{{item.info[0].harvester_address}}</view>
                 </view>
               </view>
-              <view class='remind_delivery cancel type_button' bindtap="confirm_receipt" data-id="{{item.parts_order_number}}">
+              <view class='remind_delivery cancel type_button' bindtap="confirm_receipt_zt" data-id="{{item.parts_order_number}}">
                 自提确认
               </view>
             </block>
@@ -211,7 +211,7 @@
               售后
             </view>
             <view class='payment' bindtap="go_evaluation" data-id="{{item.info[0].id}}" data-status="{{item.status}}">
-              追加评价
+              评价
             </view>
           </view>
         </view>

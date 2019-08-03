@@ -13,7 +13,7 @@
       <view class='order_list_content'>
         <checkbox value="{{item.id}}" checked="{{item.checked}}" />
         <view class="coupon_box">
-          <image class="coupon_box_img" src="http://zhihuichacang.com/u11123.png" mode="widthFix"></image>
+          <image class="coupon_box_img" src="http://zhihuichacang.com/y6112.png" mode="widthFix"></image>
           <view class="coupon_money_box">
             <view>
               <text class="money">{{item.money}}</text>
@@ -302,15 +302,15 @@
         <text style='color:#FF7E4A;'>{{all_money}}元</text>
       </view>
     </view>
-    <!-- <view class='sundry-li'>
+    <view class='sundry-li'>
       <view class='text_red'>优惠券</view>
       <view wx:if="{{coupon_show==1}}" bindtap="go_coupon">
-        <text style='color:#FF7E4A;'>{{coupon_deductible}}</text>
+        <text style='color:#FF7E4A;'>{{coupon_deductible}}元</text>
       </view>
       <view wx:else>
         <text style='color:#FF7E4A;'>无可适用优惠券</text>
       </view>
-    </view> -->
+    </view>
     <view class="sundry-li {{selected?'show':'hidden'}}">
       <view>运费</view>
       <view>

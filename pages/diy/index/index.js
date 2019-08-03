@@ -199,20 +199,20 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         foot: a
       },
       success: function (t) {
-        var lujing = [];
-        var num = getCurrentPages().length - 1;
-        var url = getCurrentPages()[num].route; //当前页面路径
-        for (let i in t.data.data.data) {
-          lujing.push(t.data.data.data[i]);
-        }
-        for (let o = 0; o < lujing.length; o++) {
-          if (lujing[o].linkurl.indexOf(url) != -1) {
-            lujing[o].change = true;
-          } else {
-            lujing[o].change = false;
-          }
-        }
-        t.data.data.data = lujing;
+        // var lujing = [];
+        // var num = getCurrentPages().length - 1;
+        // var url = getCurrentPages()[num].route; //当前页面路径
+        // for (let i in t.data.data.data) {
+        //   lujing.push(t.data.data.data[i]);
+        // }
+        // for (let o = 0; o < lujing.length; o++) {
+        //   if (lujing[o].linkurl.indexOf(url) != -1) {
+        //     lujing[o].change = true;
+        //   } else {
+        //     lujing[o].change = false;
+        //   }
+        // }
+        // t.data.data.data = lujing;
         2 == a && e.setData({
           footinfo: t.data.data
         }), 1 == a && e.setData({

@@ -183,9 +183,35 @@ Page({
           version_is = 2;
         else
           version_is = 1;
+
+        if(version_is == 1) {
+          var list= [
+            {
+              url: app.globalData.url + '/upload/20190104/94debd1c9f7b4c11a58b90b7dd83b402.png',
+              text: '会员中心',
+              src: '../members/members',
+            },
+            {
+              url: app.globalData.url + '/upload/20181115/872ba6211e755c12088c2e5f92fad232.png',
+              text: '消息中心',
+              src: '../news/news',
+            },
+            {
+              url: app.globalData.url + '/upload/20181115/f052e232cf2c7629080cacbb20522b50.png',
+              text: '地址管理',
+              src: '../select_address/select_address',
+            },
+            {
+              url: app.globalData.url + '/upload/20181115/d0221a688c6699297a1092cec2e1a322.png',
+              text: '我的账户',
+              src: '../account/account',
+            },
+          ]
+        }  
         that.setData({
           foot_is: t.data.data.foot_is,
-          version: version_is
+          version: version_is,
+          list: list
         })
         wx.request({
           url: app.globalData.baseurl + "doPageGetFoot",
@@ -195,23 +221,23 @@ Page({
             foot: t.data.data.foot_is
           },
           success: function (t) {
-            var lujing = [];
-            var num = getCurrentPages().length - 1;
-            var url = getCurrentPages()[num].route; //当前页面路径
-            for (let i in t.data.data.data) {
-              lujing.push(t.data.data.data[i]);
-            }
-            for (let o = 0; o < lujing.length; o++) {
-              if (lujing[o].linkurl.indexOf(url) != -1) {
-                lujing[o].change = true;
-              } else {
-                lujing[o].change = false;
-              }
-            }
-            t.data.data.data = lujing;
+            // var lujing = [];
+            // var num = getCurrentPages().length - 1;
+            // var url = getCurrentPages()[num].route; //当前页面路径
+            // for (let i in t.data.data.data) {
+            //   lujing.push(t.data.data.data[i]);
+            // }
+            // for (let o = 0; o < lujing.length; o++) {
+            //   if (lujing[o].linkurl.indexOf(url) != -1) {
+            //     lujing[o].change = true;
+            //   } else {
+            //     lujing[o].change = false;
+            //   }
+            // }
+            // t.data.data.data = lujing;
             that.setData({
               footinfo: t.data.data,
-              style: t.data.data.style,
+              // style: t.data.data.style,
             })
           }
 
@@ -426,7 +452,7 @@ Page({
   },
   go_order: function (event) {
     var item = event.currentTarget.dataset.id;
-    console.log(this.data.version)
+    console.log(item)
     if (item == 5) {
       wx.navigateTo({
         url: '../after_sales/after_sales?version=' + this.data.version,
