@@ -331,7 +331,7 @@ delect_img_old:function(e){
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    // console.log(options)
     var that = this;
     var height = wx.getSystemInfoSync().windowHeight;
     that.setData({ height: height });
@@ -367,7 +367,7 @@ delect_img_old:function(e){
       wx.request({
         url: app.globalData.tiltes + 'after_sale_order_return',
         data: {
-          'id': options.title
+          'id': options.order_id
         },
         method: "post",
         // header: {

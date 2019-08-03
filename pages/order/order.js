@@ -307,7 +307,7 @@ Page({
           method: "post",
           success: function(res) {
             wx.showToast({
-              title: '收货成功',
+              title: '确认收货成功',
               icon: 'none',
               duration: 3000
             })
@@ -343,7 +343,8 @@ Page({
   go_apply_after_sales: function (event) {
     var that = this;
     var item = event.currentTarget.dataset.id;
-    console.log(item)
+    var order_id = event.currentTarget.dataset.order;
+    // console.log(event)
     wx.request({
       url: app.globalData.tiltes + 'after_sale_is_set',
       data: {
@@ -353,7 +354,7 @@ Page({
       success: function (res) {
        if(res.data.status=="1"){
          wx.navigateTo({
-          url: '../apply_after_sales/apply_after_sales?title=' + event.currentTarget.dataset.id,
+          url: '../apply_after_sales/apply_after_sales?title=' + event.currentTarget.dataset.id + '&order_id=' + event.currentTarget.dataset.order,
           success: function (res) {
           
           },
