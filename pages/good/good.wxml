@@ -4,7 +4,7 @@
   </view>
 </view>
 <scroll-view class="nav_right" scroll-y="true" scroll-into-view="{{toView}}" style="height:{{s_height}}px;margin-left:100px" bindscroll="scroll" scroll-with-animation="true">
-  <view class="nav_right_box" wx:for="{{category}}" style="min-height:{{index==category.length-1?s_height+50+'px':''}}" wx:for-item="item">
+  <view class="nav_right_box" wx:for="{{category}}" wx:for-item="item" style="height:100vh;">
     <!-- <scroll-view style="height: 100vh;"> -->
       <view class='dv1'>
         <view class="liner"></view>
@@ -12,7 +12,9 @@
       </view>
       <view class='good_box'>
         <view class="nav_goods_box" wx:for="{{item.child}}" wx:for-item="good" bindtap="go_gooddetail" data-id='{{good.id}}'>
-          <image class="nav_goods_l" src="{{url}}{{good.goods_show_image}}"></image>
+          <!-- <view class="nav-img-box"> -->
+            <image class="nav_goods_l" src="{{url}}{{good.goods_show_image}}"></image>
+          <!-- </view> -->
           <view class="nav_goods_r">
             <view class="nav_goods_name">{{good.goods_name}}</view>
           </view>
