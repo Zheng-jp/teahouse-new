@@ -33,7 +33,7 @@
               </view>
               <view class='good_price'>
                 <view class='price'>
-                  <image src='http://zhihuichacang.com/img1.png' mode='widthFix' style='width:40rpx;'></image>
+                  <image src='{{item.member_pic}}' mode='widthFix' style='width:40rpx;'></image>
                   <view class='text_red'>￥{{item.money}}</view>
                   <view class="limit_style" wx:if="{{item.is_limit == 1 && item.limit_number > 0}}">
                     限购数量：{{item.limit_number}}

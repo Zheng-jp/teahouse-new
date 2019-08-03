@@ -360,7 +360,6 @@ Page({
     let stock = Number(that.data.goods[0].goods_info.goods_repertory);
     let taxes1 = Number(that.data.taxes);
     if(Number(num[0]) <= stock) {
-
       if (that.data.order_type == "1") {
         wx.request({
           url: app.globalData.tiltes + 'order_places',
