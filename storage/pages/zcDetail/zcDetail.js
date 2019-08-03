@@ -22,6 +22,31 @@ Page({
     buyNum: 1,  //购买数量
   },
 
+  onShareAppMessage: function () {
+    let that = this;
+    const shareName = this.data.proArr[0].project_name;
+    return {
+      title: shareName, // 转发后 所显示的title
+      path: '/pages/logs/logs', // 相对的路径
+      success: (res) => {
+        wx.getShareInfo({
+          shareTicket: res.shareTickets[0],
+          success: (res) => {
+            that.setData({
+              isShow: true
+            })
+          },
+          fail: function (res) {
+            console.log(res)
+          }
+        })
+      },
+      fail: function (res) {
+        // 分享失败
+      }
+    }
+  },
+
   // 支持项目
   supProj: function (e) {
     // 库存
