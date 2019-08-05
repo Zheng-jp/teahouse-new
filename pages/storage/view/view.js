@@ -562,25 +562,25 @@ Page({
             foot: t.data.data.foot_is
           },
           success: function (t) {
-            var lujing = [];
-            var num = getCurrentPages().length - 1;
-            var url = getCurrentPages()[num].route; //当前页面路径
-            console.log(url)
-            for (let i in t.data.data.data) {
-              lujing.push(t.data.data.data[i]);
-            }
-            for (let o = 0; o < lujing.length; o++) {
-              if (lujing[o].linkurl.indexOf(url) != -1) {
-                lujing[o].change = true;
-              } else {
-                lujing[o].change = false;
-              }
-            }
-            t.data.data.data = lujing;
-            console.log(t.data.data)
+            // var lujing = [];
+            // var num = getCurrentPages().length - 1;
+            // var url = getCurrentPages()[num].route; //当前页面路径
+            // console.log(url)
+            // for (let i in t.data.data.data) {
+            //   lujing.push(t.data.data.data[i]);
+            // }
+            // for (let o = 0; o < lujing.length; o++) {
+            //   if (lujing[o].linkurl.indexOf(url) != -1) {
+            //     lujing[o].change = true;
+            //   } else {
+            //     lujing[o].change = false;
+            //   }
+            // }
+            // t.data.data.data = lujing;
+            // console.log(t.data.data)
             that.setData({
               footinfo: t.data.data,
-              style: t.data.data.style,
+              // style: t.data.data.style,
             })
           }
         });

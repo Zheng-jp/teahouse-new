@@ -486,7 +486,7 @@
 </template>
 <template name="show_page_yhq">
     <view style="background:{{params.styledata==1?'url('+params.backgroundimg+')':''}} {{params.positiony}} {{params.positionx}} {{params.repeat}} {{style.background}};background-size:{{params.size==1?'cover':style.sizew+'%'}} {{params.size==1?'':style.sizeh+'%'}};margin-top:{{style.mt*2}}rpx;padding:{{style.paddingtop*2}}rpx {{style.paddingleft*2}}rpx">
-        <view bindtap="redirectto" class="display-inline-block " data-link="/sudu8_page/coupon/coupon" data-linktype="page" style="width:{{100/params.rownum}}%;" wx:for="{{coupon}}" wx:key="index">
+        <view bindtap="redirectto" class="display-inline-block " data-link="/pages/coupon/coupon" data-linktype="page" style="width:{{100/params.rownum}}%;" wx:for="{{coupon}}" wx:key="index">
             <view style="margin:{{style.paddingtop*2}}rpx {{style.paddingleft*2}}rpx;border-radius:10rpx;height:100rpx;color:{{style.color}};background:linear-gradient(to right, {{style.yhqbg}} 0%,{{style.yhqbg2}} 100%);position:relative;padding:20rpx 0;overflow:hidden">
                 <view class="" style="font-size:28rpx;width:100%;text-align:center;">¥ <text style="font-size:36rpx">{{item.money}}</text>
                 </view>
