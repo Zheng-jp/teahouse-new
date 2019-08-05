@@ -1,3 +1,13 @@
 @import "../diypages/diypages.wxss";
 @import "../../../__wuBaseWxss__/1.wxss";
 @import "../../../__wuBaseWxss__/2.wxss";
+
+.foot_text {
+  text-align:center;
+  font-size:28rpx;
+  color:rgba(0, 0, 0, 0.6);
+  background-color:#fff;
+  height:80rpx;
+  padding:15rpx;
+  margin-top: 15rpx;
+}

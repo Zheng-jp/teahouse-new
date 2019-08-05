@@ -77,7 +77,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     foottext: 0,
     page_is: 1,
     homepageid: 0,
-
+    fixiPhone: false,
   },
 
   onPullDownRefresh: function () {
@@ -97,7 +97,16 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     wx.stopPullDownRefresh();
   },
   onReady: function (t) {
-
+    var _this = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        if(res.model.indexOf('iPhone X') != -1){
+          _this.setData({
+            fixiPhone: true
+          })
+        }
+      }
+    });
     this.audioCtx = wx.createAudioContext("myAudio");
   },
   onLoad: function (t) {

@@ -600,7 +600,6 @@ overflow:hidden;
   height:80rpx;
   padding:15rpx;
   margin-top: 15rpx;
-  /* margin-bottom: 100rpx; */
 }
 
 .purchasing {
