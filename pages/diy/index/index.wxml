@@ -308,3 +308,8 @@
 </block> -->
 <template is="copyright" data="{{...baseinfo}}"></template>
 <template is="footer" data="{{...baseinfo,page_signs:page_signs}}" wx:if="{{baseinfo.tabbar_t==1&&foot_is==1}}"></template>
+
+<!-- <view class='foot_text' style="{{fixiPhone? 'margin-bottom: 82px' : ''}}">
+  <view>智慧茶仓提供技术支持</view>
+  <view>www.zhihuichacang.com</view>
+</view> -->
