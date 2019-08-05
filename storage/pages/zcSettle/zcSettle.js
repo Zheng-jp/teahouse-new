@@ -564,13 +564,15 @@ Page({
     let that = this;
     // let num = this.data.goods[0].number;
     let goods = this.data.goods;
+    let stock = Number(goods[0].special_info.stock);//库存
     if (that.data.searchKey <= 0 || that.data.searchKey == '' && that.data.searchKey == null && that.data.searchKey == undefined) {
       goods[0].number = 1;
       that.setData({
         goods: goods
       });
     } else {
-      goods[0].number = that.data.searchKey;
+      if(that.data.searchKey >= stock) goods[0].number = stock;
+      else goods[0].number = that.data.searchKey;
       this.setData({
         goods: goods
       });
@@ -621,14 +623,19 @@ Page({
   /* 点击加号 */
   bindPlus: function () {
     var _this = this;
-    var num = this.data.goods[0].number;
-    var goods = this.data.goods;
+    var num = _this.data.goods[0].number;
+    var goods = _this.data.goods;
+    let stock = Number(goods[0].special_info.stock);//库存
     // 不作过多考虑自增1  
-    num++;
+    if (num >= stock) {
+      goods[0].number = stock;
+    } else {
+      num++;
+      // 将数值与状态写回  
+      goods[0].number = num;
+    }
     // 只有大于一件的时候，才能normal状态，否则disable状态  
     var minusStatus = num < 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    goods[0].number = num;
     this.setData({
       goods: goods,
       minusStatus: minusStatus

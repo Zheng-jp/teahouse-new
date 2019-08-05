@@ -10,6 +10,8 @@ Page({
     order:[],
     selected2: false,
     coupon_mark: false,
+    coupon_content: "请选择优惠券",
+    coupon_show: null, //显示有无优惠劵
   },
   newRedirectto: function (n, e) {
     switch (e) {
@@ -89,12 +91,18 @@ Page({
         data.data[i].linkurl = "/pages/goods_detail/goods_detail?title=" + data.data[i].goods_id;
         // console.log(res.data.data)
       }
-      let selected2;
+      let selected,selected2;
+      if(data.order_type == 1) selected = true;
       if(data.order_type == 1 || data.order_type == 2 ) {
         selected2 = false
       } else {
         selected2 = true
       }
+      // if(data.data[0].coupon_deductible == 0 && data.data[0].status == 1) {
+      //   coupon_deductible = '请选择优惠券'
+      // } else {
+      //   coupon_deductible = data.data[0].coupon_deductible;
+      // }
       that.setData({
         order:data,
         all_money:data.data[0].order_real_pay,
@@ -102,14 +110,17 @@ Page({
         receipt_price:data.data[0].receipt_price,
         coupon_deductible:data.data[0].coupon_deductible,
         selected2: selected2,
+        selected: selected,
         storage:data.data[0].storage
       })
+      var goods_id = new Array ();
+      goods_id.push(data.data[0].goods_id);
        //优惠券
       wx.request({
         url: app.globalData.tiltes + 'coupon_appropriated',
         data: {
           open_id: app.globalData.gmemberid,
-          goods_id: data.data[0].goods_id,
+          goods_id: goods_id,
           member_grade_name: app.globalData.member_grade_name,
           money: data.data[0].order_real_pay,
           coupon_type: 1,
@@ -117,9 +128,18 @@ Page({
         },
         method: "post",
         success: function (res) {
+          let coupon_order = res.data.data,coupon_deductible;
+          for(let i = 0; i <coupon_order.length; i++) {
+            if(coupon_order[i].id == that.data.order.data[0].coupon_id) {
+              coupon_deductible = coupon_order[0].money;
+            } else {
+              coupon_deductible = 0;
+            }
+          }
           that.setData({
             coupon_show: res.data.status,
             coupon_order: res.data.data,
+            coupon_deductible: coupon_deductible
           });
         },
         fail: function (e) {
@@ -204,72 +224,100 @@ Page({
   
   },
  
-  go_coupon: function () {
-    var that = this;
-    that.setData({
-      coupon_mark: true,
-    }) /*  */
+  // go_coupon: function () {
+  //   var that = this;
+  //   that.setData({
+  //     coupon_mark: true,
+  //   }) /*  */
 
-  },
-  checkboxChangess: function (e) {
-    var that = this;
-    wx.request({
-      url: app.globalData.tiltes + 'coupon_minute',
-      data: {
-        coupon_id: e.currentTarget.dataset.id,
-      },
-      method: "post",
-      success: function (res) {
-        if (e.currentTarget.dataset.value == "1") {
-          if (res.data.data.money <= that.data.all_money) {
-            that.setData({
-              coupon_content: "-" + res.data.data.money,
-              coupon_type: e.currentTarget.dataset.value,
-              money: res.data.data.money,
-            });
-          } else {
-            that.setData({
-              coupon_content: "-" + that.data.all_money,
-              coupon_type: e.currentTarget.dataset.value,
-              money: res.that.data.all_money,
-            });
-          }
-        } else if (e.currentTarget.dataset.value == "3") {
-          if (res.data.data.money <= Number(that.data.storage)) {
-            that.setData({
-              coupon_content: "-" + res.data.data.money,
-              coupon_type: e.currentTarget.dataset.value,
-              money: res.data.data.money,
-            });
-          } else {
-            that.setData({
-              coupon_content: "-" + that.data.storage,
-              coupon_type: e.currentTarget.dataset.value,
-              money: that.data.storage,
-            });
-          }
-        } else if (e.currentTarget.dataset.value == "") {
-          that.setData({
-            coupon_content: "-" + res.data.data.money,
-            coupon_type: e.currentTarget.dataset.value,
-            money: res.data.data.money,
-          });
-        }
+  // },
+  // checkboxChangess: function (e) {
+  //   var that = this;
+  //   wx.request({
+  //     url: app.globalData.tiltes + 'coupon_minute',
+  //     data: {
+  //       coupon_id: e.currentTarget.dataset.id,
+  //     },
+  //     method: "post",
+  //     success: function (res) {
+  //       console.log(res)
+  //       let range = e.currentTarget.dataset.value;
+  //       res.data.data.money = (res.data.data.money).toFixed(2);
+  //       let for_goods = range.indexOf('1'), insurance_costs = range.indexOf('2'), storage_charges = range.indexOf('3');
+  //       if(range.length == 3) {//使用所有范围
+  //         that.setData({
+  //           coupon_deductible: "-" + res.data.data.money,
+  //           // money: res.data.data.money,
+  //         });
+  //       } else if(range.length == 2){
+  //         if(for_goods > -1 && insurance_costs == -1 && storage_charges > -1) {//没有2
+  //           that.setData({
+  //             coupon_deductible: "-" + res.data.data.money,
+  //             // money: res.data.data.money,
+  //           });
+  //         } else if (for_goods > -1 && insurance_costs > -1 && storage_charges == -1){//没有3
+  //           that.setData({
+  //             coupon_deductible: "-" + res.data.data.money,
+  //             // money: res.data.data.money,
+  //           });
+  //         } else {
+  //           that.setData({
+  //             coupon_deductible: "-" + res.data.data.money,
+  //             // money: res.data.data.money,
+  //           });
+  //         }
+  //       } else {
+  //         if(for_goods > -1 && insurance_costs == -1 && storage_charges == -1) {//只有1
+  //           if (Number(res.data.data.money) <= that.data.goods_money_one) {
+  //             that.setData({
+  //               coupon_deductible: "-" + res.data.data.money,
+  //               // coupon_type: e.currentTarget.dataset.value,
+  //               // money: res.data.data.money,
+  //             });
+  //           } else {
+  //             that.setData({
+  //               coupon_deductible: "-" + that.data.goods_money_one,
+  //               // coupon_type: e.currentTarget.dataset.value,
+  //               // money: that.data.goods_money_one,
+  //             });
+  //           }
+  //         } else if (for_goods == -1 && insurance_costs == -1 && storage_charges > -1) {//只有3
+  //           if (Number(res.data.data.money) <= Number(that.data.storage)) {
+  //             that.setData({
+  //               coupon_deductible: "-" + res.data.data.money,
+  //               // coupon_type: e.currentTarget.dataset.value,
+  //               // money: res.data.data.money,
+  //             });
+  //           } else {
+  //             that.setData({
+  //               coupon_deductible: "-" + that.data.storage,
+  //               // coupon_type: e.currentTarget.dataset.value,
+  //               // money: that.data.storage,
+  //             });
+  //           }
+  //         } else {
+  //           that.setData({
+  //             coupon_deductible: "-" + res.data.data.money,
+  //             // coupon_type: e.currentTarget.dataset.value,
+  //             // money: res.data.data.money,
+  //           });
+  //         }
+  //       }
 
-        that.calculate_money();
+  //       // that.calculate_money();
 
-      },
-      fail: function () {
+  //     },
+  //     fail: function () {
 
-      },
-      complete: function () { }
+  //     },
+  //     complete: function () { }
 
-    });
-    that.setData({
-      coupon_mark: false,
-      coupon_id: parseInt(e.currentTarget.dataset.id),
-    })
-  },
+  //   });
+  //   that.setData({
+  //     coupon_mark: false,
+  //     coupon_id: parseInt(e.currentTarget.dataset.id),
+  //   })
+  // },
   //  // 计算优惠劵
   //  coupon:function(){
   //  if(that.data.coupon_type=="1"){
@@ -279,22 +327,22 @@ Page({
   //  }
   //   that.calculate_money();
   // },
-  checkboxChanges: function (e) {
-    var that = this;
-    that.setData({
-      is_checked: true
-    })
-  },
-  no_use: function (e) {
-    var that = this;
-    that.setData({
-      coupon_mark: false,
-      coupon_content: "有可适用优惠券",
-      coupon_id: 0,
-      money: 0,
-    })
-    that.calculate_money();
-  },
+  // checkboxChanges: function (e) {
+  //   var that = this;
+  //   that.setData({
+  //     is_checked: true
+  //   })
+  // },
+  // no_use: function (e) {
+  //   var that = this;
+  //   that.setData({
+  //     coupon_mark: false,
+  //     coupon_deductible: "有可适用优惠券",
+  //     coupon_id: 0,
+  //     money: 0,
+  //   })
+  //   // that.calculate_money();
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

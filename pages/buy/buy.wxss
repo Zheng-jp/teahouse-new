@@ -435,7 +435,3 @@ text-align: center;
   padding-top:12rpx;
   margin-left: 8rpx;
 }
-.text_red{
-  padding-top:10rpx;
-  /* margin-right:50rpx; */
-}

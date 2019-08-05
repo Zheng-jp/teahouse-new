@@ -496,16 +496,9 @@ Page({
   // 追加评价
   go: function (event) {
     var item = event.currentTarget.dataset.id;
-    console.log(this.data.version)
     wx.redirectTo({
       url: item + '?title=' + 0 + '&version=' + this.data.version,
       // url: item + '?title=' + 0,
-      success: function (res) {
-
-      },
-      fail: function () {
-
-      }
     })
   },
 

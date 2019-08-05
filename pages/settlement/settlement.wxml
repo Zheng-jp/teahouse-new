@@ -9,7 +9,7 @@
         <image class="retrue_ico" src="http://zhihuichacang.com/u2014.png" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
       </view>
     </view>
-    <view class='order_list' wx:for="{{coupon_order}}" data-id="{{item.id}}" bindtap="checkboxChangess" data-value="{{item.suit_price}}">
+    <view class='order_list' wx:for="{{coupon_order}}" data-id="{{item.id}}" bindtap="checkboxChangess" data-value="{{item.suit_price}}" >
       <view class='order_list_content' wx:if="{{item.authority == 1}}">
         <checkbox value="{{item.id}}" checked="{{item.checked}}" />
         <view class="coupon_box">
@@ -74,8 +74,8 @@
 </view>
 <view class='all'>
   <view class='titles'>购物清单</view>
-  <view wx:for="{{goods}}" class='good_list' wx:key="index">
-    <view class='order-goods-info'>
+  <view wx:for="{{goods}}" class="good_list {{item.is_err ? 'is_err' : ''}}" wx:key="index">
+    <view class="order-goods-info " >
       <view class='order-goods-img'>
         <image src='{{url}}{{item.goods_info.goods_show_image}}' mode="scaleToFill"></image>
       </view>
@@ -331,7 +331,7 @@
   </view>
 </view>
 <!-- 支付弹窗 -->
-<view class="mask" wx:if="{{pmKey}}"></view>
+<view class="mask" wx:if="{{pmKey}}" catchtouchmove="return"></view>
 <view class="pm-content" wx:if="{{pmKey}}">
   <view class="pm-account">
     <view class="pm-inner-view" data-tapIndex="0" bindtap="selectMethod">

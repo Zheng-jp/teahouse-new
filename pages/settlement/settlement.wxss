@@ -1,5 +1,7 @@
 /* pages/settlement/settlement.wxss */
-
+.scrollBool{
+  overflow-y: hidden;
+}
 /* 支付start */
 .pm-content{
   position: absolute;
@@ -270,8 +272,8 @@
 }
 
 .unit-price-img {
-  width: 30rpx;
-  height: 36rpx;
+  width: 44rpx;
+  height: 44rpx;
 }
 
 .unit-price-quantity {
@@ -787,7 +789,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .order_list {
-  margin-top: 30rpx;
+  margin: 30rpx 10rpx 0 10rpx;
 }
 
 .order_list_content {
@@ -992,4 +994,8 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   font-size: 24rpx;
   padding-top:12rpx;
   margin-left: 8rpx;
+}
+.is_err {
+  border:1px solid red;
+  
 }

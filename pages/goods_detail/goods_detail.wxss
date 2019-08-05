@@ -53,8 +53,8 @@
 	}
 	
 	.level_images {
-    width: 34rpx;
-    height: 34rpx;
+    width: 52rpx;
+    height: 52rpx;
     display: flex;
     align-items: center;
 	}

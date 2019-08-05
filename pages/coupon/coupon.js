@@ -257,14 +257,27 @@ Page({
 
       },
       success: function(res) {
+        console.log(res)
         if (res.data.status != 0) {
-          for (let i = 0; i < res.data.data.length; i++) {
-            res.data.data[i].start_time = that.formatDate(res.data.data[i].start_time);
-            res.data.data[i].end_time = that.formatDate(res.data.data[i].end_time);
+          var order = res.data.data;
+          for(let z = 0; z < order.length; z ++) {
+            let arr = [];
+            if(order[z].suit_price2.indexOf('3') > -1 && that.data.authority != 1 && that.data.authority_new != 1) order[z].authority = 0;
+            else order[z].authority = 1;
+            for(let i = 0; i < order[z].suit_price2.length; i++) {
+              if(order[z].suit_price2[i] == 1) arr.push('商品费用');
+              else if (order[z].suit_price2[i] == 2) arr.push('保险费用');
+              else arr.push('仓储费用');
+            }
+            let end_time = that.formatDate(order[z].end_time);
+            let start_time = that.formatDate(order[z].start_time);
+            order[z].suit_price2 = arr;
+            order[z].end_time = end_time;
+            order[z].start_time = start_time;
           }
         }
         that.setData({
-          order: res.data.data
+          order: order
         })
         //  添加字段到等级数组
         for (var index in that.data.order) {

@@ -25,9 +25,7 @@
           <view class='spec_title'>选择规格</view>
           <view class='spec_content_all'>
             <view class='spec_content' wx:for="{{goods.goods_standard}}">
-              <view class="spec_content_text {{item.id==id? 'on' : ''}}" bindtap="labelItemTap" data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}" data-value="{{item.name}}" data-save="{{item.save}}" wx:if="{{item.stock != 0}}">
-                {{item.name}}
-              </view>
+              <view class="spec_content_text {{item.id==id? 'on' : ''}}" bindtap="labelItemTap" data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}" data-value="{{item.name}}" data-save="{{item.save}}" wx:if="{{item.stock != 0}}">{{item.name}}</view>
             </view>
           </view>
         </view>
@@ -87,7 +85,7 @@
     </view>
     <view class='price_cont'>
       <view style="display:flex; align-items:flex-end;margin-bottom:-15px">
-        <view class='level_images' style='margin-bottom:9.5rpx;'>
+        <view class='level_images'>
           <image src='{{member_grade_img}}'></image>
         </view>
         <view wx:if="{{goods.goods_standard==0}}">
@@ -110,7 +108,7 @@
     </view>
     <view class='other_info'>
       <view class='freight'>运费：{{goods.goods_franking==0?'免费':goods.goods_franking}}</view>
-      <view class='inventory'>库存{{goods.goods_repertory}}{{goods.unit}}</view>
+      <view class='inventory'>库存{{goods.goods_repertory == '' || goods.goods_repertory == undefined ? goods.goods_standard[0].stock : goods.goods_repertory}}{{goods.unit}}</view>
       <view class='sales'>销量{{goods.goods_volume}}{{goods.unit}}</view>
     </view>
     <view class='other_info'>

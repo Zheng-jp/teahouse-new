@@ -7,7 +7,7 @@ Page({
    */
   data: {
     height: '',
-    tab: '1',
+    tab: 1,
     static: '5',
     order: [],
     url: app.globalData.img_url,
@@ -307,7 +307,7 @@ Page({
           method: "post",
           success: function(res) {
             wx.showToast({
-              title: '收货成功',
+              title: '确认收货成功',
               icon: 'none',
               duration: 3000
             })
@@ -318,6 +318,45 @@ Page({
         });
       }
     }
+  },
+  //自提确认收货
+  confirm_receipt_zt: function(e) {
+    var that = this;
+    var indexs = e.currentTarget.dataset.id;
+    var orderItems = that.data.order;
+    wx.showModal({
+      title: '提示',
+      content: '本人已来到自提点，签收了宝贝，感谢！',
+      success: function(res) {
+        if (res.confirm) {
+          for (var i = 0; i < orderItems.length; ++i) {
+            if (orderItems[i].parts_order_number == indexs) {
+              orderItems.splice(i, 1);
+              wx.request({
+                url: app.globalData.tiltes + 'ios_api_order_collect_goods',
+                data: {
+                  open_id: app.globalData.gmemberid,
+                  parts_order_number: indexs
+                },
+                method: "post",
+                success: function(res) {
+                  wx.showToast({
+                    title: '确认收货成功',
+                    icon: 'none',
+                    duration: 3000
+                  })
+                  that.setData({
+                    order: orderItems
+                  });
+                },
+              });
+            }
+          }
+        } else if (res.cancel) {
+        }
+      }
+    })
+   
   },
   // // 追加评价
   // go_evaluation: function(event) {
@@ -343,7 +382,8 @@ Page({
   go_apply_after_sales: function (event) {
     var that = this;
     var item = event.currentTarget.dataset.id;
-    console.log(item)
+    var order_id = event.currentTarget.dataset.order;
+    // console.log(event)
     wx.request({
       url: app.globalData.tiltes + 'after_sale_is_set',
       data: {
@@ -353,7 +393,7 @@ Page({
       success: function (res) {
        if(res.data.status=="1"){
          wx.navigateTo({
-          url: '../apply_after_sales/apply_after_sales?title=' + event.currentTarget.dataset.id,
+          url: '../apply_after_sales/apply_after_sales?title=' + event.currentTarget.dataset.id + '&order_id=' + event.currentTarget.dataset.order,
           success: function (res) {
           
           },
@@ -502,17 +542,8 @@ Page({
   // 追加评价
   go: function(event) {
     var item = event.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: item + '?title=' + 0 + '&version=' + this.data.version,
-      success: function(res) {
-
-      },
-      fail: function() {
-
-      },
-      complete: function() {
-
-      }
+    wx.redirectTo({
+      url: item + '?title=' + 0 + '&version=' + this.data.version
     })
   },
 
@@ -546,7 +577,7 @@ Page({
         success: function(res) {
           that.setData({
             order: res.data.data,
-            tab: '1'
+            tab: 1
           })
         },
         fail: function() {
@@ -562,13 +593,14 @@ Page({
         url: app.globalData.tiltes + 'ios_api_order_wait_pay',
         data: {
           open_id: app.globalData.gmemberid,
-          tab: '2'
+          
         },
         method: "post",
         success: function(res) {
 
           that.setData({
-            order: res.data.data
+            order: res.data.data,
+            tab: 2
           })
         },
         fail: function() {
@@ -590,7 +622,7 @@ Page({
 
           that.setData({
             order: res.data.data,
-            tab: '3'
+            tab: 3
           })
         },
         fail: function() {
@@ -612,7 +644,7 @@ Page({
 
           that.setData({
             order: res.data.data,
-            tab: '4'
+            tab: 4
           })
         },
         fail: function() {
@@ -633,7 +665,7 @@ Page({
         success: function(res) {
           that.setData({
             order: res.data.data,
-            tab: '5'
+            tab: 5
           })
         },
         fail: function() {

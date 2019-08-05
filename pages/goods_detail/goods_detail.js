@@ -106,8 +106,9 @@ Page({
   onShareAppMessage: function () {
     // console.log("分享")
     let that = this;
+    const shareName = this.data.goods.goods_name + '-' + this.data.goods.goods_selling;
     return {
-      title: '', // 转发后 所显示的title
+      title: shareName, // 转发后 所显示的title
       path: '/pages/logs/logs', // 相对的路径
       success: (res) => { // 成功后要做的事情
         // console.log(res.shareTickets[0])
@@ -297,7 +298,10 @@ Page({
     });
   },
   /* 点击加号 */
-  bindPlus: function () {
+  bindPlus: function (e) {
+    let that = this, stock;
+    console.log(that.data.goods.goods_standard)
+    // stock = that.data.goods.goods_standard
     var num = this.data.num;
     // 不作过多考虑自增1  
     num++;
