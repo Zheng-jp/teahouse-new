@@ -290,7 +290,7 @@
     <view class='sundry-li'>
       <view class='text_red'>优惠券</view>
       <view wx:if="{{coupon_show==1}}" bindtap="go_coupon">
-        <text style='color:#FF7E4A;'>{{coupon_content}}元</text>
+        <text style='color:#FF7E4A;'>{{coupon_content}}</text>
       </view>
       <view wx:else>
         <text style='color:#FF7E4A;'>无可适用优惠券</text>
