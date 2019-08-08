@@ -18,7 +18,7 @@ function countDown(endTime, _this){
     }
   }else{
     _this.setData({
-      countDownTime: Day + '天' + Hour + '时' + Minutes + '分'
+      countDownTime: Day + '天' + Hour + '时' + Minutes + '分' + Second + '秒'
     })
   }
 }
@@ -187,7 +187,8 @@ Page({
       url: app.globalData.tiltes + 'after_sale_information_return',
       method: 'POST',
       data: {
-        after_sale_id: _this.data.id
+        after_sale_id: _this.data.id,
+        uniacid: app.globalData.uniacid
       },
       success: function(res){
         console.log('success', res);

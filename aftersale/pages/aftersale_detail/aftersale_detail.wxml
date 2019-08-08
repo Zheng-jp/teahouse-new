@@ -25,7 +25,7 @@
             <block wx:else>
                 <view>平台同意后，请按照给出的退货地址退货，并请记录退货运单号</view>
                 <view>如平台拒绝，您可以修改申请后再次发起，商家会重新处理</view>
-                <view>平台超过5个工作日后超时未处理，退货申请将达成，请按系统给的退货地址退货</view>
+                <view>平台超过{{dataObj.sale_day}}个工作日后超时未处理，退货申请将达成，请按系统给的退货地址退货</view>
             </block>
         </view>
         <view class="operation-box">
