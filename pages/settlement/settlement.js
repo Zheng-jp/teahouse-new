@@ -394,7 +394,7 @@ Page({
               })
             } else {
               wx.showToast({
-                title: "下单失败，请联系管理员",
+                title: "下单失败",
                 icon: 'none'
               })
             }
@@ -436,7 +436,7 @@ Page({
                 })
               } else {
                 wx.showToast({
-                  title: "下单失败，请联系管理员",
+                  title: "下单失败",
                   icon: 'none',
                 })
               }
@@ -483,7 +483,7 @@ Page({
               })
             } else {
               wx.showToast({
-                title: "下单失败，请联系管理员",
+                title: "下单失败",
                 icon: 'none',
               })
             }
@@ -554,7 +554,7 @@ Page({
               })
             } else {
               wx.showToast({
-                title: "下单失败，请联系管理员",
+                title: "下单失败",
                 icon: 'none',
               })
             }
@@ -596,7 +596,7 @@ Page({
               })
             } else {
               wx.showToast({
-                title: "下单失败，请联系管理员",
+                title: "下单失败",
                 icon: 'none',
               })
             }
@@ -639,7 +639,7 @@ Page({
               })
             } else {
               wx.showToast({
-                title: "下单失败，请联系管理员",
+                title: "下单失败",
                 icon: 'none',
               })
             }
@@ -674,23 +674,23 @@ Page({
         let for_goods = range.indexOf('1'), insurance_costs = range.indexOf('2'), storage_charges = range.indexOf('3');
         if(range.length == 3) {//使用所有范围
           that.setData({
-            coupon_content: "-" + res.data.data.money,
+            coupon_content: "-" + res.data.data.money + "元",
             money: res.data.data.money,
           });
         } else if(range.length == 2){
           if(for_goods > -1 && insurance_costs == -1 && storage_charges > -1) {//没有2
             that.setData({
-              coupon_content: "-" + res.data.data.money,
+              coupon_content: "-" + res.data.data.money + "元",
               money: res.data.data.money,
             });
           } else if (for_goods > -1 && insurance_costs > -1 && storage_charges == -1){//没有3
             that.setData({
-              coupon_content: "-" + res.data.data.money,
+              coupon_content: "-" + res.data.data.money + "元",
               money: res.data.data.money,
             });
           } else {
             that.setData({
-              coupon_content: "-" + res.data.data.money,
+              coupon_content: "-" + res.data.data.money + "元",
               money: res.data.data.money,
             });
           }
@@ -698,13 +698,13 @@ Page({
           if(for_goods > -1 && insurance_costs == -1 && storage_charges == -1) {//只有1
             if (Number(res.data.data.money) <= that.data.goods_money_one) {
               that.setData({
-                coupon_content: "-" + res.data.data.money,
+                coupon_content: "-" + res.data.data.money + "元",
                 // coupon_type: e.currentTarget.dataset.value,
                 money: res.data.data.money,
               });
             } else {
               that.setData({
-                coupon_content: "-" + that.data.goods_money_one,
+                coupon_content: "-" + that.data.goods_money_one + "元",
                 // coupon_type: e.currentTarget.dataset.value,
                 money: that.data.goods_money_one,
               });
@@ -712,20 +712,20 @@ Page({
           } else if (for_goods == -1 && insurance_costs == -1 && storage_charges > -1) {//只有3
             if (Number(res.data.data.money) <= Number(that.data.storage)) {
               that.setData({
-                coupon_content: "-" + res.data.data.money,
+                coupon_content: "-" + res.data.data.money + "元",
                 // coupon_type: e.currentTarget.dataset.value,
                 money: res.data.data.money,
               });
             } else {
               that.setData({
-                coupon_content: "-" + that.data.storage,
+                coupon_content: "-" + that.data.storage + "元",
                 // coupon_type: e.currentTarget.dataset.value,
                 money: that.data.storage,
               });
             }
           } else {
             that.setData({
-              coupon_content: "-" + res.data.data.money,
+              coupon_content: "-" + res.data.data.money + "元",
               // coupon_type: e.currentTarget.dataset.value,
               money: res.data.data.money,
             });

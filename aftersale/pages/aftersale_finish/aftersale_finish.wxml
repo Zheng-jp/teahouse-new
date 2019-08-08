@@ -20,7 +20,7 @@
             </block>
             <block wx:else>
                 <view>请及时查询换货物流信息</view>
-                <view>{{dataObj.buy_express_company}}：{{dataObj.buy_express_number}}<text>查看物流></text></view>
+                <view>{{dataObj.sell_express_company}}：{{dataObj.sell_express_number}}<text>查看物流></text></view>
             </block>
         </view>
         <view class="operation-box">

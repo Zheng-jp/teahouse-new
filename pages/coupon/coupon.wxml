@@ -12,7 +12,7 @@
 				<image class="coupon_box_img" src="http://zhihuichacang.com/y6112.png" mode="widthFix"></image>
 					<view class="coupon_money_box">
 						 <view><text class="money">{{item.money}}</text><text class="money_unit">元</text></view>
-						 <view class="limit">满{{item.use_price > 0 ? item.use_price : "任意金额"}}使用</view>
+						 <view class="limit">满{{item.use_price > 0 ? item.use_price + '元' : "任意金额"}}使用</view>
 					</view>
 					<view class="coupon_info_box">
 						<view class="coupon_name">{{item.label}}</view>
@@ -42,7 +42,7 @@
 				<image class="coupon_box_img" src="http://zhihuichacang.com/y6113.png" mode="widthFix"></image>
 						<view class="coupon_money_box">
 						 <view><text class="money ">{{item.money}}</text><text class="money_unit">元</text></view>
-						 <view class="limit ">满{{item.use_price > 0 ? item.use_price : "任意金额"}}使用</view>
+						 <view class="limit ">满{{item.use_price > 0 ? item.use_price + '元' : "任意金额"}}使用</view>
 					</view>
 					<view class="coupon_info_box">
 						<view class="coupon_name hui">{{item.label}}</view>
