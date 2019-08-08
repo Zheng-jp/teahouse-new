@@ -368,6 +368,10 @@ Page({
           _this.setData({
             storageDataArr: res.data.data
           })
+        }else{
+          _this.setData({
+            storageDataArr: []
+          })
         }
       },
       fail: function(){}
