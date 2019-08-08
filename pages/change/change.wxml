@@ -2,14 +2,15 @@
     <view class="list" bindtap="go_change_account">
         <view class="tilte_text">当前账号</view>
         <view class="content">
-            <image src="http://zhihuichacang.com/upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png" mode="widthFix" class="more" />
+            <view class="context">{{user_phone}}</view>
+            <!-- <image src="http://zhihuichacang.com/upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png" mode="widthFix" class="more" /> -->
         </view>
     </view>
     <view class="list" bindtap="go_change_name">
         <view class="tilte_text">昵称</view>
         <view class="content">
             <view class="context">{{user_name}}</view>
-            <image src="http://zhihuichacang.com/upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png" mode="widthFix" class="more" />
+            <!-- <image src="http://zhihuichacang.com/upload/20190104/bdf9be86248db099ee1ce20018f8ad8a.png" mode="widthFix" class="more" /> -->
         </view>
     </view>
     <view class="list">

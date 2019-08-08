@@ -101,7 +101,8 @@ Page({
       })
     }
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    
     var _this = this;
     // 查看是否授权
     wx.getSetting({
@@ -146,6 +147,38 @@ Page({
                             app.globalData.member_id = res.data.data.member_id;
                             app.globalData.uniacid = res.data.data.uniacid;
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
+                            //是否推荐扫码进来的
+                            if(options.scene){
+                              var scene=decodeURIComponent(options.scene);
+                              // - 是我们定义的参数链接方式
+                              // var userId=options.scene.split("-")[0];
+                              // var identify=options.scene.split('')[1];
+                              //其他逻辑处理。。。。。
+                              console.log(scene)
+                              console.log('-------------options-----------')
+                              wx.request({
+                                url: app.globalData.tiltes + 'qr_back_points',
+                                data: {
+                                  inviter_id: scene,
+                                  member_id: res.data.data.member_id,
+                                  uniacid: res.data.data.uniacid
+                                },
+                                method: "POST",
+                            
+                                success: function (res) {
+                                  console.log(res)
+                                  
+                                },
+                                fail: function () {
+                          
+                                },
+                                complete: function () {
+                                  wx.hideLoading()
+                                }
+                          
+                              });
+                        
+                            }
                             // 获取logo
                             wx.request({
                               url: app.globalData.tiltes + 'store_logo_index',

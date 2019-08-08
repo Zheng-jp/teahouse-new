@@ -38,8 +38,8 @@ Page({
 
       // },
       success: function (res) {
-        let qrcodeSize = that.getQRCodeSize()
-        that.createQRCode(res.data.data.information.share_url, qrcodeSize)
+        // let qrcodeSize = that.getQRCodeSize()
+        // that.createQRCode(res.data.data.information.share_url, qrcodeSize)
    
         that.setData({
           information: res.data.data.information

@@ -22,7 +22,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.3",
-	"appid": "wxc265cd4269f01dce",
+	"appid": "wx301c1368929fdba8",
 	"projectname": "fan",
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {
@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -89,6 +89,13 @@
 					"name": "payment",
 					"pathName": "component/payment/payment",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "带参数的二维码",
+					"pathName": "pages/logs/logs",
+					"query": "scene=1121",
 					"scene": null
 				}
 			]
