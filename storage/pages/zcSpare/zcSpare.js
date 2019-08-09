@@ -168,7 +168,8 @@ Page({
       id: this.data.standardId,
       money: this.data.suppMoney ? this.data.suppMoney : this.data.moneyArray[this.data.index],
       member_id: app.globalData.member_id,
-      uniacid: app.globalData.uniacid
+      uniacid: app.globalData.uniacid,
+      type: 2
     }
     wx.request({
       url: app.globalData.tiltes + 'crowd_reward',

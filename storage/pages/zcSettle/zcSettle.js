@@ -299,7 +299,8 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          type: 1
         },
         method: "POST",
         success: function (res) {
@@ -338,7 +339,8 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          type: 1
         },
         method: "POST",
         success: function (res) {
@@ -376,7 +378,8 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          type: 1
         },
         method: "POST",
         success: function (res) {

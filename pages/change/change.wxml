@@ -16,12 +16,12 @@
     <view class="list">
         <view class="tilte_text">我的邀请码</view>
         <view class="content">
-            <view class="context">{{user_code}}</view>
+            <view class="context">{{dimension}}</view>
         </view>
     </view>
     <view class="list">
         <view class="tilte_text">朋友邀请码</view>
-        <view class="content"></view>
+        <view class="content">{{dimension_up}}</view>
     </view>
     <view class="submit">保存</view>
 </view>
