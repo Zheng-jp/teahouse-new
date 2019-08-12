@@ -105,7 +105,7 @@ Page({
       id: _this.data.id,
       member_id: app.globalData.member_id,
       uniacid: app.globalData.uniacid,
-      house_charges: 0.01,
+      house_charges: _this.data.postage,
       order_quantity: _this.data.outNum,
       store_unit: _this.data.minUnit,
       address_id: _this.data.defaultAddress.id
