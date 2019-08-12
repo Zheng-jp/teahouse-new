@@ -59,7 +59,7 @@ Page({
       })
     }else{
       wx.showToast({
-        title: '发送失败',
+        title: '快递信息不能为空',
         icon: 'none',
         duration: 1500
       })
@@ -191,7 +191,8 @@ Page({
       url: app.globalData.tiltes + 'after_sale_information_return',
       method: 'POST',
       data: {
-        after_sale_id: _this.data.id
+        after_sale_id: _this.data.id,
+        uniacid: app.globalData.uniacid
       },
       success: function(res){
         console.log('success', res);
