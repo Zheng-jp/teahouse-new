@@ -4,7 +4,7 @@
     <view class='code_content'>
       <view class='my'>我的会员码（邀请码）</view>
       <view class='image'>
-        <image src='{{qrcode}}'></image>
+        <image src='data:{{information.share_url}}'></image>
       </view>
       <view class='num_code'>码号:{{information.dimension}}</view>
       <view class='tip'>温馨提示：分享二维码可获相应积分</view>
