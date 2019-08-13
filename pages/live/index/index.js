@@ -117,6 +117,11 @@ Page({
         checked: 3
       })
     }
+
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    });
   },
 
   /**

@@ -100,7 +100,7 @@ Page({
   pay: function(e) {
     var that = this;
     var data = e.currentTarget;
-    // console.log(that.data.level)
+    console.log(that.data.level)
     var arr_data;
     if (that.data.check == '') {
       wx.showToast({
@@ -245,6 +245,11 @@ Page({
       complete: function() {
         wx.hideLoading()
       }
+    });
+    
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
     });
   },
 })

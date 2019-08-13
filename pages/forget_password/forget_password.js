@@ -179,4 +179,10 @@ Page({
   onLoad: function (options) {
 
   },
+  onShow: function () {
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    });
+  }
 })

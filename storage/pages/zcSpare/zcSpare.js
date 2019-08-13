@@ -139,7 +139,7 @@ Page({
       data: {
         parts_order_number: this.data.order_number,
         order_type: this.data.order_type,
-        coupon_type: this.data.coupon_type,
+        coupon_type: 3,
       },
       method: "post",
       success: function(res){
@@ -178,13 +178,22 @@ Page({
       success: function (res) {
         console.log(res);
         var data = res.data;
-        _this.setData({
-          order_number: data.data.order_number,
-          order_type: data.data.order_type,
-          coupon_type: data.data.coupon_type,
-          pmKey: true,
-          balance: data.data.balance
-        })
+        if (data.status == "1") {
+          _this.setData({
+            order_number: data.data.order_number,
+            order_type: data.data.order_type,
+            coupon_type: data.data.coupon_type,
+            pmKey: true,
+            balance: data.data.balance
+          })
+        } else {
+          wx.showToast({
+            title: data.info,
+            icon: 'none',
+            duration:2000
+          })
+          
+        }
       },
     })
   },
@@ -245,7 +254,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    });
   },
 
   /**

@@ -152,6 +152,10 @@ Page({
   onShow: function () {
     var that=this;
     that.onLoad();
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    });
   },
 
   /**

@@ -73,17 +73,17 @@ Page({
     })
   },
   	// 点击购物车
-	go_car: function(e) {
-		wx.navigateTo({
-			url: '/pages/buy/buy',
-			success: function(res) {
-				console.log("跳转成功");
-			},
-			fail: function() {
-        console.log("跳转失败");
-      }
-		})
-	},
+	// go_car: function(e) {
+	// 	wx.navigateTo({
+	// 		url: '/pages/buy/buy',
+	// 		success: function(res) {
+	// 			console.log("跳转成功");
+	// 		},
+	// 		fail: function() {
+  //       console.log("跳转失败");
+  //     }
+	// 	})
+	// },
 
   // 去首页
   bindSwitchTab: function(){
@@ -282,4 +282,10 @@ Page({
       }
     })
   },
+  onShow: function(){
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    });
+  }
 })
