@@ -439,6 +439,11 @@ Page({
    */
   onShow: function () {
     this.outPositionOrder(); //出仓订单信息
+    
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    });
   },
 
   /**

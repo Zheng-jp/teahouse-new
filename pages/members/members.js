@@ -246,5 +246,10 @@ Page({
         wx.hideLoading()
       }
     });
+    
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    });
   },
 })
