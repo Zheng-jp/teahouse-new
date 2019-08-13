@@ -771,5 +771,10 @@ Page({
     });
     app.judge_phone();
     app.judge_repay();
+
+    wx.setNavigationBarColor({
+      frontColor: app.globalData.navBarTxtColor,
+      backgroundColor: app.globalData.navBarBgColor
+    });
   }
 })
