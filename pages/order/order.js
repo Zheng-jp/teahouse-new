@@ -556,7 +556,8 @@ Page({
     if (options.version == undefined || options.version == null) version = options.enter_all_id;
     else if (options.enter_all_id == undefined || options.enter_all_id == null) version = options.version;
     that.setData({
-      version: version
+      version: version,
+      options: options
     })
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({
@@ -715,7 +716,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    this.data.options.tiltes = Number(this.data.tab) - 1;
+    wx.stopPullDownRefresh();
   },
 
   /**

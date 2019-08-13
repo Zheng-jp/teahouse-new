@@ -100,7 +100,7 @@ Page({
   pay: function(e) {
     var that = this;
     var data = e.currentTarget;
-    // console.log(that.data.level)
+    console.log(that.data.level)
     var arr_data;
     if (that.data.check == '') {
       wx.showToast({

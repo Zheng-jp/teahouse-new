@@ -6,7 +6,7 @@
    background: #00BBFF;
    color: #fff;
    padding: 20rpx;
-   width: 320rpx;
+   width: 390rpx;
    font-size: 30rpx;
    border-top-right-radius:50rpx; 
    border-bottom-right-radius:50rpx; 
@@ -103,7 +103,7 @@
   font-size: 30rpx;
   position: fixed;
   bottom: 0;
-  width: 750rpx;
+  width: 101%;
   margin-left: -20rpx;
   border-radius: 0px;
 }

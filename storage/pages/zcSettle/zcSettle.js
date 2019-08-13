@@ -158,7 +158,7 @@ Page({
                 data: {
                   member_id: app.globalData.member_id,
                   order_num: _this.data.order_number,
-                  pay_password: val,
+                  passwords: val,
                 },
                 method: "POST",
                 complete: function (res) {
