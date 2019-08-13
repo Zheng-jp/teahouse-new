@@ -16,7 +16,7 @@
 					</view>
 					<view class="item-mid">
 						<view class="img-box">
-							<image src="http://zhihuichacang.com/uploads/{{item.goods_image}}" />
+							<image src="https://teahouse.siring.com.cn/uploads/{{item.goods_image}}" />
 						</view>
 						<view class="info-box">
 							<view class="tb-name hid-txt-two">{{item.parts_goods_name}}</view>

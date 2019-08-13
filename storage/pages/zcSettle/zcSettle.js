@@ -299,7 +299,8 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          type: 1
         },
         method: "POST",
         success: function (res) {
@@ -315,7 +316,7 @@ Page({
           }
           else {
             wx.showToast({
-              title: "下单失败，请联系管理员",
+              title: "下单失败",
               icon: 'none'
             })
           }
@@ -338,7 +339,8 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          type: 1
         },
         method: "POST",
         success: function (res) {
@@ -353,7 +355,7 @@ Page({
             })
           }else {
             wx.showToast({
-              title: "下单失败，请联系管理员",
+              title: "下单失败",
               icon: 'none',
             })
           }
@@ -376,7 +378,8 @@ Page({
           receipt_id: _this.data.taxes_id,
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
-          uniacid: app.globalData.uniacid
+          uniacid: app.globalData.uniacid,
+          type: 1
         },
         method: "POST",
         success: function (res) {
@@ -391,7 +394,7 @@ Page({
             })
           }else {
             wx.showToast({
-              title: "下单失败，请联系管理员",
+              title: "下单失败",
               icon: 'none',
             })
           }

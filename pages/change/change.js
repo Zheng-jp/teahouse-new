@@ -107,20 +107,20 @@ Page({
       fail: function () {},
       complete: function () {}
     });
-    wx.request({
-      url: app.globalData.tiltes + 'user_phone_return',
-      data: {
-        member_id: app.globalData.member_id,
-      },
-      method: "post",
-      success: function (res) {
-        that.setData({
-          user_phone:res.data.data
-        });
-      },
-      fail: function () {},
-      complete: function () {}
-    });
+    // wx.request({
+    //   url: app.globalData.tiltes + 'user_phone_return',
+    //   data: {
+    //     member_id: app.globalData.member_id,
+    //   },
+    //   method: "post",
+    //   success: function (res) {
+    //     that.setData({
+    //       user_phone:res.data.data
+    //     });
+    //   },
+    //   fail: function () {},
+    //   complete: function () {}
+    // });
     // 会员吗
     wx.request({
       url: app.globalData.tiltes + 'consumerCode',
@@ -130,7 +130,8 @@ Page({
       method: "post",
       success: function (res) {
         that.setData({
-          user_code:res.data.data
+          dimension:res.data.data.dimension,
+          dimension_up: res.data.data.dimension_up
         });
       },
       fail: function () {},
