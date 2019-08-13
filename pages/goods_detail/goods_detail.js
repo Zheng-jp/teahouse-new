@@ -582,6 +582,11 @@ Page({
             autoplay: true,
             isvideo: false
           })
+        } else {
+          that.setData({
+            autoplay: false,
+            isvideo: true
+          })
         }
         if (goods.goods_standard[0].id == undefined || goods.goods_standard[0].id == null) {
           id = goods.goods_standard;
@@ -727,7 +732,12 @@ Page({
   onReady: function () {
 
   },
-
+  statechange(e) {
+    console.log('live-player code:', e)
+  },
+  error(e) {
+    console.error('live-player error:', e)
+  },
   /**
    * 生命周期函数--监听页面显示
    */
