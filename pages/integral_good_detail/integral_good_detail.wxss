@@ -247,7 +247,7 @@ text-decoration: line-through;
   font-size: 30rpx;
 }
 .buy{
- background: #FF2401;
+ background: #cc363f;
   color: #fff;
   font-size: 30rpx;
   
