@@ -80,6 +80,8 @@ function setOption(chart, _this, yArr) {
           var data0 = option.series[0].data;
           data0.shift();
           data0.push(+res[0].value);
+          // 发送温湿度数据给后台
+          setDevMoniData(res[0], res[1]);
         }
       })
       option.xAxis[0].data.shift();
@@ -242,6 +244,21 @@ function queryDevMoniData(userData, _this){
       wx.setNavigationBarTitle({
         title: res.data.deviceList[0].deviceName
       })
+    }
+  })
+}
+// 给后台发送温湿度数据
+function setDevMoniData(temper, humidity){
+  wx.request({
+    url: app.globalData.tiltes + 'get_wenshidu',
+    method: 'POST',
+    data: {
+      "uniacid": app.globalData.uniacid,
+      "wendu": temper,
+      "shidu": humidity
+    },
+    success (res) {
+      console.log(res);
     }
   })
 }
