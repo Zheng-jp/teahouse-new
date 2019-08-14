@@ -81,7 +81,7 @@ function setOption(chart, _this, yArr) {
           data0.shift();
           data0.push(+res[0].value);
           // 发送温湿度数据给后台
-          setDevMoniData(res[0], res[1]);
+          setDevMoniData(res[0].value, res[1].value);
         }
       })
       option.xAxis[0].data.shift();
