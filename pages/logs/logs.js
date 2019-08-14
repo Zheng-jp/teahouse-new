@@ -1,4 +1,5 @@
-const app = getApp()
+const app = getApp();
+const WxParse = require('../../wxParse/wxParse.js');
 Page({
   data: {
     // 全局变量的获取
@@ -6,7 +7,7 @@ Page({
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     logoUrl: '',
-    scene: undefined
+    scene: undefined,
   },
   bindGetUserInfo: function (e) {
     var _this = this;
@@ -14,6 +15,10 @@ Page({
       //用户按了允许授权按钮
       wx.login({//login流程
         success: function (res) {//登录成功
+          wx.setStorage({
+            key: 'authorization',
+            data: true,
+          })
           if (res.code) {
             var code = res.code;
             wx.getUserInfo({//getUserInfo流程
@@ -129,8 +134,18 @@ Page({
 
     });
   },
+
   onLoad: function (options) {
     var _this = this;
+    wx.getStorage({
+      key: 'authorization',
+      success: function (res) {
+        console.log(res)
+        _this.setData({
+          authorization: res.data
+        })
+      },
+    })
     if(options.scene){
       var scene=decodeURIComponent(options.scene);
       // - 是我们定义的参数链接方式
@@ -142,8 +157,6 @@ Page({
       })
       console.log(scene)
       console.log('-------------options-----------')
-     
-
     }
   
     // 查看是否授权
@@ -165,7 +178,7 @@ Page({
                     wx.getUserInfo({//getUserInfo流程
                       success: function (res2) {//获取userinfo成功
                         var appid = wx.getAccountInfoSync();
-                        var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码
+                        var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码             
                         var iv = res2.iv;
                         //请求自己的服务器
                         wx.request({
@@ -213,8 +226,6 @@ Page({
                                 // url: '../../diy/index/index', // 新首页
                                 url: '../diy/index/index', // 新首页
                                 success: function (res) {},
-                                fail: function () {},
-                                complete: function () {}
                               })
                             }else {
                               console.log("kong")
@@ -232,6 +243,16 @@ Page({
               });
             }
           });
+        }else{
+          wx.removeStorage({
+            key: 'authorization',
+            success: function(res) {
+              console.log('remove', res)
+              _this.setData({
+                authorization: false
+              })
+            },
+          })
         }
       }
     })
