@@ -67,8 +67,8 @@ padding-top: 200rpx;
 }
 .submit{
     font-size: 36rpx;
-    height: 80rpx;
-    line-height: 80rpx;
+    height: 100rpx;
+    line-height: 100rpx;
     width: 700rpx;
     margin: 0 auto;
     color: #fff;
