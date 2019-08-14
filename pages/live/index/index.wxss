@@ -106,7 +106,7 @@
     color: #333;
  }
   .list{
-    height:115rpx;
+    height:100rpx;
     text-align:center;
     flex:1;
     overflow:hidden;
@@ -118,10 +118,10 @@
     }
     .text_1 {
       color: #93291f;
-      position: relative;
+      /* position: relative; */
     }
-    .text_1::after{
-      /* content: '';  */
+    /* .text_1::after{
+      content: ''; 
       width: 40%; 
       position: absolute; 
       bottom: 3rpx; 
@@ -129,7 +129,7 @@
       margin-left: -20%; 
       display: block; 
       border-bottom: 5rpx solid #93291f;
-    }
+    } */
     .ico{
       width: 50rpx;
       height: 50rpx;

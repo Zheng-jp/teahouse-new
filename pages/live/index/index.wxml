@@ -1,7 +1,7 @@
 <!-- live/index/index.wxml -->
 <view class='main'>
-<scroll-view scroll-x="true" style="height: 125rpx;white-space: nowrap; display: flex;  border-bottom: 3rpx solid rgb(204, 204, 204);">
-    <view class="list " wx:for="{{ico}}" wx:key="{{index}}" data-current="{{index}}" bindtap="swichNav">
+<scroll-view scroll-x="true" style="height: 108rpx;white-space: nowrap; display: flex;  border-bottom: 3rpx solid rgb(204, 204, 204);">
+    <view class="list {{currentTab==index ? ' change_current ' : ''}}" wx:for="{{ico}}" wx:key="{{index}}" data-current="{{index}}" bindtap="swichNav">
         <view class='ico'>
           <image src='http://zhihuichacang.com/u2133.png'></image>
         </view>

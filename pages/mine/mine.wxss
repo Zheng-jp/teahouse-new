@@ -223,6 +223,6 @@ font-weight:bold;
   height: 20rpx;
   position: fixed;
 }
-.balance_btn {
+/* .balance_btn {
   margin-top: 90rpx;
-}
+} */
