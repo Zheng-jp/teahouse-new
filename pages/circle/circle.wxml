@@ -1,5 +1,6 @@
 <import src="../../utils/template.wxml" />
 <view class='content'>
+
   <view class='nav-list clear'>
     <view class='list list-one' wx:for="{{ico}}">
       <navigator url="/storage/pages/meeting/meeting?title={{item.id}}&tid={{item.tid}}">
@@ -10,6 +11,16 @@
       </navigator>
     </view>
   </view>
+<!-- <scroll-view scroll-x="true" style="height: 200px;white-space: nowrap; display: flex;margin-top:100rpx;">
+<view class='list list-one' wx:for="{{ico}}" style="display: inline-block; width:190rpx;">
+      <navigator url="/storage/pages/meeting/meeting?title={{item.id}}&tid={{item.tid}}">
+        <view class='ico'>
+          <image src='{{url}}{{item.icon_image}}'></image>
+        </view>
+        <text class='text'>{{item.name}}</text>
+      </navigator>
+    </view>  
+</scroll-view> -->
   <view class='share'>
     <view class='shares-content'>
       <view class='listview' wx:for="{{share}}" wx:for-item="item" wx:key="*this">

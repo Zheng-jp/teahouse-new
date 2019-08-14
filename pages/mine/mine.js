@@ -123,7 +123,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '../recharge/recharge',
+        url: '../withdrawal/withdrawal',
         success: function (res) {
           // success
         },

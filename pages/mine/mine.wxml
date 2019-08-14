@@ -10,10 +10,12 @@
   <view style='background:{{information.member_background_color}}'>
     <view class='information'>
       <view class='list balance'>
-        <view class='balance bbla'>余额</view>
-        <view class='balance_num nnum'>￥{{information.member_wallet}}</view>
+        <!-- <view class='balance bbla'>余额</view> -->
+        <!-- <view class='balance_num nnum'>￥{{information.member_wallet}}</view> -->
+        <view class='balance bbla'></view>
+        <view class='balance_num nnum'></view>
         <view class='balance_btn bbtn' bindtap="go_recharge">
-          <button style='background:{{information.member_background_color}}'>预存</button>
+          <button style='background:{{information.member_background_color}}'>提现</button>
         </view>
       </view>
       <view class='list' bindtap="go_change">

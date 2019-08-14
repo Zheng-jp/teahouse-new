@@ -77,6 +77,7 @@ Page({
     pwdVal: '',  //输入的密码
     payFocus: true, //余额支付文本框焦点
     order_number: null, //订单号
+    isLive: false //实时视频
   },
   
   //输入密码监听
@@ -521,7 +522,15 @@ Page({
       }
     })
   },
-
+  //实时视频显示
+  showLive: function(){
+    let isLive;
+    if(!this.data.isLive) isLive = true;
+    else isLive = false;
+    this.setData({
+      isLive: isLive
+    })
+  },
   outOfStock: function (e) {
     var id = e.currentTarget.dataset.id;
     // 出仓
@@ -601,6 +610,7 @@ Page({
    */
   onPullDownRefresh: function () {
     this.onReady();
+    this.allStorage();
     wx.stopPullDownRefresh();
   }
 

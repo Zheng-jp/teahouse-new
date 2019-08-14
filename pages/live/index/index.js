@@ -2,10 +2,17 @@ const app = getApp();
 Page({
   data: {
     currentTab: '',
-    winHeight: 0, //窗口高度
+    winHeight: 0, //窗口高度,
+    url: app.globalData.url,
     imgUrls: [
       'http://zhihuichacang.com/u2404.png',
       'http://zhihuichacang.com/u2404.png'
+    ],
+    ico: [
+      "茶仓",
+      "茶山",
+      "茶楼",
+      "茶仙"
     ]
   },
 
