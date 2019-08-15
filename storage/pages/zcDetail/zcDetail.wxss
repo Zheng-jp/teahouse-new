@@ -101,5 +101,5 @@ view{overflow: initial !important;}
 .gears .gearAll{line-height: normal;}
 .gears .gear .gearMon{color: #999;}
 .sku-btns{position: absolute; bottom: 0; left: 0; width: 100%;}
-.sku-btns .support{height: 80rpx; text-align: center; line-height: 80rpx; color: #fff; background-color: #ff6700;}
+.sku-btns .support{height: 100rpx; text-align: center; line-height: 100rpx; color: #fff; background-color: #ff6700;}
 .sku-btns .outstockbtn{background-color: rgba(0,0,0,.3);}
