@@ -110,6 +110,8 @@
 .btn-area{
     position: fixed;
     bottom: 0;
+    height: 100rpx;
+    line-height: 100rpx;
     color: #fff;
     background: #FF6600;
     width: 750rpx;
