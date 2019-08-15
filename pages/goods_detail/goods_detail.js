@@ -668,8 +668,8 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'member_default_address_return',
       data: {
-        member_id: app.globalData.member_id,
-        // open_id: app.globalData.gmemberid,
+        // member_id: app.globalData.member_id,
+        open_id: app.globalData.gmemberid,
         address_id: ''
       },
       method: "post",
@@ -753,8 +753,8 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'member_default_address_return',
       data: {
-        member_id: app.globalData.member_id,
-        // open_id: app.globalData.gmemberid,
+        // member_id: app.globalData.member_id,
+        open_id: app.globalData.gmemberid,
         address_id: ''
       },
       method: "post",
