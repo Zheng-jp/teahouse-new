@@ -32,17 +32,19 @@
               </view>
             </view>
             <view class='card'>
-              <view class='select_card' bindtap='selectCard'>请选择银行卡>></view>
-              <view class='card_info' wx:if="{{showCard}}">
+              <view class='select_card' bindtap='addCard' wx:if="{{!isBank}}">请添加银行卡>></view>
+              <view class='select_card' bindtap='selectCard' wx:if="{{isBank}}">请选择银行卡>></view>
+              <view class='card_info' wx:if="{{showCard}}" wx:for="{{bankCard}}"
+                     wx:key="{{index}}" data-name="{{item.name}}" data-bank="{{item.two_bank}}" data-count="{{item.count}}" bindtap="chosenCard">
                 <view class='card_list card_border'>开户名:
-                  <text class='text_color'>刘德华</text>
+                  <text class='text_color'>{{item.name}}</text>
                 </view>
                 <view class='card_list card_border'>开户行:
-                  <text class='text_color'>中国银行深圳分行</text>
+                  <text class='text_color'>{{item.two_bank}}</text>
                 </view>
                 <view class='card_list'>
                   <text decode="{{true}}">&ensp;&ensp;卡号: </text>
-                  <text class='text_color'>47500********646468</text>
+                  <text class='text_color'>{{item.count_hide}}</text>
                 </view>
               </view>
             </view>

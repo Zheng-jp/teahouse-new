@@ -130,7 +130,7 @@ margin-bottom: 10px;
 .card {
   padding: 0 20px;
   font-size: 30rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 100rpx;
 }
 .select_card {
    color: #00BBFf;
