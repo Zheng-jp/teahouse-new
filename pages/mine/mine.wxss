@@ -208,6 +208,7 @@ font-weight:bold;
 .nnum{
   font-weight: bold;
 }
+
 .bbtn button{
  width:100rpx;
  height:40rpx;
@@ -222,4 +223,6 @@ font-weight:bold;
   height: 20rpx;
   position: fixed;
 }
-
+/* .balance_btn {
+  margin-top: 90rpx;
+} */

@@ -151,7 +151,7 @@ align-items: center;
 }
 .tips{
   padding: 30rpx;
-  height: 400rpx;
+  height: 600rpx;
   display: flex;
 }
 .tip_text>view{
