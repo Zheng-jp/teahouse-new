@@ -93,8 +93,6 @@
 					<image src='http://zhihuichacang.com/u1959.png'></image>
 				</view>
 			</view>
-			
-
 		</view>
 	</view>
 	<view class='sundry'>
@@ -102,8 +100,6 @@
 			<view>商品总价</view>
 			<view><text style='color:#FF7E4A;'>{{all_money}}积分</text></view>
 		</view>
-	
-		
 	</view>
   <view class="repay_box">
   <view class="moly">应付<text style='color:#7E383F;padding-left:20rpx;'>{{all_money}}积分</text></view>
