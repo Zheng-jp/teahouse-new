@@ -1062,7 +1062,7 @@
                              </image>
                        ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
                         <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text>
-                        <text class="goodsSaleNum">销量：{{item.sale_num}}</text>
+                        <!-- <text class="goodsSaleNum">销量：{{item.sale_num}}</text> -->
                     </view>
                 </view>
             </view>
@@ -1126,7 +1126,7 @@
                              </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
             <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text>
-                            <text class="goodsSaleNum">销量：{{item.sale_num}}</text>
+                            <!-- <text class="goodsSaleNum">销量：{{item.sale_num}}</text> -->
                         </view>
                     </view>
                 </view>
@@ -1186,7 +1186,7 @@
                              </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
             <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text>
-                            <text class="goodsSaleNum">销量：{{item.sale_num}}</text>
+                            <!-- <text class="goodsSaleNum">销量：{{item.sale_num}}</text> -->
                         </view>
                     </view>
                 </view>

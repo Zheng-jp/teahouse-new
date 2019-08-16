@@ -52,19 +52,19 @@ Page({
         icon: 'none',
       });
 
-    } else if (!that.data.card_name || !that.data.card_bank || !that.data.card_count) {
+    } else if (!that.data.bank_card || !that.data.bank_name || !that.data.account_name) {
       wx.showToast({
         title: "请选择银行卡",
         icon: 'none',
       });
     }
-    else if (that.data.card_name != that.data.name) {
+    else if (that.data.account_name != that.data.name) {
       wx.showToast({
         title: "您认证的姓名和开卡姓名不一致",
         icon: 'none',
       });
     }
-    else if (!that.checkCard(that.data.card_count)) {
+    else if (!that.checkCard(that.data.bank_card)) {
       wx.showToast({
         title: "银行卡格式不对",
         icon: 'none',
@@ -82,9 +82,9 @@ Page({
         data: {
           member_id: app.globalData.member_id,
           money: e.detail.value.money,
-          user_name: that.data.card_name,
-          bank_name: that.data.card_bank,
-          bank_card: that.data.card_count,
+          user_name: that.data.account_name,
+          bank_name: that.data.bank_name,
+          bank_card: that.data.bank_card,
         },
         method: "post",
         // header: {
@@ -293,7 +293,7 @@ Page({
       url: app.globalData.tiltes + 'get_bank_list',
       data: {
         member_id: app.globalData.member_id,
-        uniacid: app.globalData.uniacid,
+        // uniacid: app.globalData.uniacid,
       },
       method: "post",
       success: function (res) {
@@ -304,16 +304,16 @@ Page({
        } else {
          let cards = res.data.data;
          for(let i = 0; i < cards.length; i ++ ) {
-           var strLength = cards[i].count.length;
+           var strLength = cards[i].bank_card.length;
            var star = ''; 
            var strRel = '';
            if(strLength>6){
-               var hideSec = cards[i].count.substring(3);    //星号部分
+               var hideSec = cards[i].bank_card.substring(3);    //星号部分
                for(var e=7;e<hideSec.length;e++){
                    star+= "*";
                }
            };
-           strRel = cards[i].count.substring(0,6) + star + cards[i].count.substr(cards[i].count.length-4);
+           strRel = cards[i].bank_card.substring(0,6) + star + cards[i].bank_card.substr(cards[i].bank_card.length-4);
            res.data.data[i].count_hide = strRel
          }
 
@@ -351,14 +351,14 @@ Page({
     var that = this;
     var cards = that.data.bankCard;
     for(let i = 0; i < cards.length; i ++) {
-      if(cards[i].count == e.currentTarget.dataset.count) {
+      if(cards[i].bank_card == e.currentTarget.dataset.count) {
         var card = [];
         card.push(cards[i]);
         that.setData({
           bankCard: card,
-          card_name: e.currentTarget.dataset.name,
-          card_bank: e.currentTarget.dataset.bank,
-          card_count: e.currentTarget.dataset.count
+          account_name: e.currentTarget.dataset.name,
+          bank_name: e.currentTarget.dataset.bank,
+          bank_card: e.currentTarget.dataset.count
         })
       }
     }
