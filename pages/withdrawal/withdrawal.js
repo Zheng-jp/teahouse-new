@@ -52,19 +52,19 @@ Page({
         icon: 'none',
       });
 
-    } else if (!that.data.bank_card || !that.data.bank_name || !that.data.account_name) {
+    } else if (!that.data.card.bank_card || !that.data.card.bank_name || !that.data.card.account_name) {
       wx.showToast({
         title: "请选择银行卡",
         icon: 'none',
       });
     }
-    else if (that.data.account_name != that.data.name) {
+    else if (that.data.card.account_name != that.data.name) {
       wx.showToast({
         title: "您认证的姓名和开卡姓名不一致",
         icon: 'none',
       });
     }
-    else if (!that.checkCard(that.data.bank_card)) {
+    else if (!that.checkCard(that.data.card.bank_card)) {
       wx.showToast({
         title: "银行卡格式不对",
         icon: 'none',
@@ -82,9 +82,9 @@ Page({
         data: {
           member_id: app.globalData.member_id,
           money: e.detail.value.money,
-          user_name: that.data.account_name,
-          bank_name: that.data.bank_name,
-          bank_card: that.data.bank_card,
+          user_name: that.data.card.account_name,
+          bank_name: that.data.card.bank_name,
+          bank_card: that.data.card.bank_card,
         },
         method: "post",
         // header: {
@@ -347,6 +347,7 @@ Page({
       }
     })
   },
+  //点击选择
   chosenCard: function(e) {
     var that = this;
     var cards = that.data.bankCard;
@@ -392,10 +393,23 @@ Page({
       // },
 
       success: function (res) {
+        let cards = res.data.data;
+           var strLength = cards.bank_card.length;
+           var star = ''; 
+           var strRel = '';
+           if(strLength>6){
+               var hideSec = cards.bank_card.substring(3);    //星号部分
+               for(var e=7;e<hideSec.length;e++){
+                   star+= "*";
+               }
+           };
+           strRel = cards.bank_card.substring(0,6) + star + cards.bank_card.substr(cards.bank_card.length-4);
+           res.data.data.count_hide = strRel
         that.setData({
           card: res.data.data,
+          showCard: true
         })
-
+        console.log(that.data.card)
       },
       fail: function () {
 
@@ -405,7 +419,7 @@ Page({
       }
 
     });
-    that.getBank();//获取银行卡信息
+    // that.getBank();//获取银行卡信息
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor

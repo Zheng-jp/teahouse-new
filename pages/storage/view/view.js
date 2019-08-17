@@ -612,6 +612,12 @@ Page({
     this.onReady();
     this.allStorage();
     wx.stopPullDownRefresh();
+  },
+  onHide() {
+    // console.log('onLaunch监听小程序隐藏');
+    this.setData({
+      isLive: false
+    })
   }
 
 })

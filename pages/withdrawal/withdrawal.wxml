@@ -32,19 +32,19 @@
               </view>
             </view>
             <view class='card'>
-              <view class='select_card' bindtap='addCard' wx:if="{{!isBank}}">请添加银行卡>> {{isBank}}</view>
-              <view class='select_card' bindtap='selectCard' wx:if="{{isBank}}">请选择银行卡>></view>
-              <view class='card_info' wx:if="{{showCard}}" wx:for="{{bankCard}}"
-                     wx:key="{{index}}" data-name="{{item.account_name}}" data-bank="{{item.bank_name}}" data-count="{{item.bank_card}}" bindtap="chosenCard">
+              <!-- <view class='select_card' bindtap='selectCard' wx:if="{{!isBank}}">请添加银行卡>></view> -->
+              <view class='select_card' bindtap='addCard'>请选择银行卡>></view>
+              <view class='card_info' wx:if="{{showCard}}" 
+                     wx:key="{{index}}" >
                 <view class='card_list card_border'>开户名:
-                  <text class='text_color'>{{item.account_name}}</text>
+                  <text class='text_color'>{{card.account_name}}</text>
                 </view>
                 <view class='card_list card_border'>开户行:
-                  <text class='text_color'>{{item.bank_name}}</text>
+                  <text class='text_color'>{{card.bank_name}}</text>
                 </view>
                 <view class='card_list'>
                   <text decode="{{true}}">&ensp;&ensp;卡号: </text>
-                  <text class='text_color'>{{item.count_hide}}</text>
+                  <text class='text_color'>{{card.count_hide}}</text>
                 </view>
               </view>
             </view>

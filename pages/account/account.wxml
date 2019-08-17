@@ -49,7 +49,7 @@
                 <image src="http://zhihuichacang.com/u9517.png"  class="ico" />
                 <text class="text">优惠券</text>
               </view>
-              <view style="flex-basis: 33.24%;"></view>
+              <view class="box" ></view>
               
 
           </view>
