@@ -14,7 +14,8 @@ Page({
     id: '',
     selected: true,
     selected1: false,
-    showCard: false
+    showCard: false,
+    rate: 0
   },
   // 验证银行卡号
   checkCard: function (cardNo) {
@@ -70,9 +71,9 @@ Page({
         icon: 'none',
       });
     }
-    else if (Number(e.detail.value.money) < 1000) {
+    else if (Number(e.detail.value.money) < Number(that.data.min_money)) {
       wx.showToast({
-        title: "提现金额不能小于1000",
+        title: "提现金额不能小于"+ that.data.min_money,
         icon: 'none',
       });
     }
@@ -242,7 +243,7 @@ Page({
           })
         }
         else {
-          that.getBank();//获取银行卡信息
+          // that.getBank();//获取银行卡信息
           that.setData({
             name: res.data.data.member_real_name,
           })
@@ -272,6 +273,9 @@ Page({
         that.setData({
           balance: res.data.data.member_wallet,
           member_recharge_money: res.data.data.member_recharge_money,
+          day_max_money: res.data.data.day_max_money,//每日最高提现金额
+          min_money: res.data.data.min_money,//最小提现金额
+          service_charge: res.data.data.service_charge,//费率
           //  integral:res.data.data.member_integral_wallet,
         })
 
@@ -286,6 +290,20 @@ Page({
     });
 
 
+  },
+  bindoldChange: function (event) {
+    var that=this;
+    if(event.detail.value==''){
+      that.setData({
+        rate:0
+      })
+    }
+    else{
+      let rate = (Number(event.detail.value) * Number(that.data.service_charge) / 100);
+      that.setData({
+        rate: rate,
+      })
+    }
   },
   getBank: function () {
     var that = this;
