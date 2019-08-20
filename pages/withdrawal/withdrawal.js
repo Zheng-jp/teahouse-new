@@ -272,7 +272,7 @@ Page({
       success: function (res) {
         that.setData({
           balance: res.data.data.member_wallet,
-          member_recharge_money: res.data.data.member_recharge_money,
+          // member_recharge_money: res.data.data.member_recharge_money,
           day_max_money: res.data.data.day_max_money,//每日最高提现金额
           min_money: res.data.data.min_money,//最小提现金额
           service_charge: res.data.data.service_charge,//费率
@@ -427,7 +427,6 @@ Page({
           card: res.data.data,
           showCard: true
         })
-        console.log(that.data.card)
       },
       fail: function () {
 

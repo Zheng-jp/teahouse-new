@@ -8,11 +8,12 @@
     </view>
     <view class="box">
       <view class="weixin_box" wx:if="{{selected1}}">
-        <view class="limit">您当前余额可提现：{{day_max_money}}元</view>
+        <!-- <view class="limit">您当前余额可提现：{{day_max_money}}元</view> -->
         <view class="tip">温馨提示：</view>
         <view class="tip">① 您申请会员的充值余额，需用于平台消费，不能用于提现</view>
-        <view class="tip">② 由于各运营方已收取相应的中间手续费用，为保障用户利益，申请提现只收取2%提现手续费；</view>
-        <view class="tip">③ 能申请提现的余额需满1000元以上时才可申请提现；</view>
+        <view class="tip">② 由于各运营方已收取相应的中间手续费用，为保障用户利益，申请提现只收取{{service_charge}}%提现手续费；</view>
+        <view class="tip">③ 能申请提现的余额需满{{min_money}}元以上时才可申请提现；</view>
+        <view class="tip">④ 每日最高可提现{{day_max_money}}元；</view>
         <view class="form">
           <form report-submit="false" bindsubmit="formSubmit" bindreset="">
             <view class="form_list">
@@ -59,11 +60,12 @@
       </view>
       <!-- 提现到微信 -->
       <view class="card_box" wx:else>
-        <view class="limit">您当前余额可提现：{{member_recharge_money}}元</view>
+        <!-- <view class="limit">您当前余额可提现：{{member_recharge_money}}元</view> -->
         <view class="tip">温馨提示：</view>
         <view class="tip">① 您申请会员的充值余额，需用于平台消费，不能用于提现</view>
-        <view class="tip">② 由于各运营方已收取相应的中间手续费用，为保障用户利益，申请提现只收取2%提现手续费；</view>
-        <view class="tip">③ 能申请提现的余额需满1000元以上时才可申请提现；</view>
+        <view class="tip">② 由于各运营方已收取相应的中间手续费用，为保障用户利益，申请提现只收取{{service_charge}}%提现手续费；</view>
+        <view class="tip">③ 能申请提现的余额需满{{min_money}}元以上时才可申请提现；</view>
+        <view class="tip">④ 每日最高可提现{{day_max_money}}元；</view>
         <view class="form">
           <form report-submit="false" bindsubmit="formSubmit" bindreset="">
             <view class="form_list">
@@ -72,14 +74,14 @@
               </view>
             </view>
             <view class="form_list">
-              <input type="number" class="form_list_input" placeholder=" 请输入金额，不能小于1000" name="money" />
+              <input type="number" class="form_list_input" placeholder=" 请输入金额，不能小于{{min_money}}" name="money"  bindchange="bindoldChange" />
               <text class="danwei">元</text>
             </view>
             <view style=' display: flex; align-items: center;position: relative;'>
               <view class="tip">提现手续费
               </view>
-              <view style='color:red;font-size:24rpx;'>￥20</view>
-              <view class="tip">(费率2%)
+              <view style='color:red;font-size:24rpx;'>￥{{rate}}</view>
+              <view class="tip">(费率{{service_charge}}%)
               </view>
             </view>
             <view class="btn-area">
