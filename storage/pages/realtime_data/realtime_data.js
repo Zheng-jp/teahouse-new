@@ -22,15 +22,15 @@ function setOption(chart, _this, yArr) {
     xAxis: [{
       type: 'category',
       boundaryGap: true,
-      data: (function () {
+      data: (function() {
         var now = new Date();
         var res = [];
         var len = 10;
         while (len--) {
           // res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
-          res.unshift((now.getHours()<10?'0'+now.getHours():now.getHours())+':'+
-          (now.getMinutes()<10?'0'+now.getMinutes():now.getMinutes())+':'+
-          (now.getSeconds()<10?'0'+now.getSeconds():now.getSeconds()));
+          res.unshift((now.getHours() < 10 ? '0' + now.getHours() : now.getHours()) + ':' +
+            (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()) + ':' +
+            (now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds()));
           now = new Date(now - 2000);
         }
         return res;
@@ -48,7 +48,7 @@ function setOption(chart, _this, yArr) {
       },
       axisLabel: {
         margin: 2,
-        formatter: function(value, index){
+        formatter: function(value, index) {
           return value.toFixed(2);
         }
       },
@@ -62,20 +62,20 @@ function setOption(chart, _this, yArr) {
     }]
   };
   _this.setData({
-    timer: setInterval(function () {
+    timer: setInterval(function() {
       var now = new Date();
-      var axisData = ((now.getHours()<10?'0'+now.getHours():now.getHours())+':'+
-      (now.getMinutes()<10?'0'+now.getMinutes():now.getMinutes())+':'+
-      (now.getSeconds()<10?'0'+now.getSeconds():now.getSeconds()));
+      var axisData = ((now.getHours() < 10 ? '0' + now.getHours() : now.getHours()) + ':' +
+        (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()) + ':' +
+        (now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds()));
       wx.request({
-        url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html',    //你请求数据的接口地址
+        url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html', //你请求数据的接口地址
         method: 'POST',
-        data: {               //传的参数，这些都不用多说了吧
+        data: { //传的参数，这些都不用多说了吧
           "userApiKey": _this.data.userLogin.userApikey,
           "deviceNo": "8606S86YL8295C5Y",
           "flagCode": _this.data.userLogin.flagCode
         },
-        success: function (res) {
+        success: function(res) {
           var res = res.data.deviceList[0].sensorList;
           var data0 = option.series[0].data;
           data0.shift();
@@ -91,6 +91,7 @@ function setOption(chart, _this, yArr) {
     }, 2100)
   })
 }
+
 // 湿度  第一个swiper-item
 function setOption2(chart, _this, yArr) {
   const option = {
@@ -112,14 +113,14 @@ function setOption2(chart, _this, yArr) {
     xAxis: [{
       type: 'category',
       boundaryGap: true,
-      data: (function () {
+      data: (function() {
         var now = new Date();
         var res = [];
         var len = 10;
         while (len--) {
-          res.unshift((now.getHours()<10?'0'+now.getHours():now.getHours())+':'+
-          (now.getMinutes()<10?'0'+now.getMinutes():now.getMinutes())+':'+
-          (now.getSeconds()<10?'0'+now.getSeconds():now.getSeconds()));
+          res.unshift((now.getHours() < 10 ? '0' + now.getHours() : now.getHours()) + ':' +
+            (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()) + ':' +
+            (now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds()));
           now = new Date(now - 2000);
         }
         return res;
@@ -149,20 +150,20 @@ function setOption2(chart, _this, yArr) {
     }]
   };
   _this.setData({
-    timer2: setInterval(function () {
+    timer2: setInterval(function() {
       var now = new Date();
-      var axisData = ((now.getHours()<10?'0'+now.getHours():now.getHours())+':'+
-      (now.getMinutes()<10?'0'+now.getMinutes():now.getMinutes())+':'+
-      (now.getSeconds()<10?'0'+now.getSeconds():now.getSeconds()));
+      var axisData = ((now.getHours() < 10 ? '0' + now.getHours() : now.getHours()) + ':' +
+        (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()) + ':' +
+        (now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds()));
       wx.request({
-        url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html',    //你请求数据的接口地址
+        url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html', //你请求数据的接口地址
         method: 'POST',
-        data: {               //传的参数，这些都不用多说了吧
+        data: { //传的参数，这些都不用多说了吧
           "userApiKey": _this.data.userLogin.userApikey,
           "deviceNo": "8606S86YL8295C5Y",
           "flagCode": _this.data.userLogin.flagCode
         },
-        success: function (res) {
+        success: function(res) {
           var res = res.data.deviceList[0].sensorList;
           var data0 = option.series[0].data;
           data0.shift();
@@ -178,24 +179,24 @@ function setOption2(chart, _this, yArr) {
 }
 
 // 获取当前时间
-function getCurrentTime(_this){
+function getCurrentTime(_this) {
   var newDate = new Date();
   var currentTime = app.formatDate(newDate.getTime() / 1000),
-      h = newDate.getHours(),
-      m = newDate.getMinutes(),
-      s = newDate.getSeconds(),
-      m = addZero(m),
-      s = addZero(s);
+    h = newDate.getHours(),
+    m = newDate.getMinutes(),
+    s = newDate.getSeconds(),
+    m = addZero(m),
+    s = addZero(s);
   _this.setData({
     beijingTime: currentTime
   })
 }
 // 给各位数时间加上0
-function addZero(num){
+function addZero(num) {
   return num > 10 ? num : '0' + num;
 }
 // 获取设备信息 （用户登录接口）
-function userLogin(_this){
+function userLogin(_this) {
   wx.request({
     url: 'https://api.dtuip.com/qy/user/login.html',
     method: 'POST',
@@ -203,17 +204,17 @@ function userLogin(_this){
       "userName": "18510393696",
       "password": "zhcc63268696"
     },
-    success(res){
+    success(res) {
       console.log(res.data);
       _this.setData({
         userLogin: res.data
       })
       var len = 0;
-      while(len < 10){
+      while (len < 10) {
         _this.getOneOption();
         len++;
       }
-      if(len==10){
+      if (len == 10) {
         _this.initOne();
         _this.initTwo();
       }
@@ -223,7 +224,7 @@ function userLogin(_this){
   })
 }
 // 获取设备监控数据
-function queryDevMoniData(userData, _this){
+function queryDevMoniData(userData, _this) {
   wx.request({
     url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html',
     method: 'POST',
@@ -232,7 +233,7 @@ function queryDevMoniData(userData, _this){
       "deviceNo": "8606S86YL8295C5Y",
       "flagCode": userData.flagCode
     },
-    success(res){
+    success(res) {
       console.log(res.data);
       _this.setData({
         queryDevMoniData: res.data.deviceList[0],
@@ -248,7 +249,7 @@ function queryDevMoniData(userData, _this){
   })
 }
 // 给后台发送温湿度数据
-function setDevMoniData(temper, humidity){
+function setDevMoniData(temper, humidity) {
   wx.request({
     url: app.globalData.tiltes + 'get_wenshidu',
     method: 'POST',
@@ -257,29 +258,12 @@ function setDevMoniData(temper, humidity){
       "wendu": temper,
       "shidu": humidity
     },
-    success (res) {
+    success(res) {
       console.log(res);
     }
   })
 }
-// 获取设备历史数据
-function getHistoryData(_this, param){
-  wx.request({
-    url: 'https://api.dtuip.com/qy/device/querySenHistoryDt.html',
-    method: 'POST',
-    data: {
-      "sensorId": param.sensorId,
-      "startDate": param.startDate,
-      "endDate": param.endDate,
-      "userApiKey": param.userApiKey,
-      "companyKey": param.companyKey,
-      "flagCode": param.flagCode
-    },
-    success(res){
-      console.log(res.data);
-    }
-  })
-}
+
 
 const date = new Date();
 const years = [];
@@ -321,7 +305,7 @@ for (let i = 0; i < 60; i++) {
   minutes.push("" + i);
 }
 // 获取秒
-for(let i = 0; i < 60; i++){
+for (let i = 0; i < 60; i++) {
   if (i < 10) {
     i = "0" + i;
   }
@@ -346,18 +330,18 @@ Page({
     },
     currentTab: 0,
     beijingTime: '',
-    userLogin: {},  //设备用户登录信息
+    userLogin: {}, //设备用户登录信息
     queryDevMoniData: {}, //设备数据
     inTemp: 26.22,
     outTemp: 26.22,
     inHumi: 79.33,
     outHumi: 79.33,
-    timer: '',//因为我要实时刷新，所以设置了个定时器
+    timer: '', //因为我要实时刷新，所以设置了个定时器
     timer2: '',
     yArr: [], //init 温度
     yArr2: [], // init湿度
-    sdate: '',//开始日期
-    edate: '',//结束日期
+    sdate: '', //开始日期
+    edate: '', //结束日期
     selectHistKey: 0,
     multiArray: [years, months, days, hours, minutes, seconds],
     multiIndex: [1, 0, 0, 0, 0, 0],
@@ -365,63 +349,86 @@ Page({
   },
 
   // 查询用户选定日期的历史数据
-  bindCheckHistory: function(){
-    console.log(this.data.sdate, this.data.edate);
+  bindCheckHistory: function() {
+    this.getHistoryData();
   },
   // 查询7天、14天历史数据
-  bindSelectHist: function(e){
+  bindSelectHist: function(e) {
     const curr = e.target.dataset.current
     this.setData({
       selectHistKey: curr
     })
-    if(curr == 0){
+    if (curr == 0) {
       // 七天数据
-      console.log(app.formatDate(new Date() / 1000 - 604800));
-    }else if(curr == 1){
+      const end = new Date();
+      const start = new Date();
+      start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+
+      console.log(start, end);
+    } else if (curr == 1) {
       // 十四天数据
       console.log(app.formatDate(new Date() / 1000 - 1209600));
     }
   },
+  // 获取设备历史数据
+  getHistoryData: function() {
+    const params = {
+      "sensorId": this.data.queryDevMoniData.sensorList[0].sensorId,
+      "startDate": this.data.sdate,
+      "endDate": this.data.edate,
+      "userApiKey": this.data.userLogin.userApikey,
+      "companyKey": this.data.userLogin.companyApiKey,
+      "flagCode": this.data.userLogin.flagCode
+    }
+    wx.request({
+      url: 'https://api.dtuip.com/qy/device/querySenHistoryDt.html',
+      method: 'POST',
+      data: params,
+      success(res) {
+        console.log(res.data);
+        let data = res.data;
+        if (data.flag != '00') {
+          wx.showToast({
+            icon: 'none',
+            title: data.msg
+          })
+          return false;
+        }
+        
+      }
+    })
+  },
 
-  clickTab: function(e){
+  clickTab: function(e) {
     // 切换选项卡
     var current = e.target.dataset.current,
-        _this = this;
-    if(_this.data.currentTab !== current){
+      _this = this;
+    if (_this.data.currentTab !== current) {
       _this.setData({
         currentTab: current
       })
     }
-
-    if(current == 0){
+    if (current == 0) {
       _this.initOne();
       _this.initTwo();
-    }else{
+    } else {
       clearInterval(this.data.timer);
       clearInterval(this.data.timer2);
-      if(current == 1){
-        const param = {
-          "sensorId": _this.data.queryDevMoniData.sensorList[0].sensorId,
-          "startDate": _this.data.sdate,
-          "endDate": _this.data.edate,
-          "userApiKey": _this.data.userLogin.userApikey,
-          "companyKey": _this.data.userLogin.companyApiKey,
-          "flagCode": _this.data.userLogin.flagCode
-        }
-        getHistoryData(_this, param);
-      }else if(current == 2){
+      if (current == 1) {
+        this.getHistoryData();
+      } else if (current == 2) {
 
       }
     }
   },
 
-  swiperTab: function(e){
-    // 滑动切换选项卡
-    var current = e.detail.current;
-    this.setData({
-      currentTab: current
-    })
-  },
+  // swiperTab: function(e){
+  //   // 滑动切换选项卡
+  //   var current = e.detail.current;
+  //   this.setData({
+  //     currentTab: current
+  //   })
+  // },
 
   //获取时间日期
   sbindMultiPickerChange: function(e) {
@@ -522,20 +529,20 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var _this = this;
 
     // 获取设备信息 （用户登录接口）
     userLogin(this);
 
     // 时间
-    setInterval(function(){
+    setInterval(function() {
       getCurrentTime(_this);
     }, 1000);
     // 初始化 查看历史日期时间
     _this.setData({
-      sdate: app.formatDate(new Date()/1000 - 3600),
-      edate: app.formatDate(new Date()/1000)
+      sdate: app.formatDate(new Date() / 1000 - 3600),
+      edate: app.formatDate(new Date() / 1000)
     })
 
     const date = new Date();
@@ -543,20 +550,21 @@ Page({
     // 选择picker 初始化日期为当前 年月日时分秒
     this.setData({
       choose_year: this.data.multiArray[0][0],
-      multiIndex: [app.indexValue(years, date.getFullYear()), 
-                   app.indexValue(months, date.getMonth()+1),
-                   app.indexValue(days, date.getDate()),
-                   app.indexValue(hours, date.getHours()),
-                   app.indexValue(minutes, date.getMinutes()),
-                   app.indexValue(seconds, date.getSeconds())]
+      multiIndex: [app.indexValue(years, date.getFullYear()),
+        app.indexValue(months, date.getMonth() + 1),
+        app.indexValue(days, date.getDate()),
+        app.indexValue(hours, date.getHours()),
+        app.indexValue(minutes, date.getMinutes()),
+        app.indexValue(seconds, date.getSeconds())
+      ]
     })
-    
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {//这一步是一定要注意的
+  onReady: function() { //这一步是一定要注意的
     this.oneComponent = this.selectComponent('#mychart-one');
     this.twoComponent = this.selectComponent('#mychart-two');
     this.threeComponent = this.selectComponent('#mychart-three');
@@ -565,7 +573,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () { 
+  onShow: function() {
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
@@ -575,18 +583,18 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
     clearInterval(this.data.timer);
     clearInterval(this.data.timer2);
   },
-  initOne: function () {           //初始化第一个图表
+  initOne: function() { //初始化第一个图表
     var _this = this;
     this.oneComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
@@ -598,45 +606,45 @@ Page({
       return chart;
     });
   },
-  initTwo: function () {        //初始化第二个图表
+  initTwo: function() { //初始化第二个图表
     var _this = this;
     this.twoComponent.init((canvas, width, height) => {
-    const chart = echarts.init(canvas, null, {
-      width: width,
-      height: height
-    });
-    setOption2(chart, _this, _this.data.yArr2);
-    this.chart = chart;
-    return chart;
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+      setOption2(chart, _this, _this.data.yArr2);
+      this.chart = chart;
+      return chart;
     });
   },
   // 查看历史数据
-  initThree: function () {        //初始化第3个图表
+  initThree: function() { //初始化第3个图表
     var _this = this;
     this.threeComponent.init((canvas, width, height) => {
-    const chart = echarts.init(canvas, null, {
-      width: width,
-      height: height
-    });
-    setOption3(chart, _this, _this.data.yArr3);
-    this.chart = chart;
-    return chart;
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+      setOption3(chart, _this, _this.data.yArr3);
+      this.chart = chart;
+      return chart;
     });
   },
-  getOneOption: function () {        //这一步其实就要给图表加上数据
+  getOneOption: function() { //这一步其实就要给图表加上数据
     var _this = this;
     wx.request({
-      url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html',    //你请求数据的接口地址
+      url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html', //你请求数据的接口地址
       method: 'POST',
       header: {
         "Content-Type": "application/json"
       },
-      data: {               //传的参数，这些都不用多说了吧
+      data: { //传的参数，这些都不用多说了吧
         "userApiKey": _this.data.userLogin.userApikey,
         "deviceNo": "8606S86YL8295C5Y",
         "flagCode": _this.data.userLogin.flagCode
       },
-      success: function (res) {
+      success: function(res) {
         var res = res.data.deviceList[0].sensorList;
         _this.data.yArr.push(+res[0].value);
         _this.data.yArr2.push(+res[1].value);
@@ -647,21 +655,17 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
+  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
+  onShareAppMessage: function() {}
 })
