@@ -741,15 +741,7 @@ Page({
       coupon_id: parseInt(e.currentTarget.dataset.id),
     })
   },
-  //  // 计算优惠劵
-  //  coupon:function(){
-  //  if(that.data.coupon_type=="1"){
-  //    that.setData({
 
-  //    })
-  //  }
-  //   that.calculate_money();
-  // },
   checkboxChanges: function (e) {
     var that = this;
     that.setData({
@@ -1188,22 +1180,26 @@ Page({
             method: "post",
             success: function (res) {
               let order = res.data.data;
-              for(let z = 0; z < order.length; z ++) {
+              var arrs = []
+                for (let i in order) {
+                    arrs.push(order[i]); //属性
+                }
+                console.log(arrs)
+              for(let z = 0; z < arrs.length; z ++) {
                 let arr = [];
-                if(order[z].suit_price2.indexOf('3') > -1 && that.data.authority != 1 && that.data.authority_new != 1) order[z].authority = 0;
-                else order[z].authority = 1;
-                for(let i = 0; i < order[z].suit_price2.length; i++) {
-                  if(order[z].suit_price2[i] == 1) arr.push('商品费用');
-                  else if (order[z].suit_price2[i] == 2) arr.push('保险费用');
+                if(arrs[z].suit_price2.indexOf('3') > -1 && that.data.authority != 1 && that.data.authority_new != 1) arrs[z].authority = 0;
+                else arrs[z].authority = 1;
+                for(let i = 0; i < arrs[z].suit_price2.length; i++) {
+                  if(arrs[z].suit_price2[i] == 1) arr.push('商品费用');
+                  else if (arrs[z].suit_price2[i] == 2) arr.push('保险费用');
                   else arr.push('仓储费用');
                 }
-                let end_time = that.formatDate(order[z].end_time);
-                let start_time = that.formatDate(order[z].start_time);
-                order[z].suit_price2 = arr;
-                order[z].end_time = end_time;
-                order[z].start_time = start_time;
+                // let end_time = that.formatDate(arrs[z].end_time);
+                // let start_time = that.formatDate(arrs[z].start_time);
+                arrs[z].suit_price2 = arr;
+                // arrs[z].end_time = end_time;
+                // arrs[z].start_time = start_time;
               }
-              // for(order)
               that.setData({
                 coupon_show: res.data.status,
                 coupon_order: order,

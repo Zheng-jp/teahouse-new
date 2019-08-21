@@ -21,10 +21,14 @@
                 <image src="http://zhihuichacang.com/u9479.png"  class="ico" />
                 <text class="text">银行卡管理</text>
               </view>
-                <view class="box"  bindtap="go"  data-src="../recharge/recharge" >
+              <view class="box"  bindtap="go"   data-src="../forget_password/forget_password">
+                <image src="http://zhihuichacang.com/u8288.png"  class="ico" />
+                <text class="text">支付密码</text>
+              </view>
+                <!-- <view class="box"  bindtap="go"  data-src="../recharge/recharge" >
                 <image src="http://zhihuichacang.com/u9489.png"  class="ico" />
                 <text class="text">预存</text>
-              </view>
+              </view> -->
                 <view class="box"  bindtap="go"  data-src="../withdrawal/withdrawal">
                 <image src="http://zhihuichacang.com/u9493.png"  class="ico" />
                 <text class="text">提现</text>
@@ -45,10 +49,8 @@
                 <image src="http://zhihuichacang.com/u9517.png"  class="ico" />
                 <text class="text">优惠券</text>
               </view>
-              <view class="box"  bindtap="go"   data-src="../forget_password/forget_password">
-                <image src="http://zhihuichacang.com/u8288.png"  class="ico" />
-                <text class="text">支付密码</text>
-              </view>
+              <view class="box" ></view>
+              
 
           </view>
     </view>

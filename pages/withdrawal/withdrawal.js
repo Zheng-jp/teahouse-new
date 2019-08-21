@@ -14,7 +14,8 @@ Page({
     id: '',
     selected: true,
     selected1: false,
-    showCard: false
+    showCard: false,
+    rate: 0
   },
   // 验证银行卡号
   checkCard: function (cardNo) {
@@ -52,27 +53,27 @@ Page({
         icon: 'none',
       });
 
-    } else if (!that.data.card_name || !that.data.card_bank || !that.data.card_count) {
+    } else if (!that.data.card.bank_card || !that.data.card.bank_name || !that.data.card.account_name) {
       wx.showToast({
         title: "请选择银行卡",
         icon: 'none',
       });
     }
-    else if (that.data.card_name != that.data.name) {
+    else if (that.data.card.account_name != that.data.name) {
       wx.showToast({
         title: "您认证的姓名和开卡姓名不一致",
         icon: 'none',
       });
     }
-    else if (!that.checkCard(that.data.card_count)) {
+    else if (!that.checkCard(that.data.card.bank_card)) {
       wx.showToast({
         title: "银行卡格式不对",
         icon: 'none',
       });
     }
-    else if (Number(e.detail.value.money) < 1000) {
+    else if (Number(e.detail.value.money) < Number(that.data.min_money)) {
       wx.showToast({
-        title: "提现金额不能小于1000",
+        title: "提现金额不能小于"+ that.data.min_money,
         icon: 'none',
       });
     }
@@ -82,9 +83,9 @@ Page({
         data: {
           member_id: app.globalData.member_id,
           money: e.detail.value.money,
-          user_name: that.data.card_name,
-          bank_name: that.data.card_bank,
-          bank_card: that.data.card_count,
+          user_name: that.data.card.account_name,
+          bank_name: that.data.card.bank_name,
+          bank_card: that.data.card.bank_card,
         },
         method: "post",
         // header: {
@@ -242,7 +243,7 @@ Page({
           })
         }
         else {
-          that.getBank();//获取银行卡信息
+          // that.getBank();//获取银行卡信息
           that.setData({
             name: res.data.data.member_real_name,
           })
@@ -271,7 +272,10 @@ Page({
       success: function (res) {
         that.setData({
           balance: res.data.data.member_wallet,
-          member_recharge_money: res.data.data.member_recharge_money,
+          // member_recharge_money: res.data.data.member_recharge_money,
+          day_max_money: res.data.data.day_max_money,//每日最高提现金额
+          min_money: res.data.data.min_money,//最小提现金额
+          service_charge: res.data.data.service_charge,//费率
           //  integral:res.data.data.member_integral_wallet,
         })
 
@@ -287,13 +291,27 @@ Page({
 
 
   },
+  bindoldChange: function (event) {
+    var that=this;
+    if(event.detail.value==''){
+      that.setData({
+        rate:0
+      })
+    }
+    else{
+      let rate = (Number(event.detail.value) * Number(that.data.service_charge) / 100);
+      that.setData({
+        rate: rate,
+      })
+    }
+  },
   getBank: function () {
     var that = this;
     wx.request({
       url: app.globalData.tiltes + 'get_bank_list',
       data: {
         member_id: app.globalData.member_id,
-        uniacid: app.globalData.uniacid,
+        // uniacid: app.globalData.uniacid,
       },
       method: "post",
       success: function (res) {
@@ -304,16 +322,16 @@ Page({
        } else {
          let cards = res.data.data;
          for(let i = 0; i < cards.length; i ++ ) {
-           var strLength = cards[i].count.length;
+           var strLength = cards[i].bank_card.length;
            var star = ''; 
            var strRel = '';
            if(strLength>6){
-               var hideSec = cards[i].count.substring(3);    //星号部分
+               var hideSec = cards[i].bank_card.substring(3);    //星号部分
                for(var e=7;e<hideSec.length;e++){
                    star+= "*";
                }
            };
-           strRel = cards[i].count.substring(0,6) + star + cards[i].count.substr(cards[i].count.length-4);
+           strRel = cards[i].bank_card.substring(0,6) + star + cards[i].bank_card.substr(cards[i].bank_card.length-4);
            res.data.data[i].count_hide = strRel
          }
 
@@ -347,18 +365,19 @@ Page({
       }
     })
   },
+  //点击选择
   chosenCard: function(e) {
     var that = this;
     var cards = that.data.bankCard;
     for(let i = 0; i < cards.length; i ++) {
-      if(cards[i].count == e.currentTarget.dataset.count) {
+      if(cards[i].bank_card == e.currentTarget.dataset.count) {
         var card = [];
         card.push(cards[i]);
         that.setData({
           bankCard: card,
-          card_name: e.currentTarget.dataset.name,
-          card_bank: e.currentTarget.dataset.bank,
-          card_count: e.currentTarget.dataset.count
+          account_name: e.currentTarget.dataset.name,
+          bank_name: e.currentTarget.dataset.bank,
+          bank_card: e.currentTarget.dataset.count
         })
       }
     }
@@ -392,10 +411,22 @@ Page({
       // },
 
       success: function (res) {
+        let cards = res.data.data;
+           var strLength = cards.bank_card.length;
+           var star = ''; 
+           var strRel = '';
+           if(strLength>6){
+               var hideSec = cards.bank_card.substring(3);    //星号部分
+               for(var e=7;e<hideSec.length;e++){
+                   star+= "*";
+               }
+           };
+           strRel = cards.bank_card.substring(0,6) + star + cards.bank_card.substr(cards.bank_card.length-4);
+           res.data.data.count_hide = strRel
         that.setData({
           card: res.data.data,
+          showCard: true
         })
-
       },
       fail: function () {
 
@@ -405,7 +436,7 @@ Page({
       }
 
     });
-    that.getBank();//获取银行卡信息
+    // that.getBank();//获取银行卡信息
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
