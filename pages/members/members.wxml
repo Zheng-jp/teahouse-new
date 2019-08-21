@@ -75,6 +75,9 @@
       </checkbox-group>
     </view>
   </view>
+  <view class="add_address" bindtap="back_go">
+      确定
+  </view>
   <!-- <view class="num_button">
     <view class="tik">
       <text>充值</text>

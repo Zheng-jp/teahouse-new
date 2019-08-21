@@ -1,7 +1,7 @@
 const app = getApp();
 Page({
   data: {
-    currentTab: '',
+    currentTab: 0,
     winHeight: 0, //窗口高度,
     url: app.globalData.url,
     imgUrls: [
@@ -26,14 +26,16 @@ Page({
   bindChange: function (e) {
     var that = this;
     that.setData({
-      currentTab: e.detail.current
+      currentTab: e.detail.current,
+      con: "b_" + e.detail.current
     });
   },
   /*** 点击tab切换***/
   swichNav: function (e) {
     var that = this;
     that.setData({
-      currentTab: e.target.dataset.current
+      currentTab: e.currentTarget.dataset.id,
+      con: "b_" + e.detail.current
     });
   },
 

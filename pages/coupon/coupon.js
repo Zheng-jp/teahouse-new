@@ -29,22 +29,33 @@ Page({
       // },
       success: function(res) {
         if (res.data.status == 0) {
-          wx.switchTab({
-            url: '../good/good',
-            success: function(res) {
-              // success
-              console.log("nihao////跳转成功")
-            },
-            fail: function() {
-              // fail
-              console.log("nihao////跳转失败")
-            },
-            complete: function() {
-              // complete
-              console.log("nihao////跳转行为结束，未知成功失败")
+          wx.showModal({
+            title: '提示',
+            content: '该优惠券适用所有商品，是否前往商城选购商品',
+            success (res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '../good/good',
+                  success: function(res) {
+                    // success
+                    console.log("nihao////跳转成功")
+                  },
+                  fail: function() {
+                    // fail
+                    console.log("nihao////跳转失败")
+                  },
+                  complete: function() {
+                    // complete
+                    console.log("nihao////跳转行为结束，未知成功失败")
+                  }
+      
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
             }
-
           })
+          
         } else {
           wx.navigateTo({
             url: '../coupon_good/coupon_good?title=' + e.currentTarget.dataset.id,

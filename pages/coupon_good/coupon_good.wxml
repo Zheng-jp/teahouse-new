@@ -6,12 +6,12 @@
       </view>
      <view class='goods-content'>
             <view class="weui-grids">
-                    <view class="weui-grid" wx:for="{{routers}}"wx:for-item="item"   wx:key="*this" bindtap="go_gooddetail"  data-id="{{item.id}}">
+                    <view class="weui-grid" wx:for="{{routers}}"wx:for-item="item"   wx:key="*this" bindtap="go_gooddetail"  data-id="{{item.id}}" data-type="{{item.coupon_type}}">
                          <view class='weui-grid__bg'>
                                 <view class="weui-grid__icon">
                                     <image src="{{item.url}}{{item.goods_show_image}}" mode="scaleToFill" />
                                 </view>
-                                <text class="weui-grid_name">{{item.goods_name}}</text>
+                                <text class="weui-grid_name">{{item.goods_name ? item.goods_name: item.project_name}}</text>
                                 <text class="weui-grid_kuchun">库存123片</text>
                                 <view class='selling_point'>{{item.goods_selling}}
                                 </view>
