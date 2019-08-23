@@ -3,7 +3,7 @@ Page({
   data: {
     currentTab: 0,
     winHeight: 0, //窗口高度,
-    url: app.globalData.url,
+    url: app.globalData.img_url,
     imgUrls: [
       'http://zhihuichacang.com/u2404.png',
       'http://zhihuichacang.com/u2404.png'
@@ -43,10 +43,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
     })
+    wx.request({
+      url: app.globalData.tiltes + 'api/classification',
+      data: {
+        store_id: app.globalData.uniacid
+      },
+      method: "post",
+      success: function (res) {
+        if(res.data.code == 1) {
+          that.setData({
+            live: res.data.data
+          })
+        }
+      },
+      fail: function (e) {
+        console.log(e)
+      },
+      complete: function (res) {
+      
+      }
+  
+    });
+
   },
 
 

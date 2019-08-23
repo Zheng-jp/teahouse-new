@@ -1,117 +1,47 @@
 <!-- live/index/index.wxml -->
 <view class='main'>
 <scroll-view scroll-x="true" style="height: 108rpx;white-space: nowrap; display: flex;  border-bottom: 3rpx solid rgb(204, 204, 204);" scroll-into-view="{{con}}" scroll-with-animation="true">
-    <view class="list {{currentTab==index ? 'change_current' : ''}}" wx:for="{{ico}}" wx:key="{{index}}" data-id="{{index}}" id="b_{{index}}"  bindtap="swichNav">
+    <view class="list {{currentTab==index ? 'change_current' : ''}}" wx:for="{{live}}" wx:key="{{index}}" data-id="{{index}}" id="b_{{index}}"  bindtap="swichNav">
         <view class='ico' >
-          <image src='http://zhihuichacang.com/u2133.png'></image>
+          <image src='{{url}}{{item.icon_image}}'></image>
         </view>
-        <view  class="text {{currentTab==index ? ' text_1 ' : ''}}">{{item}}</view>
+        <view  class="text {{currentTab==index ? ' text_1 ' : ''}}">{{item.title}}</view>
     </view>  
 </scroll-view>
   <view class='swiper_main'>
-    <swiper current="{{currentTab}}" style='height: {{winHeight}}rpx' bindchange="bindChange">
+    <swiper current="{{currentTab}}" style='height: {{winHeight}}rpx' bindchange="bindChange" wx:for="{{live}}" wx:key>
       <swiper-item>
         <scroll-view scroll-y='true'>
-          <block wx:for="{{imgUrls}}" wx:key='index'>
+          <block wx:for="{{item.list}}" wx:key>
             <view>
               <view class="slide-image">
-                <image src="{{item}}" bindtap='toLive'></image>
+                <image src="{{url}}{{item.icon_image}}" bindtap='toLive'></image>
               </view>
               <view class='status_bar'>
                 <view class=''>
                   <image src='http://zhihuichacang.com/u2133.png' class='tubiao'></image>
                 </view>
-                <text class='store_name'>仓BJ01</text>
+                <text class='store_name'>{{item.classify_name}}</text>
                 <view class=''>
                   <image src='http://zhihuichacang.com/u5440.png' class='tubiao'></image>
                 </view>
-                <text class='size'>230</text>
+                <text class='size'>{{item.numbers}}</text>
                 <view class=''>
                   <image src='http://zhihuichacang.com/u5437.png' class='tubiao'></image>
                 </view>
-                <text class='size'>230</text>
+                <text class='size'>{{item.comments}}</text>
                 <view class=''>
                   <image src='http://zhihuichacang.com/u5439.png' class='tubiao'></image>
-                </view>
-                <text class='size'>230</text>
+                </view> 
+                <text class='size'>{{item.clickings}}</text>
                 <view class=''>
                   <image src='http://zhihuichacang.com/u5462.png' class='tubiao'></image>
                 </view>
-                <text class='size_last'>230</text>
+                <text class='size_last'>{{item.shares}}</text>
               </view>
             </view>
           </block>
         </scroll-view>
-      </swiper-item>
-      <swiper-item>
-        <view class=''>
-          <scroll-view class='scoll-h' scroll-y='true'>
-            <block wx:for="{{imgUrls}}" wx:key='index'>
-              <view style='width: 100%;'>
-                <view class="slide-image">
-                  <image src="{{item}}" bindtap='toLive'></image>
-                </view>
-                <view class='status_bar'>
-                  <view class=''>
-                    <image src='http://zhihuichacang.com/u2133.png' class='tubiao'></image>
-                  </view>
-                  <text class='store_name'>仓BJ01</text>
-                  <view class=''>
-                    <image src='http://zhihuichacang.com/u5440.png' class='tubiao'></image>
-                  </view>
-                  <text class='size'>230</text>
-                  <view class=''>
-                    <image src='http://zhihuichacang.com/u5437.png' class='tubiao'></image>
-                  </view>
-                  <text class='size'>230</text>
-                  <view class=''>
-                    <image src='http://zhihuichacang.com/u5439.png' class='tubiao'></image>
-                  </view>
-                  <text class='size'>230</text>
-                  <view class=''>
-                    <image src='http://zhihuichacang.com/u5462.png' class='tubiao'></image>
-                  </view>
-                  <text class='size_last'>230</text>
-                </view>
-              </view>
-            </block>
-          </scroll-view>
-        </view>
-      </swiper-item>
-      <swiper-item>
-        <view class=''>
-          <scroll-view class='scoll-h' scroll-y='true'>
-            <block wx:for="{{imgUrls}}" wx:key='index'>
-              <view style='width: 100%;'>
-                <view class="slide-image">
-                  <image src="{{item}}" bindtap='toLive'></image>
-                </view>
-                <view class='status_bar'>
-                  <view class=''>
-                    <image src='http://zhihuichacang.com/u2133.png' class='tubiao'></image>
-                  </view>
-                  <text class='store_name'>仓BJ01</text>
-                  <view class=''>
-                    <image src='http://zhihuichacang.com/u5440.png' class='tubiao'></image>
-                  </view>
-                  <text class='size'>230</text>
-                  <view class=''>
-                    <image src='http://zhihuichacang.com/u5437.png' class='tubiao'></image>
-                  </view>
-                  <text class='size'>230</text>
-                  <view class=''>
-                    <image src='http://zhihuichacang.com/u5439.png' class='tubiao'></image>
-                  </view>
-                  <text class='size'>230</text>
-                  <view class=''>
-                    <image src='http://zhihuichacang.com/u5462.png' class='tubiao'></image>
-                  </view>
-                  <text class='size_last'>230</text>
-                </view>
-              </view>
-            </block>
-          </scroll-view>
-        </view>
       </swiper-item>
     </swiper>
  
