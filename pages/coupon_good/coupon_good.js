@@ -17,23 +17,38 @@ Page({
     var item = event.currentTarget.dataset.item;
 
     console.log(event.currentTarget.dataset.id);
-    wx.navigateTo({
-      url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
-      success: function (res) {
-        // success
-        console.log("nihao////跳转成功")
-      },
-      fail: function () {
-        // fail
-        console.log("nihao////跳转失败")
-      },
-      complete: function () {
-        // complete
-        console.log("nihao////跳转行为结束，未知成功失败")
-      }
+    if(event.currentTarget.dataset.type == 1) {
+      wx.navigateTo({
+        url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
+        success: function (res) {
+          // success
+          console.log("nihao////跳转成功")
+        },
+        fail: function () {
+          // fail
+          console.log("nihao////跳转失败")
+        },
+        complete: function () {
+          // complete
+          console.log("nihao////跳转行为结束，未知成功失败")
+        }
+  
+  
+      })
+    } else {
 
+      wx.navigateTo({
+        url: '/storage/pages/zcDetail/zcDetail?id=' + event.currentTarget.dataset.id,
+        success: function () {
+          console.log('跳转成功');
+        },
+        fail: function () {
+          console.log('跳转失败');
+        }
+      })
+    }
+  
 
-    })
   },
 
   /**
@@ -59,7 +74,7 @@ Page({
       that.setData({
         routers: res.data.data,
       });
-      console.log(that.data.routers);
+      // console.log(that.data.routers);
       //  添加字段到等级数组
       for (var index in that.data.routers) {
         var sexParam = "routers[" + index + "].url";

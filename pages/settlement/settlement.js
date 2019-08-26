@@ -357,7 +357,12 @@ Page({
     var that = this;
     var num = new Array();
     num = [that.data.goods[0].number];
-    let stock = Number(that.data.goods[0].goods_info.goods_repertory);
+    let stock;
+    if(that.data.goods[0].special_info == "" || that.data.goods[0].special_info == null) {
+      stock = Number(that.data.goods[0].goods_info.goods_repertory);
+    } else {
+      stock = Number(that.data.goods[0].special_info.stock);
+    }
     let taxes1 = Number(that.data.taxes);
     if(Number(num[0]) <= stock) {
       if (that.data.order_type == "1") {
@@ -502,11 +507,16 @@ Page({
   buyrepay: function () {
     var that = this;
     let goods = that.data.goods, goods_num = that.data.goods_num ,is_data = false;
-    if (goods_num == undefined) goods_num = that.data.user[3].num;
+    if (goods_num == undefined) goods_num = that.data.user[3].num;//商品数量
     for(let i = 0; i < goods.length; i ++) {
       let stock;
-      if(goods[i].goods_info.goods_standard == 0) stock = goods[i].goods_info.goods_repertory;
-      else stock = goods[i].goods_info.goods_repertory;
+      if(goods[i].special_info == "" || goods[i].special_info == null) {//库存
+        stock = Number(goods[i].goods_info.goods_repertory);
+      } else {
+        stock = Number(goods[i].special_info.stock);
+      }
+      // if(goods[i].goods_info.goods_standard == 0) stock = goods[i].goods_info.goods_repertory;
+      // else stock = goods[i].goods_info.goods_repertory;
 
       if(goods_num >= stock) goods[i].is_err = true, is_data = true;
       else goods[i].is_err = false;
@@ -1184,7 +1194,6 @@ Page({
                 for (let i in order) {
                     arrs.push(order[i]); //属性
                 }
-                console.log(arrs)
               for(let z = 0; z < arrs.length; z ++) {
                 let arr = [];
                 if(arrs[z].suit_price2.indexOf('3') > -1 && that.data.authority != 1 && that.data.authority_new != 1) arrs[z].authority = 0;
