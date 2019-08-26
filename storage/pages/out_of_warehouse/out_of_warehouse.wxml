@@ -81,7 +81,7 @@
                 </radio-group>
             </view>
         </view>
-    </view> -->
+    </view> --> 
   <view class="list-item outNum">
     <view class="list-key">出仓数量
       <text class="explain">?</text>

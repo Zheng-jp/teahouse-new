@@ -22,7 +22,7 @@
         </view>
         <view class="warehouse-container" style="display: {{wareHouseFlag?'':'none'}};">
           <view class="item-box">
-            <!-- 是否存查 -->
+            <!-- 是否存茶 -->
             <block wx:if="{{allStorageArr}}">
               <view class="warehouse-left" bind:tap="showStorageData" data-key="true">
                 <text>全部</text>

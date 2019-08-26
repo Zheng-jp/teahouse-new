@@ -12,7 +12,7 @@
       <view class="hd-info">
         <view class="hd-name">
           <text>{{item.project_name}}</text>
-        </view>
+        </view> 
         <view class="hdv">
           <view class="hd-bar">
             <view class="hd-bar-params">
