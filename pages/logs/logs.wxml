@@ -3,9 +3,9 @@
     <image src="./images/bg.png" class="bg"></image>
   </block>
   <block wx:else>
-    <view class='header'>
+    <!-- <view class='header'>
       <image src='{{logoUrl}}'></image>
-    </view>
+    </view> -->
     <view class='content'>
       <view>申请获取以下权限</view>
       <text>获得你的公开信息(昵称，头像等)</text>

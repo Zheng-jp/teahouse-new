@@ -13,6 +13,9 @@ function setOption(chart, _this, yArr) {
       },
       top: '10rpx'
     },
+    tooltip: {
+      trigger: 'axis'
+    },
     backgroundColor: "#fff",
     color: ["#006EFF", "#67E0E3", "#9FE6B8"],
     animation: true,
@@ -38,7 +41,7 @@ function setOption(chart, _this, yArr) {
     }],
     yAxis: {
       type: 'value',
-      position: 'right',
+      position: 'left',
       splitNumber: 3,
       axisLine: {
         show: false,
@@ -104,6 +107,9 @@ function setOption2(chart, _this, yArr) {
       },
       top: '10rpx'
     },
+    tooltip: {
+      trigger: 'axis'
+    },
     backgroundColor: "#fff",
     color: ["#006EFF", "#67E0E3", "#9FE6B8"],
     animation: true,
@@ -129,7 +135,7 @@ function setOption2(chart, _this, yArr) {
     yAxis: {
       type: 'value',
       name: '湿度%',
-      position: 'right',
+      position: 'left',
       min: 0,
       max: 100,
       axisLine: {
@@ -205,7 +211,7 @@ function userLogin(_this) {
       "password": "zhcc63268696"
     },
     success(res) {
-      console.log(res.data);
+      // console.log(res.data);
       _this.setData({
         userLogin: res.data
       })
@@ -234,7 +240,7 @@ function queryDevMoniData(userData, _this) {
       "flagCode": userData.flagCode
     },
     success(res) {
-      console.log(res.data);
+      // console.log(res.data);
       _this.setData({
         queryDevMoniData: res.data.deviceList[0],
         inTemp: (+res.data.deviceList[0].sensorList[0].value).toFixed(2),
@@ -242,9 +248,9 @@ function queryDevMoniData(userData, _this) {
         inHumi: (+res.data.deviceList[0].sensorList[1].value).toFixed(2),
         outHumi: (+res.data.deviceList[0].sensorList[3].value).toFixed(2),
       })
-      wx.setNavigationBarTitle({
-        title: res.data.deviceList[0].deviceName
-      })
+      // wx.setNavigationBarTitle({
+      //   title: res.data.deviceList[0].deviceName
+      // })
     }
   })
 }
@@ -259,7 +265,7 @@ function setDevMoniData(temper, humidity) {
       "shidu": humidity
     },
     success(res) {
-      console.log(res);
+      // console.log(res);
     }
   })
 }
@@ -364,7 +370,7 @@ Page({
       const start = new Date();
       start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
 
-      console.log(start, end);
+      // console.log(start, end);
     } else if (curr == 1) {
       // 十四天数据
       console.log(app.formatDate(new Date() / 1000 - 1209600));
@@ -385,7 +391,7 @@ Page({
       method: 'POST',
       data: params,
       success(res) {
-        console.log(res.data);
+        // console.log(res.data);
         let data = res.data;
         if (data.flag != '00') {
           wx.showToast({
