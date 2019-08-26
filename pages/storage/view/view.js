@@ -463,7 +463,8 @@ Page({
       _this = this;
     if (_this.data.currentTab !== current) {
       _this.setData({
-        currentTab: current
+        currentTab: current,
+        isLive: false
       })
     }
   },
@@ -485,7 +486,8 @@ Page({
     // 滑动切换选项卡
     var current = e.detail.current;
     this.setData({
-      currentTab: current
+      currentTab: current,
+      isLive: false
     })
   },
 
