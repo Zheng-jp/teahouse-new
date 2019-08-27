@@ -4,16 +4,16 @@ Page({
     currentTab: 0,
     winHeight: 0, //窗口高度,
     url: app.globalData.img_url,
-    imgUrls: [
-      'http://zhihuichacang.com/u2404.png',
-      'http://zhihuichacang.com/u2404.png'
-    ],
-    ico: [
-      "茶仓",
-      "茶山",
-      "茶楼",
-      "茶仙"
-    ]
+    // imgUrls: [
+    //   'http://zhihuichacang.com/u2404.png',
+    //   'http://zhihuichacang.com/u2404.png'
+    // ],
+    // ico: [
+    //   "茶仓",
+    //   "茶山",
+    //   "茶楼",
+    //   "茶仙"
+    // ]
   },
 
   toLive: function () {
@@ -140,16 +140,44 @@ Page({
    */
   onShow: function () {
     //  高度自适应
-    this.setData({
-      winHeight: 380 * this.data.imgUrls.length + 50
-    })
+    // this.setData({
+    //   winHeight: 380 * this.data.imgUrls.length + 50
+    // })
 
     if(typeof this.getTabBar === 'function' && this.getTabBar()){
       this.getTabBar().setData({
         checked: 3
       })
     }
+    // wx.request({
+    //   url: "https://open.ys7.com/api/lapp/token/get",
+    //   method: "post",
+    //   data: {
+    //     appKey:"97a6343476e24f969dcd649b3ca2fd77",
+    //     appSecret:"1612af977029b240d54d7111c34e38fb",
+    //   },
+    //   // contentType:"application/json",
+    //   success: function (res) {
+    //    console.log(res)
+    //   },
+    //   fail: function(e) {
+    //     console.log(e)
+    //   }
 
+    // });
+    wx.request({
+      url: "https://open.ys7.com/api/lapp/device/capture",
+      method: "post",
+      data: {
+        accessToken:'at.0z9ozvv51b43i39x6bwc6vao3gnx9bxp-3k5xrzppxt-08cnb8j-7lzb3b1ok',
+        deviceSerial:612037990,
+        channelNo:1
+      },
+      success: function (t) {
+        console.log(t)
+      }
+
+    });
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
