@@ -31,7 +31,7 @@
               <image src='http://zhihuichacang.com/u5437.png' class='tubiao'></image>
             </view>
             <view class='size'>{{item.comments}}</view>
-            <view class=''>
+            <view class='' bindtap="tolike">
               <image src='http://zhihuichacang.com/u5439.png' class='tubiao'></image>
             </view>
             <view class='size'>{{item.clickings}}</view>

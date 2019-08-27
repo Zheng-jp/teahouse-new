@@ -15,7 +15,19 @@ Page({
     //   "茶仙"
     // ]
   },
-
+  //点赞
+  tolike: function () {
+    wx.request({
+      url: app.globalData.url +"api/Live/video_give",
+      data: {},
+      success: function(res) {
+        console.log(res)
+      },
+      fail: function(e) {
+        console.log(e)
+      }
+    })
+  },
   toLive: function () {
     wx.navigateTo({
       url: '../synopsis/synopsis'
@@ -165,19 +177,19 @@ Page({
     //   }
 
     // });
-    wx.request({
-      url: "https://open.ys7.com/api/lapp/device/capture",
-      method: "post",
-      data: {
-        accessToken:'at.0z9ozvv51b43i39x6bwc6vao3gnx9bxp-3k5xrzppxt-08cnb8j-7lzb3b1ok',
-        deviceSerial:612037990,
-        channelNo:1
-      },
-      success: function (t) {
-        console.log(t)
-      }
+    // wx.request({
+    //   url: "https://open.ys7.com/api/lapp/device/capture",
+    //   method: "post",
+    //   data: {
+    //     accessToken:'at.0z9ozvv51b43i39x6bwc6vao3gnx9bxp-3k5xrzppxt-08cnb8j-7lzb3b1ok',
+    //     deviceSerial:612037990,
+    //     channelNo:1
+    //   },
+    //   success: function (t) {
+    //     console.log(t)
+    //   }
 
-    });
+    // });
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
