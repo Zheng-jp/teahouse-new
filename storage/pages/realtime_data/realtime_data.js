@@ -41,7 +41,7 @@ function setOption(chart, _this, yArr) {
     }],
     yAxis: {
       type: 'value',
-      position: 'left',
+      position: 'right',
       splitNumber: 3,
       axisLine: {
         show: false,
@@ -55,7 +55,7 @@ function setOption(chart, _this, yArr) {
           return value.toFixed(2);
         }
       },
-      name: '温度℃',
+      // name: '温度℃',
       scale: true,
       boundaryGap: [0.2, 0.2]
     },
@@ -134,8 +134,8 @@ function setOption2(chart, _this, yArr) {
     }],
     yAxis: {
       type: 'value',
-      name: '湿度%',
-      position: 'left',
+      // name: '湿度%',
+      position: 'right',
       min: 0,
       max: 100,
       axisLine: {
@@ -223,6 +223,7 @@ function userLogin(_this) {
       if (len == 10) {
         _this.initOne();
         _this.initTwo();
+        _this.showText = true;
       }
       //获取设备监控数据
       queryDevMoniData(res.data, _this);
@@ -351,7 +352,8 @@ Page({
     selectHistKey: 0,
     multiArray: [years, months, days, hours, minutes, seconds],
     multiIndex: [1, 0, 0, 0, 0, 0],
-    choose_year: ''
+    choose_year: '',
+    showText: false,
   },
 
   // 查询用户选定日期的历史数据
