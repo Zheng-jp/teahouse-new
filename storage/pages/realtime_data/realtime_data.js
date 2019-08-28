@@ -156,6 +156,7 @@ function setOption2(chart, _this, yArr) {
     }]
   };
   _this.setData({
+    showText: true,
     timer2: setInterval(function() {
       var now = new Date();
       var axisData = ((now.getHours() < 10 ? '0' + now.getHours() : now.getHours()) + ':' +
@@ -223,7 +224,6 @@ function userLogin(_this) {
       if (len == 10) {
         _this.initOne();
         _this.initTwo();
-        _this.showText = true;
       }
       //获取设备监控数据
       queryDevMoniData(res.data, _this);
