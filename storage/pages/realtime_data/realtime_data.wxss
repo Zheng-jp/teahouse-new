@@ -15,7 +15,8 @@ swiper.swiper-container{min-height: 1020rpx; flex: 1;}
 .temperature,
 .humidity{display: flex; align-items: center; justify-content: space-between; margin-top: 20rpx;}
 .humiture-data .humiture-title{color: #333;}
-.temp-echarts{width: 700rpx; margin: 0 auto; flex: 1; overflow-y: auto;}
+.temp-echarts{position: relative; width: 700rpx; margin: 0 auto; flex: 1; overflow-y: auto;}
+.temp-echarts text{position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 999; font-size: 12px; width: 20px; word-break: break-word;}
 .history-nav{display: flex; align-items: center; font-size: 28rpx; padding: 20rpx 10rpx; color: #93291f;}
 .history-nav .history-date{display: flex; height: 35px; box-sizing: border-box; border: 1px solid #93291f; border-radius: 6rpx; padding: 12rpx 6rpx; margin-left: 14rpx; width: 380rpx;}
 .history-nav .history-date .section{display: flex;}

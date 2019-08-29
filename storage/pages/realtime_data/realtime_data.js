@@ -41,7 +41,7 @@ function setOption(chart, _this, yArr) {
     }],
     yAxis: {
       type: 'value',
-      position: 'left',
+      position: 'right',
       splitNumber: 3,
       axisLine: {
         show: false,
@@ -55,7 +55,7 @@ function setOption(chart, _this, yArr) {
           return value.toFixed(2);
         }
       },
-      name: '温度℃',
+      // name: '温度℃',
       scale: true,
       boundaryGap: [0.2, 0.2]
     },
@@ -134,8 +134,8 @@ function setOption2(chart, _this, yArr) {
     }],
     yAxis: {
       type: 'value',
-      name: '湿度%',
-      position: 'left',
+      // name: '湿度%',
+      position: 'right',
       min: 0,
       max: 100,
       axisLine: {
@@ -156,6 +156,7 @@ function setOption2(chart, _this, yArr) {
     }]
   };
   _this.setData({
+    showText: true,
     timer2: setInterval(function() {
       var now = new Date();
       var axisData = ((now.getHours() < 10 ? '0' + now.getHours() : now.getHours()) + ':' +
@@ -351,7 +352,8 @@ Page({
     selectHistKey: 0,
     multiArray: [years, months, days, hours, minutes, seconds],
     multiIndex: [1, 0, 0, 0, 0, 0],
-    choose_year: ''
+    choose_year: '',
+    showText: false,
   },
 
   // 查询用户选定日期的历史数据
