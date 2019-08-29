@@ -1,6 +1,6 @@
 <view wx:if="{{canIUse}}">
   <block wx:if="{{authorization}}">
-    <image src="./images/bg.png" class="bg"></image>
+    <!-- <image src="./images/bg.png" class="bg"></image> -->
   </block>
   <block wx:else>
     <view class='header'>
