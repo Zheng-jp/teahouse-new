@@ -1,4 +1,6 @@
 // pages/live/synopsis/ synopsis.js
+const app = getApp();
+
 Page({
 
   /**
@@ -10,7 +12,6 @@ Page({
     releaseFocus: false,
     // 输入框内容
     repay_content: ''
-   
   },
   // toComment: function () {
   //   wx.navigateTo({
@@ -51,7 +52,7 @@ Page({
     console.log("分享")
     let that = this;
     return {
-      title: '简直走别拐弯', // 转发后 所显示的title
+      title: that.data.videos.classify_name, // 转发后 所显示的title
       path: '/pages/logs/logs', // 相对的路径
       success: (res) => {    // 成功后要做的事情
         console.log(res.shareTickets[0])
@@ -60,6 +61,7 @@ Page({
         wx.getShareInfo({
           shareTicket: res.shareTickets[0],
           success: (res) => {
+            9
             that.setData({
               isShow: true
             })
@@ -82,6 +84,25 @@ Page({
     var that = this;
     that.setData({
       releaseFocus: false
+    })
+    wx.request({
+      url: app.globalData.url + "/api/video_comment",
+      data: {
+        store_id: app.globalData.uniacid,
+        vid: that.data.videos.id,
+        user_id: app.globalData.member_id,
+        content: that.data.repay_content
+      },
+      success: function (res) {
+        console.log(res)
+        that.setData({
+              repay_content: ''
+        });
+        that.commentAll(that.data.vid);
+      },
+      fail: function (e) {
+        console.error(e)
+      }
     })
     // wx.request({
     //   url: app.globalData.tiltes + 'teacenter_comment',
@@ -109,6 +130,7 @@ Page({
 
     // });
   },
+  //关闭评论弹窗
   close: function (e) {
     var that = this;
     that.setData({
@@ -118,11 +140,44 @@ Page({
       repay_content: ''
     })
   },
+  //点赞
+  tolike: function (e) {
+    var that = this;
+    wx.request({
+      url: app.globalData.url + "/api/video_give",
+      data: {
+        user_id: app.globalData.member_id,
+        store_id: app.globalData.uniacid,
+        vid: e.currentTarget.dataset.id
+      },
+      success: function (res) {
+        if (res.data.code == 1) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: "none",
+            duration: 2000
+          })
+          that.onShow();
+        }
+      },
+      fail: function (e) {
+        console.error(e)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+    if (options.title) {
+      that.setData({
+        currentTab: 1
+      })
+    }
+    that.setData({
+      vid: options.vid
+    })
     //  高度自适应
     wx.getSystemInfo({
       success: function (res) {
@@ -135,8 +190,55 @@ Page({
         });
       }
     });
-  },
+    that.showAll(options.vid);
+    that.commentAll(options.vid);
 
+  },
+  //视频详情
+  showAll: function (vid) {
+    var that = this;
+    wx.request({
+      url: app.globalData.url + "/api/details",
+      data: {
+        store_id: app.globalData.uniacid,
+        vid: vid,
+        uid: app.globalData.member_id
+      },
+      success: function (res) {
+        if (res.data.code == 1) {
+          that.setData({
+            videos: res.data.data
+          })
+        }
+      },
+      fail: function (e) {
+        console.error(e)
+      }
+
+    });
+  },
+  //评论展示
+  commentAll: function (vid) {
+    var that = this;
+    wx.request({
+      url: app.globalData.url + "/api/video_index",
+      data: {
+        store_id: app.globalData.uniacid,
+        vid: vid
+      },
+      success: function (res) {
+        // console.log(res)
+        if (res.data.code == 1) {
+          that.setData({
+            comment: res.data.data
+          })
+        }
+      },
+      fail: function (e) {
+        console.error(e)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -148,7 +250,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.showAll(this.data.vid)
   },
 
   /**
@@ -158,12 +260,12 @@ Page({
 
   },
 
-  
+
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
@@ -180,10 +282,5 @@ Page({
 
   },
 
-  /** 
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
-  }
 })

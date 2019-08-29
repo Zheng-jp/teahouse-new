@@ -143,4 +143,13 @@ swiper.swiper-container{height: 93%;}
       margin: 0 auto;
       overflow: hidden;
     }
+    .share_img{
+      position: relative;
+    }
+    .share_img button{
+      width:77rpx;
+      opacity: 0;
+      height:90rpx;
+      position: absolute;
     
+    }

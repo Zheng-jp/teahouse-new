@@ -16,21 +16,39 @@ Page({
     // ]
   },
   //点赞
-  tolike: function () {
+  tolike: function (e) {
+    var that = this;
     wx.request({
-      url: app.globalData.url +"api/Live/video_give",
-      data: {},
+      url: app.globalData.url +"/api/video_give",
+      data: {
+        user_id: app.globalData.member_id,
+        store_id: app.globalData.uniacid,
+        vid: e.currentTarget.dataset.id
+      },
       success: function(res) {
-        console.log(res)
+        if(res.data.code == 1) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: "none",
+            duration: 2000
+          })
+          that.onShow();
+        }
       },
       fail: function(e) {
-        console.log(e)
+        console.error(e)
       }
     })
   },
-  toLive: function () {
+  toLive: function (e) {
+    var url ="";
+    if(e.currentTarget.dataset.title == 1) {
+      url = '../synopsis/synopsis?vid='+ e.currentTarget.dataset.id
+    } else { //到评论
+      url = '../synopsis/synopsis?title=1&vid='+ e.currentTarget.dataset.id
+    }
     wx.navigateTo({
-      url: '../synopsis/synopsis'
+      url: url
     })
     
   },
@@ -60,10 +78,16 @@ Page({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
     })
+    that.showAll();
+
+  },
+  showAll: function () {
+    var that = this;
     wx.request({
       url: app.globalData.tiltes + 'api/classification',
       data: {
-        store_id: app.globalData.uniacid
+        store_id: app.globalData.uniacid,
+        uid: app.globalData.member_id
       },
       method: "post",
       success: function (res) {
@@ -81,9 +105,7 @@ Page({
       }
   
     });
-
   },
-
 
   redirectto: function (t) {
     var a = t.currentTarget.dataset.link,
@@ -96,55 +118,55 @@ Page({
   onReady: function () {
     var that = this;
     var uniacid = app.globalData.uniacid;
-    wx.request({
-      url: app.globalData.baseurl + "doPagehomepage",
-      cachetime: "30",
-      data: {
-        uniacid: uniacid
-      },
-      success: function (t) {
-        that.setData({
-          foot_is: t.data.data.foot_is
-        })
-        wx.request({
-          url: app.globalData.baseurl + "doPageGetFoot",
-          cachetime: "30",
-          data: {
-            uniacid: uniacid,
-            foot: t.data.data.foot_is
-          },
-          success: function (t) {
-            // var lujing = [];
-            // var num = getCurrentPages().length - 1;
-            // var url = getCurrentPages()[num].route; //当前页面路径
+    // wx.request({
+    //   url: app.globalData.baseurl + "doPagehomepage",
+    //   cachetime: "30",
+    //   data: {
+    //     uniacid: uniacid
+    //   },
+    //   success: function (t) {
+    //     that.setData({
+    //       foot_is: t.data.data.foot_is
+    //     })
+    //     wx.request({
+    //       url: app.globalData.baseurl + "doPageGetFoot",
+    //       cachetime: "30",
+    //       data: {
+    //         uniacid: uniacid,
+    //         foot: t.data.data.foot_is
+    //       },
+    //       success: function (t) {
+    //         // var lujing = [];
+    //         // var num = getCurrentPages().length - 1;
+    //         // var url = getCurrentPages()[num].route; //当前页面路径
 
-            // for (let i in t.data.data.data) {
-            //   lujing.push(t.data.data.data[i]);
-            // }
-            // for (let o = 0; o < lujing.length; o++) {
-            //   if (lujing[o].linkurl.indexOf(url) != -1) {
-            //     lujing[o].change = true;
-            //   } else {
-            //     lujing[o].change = false;
-            //   }
-            // }
-            // t.data.data.data = lujing;
-            // console.log(t.data.data)
-            that.setData({
-              // lujing: lujing,
-              footinfo: t.data.data,
-              // style: t.data.data.style,
-            })
-          }
+    //         // for (let i in t.data.data.data) {
+    //         //   lujing.push(t.data.data.data[i]);
+    //         // }
+    //         // for (let o = 0; o < lujing.length; o++) {
+    //         //   if (lujing[o].linkurl.indexOf(url) != -1) {
+    //         //     lujing[o].change = true;
+    //         //   } else {
+    //         //     lujing[o].change = false;
+    //         //   }
+    //         // }
+    //         // t.data.data.data = lujing;
+    //         // console.log(t.data.data)
+    //         that.setData({
+    //           // lujing: lujing,
+    //           footinfo: t.data.data,
+    //           // style: t.data.data.style,
+    //         })
+    //       }
 
-        });
+    //     });
 
 
-      },
-      fail: function (t) {
-        console.log(t);
-      }
-    });
+    //   },
+    //   fail: function (t) {
+    //     console.log(t);
+    //   }
+    // });
 
   },
   /**
@@ -155,7 +177,7 @@ Page({
     // this.setData({
     //   winHeight: 380 * this.data.imgUrls.length + 50
     // })
-
+    this.showAll();
     if(typeof this.getTabBar === 'function' && this.getTabBar()){
       this.getTabBar().setData({
         checked: 3
@@ -228,11 +250,33 @@ Page({
   onReachBottom: function () {
 
   },
+  // onShareAppMessage: function () {
+  //   console.log("分享")
+  //   let that = this;
+  //   return {
+  //     title: e.target.dataset.id, // 转发后 所显示的title
+  //     path: '/pages/logs/logs', // 相对的路径
+  //     success: (res) => {    // 成功后要做的事情
+  //       console.log(res.shareTickets[0])
+  //       // console.log
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  //       wx.getShareInfo({
+  //         shareTicket: res.shareTickets[0],
+  //         success: (res) => {
+  //           9
+  //           that.setData({
+  //             isShow: true
+  //           })
+  //           console.log(that.setData.isShow)
+  //         },
+  //         fail: function (res) { console.log(res) },
+  //         complete: function (res) { console.log(res) }
+  //       })
+  //     },
+  //     fail: function (res) {
+  //       // 分享失败
+  //       console.log(res)
+  //     }
+  //   }
+  // },
 })

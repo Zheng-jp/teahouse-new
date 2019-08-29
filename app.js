@@ -441,9 +441,9 @@ App({
     member_id: null,
     judge_phone: null,
     judge_repay: null,
-    url: 'https://teahouse.siring.com.cn',
-    tiltes: 'https://teahouse.siring.com.cn/',
-    img_url: 'https://teahouse.siring.com.cn/uploads/',
+    url: 'https://www.zhihuichacang.com',
+    tiltes: 'https://www.zhihuichacang.com/',
+    img_url: 'https://www.zhihuichacang.com/uploads/',
     // url:'http://localhost/teahouse.siring.com.cn',
     // tiltes:'http://localhost/teahouse/public/',
     // img_url:' http://localhost/teahouse/public/uploads/'
