@@ -40,7 +40,7 @@
   <text class='size_last'>{{videos.shares}}</text>
 </view>
 <view class='grey'></view>
-<swiper class="tab-content" current="{{currentTab}}" bindchange="bindChange" style="height:{{winHeight}}rpx">
+<swiper class="tab-content" class="swiper-container" duration="300" current="{{currentTab}}" bindchange="bindChange" >
   <swiper-item>
     <scroll-view scroll-y="true">
       <view class='article_main'>
