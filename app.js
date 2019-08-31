@@ -1,4 +1,4 @@
-var url = "https://teahouse.siring.com.cn/api/";
+var url = "https://www.zhihuichacang.com/api/";
 // var uniacid = "6";
 App({
   data: {
