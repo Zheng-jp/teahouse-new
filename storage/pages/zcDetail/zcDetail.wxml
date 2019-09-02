@@ -196,7 +196,8 @@
                       <text>众筹故事</text>
                     </view>
                     <view class="sku-story-content">
-                      <text>{{item.standard[specActive].story}}</text>
+                      <!-- <text>{{item.standard[specActive].story}}</text> -->
+                      <text>这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事；这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事；这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事；这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事；这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事；</text>
                     </view>
                   </view>
                   <view class="quantity-info">
