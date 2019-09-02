@@ -80,7 +80,7 @@ view{overflow: initial !important;}
 .sku-pro-info .sku-txt{display: flex; justify-content: space-between; align-items: center; color: #949494;}
 .sku-pro-info .sku-txt text{color: #93291E;}
 .sku-close{position: absolute; right: 0; top: 0;}
-.sku-info{flex: 1; margin-bottom: 50px;}
+.sku-info{flex: 1; margin-bottom: 50px; height: 50%;}
 .sku-info .sku-spec,
 .sku-story{padding-bottom: 32rpx; border-bottom: 2rpx solid #f2f2f2;}
 .sku-info .sku-tit{font-size: 32rpx; color: #111; padding: 20rpx 0;}

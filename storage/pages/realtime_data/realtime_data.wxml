@@ -44,12 +44,12 @@
         </view>
         <view style="flex: 1; display: flex; flex-direction: column; overflow: auto;">
             <view class="temp-echarts">
-                <text wx:if="{{ showText }}">温度℃</text>
                 <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{ ecOne }}"></ec-canvas>
+                <!-- <text wx:if="{{ showText }}">温度℃</text> -->
             </view>
             <view class="temp-echarts">
-                <text wx:if="{{ showText }}">湿度%</text>
                 <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ ecTwo }}"></ec-canvas>
+                <!-- <text wx:if="{{ showText }}">湿度%</text> -->
             </view>
         </view>
     </swiper-item>
