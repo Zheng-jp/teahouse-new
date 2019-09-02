@@ -562,6 +562,11 @@ Page({
                 pmKey: true,
                 balance: res.data.data.balance
               })
+            } else if(res.data.data.status == 2) {
+              wx.showToast({
+                title: res.data.info,
+                icon: 'none',
+              })
             } else {
               wx.showToast({
                 title: "下单失败",
@@ -603,6 +608,11 @@ Page({
                 coupon_type: res.data.data.coupon_type,
                 pmKey: true,
                 balance: res.data.data.balance
+              })
+            } else if(res.data.data.status == 2) {
+              wx.showToast({
+                title: res.data.info,
+                icon: 'none',
               })
             } else {
               wx.showToast({
@@ -646,6 +656,11 @@ Page({
                 coupon_type: res.data.data.coupon_type,
                 pmKey: true,
                 balance: res.data.data.balance
+              })
+            } else if(res.data.data.status == 2) {
+              wx.showToast({
+                title: res.data.info,
+                icon: 'none',
               })
             } else {
               wx.showToast({

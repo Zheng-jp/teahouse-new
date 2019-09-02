@@ -904,7 +904,7 @@ Page({
     var sava_id = wx.getStorageSync('sava_id');
     var shop_id = wx.getStorageSync('shop_id');
     var receipt_id = wx.getStorageSync('receipt_id');
-    //  console.log(receipt_id);
+    
     if (id == '') {
       wx.request({
         url: app.globalData.tiltes + 'member_default_address_return',
@@ -976,11 +976,12 @@ Page({
             address_0: a[0],
             address_id: address_id,
           });
+        
           wx.request({
             url: app.globalData.tiltes + 'getaAnsporTation',
             data: {
-              'goods_id': _this.data.user[1].good_id,
-              'goods_standard_id': _this.data.user[2].guige,
+              'goods_id': _this.data.user[1].goods_id,
+              'goods_standard_id': _this.data.user[0].guige,
               'are': _this.data.address_0
             },
             method: "POST",

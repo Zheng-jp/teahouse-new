@@ -55,7 +55,7 @@
               <view class='good_selling'>{{item.goods_describe}}</view>
               <view class='good_monye'>
                 <view class='good_uite'>
-                  <image src='{{url}}{{member_grade_img}}' class='user_img'></image>
+                  <image src='{{member_grade_img}}' class='user_img'></image>
                   <text class='uite'>￥{{item.goods_money}}/片</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
@@ -93,7 +93,7 @@
               <view class='good_selling'>{{item.goods_describe}}</view>
               <view class='good_monye'>
                 <view class='good_uite'>
-                  <image src='{{url}}{{member_grade_img}}' class='user_img'></image>
+                  <image src='{{member_grade_img}}' class='user_img'></image>
                   <text class='uite'>￥{{item.goods_money}}/片</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
@@ -133,7 +133,7 @@
               <view class='good_selling'>{{item.goods_describe}}</view>
               <view class='good_monye'>
                 <view class='good_uite'>
-                  <image src='{{url}}{{member_grade_img}}' class='user_img'></image>
+                  <image src='{{member_grade_img}}' class='user_img'></image>
                   <text class='uite'>￥{{item.goods_money}}/片</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
@@ -191,7 +191,7 @@
               <view class='good_selling'>{{item.goods_describe}}</view>
               <view class='good_monye'>
                 <view class='good_uite'>
-                  <image src='{{url}}{{member_grade_img}}' class='user_img'></image>
+                  <image src='{{member_grade_img}}' class='user_img'></image>
                   <text class='uite'>￥{{item.goods_money}}/片</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
@@ -231,7 +231,7 @@
               <view class='good_selling'>{{item.goods_describe}}</view>
               <view class='good_monye'>
                 <view class='good_uite'>
-                  <image src='{{url}}{{member_grade_img}}' class='user_img'></image>
+                  <image src='{{member_grade_img}}' class='user_img'></image>
                   <text class='uite'>￥{{item.goods_money}}/片</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
@@ -268,7 +268,7 @@
               <view class='good_selling'>{{item.goods_describe}}</view>
               <view class='good_monye'>
                 <view class='good_uite'>
-                  <image src='{{url}}{{member_grade_img}}' class='user_img'></image>
+                  <image src='{{member_grade_img}}' class='user_img'></image>
                   <text class='uite'>￥{{item.goods_money}}/片</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
@@ -311,7 +311,7 @@
               <view class='good_selling'>{{item.goods_describe}}</view>
               <view class='good_monye'>
                 <view class='good_uite'>
-                  <image src='{{url}}{{member_grade_img}}' class='user_img'></image>
+                  <image src='{{member_grade_img}}' class='user_img'></image>
                   <text class='uite'>￥{{item.goods_money}}/片</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>

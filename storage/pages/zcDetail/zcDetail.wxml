@@ -165,7 +165,7 @@
                     <view> 
                       <view class="h">￥{{item.standard[specActive].cost}}</view>
                       <view class="sku-txt">
-                        <image style="width:60rpx;height:30rpx;margin-right:-60rpx;" src="../../../images/kecun.png" ></image>
+                        <image style="width:60rpx;height:30rpx;margin-right:-60rpx;" src="http://zhihuichacang.com/kecun.png" ></image>
                         <view wx:if="{{item.standard[specActive].limit==-1}}">不限购</view>
                         <view wx:else>限购
                           <text>{{item.standard[specActive].limit}}</text>份</view>

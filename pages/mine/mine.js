@@ -14,72 +14,72 @@ Page({
     foot_is: 2,
     order_nav: [
       {
-        src: app.globalData.url + '/upload/20181115/eb46c126533c9c51a19b9baea16f8523.png',
+        src: 'http://zhihuichacang.com/u136.png',
         text: '待付款',
         id: 1,
       },
       {
-        src: app.globalData.url + '/upload/20181115/0a2b1ad83a3cb195b5367943f208e667.png',
+        src: 'http://zhihuichacang.com/u138.png',
         text: '待发货',
         id: 2,
       },
       {
-        src: app.globalData.url + '/upload/20181115/9dd5f4a52c2a77653c7ea3ef05ef7226.png',
+        src: 'http://zhihuichacang.com/u140.png',
         text: '待收货',
         id: 3,
 
       }, {
-        src: app.globalData.url + '/upload/20181115/ab9f934b82ab3e9d2ba77b9616501d6a.png',
+        src: 'http://zhihuichacang.com/u142.png',
         text: '待评价',
         id: 4,
       }, {
-        src: app.globalData.url + '/upload/20181115/fa73c90513036e142b64e3ef2c948a87.png',
+        src: 'http://zhihuichacang.com/u144.png',
         text: '售后/退款',
         id: 5
       }
     ],
     list: [
       {
-        url: app.globalData.url + '/upload/20190104/94debd1c9f7b4c11a58b90b7dd83b402.png',
+        url: 'http://zhihuichacang.com/n1.png',
         text: '会员中心',
         src: '../members/members',
       },
       {
-        url: app.globalData.url + '/upload/20181115/872ba6211e755c12088c2e5f92fad232.png',
+        url: 'http://zhihuichacang.com/n2.png',
         text: '消息中心',
         src: '../news/news',
       },
       {
-        url: app.globalData.url + '/upload/20181115/f052e232cf2c7629080cacbb20522b50.png',
+        url: 'http://zhihuichacang.com/n3.png',
         text: '地址管理',
         src: '../select_address/select_address',
       },
       {
-        url: app.globalData.url + '/upload/20181115/81c85d2133879add7c6f8ed268410616.png',
+        url: 'http://zhihuichacang.com/n4.png',
         text: '我的收藏',
         src: '../collection/collection',
 
       },
       {
-        url: app.globalData.url + '/upload/20181115/d0221a688c6699297a1092cec2e1a322.png',
+        url: 'http://zhihuichacang.com/n5.png',
         text: '我的账户',
         src: '../account/account',
       },
     ],
     lista: [
       {
-        url: app.globalData.url + '/upload/20181115/38b70a3b147560518f3c46c5294ec19f.png',
+        url: 'http://zhihuichacang.com/n6.png',
         text: '常见问题',
         src: '../problement/problement',
       },
       {
-        url: app.globalData.url + '/upload/20181115/2505a16ba762f14d5d88d1ddecf2b755.png',
+        url: 'http://zhihuichacang.com/n7.png',
         text: '协议合同',
         src: '../contract/contract',
 
       },
       {
-        url: app.globalData.url + '/upload/20181115/575a600f599df7b52b16cd3aa5b48d1c.png',
+        url: 'http://zhihuichacang.com/n8.png',
         text: '关于我们',
         src: '../about/about',
       }
@@ -187,25 +187,25 @@ Page({
         if(version_is == 1) {
           var list= [
             {
-              url: app.globalData.url + '/upload/20190104/94debd1c9f7b4c11a58b90b7dd83b402.png',
+              url: 'http://zhihuichacang.com/n1.png',
               text: '会员中心',
               src: '../members/members',
             },
             {
-              url: app.globalData.url + '/upload/20181115/872ba6211e755c12088c2e5f92fad232.png',
+              url: 'http://zhihuichacang.com/n2.png',
               text: '消息中心',
               src: '../news/news',
             },
             {
-              url: app.globalData.url + '/upload/20181115/f052e232cf2c7629080cacbb20522b50.png',
+              url: 'http://zhihuichacang.com/n3.png',
               text: '地址管理',
               src: '../select_address/select_address',
             },
             {
-              url: app.globalData.url + '/upload/20181115/d0221a688c6699297a1092cec2e1a322.png',
+              url: 'http://zhihuichacang.com/n5.png',
               text: '我的账户',
               src: '../account/account',
-            },
+            }
           ]
         }  
         that.setData({
@@ -317,29 +317,29 @@ Page({
       success: function (res) {
         let order_nav = [
           {
-            src: app.globalData.url + '/upload/20181115/eb46c126533c9c51a19b9baea16f8523.png',
+            src: 'http://zhihuichacang.com/u136.png',
             text: '待付款',
             id: 1,
             num: res.data.data.dai_num
           },
           {
-            src: app.globalData.url + '/upload/20181115/0a2b1ad83a3cb195b5367943f208e667.png',
+            src: 'http://zhihuichacang.com/u138.png',
             text: '待发货',
             id: 2,
             num: res.data.data.fa_num
           },
           {
-            src: app.globalData.url + '/upload/20181115/9dd5f4a52c2a77653c7ea3ef05ef7226.png',
+            src: 'http://zhihuichacang.com/u140.png',
             text: '待收货',
             id: 3,
             num: res.data.data.shou_num
           }, {
-            src: app.globalData.url + '/upload/20181115/ab9f934b82ab3e9d2ba77b9616501d6a.png',
+            src: 'http://zhihuichacang.com/u142.png',
             text: '待评价',
             id: 4,
             num: res.data.data.ping_num
           }, {
-            src: app.globalData.url + '/upload/20181115/fa73c90513036e142b64e3ef2c948a87.png',
+            src: 'http://zhihuichacang.com/u144.png',
             text: '售后/退款',
             id: 5,
             num: res.data.data.tui_num

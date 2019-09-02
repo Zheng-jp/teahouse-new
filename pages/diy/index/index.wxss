@@ -1,6 +1,6 @@
 @import "../diypages/diypages.wxss";
-@import "../../../__wuBaseWxss__/1.wxss";
-@import "../../../__wuBaseWxss__/2.wxss";
+@import "../../../wuBaseWxss/1.wxss";
+@import "../../../wuBaseWxss/2.wxss";
 
 .foot_text {
   text-align:center;
