@@ -11,7 +11,7 @@
     </view>
     <view class='order_list' wx:for="{{coupon_order}}" data-id="{{item.id}}" bindtap="checkboxChangess" data-value="{{item.suit_price[0]}}">
       <view class='order_list_content'>
-        <checkbox value="{{item.id}}" checked="{{item.checked}}" />
+        <checkbox value="{{item.id}}" checked=" {{item.checked}}" />
         <view class="coupon_box">
           <image class="coupon_box_img" src="img/u11123.png" mode="widthFix"></image>
           <view class="coupon_money_box">
@@ -77,7 +77,7 @@
   <view wx:for="{{goods}}" class='good_list' wx:key="index">
     <view class='order-goods-info'>
       <view class='order-goods-img'>
-        <image src='{{url}}{{item.goods_info.goods_show_image}}' mode="scaleToFill"></image>
+        <image src='{{item.goods_info.goods_show_image}}' mode="scaleToFill"></image>
       </view>
       <view class='order-info-box'>
         <view class='order-info-title'>{{item.goods_info.project_name}}</view>
@@ -94,7 +94,7 @@
         <view class='unit-price-quantity'>
           <view class='unit-price'>
             <view class='unit-price-img'>
-              <image src='/pages/settlement/img/u216.png' mode="scaleToFill"></image>
+              <image src='{{item.user_grade_image}}' mode="scaleToFill"></image>
             </view>
             <view class='unit-price-p text_red' wx:if="{{item.goods_info.goods_standard==0}}">
               ￥{{item.grade_price}}/{{item.goods_info.monomer}}

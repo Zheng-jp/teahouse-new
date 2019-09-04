@@ -107,7 +107,6 @@ Page({
 
   // 打赏金额 下拉列表索引
   bindPickerChange: function (e) {
-    console.log(e.detail.value)
     this.setData({
       index: e.detail.value
     })
@@ -176,7 +175,6 @@ Page({
       method: 'POST',
       data: param,
       success: function (res) {
-        console.log(res);
         var data = res.data;
         if (data.status == "1") {
           _this.setData({
@@ -208,7 +206,6 @@ Page({
         order_number: this.data.order_number
       },
       success: function (res) {
-        console.log(res);
         if (res.statusCode == 200) {
           var data = res.data;
           // 调 微信支付
@@ -219,10 +216,9 @@ Page({
             signType: 'MD5',
             paySign: data.paySign,
             success(res) {
-              console.log(res);
               // 支付成功 跳转众筹订单
               wx.reLaunch({
-                url: '/storage/pages/zcOrder/zcOrder?title=' + 0,
+                url: '/storage/pages/zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id,
               })
             },
           })
@@ -235,6 +231,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      enter_all_id: options.enter_all_id
+    })
     // 打赏商品规格id
     if (options.standardId) {
       this.setData({

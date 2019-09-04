@@ -5,7 +5,7 @@
       <image src='http://zhihuichacang.com/x.png' mode="widthFix" class='close-select-pop' bindtap="hideFlag" style='hight:44rpx'></image>
       <view class='select-goods-wrap'>
         <view class='select-goods-img'>
-          <image src='{{url}}{{images}}' mode="widthFix"></image>
+          <image src='{{images}}' mode="widthFix"></image>
         </view>
         <view class="select-goods-info">
           <view class='select-goods-price'>
@@ -50,7 +50,7 @@
       </swiper-item>
       <block wx:for="{{image}}" wx:key="{{index}}">
         <swiper-item class='swiper-item'>
-          <image src="{{url}}{{item}}" class="slide-image" />
+          <image src="{{item}}" class="slide-image" />
         </swiper-item>
       </block>
     </swiper>
@@ -155,7 +155,7 @@
               <view class='repay_content'>{{item.evaluate_content}}</view>
               <view class='comment_img_all' >
                 <view class='comment_imgs' wx:for="{{item.images}}" wx:key="{{index}}">
-                  <image src='{{url}}{{item.images}}'></image>
+                  <image src='{{item.images}}'></image>
                 </view>
               </view>
               <view class='time'>{{item.create_time}}</view>

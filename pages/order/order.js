@@ -514,7 +514,7 @@ Page({
         wx.showToast({
           title: '提醒成功',
           icon: 'none',
-          duration: 3000
+          duration: 4000
         })
       },
       fail: function() {

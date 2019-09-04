@@ -5,7 +5,7 @@
       <swiper class="swiper-hd" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="#888" indicator-active-color="#fff">
         <block wx:for="{{item.goods_show_images}}" wx:key="">
           <swiper-item>
-            <image src="{{url}}{{item}}" class="slide-image" width="355" height="150" />
+            <image src="{{item}}" class="slide-image" width="355" height="150" />
           </swiper-item>
         </block>
       </swiper>
@@ -159,7 +159,7 @@
                     <view wx:if="{{item.standard[specActive].stock==0}}" class="outstock">
                       <image src="http://zhihuichacang.com/outStock.png"></image>
                     </view>
-                    <image src="{{url}}{{item.standard[specActive].images}}" />
+                    <image src="{{item.standard[specActive].images}}" />
                   </view>
                   <view class="sku-pro-info">
                     <view> 
@@ -196,8 +196,7 @@
                       <text>众筹故事</text>
                     </view>
                     <view class="sku-story-content">
-                      <!-- <text>{{item.standard[specActive].story}}</text> -->
-                      <text>这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事；这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事；这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事；这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事；这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事这个是众筹故事；</text>
+                      <text>{{item.standard[specActive].story}}</text>
                     </view>
                   </view>
                   <view class="quantity-info">

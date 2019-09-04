@@ -27,7 +27,7 @@
 	<view  class='good_list'>
 		<view class='order-goods-info'>
 			<view class='order-goods-img'>
-				<image src='http://zhihuichacang.com/u852.png' mode="scaleToFill"></image>
+				<image src='{{goods.goods_show_image}}' mode="scaleToFill"></image>
 			</view>
 			<view class='order-info-box'>
 				<view class='order-info-title'>{{goods.goods_name}}</view>

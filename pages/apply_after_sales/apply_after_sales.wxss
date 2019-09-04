@@ -81,7 +81,7 @@
      font-size: 30rpx;
      color:#fff;
      background:#FF6700;
-     border:0;
+     border-radius:0;
      z-index: 999999;
    line-height: 100rpx;
    }

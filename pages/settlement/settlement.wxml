@@ -77,7 +77,7 @@
   <view wx:for="{{goods}}" class="good_list {{item.is_err ? 'is_err' : ''}}" wx:key="index">
     <view class="order-goods-info " >
       <view class='order-goods-img'>
-        <image src='{{url}}{{item.goods_info.goods_show_image}}' mode="scaleToFill"></image>
+        <image src='{{item.goods_info.goods_show_image}}' mode="scaleToFill"></image>
       </view>
       <view class='order-info-box'>
         <view class='order-info-title'>{{item.goods_info.goods_name}}</view>

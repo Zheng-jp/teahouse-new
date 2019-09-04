@@ -71,7 +71,7 @@
           <view class="storage-manage">
             <view class="storage-item">
               <view class="item-left">
-                <image src="{{url}}{{item.goods_image}}" class="display-img" />
+                <image src="{{item.goods_image}}" class="display-img" />
                 <text class="tea-name">{{item.goods_name}}</text>
                 <text class="tea-date">生产日期：{{item.date}}</text>
                 <view class="tag-box">
@@ -144,7 +144,7 @@
           <swiper-item wx:for="{{swiperDataList}}" wx:key="index">
             <view class="box">
               <view class="swiper-img-box">
-                <image src="{{url}}{{item.goods_show_image}}" />
+                <image src="{{item.goods_show_image}}" />
               </view>
               <view class="swiper-good-info">
                 <view class="swiper-stock">剩余{{item.days}}天</view>
@@ -172,7 +172,7 @@
         <view class="zc-item-box" style="height: {{Height}}px">
           <view class="zc-item" wx:for="{{crowdList}}" wx:key="index">
             <view class="left-img">
-              <image src="{{url}}{{item.goods_show_image}}" bindtap="support"  data-id="{{item.id}}" />
+              <image src="{{item.goods_show_image}}" bindtap="support"  data-id="{{item.id}}" />
             </view>
             <view class="right-project-info">
               <view class="project-name hid-txt-one">{{item.project_name}}</view>

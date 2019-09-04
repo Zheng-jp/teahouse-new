@@ -9,7 +9,7 @@
     </view>
     <view class="tea-info-container">
         <view class="left-img">
-            <image src="{{url}}{{item.goods_image}}" />
+            <image src="{{item.goods_image}}" />
         </view>
         <view class="right-info">
             <view class="tea-name">{{item.goods_name}}</view>

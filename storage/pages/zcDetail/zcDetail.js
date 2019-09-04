@@ -99,7 +99,7 @@ Page({
     
     var standardId = this.data.proArr[0].standard[this.data.specActive].id;
     wx.navigateTo({
-      url: '/storage/pages/zcSpare/zcSpare?standardId=' + standardId,
+      url: '/storage/pages/zcSpare/zcSpare?standardId=' + standardId +'&enter_all_id='+this.data.enter_all_id,
       success: function(){
         console.log('跳转成功');
       },
@@ -253,7 +253,7 @@ Page({
       },
       success: function(res){
         
-        var data = res.data.data[0];
+        var data = res.data.data.data[0];
         var richTextArr = [];
         data.goods_text ? richTextArr.push(data.goods_text) : '';
         data.team ? richTextArr.push(data.team) : '';
@@ -274,7 +274,8 @@ Page({
         // res.data.data[0].standard = standard;
         // console.log(res.data.data);
         _this.setData({
-          proArr: res.data.data
+          proArr: res.data.data.data,
+          enter_all_id: res.data.data.enter_all_id
         })
       },
       fail: function(res){

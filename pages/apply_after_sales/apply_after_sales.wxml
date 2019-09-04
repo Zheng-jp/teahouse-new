@@ -3,7 +3,7 @@
 	<view class="all" style='height:{{height}}px;' wx:if="{{amend==null}}">
       <input type="" placeholder="" name="this" style="display:none" value="1" />
 		<view class="good_infor">
-			<image class="good_img" src="{{url}}{{goods.goods_image}}" mode="widthFix"></image>
+			<image class="good_img" src="{{goods.goods_image}}" mode="widthFix"></image>
 			<text class="good_name">{{goods.parts_goods_name}}</text>
 		</view>
 		<view class="opration">
@@ -31,7 +31,7 @@
 	<view class="all" style='height:{{height}}px;' wx:else>
      <input type="" placeholder="" name="this" style="display:none" value="2" />
 		<view class="good_infor">
-			<image class="good_img" src="{{url}}{{goods.goods_images}}" mode="widthFix"></image>
+			<image class="good_img" src="{{goods.goods_images}}" mode="widthFix"></image>
 			<text class="good_name">{{goods.goods_name}}</text>
 		</view>
 		<view class="opration" wx:if="{{is_return_goods==2}}">
@@ -55,7 +55,7 @@
 		</view>
 		<view class="uplode_img">
 			<view class="imgcontent" wx:for="{{goods.images}}">
-				<image class="" src="{{url}}{{item.url}}" mode="widthFix" lazy-load="false" class="imgs"> </image>
+				<image class="" src="{{item.url}}" mode="widthFix" lazy-load="false" class="imgs"> </image>
 				<image class="" src="http://zhihuichacang.com/a7.png" mode="widthFix" lazy-load="false" class="delect_img"  data-id="{{item.id}}" bindtap="delect_img_old"> </image>
 			</view>
             <view class="imgcontent" wx:for="{{tempFilePathss}}">

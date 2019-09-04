@@ -15,7 +15,7 @@
               <checkbox value="{{item.id}}" color='#fff' checked="{{item.checked}}" />
             </view>
             <view class='content_list_img' style='width:220rpx;'>
-              <image src='{{url}}{{item.goods_images}}' mode='widthFix'></image>
+              <image src='{{item.goods_images}}' mode='widthFix'></image>
             </view>
             <view class='good_infors'>
               <view class='good_name'>{{item.goods_name}}</view>

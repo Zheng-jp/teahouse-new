@@ -125,6 +125,7 @@ Page({
       success: function(res) {
         wx.showToast({
           title: '提醒成功',
+          duration: 4000,
           icon: 'none'
         })
       },
@@ -160,7 +161,7 @@ Page({
       },
       method: "post",
       success: function(res) {
-        console.log(res.data.data)
+        // console.log(res.data.data)
         if (res.data.status == 1) {
           that.setData({
             order: res.data.data,

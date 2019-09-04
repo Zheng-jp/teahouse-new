@@ -136,7 +136,7 @@ Page({
                         title: res.data.info,
                       })
                       setTimeout(function(){
-                        wx.navigateTo({ url: '../integral_order/integral_order' })
+                        wx.navigateTo({ url: '../integral_order/integral_order?version='+ res.data.data.enter_all_id })
                       }, 1000)
                     } else {
                       wx.showToast({

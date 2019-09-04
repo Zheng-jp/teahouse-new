@@ -48,7 +48,7 @@
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
             <view class='img'>
-              <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
+              <image src='{{item.goods_image}}' mode='aspectFill'></image>
             </view>
             <view class='good_infor'>
               <view class='good_name'>{{item.parts_goods_name}}</view>
@@ -86,7 +86,7 @@
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
             <view class='img'>
-              <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
+              <image src='{{item.goods_image}}' mode='aspectFill'></image>
             </view>
             <view class='good_infor'>
               <view class='good_name'>{{item.parts_goods_name}}</view>
@@ -126,7 +126,7 @@
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
             <view class='img'>
-              <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
+              <image src='{{item.goods_image}}' mode='aspectFill'></image>
             </view>
             <view class='good_infor'>
               <view class='good_name'>{{item.parts_goods_name}}</view>
@@ -184,7 +184,7 @@
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
             <view class='img'>
-              <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
+              <image src='{{item.goods_image}}' mode='aspectFill'></image>
             </view>
             <view class='good_infor'>
               <view class='good_name'>{{item.parts_goods_name}}</view>
@@ -224,7 +224,7 @@
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
             <view class='img'>
-              <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
+              <image src='{{item.goods_image}}' mode='aspectFill'></image>
             </view>
             <view class='good_infor'>
               <view class='good_name'>{{item.parts_goods_name}}</view>
@@ -261,7 +261,7 @@
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
             <view class='img'>
-              <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
+              <image src='{{item.goods_image}}' mode='aspectFill'></image>
             </view>
             <view class='good_infor'>
               <view class='good_name'>{{item.parts_goods_name}}</view>
@@ -304,7 +304,7 @@
           </view>
           <view class='box_list_two' wx:for="{{item.info}}" wx:key="{{index}}">
             <view class='img'>
-              <image src='{{url}}{{item.goods_image}}' mode='aspectFill'></image>
+              <image src='{{item.goods_image}}' mode='aspectFill'></image>
             </view>
             <view class='good_infor'>
               <view class='good_name'>{{item.parts_goods_name}}</view>
