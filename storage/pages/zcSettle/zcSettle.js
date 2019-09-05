@@ -142,53 +142,53 @@ Page({
     var _this = this;
     var val = this.data.pwdVal;
     this.setData({ showPayPwdInput: false, payFocus: false, pwdVal: '' },
-    function () {
-      if (val.length == 6) {
-        wx.request({
-          url: app.globalData.tiltes + 'check_password',
-          data: {
-            member_id: app.globalData.member_id,
-            passwords: val,
-          },
-          method: "POST",
-          success: function (res) {
-            if (res.data.data.status == 1) {
-              wx.request({
-                url: app.globalData.tiltes + 'crowd_payment',
-                data: {
-                  member_id: app.globalData.member_id,
-                  order_num: _this.data.order_number,
-                  passwords: val,
-                },
-                method: "POST",
-                complete: function (res) {
-                  wx.showToast({
-                    icon: "none",
-                    title: res.data.info,
-                    duration: 2000
-                  })
-                }
-              });
-            } else {
-              wx.showToast({
-                title: res.data.info,
-                icon: "none",
-                duration: 2000
-              })
+      function () {
+        if (val.length == 6) {
+          wx.request({
+            url: app.globalData.tiltes + 'check_password',
+            data: {
+              member_id: app.globalData.member_id,
+              passwords: val,
+            },
+            method: "POST",
+            success: function (res) {
+              if (res.data.data.status == 1) {
+                wx.request({
+                  url: app.globalData.tiltes + 'crowd_payment',
+                  data: {
+                    member_id: app.globalData.member_id,
+                    order_num: _this.data.order_number,
+                    passwords: val,
+                  },
+                  method: "POST",
+                  complete: function (res) {
+                    wx.showToast({
+                      icon: "none",
+                      title: res.data.info,
+                      duration: 2000
+                    })
+                  }
+                });
+              } else {
+                wx.showToast({
+                  title: res.data.info,
+                  icon: "none",
+                  duration: 2000
+                })
+              }
             }
-          }
-        });
-      }
-      else {
-        wx.showToast({
-          icon: "none",
-          title: "您已取消支付",
+          });
+        }
+        else {
+          wx.showToast({
+            icon: "none",
+            title: "您已取消支付",
+          })
+        }
+        wx.redirectTo({
+          url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id
         })
-      }
-      wx.redirectTo({
-        url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id
-      })
-    });
+      });
   },
   /**
    * 获取焦点
@@ -211,9 +211,9 @@ Page({
     })
   },
 
-  
+
   // 微信支付
-  wxpay: function(){
+  wxpay: function () {
     var _this = this;
     wx.request({
       url: app.globalData.tiltes + 'crowd_order',
@@ -230,7 +230,7 @@ Page({
             package: res.data.package,
             signType: res.data.signType,
             paySign: res.data.paySign,
-            success: function(){
+            success: function () {
               wx.navigateTo({
                 url: '../zcOrder/zcOrder?title=0&enter_all_id=' + _this.data.enter_all_id
               })
@@ -245,7 +245,7 @@ Page({
   },
 
   // 取消支付
-  hideMethod: function(){
+  hideMethod: function () {
     this.setData({
       pmKey: false
     })
@@ -257,21 +257,21 @@ Page({
         coupon_type: this.data.coupon_type
       },
       method: "post",
-      success: function(res){
+      success: function (res) {
         console.log(res);
       }
     })
   },
 
   // 选择支付方式
-  selectMethod: function(e){
+  selectMethod: function (e) {
     var tapindex = +e.currentTarget.dataset.tapindex;
     this.setData({
       pmKey: false
     })
-    if(tapindex == 0){
+    if (tapindex == 0) {
       this.showInputLayer();
-    }else{
+    } else {
       this.wxpay();
     }
   },
@@ -353,7 +353,7 @@ Page({
               pmKey: true,
               balance: res.data.data.balance
             })
-          }else {
+          } else {
             wx.showToast({
               title: "下单失败",
               icon: 'none',
@@ -392,7 +392,7 @@ Page({
               pmKey: true,
               balance: res.data.data.balance
             })
-          }else {
+          } else {
             wx.showToast({
               title: "下单失败",
               icon: 'none',
@@ -504,9 +504,9 @@ Page({
       _this.setData({
         all_money: all_moneys_alls,
       });
-      _this.setData({
-        all_money: _this.data.all_money,
-      });
+      // _this.setData({
+      //   all_money: _this.data.all_money,
+      // });
     }
     else {
       _this.setData({
@@ -565,16 +565,16 @@ Page({
   //修改数量
   shift_out: function () {
     let that = this;
-    // let num = this.data.goods[0].number;
+    let num = this.data.goods[0].number;
     let goods = this.data.goods;
     let stock = Number(goods[0].special_info.stock);//库存
-    if (that.data.searchKey <= 0 || that.data.searchKey == '' && that.data.searchKey == null && that.data.searchKey == undefined) {
+    if (that.data.searchKey <= 0 || that.data.searchKey == '' || that.data.searchKey == null || that.data.searchKey == undefined) {
       goods[0].number = 1;
       that.setData({
         goods: goods
       });
     } else {
-      if(that.data.searchKey >= stock) goods[0].number = stock;
+      if (that.data.searchKey >= stock) goods[0].number = stock;
       else goods[0].number = that.data.searchKey;
       this.setData({
         goods: goods
@@ -598,12 +598,13 @@ Page({
     var _this = this;
     var num = this.data.goods[0].number;
     var goods = this.data.goods;
+    let minusStatus;
     // 如果大于1时，才可以减  
     if (num > 1) {
       num--;
     }
     // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num <= 1 ? 'disabled' : 'normal';
+    minusStatus = num <= 1 ? 'disabled' : 'normal';
     // 将数值与状态写回  
     goods[0].number = num;
     this.setData({
@@ -616,6 +617,9 @@ Page({
     }
     else if (_this.data.order_type == "3") {
       _this.money_storages();
+      _this.calculate_money();
+    }
+    else {
       _this.calculate_money();
     }
     if (_this.data.taxes_select == 1) {
@@ -658,74 +662,9 @@ Page({
       _this.invi();
     }
   },
-  /* 点击减号 */
-  bindMinus1: function () {
-    var _this = this;
-    var num1 = this.data.num1;
-    // 如果大于1时，才可以减  
-    if (num1 > 1) {
-      num1--;
-    }
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num1 <= 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
 
-    this.setData({
-      num1: num1,
-      minusStatus: minusStatus
-    });
-    _this.money_storages();
-    _this.calculate_money();
-  },
-  /* 点击加号 */
-  bindPlus1: function () {
-    var _this = this;
-    var num1 = this.data.num1;
-    // 不作过多考虑自增1  
-    num1++;
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num1 < 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
 
-    this.setData({
-      num1: num1,
-      minusStatus: minusStatus
-    });
-    _this.money_storages();
-    _this.calculate_money();
-  },
 
-  /* 点击减号 */
-  bindMinus2: function () {
-    var _this = this;
-    var num2 = this.data.num2;
-    // 如果大于1时，才可以减  
-    if (num2 > 1) {
-      num2--;
-    }
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num2 <= 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-
-    this.setData({
-      num2: num2,
-      minusStatus: minusStatus
-    });
-  },
-  /* 点击加号 */
-  bindPlus2: function () {
-    var _this = this;
-    var num2 = this.data.num2;
-    // 不作过多考虑自增1  
-    num2++;
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num2 < 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    this.setData({
-      num2: num2,
-      minusStatus: minusStatus
-    });
-  },
   check_invoice: function (e) {
     var _this = this;
     if (e.detail.value[0] == undefined) {
@@ -797,42 +736,42 @@ Page({
         let delivery_a, delivery_b, authority, goods, authority_new = 0;
         goods = res.data.data;
         // for (let o = 0; o < goods.length; o++) {
-          let arr = [], bq_arr = [], goods_sign = goods[0].goods_info.goods_sign, bq_dgg = {};
-          // //多规格的可存
-          // if (goods[o].special_info != undefined && goods[o].special_info != null && goods[o].special_info != '') {
-          //   if (goods[o].special_info.save == 1) {
-          //     authority_new = 1;
-          //     bq_dgg.kc = 1;
-          //     bq_arr.push(bq_dgg);
-          //   }
-          // }
-          //正常规
-          for (let i in goods_sign) {
-            let bq = {};
-            if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-              authority_new = 1;
-              bq.kc = 1;
-              bq_arr.push(bq);
-            } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-              bq.hot = 1;
-              bq_arr.push(bq);
-            } else if (goods_sign[i].text == '促销' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-              bq.cx = 1;
-              bq_arr.push(bq);
-            } else if (goods_sign[i].text == '清仓' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-              bq.qc = 1;
-              bq_arr.push(bq);
-            } else if (goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
-              arr.push(goods_sign[i]);
-            }
+        let arr = [], bq_arr = [], goods_sign = goods[0].goods_info.goods_sign, bq_dgg = {};
+        // //多规格的可存
+        // if (goods[o].special_info != undefined && goods[o].special_info != null && goods[o].special_info != '') {
+        //   if (goods[o].special_info.save == 1) {
+        //     authority_new = 1;
+        //     bq_dgg.kc = 1;
+        //     bq_arr.push(bq_dgg);
+        //   }
+        // }
+        //正常规
+        for (let i in goods_sign) {
+          let bq = {};
+          if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+            authority_new = 1;
+            bq.kc = 1;
+            bq_arr.push(bq);
+          } else if (goods_sign[i].text == 'HOT' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+            bq.hot = 1;
+            bq_arr.push(bq);
+          } else if (goods_sign[i].text == '促销' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+            bq.cx = 1;
+            bq_arr.push(bq);
+          } else if (goods_sign[i].text == '清仓' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+            bq.qc = 1;
+            bq_arr.push(bq);
+          } else if (goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
+            arr.push(goods_sign[i]);
           }
+        }
 
-          res.data.data[0].goods_info.goods_sign = arr;
-          res.data.data[0].goods_info.bq_arr = bq_arr;
+        res.data.data[0].goods_info.goods_sign = arr;
+        res.data.data[0].goods_info.bq_arr = bq_arr;
 
-          if (res.data.data[0].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1;//直邮
-          if (res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;//自提
-          // console.log(delivery_a,delivery_b,authority_new)
+        if (res.data.data[0].goods_info.goods_delivery.indexOf("1") > -1) delivery_a = 1;//直邮
+        if (res.data.data[0].goods_info.goods_delivery.indexOf("2") > -1) delivery_b = 1;//自提
+        // console.log(delivery_a,delivery_b,authority_new)
         // }
         _this.setData({
           goods: res.data.data,
@@ -904,7 +843,6 @@ Page({
     var sava_id = wx.getStorageSync('sava_id');
     var shop_id = wx.getStorageSync('shop_id');
     var receipt_id = wx.getStorageSync('receipt_id');
-    
     if (id == '') {
       wx.request({
         url: app.globalData.tiltes + 'member_default_address_return',
@@ -936,6 +874,7 @@ Page({
               selected: false,
             });
           }
+          if (_this.data.order_type == 1) {
           wx.request({
             url: app.globalData.tiltes + 'getaAnsporTation',
             data: {
@@ -952,6 +891,7 @@ Page({
               _this.calculate_money();
             },
           });
+        }
         }
       });
     } else {
@@ -976,23 +916,24 @@ Page({
             address_0: a[0],
             address_id: address_id,
           });
-        
-          wx.request({
-            url: app.globalData.tiltes + 'getaAnsporTation',
-            data: {
-              'goods_id': _this.data.user[1].goods_id,
-              'goods_standard_id': _this.data.user[0].guige,
-              'are': _this.data.address_0
-            },
-            method: "POST",
-            success: function (res) {
-              _this.setData({
-                freight_infor: res.data.data,
-              })
-              _this.money_freight();
-              _this.calculate_money();
-            },
-          });
+          if (_this.data.order_type == 1) {
+            wx.request({
+              url: app.globalData.tiltes + 'getaAnsporTation',
+              data: {
+                'goods_id': _this.data.user[1].goods_id,
+                'goods_standard_id': _this.data.user[0].guige,
+                'are': _this.data.address_0
+              },
+              method: "POST",
+              success: function (res) {
+                _this.setData({
+                  freight_infor: res.data.data,
+                })
+                _this.money_freight();
+                _this.calculate_money();
+              },
+            });
+          }
         }
       });
     }

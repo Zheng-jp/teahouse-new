@@ -112,7 +112,7 @@
       <view class='select_quantity'>
         <view class='subtract' bindtap="bindMinus">-</view>
         <view class='num'>
-          <input type="number" placeholder="" value="{{item.number}}" bindinput='getSearchKey' bindblur='shift_out' />
+          <input type="number"  style=" {{minusStatus}}" placeholder="" value="{{item.number}}" bindinput='getSearchKey' bindblur='shift_out' />
         </view>
         <view class='add' bindtap="bindPlus">+</view>
       </view>

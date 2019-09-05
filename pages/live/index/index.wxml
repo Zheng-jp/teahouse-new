@@ -1,10 +1,10 @@
 <!-- live/index/index.wxml -->
 <!-- <view class='main'> -->
-<scroll-view scroll-x="true" style="height: 108rpx;white-space: nowrap; border-bottom: 3rpx solid rgb(204, 204, 204);text-align:center;" scroll-into-view="{{con}}" scroll-with-animation="true">
+<scroll-view scroll-x="true" style="height: 78rpx;white-space: nowrap; border-bottom: 3rpx solid rgb(204, 204, 204);text-align:center;" scroll-into-view="{{con}}" scroll-with-animation="true">
   <view class="list {{currentTab==index ? 'change_current' : ''}}" wx:for="{{live}}" wx:key="{{index}}" data-id="{{index}}" id="b_{{index}}" bindtap="swichNav">
-    <view class='ico'>
+    <!-- <view class='ico'>
       <image src='{{item.icon_image}}'></image>
-    </view>
+    </view> -->
     <view class="text {{currentTab==index ? ' text_1 ' : ''}}">{{item.title}}</view>
   </view>
 </scroll-view>
@@ -21,7 +21,7 @@
             <view class=''>
               <image src='http://zhihuichacang.com/u2133.png' class='tubiao'></image>
             </view>
-            <view class='store_name'>{{item.classify_name}}</view>
+            <view class='store_name'>{{item.store_name}}</view>
             <div style="flex:1;"></div>
             <view class=''>
               <image src='http://zhihuichacang.com/u5440.png' class='tubiao'></image>
