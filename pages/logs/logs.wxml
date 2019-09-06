@@ -1,10 +1,10 @@
 <view wx:if="{{canIUse}}">
-  <block wx:if="{{authorization}}">
-    <!-- <image src="./images/bg.png" class="bg"></image> -->
-  </block>
-  <block wx:else>
+  <!-- <block wx:if="{{authorization}}">
+    <image src="./images/bg.png" class="bg"></image>
+  </block> -->
+  <block>
     <view class='header'>
-      <!-- <image src='{{logoUrl}}'></image> -->
+      <image src='{{logoUrl}}'></image>
     </view>
     <view class='content'>
       <view>申请获取以下权限</view>
