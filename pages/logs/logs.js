@@ -57,27 +57,9 @@ Page({
                     if(scene != undefined && res.data.status == 1) {
                       _this.pointReward(scene,res.data.data.member_id,res.data.data.uniacid);
                     }
-                    // 获取logo
-                    wx.request({
-                      url: app.globalData.tiltes + 'store_logo_index',
-                      data: {
-                        uniacid: app.globalData.uniacid
-                      },
-                      method: 'POST',
-                      success: function(res){
-                        console.log(res)
-                        if(res.data.status == 1){
-                          _this.setData({
-                            logoUrl: app.globalData.img_url + '/' + res.data.data
-                          })
-                        }
-                      }
-                    })
-
                     wx.hideToast();
                     if (res) {
                       wx.switchTab({
-                        // url: '../../diy/index/index' //装修后的首页
                         url: '../diy/index/index' //装修后的首页
                       })
                     }else {
@@ -146,6 +128,24 @@ Page({
         })
       },
     })
+
+    // 获取logo
+    wx.request({
+      url: app.globalData.tiltes + 'store_logo_index',
+      data: {
+        uniacid: app.globalData.uniacid
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log('logo', res)
+        if (res.data.status == 1) {
+          _this.setData({
+            logoUrl: res.data.data
+          })
+        }
+      }
+    })
+
     if(options.scene){
       var scene=decodeURIComponent(options.scene);
       // - 是我们定义的参数链接方式
@@ -204,28 +204,10 @@ Page({
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             //是否推荐扫码进来的
                             
-                            // 获取logo
-                            wx.request({
-                              url: app.globalData.tiltes + 'store_logo_index',
-                              data: {
-                                uniacid: app.globalData.uniacid
-                              },
-                              method: 'POST',
-                              success: function(res){
-                                console.log(res)
-                                if(res.data.status == 1){
-                                  _this.setData({
-                                    logoUrl: app.globalData.img_url + '/' + res.data.data
-                                  })
-                                }
-                              }
-                            })
                             wx.hideToast();
                             if (res) {
                               wx.switchTab({
-                                // url: '../../diy/index/index', // 新首页
                                 url: '../diy/index/index', // 新首页
-                                success: function (res) {},
                               })
                             }else {
                               console.log("kong")
@@ -243,17 +225,18 @@ Page({
               });
             }
           });
-        }else{
-          wx.removeStorage({
-            key: 'authorization',
-            success: function(res) {
-              console.log('remove', res)
-              _this.setData({
-                authorization: false
-              })
-            },
-          })
         }
+        // else{
+        //   wx.removeStorage({
+        //     key: 'authorization',
+        //     success: function(res) {
+        //       console.log('remove', res)
+        //       _this.setData({
+        //         authorization: false
+        //       })
+        //     },
+        //   })
+        // }
       }
     })
   },
