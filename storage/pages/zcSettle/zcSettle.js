@@ -568,17 +568,30 @@ Page({
     let num = this.data.goods[0].number;
     let goods = this.data.goods;
     let stock = Number(goods[0].special_info.stock);//库存
+    let limit = Number(goods[0].special_info.limit);//限购数量
     if (that.data.searchKey <= 0 || that.data.searchKey == '' || that.data.searchKey == null || that.data.searchKey == undefined) {
       goods[0].number = 1;
       that.setData({
         goods: goods
       });
     } else {
-      if (that.data.searchKey >= stock) goods[0].number = stock;
-      else goods[0].number = that.data.searchKey;
-      this.setData({
-        goods: goods
-      });
+      //限购
+      if(limit > 0) {
+        if(that.data.searchKey >= limit && limit <= stock) {
+          goods[0].number = limit;
+        } else {
+          if (that.data.searchKey >= stock) goods[0].number = stock;
+          else goods[0].number = that.data.searchKey;
+        }
+        //不限购
+      } else {
+        if (that.data.searchKey >= stock) goods[0].number = stock;
+          else goods[0].number = that.data.searchKey;
+      }
+          this.setData({
+            goods: goods
+          });
+      
     }
     if (that.data.taxes_select == 1) {
       that.invi();
@@ -630,16 +643,31 @@ Page({
   /* 点击加号 */
   bindPlus: function () {
     var _this = this;
-    var num = _this.data.goods[0].number;
+    var num = Number(_this.data.goods[0].number);
     var goods = _this.data.goods;
     let stock = Number(goods[0].special_info.stock);//库存
-    // 不作过多考虑自增1  
-    if (num >= stock) {
-      goods[0].number = stock;
+    let limit = Number(goods[0].special_info.limit);//限购数量
+    if(limit > 0) {
+      if (num >= limit && limit <= stock) {
+        goods[0].number = limit;
+      } else {
+        // 不作过多考虑自增1  
+        if (num >= stock) {
+          goods[0].number = stock;
+        } else {
+          num++;
+          // 将数值与状态写回  
+          goods[0].number = num;
+        }
+      }
     } else {
-      num++;
-      // 将数值与状态写回  
-      goods[0].number = num;
+      if (num >= stock) {
+        goods[0].number = stock;
+      } else {
+        num++;
+        // 将数值与状态写回  
+        goods[0].number = num;
+      }
     }
     // 只有大于一件的时候，才能normal状态，否则disable状态  
     var minusStatus = num < 1 ? 'disabled' : 'normal';

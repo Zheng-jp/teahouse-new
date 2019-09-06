@@ -927,6 +927,8 @@ Page({
     } else if (that.data.order_type == "3") {
       that.money_storages();
       that.calculate_money();
+    }else {
+      that.calculate_money();
     }
   },
   /* 点击加号 */
