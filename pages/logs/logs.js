@@ -65,9 +65,11 @@ Page({
                     }else {
                       console.log("kong")
                     }
-                  },
-                  fail: function () {},
-                  complete: function () {}
+                    wx.setStorage({
+                      key: "globalData",
+                      data: JSON.stringify(app.globalData)
+                    })
+                  }
                 })
 
               }

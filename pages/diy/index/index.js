@@ -120,6 +120,14 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
               if (data.data.status == 1) {
                 var data = data.data.data;
                 app.globalData.uniacid = data.uniacid;
+
+                wx.getStorage({
+                  key: 'globalData',
+                  success(res) {
+                    var data = JSON.parse(res.data);
+                    app.globalData = { ...data }
+                  }
+                })
                 resolve(1);
               }
             })
