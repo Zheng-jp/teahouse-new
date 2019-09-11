@@ -441,6 +441,7 @@ App({
     member_id: null,
     judge_phone: null,
     judge_repay: null,
+    isRefresh:false,
     url: 'https://www.zhihuichacang.com',
     tiltes: 'https://www.zhihuichacang.com/',
     img_url: 'https://www.zhihuichacang.com/uploads/',

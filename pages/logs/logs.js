@@ -15,10 +15,11 @@ Page({
       //用户按了允许授权按钮
       wx.login({//login流程
         success: function (res) {//登录成功
-          wx.setStorage({
-            key: 'authorization',
-            data: true,
-          })
+          // wx.setStorage({
+          //   key: 'authorization',
+          //   data: true,
+          // })
+          app.globalData.isRefresh = true
           if (res.code) {
             var code = res.code;
             wx.getUserInfo({//getUserInfo流程

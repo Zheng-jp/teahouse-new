@@ -76,7 +76,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     foottext: 0,
     page_is: 1,
     homepageid: 0,
-    fixiPhone: false,
+    fixiPhone: false
   },
 
   onPullDownRefresh: function() {
@@ -246,6 +246,11 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       this.getTabBar().setData({
         checked: 0
       })
+    }
+    // let authorization = wx.getStorageSync("authorization") || "";
+// console.log(app.globalData.isRefresh)
+    if(app.globalData.isRefresh == true) {
+      this.onPullDownRefresh();
     }
   },
   getfoot: function(a) {
@@ -884,7 +889,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         data: {
           uniacid: app.globalData.uniacid,
           pageid: t,
-          open_id: app.globalData.gmemberid,
+          open_id: app.globalData.gmemberid || app.globalData.member_openid,
           member_grade_name: app.globalData.member_grade_name
         },
         success: function(t) {
