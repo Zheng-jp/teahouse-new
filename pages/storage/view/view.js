@@ -30,7 +30,28 @@ function switchProject(option, _this) {
       uniacid: app.globalData.uniacid
     },
     success: function (res) {
-      console.log(res);
+      var crowdList = res.data.data;
+      var nowTime = (new Date()).getTime();
+      if(option == "crowd_now") {
+        for(let i = 0; i < crowdList.length; i ++) {
+          if(crowdList[0].endTime <= nowTime) {
+            wx.request({
+              url: app.globalData.url + "/crowd_goods_timeout",
+              method: "POST",
+              data: {
+                uniacid: app.globalData.uniacid,
+                goods_id: crowdList[i].id 
+              },
+              success: (res) => {
+                console.log("成功")
+              },
+              fail: (e) => {
+                console.log("失败")
+              }
+            })
+          }
+        }
+      }
       _this.setData({
         crowdList: res.data.data,
         Height: 146 * res.data.data.length + 50
