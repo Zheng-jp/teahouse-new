@@ -116,21 +116,79 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
             is_login: 1
           }
           if (res.authSetting['scope.userInfo']) {
-            _this.getUncacid(params, function (data) {
-              if (data.data.status == 1) {
-                var data = data.data.data;
-                app.globalData.uniacid = data.uniacid;
+            wx.getUserInfo({
+              success: function (res) {
+                //用户已经授权过
+                wx.login({//login流程
+                  success: function (res) {//登录成功
+                    if (res.code) {
+                      var code = res.code;
+                      wx.getUserInfo({//getUserInfo流程
+                        success: function (res2) {//获取userinfo成功
+                          var appid = wx.getAccountInfoSync();
+                          var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码             
+                          var iv = res2.iv;
+                          //请求自己的服务器
+                          wx.request({
+                            url: app.globalData.tiltes + 'wechatlogin',
+                            data: {
+                              code: code,
+                              encryptedData: encryptedData,
+                              iv: iv,
+                              gender: res2.userInfo.gender, // 性别  0：未知、1：男、2：女
+                              appid: appid.miniProgram.appId
+                            },
+                            method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                            header: {
+                              'content-type': 'application/json'
+                            }, // 设置请求的 header
+                            success: function (res) {
+                              console.log('登录2', res.data)
+                              app.globalData.gmemberid = res.data.data.openid;
+                              app.globalData.member_grade_img = res.data.data.member_grade_info.member_grade_img;
+                              app.globalData.member_grade_name = res.data.data.member_grade_info.member_grade_name;
+                              app.globalData.member_id = res.data.data.member_id;
+                              app.globalData.uniacid = res.data.data.uniacid;
+                              // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
+                              //是否推荐扫码进来的
 
-                wx.getStorage({
-                  key: 'globalData',
-                  success(res) {
-                    var data = JSON.parse(res.data);
-                    app.globalData = { ...data }
+                              wx.hideToast();
+                              if (res) {
+                                wx.switchTab({
+                                  url: '../diy/index/index', // 新首页
+                                })
+                              } else {
+                                console.log("kong")
+                              }
+                              resolve(1);
+                            },
+                            fail: function () { },
+                            complete: function () { }
+                          })
+                        }
+                      })
+                    } else {
+                      console.log('获取用户登录态失败！' + res.errMsg)
+                    }
                   }
-                })
-                resolve(1);
+                });
               }
-            })
+            });
+            // _this.getUncacid(params, function (data) {
+            //   if (data.data.status == 1) {
+            //     var data = data.data.data;
+            //     app.globalData.uniacid = data.uniacid;
+
+            //     wx.getStorage({
+            //       key: 'globalData',
+            //       success(res) {
+            //         var data = JSON.parse(res.data);
+            //         app.globalData = { ...data }
+            //       }
+            //     })
+            //     resolve(1);
+            //   }
+            // })
           } else { 
             params.is_login = 0;
             _this.getUncacid(params, function (data) {
