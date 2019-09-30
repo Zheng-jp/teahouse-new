@@ -107,3 +107,10 @@
   width: 104rpx;
   height: 104rpx;
 }
+
+.goods_lv {
+  width: auto;
+  height: 120rpx;
+  margin: 20rpx;
+  border-radius:10rpx;
+}

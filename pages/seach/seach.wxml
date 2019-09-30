@@ -19,7 +19,7 @@
     </view>
     <view class="{{noshow? '' : 'noshow'}}"  style="padding:0 10px;background: top left repeat #ffffff;background-size:20% 20%;margin-top:10px;box-sizing:border-box;" wx:for="{{goods}}" wx:key="index">
         <view bindtap="redirectto" class="hbj" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="padding:10px 0;background:#fff;border-bottom:1px solid #eee;position:relative;">
-            <image mode="{{style.pich==1?'widthFix':''}}" src="{{url}}{{item.goods_show_image}}" style="width:168rpx;height:168rpx;"></image>
+            <image mode="{{style.pich==1?'widthFix':''}}" src="{{item.goods_show_image}}" style="width:168rpx;height:168rpx;"></image>
             <view style="margin-left:30rpx;flex:1">
                 <view style="overflow:hidden;">
                     <view style="font-size:26rpx;color:#434343;max-width:380rpx;height:46rpx;line-height:46rpx;float:left;overflow:hidden">
