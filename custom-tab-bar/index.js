@@ -97,6 +97,7 @@ Component({
           checked: data.index
         })
       } else {
+        // app.bindGetUserInfo()
         wx.navigateTo({
           url: "/pages/logs/logs"
         })
