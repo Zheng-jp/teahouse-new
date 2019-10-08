@@ -304,12 +304,12 @@ Page({
   },
   //各订单数量接口
   orderCount: function() {
-    let url = "https://teahouse.siring.com.cn/api/";
+    let url = app.globalData.url;
     let gmemberid = app.globalData.gmemberid;
     let uniacid = app.globalData.uniacid;
     let that = this;
     wx.request({
-      url: url + "order_count",
+      url: url + "/api/order_count",
       data: {
         uniacid: uniacid,
         open_id: gmemberid

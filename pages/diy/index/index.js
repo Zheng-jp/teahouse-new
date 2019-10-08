@@ -76,7 +76,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     foottext: 0,
     page_is: 1,
     homepageid: 0,
-    fixiPhone: false,
+    fixiPhone: false
   },
 
   onPullDownRefresh: function() {
@@ -115,6 +115,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
             appid: wx.getAccountInfoSync().miniProgram.appId,
             is_login: 1
           }
+          console.log(res.authSetting)
           if (res.authSetting['scope.userInfo']) {
             _this.getUncacid(params, function (data) {
               if (data.data.status == 1) {
@@ -125,7 +126,9 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
                   key: 'globalData',
                   success(res) {
                     var data = JSON.parse(res.data);
+                    console.log('1',data)
                     app.globalData = { ...data }
+                    console.log('2', data)
                   }
                 })
                 resolve(1);
@@ -246,6 +249,11 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       this.getTabBar().setData({
         checked: 0
       })
+    }
+    // let authorization = wx.getStorageSync("authorization") || "";
+// console.log(app.globalData.isRefresh)
+    if(app.globalData.isRefresh == true) {
+      this.onPullDownRefresh();
     }
   },
   getfoot: function(a) {
@@ -636,9 +644,20 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       console.log(e)
       this.newRedirectto(a, e);
     }else{
-      wx.navigateTo({
-        url: "/pages/logs/logs"
+      wx.login({
+        success(res) {
+          if(res.code){
+            wx.getUserInfo({
+              success(res){
+                console.log('bbb', res)
+              }
+            })
+          }
+        }
       })
+      // wx.navigateTo({
+      //   url: "/pages/logs/logs"
+      // })
     }
   },
   showvideo: function() {
@@ -884,11 +903,11 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
         data: {
           uniacid: app.globalData.uniacid,
           pageid: t,
-          open_id: app.globalData.gmemberid,
+          open_id: app.globalData.gmemberid || app.globalData.member_openid,
           member_grade_name: app.globalData.member_grade_name
         },
         success: function(t) {
-          console.log('xixixi', t.data.data);
+          // console.log('xixixi', t.data.data);
           var a = t.data.data;
           if (3 == a) return wx.showModal({
             title: "提示",
