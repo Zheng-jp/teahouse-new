@@ -57,7 +57,8 @@
     "sweep/pages/index/index",
     "sweep/pages/sweep_detail/sweep_detail",
     "pages/limit_more/limit_more",
-    "component/payment/payment"
+    "component/payment/payment",
+    "pages/good_lv/good_lv"
   ],
   "subpackages": [
     {

@@ -16,11 +16,14 @@ Page({
    
   },
   go_gooddetail: function (event) {
-
     var that = this;
     var item = event.currentTarget.dataset.item;
+    var type = event.currentTarget.dataset.type, urls;
+    if(type == 1) urls = "../good_lv/good_lv?title=";
+    else urls = "../goods_detail/goods_detail?title=";
     wx.navigateTo({
-      url: '../goods_detail/goods_detail?title=' + event.currentTarget.dataset.id,
+      url: urls + event.currentTarget.dataset.id,
+      // url: '',
       success: function (res) {
       
       },

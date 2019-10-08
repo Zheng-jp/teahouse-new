@@ -1,0 +1,24 @@
+<!--pages/good_lv/good_lv.wxml-->
+<view class="lv_nav">
+    <view class="{{on == 1 ? 'on' : ''}}">综合</view>
+    <view class="{{on == 2 ? 'on' : ''}}">最新</view>
+    <view class="{{on == 3 ? 'on' : ''}}">价格</view>
+    <view class="{{on == 4 ? 'on' : ''}}">销量</view>
+    <view>
+        <image src="http://teahouse.siring.cn/02379201909261757192802.jpg" alt="" class="img"/>
+    </view>
+</view>
+<view class="main">
+<!-- <view > -->
+    <view class="kuai" wx:for="{{goods}}" wx:key="index" data-id="{{item.id}}">
+        <view class="m_img">
+            <image src="{{item.goods_show_image}}" alt="" class="img"/>
+        </view>
+        <view class="text">
+            <view>{{item.goods_name}}</view>
+            <view class="selling">{{item.goods_selling}}</view>
+            <view class="money">￥{{item.price}}</view>
+        </view>
+    </view>
+    
+</view>

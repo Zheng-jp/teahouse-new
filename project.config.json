@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -88,6 +88,13 @@
 					"id": 5,
 					"name": "payment",
 					"pathName": "component/payment/payment",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "pages/good_lv/good_lv",
+					"pathName": "pages/good_lv/good_lv",
 					"query": "",
 					"scene": null
 				}
