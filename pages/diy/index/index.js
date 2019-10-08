@@ -115,6 +115,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
             appid: wx.getAccountInfoSync().miniProgram.appId,
             is_login: 1
           }
+          console.log(res.authSetting)
           if (res.authSetting['scope.userInfo']) {
             wx.getUserInfo({
               success: function (res) {
@@ -699,9 +700,20 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
       console.log(e)
       this.newRedirectto(a, e);
     }else{
-      wx.navigateTo({
-        url: "/pages/logs/logs"
+      wx.login({
+        success(res) {
+          if(res.code){
+            wx.getUserInfo({
+              success(res){
+                console.log('bbb', res)
+              }
+            })
+          }
+        }
       })
+      // wx.navigateTo({
+      //   url: "/pages/logs/logs"
+      // })
     }
   },
   showvideo: function() {
@@ -951,7 +963,7 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
           member_grade_name: app.globalData.member_grade_name
         },
         success: function(t) {
-          console.log('xixixi', t.data.data);
+          // console.log('xixixi', t.data.data);
           var a = t.data.data;
           if (3 == a) return wx.showModal({
             title: "提示",

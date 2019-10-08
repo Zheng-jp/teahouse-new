@@ -3,7 +3,7 @@ var url = "https://www.zhihuichacang.com/api/";
 App({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    winMask_if: true
+    winMask_if: true,
   },
   // 判断绑定手机号
   judge_phone: function(e) {
