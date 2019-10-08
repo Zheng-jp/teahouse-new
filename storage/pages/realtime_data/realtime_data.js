@@ -73,7 +73,7 @@ function setOption(chart, _this, yArr) {
       wx.request({
         url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html', //你请求数据的接口地址
         method: 'POST',
-        data: { //传的参数，这些都不用多说了吧
+        data: {
           "userApiKey": _this.data.userLogin.userApikey,
           "deviceNo": "8606S86YL8295C5Y",
           "flagCode": _this.data.userLogin.flagCode
@@ -165,7 +165,7 @@ function setOption2(chart, _this, yArr) {
       wx.request({
         url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html', //你请求数据的接口地址
         method: 'POST',
-        data: { //传的参数，这些都不用多说了吧
+        data: {
           "userApiKey": _this.data.userLogin.userApikey,
           "deviceNo": "8606S86YL8295C5Y",
           "flagCode": _this.data.userLogin.flagCode
