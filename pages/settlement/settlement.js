@@ -399,7 +399,7 @@ Page({
               })
             } else {
               wx.showToast({
-                title: "下单失败",
+                title: res.data.info,
                 icon: 'none'
               })
             }
@@ -441,7 +441,7 @@ Page({
                 })
               } else {
                 wx.showToast({
-                  title: "下单失败",
+                  title: res.data.info,
                   icon: 'none',
                 })
               }
@@ -488,7 +488,7 @@ Page({
               })
             } else {
               wx.showToast({
-                title: "下单失败",
+                title: res.data.info,
                 icon: 'none',
               })
             }
@@ -569,7 +569,7 @@ Page({
               })
             } else {
               wx.showToast({
-                title: "下单失败",
+                title: res.data.info,
                 icon: 'none',
               })
             }
@@ -616,7 +616,7 @@ Page({
               })
             } else {
               wx.showToast({
-                title: "下单失败",
+                title: res.data.info,
                 icon: 'none',
               })
             }
@@ -664,7 +664,7 @@ Page({
               })
             } else {
               wx.showToast({
-                title: "下单失败",
+                title: res.data.info,
                 icon: 'none',
               })
             }

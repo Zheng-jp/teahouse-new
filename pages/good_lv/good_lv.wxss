@@ -57,3 +57,93 @@
     margin: auto 30rpx;
     line-height: 60rpx;
 }
+.div1{
+    width: 30rpx !important;
+    position: relative;
+}
+.div1:after{
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 35%;
+    left: 50%;
+    margin-left: -8rpx;
+    content: " ";
+    border-top: 10rpx solid  rgb(201,201,201) ;
+    border-left: 10rpx solid transparent ;
+    border-right: 10rpx solid transparent ;
+
+}
+.div1:before{
+    position: absolute;
+    top: -8rpx;
+    width: 0;
+    height: 50%;
+    left: 50%;
+    margin-left: -8rpx;
+    content: " ";
+    border-bottom: 10rpx solid  rgb(201,201,201) ;
+    border-left: 10rpx solid transparent ;
+    border-right: 10rpx solid transparent ;
+
+}
+.div2{
+    width: 30rpx !important;
+    position: relative;
+}
+.div2:after{
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 35%;
+    left: 50%;
+    margin-left: -8rpx;
+    content: " ";
+    border-top: 10rpx solid  rgb(201,201,201) ;
+    border-left: 10rpx solid transparent ;
+    border-right: 10rpx solid transparent ;
+
+}
+.div2:before{
+    position: absolute;
+    top: -8rpx;
+    width: 0;
+    height: 50%;
+    left: 50%;
+    margin-left: -8rpx;
+    content: " ";
+    border-bottom: 10rpx solid  red ;
+    border-left: 10rpx solid transparent ;
+    border-right: 10rpx solid transparent ;
+
+}
+.div3{
+    width: 30rpx !important;
+    position: relative;
+}
+.div3:after{
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 35%;
+    left: 50%;
+    margin-left: -8rpx;
+    content: " ";
+    border-top: 10rpx solid red;
+    border-left: 10rpx solid transparent ;
+    border-right: 10rpx solid transparent ;
+
+}
+.div3:before{
+    position: absolute;
+    top: -8rpx;
+    width: 0;
+    height: 50%;
+    left: 50%;
+    margin-left: -8rpx;
+    content: " ";
+    border-bottom: 10rpx solid rgb(201,201,201) ;
+    border-left: 10rpx solid transparent ;
+    border-right: 10rpx solid transparent ;
+
+}

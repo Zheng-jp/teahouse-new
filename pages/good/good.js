@@ -19,7 +19,7 @@ Page({
     var that = this;
     var item = event.currentTarget.dataset.item;
     var type = event.currentTarget.dataset.type, urls;
-    if(type == 1) urls = "../good_lv/good_lv?title=";
+    if(type == 1) urls = "../good_lv/good_lv?pid=";
     else urls = "../goods_detail/goods_detail?title=";
     wx.navigateTo({
       url: urls + event.currentTarget.dataset.id,

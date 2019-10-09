@@ -6,16 +6,45 @@ Page({
    * 页面的初始数据
    */
   data: {
-    on: 1
+    on: 1,
+    old_id: '',
+    style: 0
   },
 
+  //跳转商品
+  toGoods: function(event){
+    var goodId = event.currentTarget.dataset.id, urls;
+    urls = "../goods_detail/goods_detail?title=";
+    wx.navigateTo({
+      url: urls + goodId,
+      success: function (res) {},
+      fail: function () {},
+      complete: function () {}
+    })
+  },
+  //导航切换
+  switch: function(event) {
+    let id = event.currentTarget.dataset.id, that = this;
+    if(id < 5 && id > 2 && that.data.old_id == 3) id = 4
+    else if(id < 5 && id > 2 && that.data.old_id == 4) id = 3
+    else if(id > 4 && that.data.old_id == 5) id = 6
+    else if(id > 4 && that.data.old_id == 6) id = 5
+    this.getGood(that.data.pid, id)
+    that.setData({on: id, old_id: id})
+  },
+  //样式切换
+  changStyle: function() {
+    if(this.data.style == 0) this.setData({style: 1})
+    else this.setData({style: 0})
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getGood(71,1)
+    this.setData({pid: options.pid})
+    this.getGood(options.pid, 1)
   },
-
+  //获取商品信息
   getGood: function(pid, order) {
     let that = this;
     wx.request({
