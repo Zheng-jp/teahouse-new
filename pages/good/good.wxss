@@ -111,6 +111,6 @@
 .goods_lv {
   width: auto;
   height: 120rpx;
-  margin: 20rpx;
+  margin: 0 20rpx 20rpx 20rpx;
   border-radius:10rpx;
 }

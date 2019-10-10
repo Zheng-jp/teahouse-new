@@ -6,7 +6,8 @@
 <scroll-view class="nav_right" scroll-y="true" scroll-into-view="{{toView}}" style="height:{{s_height}}px;margin-left:100px" bindscroll="scroll" scroll-with-animation="true">
   <view class="nav_right_box" wx:for="{{category}}" wx:for-item="item" style="height:100vh;">
     <!-- <scroll-view style="height: 100vh;"> -->
-      <view class="goods_lv" id="b_{{index}}">
+      <view style="height:20rpx;" id="b_{{index}}"></view>
+      <view class="goods_lv" >
         <image src="{{item.category_images}}"/>
       </view>
       <view class='dv1'>
