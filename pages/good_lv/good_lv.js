@@ -42,6 +42,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({pid: options.pid})
+    wx.setNavigationBarTitle({ title: options.name })
     this.getGood(options.pid, 1)
   },
   //获取商品信息

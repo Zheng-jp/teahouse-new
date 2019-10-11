@@ -2,15 +2,15 @@
 <view class="lv_nav">
     <view class="{{on == 1 ? 'on' : ''}}" data-id="1" bindtap="switch">综合</view>
     <view class="{{on == 2 ? 'on' : ''}}" data-id="2" bindtap="switch">最新</view>
-    <view class="{{on == 3 || on == 4 ? 'on' : ''}}" style="display:flex;justify-content : center;" data-id="3" bindtap="switch">价格
+    <view class="{{on == 3 || on == 4 ? 'on' : ''}}" style="display:flex;justify-content : center;width:160rpx;" data-id="3" bindtap="switch">价格
     <view class="{{old_id == 3 ? 'div2' : 'div3'}}" wx:if="{{old_id > 2 && old_id < 5}}"></view>
     <view class="div1" wx:else></view>
     </view>
-    <view class="{{on == 5 || on == 6 ? 'on' : ''}}" style="display:flex;justify-content : center;" data-id="5" bindtap="switch">销量
+    <view class="{{on == 5 || on == 6 ? 'on' : ''}}" style="display:flex;justify-content : center;width:160rpx;" data-id="5" bindtap="switch">销量
     <view class="{{old_id == 5 ? 'div2' : 'div3'}}" wx:if="{{old_id > 4}}"></view>
     <view class="div1" wx:else></view>
     </view>
-    <view bindtap="changStyle">
+    <view bindtap="changStyle" class="view-img">
         <image src="http://zhihuichacang.com/u695.png" alt="" class="img" wx:if="{{style == 0}}"/>
         <image src="http://zhihuichacang.com/u696.png" alt="" class="img" wx:else/>
     </view>

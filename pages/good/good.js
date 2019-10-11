@@ -17,12 +17,12 @@ Page({
   },
   go_gooddetail: function (event) {
     var that = this;
-    var item = event.currentTarget.dataset.item;
-    var type = event.currentTarget.dataset.type, urls;
-    if(type == 1) urls = "../good_lv/good_lv?pid=";
-    else urls = "../goods_detail/goods_detail?title=";
+    var id = event.currentTarget.dataset.id;
+    var type = event.currentTarget.dataset.type, name = event.currentTarget.dataset.name, urls;
+    if(type == 1) urls = "../good_lv/good_lv?pid=" + id + "&name="+ name;
+    else urls = "../goods_detail/goods_detail?title="+ id;
     wx.navigateTo({
-      url: urls + event.currentTarget.dataset.id,
+      url: urls,
       // url: '',
       success: function (res) {
       

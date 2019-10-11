@@ -1,5 +1,12 @@
 /* pages/good_lv/good_lv.wxss */
-
+.view-img{
+  width: 110rpx  !important;
+}
+.view-img > .img {
+  display: block;
+  margin: auto;
+  margin-top: 30rpx;
+}
 .lv_nav {
     display:flex;
     justify-content: space-between;
