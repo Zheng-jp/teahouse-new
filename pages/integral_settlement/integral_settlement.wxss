@@ -179,6 +179,14 @@
   .order-goods-info{
     background: #FAFAFA;
   }
+  radio .wx-radio-input.wx-radio-input-checked::before {
+    width: auto;
+    height: auto;
+    font-size: 0rpx;
+    transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: translate(-50%, -50%) scale(1);
+  }
+  
   .radio-group{
     display: flex;
     align-items: center;

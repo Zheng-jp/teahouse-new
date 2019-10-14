@@ -78,7 +78,10 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     homepageid: 0,
     fixiPhone: false
   },
-
+// 截获竖向滑动
+catchTouchMove:function(res){
+  return false
+},
   onPullDownRefresh: function() {
     var t = this;
     t.refreshSessionkey();

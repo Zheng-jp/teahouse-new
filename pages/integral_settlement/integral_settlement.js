@@ -255,42 +255,7 @@ Page({
       s_height: s_height,
 
     });
-    wx.request({
-      url: app.globalData.tiltes + 'member_default_address_return',
-      data: {
-        open_id: app.globalData.gmemberid,
-        address_id: ''
-      },
-      method: "post",
-      success: function(res) {
-        console.log(res.data.status);
-        if (res.data.status == 1) {
-          var tel = res.data.data.harvester_phone_num;
-          var name = res.data.data.harvester;
-          var address = res.data.data.address_name + res.data.data.harvester_real_address;
-          var address_id = res.data.data.id;
-          that.setData({
-            tel: tel,
-            name: name,
-            address: address,
-          });
-          for (var index in address) {
-            var address_names = address.split(",").join("");
-            that.setData({
-              address: address_names,
-              address_id: address_id,
-            });
-          }
-        } else if (res.data.status == 0) {
-          that.setData({
-            selected: false,
-          });
-        }
-      },
-      fail: function() {
-
-      },
-    });
+    
     wx.request({
       url: app.globalData.tiltes + 'bonus_detailed',
       data: {
@@ -325,12 +290,150 @@ Page({
     var name = wx.getStorageSync('name');
     var address = wx.getStorageSync('address');
     var id = wx.getStorageSync('id');
-    that.setData({
-      tel: tel,
-      name: name,
-      address: address,
-      address_id: id
-    });
+    var shop_id = (wx.getStorageSync('shop_id') ? wx.getStorageSync('shop_id') : '');
+    
+    if (id == '') {
+      wx.request({
+        url: app.globalData.tiltes + 'member_default_address_return',
+        data: {
+          // member_id: app.globalData.member_id,
+          open_id: app.globalData.gmemberid,
+          address_id: ''
+        },
+        method: "post",
+        success: function (res) {
+          if (res.data.status == 1) {
+            var tel = res.data.data.harvester_phone_num;
+            var name = res.data.data.harvester;
+            var address_id = res.data.data.id;
+            var address_names = '';
+            var a = res.data.data.address_name.split(",");
+            for (var index in res.data.data.address_name) {
+              address_names = res.data.data.address_name.split(",").join("");
+            }
+            var address = address_names + res.data.data.harvester_real_address;
+            that.setData({
+              tel: tel,
+              name: name,
+              address: address,
+              address_0: a[0],
+              address_id: address_id,
+            });
+          } else if (res.data.status == 0) {
+            that.setData({
+              selected: false,
+            });
+          }
+          if (that.data.order_type == 1) {
+            wx.request({
+              url: app.globalData.tiltes + 'transportation',
+              data: {
+                'goods_id': that.data.user[1].good_id,
+                'goods_standard_id': that.data.user[2].guige,
+                'are': that.data.address_0
+              },
+              method: "post",
+              success: function (res) {
+                that.setData({
+                  freight_infor: res.data.data,
+                })
+                that.money_freight();
+                that.calculate_money();
+              }
+            });
+          }
+        }
+      });
+    } else {
+      wx.request({
+        url: app.globalData.tiltes + 'member_address_edit_information',
+        data: {
+          id: id,
+        },
+        method: "post",
+        success: function (res) {
+          var address_names = '';
+          var a = res.data.data.address_name.split(",");
+          var address_id = res.data.data.id;
+          for (var index in res.data.data.address_name) {
+            address_names = res.data.data.address_name.split(",").join("");
+          }
+          that.setData({
+            tel: res.data.data.harvester_phone_num,
+            name: res.data.data.harvester,
+            address: address_names + res.data.data.harvester_real_address,
+            address_id: res.data.data.id,
+            address_0: a[0],
+            address_id: address_id,
+          });
+          if (that.data.order_type == 1) {
+            wx.request({
+              url: app.globalData.tiltes + 'transportation',
+              data: {
+                'goods_id': that.data.user[1].good_id,
+                'goods_standard_id': that.data.user[2].guige,
+                'are': that.data.address_0
+              },
+              method: "post",
+              success: function (res) {
+                that.setData({
+                  freight_infor: res.data.data,
+                })
+                that.money_freight();
+                that.calculate_money();
+              }
+            });
+          }
+        },
+      });
+    }
+    if (shop_id == '') {
+      wx.request({
+        url: app.globalData.tiltes + 'approve_address',
+        data: {
+          uniacid: app.globalData.uniacid
+        },
+        method: "post",
+        success: function (res) {
+          var shop_address = res.data.data;
+          var shop_id = res.data.data.id;
+          var address_names = '';
+          for (var index in res.data.data.extract_address) {
+            address_names = res.data.data.extract_address.split(",").join("");
+          }
+          var address = address_names + res.data.data.extract_real_address;
+          shop_address["shop_address"] = address
+          that.setData({
+            shop_address: shop_address,
+            shop_id: shop_id,
+          });
+        }
+      });
+    } else {
+      wx.request({
+        url: app.globalData.tiltes + 'approve_detailed',
+        data: {
+          id: shop_id
+        },
+        method: "post",
+        success: function (res) {
+          var shop_id = res.data.data.id;
+          var shop_address = res.data.data;
+          var address_names = '';
+          for (var index in res.data.data.extract_address) {
+            address_names = res.data.data.extract_address.split(",").join("");
+          }
+          var address = address_names + res.data.data.extract_real_address;
+          shop_address["shop_address"] = address
+          that.setData({
+            shop_address: shop_address,
+            shop_id: shop_id,
+          });
+        }
+
+      });
+    }
+   
   },
 
   /**

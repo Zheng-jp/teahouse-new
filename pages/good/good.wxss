@@ -104,8 +104,8 @@
 }
 
 .nav_goods_l {
-  width: 104rpx;
-  height: 104rpx;
+  width: 150rpx;
+  height: 150rpx;
 }
 
 .goods_lv {
