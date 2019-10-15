@@ -29,7 +29,7 @@
         <view class="info-title">退款信息</view>
         <view class="refund-goods">
             <view class="refund-img">
-                <image src="https://teahouse.siring.com.cn/uploads/{{dataObj.goods_images}}" />
+                <image src="{{dataObj.goods_images}}" />
             </view>
             <text>商品名称</text>
         </view>
@@ -52,7 +52,7 @@
             </view>
             <view class="info-item" wx:if="{{dataObj.images.length!==0}}">
                 <block wx:for="{{dataObj.images}}" wx:key="">
-                    <image src="https://teahouse.siring.com.cn/uploads/{{item}}" />
+                    <image src="{{item}}" />
                 </block>
             </view>
             <view class="reply-items" wx:if="{{dataObj.reply.length!==0}}">
