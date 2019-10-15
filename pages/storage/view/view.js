@@ -546,12 +546,16 @@ Page({
     })
   },
   //实时视频显示
-  showLive: function(){
-    let isLive;
-    if(!this.data.isLive) isLive = true;
-    else isLive = false;
+  showLive: function(e){
+    // console.log(e.currentTarget.dataset.id)
+    let isLive, id = e.currentTarget.dataset.id, live_id;
+    if(!this.data.isLive){
+      isLive = true;
+      live_id = 'id_'+e.currentTarget.dataset.id;
+    }  else isLive = false;
     this.setData({
-      isLive: isLive
+      isLive : isLive,
+      live_id : live_id
     })
   },
   outOfStock: function (e) {
@@ -635,6 +639,9 @@ Page({
     this.onReady();
     this.allStorage();
     wx.stopPullDownRefresh();
+    this.setData({
+      isLive: false
+    })
   },
   onHide() {
     // console.log('onLaunch监听小程序隐藏');
