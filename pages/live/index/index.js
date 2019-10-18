@@ -255,7 +255,7 @@ Page({
   //   let that = this;
   //   return {
   //     title: e.target.dataset.id, // 转发后 所显示的title
-  //     path: '/pages/logs/logs', // 相对的路径
+  //     path: 'pages/diy/index/index', // 相对的路径
   //     success: (res) => {    // 成功后要做的事情
   //       console.log(res.shareTickets[0])
   //       // console.log

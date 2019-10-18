@@ -294,7 +294,7 @@ Page({
     const shareName = this.data.goods.goods_name + '-' + this.data.goods.goods_selling;
     return {
       title: shareName, // 转发后 所显示的title
-      path: '/pages/logs/logs', // 相对的路径
+      path: 'pages/diy/index/index', // 相对的路径
       success: (res) => { // 成功后要做的事情
         wx.getShareInfo({
           shareTicket: res.shareTickets[0],

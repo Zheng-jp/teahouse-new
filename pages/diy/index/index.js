@@ -111,6 +111,10 @@ catchTouchMove:function(res){
   },
   ifLogin: function() {
     var _this = this;
+    wx.showLoading({ 
+      title: '加载中',
+      mask: true
+    })
     return new Promise((resolve, reject) => {
       wx.getSetting({
         success(res) {
@@ -118,7 +122,7 @@ catchTouchMove:function(res){
             appid: wx.getAccountInfoSync().miniProgram.appId,
             is_login: 1
           }
-          console.log(res.authSetting)
+          app.globalData.islogin = res.authSetting['scope.userInfo'];
           if (res.authSetting['scope.userInfo']) {
             wx.getUserInfo({
               success: function (res) {
@@ -703,20 +707,20 @@ catchTouchMove:function(res){
       console.log(e)
       this.newRedirectto(a, e);
     }else{
-      wx.login({
-        success(res) {
-          if(res.code){
-            wx.getUserInfo({
-              success(res){
-                console.log('bbb', res)
-              }
-            })
-          }
-        }
-      })
-      // wx.navigateTo({
-      //   url: "/pages/logs/logs"
+      // wx.login({
+      //   success(res) {
+      //     if(res.code){
+      //       wx.getUserInfo({
+      //         success(res){
+      //           console.log('bbb', res)
+      //         }
+      //       })
+      //     }
+      //   }
       // })
+      wx.navigateTo({
+        url: "/pages/logs/logs"
+      })
     }
   },
   showvideo: function() {

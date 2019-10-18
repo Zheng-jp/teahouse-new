@@ -27,7 +27,7 @@ Page({
     const shareName = this.data.proArr[0].project_name;
     return {
       title: shareName, // 转发后 所显示的title
-      path: '/pages/logs/logs', // 相对的路径
+      path: 'pages/diy/index/index', // 相对的路径
       success: (res) => {
         wx.getShareInfo({
           shareTicket: res.shareTickets[0],

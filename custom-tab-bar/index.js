@@ -86,7 +86,8 @@ Component({
   },
   methods: {
     switchTab(e) {
-      if (app.globalData.gmemberid) {
+      console.log(app.globalData.islogin)
+      if (app.globalData.islogin) {
         const data = e.currentTarget.dataset;
         const url = data.path;
         wx.switchTab({

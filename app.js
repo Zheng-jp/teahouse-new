@@ -517,6 +517,7 @@ App({
     }]
   },
   globalData: {
+    islogin: false,
     userInfo: null,
     baseurl: url,
     uniacid: null,
