@@ -6,7 +6,8 @@ function getAfterSaleData(_this, url){
     url: app.globalData.tiltes + url,
     method: 'POST',
     data: {
-      member_id: app.globalData.member_id
+      member_id: app.globalData.member_id,
+      uniacid: app.globalData.uniacid
     },
     success: function(res){
       console.log('success:', res);

@@ -11,7 +11,7 @@
 					<view class="item-top clearfix">
 						<view class="tb-num fl">服务编号：{{item.sale_order_number}}</view>
 						<view class="tb-status fr">
-							{{item.status==1?'申请中':(item.status==2?'申请中':(item.status==3?'申请中':(item.status==4?'已完成':'已撤销')))}}
+							{{item.status==1?'申请中':(item.status==2?'申请中':(item.status==3?'申请中':(item.status==4 || item.status==6?'已完成':'已撤销')))}}
 						</view>
 					</view>
 					<view class="item-mid">
