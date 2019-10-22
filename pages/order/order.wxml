@@ -56,7 +56,7 @@
               <view class='good_monye'>
                 <view class='good_uite'>
                   <image src='{{member_grade_img}}' class='user_img'></image>
-                  <text class='uite'>￥{{item.goods_money}}/片</text>
+                  <text class='uite'>￥{{item.goods_money}}/{{item.unit}}</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
               </view>
@@ -94,7 +94,7 @@
               <view class='good_monye'>
                 <view class='good_uite'>
                   <image src='{{member_grade_img}}' class='user_img'></image>
-                  <text class='uite'>￥{{item.goods_money}}/片</text>
+                  <text class='uite'>￥{{item.goods_money}}/{{item.unit}}</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
               </view>
@@ -134,7 +134,7 @@
               <view class='good_monye'>
                 <view class='good_uite'>
                   <image src='{{member_grade_img}}' class='user_img'></image>
-                  <text class='uite'>￥{{item.goods_money}}/片</text>
+                  <text class='uite'>￥{{item.goods_money}}/{{item.unit}}</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
               </view>
@@ -192,7 +192,7 @@
               <view class='good_monye'>
                 <view class='good_uite'>
                   <image src='{{member_grade_img}}' class='user_img'></image>
-                  <text class='uite'>￥{{item.goods_money}}/片</text>
+                  <text class='uite'>￥{{item.goods_money}}/{{item.unit}}</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
               </view>
@@ -232,7 +232,7 @@
               <view class='good_monye'>
                 <view class='good_uite'>
                   <image src='{{member_grade_img}}' class='user_img'></image>
-                  <text class='uite'>￥{{item.goods_money}}/片</text>
+                  <text class='uite'>￥{{item.goods_money}}/{{item.unit}}</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
               </view>
@@ -269,7 +269,7 @@
               <view class='good_monye'>
                 <view class='good_uite'>
                   <image src='{{member_grade_img}}' class='user_img'></image>
-                  <text class='uite'>￥{{item.goods_money}}/片</text>
+                  <text class='uite'>￥{{item.goods_money}}/{{item.unit}}</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
               </view>
@@ -312,7 +312,7 @@
               <view class='good_monye'>
                 <view class='good_uite'>
                   <image src='{{member_grade_img}}' class='user_img'></image>
-                  <text class='uite'>￥{{item.goods_money}}/片</text>
+                  <text class='uite'>￥{{item.goods_money}}/{{item.unit}}</text>
                 </view>
                 <view class='num'>x{{item.order_quantity}}</view>
               </view>

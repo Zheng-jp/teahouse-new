@@ -1,4 +1,25 @@
 <!--pages/nfc/index/index.wxml-->
-<view  bindtap='nfc'>
+<!-- <view  bindtap='nfc'> -->
   <!-- <image src='http://zhihuichacang.com/u223.png' style='width:400rpx;height:400rpx; margin:400rpx 200rpx;'></image> -->
+<!-- </view> -->
+
+<view class="main">
+  <view class="nfc-top cen">
+    <image src="http://zhihuichacang.com/u298.png" />
+    <view>防伪溯源</view>
+  </view>
+  <view class="methods">
+    <view class="cen" bindtap="scan">
+      <view class="view-img">
+        <image src="http://zhihuichacang.com/u293.png" />
+      </view>
+      <view class="text">扫码</view>
+    </view>
+    <view class="cen" bindtap="nfc">
+      <view class="view-img">
+        <image src="http://zhihuichacang.com/u294.png" />
+      </view>
+      <view class="text">NFC</view>
+    </view>
+  </view>
 </view>

@@ -31,10 +31,10 @@
         运费：免费
       </view>
       <view class='inventory'>
-        库存888片
+        库存 {{goods.goods_repertory}}
       </view>
       <view class='sales'>
-        销量213片
+        销量 {{goods.sale_number}}
       </view>
     </view>
 

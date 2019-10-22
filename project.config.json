@@ -93,8 +93,8 @@
 				},
 				{
 					"id": 6,
-					"name": "pages/good_lv/good_lv",
-					"pathName": "pages/good_lv/good_lv",
+					"name": "sweep/pages/nfc/index",
+					"pathName": "sweep/pages/nfc/index",
 					"query": "",
 					"scene": null
 				}

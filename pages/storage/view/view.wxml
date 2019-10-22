@@ -168,7 +168,8 @@
             <text>查看正在众筹</text>
           </view>
         </view>
-        <text class="project-title">正在众筹</text>
+        <text class="project-title" wx:if="{{switchProject}}">正在众筹</text>
+        <text class="project-title" wx:else>往期众筹</text>
         <view class="zc-item-box" style="height: {{Height}}px">
           <view class="zc-item" wx:for="{{crowdList}}" wx:key="index">
             <view class="left-img">

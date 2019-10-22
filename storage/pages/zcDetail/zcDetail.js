@@ -20,6 +20,7 @@ Page({
     proArr: [],
     specActive: 0, //规格索引
     buyNum: 1,  //购买数量
+    isbuy: false
   },
 
   onShareAppMessage: function () {
@@ -253,7 +254,7 @@ Page({
       },
       success: function(res){
         
-        var data = res.data.data.data[0];
+        var data = res.data.data.data[0], isbuy = false;
         var richTextArr = [];
         data.goods_text ? richTextArr.push(data.goods_text) : '';
         data.team ? richTextArr.push(data.team) : '';
@@ -265,6 +266,8 @@ Page({
             WxParse.wxParseTemArray("richTextTemArray",'richText', richTextArr.length, _this)
           }
         }
+        if(data.end_time * 1000 > Date.parse(new Date())) isbuy = true;
+        else isbuy = false;
         // let standard = [];
         // for(let o = 0; o < data.standard.length; o ++) {
         //   if(data.standard[o].stock > 0) {
@@ -275,7 +278,8 @@ Page({
         // console.log(res.data.data);
         _this.setData({
           proArr: res.data.data.data,
-          enter_all_id: res.data.data.enter_all_id
+          enter_all_id: res.data.data.enter_all_id,
+          isbuy: isbuy
         })
       },
       fail: function(res){

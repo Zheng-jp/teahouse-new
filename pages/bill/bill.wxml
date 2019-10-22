@@ -13,7 +13,7 @@
             </view>
             <view class="list_right">
                <view class="list_right_one">{{item.operation_time}}</view>
-               <view class="list_right_two" wx:if="{{wallet_type==1}}">{{item.wallet_operation}}</view>
+               <view class="list_right_two" wx:if="{{item.wallet_type==1}}">+{{item.wallet_operation}}</view>
                <view class="list_right_two" wx:else>-{{item.wallet_operation}}</view>
             </view>
         </view>

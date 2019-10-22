@@ -85,3 +85,10 @@
      z-index: 999999;
    line-height: 100rpx;
    }
+   radio .wx-radio-input.wx-radio-input-checked::before {
+    width: auto;
+    height: auto;
+    font-size: 0;
+    transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: translate(-50%, -50%) scale(1);
+  }

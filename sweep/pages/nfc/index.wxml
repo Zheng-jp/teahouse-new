@@ -1,0 +1,8 @@
+<!--sweep/pages/nfc/index.wxml-->
+<view class="title">
+    将手机背面的<image src="http://zhihuichacang.com/un300.png" />感应区对准产品包装上的<text class="biao">RFID标签</text>位置，听到提示音后即显示查询结果
+</view>
+<view class="nfc-gif">
+    <image src="http://zhihuichacang.com/u302.gif" />
+</view>
+<view class="tips">检测到NFC模块，请打开设置-设备连接-开启“NFC”功能，贴近感应</view>

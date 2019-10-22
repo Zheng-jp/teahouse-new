@@ -8,10 +8,10 @@
 		</view>
 		<view class="opration">
 			<radio-group class="radio-group" bindchange="radioChange">
-				<radio value="2" checked="true" color='#fff' />要求退货退款金额：
+				<radio value="2" checked="true" color='#02A0E6' />要求退货退款金额：
 				<input type="text" placeholder="" class="input_monly" disabled value="{{goods.refund_amount}}"> </input>
 				<text class="danwei">元</text>
-				<radio value="1" class="radio_b" color='#fff' />要求换货
+				<radio value="1" class="radio_b" color='#02A0E6' />要求换货
 			</radio-group>
 		</view>
 		<view class="reason">
@@ -36,18 +36,18 @@
 		</view>
 		<view class="opration" wx:if="{{is_return_goods==2}}">
 			<radio-group class="radio-group" bindchange="radioChange">
-				<radio value="2" checked="true" color='#fff' />要求退货退款金额：
+				<radio value="2" checked="true" color='#02A0E6' />要求退货退款金额：
 				<input type="text" placeholder="" class="input_monly" disabled value="{{goods.refund_amount}}"> </input>
 				<text class="danwei">元</text>
-				<radio value="1" class="radio_b" color='#fff' />要求换货
+				<radio value="1" class="radio_b" color='#02A0E6' />要求换货
 			</radio-group>
 		</view>
 		<view class="opration" wx:else>
 			<radio-group class="radio-group" bindchange="radioChange">
-				<radio value="2" checked="true" color='#fff' />要求退货退款金额：
+				<radio value="2" checked="true" color='#02A0E6' />要求退货退款金额：
                     <input type="text" placeholder="" class="input_monly" disabled value="{{goods.application_amount}}"> </input>
                     <text class="danwei">元</text>
-				<radio value="1" class="radio_b" color='#fff'  checked="true" />要求换货
+				<radio value="1" class="radio_b" color='#02A0E6'  checked="true" />要求换货
 			</radio-group>
 		</view>
 		<view class="reason">
