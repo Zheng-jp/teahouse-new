@@ -22,7 +22,7 @@
 }
 .input_monly{
     width:200rpx;
-   font-size:20rpx;
+   font-size:30rpx;
    border: solid 1rpx #E3E9EF;
 
 }

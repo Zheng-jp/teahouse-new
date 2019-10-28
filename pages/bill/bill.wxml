@@ -5,6 +5,7 @@
         <view class="head_text">账单记录</view>
         <view class="head_img"><image src="http://zhihuichacang.com/u5294.png" mode="widthFix"/></view>
    </view>
+   <view ></view>
    <view class="content_list">
         <view class="list"  wx:for="{{bill}}">
            <view class="list_left">
