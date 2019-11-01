@@ -4,7 +4,7 @@
   </block> -->
   <block>
     <view class='header'>
-      <image src='{{logoUrl}}'></image>
+      <image mode="widthFix" src='{{logoUrl}}'></image>
     </view>
     <view class='content'>
       <view>申请获取以下权限</view>
