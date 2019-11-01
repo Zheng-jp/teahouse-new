@@ -31,8 +31,22 @@ Page({
       var data=res.data.data;
       data.create_time=app.formatDate(data.create_time);
       data.pay_time=app.formatDate(data.pay_time);
+      let selected,selected2;
+      if(data.order_type == 1) selected = true;
+      if(data.order_type == 1 || data.order_type == 2 ) {
+        selected2 = false
+      } else {
+        selected2 = true
+      }
       that.setData({
         order:data,
+        all_money:data.data[0].order_real_pay,
+        freight:data.data[0].freight,
+        receipt_price:data.data[0].receipt_price,
+        coupon_deductible:data.data[0].coupon_deductible,
+        selected2: selected2,
+        selected: selected,
+        storage:data.data[0].storage
       })
       
     

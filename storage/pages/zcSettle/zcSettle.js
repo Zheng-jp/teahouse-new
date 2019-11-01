@@ -282,6 +282,7 @@ Page({
     var num = new Array();
     num = [_this.data.num];
     let taxes1 = Number(_this.data.taxes);
+    console.log(_this.data)
     if (_this.data.order_type == "1") {
       wx.request({
         url: app.globalData.tiltes + 'crowd_order_place',
@@ -379,6 +380,7 @@ Page({
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
           uniacid: app.globalData.uniacid,
+          storage: _this.data.storage,
           type: 1
         },
         method: "POST",

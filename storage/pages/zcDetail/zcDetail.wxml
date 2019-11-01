@@ -72,7 +72,7 @@
         <image src="./img/gt.png" />
       </view>
     </view>
-    <view class="tabBox">
+    <view class="tabBox {{fixiPhone?'tabBox_iphone':''}}">
       <view class="tab-hd">
         <block wx:for="{{tabHdArr}}" wx:key="">
           <view class="tab-hd-item {{currTab==index?'active':''}}" data-current="{{index}}" bindtap="clickTabHd">{{item}}</view>
