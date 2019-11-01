@@ -33,7 +33,7 @@
                 <text>已筹</text>
               </view>
               <view class="fr">
-                <text class="stillTime" wx:if="{{item.state==1}}">剩余{{item.days}}天</text>
+                <text class="stillTime" wx:if="{{item.state==1}}">{{isbuy? '剩余'+item.days+'天' : '已结束'}}</text>
                 <text wx:elif="{{item.state==2}}">已完成</text>
               </view>
             </view>
@@ -142,7 +142,7 @@
           <view>购物车</view>
         </view> -->
         <view class="ft-btn">
-          <text wx:if="{{item.state==1}}" bind:tap="switchDialog">去支持</text>
+          <text wx:if="{{isbuy}}" bind:tap="switchDialog">去支持</text>
           <text wx:else>已结束</text>
         </view>
       </view>

@@ -99,7 +99,8 @@ Page({
       url: app.globalData.tiltes + 'after_sale_information_return',
       method: 'POST',
       data: {
-        after_sale_id: _this.data.id
+        after_sale_id: _this.data.id,
+        uniacid: app.globalData.uniacid
       },
       success: function(res){
         console.log('success', res);

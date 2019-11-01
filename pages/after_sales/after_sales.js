@@ -6,7 +6,8 @@ function getAfterSaleData(_this, url){
     url: app.globalData.tiltes + url,
     method: 'POST',
     data: {
-      member_id: app.globalData.member_id
+      member_id: app.globalData.member_id,
+      uniacid: app.globalData.uniacid
     },
     success: function(res){
       console.log('success:', res);
@@ -95,7 +96,7 @@ Page({
       myNavigateTo('/aftersale/pages/aftersale_detail/aftersale_detail', id, status);
     }else if(status == 2 || status == 3 || (status == 5 && handleTag == 2)){
       myNavigateTo('/aftersale/pages/aftersale_success/aftersale_success', id, status);
-    }else if(status == 4){
+    }else if(status == 4 || status == 6){
       myNavigateTo('/aftersale/pages/aftersale_finish/aftersale_finish', id, status);
     }
   },

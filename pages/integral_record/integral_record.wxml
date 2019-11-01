@@ -13,8 +13,8 @@
             </view>
             <view class="list_right">
                <view class="list_right_one">{{item.operation_time}}</view>
-               <view class="list_right_two" wx:if="{{item.integral_type==1}}">{{item.integral_operation}}</view>
-                 <view class="list_right_two" wx:else>-{{item.integral_operation}}</view>
+               <view class="list_right_two" wx:if="{{item.integral_type==1}}">+{{item.integral_operation}}</view>
+                 <view class="list_right_two" wx:else>{{item.integral_operation}}</view>
             </view>
         </view>
    </view>

@@ -5,6 +5,7 @@
         <view class="head_text">账单记录</view>
         <view class="head_img"><image src="http://zhihuichacang.com/u5294.png" mode="widthFix"/></view>
    </view>
+   <view ></view>
    <view class="content_list">
         <view class="list"  wx:for="{{bill}}">
            <view class="list_left">
@@ -13,7 +14,7 @@
             </view>
             <view class="list_right">
                <view class="list_right_one">{{item.operation_time}}</view>
-               <view class="list_right_two" wx:if="{{wallet_type==1}}">{{item.wallet_operation}}</view>
+               <view class="list_right_two" wx:if="{{item.wallet_type==1}}">+{{item.wallet_operation}}</view>
                <view class="list_right_two" wx:else>-{{item.wallet_operation}}</view>
             </view>
         </view>

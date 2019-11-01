@@ -8,113 +8,58 @@ Page({
   data: {
     isNfc: false
   },
-  nfc: function (e) {
-    //获取当前状态
-    var that = this;
-    wx.getHCEState({
+  scan: function () {
+    wx.scanCode({
+      onlyFromCamera: false,
       success(res) {
-        that.setData({
-          isNfc: true
-        })
-        wx.showModal({
-          title: '提示',
-          content: '检测到您手机支持NFC功能，将为您转进该功能',
-          success(res) {
-            if (res.confirm) {
-              console.log('用户点击确定')
-              const buffer = new ArrayBuffer(1)
-              const dataView = new DataView(buffer)
-              dataView.setUint8(0, 0)
+        var code_url = res.result.split('/')[2];
+        var com_url = app.globalData.url.split('/')[2];
+        if (code_url != com_url) {
+          wx.showToast({
+            title: '非在下产品,恕在下无法识别',
+            icon: 'none',
+            duration: 2500
+          })
+        } else {
+          wx.navigateTo({
+            url: '../../../sweep/pages/sweep_detail/sweep_detail',
+            success: function (res) { },
+            fail: function () { },
+            complete: function () { }
+          })
+        }
 
-              wx.startHCE({
-                success(res) {
-                  wx.onHCEMessage(function (res) {
-                    if (res.messageType === 1) {
-                      wx.sendHCEMessage({ data: buffer })
-                    }
-                  })
-                }
-              })
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-              wx.scanCode({
-                onlyFromCamera: false,
-                success(res) {
-                  var code_url = res.result.split('/')[2];
-                  var com_url = app.globalData.url.split('/')[2];
-                  if (code_url != com_url) {
-                    wx.showToast({
-                      title: '非在下产品,恕在下无法识别',
-                      icon: 'none',
-                      duration: 2500
-                    })
-                  } else {
-
-                    wx.navigateTo({
-                      url: '../../../sweep/pages/sweep_detail/sweep_detail',
-                      success: function (res) { },
-                      fail: function () { },
-                      complete: function () { }
-                    })
-                  }
-
-                }
-              });
-            }
-          }
-        })
-      },
-      fail(err) {
-        // console.error('NfcHCECore-->getNfcStatus::fail:', err)
-        wx.scanCode({
-          onlyFromCamera: false,
-          success(res) {
-
-            var code_url = res.result.split('/')[2];
-            var com_url = app.globalData.url.split('/')[2];
-            if (code_url != com_url) {
-              wx.showToast({
-                title: '非在下产品,恕在下无法识别',
-                icon: 'none',
-                duration: 2500
-              })
-            } else {
-
-              wx.navigateTo({
-                url: '../../../sweep/pages/sweep_detail/sweep_detail',
-                success: function (res) { },
-                fail: function () { },
-                complete: function () { }
-              })
-            }
-
-          },
-          complete: function() {
-            wx.navigateBack({
-              delta: 2
-            })
-          }
-        });
       }
     });
-    // if (this.data.isNfc) {
-
-    // } else {
-
-    // }
-
-
-
-
-
-
   },
+  nfc: function () {
+    wx.getHCEState({
+      success(res) {
+        wx.navigateTo({
+          url: '../nfc/index',
+          success: function (res) { },
+          fail: function () { },
+          complete: function () { }
+        })
+      },
+      fail() {
+        wx.showToast({
+          title: '您的手机暂不支持nfc功能',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+  },
+ 
+
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.nfc();
+    // this.nfc();
   },
 
   /**

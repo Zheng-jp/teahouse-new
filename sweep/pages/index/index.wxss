@@ -1,1 +1,38 @@
 /* pages/nfc/index/index.wxss */
+.main {
+    margin: 100rpx auto;
+}
+image {
+    width: 200rpx;
+    height: 200rpx;
+}
+.cen {
+    text-align: center;
+}
+
+.nfc-top {
+    margin: 0 auto;
+}
+.nfc-top view {
+    color: rgb(147,184,235);
+    font-size: 50rpx;
+}
+.methods {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+.view-img {
+    width: 250rpx;
+    height: 250rpx;
+    box-shadow:0px 0px  20px 1px rgb(240,240,240);
+    margin: 20rpx;
+    margin-top: 100rpx;
+    line-height: 430rpx;
+}
+.view-img  image {
+    margin: auto;
+}
+.text {
+    font-size: 40rpx;
+}

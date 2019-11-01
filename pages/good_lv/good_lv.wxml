@@ -23,7 +23,7 @@
         </view>
         <view class="text">
             <view>{{item.goods_name}}</view>
-            <view class="selling">{{item.goods_selling}}</view>
+            <view class="selling {{style == 0 ? '' : 'selling_wid'}}">{{item.goods_selling}}</view>
             <view class="money_box">￥<text class="money">{{item.price}}</text></view>
         </view>
     </view>
