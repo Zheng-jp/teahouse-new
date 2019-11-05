@@ -1,54 +1,53 @@
 <view class="all">
   <view class="img_content">
-    
       <image class="img" src="../../../images/img1.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
   </view>
   <view class="list_content">
     <view class="lista">
       <view class="lefta">NFC ID： </view>
-      <view class="righta">45667778567 </view>
+      <view class="righta">{{goods.child_code}}</view>
     </view>
     <view class="lista">
       <view class="lefta"> 产品总量： </view>
-      <view class="righta">6547片 </view>
+      <view class="righta">{{goods.goods_repertory}}{{goods.unit}}</view>
     </view>
     <view class="lista">
       <view class="lefta"> 产品编号： </view>
-      <view class="righta">dy0987 </view>
+      <view class="righta">{{goods.goods_number}}</view>
     </view>
   </view>
   <view class="list_content">
     <view class="lista">
       <view class="lefta"> 出品商： </view>
-      <view class="righta">云南大益茶厂 </view>
+      <view class="righta">{{goods.produce}}</view>
     </view>
     <view class="lista">
       <view class="lefta">品牌： </view>
-      <view class="righta">大益茶 </view>
+      <view class="righta">{{goods.goods_brand}}</view>
     </view>
     <view class="lista">
       <view class="lefta"> 产品名称： </view>
-      <view class="righta">云雀 </view>
+      <view class="righta">{{goods.goods_name}}</view>
     </view>
     <view class="lista">
       <view class="lefta"> 规格： </view>
-      <view class="righta">24提 </view>
+      <view class="righta">{{goods.pick_size}}</view>
     </view>
     <view class="lista">
       <view class="lefta"> 原料日期： </view>
-      <view class="righta">2018.09.08 </view>
+      <view class="righta">{{goods.stock_date}}</view>
     </view>
-    <view class="lista">
+    <!-- <view class="lista">
       <view class="lefta"> 发酵日期： </view>
       <view class="righta">2018.09.08 </view>
-    </view>
+    </view> -->
     <view class="lista">
       <view class="lefta"> 包装日期： </view>
-      <view class="righta">2018.09.08 </view>
+      <view class="righta">{{goods.frement_date}}</view>
     </view>
     <view class="lista">
       <view class="lefta"> 加工日期 </view>
-      <view class="righta">2018.09.08 </view>
+      <view class="righta">{{goods.date}}</view>
     </view>
     <view class="lista">
       <view class="lefta"> 原产地： </view>

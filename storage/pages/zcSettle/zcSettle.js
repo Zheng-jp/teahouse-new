@@ -301,6 +301,7 @@ Page({
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
           uniacid: app.globalData.uniacid,
+          storage:0,
           type: 1
         },
         method: "POST",
@@ -341,6 +342,7 @@ Page({
           receipt_price: taxes1,
           receipt_status: _this.data.taxes_select,
           uniacid: app.globalData.uniacid,
+          storage: 0,
           type: 1
         },
         method: "POST",

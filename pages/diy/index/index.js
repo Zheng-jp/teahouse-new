@@ -163,7 +163,7 @@ catchTouchMove:function(res){
                               wx.hideToast();
                               if (res) {
                                 wx.switchTab({
-                                  url: '../diy/index/index', // 新首页
+                                  url: './index', // 新首页
                                 })
                               } else {
                                 console.log("kong")

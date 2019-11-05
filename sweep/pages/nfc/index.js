@@ -12,9 +12,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // wx.startHCE({
+    //   aid_list: ['F222222222'],
+    //   success(res) {
+    //     console.log(res)
+    //   },
+    //   fail(e) {
+    //     console.log("2" + e)
+    //   }
+    // })
+    const buffer = new ArrayBuffer(1)
+    const dataView = new DataView(buffer)
+    dataView.setUint8(0, 0)
 
+    wx.startHCE({
+      success(res) {
+        wx.onHCEMessage(function (res) {
+          console.log(res)
+          if (res.messageType === 1) {
+            wx.sendHCEMessage({ data: buffer })
+          }
+        })
+      }
+    })
   },
   nfc11: function (e) {
+
     //获取当前状态
     var that = this;
     wx.getHCEState({
@@ -43,7 +66,7 @@ Page({
               })
             } else if (res.cancel) {
               console.log('用户点击取消')
-              
+
             }
           }
         })
@@ -73,7 +96,7 @@ Page({
             }
 
           },
-          complete: function() {
+          complete: function () {
             wx.navigateBack({
               delta: 2
             })
