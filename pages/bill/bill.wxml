@@ -1,22 +1,31 @@
-<!--pages/bill/bill.wxml-->
+<!-- pages/bill/bill.wxml -->
 <view class="all">
    <view class="heading">
-        <view class="head_img"><image src="http://zhihuichacang.com/u5282.png" mode="widthFix"/></view>
-        <view class="head_text">账单记录</view>
-        <view class="head_img"><image src="http://zhihuichacang.com/u5294.png" mode="widthFix"/></view>
+      <view class="head_img">
+         <image src="http://zhihuichacang.com/u5282.png" mode="widthFix" />
+      </view>
+      <view class="head_text">账单记录</view>
+      <view class="head_img" bindtap="isSeach">
+         <image src="http://zhihuichacang.com/u5294.png" mode="widthFix" />
+      </view>
    </view>
-   <view ></view>
+   <view></view>
    <view class="content_list">
-        <view class="list"  wx:for="{{bill}}">
-           <view class="list_left">
-               <view class="list_left_one">{{item.title}}</view>
-               <view class="list_left_two">余额：{{item.wallet_balance}}</view>
+      <view class="seach" wx:if="{{seach}}">
+         <input type="text" placeholder="搜索商品" class="seach_input" bindinput='getSearchKey' bindblur='routeToSearchResPage' value="{{searchKey}}" />
+      </view>
+      <view class="list" wx:for="{{bill}}">
+         <view class="list_left">
+            <view class="list_left_one">{{item.title}}</view>
+            <view class="list_left_two">余额：{{item.wallet_balance}}</view>
+         </view>
+         <view class="list_right">
+            <view class="list_right_one">{{item.operation_time}}</view>
+            <view class="list_right_two" wx:if="{{item.wallet_type==1}}">
+               +{{item.wallet_operation}}
             </view>
-            <view class="list_right">
-               <view class="list_right_one">{{item.operation_time}}</view>
-               <view class="list_right_two" wx:if="{{item.wallet_type==1}}">+{{item.wallet_operation}}</view>
-               <view class="list_right_two" wx:else>-{{item.wallet_operation}}</view>
-            </view>
-        </view>
+            <view class="list_right_two" wx:else>-{{item.wallet_operation}}</view>
+         </view>
+      </view>
    </view>
 </view>

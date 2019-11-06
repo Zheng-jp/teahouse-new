@@ -192,8 +192,9 @@
       </view>
     </view>
     <view class='trade'>
-      <view class='add-cart' bindtap="add_car">加入购物车</view>
-      <view class='buy' bindtap="showPopup">立即购买</view>
+      <view class='add-cart' bindtap="add_car" wx:if="{{goods.goods_repertory > 0}}">加入购物车</view>
+      <view class='buy' bindtap="showPopup" wx:if="{{goods.goods_repertory > 0 }}" >立即购买</view>
+      <view style="text-align:center;color:#fff;background-color:rgb(174,174,174);"  wx:if="{{goods.goods_repertory <= 0}}">已售罄</view>
     </view>
   </view>
 </view>

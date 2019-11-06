@@ -12,7 +12,7 @@ Page({
     price: '',
     member_grade_img: null,
     // 商品库存
-    stock: '',
+    stock: 0,
     // 商品销量
     // var current=e.target.dataset.current;
     // 商品图片
