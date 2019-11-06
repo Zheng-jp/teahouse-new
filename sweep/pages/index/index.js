@@ -16,15 +16,16 @@ Page({
         var com_url = app.globalData.url.split('/')[2];
         if (code_url != com_url) {
           wx.showToast({
-            title: '非在下产品,恕在下无法识别',
+            title: '非本产品，无法识别',
             icon: 'none',
             duration: 2500
           })
         } else {
+          var code = res.result.split('?')[1];
           wx.navigateTo({
-            url: '../../../sweep/pages/sweep_detail/sweep_detail',
-            success: function (res) { },
-            fail: function () { },
+            url: '../../../sweep/pages/sweep_detail/sweep_detail?'+ code,
+            success: function (res) {console.log('扫码跳转成功')},
+            fail: function () { console.log('扫码跳转失败')},
             complete: function () { }
           })
         }
@@ -33,23 +34,31 @@ Page({
     });
   },
   nfc: function () {
-    wx.getHCEState({
-      success(res) {
-        wx.navigateTo({
-          url: '../nfc/index',
-          success: function (res) { },
-          fail: function () { },
-          complete: function () { }
-        })
-      },
-      fail() {
-        wx.showToast({
-          title: '您的手机暂不支持nfc功能',
-          icon: 'none',
-          duration: 2000
-        })
-      }
+    wx.navigateTo({
+      url: '../nfc/index',
+      success: function (res) { },
+      fail: function () { },
+      complete: function () { }
     })
+    // wx.getHCEState({
+    //   success(res) {
+    //     console.log(res)
+    //     wx.navigateTo({
+    //       url: '../nfc/index',
+    //       success: function (res) { },
+    //       fail: function () { },
+    //       complete: function () { }
+    //     })
+    //   },
+    //   fail(e) {
+    //     console.log(e)
+    //     wx.showToast({
+    //       title: '您的手机暂不支持nfc功能',
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
+    // })
   },
  
 

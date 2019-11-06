@@ -2,7 +2,7 @@
 <view class="all">
 <view wx:if="{{order.order_type==1}}">
     <view class="address">
-        <image src="img/u6095.png" mode="widthFix"  class="address_ico"/>
+        <image src="http://zhihuichacang.com/u250.png" mode="widthFix"  class="address_ico"/>
         <view class="address_content">
             <view class="name_phone">
                 <text class="name">{{order.name}} </text>
@@ -20,14 +20,14 @@
             <view class="repay_time"> 付款时间：{{order.pay_time}}</view>
         </view>
         <view class="left">
-                <image class="zy_ico" src="img/u8165.png" mode="widthFix"></image>
+                <image class="zy_ico" src="http://zhihuichacang.com/u8165.png" mode="widthFix"></image>
                 <text class="zy_text">直邮</text>
         </view>
     </view>
 </view>
 <view wx:elif="{{order.order_type==2}}">
     <view class="address">
-        <image src="img/u6095.png" mode="widthFix"  class="address_ico"/>
+        <image src="http://zhihuichacang.com/u250.png" mode="widthFix"  class="address_ico"/>
         <view class="address_content">
             <view class="name_phone">
                 <text class="name">{{order.name}} </text>
@@ -45,8 +45,30 @@
             <view class="repay_time"> 付款时间：{{order.pay_time}}</view>
         </view>
         <view class="left">
-                <image class="zy_ico" src="img/u8165.png" mode="widthFix"></image>
+                <image class="zy_ico" src="http://zhihuichacang.com/u8483.png" mode="widthFix"></image>
                 <text class="zy_text">直邮</text>
+        </view>
+    </view>
+</view>
+<view wx:elif="{{order.order_type==3}}">
+    <view class="address">
+        <image src="http://zhihuichacang.com/u250.png" mode="widthFix"  class="address_ico"/>
+        <view class="address_content">
+            <view class="lift">
+                <text>仓储点：</text>
+            </view>
+            <view class="address_detail">仓储地址：{{order.data[0].harvester_address}}</view>
+        </view>
+    </view>
+    <view class="other_infor">
+        <view class="time">
+            <view class="time_title">订单时间</view>
+            <view class="create_time">创建时间：{{order.create_time}}</view>
+            <view class="repay_time">付款时间：{{order.pay_time}}</view>
+        </view>
+        <view class="left">
+                <image class="zy_ico" src="http://zhihuichacang.com/u7044.png" mode="widthFix"></image>
+                <text class="zy_text">存茶</text>
         </view>
     </view>
 </view>
@@ -66,7 +88,7 @@
                     <view class='good_selling'>{{item.goods_describe}}</view>
                     <view class='good_monye'>
                         <view class='good_uite'>
-                            <image src='{{member_grade_img}}' class='user_img'></image>
+                            <image src='{{item.member_grade_img}}' class='user_img'></image>
                             <text class='uite'>￥{{item.goods_money}}/片</text>
                         </view>
                         <view class='num'>x{{item.order_quantity}}</view>
@@ -91,7 +113,7 @@
                     <view class='good_selling'>{{item.goods_describe}}</view>
                     <view class='good_monye'>
                         <view class='good_uite'>
-                            <image src='{{member_grade_img}}' class='user_img'></image>
+                            <image src='{{item.member_grade_img}}' class='user_img'></image>
                             <text class='uite'>￥{{item.goods_money}}/片</text>
                         </view>
                         <view class='num'>x{{item.order_quantity}}</view>
@@ -116,7 +138,7 @@
                     <view class='good_selling'>{{item.goods_describe}}</view>
                     <view class='good_monye'>
                         <view class='good_uite'>
-                            <image src='{{member_grade_img}}' class='user_img'></image>
+                            <image src='{{item.member_grade_img}}' class='user_img'></image>
                             <text class='uite'>￥{{item.goods_money}}/片</text>
                         </view>
                         <view class='num'>x{{item.order_quantity}}</view>
@@ -144,7 +166,7 @@
                     <view class='good_selling'>{{item.goods_describe}}</view>
                     <view class='good_monye'>
                         <view class='good_uite'>
-                            <image src='{{member_grade_img}}' class='user_img'></image>
+                            <image src='{{item.member_grade_img}}' class='user_img'></image>
                             <text class='uite'>￥{{item.goods_money}}/片</text>
                         </view>
                         <view class='num'>x{{item.order_quantity}}</view>
@@ -174,7 +196,7 @@
                     <view class='good_selling'>{{item.goods_describe}}</view>
                     <view class='good_monye'>
                         <view class='good_uite'>
-                            <image src='{{member_grade_img}}' class='user_img'></image>
+                            <image src='{{item.member_grade_img}}' class='user_img'></image>
                             <text class='uite'>￥{{item.goods_money}}/片</text>
                         </view>
                         <view class='num'>x{{item.order_quantity}}</view>
@@ -199,7 +221,7 @@
                     <view class='good_selling'>{{item.goods_describe}}</view>
                     <view class='good_monye'>
                         <view class='good_uite'>
-                            <image src='{{member_grade_img}}' class='user_img'></image>
+                            <image src='{{item.member_grade_img}}' class='user_img'></image>
                             <text class='uite'>￥{{item.goods_money}}/片</text>
                         </view>
                         <view class='num'>x{{item.order_quantity}}</view>
@@ -225,7 +247,7 @@
                     <view class='good_selling'>{{item.goods_describe}}</view>
                     <view class='good_monye'>
                         <view class='good_uite'>
-                            <image src='{{member_grade_img}}' class='user_img'></image>
+                            <image src='{{item.member_grade_img}}' class='user_img'></image>
                             <text class='uite'>￥{{item.goods_money}}/片</text>
                         </view>
                     <view class='num'>x{{item.order_quantity}}</view>
@@ -238,4 +260,40 @@
 
     </view>
 </view>
+<!-- </view> -->
+<view class="{{selected2?'sundry':'sundry1'}}" >
+    <view class='sundry-li1' style=' border-bottom: solid 1rpx #E4E4E4;'>
+      <view>商品总价</view>
+      <view>
+        <text style='color:#FF7E4A;'>{{all_money}}元</text>
+      </view>
+    </view>
+    <view class='sundry-li'>
+      <view class='text_red'>优惠券</view>
+      <view >
+        <text style='color:#FF7E4A;'>{{coupon_deductible}}元</text>
+      </view>
+      <!-- <view wx:else>
+        <text style='color:#FF7E4A;'>无可适用优惠券</text>
+      </view> -->
+    </view>
+    <view class="sundry-li {{selected?'show':'hidden'}}">
+      <view>运费</view>
+      <view>
+        <text style='color:#FF7E4A;'>{{freight}}元</text>
+      </view>
+    </view>
+    <view class='sundry-li'>
+      <view>税费</view>
+      <view>
+        <text style='color:#FF7E4A;'>{{receipt_price}}元</text>
+      </view>
+    </view>
+    <view class="sundry-li {{selected2?'show':'hidden'}}">
+      <view>仓储费</view>
+      <view>
+        <text style='color:#FF7E4A;'>{{storage}}元</text>
+      </view>
+    </view>
+  </view>
 </view>
