@@ -20,7 +20,7 @@
           </view>
         </view>
       </view>
-      <view style="display:flex;padding:30rpx 10rpx;background-color:#fff;font-size:26rpx;border-bottom: solid 1px #EBEBEB;">
+      <view class="gui-s">
         <view>包装规格：</view>
         <view style="flex:1;"></view>
         <view style="color:#949494;">{{elements}}</view>
@@ -134,7 +134,7 @@
     </view>
     <image class='more' src='http://zhihuichacang.com/u1508.png' mode="widthFix"></image>
   </view>
-  <view style="display:flex;padding:16rpx 10rpx;margin: 10rpx 0;background-color:#fff;font-size:26rpx;">
+  <view class="gui">
     <view>包装规格：</view>
     <view style="flex:1;"></view>
     <view style="color:#949494;">{{element}}</view>
