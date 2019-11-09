@@ -59,7 +59,8 @@ Page({
     var specifications = e.target.dataset.value;
     //是否可存
     var save = e.target.dataset.save;
-
+    //多规格格式
+    var elements = e.target.dataset.gui;
     var value = e.target.dataset.value;
     if (that.data.goods.goods_standard.id === e.target.dataset.current) {
       return false;
@@ -73,6 +74,7 @@ Page({
         images: images,
         select: value,
         save: save,
+        elements: elements,
         specifications: specifications
       })
     }
@@ -265,24 +267,24 @@ Page({
   },
   go_index: function (e) {
 
-      wx.reLaunch({
-        url: '../diy/index/index',
-        success: function (res) {
-          // success
-          console.log("nihao////跳转成功")
-        },
-        fail: function (e) {
-          console.log(e)
-          // fail
-          console.log("nihao////跳转失败")
-        },
-        complete: function () {
-          // complete
-          console.log("nihao////跳转行为结束，未知成功失败")
-        }
+    wx.reLaunch({
+      url: '../diy/index/index',
+      success: function (res) {
+        // success
+        console.log("nihao////跳转成功")
+      },
+      fail: function (e) {
+        console.log(e)
+        // fail
+        console.log("nihao////跳转失败")
+      },
+      complete: function () {
+        // complete
+        console.log("nihao////跳转行为结束，未知成功失败")
+      }
     })
   },
-  
+
   /* 点击减号 */
   bindMinus: function () {
     var num = this.data.num;
@@ -518,10 +520,10 @@ Page({
     // 秒
     var sec = Math.floor(second % 60);
 
-    day = day < 10 ? '0'+ day : day;
-    hr = hr < 10 ? '0'+ hr : hr;
-    min = min < 10 ? '0'+ min : min;
-    sec = sec < 10 ? '0'+ sec : sec;
+    day = day < 10 ? '0' + day : day;
+    hr = hr < 10 ? '0' + hr : hr;
+    min = min < 10 ? '0' + min : min;
+    sec = sec < 10 ? '0' + sec : sec;
     return day + "天" + hr + "小时" + min + "分钟" + sec + "秒";
   },
 
@@ -547,7 +549,7 @@ Page({
       method: "post",
       success: function (res) {
         let arr = [],
-          kc, hot, cx, qc;
+          kc, hot, cx, qc,elements;
         let goods_sign = res.data.data[0].goods_sign;
         for (let i in goods_sign) {
           if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
@@ -570,8 +572,8 @@ Page({
         //     var save = e.target.dataset.save;
         //   }
         // }
-
-        let server = res.data.data[0].server, server_arr = [], id,price,stock,specifications,images,save,volume;
+        var element = that.getGuige(res.data.data[0].element);
+        let server = res.data.data[0].server, server_arr = [], id, price, stock, specifications, images, save, volume;
         for (let i in server) {
           server_arr.push(server[i]);
         }
@@ -592,10 +594,15 @@ Page({
         if (goods.goods_standard[0].id == undefined || goods.goods_standard[0].id == null) {
           id = goods.goods_standard;
         } else {
-            if(goods.goods_standard[0].stock == 0) {
-            for(let u = 0; u < goods.goods_standard.length; u ++) {
-              if(goods.goods_standard[u].stock == 0) {
+          for(let i = 0; i < goods.goods_standard.length; i ++) {
+            goods.goods_standard[i].element = that.getGuige(goods.goods_standard[i].element);
+          }
+          if (goods.goods_standard[0].stock == 0) {
+            for (let u = 0; u < goods.goods_standard.length; u++) {
+              if (goods.goods_standard[u].stock == 0) {
+                
                 id = goods.goods_standard[u + 1].id;
+                elements = goods.goods_standard[u + 1].element;
                 price = goods.goods_standard[u + 1].price;
                 stock = goods.goods_standard[u + 1].stock;
                 specifications = goods.goods_standard[u + 1].name;
@@ -606,15 +613,16 @@ Page({
               }
             }
           } else {
-              id = goods.goods_standard[0].id;
-              price = goods.goods_standard[0].price;
-              stock = goods.goods_standard[0].stock;
-              specifications = goods.goods_standard[0].name;
-              volume = goods.goods_standard[0].volume;
-              images = goods.goods_standard[0].images;
-              save = goods.goods_standard[0].save;
+            elements = goods.goods_standard[0].element;
+            id = goods.goods_standard[0].id;
+            price = goods.goods_standard[0].price;
+            stock = goods.goods_standard[0].stock;
+            specifications = goods.goods_standard[0].name;
+            volume = goods.goods_standard[0].volume;
+            images = goods.goods_standard[0].images;
+            save = goods.goods_standard[0].save;
           }
-          
+
         }
         that.setData({
           goods: goods,
@@ -630,13 +638,15 @@ Page({
           cx: cx,
           qc: qc,
           id: id,
-          evolution:res.data.data[0].evolution,
-          volume: volume
+          evolution: res.data.data[0].evolution,
+          volume: volume,
+          element: element,
+          elements: elements
           // select: goods.goods_standard[0].name
         });
         var article = res.data.data[0].goods_text;
         if (article) WxParse.wxParse('article', 'html', article, that, 5);
-        
+
         var article_text = res.data.data[0].text;
         if (article_text) WxParse.wxParse('article_text', 'html', article_text, that, 5);
         //  添加字段到等级数组
@@ -726,7 +736,18 @@ Page({
     //   complete: function () { }
     // });
   },
-
+  /**
+   * 提取规格
+   */
+  getGuige: function(str) {
+    var strs = new Array(), element = ""; //定义一数组
+        strs = str.split(","); //字符分割
+        for (let i = 0; i < strs.length; i++) {
+          element += strs[i];
+          if (i % 2 != 0 && i < strs.length - 1) { element += '=' }
+        }
+        return element;
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
