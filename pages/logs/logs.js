@@ -8,6 +8,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     logoUrl: '',
     scene: undefined,
+    goods:'',
+    title:''
   },
   bindGetUserInfo: function (e) {
     var _this = this;
@@ -61,9 +63,15 @@ Page({
                     }
                     wx.hideToast();
                     if (res) {
-                      wx.switchTab({
-                        url: '../diy/index/index' //装修后的首页
-                      })
+                      if (_this.data.goods) {
+                        wx.navigateTo({
+                          url: "../goods_detail/goods_detail?title=" + _this.data.title
+                        })
+                      } else {
+                        wx.switchTab({
+                          url: '../diy/index/index', // 新首页
+                        })
+                      }
                     }else {
                       console.log("kong")
                     }
@@ -123,6 +131,13 @@ Page({
 
   onLoad: function (options) {
     var _this = this;
+    if(options.goods){
+      var goods = decodeURIComponent(options.scene), title = decodeURIComponent(options.title);
+      _this.setData({
+        goods: goods,
+        title: title
+      })
+    }
     wx.getStorage({
       key: 'authorization',
       success: function (res) {
@@ -159,8 +174,6 @@ Page({
       _this.setData({
         scene:scene
       })
-      console.log(scene)
-      console.log('-------------options-----------')
     }
   
     // 查看是否授权
@@ -210,9 +223,15 @@ Page({
                             
                             wx.hideToast();
                             if (res) {
-                              wx.switchTab({
-                                url: '../diy/index/index', // 新首页
-                              })
+                              if(_this.data.goods){
+                                wx.navigateTo({
+                                  url: "../goods_detail/goods_detail?title=" + _this.data.title
+                                })
+                              } else{
+                                wx.switchTab({
+                                  url: '../diy/index/index', // 新首页
+                                })
+                              }
                             }else {
                               console.log("kong")
                             }
