@@ -21,7 +21,7 @@
         </view>
       </view>
       <view class="gui-s">
-        <view>包装规格：</view>
+        <view>包装规格</view>
         <view style="flex:1;"></view>
         <view style="color:#949494;">{{elements}}</view>
       </view>
@@ -129,13 +129,13 @@
   </view>
   <view class='ser-type' bindtap='showFlag' wx:if="{{goods.goods_standard!=0}}">
     <view>
-      <text>选择：</text>
-      <text class='type'>{{select}}</text>
+      <text>选择{{select}}</text>
+      <!-- <text class='type'>{{select}}</text> -->
     </view>
     <image class='more' src='http://zhihuichacang.com/u1508.png' mode="widthFix"></image>
   </view>
   <view class="gui">
-    <view>包装规格：</view>
+    <view>包装规格</view>
     <view style="flex:1;"></view>
     <view style="color:#949494;">{{element}}</view>
   </view>

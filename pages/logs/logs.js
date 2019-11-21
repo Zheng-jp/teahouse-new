@@ -9,7 +9,9 @@ Page({
     logoUrl: '',
     scene: undefined,
     goods:'',
-    title:''
+    title:'',
+    order_number:'',
+    order_status: ''
   },
   bindGetUserInfo: function (e) {
     var _this = this;
@@ -66,6 +68,10 @@ Page({
                       if (_this.data.goods) {
                         wx.navigateTo({
                           url: "../goods_detail/goods_detail?title=" + _this.data.title
+                        })
+                      } else if (_this.data.order_number) {
+                        wx.navigateTo({
+                          url: '../order_detail/order_detail?title=' + _this.data.order_number + "&status=" + _this.data.order_status,
                         })
                       } else {
                         wx.switchTab({
@@ -132,16 +138,17 @@ Page({
   onLoad: function (options) {
     var _this = this;
     if(options.goods){
-      var goods = decodeURIComponent(options.scene), title = decodeURIComponent(options.title);
+      var goods = decodeURIComponent(options.scene), title = decodeURIComponent(options.title), status = decodeURIComponent(options.status), order_number = decodeURIComponent(options.order_number);
       _this.setData({
         goods: goods,
-        title: title
+        title: title,
+        order_status:status,
+        order_number:order_number
       })
     }
     wx.getStorage({
       key: 'authorization',
       success: function (res) {
-        console.log(res)
         _this.setData({
           authorization: res.data
         })
@@ -227,7 +234,11 @@ Page({
                                 wx.navigateTo({
                                   url: "../goods_detail/goods_detail?title=" + _this.data.title
                                 })
-                              } else{
+                              } else if (_this.data.order_number) {
+                                wx.navigateTo({
+                                  url: '../order_detail/order_detail?title=' + _this.data.order_number + "&status=" + _this.data.order_status,
+                                })
+                              }  else{
                                 wx.switchTab({
                                   url: '../diy/index/index', // 新首页
                                 })
