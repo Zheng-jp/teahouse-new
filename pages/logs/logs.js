@@ -136,16 +136,23 @@ Page({
   },
 
   onLoad: function (options) {
-    var _this = this;
-    if(options.goods){
-      var goods = decodeURIComponent(options.scene), title = decodeURIComponent(options.title), status = decodeURIComponent(options.status), order_number = decodeURIComponent(options.order_number);
-      _this.setData({
-        goods: goods,
-        title: title,
-        order_status:status,
-        order_number:order_number
-      })
+    var _this = this, goods, title, status, order_number;
+    if(options.scene){
+      goods = decodeURIComponent(options.scene);
     }
+    if(options.goods){
+      title = decodeURIComponent(options.title);
+    }
+    if(options.status) {
+      status = decodeURIComponent(options.status);;
+      order_number = decodeURIComponent(options.order_number);
+    }
+    _this.setData({
+      goods: goods,
+      title: title,
+      order_status:status,
+      order_number:order_number
+    })
     wx.getStorage({
       key: 'authorization',
       success: function (res) {
