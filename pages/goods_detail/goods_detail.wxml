@@ -20,12 +20,19 @@
           </view>
         </view>
       </view>
+      <view class="gui-s">
+        <view>包装规格</view>
+        <view style="flex:1;"></view>
+        <view style="color:#949494;">{{elements}}</view>
+      </view>
       <view class='spec-wrap'>
         <view class='spec-box'>
           <view class='spec_title'>选择规格</view>
           <view class='spec_content_all'>
             <view class='spec_content' wx:for="{{goods.goods_standard}}">
-              <view class="spec_content_text {{item.id==id? 'on' : ''}}" bindtap="labelItemTap" data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}" data-value="{{item.name}}" data-save="{{item.save}}" wx:if="{{item.stock != 0}}">{{item.name}}</view>
+              <view class="spec_content_text {{item.id==id? 'on' : ''}}" bindtap="labelItemTap" data-gui="{{item.element}}" data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}" data-value="{{item.name}}" data-save="{{item.save}}" wx:if="{{item.stock != 0}}">
+                {{item.name}}
+              </view>
             </view>
           </view>
         </view>
@@ -108,7 +115,9 @@
     </view>
     <view class='other_info'>
       <view class='freight'>运费：{{goods.goods_franking==0?'免费':goods.goods_franking}}</view>
-      <view class='inventory' wx:if="{{goods.limit_goods == 0}}">库存{{goods.goods_repertory == '' || goods.goods_repertory == undefined ? goods.goods_standard[0].stock : goods.goods_repertory}}{{goods.unit}}</view>
+      <view class='inventory' wx:if="{{goods.limit_goods == 0}}">
+        库存{{goods.goods_repertory == '' || goods.goods_repertory == undefined ? goods.goods_standard[0].stock : goods.goods_repertory}}{{goods.unit}}
+      </view>
       <view class='sales'>销量{{goods.goods_volume}}{{goods.unit}}</view>
     </view>
     <view class='other_info'>
@@ -120,10 +129,15 @@
   </view>
   <view class='ser-type' bindtap='showFlag' wx:if="{{goods.goods_standard!=0}}">
     <view>
-      <text>选择：</text>
-      <text class='type'>{{select}}</text>
+      <text>选择{{select}}</text>
+      <!-- <text class='type'>{{select}}</text> -->
     </view>
     <image class='more' src='http://zhihuichacang.com/u1508.png' mode="widthFix"></image>
+  </view>
+  <view class="gui">
+    <view>包装规格</view>
+    <view style="flex:1;"></view>
+    <view style="color:#949494;">{{element}}</view>
   </view>
   <view class='tab-box'>
     <view class="nav bc_white">
@@ -153,7 +167,7 @@
             <view class='comment_right'>
               <view class='comment_name'>{{item.user_name}}</view>
               <view class='repay_content'>{{item.evaluate_content}}</view>
-              <view class='comment_img_all' >
+              <view class='comment_img_all'>
                 <view class='comment_imgs' wx:for="{{item.images}}" wx:key="{{index}}">
                   <image src='{{item.images}}'></image>
                 </view>
@@ -192,8 +206,11 @@
       </view>
     </view>
     <view class='trade'>
-      <view class='add-cart' bindtap="add_car">加入购物车</view>
-      <view class='buy' bindtap="showPopup">立即购买</view>
+      <view class='add-cart' bindtap="add_car" wx:if="{{goods.goods_repertory > 0}}">加入购物车</view>
+      <view class='buy' bindtap="showPopup" wx:if="{{goods.goods_repertory > 0 }}">立即购买</view>
+      <view style="text-align:center;color:#fff;background-color:rgb(174,174,174);" wx:if="{{goods.goods_repertory <= 0}}">
+        已售罄
+      </view>
     </view>
   </view>
 </view>

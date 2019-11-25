@@ -6,18 +6,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bill:[]
+    bill: [],
+    seach: false,
+    searchKey: "",
+    searchKey:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
+    var that = this;
     wx.request({
       url: app.globalData.tiltes + 'consume_index',
       data: {
-       member_id:app.globalData.member_id,
+        member_id: app.globalData.member_id,
       },
       method: "post",
       // header: {
@@ -26,22 +29,55 @@ Page({
       // },
 
       success: function (res) {
-       that.setData({
-        bill:res.data.data
-       })
-     
+        that.setData({
+          bill: res.data.data
+        })
+
       },
       fail: function () {
 
       },
       complete: function (res) {
-        
+
       }
 
     });
-    
-  },
 
+  },
+  isSeach: function () {
+    var seach = !this.data.seach;
+    this.setData({
+      seach: seach
+    })
+
+  },
+  //获取input文本
+  getSearchKey: function (e) {
+      this.setData({
+        searchKey: e.detail.value
+      })
+  },
+  // input失去焦点函数
+  routeToSearchResPage: function (e) {
+    let _searchKey = this.data.searchKey,that = this;
+    wx.request({
+      url: app.globalData.tiltes + "consume_search",
+      data: {
+        member_id: app.globalData.member_id,
+        title: _searchKey
+      },
+      method: "post",
+      success: function (res) {
+        if (res.data.status == 1) {
+          that.setData({
+            bill: res.data.data
+          })
+        }
+      },
+      fail: function () { },
+      complete: function () { }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

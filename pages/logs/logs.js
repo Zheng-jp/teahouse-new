@@ -8,6 +8,10 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     logoUrl: '',
     scene: undefined,
+    goods:'',
+    title:'',
+    order_number:'',
+    order_status: ''
   },
   bindGetUserInfo: function (e) {
     var _this = this;
@@ -61,9 +65,19 @@ Page({
                     }
                     wx.hideToast();
                     if (res) {
-                      wx.switchTab({
-                        url: '../diy/index/index' //装修后的首页
-                      })
+                      if (_this.data.goods) {
+                        wx.navigateTo({
+                          url: "../goods_detail/goods_detail?title=" + _this.data.title
+                        })
+                      } else if (_this.data.order_number) {
+                        wx.navigateTo({
+                          url: '../order_detail/order_detail?title=' + _this.data.order_number + "&status=" + _this.data.order_status,
+                        })
+                      } else {
+                        wx.switchTab({
+                          url: '../diy/index/index', // 新首页
+                        })
+                      }
                     }else {
                       console.log("kong")
                     }
@@ -122,11 +136,26 @@ Page({
   },
 
   onLoad: function (options) {
-    var _this = this;
+    var _this = this, goods, title, status, order_number;
+    if(options.scene){
+      goods = decodeURIComponent(options.scene);
+    }
+    if(options.goods){
+      title = decodeURIComponent(options.title);
+    }
+    if(options.status) {
+      status = decodeURIComponent(options.status);;
+      order_number = decodeURIComponent(options.order_number);
+    }
+    _this.setData({
+      goods: goods,
+      title: title,
+      order_status:status,
+      order_number:order_number
+    })
     wx.getStorage({
       key: 'authorization',
       success: function (res) {
-        console.log(res)
         _this.setData({
           authorization: res.data
         })
@@ -159,8 +188,6 @@ Page({
       _this.setData({
         scene:scene
       })
-      console.log(scene)
-      console.log('-------------options-----------')
     }
   
     // 查看是否授权
@@ -210,9 +237,19 @@ Page({
                             
                             wx.hideToast();
                             if (res) {
-                              wx.switchTab({
-                                url: '../diy/index/index', // 新首页
-                              })
+                              if(_this.data.goods){
+                                wx.navigateTo({
+                                  url: "../goods_detail/goods_detail?title=" + _this.data.title
+                                })
+                              } else if (_this.data.order_number) {
+                                wx.navigateTo({
+                                  url: '../order_detail/order_detail?title=' + _this.data.order_number + "&status=" + _this.data.order_status,
+                                })
+                              }  else{
+                                wx.switchTab({
+                                  url: '../diy/index/index', // 新首页
+                                })
+                              }
                             }else {
                               console.log("kong")
                             }
