@@ -380,8 +380,16 @@ Page({
   },
   // 获取设备历史数据
   getHistoryData: function() {
+    let sensorIdStr = '';
+    let sensorList = this.data.queryDevMoniData.sensorList;
+    for(var i = 0; i < 4; i++){
+      sensorIdStr += sensorList[i].sensorId;
+      if(i != 3){
+        sensorIdStr += ',';
+      }
+    }
     const params = {
-      "sensorId": this.data.queryDevMoniData.sensorList[0].sensorId,
+      "sensorId": sensorIdStr,
       "startDate": this.data.sdate,
       "endDate": this.data.edate,
       "userApiKey": this.data.userLogin.userApikey,
