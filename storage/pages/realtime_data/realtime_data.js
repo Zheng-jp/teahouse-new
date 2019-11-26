@@ -79,6 +79,7 @@ function setOption(chart, _this, yArr) {
           "flagCode": _this.data.userLogin.flagCode
         },
         success: function(res) {
+          // console.log(444, res)
           var res = res.data.deviceList[0].sensorList;
           var data0 = option.series[0].data;
           data0.shift();
@@ -212,7 +213,6 @@ function userLogin(_this) {
       "password": "zhcc63268696"
     },
     success(res) {
-      // console.log(res.data);
       _this.setData({
         userLogin: res.data
       })
@@ -258,12 +258,13 @@ function queryDevMoniData(userData, _this) {
 // 给后台发送温湿度数据
 function setDevMoniData(temper, humidity) {
   wx.request({
-    url: app.globalData.tiltes + 'get_wenshidu',
+    url: app.globalData.tiltes + 'get_humiture',
     method: 'POST',
     data: {
       "uniacid": app.globalData.uniacid,
-      "wendu": temper,
-      "shidu": humidity
+      "instrument": '8606S86YL8295C5Y',
+      "temperature": temper,
+      "humidity": humidity,
     },
     success(res) {
       // console.log(res);
@@ -339,11 +340,11 @@ Page({
     beijingTime: '',
     userLogin: {}, //设备用户登录信息
     queryDevMoniData: {}, //设备数据
-    inTemp: 26.22,
-    outTemp: 26.22,
-    inHumi: 79.33,
-    outHumi: 79.33,
-    timer: '', //因为我要实时刷新，所以设置了个定时器
+    inTemp: 0.00,
+    outTemp: 0.00,
+    inHumi: 0.00,
+    outHumi: 0.00,
+    timer: '', //因为要实时刷新，所以设置了个定时器
     timer2: '',
     yArr: [], //init 温度
     yArr2: [], // init湿度
@@ -358,7 +359,7 @@ Page({
 
   // 查询用户选定日期的历史数据
   bindCheckHistory: function() {
-    this.getHistoryData();
+    this.getHistoryData(this.data.sdate, this.data.edata);
   },
   // 查询7天、14天历史数据
   bindSelectHist: function(e) {
@@ -368,49 +369,48 @@ Page({
     })
     if (curr == 0) {
       // 七天数据
-      const end = new Date();
-      const start = new Date();
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-
-      // console.log(start, end);
+      const end = app.formatDate(new Date() / 1000);
+      const start = app.formatDate(new Date() / 1000 - 604800);
+      this.getHistoryData(start, end);
     } else if (curr == 1) {
       // 十四天数据
-      console.log(app.formatDate(new Date() / 1000 - 1209600));
+      const end = app.formatDate(new Date() / 1000);
+      const start = app.formatDate(new Date() / 1000 - 1209600);
+      this.getHistoryData(start, end);
     }
   },
   // 获取设备历史数据
-  getHistoryData: function() {
-    let sensorIdStr = '';
-    let sensorList = this.data.queryDevMoniData.sensorList;
-    for(var i = 0; i < 4; i++){
-      sensorIdStr += sensorList[i].sensorId;
-      if(i != 3){
-        sensorIdStr += ',';
-      }
-    }
-    const params = {
-      "sensorId": sensorIdStr,
-      "startDate": this.data.sdate,
-      "endDate": this.data.edate,
-      "userApiKey": this.data.userLogin.userApikey,
-      "companyKey": this.data.userLogin.companyApiKey,
-      "flagCode": this.data.userLogin.flagCode
-    }
+  getHistoryData: function(stime, etime) {
+    console.log(stime, etime)
+    // let sensorList = this.data.queryDevMoniData.sensorList;
+    // const params = {
+    //   "sensorId": sensorList[0].sensorId,
+    //   "startDate": this.data.sdate,
+    //   "endDate": this.data.edate,
+    //   "userApiKey": this.data.userLogin.userApikey,
+    //   "companyKey": this.data.userLogin.companyApiKey,
+    //   "flagCode": this.data.userLogin.flagCode
+    // }
     wx.request({
-      url: 'https://api.dtuip.com/qy/device/querySenHistoryDt.html',
+      url: app.globalData.tiltes + 'get_humiture_list',
       method: 'POST',
-      data: params,
+      data: {
+        "stime": stime,
+        "etime": etime,
+        "uniacid": app.globalData.uniacid
+      },
       success(res) {
-        // console.log(res.data);
-        let data = res.data;
-        if (data.flag != '00') {
-          wx.showToast({
-            icon: 'none',
-            title: data.msg
-          })
-          return false;
-        }
-        
+        console.log(111, res);
+        // let data = res.data;
+        // if (data.flag != '00') {
+        //   wx.showToast({
+        //     icon: 'none',
+        //     title: data.msg
+        //   })
+        //   return false;
+        // }else{
+
+        // }
       }
     })
   },
@@ -430,11 +430,11 @@ Page({
     } else {
       clearInterval(this.data.timer);
       clearInterval(this.data.timer2);
-      if (current == 1) {
-        this.getHistoryData();
-      } else if (current == 2) {
+      // if (current == 1) {
+      //   this.getHistoryData();
+      // } else if (current == 2) {
 
-      }
+      // }
     }
   },
 
