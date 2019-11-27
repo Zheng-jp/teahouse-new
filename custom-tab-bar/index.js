@@ -86,7 +86,7 @@ Component({
   },
   methods: {
     switchTab(e) {
-      console.log(app.globalData.islogin)
+      // console.log(app.globalData.islogin)
       if (app.globalData.islogin) {
         const data = e.currentTarget.dataset;
         const url = data.path;
