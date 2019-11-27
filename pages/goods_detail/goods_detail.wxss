@@ -634,7 +634,7 @@ overflow:hidden;
 }
 .gui{
   display:flex;
-  padding:16rpx 10rpx;
+  padding:16rpx;
   margin: 10rpx 0;
   background-color:#fff;
   font-size:26rpx;
