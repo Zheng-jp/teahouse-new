@@ -392,7 +392,7 @@ Page({
           })
         }else{
           _this.setData({
-            storageDataArr: []
+            storageDataArr: res.data.data
           })
         }
       },

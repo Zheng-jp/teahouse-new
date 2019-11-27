@@ -79,13 +79,14 @@ function setOption(chart, _this, yArr) {
           "flagCode": _this.data.userLogin.flagCode
         },
         success: function(res) {
-          // console.log(444, res)
-          var res = res.data.deviceList[0].sensorList;
-          var data0 = option.series[0].data;
-          data0.shift();
-          data0.push(+res[0].value);
-          // 发送温湿度数据给后台
-          setDevMoniData(res[0].value, res[1].value);
+          if (res.data.flag == '00') {
+            var res = res.data.deviceList[0].sensorList;
+            var data0 = option.series[0].data;
+            data0.shift();
+            data0.push(+res[0].value);
+            // 发送温湿度数据给后台
+            setDevMoniData(res[0].value, res[1].value);
+          }
         }
       })
       option.xAxis[0].data.shift();
@@ -156,6 +157,7 @@ function setOption2(chart, _this, yArr) {
       data: yArr,
     }]
   };
+
   _this.setData({
     showText: true,
     timer2: setInterval(function() {
@@ -172,10 +174,12 @@ function setOption2(chart, _this, yArr) {
           "flagCode": _this.data.userLogin.flagCode
         },
         success: function(res) {
-          var res = res.data.deviceList[0].sensorList;
-          var data0 = option.series[0].data;
-          data0.shift();
-          data0.push(+res[1].value);
+          if (res.data.flag == '00') {
+            var res = res.data.deviceList[0].sensorList;
+            var data0 = option.series[0].data;
+            data0.shift();
+            data0.push(+res[1].value);
+          }
         }
       })
       option.xAxis[0].data.shift();
@@ -184,6 +188,24 @@ function setOption2(chart, _this, yArr) {
       chart.setOption(option);
     }, 2100)
   })
+}
+
+// 历史数据温度  第二个swiper-item
+function setOption3(chart, _this, yArr) {
+  let option = {
+    xAxis: {
+      type: 'category',
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [{
+      data: [820, 932, 901, 934, 1290, 1330, 1320],
+      type: 'line'
+    }]
+  };
+  chart.setOption(option);
 }
 
 // 获取当前时间
@@ -348,6 +370,8 @@ Page({
     timer2: '',
     yArr: [], //init 温度
     yArr2: [], // init湿度
+    yArr3: [], // 历史数据温度
+    yArr4: [], // 历史数据湿度
     sdate: '', //开始日期
     edate: '', //结束日期
     selectHistKey: 0,
@@ -359,7 +383,23 @@ Page({
 
   // 查询用户选定日期的历史数据
   bindCheckHistory: function() {
-    this.getHistoryData(this.data.sdate, this.data.edata);
+    const etime = new Date(this.data.edate).getTime();
+    const stime = new Date(this.data.sdate).getTime();
+    if (etime - stime > 1209600000) {
+      wx.showToast({
+        title: '查询区间不能超过14天',
+        icon: 'none',
+        duration: 2000
+      })
+    } else if (etime - stime <= 0) {
+      wx.showToast({
+        title: '查询区间错误',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      this.getHistoryData(this.data.sdate, this.data.edate);
+    }
   },
   // 查询7天、14天历史数据
   bindSelectHist: function(e) {
@@ -381,7 +421,6 @@ Page({
   },
   // 获取设备历史数据
   getHistoryData: function(stime, etime) {
-    console.log(stime, etime)
     // let sensorList = this.data.queryDevMoniData.sensorList;
     // const params = {
     //   "sensorId": sensorList[0].sensorId,
@@ -391,6 +430,7 @@ Page({
     //   "companyKey": this.data.userLogin.companyApiKey,
     //   "flagCode": this.data.userLogin.flagCode
     // }
+    let _this = this;
     wx.request({
       url: app.globalData.tiltes + 'get_humiture_list',
       method: 'POST',
@@ -400,17 +440,18 @@ Page({
         "uniacid": app.globalData.uniacid
       },
       success(res) {
-        console.log(111, res);
-        // let data = res.data;
-        // if (data.flag != '00') {
-        //   wx.showToast({
-        //     icon: 'none',
-        //     title: data.msg
-        //   })
-        //   return false;
-        // }else{
-
-        // }
+        let data = res.data;
+        if (data.status != '1') {
+          wx.showToast({
+            icon: 'none',
+            title: data.info
+          })
+          return false;
+        } else {
+          _this.data.yArr3 = data.data.temperature;
+          _this.data.yArr4 = data.data.humidity;
+          _this.initThree();
+        }
       }
     })
   },
@@ -647,6 +688,7 @@ Page({
       return chart;
     });
   },
+
   getOneOption: function() { //这一步其实就要给图表加上数据
     var _this = this;
     wx.request({
@@ -667,21 +709,4 @@ Page({
       }
     })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {}
 })
