@@ -10,6 +10,7 @@ Page({
     scene: undefined,
     goods:'',
     title:'',
+    status:'',
     order_number:'',
     order_status: ''
   },
@@ -65,7 +66,7 @@ Page({
                     }
                     wx.hideToast();
                     if (res) {
-                      if (_this.data.goods) {
+                      if (_this.data.title) {
                         wx.navigateTo({
                           url: "../goods_detail/goods_detail?title=" + _this.data.title
                         })
@@ -237,7 +238,7 @@ Page({
                             
                             wx.hideToast();
                             if (res) {
-                              if(_this.data.goods){
+                              if(_this.data.title){
                                 wx.navigateTo({
                                   url: "../goods_detail/goods_detail?title=" + _this.data.title
                                 })
