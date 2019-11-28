@@ -190,19 +190,84 @@ function setOption2(chart, _this, yArr) {
   })
 }
 
+
 // 历史数据温度  第二个swiper-item
-function setOption3(chart, _this, yArr) {
-  let option = {
+function setOption3(chart, _this, date, yArr) {
+  const option = {
+    title: {
+      left: 'center',
+      text: '历史温度℃',
+    },
     xAxis: {
       type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      boundaryGap: false,
+      data: date
     },
     yAxis: {
-      type: 'value'
+      type: 'value',
+      position: 'right',
+      boundaryGap: [0, '100%']
     },
+    dataZoom: [{
+      start: 0,
+      end: 10,
+    }],
     series: [{
-      data: [820, 932, 901, 934, 1290, 1330, 1320],
-      type: 'line'
+      type: 'line',
+      smooth: true,
+      symbol: 'none',
+      sampling: 'average',
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+          offset: 0,
+          color: 'rgb(255, 158, 68)'
+        }, {
+          offset: 1,
+          color: 'rgb(255, 70, 131)'
+        }])
+      },
+      data: yArr
+    }]
+  };
+  chart.setOption(option);
+}
+// 历史数据湿度
+function setOption4(chart, _this, date, yArr) {
+  console.log('setOption4')
+  const option = {
+    title: {
+      left: 'center',
+      text: '历史湿度%',
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: date
+    },
+    yAxis: {
+      type: 'value',
+      position: 'right',
+      boundaryGap: [0, '100%']
+    },
+    dataZoom: [{
+      start: 0,
+      end: 10,
+    }],
+    series: [{
+      type: 'line',
+      smooth: true,
+      symbol: 'none',
+      sampling: 'average',
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+          offset: 0,
+          color: 'rgb(255, 158, 68)'
+        }, {
+          offset: 1,
+          color: 'rgb(255, 70, 131)'
+        }])
+      },
+      data: yArr
     }]
   };
   chart.setOption(option);
@@ -343,10 +408,6 @@ for (let i = 0; i < 60; i++) {
 }
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     ecOne: {
       lazyLoad: true
@@ -354,10 +415,8 @@ Page({
     ecTwo: {
       lazyLoad: true
     },
-    ecThree: {
-      // 查看历史数据
-      lazyLoad: true
-    },
+    ecThree: {},
+    ecFour: {},
     currentTab: 0,
     beijingTime: '',
     userLogin: {}, //设备用户登录信息
@@ -421,15 +480,7 @@ Page({
   },
   // 获取设备历史数据
   getHistoryData: function(stime, etime) {
-    // let sensorList = this.data.queryDevMoniData.sensorList;
-    // const params = {
-    //   "sensorId": sensorList[0].sensorId,
-    //   "startDate": this.data.sdate,
-    //   "endDate": this.data.edate,
-    //   "userApiKey": this.data.userLogin.userApikey,
-    //   "companyKey": this.data.userLogin.companyApiKey,
-    //   "flagCode": this.data.userLogin.flagCode
-    // }
+    console.log(stime, etime)
     let _this = this;
     wx.request({
       url: app.globalData.tiltes + 'get_humiture_list',
@@ -441,6 +492,7 @@ Page({
       },
       success(res) {
         let data = res.data;
+        console.log(111, data)
         if (data.status != '1') {
           wx.showToast({
             icon: 'none',
@@ -448,9 +500,10 @@ Page({
           })
           return false;
         } else {
-          _this.data.yArr3 = data.data.temperature;
-          _this.data.yArr4 = data.data.humidity;
-          _this.initThree();
+          _this.data.yArr3 = data.data[1];
+          _this.data.yArr4 = data.data[2];
+          _this.initThree(data.data[0], data.data[1]);
+          _this.initFour(data.data[0], data.data[2]);
         }
       }
     })
@@ -479,13 +532,10 @@ Page({
     }
   },
 
-  // swiperTab: function(e){
-  //   // 滑动切换选项卡
-  //   var current = e.detail.current;
-  //   this.setData({
-  //     currentTab: current
-  //   })
-  // },
+  bindswipermove: function(e){
+    // 滑动切换选项卡
+    return;
+  },
 
   //获取时间日期
   sbindMultiPickerChange: function(e) {
@@ -625,6 +675,7 @@ Page({
     this.oneComponent = this.selectComponent('#mychart-one');
     this.twoComponent = this.selectComponent('#mychart-two');
     this.threeComponent = this.selectComponent('#mychart-three');
+    this.fourComponent = this.selectComponent('#mychart-four');
   },
 
   /**
@@ -675,15 +726,29 @@ Page({
       return chart;
     });
   },
-  // 查看历史数据
-  initThree: function() { //初始化第3个图表
+  // 查看历史数据  温度
+  initThree: function(date, data) { //初始化第3个图表
     var _this = this;
     this.threeComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
         width: width,
         height: height
       });
-      setOption3(chart, _this, _this.data.yArr3);
+      setOption3(chart, _this, date, data);
+      this.chart = chart;
+      return chart;
+    });
+  },
+
+  initFour: function (date, data) { //初始化第4个图表
+    var _this = this;
+    this.fourComponent.init((canvas, width, height) => {
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+
+      setOption4(chart, _this, date, data);
       this.chart = chart;
       return chart;
     });
