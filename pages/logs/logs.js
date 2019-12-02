@@ -12,7 +12,8 @@ Page({
     title:'',
     status:'',
     order_number:'',
-    order_status: ''
+    order_status: '',
+    code: ''
   },
   bindGetUserInfo: function (e) {
     var _this = this;
@@ -73,6 +74,10 @@ Page({
                       } else if (_this.data.order_number) {
                         wx.navigateTo({
                           url: '../order_detail/order_detail?title=' + _this.data.order_number + "&status=" + _this.data.order_status,
+                        })
+                      } else if (_this.data.code){
+                        wx.navigateTo({
+                          url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code
                         })
                       } else {
                         wx.switchTab({
@@ -137,12 +142,17 @@ Page({
   },
 
   onLoad: function (options) {
-    var _this = this, goods, title, status, order_number;
+    var _this = this, goods, title, status, order_number, code;
+    //新会员积分
     if(options.scene){
       goods = decodeURIComponent(options.scene);
     }
     if(options.goods){
       title = decodeURIComponent(options.title);
+    }
+    //防伪溯源
+    if(options.code){
+      title = decodeURIComponent(options.code);
     }
     if(options.status) {
       status = decodeURIComponent(options.status);;
@@ -152,7 +162,8 @@ Page({
       goods: goods,
       title: title,
       order_status:status,
-      order_number:order_number
+      order_number:order_number,
+      code: code
     })
     wx.getStorage({
       key: 'authorization',
@@ -246,7 +257,11 @@ Page({
                                 wx.navigateTo({
                                   url: '../order_detail/order_detail?title=' + _this.data.order_number + "&status=" + _this.data.order_status,
                                 })
-                              }  else{
+                              } else if (_this.data.code){
+                                wx.navigateTo({
+                                  url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code
+                                })
+                              } else{
                                 wx.switchTab({
                                   url: '../diy/index/index', // 新首页
                                 })
