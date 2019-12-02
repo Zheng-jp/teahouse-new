@@ -79,13 +79,14 @@ function setOption(chart, _this, yArr) {
           "flagCode": _this.data.userLogin.flagCode
         },
         success: function(res) {
-          // console.log(444, res)
-          var res = res.data.deviceList[0].sensorList;
-          var data0 = option.series[0].data;
-          data0.shift();
-          data0.push(+res[0].value);
-          // 发送温湿度数据给后台
-          setDevMoniData(res[0].value, res[1].value);
+          if (res.data.flag == '00') {
+            var res = res.data.deviceList[0].sensorList;
+            var data0 = option.series[0].data;
+            data0.shift();
+            data0.push(+res[0].value);
+            // 发送温湿度数据给后台
+            setDevMoniData(res[0].value, res[1].value);
+          }
         }
       })
       option.xAxis[0].data.shift();
@@ -156,6 +157,7 @@ function setOption2(chart, _this, yArr) {
       data: yArr,
     }]
   };
+
   _this.setData({
     showText: true,
     timer2: setInterval(function() {
@@ -172,10 +174,12 @@ function setOption2(chart, _this, yArr) {
           "flagCode": _this.data.userLogin.flagCode
         },
         success: function(res) {
-          var res = res.data.deviceList[0].sensorList;
-          var data0 = option.series[0].data;
-          data0.shift();
-          data0.push(+res[1].value);
+          if (res.data.flag == '00') {
+            var res = res.data.deviceList[0].sensorList;
+            var data0 = option.series[0].data;
+            data0.shift();
+            data0.push(+res[1].value);
+          }
         }
       })
       option.xAxis[0].data.shift();
@@ -184,6 +188,89 @@ function setOption2(chart, _this, yArr) {
       chart.setOption(option);
     }, 2100)
   })
+}
+
+
+// 历史数据温度  第二个swiper-item
+function setOption3(chart, _this, date, yArr) {
+  const option = {
+    title: {
+      left: 'center',
+      text: '历史温度℃',
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: date
+    },
+    yAxis: {
+      type: 'value',
+      position: 'right',
+      boundaryGap: [0, '100%']
+    },
+    dataZoom: [{
+      start: 0,
+      end: 10,
+    }],
+    series: [{
+      type: 'line',
+      smooth: true,
+      symbol: 'none',
+      sampling: 'average',
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+          offset: 0,
+          color: 'rgb(255, 158, 68)'
+        }, {
+          offset: 1,
+          color: 'rgb(255, 70, 131)'
+        }])
+      },
+      data: yArr
+    }]
+  };
+  chart.setOption(option);
+}
+// 历史数据湿度
+function setOption4(chart, _this, date, yArr) {
+  console.log('setOption4')
+  const option = {
+    title: {
+      left: 'center',
+      text: '历史湿度%',
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: date
+    },
+    yAxis: {
+      type: 'value',
+      position: 'right',
+      boundaryGap: [0, '100%']
+    },
+    dataZoom: [{
+      start: 0,
+      end: 10,
+    }],
+    series: [{
+      type: 'line',
+      smooth: true,
+      symbol: 'none',
+      sampling: 'average',
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+          offset: 0,
+          color: 'rgb(255, 158, 68)'
+        }, {
+          offset: 1,
+          color: 'rgb(255, 70, 131)'
+        }])
+      },
+      data: yArr
+    }]
+  };
+  chart.setOption(option);
 }
 
 // 获取当前时间
@@ -321,10 +408,6 @@ for (let i = 0; i < 60; i++) {
 }
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     ecOne: {
       lazyLoad: true
@@ -332,10 +415,8 @@ Page({
     ecTwo: {
       lazyLoad: true
     },
-    ecThree: {
-      // 查看历史数据
-      lazyLoad: true
-    },
+    ecThree: {},
+    ecFour: {},
     currentTab: 0,
     beijingTime: '',
     userLogin: {}, //设备用户登录信息
@@ -348,6 +429,8 @@ Page({
     timer2: '',
     yArr: [], //init 温度
     yArr2: [], // init湿度
+    yArr3: [], // 历史数据温度
+    yArr4: [], // 历史数据湿度
     sdate: '', //开始日期
     edate: '', //结束日期
     selectHistKey: 0,
@@ -359,7 +442,23 @@ Page({
 
   // 查询用户选定日期的历史数据
   bindCheckHistory: function() {
-    this.getHistoryData(this.data.sdate, this.data.edata);
+    const etime = new Date(this.data.edate).getTime();
+    const stime = new Date(this.data.sdate).getTime();
+    if (etime - stime > 1209600000) {
+      wx.showToast({
+        title: '查询区间不能超过14天',
+        icon: 'none',
+        duration: 2000
+      })
+    } else if (etime - stime <= 0) {
+      wx.showToast({
+        title: '查询区间错误',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      this.getHistoryData(this.data.sdate, this.data.edate);
+    }
   },
   // 查询7天、14天历史数据
   bindSelectHist: function(e) {
@@ -382,15 +481,7 @@ Page({
   // 获取设备历史数据
   getHistoryData: function(stime, etime) {
     console.log(stime, etime)
-    // let sensorList = this.data.queryDevMoniData.sensorList;
-    // const params = {
-    //   "sensorId": sensorList[0].sensorId,
-    //   "startDate": this.data.sdate,
-    //   "endDate": this.data.edate,
-    //   "userApiKey": this.data.userLogin.userApikey,
-    //   "companyKey": this.data.userLogin.companyApiKey,
-    //   "flagCode": this.data.userLogin.flagCode
-    // }
+    let _this = this;
     wx.request({
       url: app.globalData.tiltes + 'get_humiture_list',
       method: 'POST',
@@ -400,17 +491,20 @@ Page({
         "uniacid": app.globalData.uniacid
       },
       success(res) {
-        console.log(111, res);
-        // let data = res.data;
-        // if (data.flag != '00') {
-        //   wx.showToast({
-        //     icon: 'none',
-        //     title: data.msg
-        //   })
-        //   return false;
-        // }else{
-
-        // }
+        let data = res.data;
+        console.log(111, data)
+        if (data.status != '1') {
+          wx.showToast({
+            icon: 'none',
+            title: data.info
+          })
+          return false;
+        } else {
+          _this.data.yArr3 = data.data[1];
+          _this.data.yArr4 = data.data[2];
+          _this.initThree(data.data[0], data.data[1]);
+          _this.initFour(data.data[0], data.data[2]);
+        }
       }
     })
   },
@@ -438,13 +532,10 @@ Page({
     }
   },
 
-  // swiperTab: function(e){
-  //   // 滑动切换选项卡
-  //   var current = e.detail.current;
-  //   this.setData({
-  //     currentTab: current
-  //   })
-  // },
+  bindswipermove: function(e){
+    // 滑动切换选项卡
+    return;
+  },
 
   //获取时间日期
   sbindMultiPickerChange: function(e) {
@@ -584,6 +675,7 @@ Page({
     this.oneComponent = this.selectComponent('#mychart-one');
     this.twoComponent = this.selectComponent('#mychart-two');
     this.threeComponent = this.selectComponent('#mychart-three');
+    this.fourComponent = this.selectComponent('#mychart-four');
   },
 
   /**
@@ -634,19 +726,34 @@ Page({
       return chart;
     });
   },
-  // 查看历史数据
-  initThree: function() { //初始化第3个图表
+  // 查看历史数据  温度
+  initThree: function(date, data) { //初始化第3个图表
     var _this = this;
     this.threeComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
         width: width,
         height: height
       });
-      setOption3(chart, _this, _this.data.yArr3);
+      setOption3(chart, _this, date, data);
       this.chart = chart;
       return chart;
     });
   },
+
+  initFour: function (date, data) { //初始化第4个图表
+    var _this = this;
+    this.fourComponent.init((canvas, width, height) => {
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+
+      setOption4(chart, _this, date, data);
+      this.chart = chart;
+      return chart;
+    });
+  },
+
   getOneOption: function() { //这一步其实就要给图表加上数据
     var _this = this;
     wx.request({
@@ -667,21 +774,4 @@ Page({
       }
     })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {}
 })

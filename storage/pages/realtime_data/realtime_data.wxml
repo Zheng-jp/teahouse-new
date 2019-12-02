@@ -11,7 +11,7 @@
     </view>
 </view>
 <swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
-    <swiper-item class="overflowYauto">
+    <swiper-item class="overflowYauto" catchtouchmove="bindswipermove">
         <view>
             <view class="humiture-data">
                 <view>
@@ -53,7 +53,7 @@
             </view>
         </view>
     </swiper-item>
-    <swiper-item class="overflowYauto">
+    <swiper-item class="overflowYauto" catchtouchmove="bindswipermove">
         <view>
             <view class="history-nav">
                 <view class="history-date">
@@ -71,25 +71,25 @@
                 </view>
                 <view class="history-btns">
                     <view class="on" bind:tap="bindCheckHistory">查询</view>
-                    <view class="{{selectHistKey==0?'on':''}}" bind:tap="bindSelectHist" data-current="0">
+                    <view class="{{selectHistKey==0&&'on'}}" bind:tap="bindSelectHist" data-current="0">
                         近7天
                     </view>
-                    <view class="{{selectHistKey==1?'on':''}}" bind:tap="bindSelectHist" data-current="1">
+                    <view class="{{selectHistKey==1&&'on'}}" bind:tap="bindSelectHist" data-current="1">
                         近14天
                     </view>
                 </view>
             </view>
             <view style="flex: 1; display: flex; flex-direction: column; overflow: auto;">
-                <view class="temp-echarts">
+                <view class="temp-echarts" style="height: 500rpx;">
                     <ec-canvas id="mychart-three" canvas-id="mychart-multi-three" ec="{{ ecThree }}"></ec-canvas>
                 </view>
-                <view class="temp-echarts">
+                <view class="temp-echarts" style="height: 500rpx;">
                     <ec-canvas id="mychart-four" canvas-id="mychart-multi-four" ec="{{ ecFour }}"></ec-canvas>
                 </view>
             </view>
         </view>
     </swiper-item>
-    <swiper-item class="overflowYauto">
+    <swiper-item class="overflowYauto" catchtouchmove="bindswipermove">
         <view>对比数据</view>
     </swiper-item>
 </swiper>
