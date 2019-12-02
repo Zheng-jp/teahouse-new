@@ -86,7 +86,7 @@ Page({
                 duration: 2500
               })
             } else {
-
+              console.log(res.result.split('/'))
               wx.navigateTo({
                 url: '../../../sweep/pages/sweep_detail/sweep_detail',
                 success: function (res) { },

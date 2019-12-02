@@ -29,7 +29,7 @@
         <view class='spec-box'>
           <view class='spec_title'>选择规格</view>
           <view class='spec_content_all'>
-            <view class='spec_content' wx:for="{{goods.goods_standard}}">
+            <view class='spec_content' wx:for="{{goods.goods_standard}}" wx:key="index">
               <view class="spec_content_text {{item.id==id? 'on' : ''}}" bindtap="labelItemTap" data-gui="{{item.element}}" data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}" data-value="{{item.name}}" data-save="{{item.save}}" wx:if="{{item.stock != 0}}">
                 {{item.name}}
               </view>
@@ -41,7 +41,7 @@
           <view class='select_calculator_num'>
             <view class="select-minus" bindtap="bindMinus">-</view>
             <view class='select-calculator_val'>
-              <input type='number' value='{{num}}'></input>
+              <input type='number' value='{{num}}' bindinput='bindManual' bindblur='shift_out'></input>
             </view>
             <view class="select-increase" bindtap="bindPlus">+</view>
           </view>

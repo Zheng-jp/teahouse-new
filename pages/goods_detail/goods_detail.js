@@ -303,11 +303,15 @@ Page({
   /* 点击加号 */
   bindPlus: function (e) {
     let that = this, stock;
-    console.log(that.data.goods.goods_standard)
-    // stock = that.data.goods.goods_standard
+    stock = that.data.stock;
     var num = this.data.num;
-    // 不作过多考虑自增1  
-    num++;
+    if(num >= stock) {
+        
+      num = stock;
+    } else {
+      // 不作过多考虑自增1  
+      num++;
+    }
     // 只有大于一件的时候，才能normal状态，否则disable状态  
     var minusStatus = num < 1 ? 'disabled' : 'normal';
     // 将数值与状态写回  
@@ -320,7 +324,15 @@ Page({
   bindManual: function (e) {
     var num = e.detail.value;
     // 将数值与状态写回  
-
+    this.setData({
+      num: num
+    });
+  },
+  shift_out: function(){
+    var num = this.data.num, stock = this.data.stock;
+    if(Number(num) >= Number(stock)) {
+      num = stock;
+    }
     this.setData({
       num: num
     });

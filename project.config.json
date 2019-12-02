@@ -47,6 +47,10 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 6,
 			"list": [
@@ -93,8 +97,8 @@
 				},
 				{
 					"id": 6,
-					"name": "sweep/pages/nfc/index",
-					"pathName": "sweep/pages/nfc/index",
+					"name": "sweep/pages/sweep_detail/sweep_detail",
+					"pathName": "sweep/pages/sweep_detail/sweep_detail",
 					"query": "",
 					"scene": null
 				}
