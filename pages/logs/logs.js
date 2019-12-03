@@ -32,7 +32,7 @@ Page({
               success: function (res2) {//获取userinfo成功
                 var appid = wx.getAccountInfoSync();
                 var encryptedData = encodeURIComponent(res2.encryptedData);//一定要把加密串转成URI编码
-                var scene = _this.data.scene;
+                var newMember = _this.data.newMember;
                 var iv = res2.iv;
                 //请求自己的服务器
                 wx.showToast({
@@ -62,8 +62,8 @@ Page({
                     app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;
                     app.globalData.member_id = res.data.data.member_id;
                     app.globalData.uniacid = res.data.data.uniacid;
-                    if(scene != undefined && res.data.status == 1) {
-                      _this.pointReward(scene,res.data.data.member_id,res.data.data.uniacid);
+                    if(newMember != undefined && res.data.status == 1) {
+                      _this.pointReward(newMember,res.data.data.member_id,res.data.data.uniacid);
                     }
                     wx.hideToast();
                     if (res) {
@@ -142,24 +142,26 @@ Page({
   },
 
   onLoad: function (options) {
-    var _this = this, goods, title, status, order_number, code;
-    //新会员积分
+    var _this = this, newMember, title, status, order_number, code, scene;
+    //新会员积分&防伪溯源
     if(options.scene){
-      goods = decodeURIComponent(options.scene);
+      scene = decodeURIComponent(options.scene).split("=");
+      if(scene[0] == "code") {
+        code = scene[1];
+      } else if(scene[0] == "member_id") {
+        newMember = scene[1];
+      }
     }
     if(options.goods){
       title = decodeURIComponent(options.title);
     }
-    //防伪溯源
-    if(options.code){
-      title = decodeURIComponent(options.code);
-    }
+  
     if(options.status) {
       status = decodeURIComponent(options.status);;
       order_number = decodeURIComponent(options.order_number);
     }
     _this.setData({
-      goods: goods,
+      newMember: newMember,
       title: title,
       order_status:status,
       order_number:order_number,
