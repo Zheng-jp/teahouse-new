@@ -354,7 +354,7 @@ Page({
   // 弹窗
   // 立即支付
   repay: function () {
-    var that = this;
+    var that = this, goods_price;
     var num = new Array();
     num = [that.data.goods[0].number];
     let stock;
@@ -364,6 +364,7 @@ Page({
       stock = Number(that.data.goods[0].special_info.stock);
     }
     let taxes1 = Number(that.data.taxes);
+    goods_price = [that.data.goods[0].grade_price];
     if(Number(num[0]) <= stock) {
       if (that.data.order_type == "1") {
         wx.request({
@@ -384,7 +385,8 @@ Page({
             receipt_status: that.data.taxes_select,
             uniacid: app.globalData.uniacid,
             freight: that.data.freight,
-            storage: that.data.storage
+            storage: that.data.storage,
+            goods_price: goods_price
           },
           method: "post",
           success: function (res) {
@@ -426,7 +428,8 @@ Page({
               receipt_status: that.data.taxes_select,
               uniacid: app.globalData.uniacid,
               freight: that.data.freight,
-              storage: that.data.storage
+              storage: that.data.storage,
+              goods_price: goods_price
             },
             method: "post",
             success: function (res) {
@@ -473,7 +476,8 @@ Page({
             receipt_status: that.data.taxes_select,
             uniacid: app.globalData.uniacid,
             freight: that.data.freight,
-            storage: that.data.storage
+            storage: that.data.storage,
+            goods_price: goods_price
           },
           method: "post",
           success: function (res) {
@@ -506,7 +510,7 @@ Page({
   // 购物车支付
   buyrepay: function () {
     var that = this;
-    let goods = that.data.goods, goods_num = that.data.goods_num ,is_data = false;
+    let goods = that.data.goods, goods_num = that.data.goods_num ,is_data = false, goods_price = new Array();
     if (goods_num == undefined) goods_num = that.data.user[3].num;//商品数量
     for(let i = 0; i < goods.length; i ++) {
       let stock;
@@ -520,6 +524,7 @@ Page({
 
       if(goods_num >= stock) goods[i].is_err = true, is_data = true;
       else goods[i].is_err = false;
+      goods_price.push(goods[i].grade_price);
     }
     that.setData({
       goods: goods
@@ -549,7 +554,8 @@ Page({
             receipt_status: that.data.taxes_select,
             uniacid: app.globalData.uniacid,
             freight: that.data.freight,
-            storage: that.data.storage
+            storage: that.data.storage,
+            goods_price:goods_price
           },
           method: "post",
           success: function (res) {
@@ -596,7 +602,8 @@ Page({
             receipt_status: that.data.taxes_select,
             uniacid: app.globalData.uniacid,
             freight: that.data.freight,
-            storage: that.data.storage
+            storage: that.data.storage,
+            goods_price:goods_price
           },
           method: "post",
           success: function (res) {
@@ -644,7 +651,8 @@ Page({
             receipt_status: that.data.taxes_select,
             uniacid: app.globalData.uniacid,
             freight: that.data.freight,
-            storage: that.data.storage
+            storage: that.data.storage,
+            goods_price:goods_price
           },
           method: "post",
           success: function (res) {

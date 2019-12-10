@@ -26,7 +26,7 @@
   <!--content-->
   <view class="nav">
     <view class="" bindtap="go" data-id="/pages/order/order"> 普通订单</view>
-    <view class="this"> 众筹订单</view>
+    <view class="this"> 预定订单</view>
     <view class="" bindtap="go"> 定制订单</view>
     <view class="" bindtap="go" data-id="/pages/integral_order/integral_order"> 积分订单</view>
   </view>

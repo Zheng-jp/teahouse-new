@@ -7,7 +7,7 @@
     定制
   </view>
   <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">
-    众筹
+    预定
   </view>
 </view>
 <swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
@@ -139,7 +139,7 @@
   <swiper-item class="overflowYauto">
     <scroll-view>
       <view class="swiper-box">
-        <view class="swiper-title">期茶众筹，受益共享</view>
+        <view class="swiper-title">期茶预定，受益共享</view>
         <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="70rpx" next-margin="70rpx" display-multiple-items='1' circular class="zc-swiper">
           <swiper-item wx:for="{{swiperDataList}}" wx:key="index">
             <view class="box">
@@ -161,15 +161,15 @@
         <view class="switch-project" bind:tap="bindSwitchProject">
           <view class="switch-btn switch-prev" hidden="{{!switchProject}}">
             <image src="http://zhihuichacang.com/icon6.png" />
-            <text>查看往期众筹</text>
+            <text>查看往期预定</text>
           </view>
           <view class="switch-btn switch-now" hidden="{{switchProject}}">
             <image src="http://zhihuichacang.com/icon7.png" />
-            <text>查看正在众筹</text>
+            <text>查看正在预定</text>
           </view>
         </view>
-        <text class="project-title" wx:if="{{switchProject}}">正在众筹</text>
-        <text class="project-title" wx:else>往期众筹</text>
+        <text class="project-title" wx:if="{{switchProject}}">正在预定</text>
+        <text class="project-title" wx:else>往期预定</text>
         <view class="zc-item-box" style="height: {{Height}}px">
           <view class="zc-item" wx:for="{{crowdList}}" wx:key="index">
             <view class="left-img">

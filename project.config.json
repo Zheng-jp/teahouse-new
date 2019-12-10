@@ -22,7 +22,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.3",
-	"appid": "wx301c1368929fdba8",
+	"appid": "wxc265cd4269f01dce",
 	"projectname": "Zjp",
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {
@@ -56,7 +56,7 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "众筹",
+					"name": "预定",
 					"pathName": "pages/storage/view/view",
 					"query": "",
 					"scene": null

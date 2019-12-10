@@ -193,7 +193,7 @@
                   </view>
                   <view class="sku-story">
                     <view class="sku-tit">
-                      <text>众筹故事</text>
+                      <text>预定故事</text>
                     </view>
                     <view class="sku-story-content">
                       <text>{{item.standard[specActive].story}}</text>
@@ -215,7 +215,7 @@
                   </view>
                   <view class="sku-gear">
                     <view class="sku-tit">
-                      <text>众筹档位</text>
+                      <text>预定档位</text>
                     </view>
                     <view class="gears">
                       <view class="active gear gearAll">

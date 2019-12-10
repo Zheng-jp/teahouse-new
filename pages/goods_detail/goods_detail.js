@@ -617,7 +617,7 @@ Page({
                 elements = goods.goods_standard[u + 1].element;
                 price = goods.goods_standard[u + 1].price;
                 stock = goods.goods_standard[u + 1].stock;
-                specifications = goods.goods_standard[u + 1].name;
+                specifications = goods.goods_standard[u + 1].offer;
                 volume = goods.goods_standard[u + 1].volume;
                 images = goods.goods_standard[u + 1].images;
                 save = goods.goods_standard[u + 1].save;
@@ -629,7 +629,7 @@ Page({
             id = goods.goods_standard[0].id;
             price = goods.goods_standard[0].price;
             stock = goods.goods_standard[0].stock;
-            specifications = goods.goods_standard[0].name;
+            specifications = goods.goods_standard[0].offer;
             volume = goods.goods_standard[0].volume;
             images = goods.goods_standard[0].images;
             save = goods.goods_standard[0].save;

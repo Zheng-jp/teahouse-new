@@ -261,7 +261,9 @@ Page({
     var that = this;
     wx.request({
       url: app.globalData.tiltes + 'receipt_status',
-      data: {},
+      data: {
+        uniacid: app.globalData.uniacid
+      },
       method: "post",
       success: function(res) {
         that.setData({

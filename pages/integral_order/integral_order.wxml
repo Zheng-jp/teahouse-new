@@ -1,7 +1,7 @@
 <view class="all" style='height:{{height}}px;'>
  <view class="nav">
 	   <view  bindtap="go" data-id="../order/order"> 普通订单</view>
-	   <view class="" bindtap="go" data-id="/storage/pages/zcOrder/zcOrder" wx:if="{{version == 3}}"> 众筹订单</view>
+	   <view class="" bindtap="go" data-id="/storage/pages/zcOrder/zcOrder" wx:if="{{version == 3}}"> 预定订单</view>
 	   <view class="" bindtap="go" wx:if="{{version == 3}}"> 定制订单</view>
 	   <view class="this"> 积分订单</view>
    </view>
