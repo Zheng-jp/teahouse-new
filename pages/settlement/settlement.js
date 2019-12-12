@@ -257,9 +257,11 @@ Page({
           title: "您已取消支付",
         })
       }
-      wx.navigateTo({
-        url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
-      })
+      setTimeout(function(){
+        wx.navigateTo({
+          url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
+        })
+      },1000)
     });
   },
   /**
@@ -306,9 +308,11 @@ Page({
             signType: res.data.signType,
             paySign: res.data.paySign,
             complete: function(){
-              wx.navigateTo({
-                url: '../order/order?title=0&enter_all_id=' + _this.data.enter_all_id
-              })
+              setTimeout(function(){
+                wx.navigateTo({
+                  url: '../order/order?title=0&enter_all_id=' + that.data.enter_all_id
+                })
+              },1000)
             }
           })
         }
@@ -345,7 +349,14 @@ Page({
       pmKey: false
     })
     if(tapindex == 0){
-      this.showInputLayer();
+      if(Number(this.data.balance) < Number(this.data.all_money)) {
+        wx.showToast({
+          title: "余额不足",
+          icon: 'none',
+        })
+      } else {
+        this.showInputLayer();
+      }
     }else{
       this.wxpay();
     }

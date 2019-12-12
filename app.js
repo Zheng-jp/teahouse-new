@@ -537,5 +537,6 @@ App({
     // img_url:' http://localhost/teahouse/public/uploads/'
     navBarBgColor: '',
     navBarTxtColor: '',
+    shareID: 0
   }
 })

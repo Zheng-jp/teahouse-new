@@ -1,5 +1,6 @@
 <import src="../templates/common.wxml"></import>
 <import src="../diypages/diypages.wxml"></import>
+
 <block wx:if="{{homepage==1}}">
   <template is="fullAd" data="{{...baseinfo,second:second}}" wx:if="{{baseinfo.bigadT=='1'&&showFad=='1'&&baseinfo.bigad!=''}}"></template>
   <template is="fullAd2" data="{{...baseinfo,second:second}}" wx:if="{{baseinfo.bigadT=='2'&&showFad=='1'&&baseinfo.bigad!=''}}"></template>

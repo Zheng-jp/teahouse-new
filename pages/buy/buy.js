@@ -553,7 +553,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         _this.setData({
-          fixiPhone: res.model.indexOf('iPhone X') != -1
+          fixiPhone: res.model.indexOf('iPhone') != -1
         })
       }
     })

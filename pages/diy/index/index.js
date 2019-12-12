@@ -76,7 +76,8 @@ BackgroundAudioManager.title = "", Page((_defineProperty(_Page = {
     foottext: 0,
     page_is: 1,
     homepageid: 0,
-    fixiPhone: false
+    fixiPhone: false,
+    memberId: 0
   },
 // 截获竖向滑动
 catchTouchMove:function(res){
@@ -227,6 +228,11 @@ catchTouchMove:function(res){
     this.audioCtx = wx.createAudioContext("myAudio");
   },
   onLoad: function(t) {
+    if(t.memberId) {
+      this.setData({
+        memberId : t.memberId
+      })
+    }
     this.ifLogin().then((data) => {
       (e = this).refreshSessionkey();
       var a = e.data.baseurl.split("/api");
@@ -700,6 +706,7 @@ catchTouchMove:function(res){
     }
   },
   redirectto: function(t) {
+    let url, that = this;
     if (app.globalData.gmemberid) {
       var a = t.currentTarget.dataset.link,
         e = t.currentTarget.dataset.linktype;
@@ -718,8 +725,14 @@ catchTouchMove:function(res){
       //     }
       //   }
       // })
+      // wx.showToast({
+      //   title: that.data.memberId,
+      //   icon: 'none',
+      //   duration: 10000
+      // });
+      
       wx.navigateTo({
-        url: "/pages/logs/logs"
+        url: "/pages/logs/logs?shareID=" + that.data.memberId
       })
     }
   },

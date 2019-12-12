@@ -15,9 +15,13 @@
         <view>
             <view class="humiture-data">
                 <view>
-                    <view class="time">
+                    <view class="time" style="display:flex;">
                         <text class="humiture-title">北京时间：</text>
                         {{beijingTime}}
+                        <view style="flex:1;"></view>
+                        <view bindtap="showLive">
+                            <image src="http://zhihuichacang.com/gif1.gif" class="icon-video" style="width:40rpx;height:40rpx;" />
+                        </view>
                     </view>
                     <view class="temperature">
                         <view class="temp-in">
@@ -40,6 +44,9 @@
                         </view>
                     </view>
                 </view>
+            </view>
+            <view class="" style="width:100%;height:100%;" wx:if="{{isLive}}">
+                <video id="myVideo" src="http://hls01open.ys7.com/openlive/d208d656ba774bc985a4aa7154cf329a.hd.m3u8" style="width: 100%;height: 400rpx;" poster></video>
             </view>
         </view>
         <view style="flex: 1; display: flex; flex-direction: column; overflow: auto;">

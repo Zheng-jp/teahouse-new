@@ -112,7 +112,7 @@ Page({
     const shareName = this.data.goods.goods_name + '-' + this.data.goods.goods_selling;
     return {
       title: shareName, // 转发后 所显示的title
-      path: 'pages/diy/index/index', // 相对的路径
+      path: 'pages/diy/index/index?memberId=' + app.globalData.member_id, // 相对的路径
       success: (res) => { // 成功后要做的事情
         // console.log(res.shareTickets[0])
         // console.log
@@ -378,35 +378,35 @@ Page({
         }
       })
     } else if (that.data.address == 1) {
-      if (!app.globalData.judge_phone) {
-        wx.showModal({
-          title: '提示',
-          content: '你未绑定手机号码',
-          confirmText: '马上绑定',
-          confirmColor: '#3399FF',
-          cancelColor: '#bbb',
-          success: function (res) {
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '../change_account/change_account?judge_phone=' + 0,
-                success: function (res) {
+      // if (!app.globalData.judge_phone) {
+      //   wx.showModal({
+      //     title: '提示',
+      //     content: '你未绑定手机号码',
+      //     confirmText: '马上绑定',
+      //     confirmColor: '#3399FF',
+      //     cancelColor: '#bbb',
+      //     success: function (res) {
+      //       if (res.confirm) {
+      //         wx.navigateTo({
+      //           url: '../change_account/change_account?judge_phone=' + 0,
+      //           success: function (res) {
 
-                },
-                fail: function () {
+      //           },
+      //           fail: function () {
 
-                },
-                complete: function () {
+      //           },
+      //           complete: function () {
 
-                }
+      //           }
 
 
-              })
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
-        })
-      } else {
+      //         })
+      //       } else if (res.cancel) {
+      //         console.log('用户点击取消')
+      //       }
+      //     }
+      //   })
+      // } else {
         if (that.data.goods.goods_standard == 0) {
           var goods_standard_id = '';
           that.setData({
@@ -476,7 +476,7 @@ Page({
             }
           })
         }
-      }
+      // }
     } else {
       wx.showToast({
         title: '你未进行授权，请重启小程序',
@@ -723,7 +723,7 @@ Page({
 
       },
       complete: function () { }
-
+ 
     });
     // wx.request({
     //   url: app.globalData.tiltes + 'limitations_show',

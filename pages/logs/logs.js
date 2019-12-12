@@ -13,7 +13,8 @@ Page({
     status:'',
     order_number:'',
     order_status: '',
-    code: ''
+    code: '',
+    shareID: 0
   },
   bindGetUserInfo: function (e) {
     var _this = this;
@@ -48,7 +49,8 @@ Page({
                     iv: iv,
                     // uniacid:app.globalData.uniacid,
                     gender: res2.userInfo.gender, // 性别  0：未知、1：男、2：女
-                    appid: appid.miniProgram.appId
+                    appid: appid.miniProgram.appId,
+                    shareID: _this.data.shareID
                   },
                   method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                   header: {
@@ -77,7 +79,7 @@ Page({
                         })
                       } else if (_this.data.code){
                         wx.navigateTo({
-                          url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code
+                          url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code + "&isHome=1"
                         })
                       } else {
                         wx.switchTab({
@@ -142,7 +144,7 @@ Page({
   },
 
   onLoad: function (options) {
-    var _this = this, newMember, title, status, order_number, code, scene;
+    var _this = this, newMember, title, status, order_number, code, scene, shareID;
     //新会员积分&防伪溯源
     if(options.scene){
       scene = decodeURIComponent(options.scene).split("=");
@@ -155,6 +157,10 @@ Page({
     if(options.goods){
       title = decodeURIComponent(options.title);
     }
+
+    if(options.shareID){
+      shareID = decodeURIComponent(options.shareID);
+    }
   
     if(options.status) {
       status = decodeURIComponent(options.status);;
@@ -165,7 +171,8 @@ Page({
       title: title,
       order_status:status,
       order_number:order_number,
-      code: code
+      code: code,
+      shareID: shareID
     })
     wx.getStorage({
       key: 'authorization',
@@ -233,7 +240,8 @@ Page({
                             encryptedData: encryptedData,
                             iv: iv,
                             gender: res2.userInfo.gender, // 性别  0：未知、1：男、2：女
-                            appid: appid.miniProgram.appId
+                            appid: appid.miniProgram.appId,
+                            shareID: _this.data.shareID
                           },
                           method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                           header: {
@@ -261,7 +269,7 @@ Page({
                                 })
                               } else if (_this.data.code){
                                 wx.navigateTo({
-                                  url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code
+                                  url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code + "&isHome=1"
                                 })
                               } else{
                                 wx.switchTab({

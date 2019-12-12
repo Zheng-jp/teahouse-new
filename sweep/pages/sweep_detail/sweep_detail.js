@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods: {}
+    goods: {},
+    isHome: false
   },
 
   onLoad: function (options) {
@@ -14,6 +15,11 @@ Page({
     var code, that=this;
     if(options) {
       code = options.code;
+      if(options.isHome) {
+        that.setData({
+          isHome: true
+        })
+      }
     }
     wx.request({
       url: app.globalData.tiltes + 'get_anti_fake_info',
@@ -69,7 +75,11 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    if(this.data.isHome) {
+      wx.switchTab({
+        url: '../../../pages/diy/index/index', // 新首页
+      })
+    }
   },
 
   /**

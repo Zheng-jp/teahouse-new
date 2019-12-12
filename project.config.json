@@ -97,9 +97,9 @@
 				},
 				{
 					"id": 6,
-					"name": "sweep/pages/sweep_detail/sweep_detail",
-					"pathName": "sweep/pages/sweep_detail/sweep_detail",
-					"query": "",
+					"name": "pages/diy/index/index",
+					"pathName": "pages/diy/index/index",
+					"query": "memberId=1320",
 					"scene": null
 				}
 			]

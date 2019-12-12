@@ -44,10 +44,10 @@
             <text class="storage-name">{{item.name}}</text>
           </view>
           <view class="enviroment-data-box">
-            <view class="enviroment-item item-video" data-id="{{index}}" bindtap="showLive">
+            <!-- <view class="enviroment-item item-video" data-id="{{index}}" bindtap="showLive">
               <image src="http://zhihuichacang.com/gif1.gif" class="icon-video" />
               <text class="temperature">实时视频</text>
-            </view>
+            </view> -->
             <view class="enviroment-item" bindtap="checkRealTimeData">
               <image src="http://zhihuichacang.com/icon2.png" class="icon-temperature" />
               <text class="temperature" style='color:#D9250E'>25.55°C</text>

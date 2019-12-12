@@ -39,7 +39,7 @@ swiper.swiper-container{height: 93%;}
 .storage-enviroment .storage-name-box{display: flex; align-items: center; flex-basis: 25%; height: 100%;}
 .storage-enviroment .storage-name-box image{width: 40rpx; height: 40rpx; margin: 0 10rpx;}
 .storage-enviroment .storage-name-box .storage-name{color: #999900; font-size: 28rpx; white-space: nowrap;}
-.enviroment-data-box{flex: 75%; height: 100%; background-color: #d7d7d7; display: flex; align-items: center; justify-content: space-between; padding-right: 20rpx;}
+.enviroment-data-box{flex: 75%; height: 100%; background-color: #d7d7d7; display: flex; align-items: center; justify-content: space-around; padding-right: 20rpx;}
 .enviroment-data-box .icon-temperature,
 .enviroment-data-box .icon-humidity,
 .enviroment-data-box .icon-video{width: 40rpx; height: 40rpx;}

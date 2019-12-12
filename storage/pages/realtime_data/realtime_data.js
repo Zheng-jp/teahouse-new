@@ -75,7 +75,7 @@ function setOption(chart, _this, yArr) {
         method: 'POST',
         data: {
           "userApiKey": _this.data.userLogin.userApikey,
-          "deviceNo": "8606S86YL8295C5Y",
+          "deviceNo": "1MK7I336AEO708RT",
           "flagCode": _this.data.userLogin.flagCode
         },
         success: function(res) {
@@ -170,7 +170,7 @@ function setOption2(chart, _this, yArr) {
         method: 'POST',
         data: {
           "userApiKey": _this.data.userLogin.userApikey,
-          "deviceNo": "8606S86YL8295C5Y",
+          "deviceNo": "1MK7I336AEO708RT",
           "flagCode": _this.data.userLogin.flagCode
         },
         success: function(res) {
@@ -324,7 +324,7 @@ function queryDevMoniData(userData, _this) {
     method: 'POST',
     data: {
       "userApiKey": userData.userApikey,
-      "deviceNo": "8606S86YL8295C5Y",
+      "deviceNo": "1MK7I336AEO708RT",
       "flagCode": userData.flagCode
     },
     success(res) {
@@ -349,7 +349,7 @@ function setDevMoniData(temper, humidity) {
     method: 'POST',
     data: {
       "uniacid": app.globalData.uniacid,
-      "instrument": '8606S86YL8295C5Y',
+      "instrument": '1MK7I336AEO708RT',
       "temperature": temper,
       "humidity": humidity,
     },
@@ -438,6 +438,7 @@ Page({
     multiIndex: [1, 0, 0, 0, 0, 0],
     choose_year: '',
     showText: false,
+    isLive: false
   },
 
   // 查询用户选定日期的历史数据
@@ -515,7 +516,8 @@ Page({
       _this = this;
     if (_this.data.currentTab !== current) {
       _this.setData({
-        currentTab: current
+        currentTab: current,
+        isLive: false
       })
     }
     if (current == 0) {
@@ -764,7 +766,7 @@ Page({
       },
       data: { //传的参数，这些都不用多说了吧
         "userApiKey": _this.data.userLogin.userApikey,
-        "deviceNo": "8606S86YL8295C5Y",
+        "deviceNo": "1MK7I336AEO708RT",
         "flagCode": _this.data.userLogin.flagCode
       },
       success: function(res) {
@@ -774,4 +776,10 @@ Page({
       }
     })
   },
+
+  showLive: function() {
+    this.setData({
+      isLive: !this.data.isLive
+    })
+  }
 })
