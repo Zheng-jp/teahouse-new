@@ -349,13 +349,29 @@ Page({
       pmKey: false
     })
     if(tapindex == 0){
-      if(Number(this.data.balance) < Number(this.data.all_money)) {
-        wx.showToast({
-          title: "余额不足",
-          icon: 'none',
-        })
+      if(app.globalData.judge_repay) {
+        if(Number(this.data.balance) < Number(this.data.all_money)) {
+          wx.showToast({
+            title: "余额不足",
+            icon: 'none',
+          })
+        } else {
+          this.showInputLayer();
+        }
       } else {
-        this.showInputLayer();
+        wx.showModal({
+          title: '提示',
+          content: '您还没设置支付密码，是否前往设置？',
+          success (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: "../forget_password/forget_password"
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
       }
     }else{
       this.wxpay();
@@ -1296,6 +1312,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.judge_phone();
+    app.judge_repay();
     var that = this;
 
     var id = (wx.getStorageSync('id') ? wx.getStorageSync('id') : '');

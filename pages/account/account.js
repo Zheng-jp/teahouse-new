@@ -36,7 +36,7 @@ Page({
         })
       }
     }
-    else if (item == '../card/card' || item == '../withdrawal/withdrawal') {
+    else if (item == '../card/card' || item == '../withdrawal/withdrawal' || item == '../forget_password/forget_password') {
       if (!app.globalData.judge_phone) {
         wx.showModal({
           title: '提示',

@@ -79,7 +79,7 @@
       </view>
     </view>
   </view>
-  <view class='list-content' style="margin-bottom:100rpx;">
+  <view class='list-content' style="{{fixiPhone? 'margin-bottom:180rpx':'margin-bottom:100rpx'}}">
     <view wx:for='{{lista}}' wx:key="{{index}}" class='ifor_list' data-url="{{item.src}}" bindtap="mycollect">
       <view class='left'>
         <view class='list-ico'>

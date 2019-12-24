@@ -1,5 +1,7 @@
 /* pages/members/members.wxss */
-
+.swiper-box{
+  height: 320rpx;
+}
 radio .wx-radio-input.wx-radio-input-checked::before{
    border-radius: 50%;
    width: 20rpx; 

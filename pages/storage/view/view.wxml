@@ -12,7 +12,7 @@
 </view>
 <swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
   <swiper-item class="overflowYauto">
-    <scroll-view style="{{fixiPhone?'margin-bottom: 82px': 'margin-bottom: 50px'}}">
+    <scroll-view style="margin-bottom: 50px;{{allStorageArr > 0 ? '' : 'height: 240px'}};{{storageDataArr.length < 1? 'height: 300rpx':''}};">
       <view class="gross-container">
         <view class="gross-item gross-title">总价值</view>
         <view class="gross-item gross-number">￥{{totalValueNum}}</view>

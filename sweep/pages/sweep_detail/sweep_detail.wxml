@@ -69,7 +69,8 @@
     <view class="title">
       数据来自终端设备采集 ：
     </view>
-    <view class="logith">
+    <view style="text-align:center;color:rgb(161,161,161);margin:20rpx 0;">暂无数据</view>
+    <view class="logith"  wx:if="{{a}}">
       <view class="time">
         <view class="times">2018年2月18日</view>
         <view class="times">00:23:54</view>
@@ -86,7 +87,7 @@
         </view>
       </view>
     </view>
-    <view class="logith">
+    <view class="logith" wx:if="{{a}}">
       <view class="time">
         <view class="times">2018年2月18日</view>
         <view class="times">00:23:54</view>

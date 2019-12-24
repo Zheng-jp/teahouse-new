@@ -2,7 +2,7 @@
 <view class="wrapper">
   <view class="header">
     <view class="tea-img-box">
-      <image src="{{url}}{{orderInfo.goods_image}}" class="tea-img" />
+      <image src="{{orderInfo.goods_image}}" class="tea-img" />
     </view>
     <view style="text-align: center;">
       <view class="tea-name">{{orderInfo.goods_name}}</view>

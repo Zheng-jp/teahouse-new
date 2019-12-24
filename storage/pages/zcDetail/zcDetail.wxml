@@ -30,7 +30,7 @@
             <view class="hd-bar-status">
               <view class="hd-bar-money">
                 <text class="hd-money-val">{{item.collecting}}</text>
-                <text>已筹</text>
+                <text>已预订</text>
               </view>
               <view class="fr">
                 <text class="stillTime" wx:if="{{item.state==1}}">{{isbuy? '剩余'+item.days+'天' : '已结束'}}</text>

@@ -12,6 +12,7 @@ Page({
     height: 500,
     footinfo: [],
     foot_is: 2,
+    fixiPhone: false,
     order_nav: [
       {
         src: 'http://zhihuichacang.com/u136.png',
@@ -163,6 +164,13 @@ Page({
  */
   onLoad: function () {
     var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          fixiPhone: res.model.indexOf('iPhone') != -1
+        })
+      }
+    });
     let url = "https://teahouse.siring.com.cn/api/";
     // var open_id
     var gmemberid = app.globalData.gmemberid;
@@ -184,8 +192,8 @@ Page({
         else
           version_is = 1;
 
-        if(version_is == 1) {
-          var list= [
+        if (version_is == 1) {
+          var list = [
             {
               url: 'http://zhihuichacang.com/n1.png',
               text: '会员中心',
@@ -207,7 +215,7 @@ Page({
               src: '../account/account',
             }
           ]
-        }  
+        }
         that.setData({
           foot_is: t.data.data.foot_is,
           version: version_is,
@@ -282,12 +290,12 @@ Page({
     // var url = getCurrentPages()[1].route;
   },
   onShow: function () {
-    
+
     let that = this;
     that.orderCount();
     app.judge_repay();
     that.onLoad();
-    
+
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       if (wx.getStorageSync('editionId') == 1) {
         this.getTabBar().setData({
@@ -303,7 +311,7 @@ Page({
 
   },
   //各订单数量接口
-  orderCount: function() {
+  orderCount: function () {
     let url = app.globalData.url;
     let gmemberid = app.globalData.gmemberid;
     let uniacid = app.globalData.uniacid;

@@ -107,6 +107,22 @@ Page({
   },
   send_cold: throttle.throttle(function (e) {
     var that = this;
+    if(!app.globalData.judge_phone){
+      wx.showModal({
+        title: '提示',
+        content: '您还没设置手机号码，是否前往设置？',
+        success (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: "../change_account/change_account?judge_phone=0"
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return false;
+    }
     // var is_phone = that.validateTel(that.data.newnum);
     // if (is_phone) {
     wx.request({
@@ -180,6 +196,7 @@ Page({
 
   },
   onShow: function () {
+    app.judge_phone();
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
