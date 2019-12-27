@@ -434,8 +434,10 @@ Page({
     sdate: '', //开始日期
     edate: '', //结束日期
     selectHistKey: 0,
-    multiArray: [years, months, days, hours, minutes, seconds],
-    multiIndex: [1, 0, 0, 0, 0, 0],
+    // multiArray: [years, months, days, hours, minutes, seconds],
+    multiArray: [years, months, days],
+    // multiIndex: [1, 0, 0, 0, 0, 0],
+    multiIndex: [1, 0, 0],
     choose_year: '',
     showText: false,
     isLive: false
@@ -541,6 +543,7 @@ Page({
 
   //获取时间日期
   sbindMultiPickerChange: function(e) {
+    console.log(e)
     this.setData({
       multiIndex: e.detail.value
     })
@@ -548,11 +551,12 @@ Page({
     const year = this.data.multiArray[0][index[0]];
     const month = this.data.multiArray[1][index[1]];
     const day = this.data.multiArray[2][index[2]];
-    const hour = this.data.multiArray[3][index[3]];
-    const minute = this.data.multiArray[4][index[4]];
-    const second = this.data.multiArray[5][index[5]];
+    // const hour = this.data.multiArray[3][index[3]];
+    // const minute = this.data.multiArray[4][index[4]];
+    // const second = this.data.multiArray[5][index[5]];
     this.setData({
-      sdate: year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
+      // sdate: year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
+      sdate: year + '-' + month + '-' + day 
     })
   },
   ebindMultiPickerChange: function(e) {
@@ -563,11 +567,12 @@ Page({
     const year = this.data.multiArray[0][index[0]];
     const month = this.data.multiArray[1][index[1]];
     const day = this.data.multiArray[2][index[2]];
-    const hour = this.data.multiArray[3][index[3]];
-    const minute = this.data.multiArray[4][index[4]];
-    const second = this.data.multiArray[5][index[5]];
+    // const hour = this.data.multiArray[3][index[3]];
+    // const minute = this.data.multiArray[4][index[4]];
+    // const second = this.data.multiArray[5][index[5]];
     this.setData({
-      edate: year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
+      // edate: year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
+      edate: year + '-' + month + '-' + day
     })
   },
   //监听picker的滚动事件
@@ -662,9 +667,9 @@ Page({
       multiIndex: [app.indexValue(years, date.getFullYear()),
         app.indexValue(months, date.getMonth() + 1),
         app.indexValue(days, date.getDate()),
-        app.indexValue(hours, date.getHours()),
-        app.indexValue(minutes, date.getMinutes()),
-        app.indexValue(seconds, date.getSeconds())
+        // app.indexValue(hours, date.getHours()),
+        // app.indexValue(minutes, date.getMinutes()),
+        // app.indexValue(seconds, date.getSeconds())
       ]
     })
 

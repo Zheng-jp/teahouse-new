@@ -14,7 +14,12 @@ Page({
     order_number:'',
     order_status: '',
     code: '',
-    shareID: 0
+    shareID: 0,
+  },
+  onmessage(e) {
+    my.alert({
+      content: '拿到数据' + JSON.stringify(e), // alert 框的标题
+    });
   },
   bindGetUserInfo: function (e) {
     var _this = this;

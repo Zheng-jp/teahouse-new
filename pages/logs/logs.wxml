@@ -1,4 +1,7 @@
-<view wx:if="{{canIUse}}">
+<!-- <web-view wx:if="{{canIUse}}"  src='http://www.zhemu.com/3/3.html' onMessage="onmessage"></web-view> -->
+
+
+<view  wx:if="{{canIUse}}">
   <!-- <block wx:if="{{authorization}}">
     <image src="./images/bg.png" class="bg"></image>
   </block> -->
@@ -15,5 +18,4 @@
     </button>
   </block>
 </view>
-
 <view wx:else>请升级微信版本</view>
