@@ -15,12 +15,13 @@ Page({
     order_status: '',
     code: '',
     shareID: 0,
+    code_id:''
   },
-  onmessage(e) {
-    my.alert({
-      content: '拿到数据' + JSON.stringify(e), // alert 框的标题
-    });
-  },
+  // onmessage(e) {
+  //   my.alert({
+  //     content: '拿到数据' + JSON.stringify(e), // alert 框的标题
+  //   });
+  // },
   bindGetUserInfo: function (e) {
     var _this = this;
     if (e.detail.userInfo) {
@@ -86,6 +87,10 @@ Page({
                         wx.navigateTo({
                           url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code + "&isHome=1"
                         })
+                      } else if (_this.data.code_id){
+                        wx.navigateTo({
+                          url: "../ldm/index"
+                        })
                       } else {
                         wx.switchTab({
                           url: '../diy/index/index', // 新首页
@@ -149,7 +154,10 @@ Page({
   },
 
   onLoad: function (options) {
-    var _this = this, newMember, title, status, order_number, code, scene, shareID;
+    var _this = this, newMember, title, status, order_number, code, scene, shareID, code_id;
+    // wx.navigateTo({
+    //   url:'../ldm/index'
+    // })
     //新会员积分&防伪溯源
     if(options.scene){
       scene = decodeURIComponent(options.scene).split("=");
@@ -166,18 +174,24 @@ Page({
     if(options.shareID){
       shareID = decodeURIComponent(options.shareID);
     }
+    if(options.code_id){
+      code_id = decodeURIComponent(options.code_id);
+      app.globalData.code_id = code_id;
+    }
   
     if(options.status) {
-      status = decodeURIComponent(options.status);;
+      status = decodeURIComponent(options.status);
       order_number = decodeURIComponent(options.order_number);
     }
+    
     _this.setData({
       newMember: newMember,
       title: title,
       order_status:status,
       order_number:order_number,
       code: code,
-      shareID: shareID
+      shareID: shareID,
+      code_id: code_id,
     })
     wx.getStorage({
       key: 'authorization',
@@ -275,6 +289,10 @@ Page({
                               } else if (_this.data.code){
                                 wx.navigateTo({
                                   url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code + "&isHome=1"
+                                })
+                              } else if (_this.data.code_id){
+                                wx.navigateTo({
+                                  url: "../ldm/index"
                                 })
                               } else{
                                 wx.switchTab({

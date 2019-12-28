@@ -543,6 +543,7 @@ Page({
       data: {
         id: options.title,
         open_id: app.globalData.gmemberid,
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       header: {
@@ -717,6 +718,7 @@ Page({
       url: app.globalData.tiltes + 'teacenter_comment_show',
       data: {
         teahost_id: that.data.title,
+        uniacid: app.globalData.uniacid
       },
       method: "post",
       // header: {

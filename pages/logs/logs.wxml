@@ -1,4 +1,4 @@
-<!-- <web-view wx:if="{{canIUse}}"  src='http://www.zhemu.com/3/3.html' onMessage="onmessage"></web-view> -->
+<!-- <web-view wx:if="{{isto}}"  src='http://www.zhihuichacang.com/xeixin/index.html' onMessage="onmessage"></web-view> -->
 
 
 <view  wx:if="{{canIUse}}">

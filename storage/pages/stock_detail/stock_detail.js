@@ -77,8 +77,8 @@ Page({
                 var chartData = {
                   main: {
                     title: '总成交量',
-                    data: res.data.data[0].data,
-                    categories: res.data.data[0].categories
+                    data: res.data.data.data,
+                    categories: res.data.data.categories
                   }
                 }
                 

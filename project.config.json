@@ -97,9 +97,9 @@
 				},
 				{
 					"id": 6,
-					"name": "pages/diy/index/index",
-					"pathName": "pages/diy/index/index",
-					"query": "memberId=1320",
+					"name": "pages/logs/logs",
+					"pathName": "pages/logs/logs",
+					"query": "code_id=141",
 					"scene": null
 				}
 			]

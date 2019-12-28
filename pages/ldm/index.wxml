@@ -1,0 +1,3 @@
+<!--pages/ldm/index.wxml-->
+<web-view  src='https://www.zhihuichacang.com/xeixin/ldm.html'></web-view>
+<!-- <web-view  src='http://teahouse.com/xeixin/index.html' onMessage="onmessage"></web-view> -->

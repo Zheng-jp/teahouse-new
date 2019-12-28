@@ -99,7 +99,7 @@
         </view>
         <view class="other-item">
             <view class="item-key">当前折扣价：<text class="explain">?</text></view>
-            <view class="item-value">￥999/{{item.store_unit}}</view>
+            <view class="item-value">￥{{item.discount_price}}/{{item.store_unit}}</view>
         </view>
         <view class="other-item">
             <view class="item-key">购买入仓价：<text class="explain">?</text></view>

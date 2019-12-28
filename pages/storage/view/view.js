@@ -328,6 +328,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    if(app.globalData.code_id != '') {
+      wx.request({
+        url: app.globalData.tiltes + 'api/getAccompanyStatus',
+        method: 'POST',
+        data: {
+          member_id: app.globalData.member_id,
+          code_id: app.globalData.code_id
+        },
+        success: function(res){
+          console.log('code_id', res);
+          that.showStorageData();
+        },
+        fail: function(e){
+          console.error(e)
+        }
+      })
+    }
     getData(this);
     switchProject('crowd_now', this);
     wx.setNavigationBarColor({
