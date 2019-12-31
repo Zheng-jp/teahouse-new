@@ -20,6 +20,7 @@ Page({
     conversionStr: '', //换算后展示
     pmKey: false, // switch支付弹窗
     balance: 0.00, //余额
+    isFu: true
   },
 
   myRequest: function (url, params, callback) {
@@ -87,6 +88,12 @@ Page({
           province: res.data.data.address_name.split(',')[0]
         })
         _this.getHousePrice(); // 获取运费模板
+      } else {
+        wx.showToast({
+          title: '请先设置收货地址，才能出仓',
+          icon: 'none',
+          duration: 2500
+        })
       }
     })
   },
@@ -158,11 +165,12 @@ Page({
   // 支付 确认出仓
   payment: function () {
     var _this = this;
+    console.log('2222'+_this.data.isFu)
     this.data.outNum == 0 ? wx.showToast({
       title: '请填入出仓数量！',
       icon: 'none',
       duration: 1200
-    }) : (function () {
+    }) : (_this.data.isFu ? (function () { //是否需要付钱
       wx.request({
         url: app.globalData.tiltes + 'get_member_banlance',
         data: {
@@ -176,9 +184,38 @@ Page({
           })
         }
       })
-    })()
+    })() : _this.payChu())
   },
-
+  payChu: function () {
+    var _this = this;
+    wx.request({
+      url: app.globalData.tiltes + 'payment_out_order',
+      data: {
+        id: _this.data.id,
+        member_id: app.globalData.member_id,
+        uniacid: app.globalData.uniacid,
+        house_charges: _this.data.postage,
+        order_quantity: _this.data.outNum,
+        store_unit: _this.data.minUnit,
+        address_id: _this.data.defaultAddress.id
+      },
+      method: "post",
+      success: function (res) {
+        console.log('支付')
+        console.log(res)
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 1200
+        })
+        if (res.data.code == 1) {
+          setTimeout(function () {
+            wx.navigateBack({ delta: 1 })
+          }, 1600)
+        }
+      }
+    })
+  },
   /**
    * 显示支付密码输入层
    */
@@ -192,57 +229,47 @@ Page({
    * 隐藏支付密码输入层
    */
   hidePayLayer: function () {
-    var that = this;
+    var _this = this;
     var val = this.data.pwdVal;
     this.setData({
       showPayPwdInput: false,
       payFocus: false,
       pwdVal: ''
-    }, function() {
-        if (val.length == 6) {
-          wx.request({
-            url: app.globalData.tiltes + 'check_password',
-            data: {
-              member_id: app.globalData.member_id,
-              passwords: val,
-            },
-            method: "post",
-            success: function (res) {
-              if (res.data.data.status == 1) {
-                wx.request({
-                  url: app.globalData.tiltes + 'balance_payment',
-                  data: {
-                    member_id: app.globalData.member_id,
-                    order_num: that.data.order_number,
-                    passwords: val,
-                  },
-                  method: "post",
-                  complete: function (res) {
-                    wx.showToast({
-                      icon: "none",
-                      title: res.data.info,
-                      duration: 2000
-                    })
-                  }
-                });
+    }, function () {
+      if (val.length == 6) {
+        wx.request({
+          url: app.globalData.tiltes + 'check_password',
+          data: {
+            member_id: app.globalData.member_id,
+            passwords: val,
+          },
+          method: "post",
+          success: function (res) {
+            if (res.data.data.status == 1) {
+              if (Number(_this.data.balance) >= Number(_this.data.postage)) {
+                _this.payChu();
               } else {
                 wx.showToast({
                   icon: "none",
-                  title: res.data.info,
+                  title: '余额不足，请及时充值',
                   duration: 2000
                 })
               }
+            } else {
+              wx.showToast({
+                icon: "none",
+                title: res.data.info,
+                duration: 2000
+              })
             }
-          });
-        } else {
-          wx.showToast({
-            icon: "none",
-            title: "您已取消支付",
-          })
-        }
-        wx.navigateTo({
-          url: '../../../pages/order/order?title=0&enter_all_id=' + that.data.enter_all_id
+          }
+        });
+      } else {
+        wx.showToast({
+          icon: "none",
+          title: "您已取消支付",
         })
+      }
     });
   },
   /**
@@ -362,6 +389,11 @@ Page({
     var len = orderInfo.unit.length;
     //固定邮费
     if (data.franking_type == 2) {
+      if (data.data.collect == 0) {
+        this.setData({
+          isFu: false
+        })
+      }
       this.setData({
         postage: data.data.collect
       })
@@ -371,6 +403,7 @@ Page({
       // 一个单位
       if (len === 1) {
         postage = (outNum - 1) * data.data[0].markup + data.data[0].collect;
+     
         this.setData({
           postage: postage
         });
@@ -382,6 +415,7 @@ Page({
         var maxPostage = maxUnitNum > 0 ? (maxUnitNum - 1) * data.data[0].markup + data.data[0].collect : '';
         var minPostage = minUnitNum > 0 ? (minUnitNum - 1) * data.data[1].markup + data.data[1].collect : '';
         postage = maxPostage + minPostage;
+        
         this.setData({
           postage: postage
         });
@@ -396,11 +430,17 @@ Page({
         var midPostage = midUnitNum > 0 ? (midUnitNum - 1) * data.data[1].markup + data.data[1].collect : '';
         var minPostage = minUnitNum > 0 ? (minUnitNum - 1) * data.data[2].markup + data.data[2].collect : '';
         postage = maxPostage + midPostage + minPostage;
+      
         // 换算的字符串
         this.setData({
           postage: postage
         });
         this.returnConvStr(3, outNum);
+      }
+      if (postage == 0) {
+        this.setData({
+          isFu: false
+        })
       }
     }
   },
@@ -439,7 +479,7 @@ Page({
    */
   onShow: function () {
     this.outPositionOrder(); //出仓订单信息
-    
+
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor

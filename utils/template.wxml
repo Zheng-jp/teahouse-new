@@ -1,7 +1,7 @@
 <template name="joy-pic">
     <view class='weui-grid__bg' bindtap="bindViewTap" id="{{item.id}}">
         <view class="share_icon">
-            <image src="http://zhihuichacang.com/uploads/{{item.classify_image}}" mode="scaleToFill" />
+            <image src="{{item.classify_image}}" mode="scaleToFill" />
         </view>
         <view style='border-bottom:#C9C9C9 solid 1px;' class='clear aaa'>
             <view>
@@ -25,14 +25,14 @@
 <template name="good">
     <view class='weui-grid__bg'>
         <view class="weui-grid__icon">
-            <image src="http://zhihuichacang.com/uploads/{{item.goods_show_image}}" mode="scaleToFill" />
+            <image src="{{item.goods_show_image}}" mode="scaleToFill" />
         </view>
         <text class="weui-grid_name">{{item.goods_name}}</text>
         <text class="weui-grid_kuchun">库存123片</text>
         <view class='selling_point'>{{item.goods_selling}}</view>
         <view class='price'>
             <view class="price_content">
-                <image src='http://zhihuichacang.com/uploads/{{item.member_grade_img}}' mode="widthFix" class='price_img'></image>
+                <image src='{{item.member_grade_img}}' mode="widthFix" class='price_img'></image>
                 <view class="price_text" wx:if="{{item.goods_standard==0}}">
                     ￥{{item.goods_new_money}}
                 </view>

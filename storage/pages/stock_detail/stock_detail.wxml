@@ -32,7 +32,7 @@
     <view class="other-info">
         <view class="other-item">
             <view class="item-key">初始订单：</view>
-            <view class="item-value">{{item.parts_order_number}}</view>
+            <view class="item-value">{{item.give_sataus == 1 ?'（送存）': ''}}{{item.parts_order_number}}</view>
         </view>
         <view class="other-item">
             <view class="item-key">生产日期：</view>

@@ -90,10 +90,10 @@
         <text class='ping'>最新评论</text>
         <text class='xian'></text>
       </view>
-      <view class='reward'>
+      <!-- <view class='reward'>
         <text decode="true">1、评论点赞超过500，奖励积分5个\n</text>
         <text decode="true">1、评论点赞超过500，奖励积分5个\n</text>
-      </view>
+      </view> -->
 
       <view class='comment_repay' wx:for="{{repay_informatiom}}">
         <view class='comment_ico'>

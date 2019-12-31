@@ -12,7 +12,7 @@
 </view>
 <swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
   <swiper-item class="overflowYauto">
-    <scroll-view style="margin-bottom: 50px;{{allStorageArr > 0 ? '' : 'height: 240px'}};{{storageDataArr.length < 1? 'height: 300rpx':''}};">
+    <scroll-view style="margin-bottom: 50px;{{storageDataArr.length < 1? 'height: 300rpx':''}};">
       <view class="gross-container">
         <view class="gross-item gross-title">总价值</view>
         <view class="gross-item gross-number">￥{{totalValueNum}}</view>
@@ -110,6 +110,7 @@
                   </view>
                 </view>
                 <view class="btns">
+                  <!-- <button class="out-storage" style="background-color:rgb(255,153,0);">赠送</button> -->
                   <button class="out-storage" bindtap="outOfStock" data-id="{{item.id}}">出仓</button>
                   <button type="warn" class="renew" 
                     data-inTime="{{item.pay_time}}" 

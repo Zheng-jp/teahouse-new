@@ -328,7 +328,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
+    var that = this,title;
     if(app.globalData.code_id != '') {
       wx.request({
         url: app.globalData.tiltes + 'api/getAccompanyStatus',
@@ -338,8 +338,41 @@ Page({
           code_id: app.globalData.code_id
         },
         success: function(res){
-          console.log('code_id', res);
-          that.showStorageData();
+          switch (res.data.code) {
+            case 1:
+              that.showStorageData();
+              title='领取成功';
+              break;
+            case 200:
+              title='商品已下架';
+              break;
+            case 201:
+              title='赠茶商品已下架';
+              break;
+            case 202:
+              title='您已经领取过该商品';
+              break;
+            case 203:
+              title='领取活动已过期';
+              break;
+            case 204:
+              title='您不在赠送的会员范围内';
+              break;
+            case 205:
+              title='商品已赠送完';
+              break;
+            case 206:
+              title='领取失败';
+              break;
+          
+            default:
+              break;
+          }
+          wx.showToast({
+            title: title,
+            icon: 'none',
+            duration: 3000
+          })
         },
         fail: function(e){
           console.error(e)
@@ -590,65 +623,65 @@ Page({
   onReady: function () {
     var that = this;
     var uniacid = app.globalData.uniacid;
-    wx.request({
-      url: app.globalData.baseurl + "doPagehomepage",
-      cachetime: "30",
-      data: {
-        uniacid: uniacid
-      },
-      success: function (t) {
-        var version_is = '';
-        that.setData({
-          foot_is: t.data.data.foot_is,
-        })
-        // console.log(t)
-        if (t.data.data.test_name.goods_name == '茶进阶版')
-          version_is = 3;
-        else if (t.data.data.test_name.goods_name == '茶行业版')
-          version_is = 2;
-        else
-          version_is = 1;
-        that.setData({
-          version: version_is
-        })
+    // wx.request({
+    //   url: app.globalData.baseurl + "doPagehomepage",
+    //   cachetime: "30",
+    //   data: {
+    //     uniacid: uniacid
+    //   },
+    //   success: function (t) {
+    //     var version_is = '';
+    //     that.setData({
+    //       foot_is: t.data.data.foot_is,
+    //     })
+    //     // console.log(t)
+    //     if (t.data.data.test_name.goods_name == '茶进阶版')
+    //       version_is = 3;
+    //     else if (t.data.data.test_name.goods_name == '茶行业版')
+    //       version_is = 2;
+    //     else
+    //       version_is = 1;
+    //     that.setData({
+    //       version: version_is
+    //     })
         
-        wx.request({
-          url: app.globalData.baseurl + "doPageGetFoot",
-          cachetime: "30",
-          data: {
-            uniacid: uniacid,
-            foot: t.data.data.foot_is
-          },
-          success: function (t) {
-            // var lujing = [];
-            // var num = getCurrentPages().length - 1;
-            // var url = getCurrentPages()[num].route; //当前页面路径
-            // console.log(url)
-            // for (let i in t.data.data.data) {
-            //   lujing.push(t.data.data.data[i]);
-            // }
-            // for (let o = 0; o < lujing.length; o++) {
-            //   if (lujing[o].linkurl.indexOf(url) != -1) {
-            //     lujing[o].change = true;
-            //   } else {
-            //     lujing[o].change = false;
-            //   }
-            // }
-            // t.data.data.data = lujing;
-            // console.log(t.data.data)
-            that.setData({
-              footinfo: t.data.data,
-              // style: t.data.data.style,
-            })
-          }
-        });
+    //     wx.request({
+    //       url: app.globalData.baseurl + "doPageGetFoot",
+    //       cachetime: "30",
+    //       data: {
+    //         uniacid: uniacid,
+    //         foot: t.data.data.foot_is
+    //       },
+    //       success: function (t) {
+    //         // var lujing = [];
+    //         // var num = getCurrentPages().length - 1;
+    //         // var url = getCurrentPages()[num].route; //当前页面路径
+    //         // console.log(url)
+    //         // for (let i in t.data.data.data) {
+    //         //   lujing.push(t.data.data.data[i]);
+    //         // }
+    //         // for (let o = 0; o < lujing.length; o++) {
+    //         //   if (lujing[o].linkurl.indexOf(url) != -1) {
+    //         //     lujing[o].change = true;
+    //         //   } else {
+    //         //     lujing[o].change = false;
+    //         //   }
+    //         // }
+    //         // t.data.data.data = lujing;
+    //         // console.log(t.data.data)
+    //         that.setData({
+    //           footinfo: t.data.data,
+    //           // style: t.data.data.style,
+    //         })
+    //       }
+    //     });
 
 
-      },
-      fail: function (t) {
-        console.log(t);
-      }
-    });
+    //   },
+    //   fail: function (t) {
+    //     console.log(t);
+    //   }
+    // });
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -656,6 +689,7 @@ Page({
   onPullDownRefresh: function () {
     this.onReady();
     this.allStorage();
+    this.showStorageData();
     wx.stopPullDownRefresh();
     this.setData({
       isLive: false

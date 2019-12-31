@@ -7,17 +7,11 @@ Page({
   data: {
 
   },
-  a: function(e){
-    console.log(e)
-  },
-  b: function(e){
-    console.log('b'+e)
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(11111)
   },
 
   /**
