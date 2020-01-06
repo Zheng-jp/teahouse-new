@@ -12,9 +12,15 @@ Page({
 
   onLoad: function (options) {
     console.log(options)
-    var code, that=this;
+    var code, that=this, special, type = 1;
     if(options) {
       code = options.code;
+      special = code.split('165801');
+      if(special.length > 1) {
+        code = special[1];
+      } else {
+        code = special[0];
+      }
       if(options.isHome) {
         that.setData({
           isHome: true
@@ -30,6 +36,7 @@ Page({
       success: function(res) {
         console.log(res)
         if(res.data.status == "1") {
+          that.addNum(code, type);
           that.setData({
             goods: res.data.data
           })
@@ -49,7 +56,19 @@ Page({
       }
     });
   },
-
+  addNum: function(code, type) {
+    wx.request({
+      url: app.globalData.tiltes + 'inc_number',
+      data: {
+        code: code,
+        type: type
+      },
+      method: "post",
+      success: function(res) {},
+      fail: function() {},
+      complete: function() {}
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

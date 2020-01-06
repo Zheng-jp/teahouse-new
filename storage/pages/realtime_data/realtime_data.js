@@ -525,6 +525,10 @@ Page({
     if (current == 0) {
       _this.initOne();
       _this.initTwo();
+    } else if(current == 1) {
+      const end = app.formatDate(new Date() / 1000);
+      const start = app.formatDate(new Date() / 1000 - 604800);
+      this.getHistoryData(start, end);
     } else {
       clearInterval(this.data.timer);
       clearInterval(this.data.timer2);

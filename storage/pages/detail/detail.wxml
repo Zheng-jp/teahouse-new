@@ -3,7 +3,8 @@
   <view class="active_information" catchtap='outbtn'>
     <view class='title' style='display:flex;align-items: center;'>
       <text class='title_title'>活动信息</text>
-      <text class='Label' wx:for="{{Label}}" style='color:{{item.color}}; border-color:{{item.color}}'>{{item.name}}
+      <text class='Label' wx:for="{{Label}}" style='color:{{item.color}}; border-color:{{item.color}}'>
+        {{item.name}}
       </text>
       <view class='star' bindtap="collection" wx:if="{{!collectionimg}}">
         <image src='img/u5053.png'></image>
@@ -12,27 +13,28 @@
         <image src='img/u1001.png'></image>
       </view>
     </view>
-
     <view class='list_contents'>
       <view class='list_a list'>
         <view class='ico_img'>
           <image src='img/u4997.png' mode="widthFix"></image>
         </view>
         <view class='list_content lista_content'>地址：{{information.address}}</view>
-
       </view>
       <view class='list_a list'>
         <view class='ico_img'>
           <image src='img/u5001.png' mode="widthFix"></image>
         </view>
-        <view class='list_content listb_content' style='color:#5E5E5E'>{{show_start_time}} 至 {{show_end_time}}</view>
+        <view class='list_content listb_content' style='color:#5E5E5E'>
+          {{show_start_time}} 至 {{show_end_time}}
+        </view>
       </view>
       <view class='list_a list'>
         <view class='ico_img'>
           <image src='img/u5005.png' mode="widthFix"></image>
         </view>
         <view class='list_content listc_content'>
-          <text style='color:#5E5E5E'>活动上限</text>{{information.participats}}
+          <text style='color:#5E5E5E'>活动上限</text>
+          {{information.participats}}
           <text style='color:#5E5E5E'>人</text>
           <text class="padding">已报名{{information.peoples}}人</text>
         </view>
@@ -45,33 +47,27 @@
       </view>
     </view>
   </view>
-
-
   <view class='wrap {{aniStyle?"slideup":"slidedown"}}' catchtap='inbtn' wx:if="{{mengShow}}">
     <view>
       <view class='date-show'>
         <view class='lt-arrow' bindtap='lastMonth'>
-
           <image src='img/u5168.png' mode='widthFix'></image>
-
         </view>
         {{year}}年{{month}}月
         <view class='rt-arrow' bindtap='nextMonth'>
-
           <image src='img/u5167.png' mode='widthFix'></image>
         </view>
       </view>
     </view>
     <view class='header'>
-      <view wx:for='{{date}}' class=''>{{item}}
+      <view wx:for='{{date}}' class=''>
+        {{item}}
         <view></view>
       </view>
     </view>
     <view class='date-box'>
       item.end_time > item.isToday
-      <view wx:for='{{dateArr}}' class='{{clickDay == item.isToday ? "nowDay" : ""}} {{item.isToday < item.start_time ? "aften" : ""}}  {{item.isToday > item.end_time ? "aften" : ""}}' data-date='{{item.isToday}}' id='{{index}}' data-indexid='{{item.indexId}}'
-        bindtap='changeColor'>
-
+      <view wx:for='{{dateArr}}' class='{{clickDay == item.isToday ? "nowDay" : ""}} {{item.isToday < item.start_time ? "aften" : ""}}  {{item.isToday > item.end_time ? "aften" : ""}}' data-date='{{item.isToday}}' id='{{index}}' data-indexid='{{item.indexId}}' bindtap='changeColor'>
         <view class='date-head'>
           <view>{{item.dateNum}}</view>
         </view>
@@ -79,7 +75,6 @@
       </view>
     </view>
   </view>
-
   <view class='text' catchtap='outbtn'>
     <template is="wxParse" data="{{wxParseData:article.nodes}}" />
   </view>
@@ -94,7 +89,6 @@
         <text decode="true">1、评论点赞超过500，奖励积分5个\n</text>
         <text decode="true">1、评论点赞超过500，奖励积分5个\n</text>
       </view> -->
-
       <view class='comment_repay' wx:for="{{repay_informatiom}}">
         <view class='comment_ico'>
           <image src='{{item.user_images}}'></image>
@@ -122,22 +116,22 @@
       </view>
     </view>
   </view>
-
-
-
-
   <view class='buttom_nav'>
     <view class='star1' bindtap="toHome">
       <image src='img/u147.png'></image>
     </view>
     <input class='input' type='text' placeholder='写评论' bindtap="bindReply" disabled='display'></input>
     <view class='share'>
-      <button open-type="share">
-      </button>
+      <button open-type="share"></button>
       <image src='img/u5055.png'></image>
     </view>
     <view class='monly'>¥{{information.cost_moneny}}</view>
-    <view class='buttons' bindtap='showMeng' wx:if="{{apply==0}}">立即报名</view>
-    <view class='buttons' wx:else>已报名</view>
+    <block wx:if="{{!isEnd}}">
+      <view class='buttons' bindtap='showMeng' wx:if="{{apply==0}}">立即报名 {{isEnd}}</view>
+      <view class='buttons' wx:else>已报名</view>
+    </block>
+    <block wx:else>
+      <view class='buttons'>已过期</view>
+    </block>
   </view>
 </view>

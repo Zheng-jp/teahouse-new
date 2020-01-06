@@ -10,6 +10,10 @@
 }
 .img{
     width: 156rpx;
+    margin-right: 80rpx;
+}
+.monicker {
+    color: #999999;
 }
 .list_content{
     background: #fff;
@@ -17,8 +21,8 @@
 }
 .lista{
     font-size: 28rpx;
-    height: 111rpx;
-    line-height: 111rpx;
+    height: 80rpx;
+    line-height: 80rpx;
     padding-left: 41rpx;
     padding-right: 41rpx;
     display: flex;

@@ -39,6 +39,7 @@ Page({
     repay_informatiom: [],
     title: null,
     collectionimg: false,
+    isEnd: false
   },
   /**
 * 点击回复
@@ -626,9 +627,14 @@ Page({
         
         var show_start_time =  app.formatDate(res.data.data.start_time);
         var show_end_time = app.formatDate(res.data.data.end_time);
+        var newDate = Date.parse(new Date()), isEnd;
+        if(res.data.data.end_time * 1000 < newDate) {
+          isEnd = true;
+        }
         that.setData({
           show_start_time: show_start_time,
-          show_end_time: show_end_time
+          show_end_time: show_end_time,
+          isEnd: isEnd
         })
 
       },

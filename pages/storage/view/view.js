@@ -364,6 +364,9 @@ Page({
             case 206:
               title='领取失败';
               break;
+            case 207:
+              title='赠茶商品已被领取';
+              break;
           
             default:
               break;
