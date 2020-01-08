@@ -1,4 +1,4 @@
- // storage/pages/stock_detail/stock_detail.js
+// storage/pages/stock_detail/stock_detail.js
 const app = getApp();
 var wxCharts = require('../../../component/wxcharts.js');
 // var columnChart = null;
@@ -36,7 +36,7 @@ Page({
   data: {
     url: app.globalData.img_url,
     dataObj: [],
-    chartData:{}
+    chartData: {}
   },
 
   /**
@@ -46,7 +46,7 @@ Page({
     var _this = this;
     wx.request({
       url: app.globalData.tiltes + 'takeOrderData',
-      data:{
+      data: {
         uniacid: app.globalData.uniacid,
         member_id: app.globalData.member_id,
         id: options.id
@@ -54,7 +54,7 @@ Page({
       method: 'POST',
       success: function (res) {
         // console.log(res);
-        if(res.data.status == 1){
+        if (res.data.status == 1) {
           var dataArr = [];
           res.data.data.end_time = app.formatDate(res.data.data.end_time);
           res.data.data.pay_time = app.formatDate(res.data.data.pay_time);
@@ -63,7 +63,7 @@ Page({
             dataObj: dataArr
           })
           wx.request({
-            url: app.globalData.tiltes+ "getLineprice",
+            url: app.globalData.tiltes + "getLineprice",
             data: {
               goods_id: dataArr[0].goods_id,
               uniacid: app.globalData.uniacid,
@@ -72,7 +72,7 @@ Page({
             method: 'POST',
             success: function (res) {
               console.log(res)
-              if(res.data.status == 1) {
+              if (res.data.status == 1) {
                 var columnChart = null;
                 var chartData = {
                   main: {
@@ -81,7 +81,7 @@ Page({
                     categories: res.data.data.categories
                   }
                 }
-                
+
                 var windowWidth = 375;
                 try {
                   var res = wx.getSystemInfoSync();
@@ -133,15 +133,38 @@ Page({
         console.log(res);
       }
     });
-    
-  },
 
+  },
+  showMsg: function (e) {
+    let title = "";
+    switch (e.currentTarget.dataset.id) {
+      case '1':
+        title = '目前该商品的售价';
+        break;
+      case '2':
+        title = '目前您的会员商品折扣价';
+        break;
+      case '3':
+        title = '当时您购买该商品的价格';
+        break;
+      case '4':
+        title = '您购买的商品目前的价格涨幅';
+        break;
+    
+      default:
+        break;
+    }
+    wx.showToast({
+      title: title,
+      icon: 'none',
+      duration: 2000
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function (e) {
     var _this = this;
-    
   },
 
   /**

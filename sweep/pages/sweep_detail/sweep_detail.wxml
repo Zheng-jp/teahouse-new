@@ -18,15 +18,15 @@
   </view>
   <view class="list_content">
     <view class="lista">
-      <view class="lefta">NFC ID：</view>
+      <view class="lefta">防伪 ID：</view>
       <view class="righta">{{goods.child_code}}</view>
     </view>
-    <view class="lista">
+    <!-- <view class="lista">
       <view class="lefta">产品总量：</view>
       <view class="righta">{{goods.goods_repertory}}{{goods.unit}}</view>
-    </view>
+    </view> -->
     <view class="lista">
-      <view class="lefta">产品编号：</view>
+      <view class="lefta">商品编号：</view>
       <view class="righta">{{goods.goods_number}}</view>
     </view>
   </view>
@@ -35,14 +35,14 @@
       <view class="lefta">出品商：</view>
       <view class="righta">{{goods.produce}}</view>
     </view>
-    <view class="lista">
+    <!-- <view class="lista">
       <view class="lefta">品牌：</view>
       <view class="righta">{{goods.goods_brand}}</view>
     </view>
     <view class="lista">
       <view class="lefta">产品名称：</view>
       <view class="righta">{{goods.goods_name}}</view>
-    </view>
+    </view> -->
     <view class="lista">
       <view class="lefta">规格：</view>
       <view class="righta">{{goods.pick_size}}</view>
@@ -60,14 +60,14 @@
       <view class="righta">{{goods.date}}</view>
     </view>
     <view class="lista">
-      <view class="lefta">包装日期：</view>
+      <view class="lefta">生产(包装)日期：</view>
       <view class="righta">{{goods.frement_date}}</view>
     </view>
     <view class="lista">
       <view class="lefta">原产地：</view>
       <view class="righta">云南</view>
     </view>
-    <view class="list_a">
+    <!-- <view class="list_a">
       <view class="lefta">产地定位：</view>
       <view class="right_content">
         <view class="righta">
@@ -76,7 +76,7 @@
         </view>
         <image class="more" src="img/u303.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
       </view>
-    </view>
+    </view> -->
   </view>
   <view class="list_content">
     <view class="title">数据来自终端设备采集 ：</view>

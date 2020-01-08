@@ -18,7 +18,7 @@
                 <text class='blue'>{{item.peoples}}</text>
                 人
             </view>
-            <text class="validity">活动日期：{{item.start_time}}</text>
+            <text class="validity">活动截至日期：{{item.start_time}}</text>
         </view>
     </view>
 </template>

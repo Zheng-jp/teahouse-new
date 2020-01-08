@@ -20,8 +20,8 @@
     margin: 300rpx 0;
 }
 .nfc-gif > image {
-    width: 500rpx;
-    height: 300rpx;
+    width: 400rpx;
+    height: 250rpx;
 }
 .tips {
     margin: 0 110rpx;

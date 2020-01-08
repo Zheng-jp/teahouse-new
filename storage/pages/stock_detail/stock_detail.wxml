@@ -67,7 +67,7 @@
             <view class="item-value">2019.03.05</view>
         </view> -->
         <view class="other-item">
-            <view class="item-key">包装规格：<text class="explain">?</text></view>
+            <view class="item-key">包装规格：</view>
             <view class="item-value">
               <text wx:if="{{item.num[0]}}">{{item.num[0]}}{{item.unit[0]}}</text>
               <text wx:if="{{item.num[1]}}">={{item.num[1]}}{{item.unit[1]}}</text>
@@ -94,19 +94,19 @@
             </view>
         </view>
         <view class="other-item">
-            <view class="item-key">当前参考价：<text class="explain">?</text></view>
+            <view class="item-key">当前参考价：<text class="explain" bindtap="showMsg" data-id="1">?</text></view>
             <view class="item-value">¥{{item.goods_bottom_money}}/{{item.store_unit}}</view>
         </view>
         <view class="other-item">
-            <view class="item-key">当前折扣价：<text class="explain">?</text></view>
+            <view class="item-key">当前折扣价：<text class="explain" bindtap="showMsg" data-id="2">?</text></view>
             <view class="item-value">￥{{item.discount_price}}/{{item.store_unit}}</view>
         </view>
         <view class="other-item">
-            <view class="item-key">购买入仓价：<text class="explain">?</text></view>
+            <view class="item-key">购买入仓价：<text class="explain" bindtap="showMsg" data-id="3">?</text></view>
             <view class="item-value">¥{{item.goods_money}}/{{item.store_unit}}</view>
         </view>
         <view class="other-item">
-            <view class="item-key">价格涨幅比：<text class="explain">?</text></view>
+            <view class="item-key">价格涨幅比：<text class="explain" bindtap="showMsg" data-id="4">?</text></view>
             <view class="item-value">{{item.scale}}%</view>
         </view>
     </view>

@@ -20,8 +20,8 @@ Page({
     show_end_time: 0,
     mengShow: false,
     aniStyle: true,
-    start_time:0,
-    end_time:0,
+    start_time: 0,
+    end_time: 0,
     Label: [
       {
         name: '仅限会员',
@@ -86,8 +86,8 @@ Page({
     }
   },
   toHome: function () {
-    wx.redirectTo({
-      url: '../../../diy/index/index',
+    wx.switchTab({
+      url: '../../../pages/diy/index/index',
     })
   },
 
@@ -168,19 +168,24 @@ Page({
     })
   },
   //日历显示控制
-  showMeng: function(e) {
-    this.setData({
-      mengShow: true, //蒙层显示
-      aniStyle: true　　　　　　　//设置动画效果为slideup
-      
-    })
-
+  showMeng: function (e) {
+    if (this.data.information.requirements == 1) {
+      this.setData({
+        mengShow: true, //蒙层显示
+        aniStyle: true　　　　　　　//设置动画效果为slideup
+      })
+    } else {
+      var day = new Date();
+      day.setTime(day.getTime());
+      var date = day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate(), indexid = day.getDate() - 1;
+      this.diPay(date, indexid)
+    }
   },
   outbtn: function (e) {
-   // 这是日历外部的点击事件，给它绑定事件，是为了实现点击其它地方隐藏蒙层的效果
+    // 这是日历外部的点击事件，给它绑定事件，是为了实现点击其它地方隐藏蒙层的效果
     var that = this;
     this.setData({
-      aniStyle: false　
+      aniStyle: false
     })
     setTimeout(function () {
       //延时设置蒙层的隐藏，这个定时器的时间,不设置定时器会导致动画效果看不见
@@ -190,7 +195,7 @@ Page({
     }, 500)
   },
   inbtn: function (e) {
-  }, 
+  },
 
   collection: function (e) {
     var that = this;
@@ -253,7 +258,7 @@ Page({
 
     });
   },
-    
+
 
   /*
    * 时间戳转换为yyyy-MM-dd hh:mm:ss 格式  formatDate()
@@ -282,10 +287,10 @@ Page({
     m = m < 10 ? ('0' + m) : m;
     var d = date.getDate();
     d = d < 10 ? ('0' + d) : d;
-    return y  + m  + d;
+    return y + m + d;
   },
-  
-  
+
+
   dateInit: function (setYear, setMonth) {
     // console.log(that.data.information);
     //全部时间的月份都是按0~11基准，显示月份才+1
@@ -311,7 +316,7 @@ Page({
     startWeek = Number(startWeek);
     dayNums = Number(dayNums);
     arrLen = startWeek + dayNums;
-    
+
     months = months + 1;
     if (months < 10) {
       months = '0' + months;
@@ -329,7 +334,7 @@ Page({
     var timeArr = [];
     var timeC = [this.data.information.start_time];
 
-    for(let j = 0; j < timeDiff; j++) {
+    for (let j = 0; j < timeDiff; j++) {
       timeC.push(Number(timeC[j]) + 86400);
     }
     for (let u = 0; u < timeC.length; u++) {
@@ -339,10 +344,10 @@ Page({
     for (let i = 0; i < Number(arrLen); i++) {
       if (i >= startWeek) {
         num = i - startWeek + 1;
-        if(num < 10) {
+        if (num < 10) {
           num = '0' + num;
         }
-    
+
         //已预约的时间
         todayTime = parseInt('' + year + months + num);
         state = false;
@@ -355,7 +360,7 @@ Page({
           }
           // console.log(weight)
         }
-        
+
         // console.log(parseInt('' + year + (month + 1) + num))
         obj = {
           isToday: todayTime,
@@ -372,10 +377,7 @@ Page({
       dateArr[i] = obj;
     }
 
-   
-
-
-     console.log(dateArr)
+    console.log(dateArr)
     this.setData({
       dateArr: dateArr
     })
@@ -427,115 +429,118 @@ Page({
     var clickDate;
     var dateArr = that.data.dateArr;
     clickDate = data.dataset.date;
-    
+
     // console.log(e)
     // console.log(clickDate)
     if (dateArr[data.id].state == true) {
       that.setData({
         clickDay: clickDate
-    })
-    clickDate = String(clickDate);
-    clickDate = clickDate.slice(0, 4) + '-' + clickDate.slice(4, 6) + '-' + clickDate.slice(6, 8);
+      })
+      clickDate = String(clickDate);
+      clickDate = clickDate.slice(0, 4) + '-' + clickDate.slice(4, 6) + '-' + clickDate.slice(6, 8);
       //选中调起支付
-      wx.request({
-        url: app.globalData.tiltes + 'activity_order',
-        data: {
-          uniacid: app.globalData.uniacid,
-          open_id: app.globalData.gmemberid,
-          activity_id: that.data.information.id,
-          start_time: clickDate,
-          index: data.dataset.indexid
-        },
-        method: "post",
-        // header: {
-        //   "Content-Type": "application/json" // 默认值
-
-        // },
-        success: function (res) {
-          // console.log(app)
-          var order_number = res.data.data;
-          wx.request({
-            // url: app.globalData.tiltes + 'wxpay',
-            url: app.globalData.tiltes + 'wx_index',
-            data: {
-              uniacid: app.globalData.uniacid,
-              open_id: app.globalData.gmemberid,
-              cost_moneny: that.data.information.cost_moneny,
-              activity_name: that.data.information.activity_name,
-              order_number: order_number
-            },
-            dataTypr: 'json',
-            method: "post",
-            // header: {
-            //   "Content-Type": "application/json" // 默认值
-            // },
-            success: function (res) {
-              console.log(res)
-              var result = res;
-              if (result) {
-                wx.requestPayment({
-                  timeStamp: String(result.data.timeStamp),
-                  nonceStr: result.data.nonceStr,
-                  package: result.data.package,
-                  signType: result.data.signType,
-                  paySign: result.data.paySign,
-                  'success': function (successret) {
-                    console.log('支付成功');
-                    that.setData({
-                      apply: 1,
-                    });
-                  },
-                  'fail': function (res) {
-                    wx.request({
-                      url: app.globalData.tiltes + 'activity_order_delete',
-                      data: {
-                        parts_order_number: order_number
-                      },
-                      method: "post",
-                      success: function (res) {
-
-                      },
-                      fail: function () {
-
-                      },
-                      complete: function () {
-                        wx.hideLoading()
-                      }
-
-                    });
-                  }
-                })
-              }
-            },
-            fail: function () {
-
-            },
-            complete: function () {
-              wx.hideLoading()
-            }
-          });
-        },
-        fail: function () {
-
-        },
-        complete: function () {
-          wx.hideLoading()
-        }
-
-      });
+      this.diPay(clickDate, data.dataset.indexid);
 
     }
 
 
   },
-  
-  
+  //调起支付
+  diPay: function (date, indexid) {
+    var that = this;
+    wx.request({
+      url: app.globalData.tiltes + 'activity_order',
+      data: {
+        uniacid: app.globalData.uniacid,
+        open_id: app.globalData.gmemberid,
+        activity_id: that.data.information.id,
+        start_time: date,
+        index: indexid
+      },
+      method: "post",
+      // header: {
+      //   "Content-Type": "application/json" // 默认值
+
+      // },
+      success: function (res) {
+        // console.log(app)
+        var order_number = res.data.data;
+        wx.request({
+          // url: app.globalData.tiltes + 'wxpay',
+          url: app.globalData.tiltes + 'wx_index',
+          data: {
+            uniacid: app.globalData.uniacid,
+            open_id: app.globalData.gmemberid,
+            cost_moneny: that.data.information.cost_moneny,
+            activity_name: that.data.information.activity_name,
+            order_number: order_number
+          },
+          dataTypr: 'json',
+          method: "post",
+          // header: {
+          //   "Content-Type": "application/json" // 默认值
+          // },
+          success: function (res) {
+            console.log(res)
+            var result = res;
+            if (result) {
+              wx.requestPayment({
+                timeStamp: String(result.data.timeStamp),
+                nonceStr: result.data.nonceStr,
+                package: result.data.package,
+                signType: result.data.signType,
+                paySign: result.data.paySign,
+                'success': function (successret) {
+                  console.log('支付成功');
+                  that.setData({
+                    apply: 1,
+                  });
+                },
+                'fail': function (res) {
+                  wx.request({
+                    url: app.globalData.tiltes + 'activity_order_delete',
+                    data: {
+                      parts_order_number: order_number
+                    },
+                    method: "post",
+                    success: function (res) {
+
+                    },
+                    fail: function () {
+
+                    },
+                    complete: function () {
+                      wx.hideLoading()
+                    }
+
+                  });
+                }
+              })
+            }
+          },
+          fail: function () {
+
+          },
+          complete: function () {
+            wx.hideLoading()
+          }
+        });
+      },
+      fail: function () {
+
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    var title = options.title;
+    var that = this, title = options.title, Label = new Array();
     that.setData({
       title: title,
     });
@@ -584,57 +589,37 @@ Page({
         WxParse.wxParse('article', 'html', article, that, 5);
         // console.log(res.data.data)
         if (res.data.data.requirements == 1 && res.data.data.open_request == 1) {
-          that.setData({
-            Label: [
-              {
-                name: '仅限会员',
-                color: '#93291E'
-              },
-              {
-                name: '需要预约',
-                color: '#669900'
-              }
-            ]})
-          
+          Label.push({
+            name: '仅限会员',
+            color: '#93291E'
+          });
+          Label.push({
+            name: '需要预约',
+            color: '#669900'
+          });
+        } else if (res.data.data.requirements == 1 && res.data.data.open_request == 0) {
+          Label.push({
+            name: '需要预约',
+            color: '#669900'
+          });
+
+        } else if (res.data.data.requirements == 0 && res.data.data.open_request == 1) {
+          Label.push({
+            name: '仅限会员',
+            color: '#93291E'
+          });
         }
-        if (res.data.data.requirements == 1 && res.data.data.open_request == 0) {
-          that.setData({
-            Label: [
-              {
-                name: '需要预约',
-                color: '#669900'
-              }
-            ]
-          })
-          
-        }
-        if (res.data.data.requirements == 0 && res.data.data.open_request == 1) {
-          that.setData({
-            Label: [
-              {
-                name: '仅限会员',
-                color: '#93291E'
-              }
-            ]
-          })
-         
-        }
-        if (res.data.data.requirements == 0 && res.data.data.open_request == 0) {
-          that.setData({
-            Label: []
-          })
-        }
-        
-        var show_start_time =  app.formatDate(res.data.data.start_time);
+        var show_start_time = app.formatDate(res.data.data.start_time);
         var show_end_time = app.formatDate(res.data.data.end_time);
         var newDate = Date.parse(new Date()), isEnd;
-        if(res.data.data.end_time * 1000 < newDate) {
+        if (res.data.data.end_time * 1000 < newDate) {
           isEnd = true;
         }
         that.setData({
           show_start_time: show_start_time,
           show_end_time: show_end_time,
-          isEnd: isEnd
+          isEnd: isEnd,
+          Label: Label
         })
 
       },
@@ -683,8 +668,8 @@ Page({
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
     let months = month;
-    
-    
+
+
     setTimeout(function () {
       that.dateInit();
     }, 500)
@@ -701,10 +686,10 @@ Page({
     this.setData({
       clickDay: that.data.isToday
     });
-    
+
   },
 
-  
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -719,7 +704,7 @@ Page({
   onShow: function () {
 
     var that = this;
-   
+
     wx.request({
       url: app.globalData.tiltes + 'teacenter_comment_show',
       data: {

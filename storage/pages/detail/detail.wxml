@@ -3,9 +3,12 @@
   <view class="active_information" catchtap='outbtn'>
     <view class='title' style='display:flex;align-items: center;'>
       <text class='title_title'>活动信息</text>
-      <text class='Label' wx:for="{{Label}}" style='color:{{item.color}}; border-color:{{item.color}}'>
-        {{item.name}}
-      </text>
+      <block wx:if="{{Label > 0}}">
+        <view class='Label' wx:for="{{Label}}" wx:key="index" style='color:{{item.color}}; border-color:{{item.color}}'>
+          {{item.name}}
+        </view>
+      </block>
+      <view style="flex:1;" wx:else></view>
       <view class='star' bindtap="collection" wx:if="{{!collectionimg}}">
         <image src='img/u5053.png'></image>
       </view>
@@ -67,7 +70,7 @@
     </view>
     <view class='date-box'>
       item.end_time > item.isToday
-      <view wx:for='{{dateArr}}' class='{{clickDay == item.isToday ? "nowDay" : ""}} {{item.isToday < item.start_time ? "aften" : ""}}  {{item.isToday > item.end_time ? "aften" : ""}}' data-date='{{item.isToday}}' id='{{index}}' data-indexid='{{item.indexId}}' bindtap='changeColor'>
+      <view wx:for='{{dateArr}}' wx:key="index" class='{{clickDay == item.isToday ? "nowDay" : ""}} {{item.isToday < item.start_time ? "aften" : ""}}  {{item.isToday > item.end_time ? "aften" : ""}}' data-date='{{item.isToday}}' id='{{index}}' data-indexid='{{item.indexId}}' bindtap='changeColor'>
         <view class='date-head'>
           <view>{{item.dateNum}}</view>
         </view>
@@ -89,7 +92,7 @@
         <text decode="true">1、评论点赞超过500，奖励积分5个\n</text>
         <text decode="true">1、评论点赞超过500，奖励积分5个\n</text>
       </view> -->
-      <view class='comment_repay' wx:for="{{repay_informatiom}}">
+      <view class='comment_repay' wx:for="{{repay_informatiom}}" wx:key="index">
         <view class='comment_ico'>
           <image src='{{item.user_images}}'></image>
         </view>
@@ -127,11 +130,11 @@
     </view>
     <view class='monly'>¥{{information.cost_moneny}}</view>
     <block wx:if="{{!isEnd}}">
-      <view class='buttons' bindtap='showMeng' wx:if="{{apply==0}}">立即报名 {{isEnd}}</view>
+      <view class='buttons' bindtap='showMeng' wx:if="{{apply==0}}">{{information.requirements == 1 ? '立即预约' : '立即参加'}}</view>
       <view class='buttons' wx:else>已报名</view>
     </block>
     <block wx:else>
-      <view class='buttons'>已过期</view>
+      <view class='buttons' style="background-color:rgb(22,155,213);">活动结束</view>
     </block>
   </view>
 </view>

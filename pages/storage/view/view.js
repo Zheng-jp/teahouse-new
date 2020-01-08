@@ -5,7 +5,7 @@ function getData(_this) {
   // 轮播图
   wx.request({
     url: app.globalData.tiltes + 'crowd_index',
-    data:{
+    data: {
       uniacid: app.globalData.uniacid
     },
     method: 'POST',
@@ -32,15 +32,15 @@ function switchProject(option, _this) {
     success: function (res) {
       var crowdList = res.data.data;
       var nowTime = (new Date()).getTime();
-      if(option == "crowd_now") {
-        for(let i = 0; i < crowdList.length; i ++) {
-          if(crowdList[0].endTime <= nowTime) {
+      if (option == "crowd_now") {
+        for (let i = 0; i < crowdList.length; i++) {
+          if (crowdList[0].endTime <= nowTime) {
             wx.request({
               url: app.globalData.url + "/crowd_goods_timeout",
               method: "POST",
               data: {
                 uniacid: app.globalData.uniacid,
-                goods_id: crowdList[i].id 
+                goods_id: crowdList[i].id
               },
               success: (res) => {
                 console.log("成功")
@@ -100,7 +100,7 @@ Page({
     order_number: null, //订单号
     isLive: false //实时视频
   },
-  
+
   //输入密码监听
   inputPwd: function (e) {
     this.setData({
@@ -139,58 +139,58 @@ Page({
       payFocus: false,
       pwdVal: ''
     },
-    function () {
-      if (val.length == 6) {
-        wx.request({
-          url: app.globalData.tiltes + 'check_password',
-          data: {
-            member_id: app.globalData.member_id,
-            passwords: val,
-          },
-          method: "POST",
-          success: function (res) {
-            // if (res.data.data.status == 1) {
-            //   wx.request({
-            //     url: app.globalData.tiltes + 'remainder_pay',
-            //     data: {
-            //       member_id: app.globalData.member_id,
-            //       order_num: _this.data.order_number,
-            //       passwords: val,
-            //     },
-            //     method: "POST",
-            //     success: function (res) { },
-            //     fail: function () { },
-            //     complete: function (res) {
-            //       wx.showToast({
-            //         icon: "none",
-            //         title: res.data.info,
-            //         duration: 2000
-            //       })
-            //     }
-            //   });
-            // }else {
-            //   wx.showToast({
-            //     icon: "none",
-            //     title: res.data.info,
-            //     duration: 2000
-            //   })
-            // }
-          },
-          fail: function () {
-          },
-          complete: function () { }
-        });
-      }else {
-        wx.showToast({
-          icon: "none",
-          title: "您已取消支付",
-        })
-      }
-    });
+      function () {
+        if (val.length == 6) {
+          wx.request({
+            url: app.globalData.tiltes + 'check_password',
+            data: {
+              member_id: app.globalData.member_id,
+              passwords: val,
+            },
+            method: "POST",
+            success: function (res) {
+              // if (res.data.data.status == 1) {
+              //   wx.request({
+              //     url: app.globalData.tiltes + 'remainder_pay',
+              //     data: {
+              //       member_id: app.globalData.member_id,
+              //       order_num: _this.data.order_number,
+              //       passwords: val,
+              //     },
+              //     method: "POST",
+              //     success: function (res) { },
+              //     fail: function () { },
+              //     complete: function (res) {
+              //       wx.showToast({
+              //         icon: "none",
+              //         title: res.data.info,
+              //         duration: 2000
+              //       })
+              //     }
+              //   });
+              // }else {
+              //   wx.showToast({
+              //     icon: "none",
+              //     title: res.data.info,
+              //     duration: 2000
+              //   })
+              // }
+            },
+            fail: function () {
+            },
+            complete: function () { }
+          });
+        } else {
+          wx.showToast({
+            icon: "none",
+            title: "您已取消支付",
+          })
+        }
+      });
   },
 
   // 确定续费
-  bindRenewEvent: function(){
+  bindRenewEvent: function () {
     var _this = this;
     wx.request({
       url: app.globalData.tiltes + 'series_pay',
@@ -202,23 +202,23 @@ Page({
         year_number: this.data.renewYear,
         series_price: 0.01
       },
-      success: function(res){
+      success: function (res) {
         console.log(res);
-        if(res.statusCode === 200){
+        if (res.statusCode === 200) {
           // 调用微信支付接口
           wx.showActionSheet({
             itemList: ['微信支付'],
-            success: function(data){
+            success: function (data) {
               console.log(data)
-              if(data.tapIndex === 0){
+              if (data.tapIndex === 0) {
                 // 微信支付
                 _this.wechatPay(res);
-              }else{
+              } else {
                 // 余额支付
                 _this.showInputLayer();
               }
             },
-            fail: function(data){
+            fail: function (data) {
               console.log('fail', data);
               wx.showToast({
                 title: '支付失败!',
@@ -227,7 +227,7 @@ Page({
               })
             }
           })
-        }else{
+        } else {
           wx.showToast({
             title: '请求参数失败！',
             icon: 'none',
@@ -235,12 +235,12 @@ Page({
           })
         }
       },
-      fail: function(res){
+      fail: function (res) {
         console.log('确定续费:fail', res);
       }
     })
-  }, 
-  wechatPay: function(res){
+  },
+  wechatPay: function (res) {
     var _this = this;
     wx.requestPayment({
       timeStamp: res.data.timeStamp,
@@ -248,20 +248,20 @@ Page({
       package: res.data.package,
       signType: res.data.signType,
       paySign: res.data.paySign,
-      success: function(res){
+      success: function (res) {
         wx.showToast({
           title: '支付成功!',
           icon: 'none',
           duration: 1500
         })
-        setTimeout(function(){
+        setTimeout(function () {
           _this.onShow();
           _this.setData({
             switchPop: false
           })
         }, 1600)
       },
-      fail: function(res){
+      fail: function (res) {
         wx.showToast({
           title: '支付失败!',
           icon: 'none',
@@ -271,7 +271,7 @@ Page({
     })
   },
   // 计算续费到期日期
-  calcRenewTime: function(year){
+  calcRenewTime: function (year) {
     var endTime = this.data.expireYear.split('-');
     endTime[0] = +endTime[0] + year;
     var newEndTime = endTime.join('-');
@@ -280,10 +280,10 @@ Page({
     })
   },
   // 减
-  minus: function(){
+  minus: function () {
     var year = +this.data.renewYear;
-    if(year > 1){
-      year --;
+    if (year > 1) {
+      year--;
     }
     this.calcRenewTime(year);
     this.setData({
@@ -292,7 +292,7 @@ Page({
     })
   },
   // 加
-  plus: function(){
+  plus: function () {
     var year = +this.data.renewYear;
     year++;
     this.calcRenewTime(year);
@@ -301,10 +301,10 @@ Page({
       savePrice: (this.data.oneYearPrice * year).toFixed(2)
     })
   },
-  
+
   // 显示续费弹窗
-  showRenewPop: function(e){
-    var dataset= e.currentTarget.dataset;
+  showRenewPop: function (e) {
+    var dataset = e.currentTarget.dataset;
     var renewTime = dataset.outtime.split('-');
     renewTime[0] = +renewTime[0] + 1;
     this.setData({
@@ -318,7 +318,7 @@ Page({
     })
   },
   // 关闭续费弹窗
-  closeRenewPop: function(){
+  closeRenewPop: function () {
     this.setData({
       switchPop: false,
       renewYear: 1
@@ -328,8 +328,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this,title;
-    if(app.globalData.code_id != '') {
+    var that = this, title;
+    if (app.globalData.code_id != '') {
       wx.request({
         url: app.globalData.tiltes + 'api/getAccompanyStatus',
         method: 'POST',
@@ -337,37 +337,37 @@ Page({
           member_id: app.globalData.member_id,
           code_id: app.globalData.code_id
         },
-        success: function(res){
+        success: function (res) {
           switch (res.data.code) {
             case 1:
               that.showStorageData();
-              title='领取成功';
+              title = '领取成功';
               break;
             case 200:
-              title='商品已下架';
+              title = '商品已下架';
               break;
             case 201:
-              title='赠茶商品已下架';
+              title = '赠茶商品已下架';
               break;
             case 202:
-              title='您已经领取过该商品';
+              title = '您已经领取过该商品';
               break;
             case 203:
-              title='领取活动已过期';
+              title = '领取活动已过期';
               break;
             case 204:
-              title='您不在赠送的会员范围内';
+              title = '您不在赠送的会员范围内';
               break;
             case 205:
-              title='商品已赠送完';
+              title = '商品已赠送完';
               break;
             case 206:
-              title='领取失败';
+              title = '领取失败';
               break;
             case 207:
-              title='赠茶商品已被领取';
+              title = '赠茶商品已被领取';
               break;
-          
+
             default:
               break;
           }
@@ -377,7 +377,7 @@ Page({
             duration: 3000
           })
         },
-        fail: function(e){
+        fail: function (e) {
           console.error(e)
         }
       })
@@ -397,11 +397,12 @@ Page({
   },
 
   // 选择显示仓库
-  selectStorageData: function(e){
+  selectStorageData: function (e) {
     var _this = this;
     // 折叠所有仓库
     _this.showAllStorage();
     var id = e.currentTarget.dataset.id;
+    var order = e.currentTarget.dataset.order;
     wx.request({
       url: app.globalData.tiltes + 'doHouseOrder',
       method: 'POST',
@@ -410,19 +411,17 @@ Page({
         uniacid: app.globalData.uniacid,
         store_house_id: id
       },
-      success: function(res){
+      success: function (res) {
         console.log('选择显示仓库', res)
-        if(res.data.status == 1){
-          _this.setData({
-            storageDataArr: res.data.data
-          })
-        }
+        _this.setData({
+          storageDataArr: res.data.data
+        })
       },
-      fail: function(){}
+      fail: function () { }
     })
   },
   // 显示仓库数据
-  showStorageData: function(e){
+  showStorageData: function (e) {
     var _this = this;
     e ? (e.currentTarget.dataset.key ? _this.showAllStorage() : '') : '';
     wx.request({
@@ -432,29 +431,29 @@ Page({
         member_id: app.globalData.member_id,
         uniacid: app.globalData.uniacid
       },
-      success: function(res){
+      success: function (res) {
         console.log('显示仓库数据：', res)
-        if(res.data.status == 1){
+        if (res.data.status == 1) {
           res.data.data.forEach((v, i) => {
-              v.getArr.forEach((i, j) => {
-                i.end_time = app.formatDate(i.end_time);
-                i.pay_time = app.formatDate(i.pay_time);
-              })
+            v.getArr.forEach((i, j) => {
+              i.end_time = app.formatDate(i.end_time);
+              i.pay_time = app.formatDate(i.pay_time);
+            })
           });
           _this.setData({
             storageDataArr: res.data.data
           })
-        }else{
+        } else {
           _this.setData({
             storageDataArr: res.data.data
           })
         }
       },
-      fail: function(){}
+      fail: function () { }
     })
   },
   // 所有仓库
-  allStorage: function(){
+  allStorage: function () {
     var _this = this;
     wx.request({
       url: app.globalData.tiltes + 'getStoreHouse',
@@ -463,19 +462,19 @@ Page({
         member_id: app.globalData.member_id,
         uniacid: app.globalData.uniacid
       },
-      success: function(res){
+      success: function (res) {
         console.log('所有仓库：', res)
-        if(res.data.status == 1){
+        if (res.data.status == 1) {
           _this.setData({
             allStorageArr: res.data.data
           })
         }
       },
-      fail: function(){}
+      fail: function () { }
     })
   },
   // 总价值
-  totalValue: function(){
+  totalValue: function () {
     var _this = this;
     wx.request({
       url: app.globalData.tiltes + 'theStoreValue',
@@ -484,20 +483,20 @@ Page({
         member_id: app.globalData.member_id,
         uniacid: app.globalData.uniacid
       },
-      success: function(res){
+      success: function (res) {
         console.log('总价值：', res)
-        if(res.data.status == 1){
+        if (res.data.status == 1) {
           _this.setData({
             totalValueNum: res.data.data.order_real_pay.toFixed(2)
           })
         }
       },
-      fail: function(){}
+      fail: function () { }
     })
   },
 
   onShow: function () {
-    if(typeof this.getTabBar === 'function' && this.getTabBar()){
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         checked: 2
       })
@@ -590,7 +589,7 @@ Page({
     var id = e.target.dataset.id;
     // 仓库详情
     wx.navigateTo({
-      url: '/storage/pages/stock_detail/stock_detail?id='+id,
+      url: '/storage/pages/stock_detail/stock_detail?id=' + id,
       success: function () {
         console.log('跳转成功');
       },
@@ -600,16 +599,16 @@ Page({
     })
   },
   //实时视频显示
-  showLive: function(e){
+  showLive: function (e) {
     // console.log(e.currentTarget.dataset.id)
     let isLive, id = e.currentTarget.dataset.id, live_id;
-    if(!this.data.isLive){
+    if (!this.data.isLive) {
       isLive = true;
-      live_id = 'id_'+e.currentTarget.dataset.id;
-    }  else isLive = false;
+      live_id = 'id_' + e.currentTarget.dataset.id;
+    } else isLive = false;
     this.setData({
-      isLive : isLive,
-      live_id : live_id
+      isLive: isLive,
+      live_id: live_id
     })
   },
   outOfStock: function (e) {
@@ -647,7 +646,7 @@ Page({
     //     that.setData({
     //       version: version_is
     //     })
-        
+
     //     wx.request({
     //       url: app.globalData.baseurl + "doPageGetFoot",
     //       cachetime: "30",
