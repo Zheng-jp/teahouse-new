@@ -88,7 +88,7 @@
     </view>
     <view class="list-value">
       <block wx:if="{{!conversion}}">
-        <input type="number" bindblur="bindManual" value="{{outNum}}" /> 片
+        <input type="number" bindblur="bindManual" value="{{outNum}}" /> {{orderInfo.lowest_unit}}
       </block>
       <block wx:else>
         {{conversionStr}}

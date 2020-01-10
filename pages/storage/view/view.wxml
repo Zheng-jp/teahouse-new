@@ -110,7 +110,7 @@
                   </view>
                 </view>
                 <view class="btns">
-                  <!-- <button class="out-storage" style="background-color:rgb(255,153,0);">赠送</button> -->
+                  <!-- <button class="song" bindtap="giving"  data-id="{{item.id}}">赠送</button> -->
                   <button class="out-storage" bindtap="outOfStock" data-id="{{item.id}}">出仓</button>
                   <button type="warn" class="renew" 
                     data-inTime="{{item.pay_time}}" 
@@ -199,8 +199,28 @@
     </scroll-view>
   </swiper-item>
 </swiper>
-<view class="mask" wx:if="{{switchPop}}"></view>
+<!-- 赠送窗口 -->
+<view class="mask" wx:if="{{isGiving}}"></view>
+<view class="renew-pop" wx:if="{{isGiving}}">
+  <view class="renew-close" bind:tap="closeRenewPop">×</view>
+  <view class="bd">
+    <view class="title">赠送</view>
+    <view class="renew-time" style="padding: 50rpx 0;">
+      <text class="subtit-text">数量</text>
+      <view class="num-view">
+        <text class="minus" bind:tap="GivingMinus">-</text>
+        <input type="number" disabled="{{true}}" value="{{givingNum}}" />
+        <text class="plus" bind:tap="GivingPlus">+</text>
+      </view>
+      <!-- <text class="subtit-text">箱</text> -->
+    </view>
+  </view>
+  <view class="fd-zs">
+    <view class="renew-btn" bind:tap="bindGiving">确认赠送</view>
+  </view>
+</view>
 <!-- 续费弹窗 -->
+<view class="mask" wx:if="{{switchPop}}"></view>
 <view class="renew-pop" wx:if="{{switchPop}}">
   <view class="renew-close" bind:tap="closeRenewPop">×</view>
   <view class="bd">

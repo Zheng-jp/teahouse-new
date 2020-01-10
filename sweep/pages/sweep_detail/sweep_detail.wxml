@@ -1,6 +1,6 @@
 <view class="all">
   <view class="img_content">
-    <image class="img" src="https://teahouse.siring.cn/image1345901.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+    <image class="img" src="{{goods.goods_show_image == ''? 'https://teahouse.siring.cn/image1345901.png':goods.goods_show_image}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
     <view>
       <view>
         <text class="monicker">品名：</text>

@@ -98,7 +98,10 @@ Page({
     pwdVal: '',  //输入的密码
     payFocus: true, //余额支付文本框焦点
     order_number: null, //订单号
-    isLive: false //实时视频
+    isLive: false, //实时视频
+    isGiving: false,
+    givingNum:1,
+    givingId:null
   },
 
   //输入密码监听
@@ -301,7 +304,22 @@ Page({
       savePrice: (this.data.oneYearPrice * year).toFixed(2)
     })
   },
-
+  GivingMinus: function () {
+    var givingNum = +this.data.givingNum;
+    if (givingNum > 1) {
+      givingNum--;
+    }
+    this.setData({
+      givingNum: givingNum,
+    })
+  },
+  GivingPlus: function () {
+    var givingNum = +this.data.givingNum;
+    givingNum++;
+    this.setData({
+      givingNum: givingNum,
+    })
+  },
   // 显示续费弹窗
   showRenewPop: function (e) {
     var dataset = e.currentTarget.dataset;
@@ -321,8 +339,19 @@ Page({
   closeRenewPop: function () {
     this.setData({
       switchPop: false,
+      isGiving: false,
       renewYear: 1
     })
+  },
+  giving: function (e) {
+    var id = e.currentTarget.dataset.id;
+    this.setData({
+      isGiving: true,
+      givingId: id
+    })
+  },
+  bindGiving: function () {
+
   },
   /**
    * 生命周期函数--监听页面加载
@@ -700,7 +729,8 @@ Page({
   onHide() {
     // console.log('onLaunch监听小程序隐藏');
     this.setData({
-      isLive: false
+      isLive: false,
+      isGiving:false
     })
   }
 

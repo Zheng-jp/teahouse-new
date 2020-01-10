@@ -20,7 +20,8 @@ Page({
     conversionStr: '', //换算后展示
     pmKey: false, // switch支付弹窗
     balance: 0.00, //余额
-    isFu: true
+    isFu: true, //钱为零时无需弹支付
+    cangList: []
   },
 
   myRequest: function (url, params, callback) {
@@ -87,7 +88,7 @@ Page({
           defaultAddress: res.data.data,
           province: res.data.data.address_name.split(',')[0]
         })
-        _this.getHousePrice(); // 获取运费模板
+        // _this.getHousePrice(); // 获取运费模板
       } else {
         wx.showToast({
           title: '请先设置收货地址，才能出仓',
@@ -114,8 +115,12 @@ Page({
       uniacid: app.globalData.uniacid,
       house_charges: _this.data.postage,
       order_quantity: _this.data.outNum,
-      store_unit: _this.data.minUnit,
-      address_id: _this.data.defaultAddress.id
+      // store_unit: _this.data.minUnit,
+      address_id: _this.data.defaultAddress.id,
+      lowest_unit: _this.data.orderInfo.lowest_unit,
+      surplus: _this.data.cangList.surplus,
+      surplus_number: _this.data.cangList.surplus_number,
+      string_number: _this.data.cangList.string_number,
     }
     _this.myRequest('setContinuAtion', params, function (res) {
       console.log(res);
@@ -165,7 +170,7 @@ Page({
   // 支付 确认出仓
   payment: function () {
     var _this = this;
-    console.log('2222'+_this.data.isFu)
+    console.log('2222' + _this.data.isFu)
     this.data.outNum == 0 ? wx.showToast({
       title: '请填入出仓数量！',
       icon: 'none',
@@ -188,6 +193,7 @@ Page({
   },
   payChu: function () {
     var _this = this;
+    console.log(this.data.cangList)
     wx.request({
       url: app.globalData.tiltes + 'payment_out_order',
       data: {
@@ -196,8 +202,11 @@ Page({
         uniacid: app.globalData.uniacid,
         house_charges: _this.data.postage,
         order_quantity: _this.data.outNum,
-        store_unit: _this.data.minUnit,
-        address_id: _this.data.defaultAddress.id
+        address_id: _this.data.defaultAddress.id,
+        lowest_unit: _this.data.orderInfo.lowest_unit,
+        surplus: _this.data.cangList.surplus,
+        surplus_number: _this.data.cangList.surplus_number,
+        string_number: _this.data.cangList.string_number,
       },
       method: "post",
       success: function (res) {
@@ -328,7 +337,8 @@ Page({
   // 输入数量
   bindManual: function (e) {
     var num = Number(e.detail.value);
-    var stock = this.data.minUnitStock;
+    // var stock = this.data.minUnitStock;
+    var stock = this.data.orderInfo.lowest;
     if (num <= 0) {
       this.setData({
         outNum: 1
@@ -350,7 +360,9 @@ Page({
     this.setData({
       conversion: true,
     })
-    this.calcPostage(this.data.outNum);
+    // this.calcPostage(this.data.outNum);
+    this.calculate(this.data.outNum);
+
   },
   // 重置数量
   reset: function () {
@@ -379,7 +391,41 @@ Page({
       }
     })
   },
-
+  calculate: function (num) {
+    let that = this, conversionStr = '', isFu = false;
+    wx.request({
+      url: app.globalData.tiltes + 'geTexchange',
+      data: {
+        member_id: app.globalData.member_id,
+        out_number: num,
+        num: that.data.orderInfo.num,
+        unit: that.data.orderInfo.unit,
+        goods_id: that.data.orderInfo.goods_id,
+        lowest: that.data.orderInfo.lowest,
+        lowest_unit: that.data.orderInfo.lowest_unit,
+        are: that.data.province,
+      },
+      method: "post",
+      success: function (res) {
+        console.log(res)
+        let data = res.data;
+        if (data.code == 1) {
+          for (let i = 0; i < data.data.string_number.length; i++) {
+            conversionStr += data.data.string_number[i];
+          }
+          if (data.data.out_price > 0) {
+            isFu = true;
+          }
+          that.setData({
+            postage: data.data.out_price,
+            conversionStr: conversionStr,
+            cangList: data.data,
+            isFu: isFu
+          })
+        }
+      }
+    });
+  },
   // 计算邮费
   calcPostage: function (outNum) {
     console.log(outNum)
@@ -403,7 +449,7 @@ Page({
       // 一个单位
       if (len === 1) {
         postage = (outNum - 1) * data.data[0].markup + data.data[0].collect;
-     
+
         this.setData({
           postage: postage
         });
@@ -415,7 +461,7 @@ Page({
         var maxPostage = maxUnitNum > 0 ? (maxUnitNum - 1) * data.data[0].markup + data.data[0].collect : '';
         var minPostage = minUnitNum > 0 ? (minUnitNum - 1) * data.data[1].markup + data.data[1].collect : '';
         postage = maxPostage + minPostage;
-        
+
         this.setData({
           postage: postage
         });
@@ -430,7 +476,7 @@ Page({
         var midPostage = midUnitNum > 0 ? (midUnitNum - 1) * data.data[1].markup + data.data[1].collect : '';
         var minPostage = minUnitNum > 0 ? (minUnitNum - 1) * data.data[2].markup + data.data[2].collect : '';
         postage = maxPostage + midPostage + minPostage;
-      
+
         // 换算的字符串
         this.setData({
           postage: postage
