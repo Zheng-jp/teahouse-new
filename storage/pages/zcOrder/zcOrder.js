@@ -460,6 +460,13 @@ Page({
       },
       success: function(res){
         console.log(res)
+        if (res.data.data.balance == 0) {
+          wx.showToast({
+            title: '您的账户余额不足，请在我的账户中心里充值！',
+            icon: 'none',
+            duration: 1200
+          })
+        }
         that.setData({
           order_number: indexs,
           pmKey: true,

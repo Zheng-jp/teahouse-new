@@ -12,7 +12,7 @@
 </view>
 <!-- <swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
   <swiper-item class="overflowYauto"> -->
-<scroll-view style="margin-bottom: 50px;{{storageDataArr[0].getArr.length < 1? 'height: 300rpx':''}};">
+<scroll-view style="padding-bottom: 100px;{{storageDataArr[0].getArr.length < 1? 'height: 300rpx':''}};">
   <view class="gross-container">
     <view class="gross-item gross-title">总价值</view>
     <view class="gross-item gross-number">￥{{totalValueNum}}</view>
@@ -71,7 +71,7 @@
     <block wx:for="{{item.getArr}}" wx:key="{{index}}">
       <view class="storage-manage">
         <view class="storage-item">
-          <view class="item-left">
+          <view class="item-left" style="position: relative;">
             <image src="{{item.goods_image}}" class="display-img" />
             <text class="tea-name">{{item.goods_name}}</text>
             <text class="tea-date">生产日期：{{item.date}}</text>
@@ -79,11 +79,12 @@
               <text class="tag-text">{{item.store_name}}</text>
               <text class="tag-text">{{item.name}}</text>
             </view>
+            <image src="http://zhihuichacang.com/ua2121.png" style="width:50rpx;height:50rpx;position: absolute;left:0;" wx:if="{{item.restatus == 1}}"/>
           </view>
           <view class="item-right">
             <view class="tea-stock">
               <text class="stock-title">实时库存</text>
-              <view style="flex: 1; display: flex; align-items: center; justify-content: flex-start; padding: 0 10px;">
+              <view style="flex: 1; display: flex; align-items: center; justify-content: flex-start; padding: 0 10px;line-height:0px;">
                 <text class="stock-num" wx:if="{{item.store_number[0]}}">
                   {{item.store_number[0]}}
                 </text>
@@ -114,10 +115,10 @@
               </view>
             </view>
             <view class="btns">
-              <button class="song" bindtap="giving" data-id="{{item.id}}" data-num="{{item.store_number}}">
+              <button class="song" bindtap="giving" data-id="{{item.id}}" data-num="{{item.store_number}}"  data-restatus="{{item.restatus}}" data-remind="{{item.remind}}">
                 赠送
               </button>
-              <button class="out-storage" bindtap="outOfStock" data-id="{{item.id}}">出仓</button>
+              <button class="out-storage" bindtap="outOfStock" data-id="{{item.id}}" data-restatus="{{item.restatus}}" data-remind="{{item.remind}}">出仓</button>
               <button type="warn" class="renew" data-inTime="{{item.pay_time}}" data-outTime="{{item.end_time}}" data-price="{{item.unit_price}}" data-id="{{item.id}}" bind:tap="showRenewPop" wx:if="{{item.limit_time == 2}}">
                 续费
               </button>
@@ -205,22 +206,9 @@
   <view class="renew-close" bind:tap="closeRenewPop">×</view>
   <view class="bd" style="padding: 0 20px;">
     <view class="title">茶礼赠送</view>
-    <!-- <view class="renew-time" style="padding: 60rpx 0;">
-      <text class="subtit-text">数量</text>
-      <view wx:if="{{conversion}}">{{givingNumStr}}</view>
-      <view class="list-value">
-      <block wx:if="{{!conversion}}">
-        <input type="number" bindblur="bindManual" value="{{outNum}}" /> {{lowestArr.lowest_unit}}
-      </block>
-      <block wx:else>
-        <button bind:tap="reset">重置</button>
-      </block>
-      </view>
-    </view> -->
     <view class="gift">
       <view class="gift-title">我赠送TA的留言</view>
       <view class="gift-input">
-        <!-- <input type="text" name="" placeholder="海内送存茶，天涯若比邻" id="" /> -->
         <textarea style="height:145rpx;" cols="3" rows="10" placeholder="海内送存茶，天涯若比邻" bindblur="giftWish"></textarea>
       </view>
       <view class="gift-title">我赠送TA的数量</view>
@@ -233,8 +221,8 @@
   <view class="fd-zs fd-new" style="background-color:rgb(240,240,240);">
     <!-- <view class="renew-btn" bind:tap="bindGiving">确认赠送</view> -->
     <view class="fd-btn fd-reset" bind:tap="reset">重置数量</view>
-    <view class="fd-btn fd-give" >
-      <button bind:tap="bindGiving" open-type="share"></button>
+    <view class="fd-btn fd-give" bind:tap="confirm">
+      <button bind:tap="bindGiving" open-type="share" wx:if="{{conversion}}"></button>
       确认赠送
     </view>
   </view>

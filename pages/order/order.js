@@ -23,7 +23,7 @@ Page({
   /**
    * 显示支付密码输入层
    */
-  showInputLayer: function() {
+  showInputLayer: function () {
     this.setData({
       showPayPwdInput: true,
       payFocus: true
@@ -32,7 +32,7 @@ Page({
   /**
    * 隐藏支付密码输入层
    */
-  hidePayLayer: function() {
+  hidePayLayer: function () {
     var that = this;
     var val = this.data.pwdVal;
     this.setData({
@@ -40,77 +40,77 @@ Page({
       payFocus: false,
       pwdVal: ''
     },
-    function() {
-      if (val.length == 6) {
-        wx.request({
-          url: app.globalData.tiltes + 'check_password',
-          data: {
-            member_id: app.globalData.member_id,
-            passwords: val,
-          },
-          method: "post",
-          success: function(res) {
-            if (res.data.data.status == 1) {
-              wx.request({
-                url: app.globalData.tiltes + 'balance_payment',
-                data: {
-                  member_id: app.globalData.member_id,
-                  order_num: that.data.order_number,
-                  passwords: val,
-                },
-                method: "post",
-                success: function(res) {
-                  if (res.data.status == "1") {
-                    wx.request({
-                      url: app.globalData.tiltes + 'ios_api_order_all',
-                      data: {
-                        open_id: app.globalData.gmemberid,
-                      },
-                      method: "post",
-                      success: function(res) {
-                        that.setData({
-                          order: res.data.data,
-                          tab: '1'
-                        })
-                      },
-                      complete: function() {
-                        wx.hideLoading();
-                      }
-                    });
+      function () {
+        if (val.length == 6) {
+          wx.request({
+            url: app.globalData.tiltes + 'check_password',
+            data: {
+              member_id: app.globalData.member_id,
+              passwords: val,
+            },
+            method: "post",
+            success: function (res) {
+              if (res.data.data.status == 1) {
+                wx.request({
+                  url: app.globalData.tiltes + 'balance_payment',
+                  data: {
+                    member_id: app.globalData.member_id,
+                    order_num: that.data.order_number,
+                    passwords: val,
+                  },
+                  method: "post",
+                  success: function (res) {
+                    if (res.data.status == "1") {
+                      wx.request({
+                        url: app.globalData.tiltes + 'ios_api_order_all',
+                        data: {
+                          open_id: app.globalData.gmemberid,
+                        },
+                        method: "post",
+                        success: function (res) {
+                          that.setData({
+                            order: res.data.data,
+                            tab: '1'
+                          })
+                        },
+                        complete: function () {
+                          wx.hideLoading();
+                        }
+                      });
+                    }
+                  },
+                  complete: function (res) {
+                    wx.showToast({
+                      icon: "none",
+                      title: res.data.info,
+                      duration: 3000
+                    })
                   }
-                },
-                complete: function(res) {
-                  wx.showToast({
-                    icon: "none",
-                    title: res.data.info,
-                    duration: 3000
-                  })
-                }
-              });
-            } else {
-              wx.showToast({
-                icon: "none",
-                title: res.data.info,
-                duration: 3000
-              })
-            }
-          },
-          fail: function() {},
-          complete: function() {}
-        });
-      } else {
-        wx.showToast({
-          icon: "none",
-          title: "您已取消支付",
-          duration: 3000
-        })
-      }
-    });
+                });
+              } else {
+                wx.showToast({
+                  icon: "none",
+                  title: res.data.info,
+                  duration: 3000
+                })
+              }
+            },
+            fail: function () { },
+            complete: function () { }
+          });
+        } else {
+          wx.showToast({
+            icon: "none",
+            title: "您已取消支付",
+            duration: 3000
+          })
+        }
+      });
   },
   /**
    * 获取焦点
    */
-  getFocus: function() {
+  getFocus: function () {
     this.setData({
       payFocus: true
     });
@@ -118,7 +118,7 @@ Page({
   /**
    * 输入密码监听
    */
-  inputPwd: function(e) {
+  inputPwd: function (e) {
     this.setData({
       pwdVal: e.detail.value
     });
@@ -126,14 +126,14 @@ Page({
       this.hidePayLayer();
     }
   },
-  forget_password: function(e) {
+  forget_password: function (e) {
     wx.navigateTo({
       url: '../forget_password/forget_password'
     })
   },
   // 弹窗
   // 删除订单
-  delete_order: function(e) {
+  delete_order: function (e) {
     var that = this;
     var indexs = e.currentTarget.dataset.id;
     var orderItems = that.data.order;
@@ -147,7 +147,7 @@ Page({
             parts_order_number: indexs
           },
           method: "post",
-          success: function(res) {
+          success: function (res) {
             wx.showToast({
               title: '删除成功',
               icon: 'none',
@@ -161,7 +161,7 @@ Page({
       }
     }
   },
-  tab_click: function(e) {
+  tab_click: function (e) {
     var that = this;
     this.setData({
       tab: e.currentTarget.dataset.current
@@ -173,12 +173,12 @@ Page({
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           that.setData({
             order: res.data.data
           })
         },
-        complete: function() {
+        complete: function () {
           wx.hideLoading()
         }
       });
@@ -189,12 +189,12 @@ Page({
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           that.setData({
             order: res.data.data
           })
         },
-        complete: function() {
+        complete: function () {
           wx.hideLoading()
         }
       });
@@ -205,12 +205,12 @@ Page({
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           that.setData({
             order: res.data.data
           })
         },
-        complete: function() {
+        complete: function () {
           wx.hideLoading()
         }
       });
@@ -221,12 +221,12 @@ Page({
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           that.setData({
             order: res.data.data
           })
         },
-        complete: function() {
+        complete: function () {
           wx.hideLoading()
         }
 
@@ -238,26 +238,26 @@ Page({
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           that.setData({
             order: res.data.data
           })
         },
-        complete: function() {
+        complete: function () {
           wx.hideLoading()
         }
       });
     }
   },
   // 取消订单
-  cancel_order: function(e) {
+  cancel_order: function (e) {
     var that = this;
     var indexs = e.currentTarget.dataset.id;
     var orderItems = that.data.order;
     wx.showModal({
       title: '提示',
       content: '确定取消订单吗？',
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
           for (var i = 0; i < orderItems.length; i++) {
             if (orderItems[i].parts_order_number == indexs) {
@@ -270,7 +270,7 @@ Page({
                   cancel_order_description: '取消'
                 },
                 method: "post",
-                success: function(res) {
+                success: function (res) {
                   wx.showToast({
                     title: '取消成功',
                     icon: 'none',
@@ -280,7 +280,7 @@ Page({
                     order: orderItems
                   });
                 },
-                complete: function() {
+                complete: function () {
                   // wx.hideLoading()
                 }
               });
@@ -291,7 +291,7 @@ Page({
     })
   },
   // 确认收货
-  confirm_receipt: function(e) {
+  confirm_receipt: function (e) {
     var that = this;
     var indexs = e.currentTarget.dataset.id;
     var orderItems = that.data.order;
@@ -305,7 +305,7 @@ Page({
             parts_order_number: indexs
           },
           method: "post",
-          success: function(res) {
+          success: function (res) {
             wx.showToast({
               title: '确认收货成功',
               icon: 'none',
@@ -320,14 +320,14 @@ Page({
     }
   },
   //自提确认收货
-  confirm_receipt_zt: function(e) {
+  confirm_receipt_zt: function (e) {
     var that = this;
     var indexs = e.currentTarget.dataset.id;
     var orderItems = that.data.order;
     wx.showModal({
       title: '提示',
       content: '本人已来到自提点，签收了宝贝，感谢！',
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
           for (var i = 0; i < orderItems.length; ++i) {
             if (orderItems[i].parts_order_number == indexs) {
@@ -339,7 +339,7 @@ Page({
                   parts_order_number: indexs
                 },
                 method: "post",
-                success: function(res) {
+                success: function (res) {
                   wx.showToast({
                     title: '确认收货成功',
                     icon: 'none',
@@ -356,7 +356,7 @@ Page({
         }
       }
     })
-   
+
   },
   // // 追加评价
   // go_evaluation: function(event) {
@@ -364,21 +364,21 @@ Page({
   //     url: '../evaluation/evaluation?title=' + event.currentTarget.dataset.id
   //   })
   // },
-   // 追加评价
-   go_evaluation: function (event) {
+  // 追加评价
+  go_evaluation: function (event) {
     var that = this;
     var item = event.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../evaluation/evaluation?title=' + event.currentTarget.dataset.id,
       success: function (res) {
-      
+
       },
       fail: function () {
-       
+
       },
     })
   },
-// 申请售后
+  // 申请售后
   go_apply_after_sales: function (event) {
     var that = this;
     var item = event.currentTarget.dataset.id;
@@ -387,36 +387,36 @@ Page({
     wx.request({
       url: app.globalData.tiltes + 'after_sale_is_set',
       data: {
-        order_id:item,
+        order_id: item,
       },
       method: "post",
       success: function (res) {
-       if(res.data.status=="1"){
-         wx.navigateTo({
-          url: '../apply_after_sales/apply_after_sales?title=' + event.currentTarget.dataset.id + '&order_id=' + event.currentTarget.dataset.order,
-          success: function (res) {
-          
-          },
-          fail: function () {
-          
-          },
-        })
-       }
+        if (res.data.status == "1") {
+          wx.navigateTo({
+            url: '../apply_after_sales/apply_after_sales?title=' + event.currentTarget.dataset.id + '&order_id=' + event.currentTarget.dataset.order,
+            success: function (res) {
+
+            },
+            fail: function () {
+
+            },
+          })
+        }
       },
       fail: function () {
       },
       complete: function (res) {
         wx.showToast({
-          title:res.data.info,
-          icon:'none',
+          title: res.data.info,
+          icon: 'none',
         });
       }
-  
+
     });
-    
-  
+
+
   },
-  go_order_detail: function(event) {
+  go_order_detail: function (event) {
     var id = event.currentTarget.dataset.id;
     var status = event.currentTarget.dataset.status;
     wx.navigateTo({
@@ -425,7 +425,7 @@ Page({
   },
 
   // 微信支付
-  wxpay: function(){
+  wxpay: function () {
     wx.request({
       url: app.globalData.tiltes + 'wx_order_index',
       data: {
@@ -441,13 +441,13 @@ Page({
             package: res.data.package,
             signType: res.data.signType,
             paySign: res.data.paySign,
-            success: function(){
+            success: function () {
               wx.showToast({
                 title: '支付成功',
                 icon: success,
                 duration: 1500
               })
-              setTimeout(function() {
+              setTimeout(function () {
                 that.onShow();
               }, 1600)
             }
@@ -461,27 +461,27 @@ Page({
   },
 
   // 取消支付
-  hideMethod: function(){
+  hideMethod: function () {
     this.setData({
       pmKey: false
     })
   },
 
   // 选择支付方式
-  selectMethod: function(e){
+  selectMethod: function (e) {
     var tapindex = +e.currentTarget.dataset.tapindex;
     this.setData({
       pmKey: false
     })
-    if(tapindex == 0){
+    if (tapindex == 0) {
       this.showInputLayer();
-    }else{
+    } else {
       this.wxpay();
     }
   },
 
   // 付款
-  repay: function(e) {
+  repay: function (e) {
     var that = this;
     var indexs = e.currentTarget.dataset.id;
     wx.request({
@@ -489,8 +489,15 @@ Page({
       data: {
         member_id: app.globalData.member_id
       },
-      success: function(res){
+      success: function (res) {
         console.log(res)
+        if (res.data.data.balance == 0) {
+          wx.showToast({
+            title: '您的账户余额不足，请在我的账户中心里充值！',
+            icon: 'none',
+            duration: 1200
+          })
+        }
         that.setData({
           order_number: indexs,
           pmKey: true,
@@ -500,7 +507,7 @@ Page({
     })
   },
   // 提醒
-  tip_order: function(e) {
+  tip_order: function (e) {
     var that = this;
     var indexs = e.currentTarget.dataset.id;
     var orderItems = that.data.order;
@@ -510,29 +517,29 @@ Page({
         order_num: indexs,
       },
       method: "post",
-      success: function(res) {
+      success: function (res) {
         wx.showToast({
           title: '提醒成功',
           icon: 'none',
           duration: 4000
         })
       },
-      fail: function() {
+      fail: function () {
 
       },
-      complete: function() {
+      complete: function () {
         // wx.hideLoading()
       }
     });
   },
   //入仓跳转茶仓
-  to_warehouse: function(e) {
+  to_warehouse: function (e) {
     wx.reLaunch({
       url: '../storage/view/view'
     })
   },
   //查看物流
-  to_logistics: function(e) {
+  to_logistics: function (e) {
     var that = this;
     var item = e.currentTarget.dataset.id;
     wx.navigateTo({
@@ -540,7 +547,7 @@ Page({
     })
   },
   // 追加评价
-  go: function(event) {
+  go: function (event) {
     var item = event.currentTarget.dataset.id;
     wx.redirectTo({
       url: item + '?title=' + 0 + '&version=' + this.data.version
@@ -550,7 +557,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     let that = this,
       version;
     if (options.version == undefined || options.version == null) version = options.enter_all_id;
@@ -575,16 +582,16 @@ Page({
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           that.setData({
             order: res.data.data,
             tab: 1
           })
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {
+        complete: function () {
           wx.hideLoading()
         }
 
@@ -594,20 +601,20 @@ Page({
         url: app.globalData.tiltes + 'ios_api_order_wait_pay',
         data: {
           open_id: app.globalData.gmemberid,
-          
+
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
 
           that.setData({
             order: res.data.data,
             tab: 2
           })
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {
+        complete: function () {
           wx.hideLoading()
         }
 
@@ -619,17 +626,17 @@ Page({
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
 
           that.setData({
             order: res.data.data,
             tab: 3
           })
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {
+        complete: function () {
           wx.hideLoading()
         }
 
@@ -641,17 +648,17 @@ Page({
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
 
           that.setData({
             order: res.data.data,
             tab: 4
           })
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {
+        complete: function () {
           wx.hideLoading()
         }
 
@@ -663,16 +670,16 @@ Page({
           open_id: app.globalData.gmemberid,
         },
         method: "post",
-        success: function(res) {
+        success: function (res) {
           that.setData({
             order: res.data.data,
             tab: 5
           })
         },
-        fail: function() {
+        fail: function () {
 
         },
-        complete: function() {
+        complete: function () {
           wx.hideLoading()
         }
 
@@ -684,14 +691,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
@@ -701,21 +708,21 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     this.data.options.tiltes = Number(this.data.tab) - 1;
     wx.stopPullDownRefresh();
   },
@@ -723,14 +730,14 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

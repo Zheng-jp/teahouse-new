@@ -22,16 +22,7 @@ Page({
     aniStyle: true,
     start_time: 0,
     end_time: 0,
-    Label: [
-      {
-        name: '仅限会员',
-        color: '#93291E'
-      },
-      {
-        name: '需要预约',
-        color: '#669900'
-      }
-    ],
+    Label: new Array(),
     information: [],
     // 输入框内容
     repay_content: '',

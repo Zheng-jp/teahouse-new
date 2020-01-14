@@ -105,7 +105,7 @@ Page({
     givingNumStr: '',
     conversion: false, //是否换算
     lowestArr: null,
-    outNum: 1,  //出仓数量
+    outNum: 0,  //出仓数量
     showNum: null,
     giftBlessing: '海内送存茶，天涯若比邻', //祝福语
   },
@@ -335,34 +335,45 @@ Page({
     this.reset();
   },
   giving: function (e) {
-    var that = this, id = e.currentTarget.dataset.id, num = e.currentTarget.dataset.num;
-
-    wx.request({
-      url: app.globalData.tiltes + 'api/cLickGive',
-      method: 'POST',
-      data: {
-        store_number: num,
-        id: id
-      },
-      success: function (res) {
-        console.log(res)
-        if (res.data.code == 1) {
-          that.setData({
-            lowestArr: res.data.data
-          })
+    var that = this,
+      id = e.currentTarget.dataset.id,
+      num = e.currentTarget.dataset.num,
+      restatus = e.currentTarget.dataset.restatus,
+      remind = e.currentTarget.dataset.remind;
+    // 出仓
+    if (restatus == 0) {
+      wx.showToast({
+        title: remind,
+        icon: 'none',
+        duration: 3000
+      })
+    } else {
+      wx.request({
+        url: app.globalData.tiltes + 'api/cLickGive',
+        method: 'POST',
+        data: {
+          store_number: num,
+          id: id
+        },
+        success: function (res) {
+          console.log(res)
+          if (res.data.code == 1) {
+            that.setData({
+              lowestArr: res.data.data
+            })
+          }
+        },
+        fail: function (e) {
+          console.error(e)
         }
-      },
-      fail: function (e) {
-        console.error(e)
-      }
-    })
+      })
 
-    that.setData({
-      isGiving: true,
-      givingId: id,
+      that.setData({
+        isGiving: true,
+        givingId: id,
 
-    })
-
+      })
+    }
   },
   //获取祝福语
   giftWish: function (e) {
@@ -419,21 +430,30 @@ Page({
         console.error(e)
       }
     })
-    // that.setData({
-    //   conversion: true,
-    // })
+    that.setData({
+      conversion: true,
+    })
 
   },
   // 重置数量
   reset: function () {
     this.setData({
-      // conversion: false,
+      conversion: false,
       // givingNumStr: '',
       // postage: 0,
-      outNum: 1
+      giftBlessing: '海内送存茶，天涯若比邻',
+      outNum: 0
     })
   },
- 
+  confirm: function () {
+    if (this.data.outNum < 1) {
+      wx.showToast({
+        title: '请填入赠送数量',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
   /**
   * 用户点击右上角分享
   */
@@ -467,6 +487,7 @@ Page({
         }
       }
     };
+
     // 来自页面内的按钮的转发
     if (options.from == 'button') {
       wx.request({
@@ -488,7 +509,7 @@ Page({
       })
       // 此处可以修改 shareObj 中的内容
       shareObj.title = that.data.giftBlessing;
-      shareObj.imageUrl = 'http://zhihuichacang.com/u2020.jpg'
+      shareObj.imageUrl = 'http://zhihuichacang.com/u2020-1.png'
     }
     return shareObj;
   },
@@ -550,7 +571,7 @@ Page({
         }
       })
     }
-    if(app.globalData.share_id != '') {
+    if (app.globalData.share_id != '') {
       wx.request({
         url: app.globalData.tiltes + 'api/getShareHouseData',
         method: 'POST',
@@ -560,6 +581,9 @@ Page({
         },
         success: function (res) {
           // console.log(res)
+          if (res.data.code == 1) {
+            that.showStorageData();
+          }
           wx.showToast({
             title: res.data.msg,
             icon: 'none',
@@ -802,11 +826,19 @@ Page({
     })
   },
   outOfStock: function (e) {
-    var id = e.currentTarget.dataset.id;
+    var id = e.currentTarget.dataset.id, restatus = e.currentTarget.dataset.restatus, remind = e.currentTarget.dataset.remind;
     // 出仓
-    wx.navigateTo({
-      url: '/storage/pages/out_of_warehouse/out_of_warehouse?id=' + id
-    })
+    if (restatus == 0) {
+      wx.showToast({
+        title: remind,
+        icon: 'none',
+        duration: 3000
+      })
+    } else {
+      wx.navigateTo({
+        url: '/storage/pages/out_of_warehouse/out_of_warehouse?id=' + id
+      })
+    }
   },
   redirectto: function (t) {
     var a = t.currentTarget.dataset.link, e = t.currentTarget.dataset.linktype;

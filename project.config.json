@@ -22,7 +22,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.3",
-	"appid": "wx301c1368929fdba8",
+	"appid": "wxc265cd4269f01dce",
 	"projectname": "Zjp",
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {
@@ -99,7 +99,7 @@
 					"id": 6,
 					"name": "pages/logs/logs",
 					"pathName": "pages/logs/logs",
-					"query": "share_id=141",
+					"query": "share_id=209",
 					"scene": null
 				}
 			]

@@ -352,7 +352,7 @@ Page({
       if(app.globalData.judge_repay) {
         if(Number(this.data.balance) < Number(this.data.all_money)) {
           wx.showToast({
-            title: "余额不足",
+            title: "您的账户余额不足，请在我的账户中心里充值！",
             icon: 'none',
           })
         } else {

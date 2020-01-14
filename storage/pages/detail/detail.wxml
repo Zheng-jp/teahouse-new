@@ -3,7 +3,7 @@
   <view class="active_information" catchtap='outbtn'>
     <view class='title' style='display:flex;align-items: center;'>
       <text class='title_title'>活动信息</text>
-      <block wx:if="{{Label > 0}}">
+      <block wx:if="{{Label.length > 0}}">
         <view class='Label' wx:for="{{Label}}" wx:key="index" style='color:{{item.color}}; border-color:{{item.color}}'>
           {{item.name}}
         </view>
