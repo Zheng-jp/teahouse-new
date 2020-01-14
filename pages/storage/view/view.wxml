@@ -10,134 +10,134 @@
     预定
   </view>
 </view>
-<swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
-  <swiper-item class="overflowYauto">
-    <scroll-view style="margin-bottom: 50px;{{storageDataArr[0].getArr.length < 1? 'height: 300rpx':''}};">
-      <view class="gross-container">
-        <view class="gross-item gross-title">总价值</view>
-        <view class="gross-item gross-number">￥{{totalValueNum}}</view>
-        <view class="gross-item choice-warehouse choice-down" bindtap="showAllStorage">
-          <text>全部仓储</text>
-          <image src="http://zhihuichacang.com/icon-c.png" class="icon-choice {{scaleImg?'scaley-img':''}}" />
-        </view>
-        <view class="warehouse-container" style="display: {{wareHouseFlag?'':'none'}};">
-          <view class="item-box">
-            <!-- 是否存茶 -->
-            <block wx:if="{{allStorageArr}}">
-              <view class="warehouse-left" bind:tap="showStorageData" data-key="true">
-                <text>全部</text>
-              </view>
-              <view class="warehouse-right">
-                <view class="warehouse-item" wx:for="{{allStorageArr}}" wx:key="{{index}}" data-id="{{item.store_house_id}}" bind:tap="selectStorageData">{{item.name}}{{item.number}}</view>
-              </view>
-            </block>
+<!-- <swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
+  <swiper-item class="overflowYauto"> -->
+<scroll-view style="margin-bottom: 50px;{{storageDataArr[0].getArr.length < 1? 'height: 300rpx':''}};">
+  <view class="gross-container">
+    <view class="gross-item gross-title">总价值</view>
+    <view class="gross-item gross-number">￥{{totalValueNum}}</view>
+    <view class="gross-item choice-warehouse choice-down" bindtap="showAllStorage">
+      <text>全部仓储</text>
+      <image src="http://zhihuichacang.com/icon-c.png" class="icon-choice {{scaleImg?'scaley-img':''}}" />
+    </view>
+    <view class="warehouse-container" style="display: {{wareHouseFlag?'':'none'}};">
+      <view class="item-box">
+        <!-- 是否存茶 -->
+        <block wx:if="{{allStorageArr}}">
+          <view class="warehouse-left" bind:tap="showStorageData" data-key="true">
+            <text>全部</text>
           </view>
-          <view class="retract" bindtap="showAllStorage">
-            <image src="http://zhihuichacang.com/icon4.png" class="icon-retract" />
-          </view>
-        </view>
-      </view>
-      <block wx:for="{{storageDataArr}}" wx:key="{{index}}">
-        <view class="storage-enviroment">
-          <view class="storage-name-box">
-            <image src="http://zhihuichacang.com/icon1.png" class="" />
-            <text class="storage-name">{{item.name}}</text>
-          </view>
-          <view class="enviroment-data-box">
-            <!-- <view class="enviroment-item item-video" data-id="{{index}}" bindtap="showLive">
-              <image src="http://zhihuichacang.com/gif1.gif" class="icon-video" />
-              <text class="temperature">实时视频</text>
-            </view> -->
-            <view class="enviroment-item" bindtap="checkRealTimeData">
-              <image src="http://zhihuichacang.com/icon2.png" class="icon-temperature" />
-              <text class="temperature" style='color:#D9250E'>25.55°C</text>
-            </view>
-            <view class="enviroment-item" bindtap="checkRealTimeData">
-              <image src="http://zhihuichacang.com/u2173.png" class="icon-humidity" />
-              <text class="humidity" style='color:#669900'>78.99%</text>
-            </view>
-            <view>
-              <view class="more" bindtap="checkRealTimeData">
-                <image src="http://zhihuichacang.com/icon5.png" />
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="" style="width:100%;height:100%;" wx:if="{{live_id == 'id_'+ index && isLive}}">
-          <video id="myVideo" src="http://hls01open.ys7.com/openlive/d208d656ba774bc985a4aa7154cf329a.hd.m3u8" style="width: 100%;height: 400rpx;" 
-          poster></video>
-        </view>
-        <block wx:for="{{item.getArr}}" wx:key="{{index}}">
-          <view class="storage-manage">
-            <view class="storage-item">
-              <view class="item-left">
-                <image src="{{item.goods_image}}" class="display-img" />
-                <text class="tea-name">{{item.goods_name}}</text>
-                <text class="tea-date">生产日期：{{item.date}}</text>
-                <view class="tag-box">
-                  <text class="tag-text">{{item.store_name}}</text>
-                  <text class="tag-text">{{item.name}}</text>
-                </view>
-              </view>
-              <view class="item-right">
-                <view class="tea-stock">
-                  <text class="stock-title">实时库存</text>
-                  <view style="flex: 1; display: flex; align-items: center; justify-content: flex-start; padding: 0 10px;">
-                    <text class="stock-num" wx:if="{{item.store_number[0]}}">{{item.store_number[0]}}</text>
-                    <text>{{item.store_number[1]?item.store_number[1]:''}}</text>
-                    
-                    <text class="stock-num" wx:if="{{item.store_number[2]}}">{{item.store_number[2]}}</text>
-                    <text>{{item.store_number[3]?item.store_number[3]:''}}</text>
-                    
-                    <text class="stock-num" wx:if="{{item.store_number[4]}}">{{item.store_number[4]}}</text>
-                    <text>{{item.store_number[5]?item.store_number[5]:''}}</text>
-                    
-                  </view>
-                  <text class="stock-more" bindtap="toStockDetail" data-id="{{item.id}}">详情></text>
-                </view>
-                <view class="exchange-price">
-                  <view>
-                    <text>存茶到期时间：</text>
-                    <text>{{item.end_time}}</text>
-                  </view>
-                  <view>
-                    <text>当前市场参考价：</text>
-                    <text class="out-price">￥{{item.goods_bottom_money}}/{{item.store_unit}}</text>
-                  </view>
-                  <view>
-                    <text>您的初始购入价：</text>
-                    <text>￥{{item.goods_money}}/{{item.store_unit}}</text>
-                  </view>
-                </view>
-                <view class="btns">
-                  <!-- <button class="song" bindtap="giving"  data-id="{{item.id}}">赠送</button> -->
-                  <button class="out-storage" bindtap="outOfStock" data-id="{{item.id}}">出仓</button>
-                  <button type="warn" class="renew" 
-                    data-inTime="{{item.pay_time}}" 
-                    data-outTime="{{item.end_time}}"
-                    data-price="{{item.unit_price}}"
-                    data-id="{{item.id}}"
-                    bind:tap="showRenewPop" wx:if="{{item.limit_time == 2}}">续费</button>
-                  <button type="primary" class="renew" 
-                    data-inTime="{{item.pay_time}}" 
-                    data-outTime="{{item.end_time}}"
-                    data-price="{{item.unit_price}}"
-                    data-id="{{item.id}}"
-                    bind:tap="showRenewPop" wx:if="{{item.limit_time == 1}}">续费</button>
-                </view>
-              </view>
+          <view class="warehouse-right">
+            <view class="warehouse-item" wx:for="{{allStorageArr}}" wx:key="{{index}}" data-id="{{item.store_house_id}}" bind:tap="selectStorageData">
+              {{item.name}}{{item.number}}
             </view>
           </view>
         </block>
-      </block>
-    </scroll-view>
-  </swiper-item>
-  <swiper-item class="overflowYauto">
+      </view>
+      <view class="retract" bindtap="showAllStorage">
+        <image src="http://zhihuichacang.com/icon4.png" class="icon-retract" />
+      </view>
+    </view>
+  </view>
+  <block wx:for="{{storageDataArr}}" wx:key="{{index}}">
+    <view class="storage-enviroment">
+      <view class="storage-name-box">
+        <image src="http://zhihuichacang.com/icon1.png" class="" />
+        <text class="storage-name">{{item.name}}</text>
+      </view>
+      <view class="enviroment-data-box">
+        <!-- <view class="enviroment-item item-video" data-id="{{index}}" bindtap="showLive">
+              <image src="http://zhihuichacang.com/gif1.gif" class="icon-video" />
+              <text class="temperature">实时视频</text>
+            </view> -->
+        <view class="enviroment-item" bindtap="checkRealTimeData">
+          <image src="http://zhihuichacang.com/icon2.png" class="icon-temperature" />
+          <text class="temperature" style='color:#D9250E'>25.55°C</text>
+        </view>
+        <view class="enviroment-item" bindtap="checkRealTimeData">
+          <image src="http://zhihuichacang.com/u2173.png" class="icon-humidity" />
+          <text class="humidity" style='color:#669900'>78.99%</text>
+        </view>
+        <view>
+          <view class="more" bindtap="checkRealTimeData">
+            <image src="http://zhihuichacang.com/icon5.png" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="" style="width:100%;height:100%;" wx:if="{{live_id == 'id_'+ index && isLive}}">
+      <video id="myVideo" src="http://hls01open.ys7.com/openlive/d208d656ba774bc985a4aa7154cf329a.hd.m3u8" style="width: 100%;height: 400rpx;" poster></video>
+    </view>
+    <block wx:for="{{item.getArr}}" wx:key="{{index}}">
+      <view class="storage-manage">
+        <view class="storage-item">
+          <view class="item-left">
+            <image src="{{item.goods_image}}" class="display-img" />
+            <text class="tea-name">{{item.goods_name}}</text>
+            <text class="tea-date">生产日期：{{item.date}}</text>
+            <view class="tag-box">
+              <text class="tag-text">{{item.store_name}}</text>
+              <text class="tag-text">{{item.name}}</text>
+            </view>
+          </view>
+          <view class="item-right">
+            <view class="tea-stock">
+              <text class="stock-title">实时库存</text>
+              <view style="flex: 1; display: flex; align-items: center; justify-content: flex-start; padding: 0 10px;">
+                <text class="stock-num" wx:if="{{item.store_number[0]}}">
+                  {{item.store_number[0]}}
+                </text>
+                <text>{{item.store_number[1]?item.store_number[1]:''}}</text>
+                <text class="stock-num" wx:if="{{item.store_number[2]}}">
+                  {{item.store_number[2]}}
+                </text>
+                <text>{{item.store_number[3]?item.store_number[3]:''}}</text>
+                <text class="stock-num" wx:if="{{item.store_number[4]}}">
+                  {{item.store_number[4]}}
+                </text>
+                <text>{{item.store_number[5]?item.store_number[5]:''}}</text>
+              </view>
+              <text class="stock-more" bindtap="toStockDetail" data-id="{{item.id}}">详情></text>
+            </view>
+            <view class="exchange-price">
+              <view>
+                <text>存茶到期时间：</text>
+                <text>{{item.end_time}}</text>
+              </view>
+              <view>
+                <text>当前市场参考价：</text>
+                <text class="out-price">￥{{item.goods_bottom_money}}/{{item.store_unit}}</text>
+              </view>
+              <view>
+                <text>您的初始购入价：</text>
+                <text>￥{{item.goods_money}}/{{item.store_unit}}</text>
+              </view>
+            </view>
+            <view class="btns">
+              <button class="song" bindtap="giving" data-id="{{item.id}}" data-num="{{item.store_number}}">
+                赠送
+              </button>
+              <button class="out-storage" bindtap="outOfStock" data-id="{{item.id}}">出仓</button>
+              <button type="warn" class="renew" data-inTime="{{item.pay_time}}" data-outTime="{{item.end_time}}" data-price="{{item.unit_price}}" data-id="{{item.id}}" bind:tap="showRenewPop" wx:if="{{item.limit_time == 2}}">
+                续费
+              </button>
+              <button type="primary" class="renew" data-inTime="{{item.pay_time}}" data-outTime="{{item.end_time}}" data-price="{{item.unit_price}}" data-id="{{item.id}}" bind:tap="showRenewPop" wx:if="{{item.limit_time == 1}}">
+                续费
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+</scroll-view>
+<!-- </swiper-item>
+  <swiper-item class="overflowYauto" wx:if="{{version== 3}}">
     <scroll-view>
     <image src="http://zhihuichacang.com/image779166.gif" style="height:300px;" />
     </scroll-view>
   </swiper-item>
-  <swiper-item class="overflowYauto">
+  <swiper-item class="overflowYauto" wx:if="{{version== 3}}">
     <scroll-view>
       <view class="swiper-box">
         <view class="swiper-title">期茶预定，受益共享</view>
@@ -198,25 +198,45 @@
       </view>
     </scroll-view>
   </swiper-item>
-</swiper>
+</swiper> -->
 <!-- 赠送窗口 -->
 <view class="mask" wx:if="{{isGiving}}"></view>
-<view class="renew-pop" wx:if="{{isGiving}}">
+<view class="renew-pop" wx:if="{{isGiving}}" style="background-color:rgb(240,240,240);">
   <view class="renew-close" bind:tap="closeRenewPop">×</view>
-  <view class="bd">
-    <view class="title">赠送</view>
-    <view class="renew-time" style="padding: 50rpx 0;">
+  <view class="bd" style="padding: 0 20px;">
+    <view class="title">茶礼赠送</view>
+    <!-- <view class="renew-time" style="padding: 60rpx 0;">
       <text class="subtit-text">数量</text>
-      <view class="num-view">
-        <text class="minus" bind:tap="GivingMinus">-</text>
-        <input type="number" disabled="{{true}}" value="{{givingNum}}" />
-        <text class="plus" bind:tap="GivingPlus">+</text>
+      <view wx:if="{{conversion}}">{{givingNumStr}}</view>
+      <view class="list-value">
+      <block wx:if="{{!conversion}}">
+        <input type="number" bindblur="bindManual" value="{{outNum}}" /> {{lowestArr.lowest_unit}}
+      </block>
+      <block wx:else>
+        <button bind:tap="reset">重置</button>
+      </block>
       </view>
-      <!-- <text class="subtit-text">箱</text> -->
+    </view> -->
+    <view class="gift">
+      <view class="gift-title">我赠送TA的留言</view>
+      <view class="gift-input">
+        <!-- <input type="text" name="" placeholder="海内送存茶，天涯若比邻" id="" /> -->
+        <textarea style="height:145rpx;" cols="3" rows="10" placeholder="海内送存茶，天涯若比邻" bindblur="giftWish"></textarea>
+      </view>
+      <view class="gift-title">我赠送TA的数量</view>
+      <view class="gift-input" style="position: relative;">
+        <input type="number" style="width:230rpx;" bindblur="bindManual" value="{{outNum}}" />
+        <view class="gift-unit">{{lowestArr.lowest_unit}}</view>
+      </view>
     </view>
   </view>
-  <view class="fd-zs">
-    <view class="renew-btn" bind:tap="bindGiving">确认赠送</view>
+  <view class="fd-zs fd-new" style="background-color:rgb(240,240,240);">
+    <!-- <view class="renew-btn" bind:tap="bindGiving">确认赠送</view> -->
+    <view class="fd-btn fd-reset" bind:tap="reset">重置数量</view>
+    <view class="fd-btn fd-give" >
+      <button bind:tap="bindGiving" open-type="share"></button>
+      确认赠送
+    </view>
   </view>
 </view>
 <!-- 续费弹窗 -->
@@ -248,31 +268,34 @@
   </view>
   <view class="fd">
     <view class="renew-cost">
-      续费费用<text>{{savePrice}}元</text>
+      续费费用
+      <text>{{savePrice}}元</text>
     </view>
     <view class="renew-btn" bind:tap="bindRenewEvent">确认续费</view>
   </view>
 </view>
-
 <!-- 余额支付 -->
 <view wx:if='{{showPayPwdInput}}'>
-	<view class='bg_layer'></view>
-	<view class='input_main'>
-		<view class='input_title'>
-			<view class='input_back' catchtap='hidePayLayer'><text></text></view>
-			<text>输入支付密码</text>
-		</view>
-		<view class='input_tip'><text>请输入账户余额支付密码</text></view>
-		<view class='input_row' catchtap='getFocus'>
-			<view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
-				<text wx:if='{{pwdVal.length>i}}'></text>
-			</view>
-		</view>
-		<view class='forget_pwd' catchtap='forget_password'>忘记密码</view>
-		<input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
-	</view>
+  <view class='bg_layer'></view>
+  <view class='input_main'>
+    <view class='input_title'>
+      <view class='input_back' catchtap='hidePayLayer'>
+        <text></text>
+      </view>
+      <text>输入支付密码</text>
+    </view>
+    <view class='input_tip'>
+      <text>请输入账户余额支付密码</text>
+    </view>
+    <view class='input_row' catchtap='getFocus'>
+      <view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+        <text wx:if='{{pwdVal.length>i}}'></text>
+      </view>
+    </view>
+    <view class='forget_pwd' catchtap='forget_password'>忘记密码</view>
+    <input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
+  </view>
 </view>
-
 <!-- <block wx:if="{{foot_is==2}}">
   <view class="hbj footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:9998;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:if="{{footinfo.params.navstyle==0}}">
     <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">

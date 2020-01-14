@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -99,7 +99,7 @@
 					"id": 6,
 					"name": "pages/logs/logs",
 					"pathName": "pages/logs/logs",
-					"query": "code_id=141",
+					"query": "share_id=141",
 					"scene": null
 				}
 			]

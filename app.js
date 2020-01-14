@@ -538,6 +538,7 @@ App({
     navBarBgColor: '',
     navBarTxtColor: '',
     shareID: 0,
-    code_id: ''
+    code_id: '',
+    share_id:''
   }
 })

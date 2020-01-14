@@ -100,8 +100,14 @@ Page({
     order_number: null, //订单号
     isLive: false, //实时视频
     isGiving: false,
-    givingNum:1,
-    givingId:null
+    givingNum: 1,
+    givingId: null,
+    givingNumStr: '',
+    conversion: false, //是否换算
+    lowestArr: null,
+    outNum: 1,  //出仓数量
+    showNum: null,
+    giftBlessing: '海内送存茶，天涯若比邻', //祝福语
   },
 
   //输入密码监听
@@ -304,22 +310,6 @@ Page({
       savePrice: (this.data.oneYearPrice * year).toFixed(2)
     })
   },
-  GivingMinus: function () {
-    var givingNum = +this.data.givingNum;
-    if (givingNum > 1) {
-      givingNum--;
-    }
-    this.setData({
-      givingNum: givingNum,
-    })
-  },
-  GivingPlus: function () {
-    var givingNum = +this.data.givingNum;
-    givingNum++;
-    this.setData({
-      givingNum: givingNum,
-    })
-  },
   // 显示续费弹窗
   showRenewPop: function (e) {
     var dataset = e.currentTarget.dataset;
@@ -342,16 +332,165 @@ Page({
       isGiving: false,
       renewYear: 1
     })
+    this.reset();
   },
   giving: function (e) {
-    var id = e.currentTarget.dataset.id;
-    this.setData({
+    var that = this, id = e.currentTarget.dataset.id, num = e.currentTarget.dataset.num;
+
+    wx.request({
+      url: app.globalData.tiltes + 'api/cLickGive',
+      method: 'POST',
+      data: {
+        store_number: num,
+        id: id
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 1) {
+          that.setData({
+            lowestArr: res.data.data
+          })
+        }
+      },
+      fail: function (e) {
+        console.error(e)
+      }
+    })
+
+    that.setData({
       isGiving: true,
-      givingId: id
+      givingId: id,
+
+    })
+
+  },
+  //获取祝福语
+  giftWish: function (e) {
+    let giftBlessing = e.detail.value;
+    this.setData({
+      giftBlessing: giftBlessing
     })
   },
-  bindGiving: function () {
+  // 输入数量
+  bindManual: function (e) {
+    var that = this, num = Number(e.detail.value), numArr = '';
+    // var stock = this.data.minUnitStock;
+    var stock = that.data.lowestArr.lowest;
+    if (num <= 0) {
+      that.setData({
+        outNum: 1
+      })
+    } else if (num <= stock) {
+      that.setData({
+        outNum: num
+      })
+    } else {
+      wx.showToast({
+        title: '您填写的数量超过库存,已为您自动填入最大库存！',
+        icon: 'none',
+        duration: 1800
+      })
+      that.setData({
+        outNum: stock
+      })
+    }
+    wx.request({
+      url: app.globalData.tiltes + 'api/ShowOrderNumber',
+      method: 'POST',
+      data: {
+        id: that.data.givingId,
+        lowest: that.data.lowestArr.lowest,
+        out_number: that.data.outNum,
+        lowest_unit: that.data.lowestArr.lowest_unit
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 1) {
+          // for (let i = 0; i < res.data.data.string_number.length; i++) {
+          //   numArr += res.data.data.string_number[i];
+          // }
+          that.setData({
+            // givingNumStr: numArr,
+            showNum: res.data.data
+          })
+        }
+      },
+      fail: function (e) {
+        console.error(e)
+      }
+    })
+    // that.setData({
+    //   conversion: true,
+    // })
 
+  },
+  // 重置数量
+  reset: function () {
+    this.setData({
+      // conversion: false,
+      // givingNumStr: '',
+      // postage: 0,
+      outNum: 1
+    })
+  },
+ 
+  /**
+  * 用户点击右上角分享
+  */
+  onShareAppMessage: function (options) {
+    let that = this;
+    var shareObj = {
+      title: "恭喜发财",
+      path: '/pages/diy/index/index',
+      imageUrl: '',
+      success: function (res) {
+        // 转发成功之后的回调
+        if (res.errMsg == 'shareAppMessage:ok') {
+          wx.showToast({
+            title: '转发成功',
+            icon: 'success',
+            duration: 2000
+          })
+        }
+      },
+      fail: function () {
+        // 转发失败之后的回调
+        if (res.errMsg == 'shareAppMessage:fail cancel') {
+          // 用户取消转发
+        } else if (res.errMsg == 'shareAppMessage:fail') {
+          // 转发失败，其中 detail message 为详细失败信息
+          wx.showToast({
+            title: '转发失败',
+            icon: 'loading',
+            duration: 2000
+          })
+        }
+      }
+    };
+    // 来自页面内的按钮的转发
+    if (options.from == 'button') {
+      wx.request({
+        url: app.globalData.tiltes + 'api/SharePictureData',
+        method: 'POST',
+        data: {
+          id: that.data.givingId,
+          give_number: that.data.outNum,
+          string_number: that.data.showNum.string_number
+        },
+        success: function (res) {
+          if (res.data.code == 1) {
+            shareObj.path = 'pages/logs/logs?share_id=' + res.data.data.share_order_id;
+          }
+        },
+        fail: function (e) {
+          console.error(e)
+        }
+      })
+      // 此处可以修改 shareObj 中的内容
+      shareObj.title = that.data.giftBlessing;
+      shareObj.imageUrl = 'http://zhihuichacang.com/u2020.jpg'
+    }
+    return shareObj;
   },
   /**
    * 生命周期函数--监听页面加载
@@ -402,6 +541,27 @@ Page({
           }
           wx.showToast({
             title: title,
+            icon: 'none',
+            duration: 3000
+          })
+        },
+        fail: function (e) {
+          console.error(e)
+        }
+      })
+    }
+    if(app.globalData.share_id != '') {
+      wx.request({
+        url: app.globalData.tiltes + 'api/getShareHouseData',
+        method: 'POST',
+        data: {
+          member_id: app.globalData.member_id,
+          share_order_id: app.globalData.share_id
+        },
+        success: function (res) {
+          // console.log(res)
+          wx.showToast({
+            title: res.data.msg,
             icon: 'none',
             duration: 3000
           })
@@ -530,6 +690,7 @@ Page({
         checked: 2
       })
     }
+    this.reset();
     // 总价值
     this.totalValue();
     // 所有仓库
@@ -730,7 +891,7 @@ Page({
     // console.log('onLaunch监听小程序隐藏');
     this.setData({
       isLive: false,
-      isGiving:false
+      isGiving: false
     })
   }
 

@@ -56,7 +56,7 @@
       <view class="righta">2018.09.08 </view>
     </view> -->
     <view class="lista">
-      <view class="lefta">加工日期</view>
+      <view class="lefta">加工日期：</view>
       <view class="righta">{{goods.date}}</view>
     </view>
     <view class="lista">

@@ -15,7 +15,8 @@ Page({
     order_status: '',
     code: '',
     shareID: 0,
-    code_id:''
+    code_id:'',
+    share_id: ''
   },
   // onmessage(e) {
   //   my.alert({
@@ -91,6 +92,10 @@ Page({
                         wx.navigateTo({
                           url: "../ldm/index"
                         })
+                      } else if (_this.data.share_id){
+                        wx.navigateTo({
+                          url: "../mingpcha/index"
+                        })
                       } else {
                         wx.switchTab({
                           url: '../diy/index/index', // 新首页
@@ -154,7 +159,7 @@ Page({
   },
 
   onLoad: function (options) {
-    var _this = this, newMember, title, status, order_number, code, scene, shareID, code_id;
+    var _this = this, newMember, title, status, order_number, code, scene, shareID, code_id, share_id;
     // wx.navigateTo({
     //   url:'../ldm/index'
     // })
@@ -183,6 +188,10 @@ Page({
       status = decodeURIComponent(options.status);
       order_number = decodeURIComponent(options.order_number);
     }
+    if(options.share_id) {
+      share_id = decodeURIComponent(options.share_id);
+      app.globalData.share_id = share_id;
+    }
     
     _this.setData({
       newMember: newMember,
@@ -192,6 +201,7 @@ Page({
       code: code,
       shareID: shareID,
       code_id: code_id,
+      share_id: share_id
     })
     wx.getStorage({
       key: 'authorization',
@@ -293,6 +303,10 @@ Page({
                               } else if (_this.data.code_id){
                                 wx.navigateTo({
                                   url: "../ldm/index"
+                                })
+                              } else if (_this.data.share_id){
+                                wx.navigateTo({
+                                  url: "../mingpcha/index"
                                 })
                               } else{
                                 wx.switchTab({
