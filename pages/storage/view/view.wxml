@@ -12,7 +12,7 @@
 </view>
 <!-- <swiper class="swiper-container" current="{{currentTab}}" duration="300" bindchange="swiperTab">
   <swiper-item class="overflowYauto"> -->
-<scroll-view style="padding-bottom: 100px;{{storageDataArr[0].getArr.length < 1? 'height: 300rpx':''}};">
+<scroll-view style="padding-bottom: 100px;{{storageDataArr[0].getArr == undefined ? 'height: 300rpx':''}};">
   <view class="gross-container">
     <view class="gross-item gross-title">总价值</view>
     <view class="gross-item gross-number">￥{{totalValueNum}}</view>
@@ -116,7 +116,7 @@
             </view>
             <view class="btns">
               <button class="song" bindtap="giving" data-id="{{item.id}}" data-num="{{item.store_number}}"  data-restatus="{{item.restatus}}" data-remind="{{item.remind}}">
-                赠送
+                送好友
               </button>
               <button class="out-storage" bindtap="outOfStock" data-id="{{item.id}}" data-restatus="{{item.restatus}}" data-remind="{{item.remind}}">出仓</button>
               <button type="warn" class="renew" data-inTime="{{item.pay_time}}" data-outTime="{{item.end_time}}" data-price="{{item.unit_price}}" data-id="{{item.id}}" bind:tap="showRenewPop" wx:if="{{item.limit_time == 2}}">
@@ -207,14 +207,17 @@
   <view class="bd" style="padding: 0 20px;">
     <view class="title">茶礼赠送</view>
     <view class="gift">
-      <view class="gift-title">我赠送TA的留言</view>
+      <view class="gift-title">送好友的留言</view>
       <view class="gift-input">
-        <textarea style="height:145rpx;" cols="3" rows="10" placeholder="海内送存茶，天涯若比邻" bindblur="giftWish"></textarea>
+        <textarea style="height:145rpx;width:100%;" cols="3" rows="10" placeholder="海内送存茶，天涯若比邻" bindblur="giftWish"></textarea>
       </view>
-      <view class="gift-title">我赠送TA的数量</view>
+      <view class="gift-title">送好友的数量</view>
       <view class="gift-input" style="position: relative;">
-        <input type="number" style="width:230rpx;" bindblur="bindManual" value="{{outNum}}" />
-        <view class="gift-unit">{{lowestArr.lowest_unit}}</view>
+        <view wx:if="{{conversion}}">{{givingNumStr}}</view>
+        <block wx:else>
+          <input type="number" style="width:230rpx;" bindblur="bindManual" value="{{outNum}}"/>
+          <view class="gift-unit">{{lowestArr.lowest_unit}}</view>
+        </block>
       </view>
     </view>
   </view>

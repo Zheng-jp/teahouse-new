@@ -70,7 +70,7 @@ swiper.swiper-container{height: 93%;}
 .btns button{ height: 70rpx; line-height: 70rpx;}
 .btns .out-storage{background-color: #00bbff; flex: 1; color: #fff;}
 .btns .renew{flex-basis: 30%; margin-left: 5px;}
-.btns .song{background-color:rgb(255,153,0);flex-basis: 30%;margin-right:5px;color:#fff;}
+.btns .song{background-color:rgb(255,153,0);flex-basis: 40%;margin-right:5px;color:#fff;}
 /* 众筹 */
 .swiper-box{background-color: #000; box-sizing: border-box; height: 400rpx;}
 .swiper-box swiper{height: 160px;}

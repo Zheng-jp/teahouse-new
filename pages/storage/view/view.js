@@ -108,6 +108,7 @@ Page({
     outNum: 0,  //出仓数量
     showNum: null,
     giftBlessing: '海内送存茶，天涯若比邻', //祝福语
+    share_id: null,
   },
 
   //输入密码监听
@@ -341,7 +342,7 @@ Page({
       restatus = e.currentTarget.dataset.restatus,
       remind = e.currentTarget.dataset.remind;
     // 出仓
-    if (restatus == 0) {
+    if (restatus == 1) {
       wx.showToast({
         title: remind,
         icon: 'none',
@@ -378,6 +379,9 @@ Page({
   //获取祝福语
   giftWish: function (e) {
     let giftBlessing = e.detail.value;
+    if(giftBlessing == "") {
+      giftBlessing = this.data.giftBlessing;
+    }
     this.setData({
       giftBlessing: giftBlessing
     })
@@ -417,11 +421,12 @@ Page({
       success: function (res) {
         console.log(res)
         if (res.data.code == 1) {
-          // for (let i = 0; i < res.data.data.string_number.length; i++) {
-          //   numArr += res.data.data.string_number[i];
-          // }
+          for (let i = 0; i < res.data.data.string_number.length; i++) {
+            numArr += res.data.data.string_number[i];
+          }
+          that.getId(res.data.data.string_number);
           that.setData({
-            // givingNumStr: numArr,
+            givingNumStr: numArr,
             showNum: res.data.data
           })
         }
@@ -435,11 +440,34 @@ Page({
     })
 
   },
+  getId: function(string_number) {
+    let that= this;
+    wx.request({
+      url: app.globalData.tiltes + 'api/SharePictureData',
+      method: 'POST',
+      data: {
+        id: that.data.givingId,
+        give_number: that.data.outNum,
+        string_number: string_number
+      },
+      success: function (res) {
+        if (res.data.code == 1) {
+          that.setData({
+            share_id: res.data.data.share_order_id
+          })
+        }
+      },
+      fail: function (e) {
+        console.error(e)
+      }
+    })
+
+  },
   // 重置数量
   reset: function () {
     this.setData({
       conversion: false,
-      // givingNumStr: '',
+      givingNumStr: '',
       // postage: 0,
       giftBlessing: '海内送存茶，天涯若比邻',
       outNum: 0
@@ -458,10 +486,10 @@ Page({
   * 用户点击右上角分享
   */
   onShareAppMessage: function (options) {
-    let that = this;
+    let that = this, share_id;
     var shareObj = {
       title: "恭喜发财",
-      path: '/pages/diy/index/index',
+      // path: '/pages/diy/index/index',
       imageUrl: '',
       success: function (res) {
         // 转发成功之后的回调
@@ -487,30 +515,15 @@ Page({
         }
       }
     };
-
     // 来自页面内的按钮的转发
     if (options.from == 'button') {
-      wx.request({
-        url: app.globalData.tiltes + 'api/SharePictureData',
-        method: 'POST',
-        data: {
-          id: that.data.givingId,
-          give_number: that.data.outNum,
-          string_number: that.data.showNum.string_number
-        },
-        success: function (res) {
-          if (res.data.code == 1) {
-            shareObj.path = 'pages/logs/logs?share_id=' + res.data.data.share_order_id;
-          }
-        },
-        fail: function (e) {
-          console.error(e)
-        }
-      })
-      // 此处可以修改 shareObj 中的内容
+     
+      shareObj.path = 'pages/logs/logs?share_id=' + that.data.share_id;
       shareObj.title = that.data.giftBlessing;
-      shareObj.imageUrl = 'http://zhihuichacang.com/u2020-1.png'
+      // 此处可以修改 shareObj 中的内容
+      shareObj.imageUrl = 'http://zhihuichacang.com/u2020-2.png'
     }
+    console.log(shareObj)
     return shareObj;
   },
   /**
@@ -626,6 +639,7 @@ Page({
       },
       success: function (res) {
         console.log('选择显示仓库', res)
+        res.data.data[0].getArr[0].end_time = app.formatDate(res.data.data[0].getArr[0].end_time);
         _this.setData({
           storageDataArr: res.data.data
         })
@@ -828,7 +842,7 @@ Page({
   outOfStock: function (e) {
     var id = e.currentTarget.dataset.id, restatus = e.currentTarget.dataset.restatus, remind = e.currentTarget.dataset.remind;
     // 出仓
-    if (restatus == 0) {
+    if (restatus == 1) {
       wx.showToast({
         title: remind,
         icon: 'none',

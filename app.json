@@ -61,7 +61,6 @@
     "pages/good_lv/good_lv",
     "sweep/pages/nfc/index",
     "pages/ldm/index",
-    "pages/storage/fortune-result/fortune-result",
     "pages/mingpcha/index"
   ],
   "subpackages": [
