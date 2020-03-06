@@ -99,7 +99,7 @@
 					"id": 6,
 					"name": "pages/logs/logs",
 					"pathName": "pages/logs/logs",
-					"query": "share_id=209",
+					"query": "code_id=209",
 					"scene": null
 				}
 			]

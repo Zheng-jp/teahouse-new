@@ -543,6 +543,7 @@ Page({
           switch (res.data.code) {
             case 1:
               that.showStorageData();
+              that.totalValue();
               title = '领取成功';
               break;
             case 200:
@@ -596,6 +597,7 @@ Page({
           // console.log(res)
           if (res.data.code == 1) {
             that.showStorageData();
+            taht.totalValue();
           }
           wx.showToast({
             title: res.data.msg,
@@ -814,17 +816,30 @@ Page({
   },
 
   toStockDetail: function (e) {
-    var id = e.target.dataset.id;
-    // 仓库详情
-    wx.navigateTo({
-      url: '/storage/pages/stock_detail/stock_detail?id=' + id,
-      success: function () {
-        console.log('跳转成功');
-      },
-      fail: function () {
-        console.log('跳转失败');
-      }
-    })
+    console.log(e)
+    var id = e.target.dataset.id, goods_id = e.target.dataset.goodsid, status = e.target.dataset.status;
+    if(status == 0) {
+      // 仓库详情
+      wx.navigateTo({
+        url: '/storage/pages/stock_detail/stock_detail?id=' + id,
+        success: function () {
+          console.log('跳转成功');
+        },
+        fail: function () {
+          console.log('跳转失败');
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/goods_detail/goods_detail?title=' + goods_id,
+        success: function () {
+          console.log('跳转成功');
+        },
+        fail: function () {
+          console.log('跳转失败');
+        }
+      })
+    }
   },
   //实时视频显示
   showLive: function (e) {
@@ -928,6 +943,7 @@ Page({
     this.onReady();
     this.allStorage();
     this.showStorageData();
+    this.totalValue();
     wx.stopPullDownRefresh();
     this.setData({
       isLive: false

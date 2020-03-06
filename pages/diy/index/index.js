@@ -218,7 +218,7 @@ catchTouchMove:function(res){
     var _this = this;
     wx.getSystemInfo({
       success: function(res) {
-        if (res.model.indexOf('iPhone X') != -1) {
+        if (res.model.indexOf('iPhone X') != -1 || res.model.indexOf('iPhone12') != -1) {
           _this.setData({
             fixiPhone: true
           })

@@ -58,7 +58,7 @@ swiper.swiper-container{height: 93%;}
 .item-left .tag-box .tag-text{font-size: 24rpx; color: #999900; border: 1px solid #999900; padding: 4rpx 0; border-radius: 8rpx; width: 60px; box-sizing: border-box; overflow: hidden; white-space: nowrap;}
 .item-left .tag-box .tag-text:first-of-type{margin-right: 8rpx;}
 .item-right{flex-basis: 63%;}
-.tea-stock{font-size: 24rpx; color: #868686; font-weight: 700; display: flex; align-items: center; justify-content: space-around;}
+.tea-stock{font-size: 24rpx; color: #868686; font-weight: 700; display: flex; align-items: center; justify-content: space-around;margin-bottom: 10rpx;}
 .tea-stock .stock-title{font-size: 24rpx; font-weight: 700; color: #000;}
 .tea-stock .stock-num{font-size: 44rpx; font-weight: 700; color: #93291E; flex: 1; text-align: right;}
 .tea-stock .stock-more{font-size: 24rpx; color: #0099FF;}
@@ -69,8 +69,8 @@ swiper.swiper-container{height: 93%;}
 .btns{display: flex; justify-content: space-between; font-size: 32rpx;}
 .btns button{ height: 70rpx; line-height: 70rpx;}
 .btns .out-storage{background-color: #00bbff; flex: 1; color: #fff;}
-.btns .renew{flex-basis: 30%; margin-left: 5px;}
-.btns .song{background-color:rgb(255,153,0);flex-basis: 40%;margin-right:5px;color:#fff;}
+.btns .renew{ margin-left: 5px;}
+.btns .song{background-color:rgb(255,153,0);margin-right:5px;color:#fff;}
 /* 众筹 */
 .swiper-box{background-color: #000; box-sizing: border-box; height: 400rpx;}
 .swiper-box swiper{height: 160px;}

@@ -8,14 +8,14 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     logoUrl: '',
     scene: undefined,
-    goods:'',
-    title:'',
-    status:'',
-    order_number:'',
+    goods: '',
+    title: '',
+    status: '',
+    order_number: '',
     order_status: '',
     code: '',
     shareID: 0,
-    code_id:'',
+    code_id: '',
     share_id: ''
   },
   // onmessage(e) {
@@ -49,7 +49,7 @@ Page({
                   duration: 10000
                 });
                 wx.request({
-                  url: app.globalData.tiltes+'wechatlogin',
+                  url: app.globalData.tiltes + 'wechatlogin',
                   data: {
                     code: code,
                     encryptedData: encryptedData,
@@ -67,12 +67,12 @@ Page({
                     console.log('登录1', res.data)
                     app.globalData.islogin = true;
                     app.globalData.gmemberid = res.data.data.openid;
-                    app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
-                    app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;
+                    app.globalData.member_grade_img = res.data.data.member_grade_info.member_grade_img;
+                    app.globalData.member_grade_name = res.data.data.member_grade_info.member_grade_name;
                     app.globalData.member_id = res.data.data.member_id;
                     app.globalData.uniacid = res.data.data.uniacid;
-                    if(newMember != undefined && res.data.status == 1) {
-                      _this.pointReward(newMember,res.data.data.member_id,res.data.data.uniacid);
+                    if (newMember != undefined && res.data.status == 1) {
+                      _this.pointReward(newMember, res.data.data.member_id, res.data.data.uniacid);
                     }
                     wx.hideToast();
                     if (res) {
@@ -84,15 +84,21 @@ Page({
                         wx.navigateTo({
                           url: '../order_detail/order_detail?title=' + _this.data.order_number + "&status=" + _this.data.order_status,
                         })
-                      } else if (_this.data.code){
+                      } else if (_this.data.code) {
                         wx.navigateTo({
                           url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code + "&isHome=1"
                         })
-                      } else if (_this.data.code_id){
-                        wx.navigateTo({
-                          url: "../ldm/index"
-                        })
-                      } else if (_this.data.share_id){
+                      } else if (_this.data.code_id) {
+                        if (res.data.data.uniacid == 296) {
+                          wx.navigateTo({
+                            url: "../ldm/index"
+                          })
+                        } else {
+                          wx.navigateTo({
+                            url: "../mingpcha/index"
+                          })
+                        }
+                      } else if (_this.data.share_id) {
                         wx.navigateTo({
                           url: "../mingpcha/index"
                         })
@@ -101,7 +107,7 @@ Page({
                           url: '../diy/index/index', // 新首页
                         })
                       }
-                    }else {
+                    } else {
                       console.log("kong")
                     }
                     wx.setStorage({
@@ -134,7 +140,7 @@ Page({
     }
   },
   //新用户扫码增上级积分
-  pointReward: function(scene,member_id,uniacid) {
+  pointReward: function (scene, member_id, uniacid) {
     wx.request({
       url: app.globalData.tiltes + 'qr_back_points',
       data: {
@@ -143,10 +149,10 @@ Page({
         uniacid: uniacid
       },
       method: "POST",
-  
+
       success: function (res) {
         console.log(res)
-        
+
       },
       fail: function () {
 
@@ -164,40 +170,40 @@ Page({
     //   url:'../ldm/index'
     // })
     //新会员积分&防伪溯源
-    if(options.scene){
+    if (options.scene) {
       scene = decodeURIComponent(options.scene).split("=");
-      if(scene[0] == "code") {
+      if (scene[0] == "code") {
         code = scene[1];
-      } else if(scene[0] == "member_id") {
+      } else if (scene[0] == "member_id") {
         newMember = scene[1];
       }
     }
-    if(options.goods){
+    if (options.goods) {
       title = decodeURIComponent(options.title);
     }
 
-    if(options.shareID){
+    if (options.shareID) {
       shareID = decodeURIComponent(options.shareID);
     }
-    if(options.code_id){
+    if (options.code_id) {
       code_id = decodeURIComponent(options.code_id);
       app.globalData.code_id = code_id;
     }
-  
-    if(options.status) {
+
+    if (options.status) {
       status = decodeURIComponent(options.status);
       order_number = decodeURIComponent(options.order_number);
     }
-    if(options.share_id) {
+    if (options.share_id) {
       share_id = decodeURIComponent(options.share_id);
       app.globalData.share_id = share_id;
     }
-    
+
     _this.setData({
       newMember: newMember,
       title: title,
-      order_status:status,
-      order_number:order_number,
+      order_status: status,
+      order_number: order_number,
       code: code,
       shareID: shareID,
       code_id: code_id,
@@ -229,17 +235,17 @@ Page({
       }
     })
 
-    if(options.scene){
-      var scene=decodeURIComponent(options.scene);
+    if (options.scene) {
+      var scene = decodeURIComponent(options.scene);
       // - 是我们定义的参数链接方式
       // var userId=options.scene.split("-")[0];
       // var identify=options.scene.split('')[1];
       //其他逻辑处理。。。。。
       _this.setData({
-        scene:scene
+        scene: scene
       })
     }
-  
+
     // 查看是否授权
     wx.getSetting({
       success: function (res) {
@@ -280,15 +286,15 @@ Page({
                             console.log('登录2', res.data)
                             app.globalData.gmemberid = res.data.data.openid;
                             app.globalData.member_grade_img = res.data.data.member_grade_info.member_grade_img;
-                            app.globalData.member_grade_name=res.data.data.member_grade_info.member_grade_name;
+                            app.globalData.member_grade_name = res.data.data.member_grade_info.member_grade_name;
                             app.globalData.member_id = res.data.data.member_id;
                             app.globalData.uniacid = res.data.data.uniacid;
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             //是否推荐扫码进来的
-                            
+
                             wx.hideToast();
                             if (res) {
-                              if(_this.data.title){
+                              if (_this.data.title) {
                                 wx.navigateTo({
                                   url: "../goods_detail/goods_detail?title=" + _this.data.title
                                 })
@@ -296,33 +302,39 @@ Page({
                                 wx.navigateTo({
                                   url: '../order_detail/order_detail?title=' + _this.data.order_number + "&status=" + _this.data.order_status,
                                 })
-                              } else if (_this.data.code){
+                              } else if (_this.data.code) {
                                 wx.navigateTo({
                                   url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code + "&isHome=1"
                                 })
-                              } else if (_this.data.code_id){
-                                wx.navigateTo({
-                                  url: "../ldm/index"
-                                })
-                              } else if (_this.data.share_id){
+                              } else if (_this.data.code_id) {
+                                if (res.data.data.uniacid == 296) {
+                                  wx.navigateTo({
+                                    url: "../ldm/index"
+                                  })
+                                } else {
+                                  wx.navigateTo({
+                                    url: "../mingpcha/index"
+                                  })
+                                }
+                              } else if (_this.data.share_id) {
                                 wx.navigateTo({
                                   url: "../mingpcha/index"
                                 })
-                              } else{
+                              } else {
                                 wx.switchTab({
                                   url: '../diy/index/index', // 新首页
                                 })
                               }
-                            }else {
+                            } else {
                               console.log("kong")
                             }
                           },
-                          fail: function () {},
-                          complete: function () {}
+                          fail: function () { },
+                          complete: function () { }
                         })
                       }
                     })
-                  }else {
+                  } else {
                     console.log('获取用户登录态失败！' + res.errMsg)
                   }
                 }
