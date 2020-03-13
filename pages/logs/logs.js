@@ -16,7 +16,9 @@ Page({
     code: '',
     shareID: 0,
     code_id: '',
-    share_id: ''
+    share_id: '',
+    isShou: true,
+    loginCode:''
   },
   // onmessage(e) {
   //   my.alert({
@@ -36,6 +38,9 @@ Page({
           app.globalData.isRefresh = true
           if (res.code) {
             var code = res.code;
+            // _this.setData({
+            //   loginCode : code
+            // })
             wx.getUserInfo({//getUserInfo流程
               success: function (res2) {//获取userinfo成功
                 var appid = wx.getAccountInfoSync();
@@ -71,49 +76,28 @@ Page({
                     app.globalData.member_grade_name = res.data.data.member_grade_info.member_grade_name;
                     app.globalData.member_id = res.data.data.member_id;
                     app.globalData.uniacid = res.data.data.uniacid;
-                    if (newMember != undefined && res.data.status == 1) {
-                      _this.pointReward(newMember, res.data.data.member_id, res.data.data.uniacid);
-                    }
-                    wx.hideToast();
-                    if (res) {
-                      if (_this.data.title) {
-                        wx.navigateTo({
-                          url: "../goods_detail/goods_detail?title=" + _this.data.title
-                        })
-                      } else if (_this.data.order_number) {
-                        wx.navigateTo({
-                          url: '../order_detail/order_detail?title=' + _this.data.order_number + "&status=" + _this.data.order_status,
-                        })
-                      } else if (_this.data.code) {
-                        wx.navigateTo({
-                          url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code + "&isHome=1"
-                        })
-                      } else if (_this.data.code_id) {
-                        if (res.data.data.uniacid == 296) {
-                          wx.navigateTo({
-                            url: "../ldm/index"
-                          })
-                        } else {
-                          wx.navigateTo({
-                            url: "../mingpcha/index"
-                          })
-                        }
-                      } else if (_this.data.share_id) {
-                        wx.navigateTo({
-                          url: "../mingpcha/index"
-                        })
-                      } else {
-                        wx.switchTab({
-                          url: '../diy/index/index', // 新首页
-                        })
-                      }
-                    } else {
-                      console.log("kong")
-                    }
+                    app.globalData.session_key = res.data.data.session_key;
                     wx.setStorage({
                       key: "globalData",
                       data: JSON.stringify(app.globalData)
                     })
+                    if (newMember != undefined && res.data.status == 1) {
+                      _this.pointReward(newMember, res.data.data.member_id, res.data.data.uniacid);
+                    }
+                    wx.hideToast();
+                    app.judge_phone();
+                    if (res) {
+                      if(!app.globalData.judge_phone) {
+                        _this.setData({
+                          isShou : false
+                        })
+                      } else {
+                        _this.shouLater();
+                      }
+                    } else {
+                      console.log("kong")
+                    }
+                   
                   }
                 })
 
@@ -136,6 +120,77 @@ Page({
             console.log('用户点击了“返回授权”')
           }
         }
+      })
+    }
+  },
+  getPhoneNumber: function (e) {
+    var that = this;
+    console.log(e.detail.errMsg == "getPhoneNumber:ok");
+    if (e.detail.errMsg == "getPhoneNumber:ok") {
+      wx.login({//login流程
+        success: function (res) {
+          if (res.code) {
+            wx.request({
+              url: app.globalData.tiltes + 'get_user_phone',
+              data: {
+                encryptedData: e.detail.encryptedData,
+                iv: e.detail.iv,
+                session_key: app.globalData.session_key,
+                // uid: "",
+                code: res.code,
+                appid: wx.getAccountInfoSync().miniProgram.appId,
+                member_id: app.globalData.member_id
+              },
+              method: "post",
+              success: function (res) {
+                console.log(res);
+                that.shouLater();
+              }
+            })
+
+          }
+        }
+      })
+    } else {
+      that.shouLater();
+    }
+  },
+  // 授权后操作
+  shouLater: function () {
+    var _this = this;
+    if (_this.data.title) {
+      wx.navigateTo({
+        url: "../goods_detail/goods_detail?title=" + _this.data.title
+      })
+    } else if (_this.data.order_number) {
+      wx.navigateTo({
+        url: '../order_detail/order_detail?title=' + _this.data.order_number + "&status=" + _this.data.order_status,
+      })
+    } else if (_this.data.code) {
+      wx.navigateTo({
+        url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code + "&isHome=1"
+      })
+    } else if (_this.data.code_id) {
+      if (res.data.data.uniacid == 296) {
+        wx.navigateTo({
+          url: "../ldm/index"
+        })
+      } else {
+        wx.navigateTo({
+          url: "../mingpcha/index"
+        })
+      }
+    } else if (_this.data.share_id) {
+      wx.navigateTo({
+        url: "../mingpcha/index"
+      })
+    } else if (_this.data.shareGoods) {
+      wx.navigateTo({
+        url: "../goods_detail/goods_detail?title=" + _this.data.shareGoods
+      })
+    } else {
+      wx.switchTab({
+        url: '../diy/index/index', // 新首页
       })
     }
   },
@@ -165,10 +220,11 @@ Page({
   },
 
   onLoad: function (options) {
-    var _this = this, newMember, title, status, order_number, code, scene, shareID, code_id, share_id;
+    var _this = this, newMember, title, status, order_number, code, scene, shareID, code_id, share_id, shareGoods;
     // wx.navigateTo({
     //   url:'../ldm/index'
     // })
+    
     //新会员积分&防伪溯源
     if (options.scene) {
       scene = decodeURIComponent(options.scene).split("=");
@@ -182,7 +238,7 @@ Page({
       title = decodeURIComponent(options.title);
     }
 
-    if (options.shareID) {
+    if (options.shareID) { //分享过来的上级ID
       shareID = decodeURIComponent(options.shareID);
     }
     if (options.code_id) {
@@ -198,7 +254,9 @@ Page({
       share_id = decodeURIComponent(options.share_id);
       app.globalData.share_id = share_id;
     }
-
+    if(options.shareGoods) {
+      shareGoods = decodeURIComponent(options.shareGoods);
+    }
     _this.setData({
       newMember: newMember,
       title: title,
@@ -207,7 +265,8 @@ Page({
       code: code,
       shareID: shareID,
       code_id: code_id,
-      share_id: share_id
+      share_id: share_id,
+      shareGoods : shareGoods
     })
     wx.getStorage({
       key: 'authorization',
@@ -289,41 +348,19 @@ Page({
                             app.globalData.member_grade_name = res.data.data.member_grade_info.member_grade_name;
                             app.globalData.member_id = res.data.data.member_id;
                             app.globalData.uniacid = res.data.data.uniacid;
+                            app.globalData.session_key = res.data.data.session_key;
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             //是否推荐扫码进来的
 
                             wx.hideToast();
+                            app.judge_phone();
                             if (res) {
-                              if (_this.data.title) {
-                                wx.navigateTo({
-                                  url: "../goods_detail/goods_detail?title=" + _this.data.title
-                                })
-                              } else if (_this.data.order_number) {
-                                wx.navigateTo({
-                                  url: '../order_detail/order_detail?title=' + _this.data.order_number + "&status=" + _this.data.order_status,
-                                })
-                              } else if (_this.data.code) {
-                                wx.navigateTo({
-                                  url: "../../sweep/pages/sweep_detail/sweep_detail?code=" + _this.data.code + "&isHome=1"
-                                })
-                              } else if (_this.data.code_id) {
-                                if (res.data.data.uniacid == 296) {
-                                  wx.navigateTo({
-                                    url: "../ldm/index"
-                                  })
-                                } else {
-                                  wx.navigateTo({
-                                    url: "../mingpcha/index"
-                                  })
-                                }
-                              } else if (_this.data.share_id) {
-                                wx.navigateTo({
-                                  url: "../mingpcha/index"
+                              if(!app.globalData.judge_phone) {
+                                _this.setData({
+                                  isShou : false
                                 })
                               } else {
-                                wx.switchTab({
-                                  url: '../diy/index/index', // 新首页
-                                })
+                                _this.shouLater();
                               }
                             } else {
                               console.log("kong")

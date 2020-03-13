@@ -12,16 +12,16 @@ Page({
 
   onLoad: function (options) {
     console.log(options)
-    var code, that=this, special, type = 1;
-    if(options) {
+    var code, that = this, special, type = 1;
+    if (options) {
       code = options.code;
       special = code.split('165801');
-      if(special.length > 1) {
+      if (special.length > 1) {
         code = special[1];
       } else {
         code = special[0];
       }
-      if(options.isHome) {
+      if (options.isHome) {
         that.setData({
           isHome: true
         })
@@ -33,9 +33,9 @@ Page({
         code: code,
       },
       method: "post",
-      success: function(res) {
+      success: function (res) {
         console.log(res)
-        if(res.data.status == "1") {
+        if (res.data.status == "1") {
           that.addNum(code, type);
           that.setData({
             goods: res.data.data
@@ -48,15 +48,15 @@ Page({
           })
         }
       },
-      fail: function() {
+      fail: function () {
 
       },
-      complete: function() {
+      complete: function () {
         // wx.hideLoading()
       }
     });
   },
-  addNum: function(code, type) {
+  addNum: function (code, type) {
     wx.request({
       url: app.globalData.tiltes + 'inc_number',
       data: {
@@ -64,9 +64,9 @@ Page({
         type: type
       },
       method: "post",
-      success: function(res) {},
-      fail: function() {},
-      complete: function() {}
+      success: function (res) { },
+      fail: function () { },
+      complete: function () { }
     });
   },
   /**
@@ -80,7 +80,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var res = wx.getSystemInfoSync();
+    var menu, titleHeight;
+    try {
+      menu = wx.getMenuButtondingClientRect();
+      if (menu) {
+        titleHeight = (menu.top - res.statusBarHeight) * 2 + menu.height;
+      } else {
+        if (res.platform == "ios") {
+          titleHeight = 44;
+        } else {
+          titleHeight = 48;
+        }
+      }
+    } catch (e) {
+      console.log("默认")
+      if (res.platform == 'ios') {
+        titleHeight = 44;
+      } else {
+        titleHeight = 48;
+      }
+    }
+    console.log(res)
   },
 
   /**
@@ -94,7 +115,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    if(this.data.isHome) {
+    if (this.data.isHome) {
       wx.switchTab({
         url: '../../../pages/diy/index/index', // 新首页
       })

@@ -61,7 +61,8 @@
     "pages/good_lv/good_lv",
     "sweep/pages/nfc/index",
     "pages/ldm/index",
-    "pages/mingpcha/index"
+    "pages/mingpcha/index",
+    "component/navbar/navbar"
   ],
   "subpackages": [
     {
@@ -124,7 +125,8 @@
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#F9F9F9",
     "navigationBarTitleText": "",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "navigateionStyle": "custom"
   },
   "sitemapLocation": "sitemap.json"
 }

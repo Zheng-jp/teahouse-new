@@ -618,7 +618,7 @@
     </view>
             <view class="hbj" style="flex:1;margin-left:20rpx;">
                 <block wx:if="{{avatars}}">
-                    <image src="{{item.avatar}}" style="width:60rpx;height:60rpx;border-radius:60rpx;display:block;{{index>0?'margin-left:-30rpx;':''}}border:2rpx solid {{style.bgn}}" wx:for="{{avatars}}" wx:key="index"></image>
+                    <image src="{{item.avatar}}" style="overflow:hidden;width:60rpx;height:60rpx;border-radius:60rpx;display:block;{{index>0?'margin-left:-30rpx;':''}}border:2rpx solid {{style.bgn}}" wx:for="{{avatars}}" wx:key="index"></image>
                 </block>
                 <block wx:else>
                     <image src="{{siteroot}}/diypage/resource/images/diypage/default/visit.jpg" style="width:60rpx;height:60rpx;border-radius:60rpx;display:block;border:2rpx solid {{style.bgn}}"></image>

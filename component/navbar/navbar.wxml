@@ -1,0 +1,14 @@
+<view class="custom " style="padding-top:{{statusBarHeight}}px">
+  <view class='title-container'>
+    <view class='capsule' wx:if="{{ back || home }}">
+      <view bindtap='back' wx:if="{{back}}">
+        <image src='http://zhihuichacang.com/back.png'></image>
+      </view>
+      <view bindtap='backHome' wx:if="{{home}}">
+        <image src='http://zhihuichacang.com/index.png'></image>
+      </view>
+    </view>
+    <view class='title'>{{navigationBarTitle}}</view>
+  </view>
+</view>
+<view class="empty_custom" style="padding-top:{{statusBarHeight}}px"></view>

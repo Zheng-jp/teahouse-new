@@ -1,3 +1,6 @@
+.all {
+    margin-top: 100rpx;
+}
 .img_content{
     background: #fff;
     height: 215rpx;

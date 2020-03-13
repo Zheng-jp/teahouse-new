@@ -112,7 +112,8 @@ Page({
     const shareName = this.data.goods.goods_name + '-' + this.data.goods.goods_selling;
     return {
       title: shareName, // 转发后 所显示的title
-      path: 'pages/diy/index/index?memberId=' + app.globalData.member_id, // 相对的路径
+      // path: 'pages/diy/index/index?title=' + app.globalData.member_id, // 相对的路径
+      path: 'pages/logs/logs?shareGoods=' + that.data.goods.id + '&shareID=' + app.globalData.member_id, // 相对的路径
       success: (res) => { // 成功后要做的事情
         // console.log(res.shareTickets[0])
         // console.log

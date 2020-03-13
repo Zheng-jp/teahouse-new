@@ -539,6 +539,7 @@ App({
     navBarTxtColor: '',
     shareID: 0,
     code_id: '',
-    share_id:''
+    share_id:'',
+    statusBarHeight:wx.getSystemInfoSync()['statusBarHeight']//状态栏高度
   }
 })

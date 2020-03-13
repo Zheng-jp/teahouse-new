@@ -53,7 +53,7 @@ Page({
     let that = this;
     return {
       title: '简直走别拐弯', // 转发后 所显示的title
-      path: 'pages/diy/index/index', // 相对的路径
+      path: 'pages/logs/logs?shareID=' + app.globalData.member_id, // 相对的路径
       success: (res) => {    // 成功后要做的事情
         console.log(res.shareTickets[0])
         // console.log

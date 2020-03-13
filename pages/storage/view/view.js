@@ -518,7 +518,7 @@ Page({
     // 来自页面内的按钮的转发
     if (options.from == 'button') {
      
-      shareObj.path = 'pages/logs/logs?share_id=' + that.data.share_id;
+      shareObj.path = 'pages/logs/logs?share_id=' + that.data.share_id + '&shareID=' + app.globalData.member_id;
       shareObj.title = that.data.giftBlessing;
       // 此处可以修改 shareObj 中的内容
       shareObj.imageUrl = 'http://zhihuichacang.com/u2020-2.png'
