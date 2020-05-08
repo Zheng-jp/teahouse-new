@@ -109,6 +109,8 @@ Page({
     showNum: null,
     giftBlessing: '海内送存茶，天涯若比邻', //祝福语
     share_id: null,
+    inTemp: 0,
+    inHumi: 0
   },
 
   //输入密码监听
@@ -379,7 +381,7 @@ Page({
   //获取祝福语
   giftWish: function (e) {
     let giftBlessing = e.detail.value;
-    if(giftBlessing == "") {
+    if (giftBlessing == "") {
       giftBlessing = this.data.giftBlessing;
     }
     this.setData({
@@ -440,8 +442,8 @@ Page({
     })
 
   },
-  getId: function(string_number) {
-    let that= this;
+  getId: function (string_number) {
+    let that = this;
     wx.request({
       url: app.globalData.tiltes + 'api/SharePictureData',
       method: 'POST',
@@ -517,7 +519,7 @@ Page({
     };
     // 来自页面内的按钮的转发
     if (options.from == 'button') {
-     
+
       shareObj.path = 'pages/logs/logs?share_id=' + that.data.share_id + '&shareID=' + app.globalData.member_id;
       shareObj.title = that.data.giftBlessing;
       // 此处可以修改 shareObj 中的内容
@@ -612,6 +614,7 @@ Page({
     }
     getData(this);
     switchProject('crowd_now', this);
+    this.getHumitureNew()
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
@@ -818,7 +821,7 @@ Page({
   toStockDetail: function (e) {
     console.log(e)
     var id = e.target.dataset.id, goods_id = e.target.dataset.goodsid, status = e.target.dataset.status;
-    if(status == 0) {
+    if (status == 0) {
       // 仓库详情
       wx.navigateTo({
         url: '/storage/pages/stock_detail/stock_detail?id=' + id,
@@ -854,6 +857,22 @@ Page({
       live_id: live_id
     })
   },
+  getHumitureNew: function () {
+    var a = this;
+    wx.request({
+      url: app.globalData.tiltes + "get_humiture_new",
+      method: "POST",
+      data: {
+        store_id: app.globalData.uniacid
+      },
+      success: function (t) {
+        "1" == t.data.status && a.setData({
+          inTemp: t.data.data.temperature.toFixed(2),
+          inHumi: t.data.data.humidity.toFixed(2)
+        });
+      }
+    });
+  },
   outOfStock: function (e) {
     var id = e.currentTarget.dataset.id, restatus = e.currentTarget.dataset.restatus, remind = e.currentTarget.dataset.remind;
     // 出仓
@@ -875,66 +894,10 @@ Page({
   },
   onReady: function () {
     var that = this;
-    var uniacid = app.globalData.uniacid;
-    // wx.request({
-    //   url: app.globalData.baseurl + "doPagehomepage",
-    //   cachetime: "30",
-    //   data: {
-    //     uniacid: uniacid
-    //   },
-    //   success: function (t) {
-    //     var version_is = '';
-    //     that.setData({
-    //       foot_is: t.data.data.foot_is,
-    //     })
-    //     // console.log(t)
-    //     if (t.data.data.test_name.goods_name == '茶进阶版')
-    //       version_is = 3;
-    //     else if (t.data.data.test_name.goods_name == '茶行业版')
-    //       version_is = 2;
-    //     else
-    //       version_is = 1;
-    //     that.setData({
-    //       version: version_is
-    //     })
+    setInterval(function () {
+      that.getHumitureNew();
+    }, 3e4);
 
-    //     wx.request({
-    //       url: app.globalData.baseurl + "doPageGetFoot",
-    //       cachetime: "30",
-    //       data: {
-    //         uniacid: uniacid,
-    //         foot: t.data.data.foot_is
-    //       },
-    //       success: function (t) {
-    //         // var lujing = [];
-    //         // var num = getCurrentPages().length - 1;
-    //         // var url = getCurrentPages()[num].route; //当前页面路径
-    //         // console.log(url)
-    //         // for (let i in t.data.data.data) {
-    //         //   lujing.push(t.data.data.data[i]);
-    //         // }
-    //         // for (let o = 0; o < lujing.length; o++) {
-    //         //   if (lujing[o].linkurl.indexOf(url) != -1) {
-    //         //     lujing[o].change = true;
-    //         //   } else {
-    //         //     lujing[o].change = false;
-    //         //   }
-    //         // }
-    //         // t.data.data.data = lujing;
-    //         // console.log(t.data.data)
-    //         that.setData({
-    //           footinfo: t.data.data,
-    //           // style: t.data.data.style,
-    //         })
-    //       }
-    //     });
-
-
-    //   },
-    //   fail: function (t) {
-    //     console.log(t);
-    //   }
-    // });
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

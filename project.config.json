@@ -4,13 +4,16 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
+		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -21,8 +24,8 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.3",
-	"appid": "wx301c1368929fdba8",
+	"libVersion": "2.10.4",
+	"appid": "wxc265cd4269f01dce",
 	"projectname": "Zjp",
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {
@@ -52,54 +55,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
-					"name": "预定",
-					"pathName": "pages/storage/view/view",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "实时数据",
+					"name": "storage/pages/realtime_data/realtime_data",
 					"pathName": "storage/pages/realtime_data/realtime_data",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "添加发票",
-					"pathName": "invoice/pages/invoice_add/invoice_add",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "选择发票",
-					"pathName": "invoice/pages/invoice_select/invoice_select",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "测试",
-					"pathName": "pages/test/test",
-					"query": ""
-				},
-				{
-					"id": 5,
-					"name": "payment",
-					"pathName": "component/payment/payment",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "pages/logs/logs",
-					"pathName": "pages/logs/logs",
-					"query": "code_id=209",
 					"scene": null
 				}
 			]

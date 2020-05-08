@@ -1,97 +1,321 @@
 // storage/pages/realtime_data/realtime_data.js
 import * as echarts from '../../../component/ec-canvas/echarts';
 var app = getApp();
-// 温度  第一个swiper-item
-function setOption(chart, _this, yArr) {
-  const option = {
-    title: {
-      text: '实时仓储温度(°C)',
-      left: 'center',
-      textStyle: {
-        fontSize: 14,
-        color: '#696969'
-      },
-      top: '10rpx'
+
+function wdOption(realValue, type) {
+  var data = {
+    title: '',
+    value: realValue,
+    color: {
+      wdColor: 'rgb(112,182,3)', //温度
+      wdColorTips: 'rgb(2,131,15)', //温度提示
+      sdColor: 'rgb(255,163,4)', //湿度
+      sdColorTips: 'rgb(224,123,5)', //湿度提示
+      value: '#fff', //底部数值颜色
     },
-    tooltip: {
-      trigger: 'axis'
-    },
+  }
+  var option = {
+
     backgroundColor: "#fff",
-    color: ["#006EFF", "#67E0E3", "#9FE6B8"],
-    animation: true,
-    grid: {
-      show: false
-    },
-    xAxis: [{
-      type: 'category',
-      boundaryGap: true,
-      data: (function() {
-        var now = new Date();
-        var res = [];
-        var len = 10;
-        while (len--) {
-          // res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
-          res.unshift((now.getHours() < 10 ? '0' + now.getHours() : now.getHours()) + ':' +
-            (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()) + ':' +
-            (now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds()));
-          now = new Date(now - 2000);
-        }
-        return res;
-      })()
-    }],
-    yAxis: {
-      type: 'value',
-      position: 'right',
-      splitNumber: 3,
+    series: [{
+      type: 'gauge',
+      radius: '79%',
+      min: 0, //最小刻度
+      max: 100, //最大刻度
+      splitNumber: 10, //刻度数量
+      startAngle: '269.99',
+      endAngle: '-90',
       axisLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
+        show: true,
+        lineStyle: {
+          width: 2,
+          color: [
+            [1, 'rgb(184,187,199)']
+          ]
+        }
       },
       axisLabel: {
-        margin: 2,
-        formatter: function(value, index) {
-          return value.toFixed(2);
-        }
-      },
-      // name: '温度℃',
-      scale: true,
-      boundaryGap: [0.2, 0.2]
-    },
-    series: [{
-      type: 'line',
-      data: yArr,
-    }]
-  };
-  _this.setData({
-    timer: setInterval(function() {
-      var now = new Date();
-      var axisData = ((now.getHours() < 10 ? '0' + now.getHours() : now.getHours()) + ':' +
-        (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()) + ':' +
-        (now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds()));
-      wx.request({
-        url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html', //你请求数据的接口地址
-        method: 'POST',
-        data: {
-          "userApiKey": _this.data.userLogin.userApikey,
-          "deviceNo": "1MK7I336AEO708RT",
-          "flagCode": _this.data.userLogin.flagCode
-        },
-        success: function(res) {
-          if (res.data.flag == '00') {
-            var res = res.data.deviceList[0].sensorList;
-            var data0 = option.series[0].data;
-            data0.shift();
-            data0.push(+res[0].value);
-            // 发送温湿度数据给后台
-            setDevMoniData(res[0].value, res[1].value);
+        show: true,
+        color: '#000',
+        distance: 0,
+        fontSize: 12,
+        formatter: function (v) {
+          switch (v + '') {
+            case '0':
+              return '0';
+            case '10':
+              return '10';
+            case '20':
+              return '20';
+            case '30':
+              return '30';
+            case '40':
+              return '40';
+            case '50':
+              return '50';
+            case '60':
+              return '60';
+            case '70':
+              return '70';
+            case '80':
+              return '80';
+            case '90':
+              return '90';
+            case '100':
+              return '0';
           }
         }
-      })
-      option.xAxis[0].data.shift();
-      option.xAxis[0].data.push(axisData);
+      }, //刻度标签。
+      axisTick: {
+        show: false,
+        splitNumber: 5,
+        lineStyle: {
+          color: 'rgb(184,187,199)', //用颜色渐变函数不起作用
+          width: 1,
+        },
+        length: 10
+      }, //刻度样式
+      splitLine: {
+        show: true,
+        length: 15,
+        lineStyle: {
+          color: 'rgb(184,187,199)', //用颜色渐变函数不起作用
+        }
+      }, //分隔线样式
+      itemStyle: {
+        normal: {
+          show: false
+        }
+      },
+      pointer: {
+        show: true,
+        length: '60%',
+        width: 7, //指针粗细
+      },
+      z: 12,
+      "detail": {
+        "formatter": function (value) {
+          var num = Math.round(value);
+          return parseInt(num).toFixed(0) + (type == 1 ? '℃' : '%');
+        },
+        // "offsetCenter": ['30%', "60%"],
+        "textStyle": {
+          padding: [0, 0, 50, 0],
+          "fontSize": 25,
+          fontWeight: '700',
+          "color": (type == 1 ? data.color.wdColorTips : data.color.sdColorTips)
+        }
+      },
+      "title": {
+        color: '#000',
+        "fontSize": 14,
+        //"offsetCenter": ['-20%', "30%"]
+      },
+      "data": [{
+        "name": "",
+        "value": data.value,
+      }],
+    },
+    {
+      title: {
+        show: false
+      },
+      type: "gauge",
+      radius: '79%',
+      splitNumber: 10,
+      startAngle: '269.99',
+      endAngle: '-90',
+      z: 11,
+      "axisLine": {
+        "lineStyle": {
+          "color": [
+            [data.value / 100, (type == 1 ? data.color.wdColor : data.color.sdColor)],
+            [1, ("rgb(239,240,235)")]
+          ],
+          "width": 35,
+          borderWidth: 5,
+          borderColor: 'red'
+        }
+      },
+      axisLabel: {
+        show: false,
+      },
+      "axisTick": {
+        show: false,
 
+      },
+      "splitLine": {
+        "show": false,
+      },
+      pointer: {
+        show: false
+      },
+      detail: {
+        show: false
+      },
+    },
+    {
+      name: 'pie',
+      type: 'pie',
+      clockWise: true,
+      startAngle: -270,
+      radius: ['0%', '80%'],
+      hoverAnimation: false,
+      center: ['50%', '50%'],
+      data: ['100'],
+      z: 1,
+      labelLine: {
+        show: false
+      },
+      itemStyle: {
+        normal: {
+          color: 'rgb(230,230,230)',
+        }
+      }
+    },
+    ]
+  };
+  return option;
+}
+function dbOption(onList, outList, maxL, type) {
+  var x_data = ['2时', '4时', '6时', '8时', '10时', '12时', '14时', '16时', '18时', '20时', '22时', '24时']
+
+  let option = {
+    backgroundColor: "#fff",
+    color: "#FF9F7F",
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(67,100,247,0.8)',
+      padding: [10, 20],
+      axisPointer: {
+        type: 'shadow',
+        shadowStyle: {
+          color: 'rgba(67,100,247,0.08)'
+        }
+      }
+    },
+    legend: {
+      data: [(type == 1 ? '温度' : '湿度'), (type == 1 ? '室外温度' : '室外湿度')],
+      orient: "vertical",
+      bottom: 'bottom',
+      textStyle: {
+        fontSize: 12
+      }
+    },
+    xAxis: [{
+      axisLine: {
+        lineStyle: {
+          color: '#666'
+        }
+      },
+      type: 'category',
+      axisTick: {
+        show: false,
+        alignWithLabel: true
+      },
+      data: x_data
+    }],
+    yAxis: [{
+      type: 'value',
+      name: (type == 1 ? '温度' : '湿度'),
+      min: 0,
+      nameTextStyle: {
+        color: "#666",
+        fontSize: 12
+      },
+      splitLine: {
+        show: false
+      },
+      axisTick: {
+        show: false
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#fff'
+        }
+      },
+      axisLabel: {
+        fontSize: 10,
+        formatter: '{value}' + (type == 1 ? '℃' : '%'),
+        color: "#666"
+      },
+      max: maxL,
+      position: 'left',
+    },
+    {
+      type: 'value',
+      name: (type == 1 ? '室外温度' : '室外湿度'),
+      min: 0,
+      nameTextStyle: {
+        color: "#666",
+        fontSize: 10
+      },
+      axisTick: {
+        show: false
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#fff'
+        }
+      },
+      axisLabel: {
+        fontSize: 12,
+        formatter: '{value}' + (type == 1 ? '℃' : '%'),
+        color: "#666"
+      },
+      splitLine: {
+        lineStyle: {
+          type: "dotted"
+        }
+      },
+      max: maxL,
+      position: 'right'
+    }
+    ],
+    series: [{
+      name: (type == 1 ? '温度' : '湿度'),
+      type: 'bar',
+      smooth: true,
+      barWidth: 10,
+      yAxisIndex: 0,
+      itemStyle: {
+        color: "rgb(112,182,3)"
+      },
+      data: onList
+    },
+    {
+      name: (type == 1 ? '室外温度' : '室外湿度'),
+      type: 'line',
+      smooth: false,
+      symbol: 'circle',
+      symbolSize: 5,
+      yAxisIndex: 1,
+      itemStyle: {
+        color: 'rgb(245,154,35)'
+      },
+      data: outList
+    }
+    ]
+  };
+  return option;
+}
+// 温度  第一个swiper-item
+function setOption(chart, _this, yArr) {
+  console.log(option)
+  let option = wdOption(0, 1);
+  _this.setData({
+    timer: setInterval(function () {
+      wx.request({
+        url: app.globalData.tiltes + "get_humiture_new",
+        method: "POST",
+        data: {
+          store_id: app.globalData.uniacid
+        },
+        success: function (t) {
+          console.log(t)
+          if ("1" == t.data.status) option = wdOption(t.data.data.temperature.toFixed(2), 1);
+        }
+      });
       chart.setOption(option);
     }, 2100)
   })
@@ -99,97 +323,96 @@ function setOption(chart, _this, yArr) {
 
 // 湿度  第一个swiper-item
 function setOption2(chart, _this, yArr) {
-  const option = {
-    title: {
-      text: '实时仓储湿度(%)',
-      left: 'center',
-      textStyle: {
-        fontSize: 14,
-        color: '#696969'
-      },
-      top: '10rpx'
-    },
-    tooltip: {
-      trigger: 'axis'
-    },
-    backgroundColor: "#fff",
-    color: ["#006EFF", "#67E0E3", "#9FE6B8"],
-    animation: true,
-    grid: {
-      show: false
-    },
-    xAxis: [{
-      type: 'category',
-      boundaryGap: true,
-      data: (function() {
-        var now = new Date();
-        var res = [];
-        var len = 10;
-        while (len--) {
-          res.unshift((now.getHours() < 10 ? '0' + now.getHours() : now.getHours()) + ':' +
-            (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()) + ':' +
-            (now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds()));
-          now = new Date(now - 2000);
-        }
-        return res;
-      })()
-    }],
-    yAxis: {
-      type: 'value',
-      // name: '湿度%',
-      position: 'right',
-      min: 0,
-      max: 100,
-      axisLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLabel: {
-        margin: 2,
-      },
-      scale: true,
-      boundaryGap: [0.2, 0.2]
-    },
-    series: [{
-      type: 'line',
-      data: yArr,
-    }]
-  };
-
+  let option = wdOption(0, 2);
   _this.setData({
-    showText: true,
-    timer2: setInterval(function() {
-      var now = new Date();
-      var axisData = ((now.getHours() < 10 ? '0' + now.getHours() : now.getHours()) + ':' +
-        (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()) + ':' +
-        (now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds()));
+    timer2: setInterval(function () {
       wx.request({
-        url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html', //你请求数据的接口地址
-        method: 'POST',
+        url: app.globalData.tiltes + "get_humiture_new",
+        method: "POST",
         data: {
-          "userApiKey": _this.data.userLogin.userApikey,
-          "deviceNo": "1MK7I336AEO708RT",
-          "flagCode": _this.data.userLogin.flagCode
+          store_id: app.globalData.uniacid
         },
-        success: function(res) {
-          if (res.data.flag == '00') {
-            var res = res.data.deviceList[0].sensorList;
-            var data0 = option.series[0].data;
-            data0.shift();
-            data0.push(+res[1].value);
-          }
+        success: function (t) {
+          if ("1" == t.data.status) option = wdOption(t.data.data.humidity.toFixed(2), 2);
         }
-      })
-      option.xAxis[0].data.shift();
-      option.xAxis[0].data.push(axisData);
-
+      });
       chart.setOption(option);
     }, 2100)
   })
 }
-
+function setOption5(chart, _this, yArr) {
+  let startTime = app.formatDate(new Date(new Date(new Date().toLocaleDateString()).getTime() / 1000)); // 当天0点
+  let endTime = app.formatDate((new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000) / 1000));
+  let option;
+  wx.request({
+    url: app.globalData.tiltes + 'get_humiture_list',
+    method: 'POST',
+    data: {
+      "stime": startTime,
+      "etime": endTime,
+      "uniacid": app.globalData.uniacid
+    },
+    success(res) {
+      let data = res.data;
+      console.log(111, data)
+      if (data.status != '1') {
+        wx.showToast({
+          icon: 'none',
+          title: data.info
+        })
+        return false;
+      } else {
+        let onList = new Array(), outList = new Array(), wdList = data.data[1], h = (new Date().getHours() / 2).toFixed(0);
+        for (let i = 0; i < wdList.length; i++) {
+          i = i + 12;
+          if (onList.length < h) {
+            onList.push(wdList[i] || 25);
+            outList.push(0)
+          }
+        }
+        option = dbOption(onList, outList, 40, 1);
+        chart.setOption(option);
+      }
+    }
+  })
+  console.log(option)
+}
+function setOption6(chart, _this, yArr) {
+  let startTime = app.formatDate(new Date(new Date(new Date().toLocaleDateString()).getTime() / 1000)); // 当天0点
+  let endTime = app.formatDate((new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000) / 1000));
+  let option;
+  wx.request({
+    url: app.globalData.tiltes + 'get_humiture_list',
+    method: 'POST',
+    data: {
+      "stime": startTime,
+      "etime": endTime,
+      "uniacid": app.globalData.uniacid
+    },
+    success(res) {
+      let data = res.data;
+      console.log(111, data)
+      if (data.status != '1') {
+        wx.showToast({
+          icon: 'none',
+          title: data.info
+        })
+        return false;
+      } else {
+        let onList = new Array(), outList = new Array(), wdList = data.data[2], h = (new Date().getHours() / 2).toFixed(0);
+        for (let i = 0; i < wdList.length; i++) {
+          i = i + 12;
+          if (onList.length < h) {
+            onList.push(wdList[i] || 52.5);
+            outList.push(0)
+          }
+        }
+        option = dbOption(onList, outList, 60, 2);
+        chart.setOption(option);
+      }
+    }
+  })
+}
 
 // 历史数据温度  第二个swiper-item
 function setOption3(chart, _this, date, yArr) {
@@ -440,11 +663,12 @@ Page({
     multiIndex: [1, 0, 0],
     choose_year: '',
     showText: false,
-    isLive: false
+    isLive: false,
+    isTips:false
   },
 
   // 查询用户选定日期的历史数据
-  bindCheckHistory: function() {
+  bindCheckHistory: function () {
     const etime = new Date(this.data.edate).getTime();
     const stime = new Date(this.data.sdate).getTime();
     if (etime - stime > 1209600000) {
@@ -464,7 +688,7 @@ Page({
     }
   },
   // 查询7天、14天历史数据
-  bindSelectHist: function(e) {
+  bindSelectHist: function (e) {
     const curr = e.target.dataset.current
     this.setData({
       selectHistKey: curr
@@ -481,8 +705,24 @@ Page({
       this.getHistoryData(start, end);
     }
   },
+  getHumitureNew: function () {
+    var a = this;
+    wx.request({
+      url: app.globalData.tiltes + "get_humiture_new",
+      method: "POST",
+      data: {
+        store_id: app.globalData.uniacid
+      },
+      success: function (t) {
+        "1" == t.data.status && a.setData({
+          inTemp: t.data.data.temperature.toFixed(2),
+          inHumi: t.data.data.humidity.toFixed(2)
+        });
+      }
+    });
+  },
   // 获取设备历史数据
-  getHistoryData: function(stime, etime) {
+  getHistoryData: function (stime, etime) {
     console.log(stime, etime)
     let _this = this;
     wx.request({
@@ -512,7 +752,7 @@ Page({
     })
   },
 
-  clickTab: function(e) {
+  clickTab: function (e) {
     // 切换选项卡
     var current = e.target.dataset.current,
       _this = this;
@@ -525,13 +765,17 @@ Page({
     if (current == 0) {
       _this.initOne();
       _this.initTwo();
-    } else if(current == 1) {
-      const end = app.formatDate(new Date() / 1000);
-      const start = app.formatDate(new Date() / 1000 - 604800);
-      this.getHistoryData(start, end);
+    } else if (current == 1) {
+      clearInterval(this.data.timer);
+      clearInterval(this.data.timer2);
+      _this.initFive();
+      _this.initSix();
     } else {
       clearInterval(this.data.timer);
       clearInterval(this.data.timer2);
+      const end = app.formatDate(new Date() / 1000);
+      const start = app.formatDate(new Date() / 1000 - 604800);
+      this.getHistoryData(start, end);
       // if (current == 1) {
       //   this.getHistoryData();
       // } else if (current == 2) {
@@ -540,13 +784,17 @@ Page({
     }
   },
 
-  bindswipermove: function(e){
+  bindswipermove: function (e) {
     // 滑动切换选项卡
     return;
   },
-
+  close: function () {
+    this.setData({
+      isTips: !this.data.isTips
+    })
+  },
   //获取时间日期
-  sbindMultiPickerChange: function(e) {
+  sbindMultiPickerChange: function (e) {
     console.log(e)
     this.setData({
       multiIndex: e.detail.value
@@ -560,10 +808,10 @@ Page({
     // const second = this.data.multiArray[5][index[5]];
     this.setData({
       // sdate: year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
-      sdate: year + '-' + month + '-' + day 
+      sdate: year + '-' + month + '-' + day
     })
   },
-  ebindMultiPickerChange: function(e) {
+  ebindMultiPickerChange: function (e) {
     this.setData({
       multiIndex: e.detail.value
     })
@@ -580,7 +828,7 @@ Page({
     })
   },
   //监听picker的滚动事件
-  bindMultiPickerColumnChange: function(e) {
+  bindMultiPickerColumnChange: function (e) {
     //获取年份
     if (e.detail.column == 0) {
       let choose_year = this.data.multiArray[e.detail.column][e.detail.value];
@@ -647,14 +895,15 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var _this = this;
+    _this.getHumitureNew();
 
     // 获取设备信息 （用户登录接口）
-    userLogin(this);
+    // userLogin(this);
 
     // 时间
-    setInterval(function() {
+    setInterval(function () {
       getCurrentTime(_this);
     }, 1000);
     // 初始化 查看历史日期时间
@@ -669,30 +918,34 @@ Page({
     this.setData({
       choose_year: this.data.multiArray[0][0],
       multiIndex: [app.indexValue(years, date.getFullYear()),
-        app.indexValue(months, date.getMonth() + 1),
-        app.indexValue(days, date.getDate()),
+      app.indexValue(months, date.getMonth() + 1),
+      app.indexValue(days, date.getDate()),
         // app.indexValue(hours, date.getHours()),
         // app.indexValue(minutes, date.getMinutes()),
         // app.indexValue(seconds, date.getSeconds())
       ]
     })
-
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() { //这一步是一定要注意的
+  onReady: function () { //这一步是一定要注意的
     this.oneComponent = this.selectComponent('#mychart-one');
     this.twoComponent = this.selectComponent('#mychart-two');
     this.threeComponent = this.selectComponent('#mychart-three');
     this.fourComponent = this.selectComponent('#mychart-four');
+    this.fiveComponent = this.selectComponent('#mychart-five');
+    this.sixComponent = this.selectComponent('#mychart-six');
+    this.initOne();
+    this.initTwo();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
@@ -702,35 +955,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     clearInterval(this.data.timer);
     clearInterval(this.data.timer2);
   },
-  initOne: function() { //初始化第一个图表
+  initOne: function () { //初始化第一个图表
     var _this = this;
     this.oneComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
         width: width,
-        height: height
+        height: 200
       });
       setOption(chart, _this, _this.data.yArr);
       this.chart = chart;
       return chart;
     });
   },
-  initTwo: function() { //初始化第二个图表
+  initTwo: function () { //初始化第二个图表
     var _this = this;
     this.twoComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
         width: width,
-        height: height
+        height: 200
       });
       setOption2(chart, _this, _this.data.yArr2);
       this.chart = chart;
@@ -738,7 +991,7 @@ Page({
     });
   },
   // 查看历史数据  温度
-  initThree: function(date, data) { //初始化第3个图表
+  initThree: function (date, data) { //初始化第3个图表
     var _this = this;
     this.threeComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
@@ -764,8 +1017,34 @@ Page({
       return chart;
     });
   },
+  initFive: function (date, data) { //初始化第4个图表
+    var _this = this;
+    this.fiveComponent.init((canvas, width, height) => {
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: 280
+      });
 
-  getOneOption: function() { //这一步其实就要给图表加上数据
+      setOption5(chart, _this, date, data);
+      this.chart = chart;
+      return chart;
+    });
+  },
+  initSix: function (date, data) { //初始化第4个图表
+    var _this = this;
+    this.sixComponent.init((canvas, width, height) => {
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: 280
+      });
+
+      setOption6(chart, _this, date, data);
+      this.chart = chart;
+      return chart;
+    });
+  },
+
+  getOneOption: function () { //这一步其实就要给图表加上数据
     var _this = this;
     wx.request({
       url: 'https://api.dtuip.com/qy/device/queryDevMoniData.html', //你请求数据的接口地址
@@ -778,7 +1057,7 @@ Page({
         "deviceNo": "1MK7I336AEO708RT",
         "flagCode": _this.data.userLogin.flagCode
       },
-      success: function(res) {
+      success: function (res) {
         var res = res.data.deviceList[0].sensorList;
         _this.data.yArr.push(+res[0].value);
         _this.data.yArr2.push(+res[1].value);
@@ -786,7 +1065,7 @@ Page({
     })
   },
 
-  showLive: function() {
+  showLive: function () {
     this.setData({
       isLive: !this.data.isLive
     })
