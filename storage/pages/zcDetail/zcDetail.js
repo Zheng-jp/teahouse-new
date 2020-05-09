@@ -250,15 +250,17 @@ Page({
       data: {
         id: id,
         member_id: app.globalData.member_id,
-        uniacid: app.globalData.uniacid
+        uniacid: app.globalData.uniacid,
+        order_type : 1
       },
       success: function(res){
         
         var data = res.data.data.data[0], isbuy = false;
         var richTextArr = [];
-        data.goods_text ? richTextArr.push(data.goods_text) : '';
-        data.team ? richTextArr.push(data.team) : '';
-        data.text ? richTextArr.push(data.text): '';
+        data.goods_text ? richTextArr.push(data.goods_text) : richTextArr.push(" ");
+        data.team ? richTextArr.push(data.team) : richTextArr.push(" ");
+        data.text ? richTextArr.push(data.text): richTextArr.push(" ");
+        console.log(richTextArr)
         // 循环 转换 html -> wxml
         for(var i = 0; i < richTextArr.length; i++){
           richTextArr[i]?WxParse.wxParse('richText' + i, 'html', richTextArr[i], _this):'';

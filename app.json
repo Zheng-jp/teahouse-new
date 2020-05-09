@@ -62,7 +62,8 @@
     "sweep/pages/nfc/index",
     "pages/ldm/index",
     "pages/mingpcha/index",
-    "component/navbar/navbar"
+    "component/navbar/navbar",
+    "pages/storage/raise/raise"
   ],
   "subpackages": [
     {

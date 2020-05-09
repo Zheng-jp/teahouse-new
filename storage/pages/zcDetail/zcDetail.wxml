@@ -94,27 +94,24 @@
                     <template is="wxParse" data="{{wxParseData:textDom.nodes}}"/>
                 </swiper-item> -->
         <swiper-item>
-          <view class="tk">
+          <view class="tk"  wx:for="{{proArr[0].evolution}}" wx:key >
             <view>
               <view class="author-hd">
-                <image src="https://img.alicdn.com/imgextra/i3/661916707/O1CN01VeW77L1zPqumnztYo_!!661916707.jpg_430x430q90.jpg" />
+                <image src="{{item.head_pic}}" />
               </view>
               <view class="tk-content">
                 <view>
                   <view class="author-name">
-                    <text>刘德华</text>
+                    <text>{{item.user_name}}</text>
                   </view>
-                  <view class="author-tk">whoa oh oh oh oh oh oh oh oh </view>
-                  <view class="author-imgs">
+                  <view class="author-tk">{{item.evaluate_content}}</view>
+                  <view class="author-imgs" wx:for="{{item.images}}" wx:key wx:for-item="img">
                     <view>
-                      <image src="https://img.alicdn.com/imgextra/i3/661916707/O1CN01VeW77L1zPqumnztYo_!!661916707.jpg_430x430q90.jpg" />
-                    </view>
-                    <view>
-                      <image src="https://img.alicdn.com/imgextra/i3/661916707/O1CN01VeW77L1zPqumnztYo_!!661916707.jpg_430x430q90.jpg" />
+                      <image src="{{img}}" />
                     </view>
                   </view>
-                  <view class="tk-time">2019-4-3</view>
-                  <view class="reply">
+                  <view class="tk-time">{{item.create_time}}</view>
+                  <view class="reply" wx:if="{{item.business_repay != null}}">
                     <view>
                       <text>官方回复：</text> Im waking up to ash and dust.I wipe my brow and I sweat my rust,
                     </view>

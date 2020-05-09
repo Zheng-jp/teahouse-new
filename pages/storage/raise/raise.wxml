@@ -1,0 +1,59 @@
+<scroll-view>
+    <view class="swiper-box">
+        <view class="swiper-title">期茶预定，受益共享</view>
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="70rpx" next-margin="70rpx" display-multiple-items='1' circular class="zc-swiper">
+            <swiper-item wx:for="{{swiperDataList}}" wx:key="index">
+                <view class="box">
+                    <view class="swiper-img-box">
+                        <image src="{{item.goods_show_image}}" />
+                    </view>
+                    <view class="swiper-good-info">
+                        <view class="swiper-stock">剩余{{item.days}}天</view>
+                        <view class="swiper-desc hid-txt-two">{{item.goods_describe}}</view>
+                        <view class="swiper-button">
+                            <button bindtap="support" data-id="{{item.id}}">支持</button>
+                        </view>
+                    </view>
+                </view>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="zc-project">
+        <view class="switch-project" bind:tap="bindSwitchProject">
+            <view class="switch-btn switch-prev" hidden="{{!switchProject}}">
+                <image src="http://zhihuichacang.com/icon6.png" />
+                <text>查看往期预定</text>
+            </view>
+            <view class="switch-btn switch-now" hidden="{{switchProject}}">
+                <image src="http://zhihuichacang.com/icon7.png" />
+                <text>查看正在预定</text>
+            </view>
+        </view>
+        <text class="project-title" wx:if="{{switchProject}}">正在预定</text>
+        <text class="project-title" wx:else>往期预定</text>
+        <view class="zc-item-box" style="height: {{Height}}px">
+            <view class="zc-item" wx:for="{{crowdList}}" wx:key="index">
+                <view class="left-img">
+                    <image src="{{item.goods_show_image}}" bindtap="support" data-id="{{item.id}}" />
+                </view>
+                <view class="right-project-info">
+                    <view class="project-name hid-txt-one">{{item.project_name}}</view>
+                    <wxzx-progress class="wxzx-progress" percent="{{item.centum>100?100:item.centum}}" show-info border-radius="4px" width="300" stroke-width='12' radius='6' active-color="#ff9600,#ff1000,#ff0000"></wxzx-progress>
+                    <text class="percent-num">{{item.centum}}%</text>
+                    <view class="project-people">
+                        {{item.collecting}}人支持 | {{switchProject? (item.centum==100?'已完成':'进行中') : '已结束'}}
+                    </view>
+                    <view class="project-price">
+                        <text>￥{{item.cost}}</text>
+                        <button wx:if="{{switchProject}}" class="join-project" bindtap="support" data-id="{{item.id}}">
+                            支持
+                        </button>
+                        <button wx:else class="check-project" bindtap="support" data-id="{{item.id}}">
+                            立即查看
+                        </button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</scroll-view>

@@ -36,7 +36,9 @@ Page({
   data: {
     url: app.globalData.img_url,
     dataObj: [],
-    chartData: {}
+    chartData: {},
+    inTemp:0,
+    inHumi:0
   },
 
   /**
@@ -44,6 +46,7 @@ Page({
    */
   onLoad: function (options) {
     var _this = this;
+    _this.getHumitureNew();
     wx.request({
       url: app.globalData.tiltes + 'takeOrderData',
       data: {
@@ -150,7 +153,7 @@ Page({
       case '4':
         title = '您购买的商品目前的价格涨幅';
         break;
-    
+
       default:
         break;
     }
@@ -160,6 +163,24 @@ Page({
       duration: 2000
     })
   },
+
+  getHumitureNew: function () {
+    var a = this;
+    wx.request({
+      url: app.globalData.tiltes + "get_humiture_new",
+      method: "POST",
+      data: {
+        store_id: app.globalData.uniacid
+      },
+      success: function (t) {
+        "1" == t.data.status && a.setData({
+          inTemp: t.data.data.temperature.toFixed(2),
+          inHumi: t.data.data.humidity.toFixed(2)
+        });
+      }
+    });
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

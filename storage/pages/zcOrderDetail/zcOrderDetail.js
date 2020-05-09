@@ -87,7 +87,7 @@ Page({
     var that = this;
     var item = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/evaluation/evaluation?title=' + event.currentTarget.dataset.id,
+      url: '/pages/evaluation/evaluation?isZc=1&title=' + event.currentTarget.dataset.id,
       success: function (res) {
       
       },

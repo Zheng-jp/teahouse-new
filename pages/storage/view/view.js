@@ -315,6 +315,7 @@ Page({
   },
   // 显示续费弹窗
   showRenewPop: function (e) {
+    null != app.globalData.judge_phone && app.globalData.judge_phone || this.isPhone();
     var dataset = e.currentTarget.dataset;
     var renewTime = dataset.outtime.split('-');
     renewTime[0] = +renewTime[0] + 1;
@@ -343,6 +344,7 @@ Page({
       num = e.currentTarget.dataset.num,
       restatus = e.currentTarget.dataset.restatus,
       remind = e.currentTarget.dataset.remind;
+      null != app.globalData.judge_phone && app.globalData.judge_phone || this.isPhone();
     // 出仓
     if (restatus == 1) {
       wx.showToast({
@@ -806,6 +808,7 @@ Page({
   },
 
   checkRealTimeData: function () {
+    null != app.globalData.judge_phone && app.globalData.judge_phone || this.isPhone();
     // 查看仓库实时数据（温度湿度）
     wx.navigateTo({
       url: '/storage/pages/realtime_data/realtime_data',
@@ -819,6 +822,7 @@ Page({
   },
 
   toStockDetail: function (e) {
+    null != app.globalData.judge_phone && app.globalData.judge_phone || this.isPhone();
     console.log(e)
     var id = e.target.dataset.id, goods_id = e.target.dataset.goodsid, status = e.target.dataset.status;
     if (status == 0) {
@@ -875,6 +879,7 @@ Page({
   },
   outOfStock: function (e) {
     var id = e.currentTarget.dataset.id, restatus = e.currentTarget.dataset.restatus, remind = e.currentTarget.dataset.remind;
+    null != app.globalData.judge_phone && app.globalData.judge_phone || this.isPhone();
     // 出仓
     if (restatus == 1) {
       wx.showToast({
@@ -898,6 +903,11 @@ Page({
       that.getHumitureNew();
     }, 3e4);
 
+  },
+  isPhone: function () {
+    wx.navigateTo({
+      url: "/pages/logs/logs?isCha=1"
+    });
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

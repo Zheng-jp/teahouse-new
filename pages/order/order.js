@@ -369,7 +369,7 @@ Page({
     var that = this;
     var item = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../evaluation/evaluation?title=' + event.currentTarget.dataset.id,
+      url: '../evaluation/evaluation?isZc=0&title=' + event.currentTarget.dataset.id,
       success: function (res) {
 
       },

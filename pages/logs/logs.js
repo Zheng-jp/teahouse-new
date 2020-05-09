@@ -17,8 +17,8 @@ Page({
     shareID: 0,
     code_id: '',
     share_id: '',
-    isShou: true,
-    loginCode:''
+    loginCode: '',
+    isShou: !0,
   },
   // onmessage(e) {
   //   my.alert({
@@ -85,19 +85,9 @@ Page({
                       _this.pointReward(newMember, res.data.data.member_id, res.data.data.uniacid);
                     }
                     wx.hideToast();
-                    app.judge_phone();
-                    if (res) {
-                      if(!app.globalData.judge_phone) {
-                        _this.setData({
-                          isShou : false
-                        })
-                      } else {
-                        _this.shouLater();
-                      }
-                    } else {
-                      console.log("kong")
-                    }
-                   
+                    // app.judge_phone();
+                    res ? _this.shouLater(res) : console.log("kong");
+
                   }
                 })
 
@@ -136,7 +126,6 @@ Page({
                 encryptedData: e.detail.encryptedData,
                 iv: e.detail.iv,
                 session_key: app.globalData.session_key,
-                // uid: "",
                 code: res.code,
                 appid: wx.getAccountInfoSync().miniProgram.appId,
                 member_id: app.globalData.member_id
@@ -144,7 +133,7 @@ Page({
               method: "post",
               success: function (res) {
                 console.log(res);
-                that.shouLater();
+                that.shouLater(res);
               }
             })
 
@@ -155,9 +144,29 @@ Page({
       that.shouLater();
     }
   },
+  judge_phone: function (a) {
+    var t = this;
+    wx.request({
+      url: app.globalData.tiltes + "user_phone_return",
+      data: {
+        member_id: app.globalData.member_id
+      },
+      method: "post",
+      async: !1,
+      success: function (e) {
+        0 == e.data.status ? t.setData({
+          isShou: !1
+        }) : t.shouLater(e);
+      },
+      fail: function () { },
+      complete: function () { }
+    });
+  },
+
   // 授权后操作
   shouLater: function () {
     var _this = this;
+    app.judge_phone()
     if (_this.data.title) {
       wx.navigateTo({
         url: "../goods_detail/goods_detail?title=" + _this.data.title
@@ -187,6 +196,10 @@ Page({
     } else if (_this.data.shareGoods) {
       wx.navigateTo({
         url: "../goods_detail/goods_detail?title=" + _this.data.shareGoods
+      })
+    } else if (_this.data.isCha) {
+      wx.switchTab({
+        url: "../storage/view/view"
       })
     } else {
       wx.switchTab({
@@ -220,11 +233,11 @@ Page({
   },
 
   onLoad: function (options) {
-    var _this = this, newMember, title, status, order_number, code, scene, shareID, code_id, share_id, shareGoods;
+    var _this = this, newMember, title, status, order_number, code, scene, shareID, code_id, share_id, shareGoods, isCha;
     // wx.navigateTo({
     //   url:'../ldm/index'
     // })
-    
+
     //新会员积分&防伪溯源
     if (options.scene) {
       scene = decodeURIComponent(options.scene).split("=");
@@ -254,8 +267,11 @@ Page({
       share_id = decodeURIComponent(options.share_id);
       app.globalData.share_id = share_id;
     }
-    if(options.shareGoods) {
+    if (options.shareGoods) {
       shareGoods = decodeURIComponent(options.shareGoods);
+    }
+    if (options.isCha) {
+      isCha = decodeURIComponent(options.isCha);
     }
     _this.setData({
       newMember: newMember,
@@ -266,7 +282,8 @@ Page({
       shareID: shareID,
       code_id: code_id,
       share_id: share_id,
-      shareGoods : shareGoods
+      shareGoods: shareGoods,
+      isCha: isCha
     })
     wx.getStorage({
       key: 'authorization',
@@ -304,7 +321,8 @@ Page({
         scene: scene
       })
     }
-
+    if (console.log(app.globalData.member_id), null != app.globalData.member_id) return _this.judge_phone(),
+      !1;
     // 查看是否授权
     wx.getSetting({
       success: function (res) {
@@ -353,18 +371,7 @@ Page({
                             //是否推荐扫码进来的
 
                             wx.hideToast();
-                            app.judge_phone();
-                            if (res) {
-                              if(!app.globalData.judge_phone) {
-                                _this.setData({
-                                  isShou : false
-                                })
-                              } else {
-                                _this.shouLater();
-                              }
-                            } else {
-                              console.log("kong")
-                            }
+                            res ? _this.shouLater(res) : console.log("kong");
                           },
                           fail: function () { },
                           complete: function () { }
