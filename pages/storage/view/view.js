@@ -110,7 +110,8 @@ Page({
     giftBlessing: '海内送存茶，天涯若比邻', //祝福语
     share_id: null,
     inTemp: 0,
-    inHumi: 0
+    inHumi: 0,
+    goods_image: 'http://zhihuichacang.com/u2020-2.png'
   },
 
   //输入密码监听
@@ -343,8 +344,9 @@ Page({
       id = e.currentTarget.dataset.id,
       num = e.currentTarget.dataset.num,
       restatus = e.currentTarget.dataset.restatus,
-      remind = e.currentTarget.dataset.remind;
-      null != app.globalData.judge_phone && app.globalData.judge_phone || this.isPhone();
+      remind = e.currentTarget.dataset.remind,
+      goods_image = e.currentTarget.dataset.img;
+    null != app.globalData.judge_phone && app.globalData.judge_phone || this.isPhone();
     // 出仓
     if (restatus == 1) {
       wx.showToast({
@@ -376,7 +378,7 @@ Page({
       that.setData({
         isGiving: true,
         givingId: id,
-
+        goods_image: goods_image
       })
     }
   },
@@ -525,7 +527,7 @@ Page({
       shareObj.path = 'pages/logs/logs?share_id=' + that.data.share_id + '&shareID=' + app.globalData.member_id;
       shareObj.title = that.data.giftBlessing;
       // 此处可以修改 shareObj 中的内容
-      shareObj.imageUrl = 'http://zhihuichacang.com/u2020-2.png'
+      shareObj.imageUrl = that.data.goods_image
     }
     console.log(shareObj)
     return shareObj;
@@ -535,6 +537,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this, title;
+    console.log(app.globalData)
     if (app.globalData.code_id != '') {
       wx.request({
         url: app.globalData.tiltes + 'api/getAccompanyStatus',
@@ -544,6 +547,7 @@ Page({
           code_id: app.globalData.code_id
         },
         success: function (res) {
+          console.log(res)
           switch (res.data.code) {
             case 1:
               that.showStorageData();
@@ -622,10 +626,10 @@ Page({
       backgroundColor: app.globalData.navBarBgColor
     });
     // 续费弹窗 初始化日期
-    wx.setNavigationBarColor({
-      frontColor: app.globalData.navBarTxtColor,
-      backgroundColor: app.globalData.navBarBgColor
-    })
+    // wx.setNavigationBarColor({
+    //   frontColor: app.globalData.navBarTxtColor,
+    //   backgroundColor: app.globalData.navBarBgColor
+    // })
 
   },
 

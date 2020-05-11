@@ -63,6 +63,13 @@
 					"pathName": "storage/pages/realtime_data/realtime_data",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/logs/logs",
+					"pathName": "pages/logs/logs",
+					"query": "code_id=102",
+					"scene": null
 				}
 			]
 		}

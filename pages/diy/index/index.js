@@ -162,6 +162,7 @@ catchTouchMove:function(res){
                               //是否推荐扫码进来的
 
                               wx.hideToast();
+                              app.judge_phone();
                               if (res) {
                                 wx.switchTab({
                                   url: './index', // 新首页

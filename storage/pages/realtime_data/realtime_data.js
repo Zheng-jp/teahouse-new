@@ -211,7 +211,11 @@ function dbOption(onList, outList, maxL, type) {
       type: 'category',
       axisTick: {
         show: false,
-        alignWithLabel: true
+        alignWithLabel: true,
+      },
+      axisLabel: {
+        interval: 0,
+        rotate: 40
       },
       data: x_data
     }],
@@ -219,6 +223,7 @@ function dbOption(onList, outList, maxL, type) {
       type: 'value',
       name: (type == 1 ? '温度' : '湿度'),
       min: 0,
+      splitNumber: 2,
       nameTextStyle: {
         color: "#666",
         fontSize: 12
@@ -246,6 +251,7 @@ function dbOption(onList, outList, maxL, type) {
       type: 'value',
       name: (type == 1 ? '室外温度' : '室外湿度'),
       min: 0,
+      splitNumber: 2,
       nameTextStyle: {
         color: "#666",
         fontSize: 10
@@ -370,7 +376,7 @@ function setOption5(chart, _this, yArr) {
             outList.push(0)
           }
         }
-        option = dbOption(onList, outList, 40, 1);
+        option = dbOption(onList, outList, 30, 1);
         chart.setOption(option);
       }
     }
@@ -664,7 +670,7 @@ Page({
     choose_year: '',
     showText: false,
     isLive: false,
-    isTips:false
+    isTips: false
   },
 
   // 查询用户选定日期的历史数据
@@ -925,7 +931,7 @@ Page({
         // app.indexValue(seconds, date.getSeconds())
       ]
     })
-    
+
   },
 
   /**

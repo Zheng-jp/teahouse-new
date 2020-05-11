@@ -117,7 +117,7 @@
               </view>
             </view>
             <view class="btns">
-              <button class="song" bindtap="giving" data-id="{{item.id}}" data-num="{{item.store_number}}"  data-restatus="{{item.restatus}}" data-remind="{{item.remind}}">
+              <button class="song" bindtap="giving" data-img="{{item.goods_image}}" data-id="{{item.id}}" data-num="{{item.store_number}}"  data-restatus="{{item.restatus}}" data-remind="{{item.remind}}">
                 送好友
               </button>
               <button class="out-storage" bindtap="outOfStock" data-id="{{item.id}}" data-restatus="{{item.restatus}}" data-remind="{{item.remind}}">出仓</button>
@@ -134,74 +134,6 @@
     </block>
   </block>
 </scroll-view>
-<!-- </swiper-item>
-  <swiper-item class="overflowYauto" wx:if="{{version== 3}}">
-    <scroll-view>
-    <image src="http://zhihuichacang.com/image779166.gif" style="height:300px;" />
-    </scroll-view>
-  </swiper-item>
-  <swiper-item class="overflowYauto" wx:if="{{version== 3}}">
-    <scroll-view>
-      <view class="swiper-box">
-        <view class="swiper-title">期茶预定，受益共享</view>
-        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="70rpx" next-margin="70rpx" display-multiple-items='1' circular class="zc-swiper">
-          <swiper-item wx:for="{{swiperDataList}}" wx:key="index">
-            <view class="box">
-              <view class="swiper-img-box">
-                <image src="{{item.goods_show_image}}" />
-              </view>
-              <view class="swiper-good-info">
-                <view class="swiper-stock">剩余{{item.days}}天</view>
-                <view class="swiper-desc hid-txt-two">{{item.goods_describe}}</view>
-                <view class="swiper-button">
-                  <button bindtap="support" data-id="{{item.id}}">支持</button>
-                </view>
-              </view>
-            </view>
-          </swiper-item>
-        </swiper>
-      </view>
-      <view class="zc-project">
-        <view class="switch-project" bind:tap="bindSwitchProject">
-          <view class="switch-btn switch-prev" hidden="{{!switchProject}}">
-            <image src="http://zhihuichacang.com/icon6.png" />
-            <text>查看往期预定</text>
-          </view>
-          <view class="switch-btn switch-now" hidden="{{switchProject}}">
-            <image src="http://zhihuichacang.com/icon7.png" />
-            <text>查看正在预定</text>
-          </view>
-        </view>
-        <text class="project-title" wx:if="{{switchProject}}">正在预定</text>
-        <text class="project-title" wx:else>往期预定</text>
-        <view class="zc-item-box" style="height: {{Height}}px">
-          <view class="zc-item" wx:for="{{crowdList}}" wx:key="index">
-            <view class="left-img">
-              <image src="{{item.goods_show_image}}" bindtap="support"  data-id="{{item.id}}" />
-            </view>
-            <view class="right-project-info">
-              <view class="project-name hid-txt-one">{{item.project_name}}</view>
-              <wxzx-progress class="wxzx-progress" percent="{{item.centum>100?100:item.centum}}" show-info border-radius="4px" width="300" stroke-width='12' radius='6' active-color="#ff9600,#ff1000,#ff0000"></wxzx-progress>
-              <text class="percent-num">{{item.centum}}%</text>
-              <view class="project-people">
-                {{item.collecting}}人支持 | {{switchProject? (item.centum==100?'已完成':'进行中') : '已结束'}}
-              </view>
-              <view class="project-price">
-                <text>￥{{item.cost}}</text>
-                <button wx:if="{{switchProject}}" class="join-project" bindtap="support" data-id="{{item.id}}">
-                  支持
-                </button>
-                <button wx:else class="check-project" bindtap="support" data-id="{{item.id}}">
-                  立即查看
-                </button>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </scroll-view>
-  </swiper-item>
-</swiper> -->
 <!-- 赠送窗口 -->
 <view class="mask" wx:if="{{isGiving}}"></view>
 <view class="renew-pop" wx:if="{{isGiving}}" style="background-color:rgb(240,240,240);">
@@ -289,21 +221,3 @@
     <input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6' />
   </view>
 </view>
-<!-- <block wx:if="{{foot_is==2}}">
-  <view class="hbj footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:9998;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:if="{{footinfo.params.navstyle==0}}">
-    <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
-      <span class="iconfont {{item.iconclass}}" style="color:{{item.change? footinfo.style.iconcoloron : footinfo.style.iconcolor}};font-size:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx 0;width:{{footinfo.style.iconfont*2}}rpx;height:{{footinfo.style.iconfont*2}}rpx;line-height:{{footinfo.style.iconfont*2}}rpx;width:100%; text-align: center; padding-left: 3px;"></span>
-      <view style="font-size:{{footinfo.style.textfont*2}}rpx;padding:{{footinfo.style.paddingleft*2}}rpx 0;color:{{item.change? footinfo.style.textcoloron : footinfo.style.textcolor}}; width:100%; text-align: center;" wx:if="{{footinfo.params.textshow==1}}">
-        {{item.text}}
-      </view>
-    </view>
-  </view>
-  <view class="footmenu" style="background:{{footinfo.style.bgcolor}};position:fixed;left:0;bottom:0;width:100%;z-index:10000;border-top:2rpx solid {{footinfo.style.bordercolor}};" wx:elif="{{footinfo.params.navstyle==1}}">
-    <view bindtap="redirectto" class="zbj submenu" data-link="{{item.linkurl}}" data-linktype="{{item.linktype}}" style="width:{{footinfo.style.bdr==1?(750-(footinfo.count-1)*2)/footinfo.count+'rpx':100/footinfo.count+'%'}};float:left;border-right:{{footinfo.style.bdr==1?'2rpx solid '+footinfo.style.bdrcolor:''}};padding:10rpx 0 6rpx;" wx:for="{{footinfo.data}}">
-      <image mode="widthFix" src="{{item.imgurl}}" style="display:block;margin:0 auto;width:{{footinfo.style.iconfont*2}}rpx;padding:{{footinfo.style.paddingtop*2}}rpx;"></image>
-      <view style="font-size:{{footinfo.style.textfont*2}}rpx;color:{{item.change? footinfo.style.textcolor : footinfo.style.textcoloron}};padding:{{footinfo.style.paddingleft*2}}rpx 0;text-align:center" wx:if="{{footinfo.params.textshow==1}}">
-        {{item.text}}
-      </view>
-    </view>
-  </view>
-</block> -->

@@ -85,7 +85,6 @@ Page({
                       _this.pointReward(newMember, res.data.data.member_id, res.data.data.uniacid);
                     }
                     wx.hideToast();
-                    // app.judge_phone();
                     res ? _this.shouLater(res) : console.log("kong");
 
                   }
@@ -164,9 +163,9 @@ Page({
   },
 
   // 授权后操作
-  shouLater: function () {
+  shouLater: function (res) {
     var _this = this;
-    app.judge_phone()
+    app.judge_phone();
     if (_this.data.title) {
       wx.navigateTo({
         url: "../goods_detail/goods_detail?title=" + _this.data.title
@@ -258,6 +257,7 @@ Page({
       code_id = decodeURIComponent(options.code_id);
       app.globalData.code_id = code_id;
     }
+    console.log(app.globalData.code_id)
 
     if (options.status) {
       status = decodeURIComponent(options.status);
@@ -360,7 +360,7 @@ Page({
                             'content-type': 'application/json'
                           }, // 设置请求的 header
                           success: function (res) {
-                            console.log('登录2', res.data)
+                            console.log('登录211', res.data)
                             app.globalData.gmemberid = res.data.data.openid;
                             app.globalData.member_grade_img = res.data.data.member_grade_info.member_grade_img;
                             app.globalData.member_grade_name = res.data.data.member_grade_info.member_grade_name;
