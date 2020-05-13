@@ -678,14 +678,11 @@ Page({
               i.pay_time = app.formatDate(i.pay_time);
             })
           });
-          _this.setData({
-            storageDataArr: res.data.data
-          })
-        } else {
-          _this.setData({
-            storageDataArr: res.data.data
-          })
+
         }
+        _this.setData({
+          storageDataArr: res.data.data
+        })
       },
       fail: function () { }
     })
@@ -811,11 +808,12 @@ Page({
     })
   },
 
-  checkRealTimeData: function () {
+  checkRealTimeData: function (e) {
     null != app.globalData.judge_phone && app.globalData.judge_phone || this.isPhone();
+    var name = e.currentTarget.dataset.name;
     // 查看仓库实时数据（温度湿度）
     wx.navigateTo({
-      url: '/storage/pages/realtime_data/realtime_data',
+      url: '/storage/pages/realtime_data/realtime_data?store_name=' + name,
       success: function () {
         console.log('跳转成功');
       },

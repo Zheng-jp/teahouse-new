@@ -2,7 +2,7 @@ page{font-size: 28rpx; color: #6b6b6b;}
 view{overflow: initial !important;}
 .borb12{border-bottom: 12rpx solid rgb(242, 242, 242);}
 .metatit{font-size: 30rpx; color: #333; font-weight: 700;}
-.swiper-hd{height: 640rpx;}
+.swiper-hd{height: 740rpx;}
 .swiper-hd image{width: 100%; height: 100%;}
 .hd-info{padding: 0 20rpx;}
 .hd-name{font-size: 30rpx; font-weight: 700; color: #333; margin: 20rpx 0;}

@@ -50,16 +50,16 @@
               <image src="http://zhihuichacang.com/gif1.gif" class="icon-video" />
               <text class="temperature">实时视频</text>
             </view> -->
-        <view class="enviroment-item" bindtap="checkRealTimeData">
+        <view class="enviroment-item" bindtap="checkRealTimeData" data-name="{{item.name}}">
           <image src="http://zhihuichacang.com/icon2.png" class="icon-temperature" />
           <text class="temperature" style='color:#D9250E'>{{inTemp}}°C</text>
         </view>
-        <view class="enviroment-item" bindtap="checkRealTimeData">
+        <view class="enviroment-item" bindtap="checkRealTimeData" data-name="{{item.name}}">
           <image src="http://zhihuichacang.com/u2173.png" class="icon-humidity" />
           <text class="humidity" style='color:#669900'>{{inHumi}}%</text>
         </view>
         <view>
-          <view class="more" bindtap="checkRealTimeData">
+          <view class="more" bindtap="checkRealTimeData" data-name="{{item.name}}">
             <image src="http://zhihuichacang.com/icon5.png" />
           </view>
         </view>

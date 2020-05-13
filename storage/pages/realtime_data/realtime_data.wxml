@@ -46,7 +46,7 @@
                 </view>
             </view>
             <view class="" style="width:100%;height:100%;" wx:if="{{isLive}}">
-                <video id="myVideo" src="http://hls01open.ys7.com/openlive/d208d656ba774bc985a4aa7154cf329a.hd.m3u8" style="width: 100%;height: 400rpx;" poster></video>
+                <video id="myVideo" src="{{videoUrl}}" style="width: 100%;height: 400rpx;" poster></video>
             </view>
         </view>
         <view style="flex: 1; display: flex;  overflow: auto;">

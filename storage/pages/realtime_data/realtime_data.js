@@ -307,7 +307,7 @@ function dbOption(onList, outList, maxL, type) {
 }
 // 温度  第一个swiper-item
 function setOption(chart, _this, yArr) {
-  console.log(option)
+  // console.log(option)
   let option = wdOption(0, 1);
   _this.setData({
     timer: setInterval(function () {
@@ -318,7 +318,7 @@ function setOption(chart, _this, yArr) {
           store_id: app.globalData.uniacid
         },
         success: function (t) {
-          console.log(t)
+          // console.log(t)
           if ("1" == t.data.status) option = wdOption(t.data.data.temperature.toFixed(2), 1);
         }
       });
@@ -360,7 +360,6 @@ function setOption5(chart, _this, yArr) {
     },
     success(res) {
       let data = res.data;
-      console.log(111, data)
       if (data.status != '1') {
         wx.showToast({
           icon: 'none',
@@ -381,7 +380,6 @@ function setOption5(chart, _this, yArr) {
       }
     }
   })
-  console.log(option)
 }
 function setOption6(chart, _this, yArr) {
   let startTime = app.formatDate(new Date(new Date(new Date().toLocaleDateString()).getTime() / 1000)); // 当天0点
@@ -670,7 +668,8 @@ Page({
     choose_year: '',
     showText: false,
     isLive: false,
-    isTips: false
+    isTips: false,
+    videoUrl:''
   },
 
   // 查询用户选定日期的历史数据
@@ -897,14 +896,32 @@ Page({
     data.multiIndex[e.detail.column] = e.detail.value;
     this.setData(data);
   },
-
+  getVideo: function (name) {
+    let _this = this;
+    wx.request({
+      url: app.globalData.tiltes + "api/getHouseLiveDetail",
+      method: "POST",
+      data: {
+        store_id: app.globalData.uniacid,
+        store_house_name: name
+      },
+      success: function (res) {
+        console.log(res)
+        if(res.data.code == 1) {
+          _this.setData({
+            videoUrl: res.data.data.urls
+          })
+        }
+      }
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var _this = this;
     _this.getHumitureNew();
-
+    _this.getVideo(options.store_name);
     // 获取设备信息 （用户登录接口）
     // userLogin(this);
 
