@@ -306,7 +306,7 @@ function dbOption(onList, outList, maxL, type) {
   return option;
 }
 // 温度  第一个swiper-item
-function setOption(chart, _this, yArr) {
+function setOption(chart, _this, house_name) {
   // console.log(option)
   let option = wdOption(0, 1);
   _this.setData({
@@ -315,11 +315,12 @@ function setOption(chart, _this, yArr) {
         url: app.globalData.tiltes + "get_humiture_new",
         method: "POST",
         data: {
-          store_id: app.globalData.uniacid
+          store_id: app.globalData.uniacid,
+          house_name: house_name
         },
         success: function (t) {
-          // console.log(t)
-          if ("1" == t.data.status) option = wdOption(t.data.data.temperature.toFixed(2), 1);
+          console.log(t)
+          if ("1" == t.data.status) option = wdOption(t.data.data.data.temperature.toFixed(2), 1);
         }
       });
       chart.setOption(option);
@@ -328,7 +329,7 @@ function setOption(chart, _this, yArr) {
 }
 
 // 湿度  第一个swiper-item
-function setOption2(chart, _this, yArr) {
+function setOption2(chart, _this, house_name) {
   let option = wdOption(0, 2);
   _this.setData({
     timer2: setInterval(function () {
@@ -336,10 +337,11 @@ function setOption2(chart, _this, yArr) {
         url: app.globalData.tiltes + "get_humiture_new",
         method: "POST",
         data: {
-          store_id: app.globalData.uniacid
+          store_id: app.globalData.uniacid,
+          house_name: house_name
         },
         success: function (t) {
-          if ("1" == t.data.status) option = wdOption(t.data.data.humidity.toFixed(2), 2);
+          if ("1" == t.data.status) option = wdOption(t.data.data.data.humidity.toFixed(2), 2);
         }
       });
       chart.setOption(option);
@@ -669,7 +671,7 @@ Page({
     showText: false,
     isLive: false,
     isTips: false,
-    videoUrl:''
+    videoUrl: ''
   },
 
   // 查询用户选定日期的历史数据
@@ -716,12 +718,15 @@ Page({
       url: app.globalData.tiltes + "get_humiture_new",
       method: "POST",
       data: {
-        store_id: app.globalData.uniacid
+        store_id: app.globalData.uniacid,
+        house_name: a.data.house_name
       },
       success: function (t) {
         "1" == t.data.status && a.setData({
-          inTemp: t.data.data.temperature.toFixed(2),
-          inHumi: t.data.data.humidity.toFixed(2)
+          inTemp: t.data.data.data.temperature.toFixed(2),
+          inHumi: t.data.data.data.humidity.toFixed(2),
+          outTemp:  t.data.data.data2.tem,
+          outHumi:  t.data.data.data2.humidity,
         });
       }
     });
@@ -907,7 +912,7 @@ Page({
       },
       success: function (res) {
         console.log(res)
-        if(res.data.code == 1) {
+        if (res.data.code == 1) {
           _this.setData({
             videoUrl: res.data.data.urls
           })
@@ -932,7 +937,8 @@ Page({
     // 初始化 查看历史日期时间
     _this.setData({
       sdate: app.formatDate(new Date() / 1000 - 3600),
-      edate: app.formatDate(new Date() / 1000)
+      edate: app.formatDate(new Date() / 1000),
+      house_name: options.store_name
     })
 
     const date = new Date();
@@ -996,7 +1002,7 @@ Page({
         width: width,
         height: 200
       });
-      setOption(chart, _this, _this.data.yArr);
+      setOption(chart, _this, house_name);
       this.chart = chart;
       return chart;
     });
@@ -1008,7 +1014,7 @@ Page({
         width: width,
         height: 200
       });
-      setOption2(chart, _this, _this.data.yArr2);
+      setOption2(chart, _this, house_name);
       this.chart = chart;
       return chart;
     });

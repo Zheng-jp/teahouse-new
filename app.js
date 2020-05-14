@@ -6,7 +6,7 @@ App({
     winMask_if: true,
   },
   // 判断绑定手机号
-  judge_phone: function(e) {
+  judge_phone: function (e) {
     var that = this;
     wx.request({
       url: that.globalData.tiltes + 'user_phone_return',
@@ -15,7 +15,7 @@ App({
       },
       method: "post",
 
-      success: function(res) {
+      success: function (res) {
         if (res.data.status == 0) {
           that.globalData.judge_phone = false;
         } else {
@@ -23,16 +23,16 @@ App({
         }
 
       },
-      fail: function() {
+      fail: function () {
 
       },
-      complete: function() {
+      complete: function () {
 
       }
 
     });
   },
-  formatDate: function(inputTime) {
+  formatDate: function (inputTime) {
     var date = new Date(inputTime * 1000);
     var y = date.getFullYear();
     var m = date.getMonth() + 1;
@@ -48,15 +48,15 @@ App({
     return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
   },
   // 查询数组索引
-  indexValue: function(arr, arrValue){
-    for(let i = 0; i < arr.length; i++){
-      if(arr[i] == arrValue){
+  indexValue: function (arr, arrValue) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] == arrValue) {
         return i;
       }
     }
   },
   // 判断绑定支付密码
-  judge_repay: function(e) {
+  judge_repay: function (e) {
     var that = this;
     wx.request({
       url: that.globalData.tiltes + 'pay_password_return',
@@ -65,7 +65,7 @@ App({
       },
       method: "post",
 
-      success: function(res) {
+      success: function (res) {
         if (res.data.status == 0) {
           that.globalData.judge_repay = false;
         } else {
@@ -73,10 +73,10 @@ App({
         }
 
       },
-      fail: function() {
+      fail: function () {
 
       },
-      complete: function() {
+      complete: function () {
 
       }
 
@@ -168,14 +168,14 @@ App({
       })
     }
   },
-  onLaunch: function() {
+  onLaunch: function () {
     var o = this;
     wx.login({
-      success: function(e) {
+      success: function (e) {
         wx.setStorageSync("appcode", e.code);
       }
     }), wx.getSystemInfo({
-      success: function(e) {
+      success: function (e) {
         wx.setStorageSync("systemInfo", e);
         var n = e.windowWidth,
           t = e.windowHeight;
@@ -184,16 +184,16 @@ App({
     });
   },
   // siteInfo: require("siteinfo.js"),
-  onShow: function() {
+  onShow: function () {
     // console.log(getCurrentPages());
   },
-  onHide: function() {
+  onHide: function () {
     // console.log(getCurrentPages());
   },
-  onError: function(e) {
+  onError: function (e) {
     // console.log(e);
   },
-  bezier: function(e, n) {
+  bezier: function (e, n) {
     for (var t, o, a, i = [], c = 0; c <= n; c++) {
       for (a = e.slice(0), o = []; t = a.shift();)
         if (a.length) o.push(s([t, a[0]], c / n));
@@ -208,48 +208,48 @@ App({
       var t, o, a, i, c, s, u, r;
       return t = e[0], i = (o = e[1]).x - t.x, c = o.y - t.y, a = Math.pow(Math.pow(i, 2) + Math.pow(c, 2), .5),
         s = c / i, u = Math.atan(s), r = a * n, {
-          x: t.x + r * Math.cos(u),
-          y: t.y + r * Math.sin(u)
-        };
+        x: t.x + r * Math.cos(u),
+        y: t.y + r * Math.sin(u)
+      };
     }
     return {
       bezier_points: i
     };
   },
-  util: function(o) {
+  util: function (o) {
     function e(e, n, t) {
       return o.apply(this, arguments);
     }
-    return e.toString = function() {
+    return e.toString = function () {
       return o.toString();
     }, e;
-  }(function(n, t, o) {
+  }(function (n, t, o) {
     var a = this;
     wx.getStorage({
       key: "openid",
-      success: function(e) {
+      success: function (e) {
         a.fxsbindagain(t, e.data), wx.request({
           url: url + "dopageglobaluserinfo",
           data: {
             openid: e.data,
             uniacid: o
           },
-          success: function(e) {
+          success: function (e) {
             "function" == typeof n && n();
           }
         });
       },
-      fail: function() {
+      fail: function () {
         wx.login({
-          success: function(e) {
+          success: function (e) {
             wx.request({
-              url:url+ "doPageAppbase",
+              url: url + "doPageAppbase",
               data: {
                 code: e.code,
                 uniacid: o,
               },
               cachetime: 0,
-              success: function(e) {
+              success: function (e) {
 
                 2 == e.data.data.res ? wx.showModal({
                   title: "提醒",
@@ -259,11 +259,11 @@ App({
               }
             });
           },
-          fail: function() {
+          fail: function () {
             wx.showModal({
               title: "获取信息失败",
               content: "请允许授权以便为您提供给服务",
-              success: function(e) {
+              success: function (e) {
                 e.confirm && util.getUserInfo();
               }
             });
@@ -272,25 +272,25 @@ App({
       }
     });
   }),
-  redirectto: function(n, e) {
+  redirectto: function (n, e) {
 
     switch (e) {
       case "page":
         var t = n.indexOf("page/index"),
           o = n.indexOf("index?pageid"); -
-            1 == t || -1 != o ? wx.reLaunch  ({
-          url: n
-        }) : wx.reLaunch  ({
-          url: n
-        });
+            1 == t || -1 != o ? wx.reLaunch({
+              url: n
+            }) : wx.reLaunch({
+              url: n
+            });
         break;
       case "pages":
-        wx.navigateTo  ({
+        wx.navigateTo({
           url: n
         });
         break;
-        case "webs":
-        wx.navigateTo  ({
+      case "webs":
+        wx.navigateTo({
           url: n
         });
         break;
@@ -298,7 +298,7 @@ App({
         n = n.slice(4), wx.showModal({
           title: "提示",
           content: "是否拨打电话:" + n,
-          success: function(e) {
+          success: function (e) {
             1 == e.confirm && wx.makePhoneCall({
               phoneNumber: n
             });
@@ -320,30 +320,30 @@ App({
         wx.navigateToMiniProgram({
           appId: i,
           path: "",
-          success: function(e) {
+          success: function (e) {
             console.log("打开成功"), console.log(i);
           }
         });
     }
   },
-  selfinfoget: function(a, i) {
+  selfinfoget: function (a, i) {
     wx.getStorage({
       key: "golobeuser",
-      success: function(e) {
+      success: function (e) {
         console.log(e);
       },
-      fail: function() {
+      fail: function () {
         wx.getSetting({
-          success: function(e) {
+          success: function (e) {
             e.authSetting["scope.userInfo"], wx.showModal({
               title: "提示",
               content: "必须授权登录后才能操作,是否重新授权登录？",
               showCancel: !1,
-              success: function(e) {
+              success: function (e) {
                 wx.openSetting({
-                  success: function(e) {
+                  success: function (e) {
                     e.authSetting["scope.userInfo"] ? (console.log(222), wx.getUserInfo({
-                      success: function(e) {
+                      success: function (e) {
                         var n = e.userInfo,
                           t = wx.getStorageSync("openid"),
                           o = url + "doPageUseupdate";
@@ -362,7 +362,7 @@ App({
                           header: {
                             "content-type": "application/json"
                           },
-                          success: function(e) {
+                          success: function (e) {
                             wx.setStorageSync("golobeuid", e.data.data.id), wx.setStorageSync("golobeuser", e.data.data),
                               "function" == typeof a && a();
                           }
@@ -378,19 +378,19 @@ App({
       }
     });
   },
-  fxsbindagain: function(e, n) {
+  fxsbindagain: function (e, n) {
     var t = this;
     0 != e && e != n ? (t.fxsbind(e, n), wx.setStorageSync("fxsid", e)) : wx.getStorage({
       key: "fxsid",
-      success: function(e) {
+      success: function (e) {
         0 != e.data && t.fxsbind(e.data, n);
       },
-      fail: function() {
+      fail: function () {
         wx.setStorageSync("fxsid", 0);
       }
     });
   },
-  fxsbind: function(e, n) {
+  fxsbind: function (e, n) {
     wx.request({
       url: url + "doPagebindfxs",
       data: {
@@ -398,19 +398,19 @@ App({
         fxsid: e,
         uniacid: this.globalData.uniacid
       },
-      success: function(e) {}
+      success: function (e) { }
     });
   },
-  getopenid: function() {
+  getopenid: function () {
     var o = this;
     wx.getStorage({
       key: "golobeuser",
-      fail: function() {
+      fail: function () {
         wx.getStorage({
           key: "golobaluserinfo",
-          fail: function() {
+          fail: function () {
             wx.login({
-              success: function(e) {
+              success: function (e) {
                 var n = e.code;
                 wx.request({
                   url: url + "doPageAppbase",
@@ -421,33 +421,33 @@ App({
                   header: {
                     "content-type": "application/json"
                   },
-                  success: function(e) {
+                  success: function (e) {
                     wx.setStorageSync("openid", e.data.data.openid);
                     e.data.data.openid;
                     wx.showLoading({
                       title: "正在登录",
                       mask: !0
                     }), wx.getUserInfo({
-                      success: function(e) {
+                      success: function (e) {
                         wx.hideLoading();
                         var n = e.userInfo;
                         wx.setStorageSync("golobaluserinfo", n), o.updateuserinfo(n);
                       },
-                      fail: function(e) {
+                      fail: function (e) {
                         var n = getCurrentPages(),
                           t = n[n.length - 1];
                         wx.hideLoading(), wx.getSetting({
-                          success: function(e) {
+                          success: function (e) {
                             e.authSetting["scope.userInfo"];
                             wx.showModal({
                               title: "提示",
                               content: "必须授权登录后才能操作,是否重新授权登录？",
                               showCancel: !1,
-                              success: function(e) {
+                              success: function (e) {
                                 wx.openSetting({
-                                  success: function(e) {
+                                  success: function (e) {
                                     e.authSetting["scope.userInfo"] ? wx.getUserInfo({
-                                      success: function(e) {
+                                      success: function (e) {
                                         var n = e.userInfo;
                                         wx.setStorageSync("golobaluserinfo", n), o.updateuserinfo(n);
                                       }
@@ -455,7 +455,7 @@ App({
                                       url: "/" + t.route
                                     });
                                   },
-                                  fail: function(e) {}
+                                  fail: function (e) { }
                                 });
                               }
                             });
@@ -472,7 +472,22 @@ App({
       }
     });
   },
-  updateuserinfo: function(e) {
+  postData: function (url, param) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: url,
+        method: 'POST',
+        data: param,
+        success(res) {
+          resolve(res.data)
+        },
+        fail(err) {
+          reject(err)
+        }
+      })
+    })
+  },
+  updateuserinfo: function (e) {
     var n = wx.getStorageSync("openid"),
       t = getCurrentPages(),
       o = t[t.length - 1];
@@ -491,7 +506,7 @@ App({
       header: {
         "content-type": "application/json"
       },
-      success: function(e) {
+      success: function (e) {
         wx.setStorageSync("golobeuid", e.data.id), wx.setStorageSync("golobeuser", e.data),
           wx.reLaunch({
             url: "/" + o.route
@@ -528,7 +543,7 @@ App({
     member_id: null,
     judge_phone: null,
     judge_repay: null,
-    isRefresh:false,
+    isRefresh: false,
     url: 'https://www.zhihuichacang.com',
     tiltes: 'https://www.zhihuichacang.com/',
     img_url: 'https://www.zhihuichacang.com/uploads/',
@@ -539,7 +554,7 @@ App({
     navBarTxtColor: '',
     shareID: 0,
     code_id: '',
-    share_id:'',
-    statusBarHeight:wx.getSystemInfoSync()['statusBarHeight']//状态栏高度
+    share_id: '',
+    statusBarHeight: wx.getSystemInfoSync()['statusBarHeight']//状态栏高度
   }
 })

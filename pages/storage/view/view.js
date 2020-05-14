@@ -620,7 +620,7 @@ Page({
     }
     getData(this);
     switchProject('crowd_now', this);
-    this.getHumitureNew()
+    // this.getHumitureNew()
     wx.setNavigationBarColor({
       frontColor: app.globalData.navBarTxtColor,
       backgroundColor: app.globalData.navBarBgColor
@@ -677,9 +677,34 @@ Page({
               i.end_time = app.formatDate(i.end_time);
               i.pay_time = app.formatDate(i.pay_time);
             })
-          });
+            // wx.request({
+            //   url: app.globalData.tiltes + "get_humiture_new",
+            //   method: "POST",
+            //   data: {
+            //     store_id: app.globalData.uniacid,
+            //     house_name: (v.name).slice(0, 2)
+            //   },
+            //   success: function (t) {
+            //     if (t.data.status == "1") {
+            //       v.inTemp = t.data.data.data.temperature,
+            //         v.inHumi = t.data.data.data.humidity
+            //     }
+            //   }
+            // });
+            app.postData(app.globalData.tiltes + "get_humiture_new", {
+              store_id: app.globalData.uniacid,
+              house_name: (v.name).slice(0, 2)
+            }).then(res => {
+              console.log(res)
+              if (res.data.status == "1") {
+                v.inTemp = res.data.data.data.temperature,
+                  v.inHumi = res.data.data.data.humidity
+              }
+            })
 
+          });
         }
+        // console.log(res.data.data)
         _this.setData({
           storageDataArr: res.data.data
         })
@@ -901,9 +926,7 @@ Page({
   },
   onReady: function () {
     var that = this;
-    setInterval(function () {
-      that.getHumitureNew();
-    }, 3e4);
+
 
   },
   isPhone: function () {

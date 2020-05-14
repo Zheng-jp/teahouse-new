@@ -40,7 +40,7 @@
                         </view>
                         <view class="humi-out">
                             <text class="humiture-title">室外湿度：</text>
-                            {{outHumi}}%
+                            {{outHumi}}
                         </view>
                     </view>
                 </view>
