@@ -662,54 +662,35 @@ Page({
   showStorageData: function (e) {
     var _this = this;
     e ? (e.currentTarget.dataset.key ? _this.showAllStorage() : '') : '';
-    wx.request({
-      url: app.globalData.tiltes + 'getStoreData',
-      method: 'POST',
-      data: {
-        member_id: app.globalData.member_id,
-        uniacid: app.globalData.uniacid
-      },
-      success: function (res) {
-        console.log('显示仓库数据：', res)
-        if (res.data.status == 1) {
-          res.data.data.forEach((v, i) => {
-            v.getArr.forEach((i, j) => {
-              i.end_time = app.formatDate(i.end_time);
-              i.pay_time = app.formatDate(i.pay_time);
-            })
-            // wx.request({
-            //   url: app.globalData.tiltes + "get_humiture_new",
-            //   method: "POST",
-            //   data: {
-            //     store_id: app.globalData.uniacid,
-            //     house_name: (v.name).slice(0, 2)
-            //   },
-            //   success: function (t) {
-            //     if (t.data.status == "1") {
-            //       v.inTemp = t.data.data.data.temperature,
-            //         v.inHumi = t.data.data.data.humidity
-            //     }
-            //   }
-            // });
-            app.postData(app.globalData.tiltes + "get_humiture_new", {
-              store_id: app.globalData.uniacid,
-              house_name: (v.name).slice(0, 2)
-            }).then(res => {
-              console.log(res)
-              if (res.data.status == "1") {
-                v.inTemp = res.data.data.data.temperature,
-                  v.inHumi = res.data.data.data.humidity
-              }
-            })
-
-          });
+    app.postData(app.globalData.tiltes + "getStoreData", {
+      member_id: app.globalData.member_id,
+      uniacid: app.globalData.uniacid
+    }).then(res => {
+      console.log('显示仓库数据：', res)
+      res.data.forEach((v, i) => {
+        if (res.status == "1") {
+          v.getArr.forEach((i, j) => {
+            i.end_time = app.formatDate(i.end_time);
+            i.pay_time = app.formatDate(i.pay_time);
+          })
         }
-        // console.log(res.data.data)
-        _this.setData({
-          storageDataArr: res.data.data
+        app.postData(app.globalData.tiltes + "get_humiture_new", {
+          store_id: app.globalData.uniacid,
+          house_name: (v.name).slice(0, 2)
+        }).then(t => {
+          // console.log(t)
+          if (t.status == "1") {
+            // console.log(t.data.data)
+            v.inTemp = t.data.data.temperature,
+              v.inHumi = t.data.data.humidity
+          }
+          console.log(res.data)
+          _this.setData({
+            storageDataArr: res.data
+          })
         })
-      },
-      fail: function () { }
+
+      });
     })
   },
   // 所有仓库

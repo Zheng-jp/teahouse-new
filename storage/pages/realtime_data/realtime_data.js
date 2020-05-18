@@ -305,48 +305,161 @@ function dbOption(onList, outList, maxL, type) {
   };
   return option;
 }
+
+function zxOption(params) {
+  var x_data = ['2时', '4时', '6时', '8时', '10时', '12时', '14时', '16时', '18时', '20时', '22时', '24时'],
+    bar_data = ["3", "4", "6", "0", "-5", "-4", "3", "3", "-3", "-8", "-3", "-12"],
+    line_data = ["-8", "-5", "-9", "0", "7", "4", "5", "3", "-8", "-5", "-12", "-11"]
+
+  let option = {
+    backgroundColor: "#fff",
+    color: "#FF9F7F",
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(67,100,247,0.8)',
+      padding: [10, 20],
+      axisPointer: {
+        type: 'shadow',
+        shadowStyle: {
+          color: 'rgba(67,100,247,0.08)'
+        }
+      }
+    },
+    legend: {
+      data: ['湿度', '温度'],
+      orient: "vertical",
+      right: "right",
+      textStyle: {
+        fontSize: 14
+      }
+    },
+    xAxis: [{
+      axisLine: {
+        lineStyle: {
+          color: '#666'
+        }
+      },
+      type: 'category',
+      axisTick: {
+        show: false,
+        alignWithLabel: true
+      },
+      data: x_data
+    }],
+    yAxis: [{
+      type: 'value',
+      name: '温度',
+      min: "dataMin",
+      nameTextStyle: {
+        color: "#666",
+        fontSize: 14
+      },
+      axisTick: {
+        show: false
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#EDEDED'
+        }
+      },
+      axisLabel: {
+        fontSize: 14,
+        formatter: '{value} ℃',
+        color: "#666"
+      },
+      splitLine: {
+        lineStyle: {
+          type: "dotted"
+        }
+      },
+      position: 'left'
+    },
+    {
+      type: 'value',
+      name: '温度',
+      min: "dataMin",
+      nameTextStyle: {
+        color: "#666",
+        fontSize: 14
+      },
+      axisTick: {
+        show: false
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#EDEDED'
+        }
+      },
+      axisLabel: {
+        fontSize: 14,
+        formatter: '{value} ℃',
+        color: "#666"
+      },
+      splitLine: {
+        lineStyle: {
+          type: "dotted"
+        }
+      },
+      position: 'left'
+    }
+    ],
+    series: [{
+      name: '室外温度',
+      type: 'line',
+      smooth: false,
+      symbol: 'circle',
+      symbolSize: 15,
+      yAxisIndex: 1,
+      color: 'rgb(245,154,35)',
+      data: bar_data
+    },
+    {
+      name: '温度',
+      type: 'line',
+      smooth: false,
+      symbol: 'circle',
+      symbolSize: 15,
+      yAxisIndex: 1,
+      color: 'rgb(149,242,4)',
+      data: line_data
+    }
+    ]
+  };
+  return option;
+}
 // 温度  第一个swiper-item
-function setOption(chart, _this, house_name) {
+function setOption(chart, _this) {
   // console.log(option)
   let option = wdOption(0, 1);
-  _this.setData({
-    timer: setInterval(function () {
-      wx.request({
-        url: app.globalData.tiltes + "get_humiture_new",
-        method: "POST",
-        data: {
-          store_id: app.globalData.uniacid,
-          house_name: house_name
-        },
-        success: function (t) {
-          console.log(t)
-          if ("1" == t.data.status) option = wdOption(t.data.data.data.temperature.toFixed(2), 1);
-        }
-      });
+  wx.request({
+    url: app.globalData.tiltes + "get_humiture_new",
+    method: "POST",
+    data: {
+      store_id: app.globalData.uniacid,
+      house_name: _this.data.house_name
+    },
+    success: function (t) {
+      if ("1" == t.data.status) option = wdOption(t.data.data.data.temperature.toFixed(2), 1);
       chart.setOption(option);
-    }, 2100)
-  })
+    }
+  });
 }
 
 // 湿度  第一个swiper-item
-function setOption2(chart, _this, house_name) {
+function setOption2(chart, _this) {
   let option = wdOption(0, 2);
-  _this.setData({
-    timer2: setInterval(function () {
-      wx.request({
-        url: app.globalData.tiltes + "get_humiture_new",
-        method: "POST",
-        data: {
-          store_id: app.globalData.uniacid,
-          house_name: house_name
-        },
-        success: function (t) {
-          if ("1" == t.data.status) option = wdOption(t.data.data.data.humidity.toFixed(2), 2);
-        }
-      });
+  wx.request({
+    url: app.globalData.tiltes + "get_humiture_new",
+    method: "POST",
+    data: {
+      store_id: app.globalData.uniacid,
+      house_name: _this.data.house_name
+    },
+    success: function (t) {
+      if ("1" == t.data.status) option = wdOption(t.data.data.data.humidity.toFixed(2), 2);
       chart.setOption(option);
-    }, 2100)
-  })
+    }
+  });
 }
 function setOption5(chart, _this, yArr) {
   let startTime = app.formatDate(new Date(new Date(new Date().toLocaleDateString()).getTime() / 1000)); // 当天0点
@@ -710,6 +823,11 @@ Page({
       const end = app.formatDate(new Date() / 1000);
       const start = app.formatDate(new Date() / 1000 - 1209600);
       this.getHistoryData(start, end);
+    } else {
+      // 三十天数据
+      const end = app.formatDate(new Date() / 1000);
+      const start = app.formatDate(new Date() / 1000 - 2592000);
+      this.getHistoryData(start, end);
     }
   },
   getHumitureNew: function () {
@@ -725,11 +843,16 @@ Page({
         "1" == t.data.status && a.setData({
           inTemp: t.data.data.data.temperature.toFixed(2),
           inHumi: t.data.data.data.humidity.toFixed(2),
-          outTemp:  t.data.data.data2.tem,
-          outHumi:  t.data.data.data2.humidity,
+
         });
       }
     });
+    app.postData('https://tianqiapi.com/api?version=v61&appid=13333759&appsecret=1lXSQXaF&city=' + a.data.house_name, {}).then(res => {
+      a.setData({
+        outTemp: res.tem,
+        outHumi: res.humidity,
+      })
+    })
   },
   // 获取设备历史数据
   getHistoryData: function (stime, etime) {
@@ -776,16 +899,12 @@ Page({
       _this.initOne();
       _this.initTwo();
     } else if (current == 1) {
-      clearInterval(this.data.timer);
-      clearInterval(this.data.timer2);
-      _this.initFive();
-      _this.initSix();
-    } else {
-      clearInterval(this.data.timer);
-      clearInterval(this.data.timer2);
       const end = app.formatDate(new Date() / 1000);
       const start = app.formatDate(new Date() / 1000 - 604800);
       this.getHistoryData(start, end);
+    } else {
+      _this.initFive();
+      _this.initSix();
       // if (current == 1) {
       //   this.getHistoryData();
       // } else if (current == 2) {
@@ -925,7 +1044,6 @@ Page({
    */
   onLoad: function (options) {
     var _this = this;
-    _this.getHumitureNew();
     _this.getVideo(options.store_name);
     // 获取设备信息 （用户登录接口）
     // userLogin(this);
@@ -938,8 +1056,9 @@ Page({
     _this.setData({
       sdate: app.formatDate(new Date() / 1000 - 3600),
       edate: app.formatDate(new Date() / 1000),
-      house_name: options.store_name
+      house_name: options.store_name.slice(0, 2)
     })
+    _this.getHumitureNew();
 
     const date = new Date();
     //设置默认的年份
@@ -992,8 +1111,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    clearInterval(this.data.timer);
-    clearInterval(this.data.timer2);
+    // clearInterval(this.data.timer);
+    // clearInterval(this.data.timer2);
   },
   initOne: function () { //初始化第一个图表
     var _this = this;
@@ -1002,7 +1121,7 @@ Page({
         width: width,
         height: 200
       });
-      setOption(chart, _this, house_name);
+      setOption(chart, _this);
       this.chart = chart;
       return chart;
     });
@@ -1014,7 +1133,7 @@ Page({
         width: width,
         height: 200
       });
-      setOption2(chart, _this, house_name);
+      setOption2(chart, _this);
       this.chart = chart;
       return chart;
     });
