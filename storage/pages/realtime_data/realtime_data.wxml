@@ -120,16 +120,32 @@
         </view>
     </swiper-item>
     <swiper-item class="overflowYauto" catchtouchmove="bindswipermove">
-        <view style="flex:1; display: flex;flex-direction: column;  overflow: auto;">
-            <view class="temp-echarts" style="width:98%;margin:auto;">
-                <view style="text-align:center;font-weight:700;margin-top:15rpx;">温度（℃）</view>
-                <ec-canvas id="mychart-five" canvas-id="mychart-multi-five" ec="{{ ecOne }}"></ec-canvas>
-                <!-- <view class="text">温度℃</view> -->
+        <view class="house-main">
+            <view class="sel-title">选择仓库</view>
+            <block wx:for="{{houseList}}" wx:key="index">
+                <view class="house-name" data-id="{{item.instrument_number}}">{{item.store_name}}</view>
+            </block>
+        </view>
+        <view class="house-main">
+            <view class="sel-title">选择年份</view>
+            <view class="house-name">2019</view>
+            <view class="house-name">2020</view>
+        </view>
+        <view class="tips-box">
+            <view class="house-tips">
+                注意：选择仓库，不选择年份，表示横向仓库实时对比数据，仓储色为绿，表示目前存茶仓，交叉选择表示，横向多仓库年份对比数据
             </view>
-            <view class="temp-echarts" style="width:98%;margin:auto;">
-                <view style="text-align:center;font-weight:700;margin-top:15rpx;">湿度（%）</view>
+            <view class="db-btn">开始对比</view>
+        </view>
+        <view class="line"></view>
+        <view style="flex:1; display: flex;flex-direction: column;  overflow: auto;">
+            <view class="temp-echarts">
+                <view style="text-align:center;font-weight:700;margin-top:15rpx;">年份仓储月平均温度(°C)对比</view>
+                <ec-canvas id="mychart-five" canvas-id="mychart-multi-five" ec="{{ ecOne }}"></ec-canvas>
+            </view>
+            <view class="temp-echarts">
+                <view style="text-align:center;font-weight:700;margin-top:15rpx;">年份仓储月平均湿度(%)对比</view>
                 <ec-canvas id="mychart-six" canvas-id="mychart-multi-six" ec="{{ ecOne }}"></ec-canvas>
-                <!-- <view class="text">温度℃</view> -->
             </view>
         </view>
     </swiper-item>

@@ -1,7 +1,7 @@
 // storage/pages/realtime_data/realtime_data.js
 import * as echarts from '../../../component/ec-canvas/echarts';
 var app = getApp();
-
+//温湿度仪表盘
 function wdOption(realValue, type) {
   var data = {
     title: '',
@@ -305,12 +305,8 @@ function dbOption(onList, outList, maxL, type) {
   };
   return option;
 }
-
+//折线图
 function zxOption(x_data, bar_data, line_data, type) {
-  var x_data = x_data,
-    bar_data = bar_data,
-    line_data = line_data
-
   let option = {
     backgroundColor: "#fff",
     color: "#FF9F7F",
@@ -329,6 +325,128 @@ function zxOption(x_data, bar_data, line_data, type) {
       data: ['设备', '室外'],
       orient: "vertical",
       bottom: "bottom",
+      textStyle: {
+        fontSize: 14
+      }
+    },
+    xAxis: [{
+      axisLine: {
+        lineStyle: {
+          color: '#666'
+        }
+      },
+      type: 'category',
+      axisTick: {
+        show: false,
+        alignWithLabel: true
+      },
+      axisLabel: {
+        interval: 0,
+        rotate: 40
+      },
+      data: x_data
+    }],
+    yAxis: [{
+      type: 'value',
+      name: '',
+      min: "dataMin",
+      nameTextStyle: {
+        color: "#666",
+        fontSize: 12
+      },
+      axisTick: {
+        show: false
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#EDEDED'
+        }
+      },
+      axisLabel: {
+        fontSize: 12,
+        formatter: '{value}' + (type == 1 ? '℃' : '%'),
+        color: "#666"
+      },
+      splitLine: {
+        lineStyle: {
+          type: "dotted"
+        }
+      },
+      position: 'right'
+    },
+    {
+      type: 'value',
+      name: (type == 1 ? '温度' : '湿度'),
+      min: "dataMin",
+      nameTextStyle: {
+        color: "#666",
+        fontSize: 12
+      },
+      axisTick: {
+        show: false
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#EDEDED'
+        }
+      },
+      axisLabel: {
+        fontSize: 12,
+        formatter: '{value}' + (type == 1 ? '℃' : '%'),
+        color: "#666"
+      },
+      splitLine: {
+        lineStyle: {
+          type: "dotted"
+        }
+      },
+      position: 'right'
+    }
+    ],
+    series: [{
+      name: '设备',
+      type: 'line',
+      smooth: false,
+      symbol: 'circle',
+      symbolSize: 6,
+      yAxisIndex: 1,
+      color: 'rgb(149,242,4)',
+      data: bar_data
+    },
+    {
+      name: '室外',
+      type: 'line',
+      smooth: false,
+      symbol: 'circle',
+      symbolSize: 6,
+      yAxisIndex: 1,
+      color: 'rgb(245,154,35)',
+      data: line_data
+    }
+    ]
+  };
+  return option;
+}
+//对比折线图
+function dbOption(x_data, bar_data, line_data, type) {
+  let option = {
+    backgroundColor: "#fff",
+    color: "#FF9F7F",
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(67,100,247,0.8)',
+      padding: [10, 20],
+      axisPointer: {
+        type: 'shadow',
+        shadowStyle: {
+          color: 'rgba(67,100,247,0.08)'
+        }
+      }
+    },
+    legend: {
+      data: ['设备', '室外'],
+      orient: "horizontal",
+      top: "top",
       textStyle: {
         fontSize: 14
       }
@@ -465,77 +583,7 @@ function setOption2(chart, _this) {
     }
   });
 }
-function setOption5(chart, _this, yArr) {
-  let startTime = app.formatDate(new Date(new Date(new Date().toLocaleDateString()).getTime() / 1000)); // 当天0点
-  let endTime = app.formatDate((new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000) / 1000));
-  let option;
-  wx.request({
-    url: app.globalData.tiltes + 'get_humiture_list',
-    method: 'POST',
-    data: {
-      "stime": startTime,
-      "etime": endTime,
-      "uniacid": app.globalData.uniacid
-    },
-    success(res) {
-      let data = res.data;
-      if (data.status != '1') {
-        wx.showToast({
-          icon: 'none',
-          title: data.info
-        })
-        return false;
-      } else {
-        let onList = new Array(), outList = new Array(), wdList = data.data[1], h = (new Date().getHours() / 2).toFixed(0);
-        for (let i = 0; i < wdList.length; i++) {
-          i = i + 12;
-          if (onList.length < h) {
-            onList.push(wdList[i] || 25);
-            outList.push(0)
-          }
-        }
-        option = dbOption(onList, outList, 30, 1);
-        chart.setOption(option);
-      }
-    }
-  })
-}
-function setOption6(chart, _this, yArr) {
-  let startTime = app.formatDate(new Date(new Date(new Date().toLocaleDateString()).getTime() / 1000)); // 当天0点
-  let endTime = app.formatDate((new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000) / 1000));
-  let option;
-  wx.request({
-    url: app.globalData.tiltes + 'get_humiture_list',
-    method: 'POST',
-    data: {
-      "stime": startTime,
-      "etime": endTime,
-      "uniacid": app.globalData.uniacid
-    },
-    success(res) {
-      let data = res.data;
-      console.log(111, data)
-      if (data.status != '1') {
-        wx.showToast({
-          icon: 'none',
-          title: data.info
-        })
-        return false;
-      } else {
-        let onList = new Array(), outList = new Array(), wdList = data.data[2], h = (new Date().getHours() / 2).toFixed(0);
-        for (let i = 0; i < wdList.length; i++) {
-          i = i + 12;
-          if (onList.length < h) {
-            onList.push(wdList[i] || 52.5);
-            outList.push(0)
-          }
-        }
-        option = dbOption(onList, outList, 60, 2);
-        chart.setOption(option);
-      }
-    }
-  })
-}
+
 
 // 历史数据温度  第二个swiper-item
 function setOption3(chart, _this, date, yArr, temArr) {
@@ -547,7 +595,57 @@ function setOption4(chart, _this, date, yArr, humArr) {
   let option = zxOption(date, yArr, humArr, 2);
   chart.setOption(option);
 }
+function setOption5(chart, _this, yArr) {
+  let option;
+  let dates = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+    yArrs = [24, 26, 25.2, 23.3, 24.5, 24, 26, 25.2, 23.3, 24.5, 27.1, 24.2],
+    humArr = [26, 23, 22.2, 24.3, 22.5, 22, 25, 27.2, 29.3, 25.5, 24.1, 22.2]
 
+  option = dbOption(dates, yArrs, humArr, 1);
+  chart.setOption(option);
+}
+function setOption6(chart, _this, yArr) {
+  let startTime = app.formatDate(new Date(new Date(new Date().toLocaleDateString()).getTime() / 1000)); // 当天0点
+  let endTime = app.formatDate((new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000) / 1000));
+  let option;
+  let dates = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+    yArrs = [24, 26, 25.2, 23.3, 24.5, 24, 26, 25.2, 23.3, 24.5, 27.1, 24.2],
+    humArr = [26, 23, 22.2, 24.3, 22.5, 22, 25, 27.2, 29.3, 25.5, 24.1, 22.2]
+
+  option = dbOption(dates, yArrs, humArr, 2);
+  chart.setOption(option);
+  // wx.request({
+  //   url: app.globalData.tiltes + 'get_humiture_list',
+  //   method: 'POST',
+  //   data: {
+  //     "stime": startTime,
+  //     "etime": endTime,
+  //     "uniacid": app.globalData.uniacid
+  //   },
+  //   success(res) {
+  //     let data = res.data;
+  //     console.log(111, data)
+  //     if (data.status != '1') {
+  //       wx.showToast({
+  //         icon: 'none',
+  //         title: data.info
+  //       })
+  //       return false;
+  //     } else {
+  //       let onList = new Array(), outList = new Array(), wdList = data.data[2], h = (new Date().getHours() / 2).toFixed(0);
+  //       for (let i = 0; i < wdList.length; i++) {
+  //         i = i + 12;
+  //         if (onList.length < h) {
+  //           onList.push(wdList[i] || 52.5);
+  //           outList.push(0)
+  //         }
+  //       }
+  //       option = dbOption(onList, outList, 60, 2);
+  //       chart.setOption(option);
+  //     }
+  //   }
+  // })
+}
 // 获取当前时间
 function getCurrentTime(_this) {
   var newDate = new Date();
@@ -717,7 +815,8 @@ Page({
     showText: false,
     isLive: false,
     isTips: false,
-    videoUrl: ''
+    videoUrl: '',
+    houseList:[]
   },
 
   // 查询用户选定日期的历史数据
@@ -749,17 +848,17 @@ Page({
     if (curr == 0) {
       // 七天数据
       const end = app.formatDate(new Date() / 1000);
-      const start = app.formatDate(new Date() / 1000 - 604800  + 86400);
+      const start = app.formatDate(new Date() / 1000 - 604800 + 86400);
       this.getHistoryData(start, end);
     } else if (curr == 1) {
       // 十四天数据
       const end = app.formatDate(new Date() / 1000);
-      const start = app.formatDate(new Date() / 1000 - 1209600  + 86400);
+      const start = app.formatDate(new Date() / 1000 - 1209600 + 86400);
       this.getHistoryData(start, end);
     } else {
       // 三十天数据
       const end = app.formatDate(new Date() / 1000);
-      const start = app.formatDate(new Date() / 1000 - 2592000  + 86400);
+      const start = app.formatDate(new Date() / 1000 - 2592000 + 86400);
       this.getHistoryData(start, end);
     }
   },
@@ -869,12 +968,8 @@ Page({
       this.getHistoryData(start, end);
     } else {
       _this.initFive();
-      _this.initSix();
-      // if (current == 1) {
-      //   this.getHistoryData();
-      // } else if (current == 2) {
 
-      // }
+      _this.initSix();
     }
   },
 
@@ -1018,17 +1113,38 @@ Page({
       getCurrentTime(_this);
     }, 1000);
     // 初始化 查看历史日期时间
-    _this.setData({
-      sdate: app.formatDate(new Date() / 1000 - 3600),
-      edate: app.formatDate(new Date() / 1000),
-      house_name: options.store_name.slice(0, 2)
-    })
     _this.getHumitureNew();
+    app.postData(app.globalData.tiltes + "get_instrument", {
+      uniacid: app.globalData.uniacid,
+    }).then(t => {
+      console.log(t)
+      if (t.status == "1") {
+        _this.setData({
+          houseList: t.data
+        })
+      }
 
+    })
+    // app.postData(app.globalData.tiltes + "humi_comparison", {
+    //   uniacid: app.globalData.uniacid,
+    //   instrument:'8606S86YL8295C5Y',
+    //   type:2,
+    //   year:['2020','2019']
+    // }).then(t => {
+    //   console.log(t)
+    //   if (t.status == "1") {
+    //     // console.log(t.data.data)
+
+    //   }
+
+    // })
     const date = new Date();
     //设置默认的年份
     // 选择picker 初始化日期为当前 年月日时分秒
-    this.setData({
+    _this.setData({
+      sdate: app.formatDate(new Date() / 1000 - 3600),
+      edate: app.formatDate(new Date() / 1000),
+      house_name: options.store_name.slice(0, 2),
       choose_year: this.data.multiArray[0][0],
       multiIndex: [app.indexValue(years, date.getFullYear()),
       app.indexValue(months, date.getMonth() + 1),
@@ -1038,6 +1154,8 @@ Page({
         // app.indexValue(seconds, date.getSeconds())
       ]
     })
+
+
 
   },
 
@@ -1135,7 +1253,7 @@ Page({
     this.fiveComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
         width: width,
-        height: 280
+        height: height
       });
 
       setOption5(chart, _this, date, data);
@@ -1148,7 +1266,7 @@ Page({
     this.sixComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
         width: width,
-        height: 280
+        height: height
       });
 
       setOption6(chart, _this, date, data);

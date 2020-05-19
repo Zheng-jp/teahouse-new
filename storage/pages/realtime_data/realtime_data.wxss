@@ -34,3 +34,11 @@ swiper.swiper-container{min-height: 1020rpx; flex: 1;}
 .dialog .dialog-box{width:660rpx;height:500rpx;background-color:#fff;border-radius:15rpx;margin: auto;margin-top: 320rpx;padding: 0 10rpx;  font-style: normal;  font-family: 'Arial Negreta', 'Arial Normal', 'Arial';}
 .dialog .dialog-box .main-title {font-weight: 700;font-size: 55rpx;text-align:center;color: #363636;margin: 20rpx 0;}
 .dialog .dialog-box .main-text {font-weight: 400;font-size: 35rpx;line-height:45rpx;color: #9C9999;text-align: center;}
+
+.house-main{display: flex;padding: 20rpx;padding-bottom: 10rpx;align-items: center;color: rgb(125,34,41);}
+.sel-title{color: #fff;background-color: rgb(125,34,41);text-align: center;width: 250rpx;height: 70rpx;line-height: 70rpx;}
+.house-name{margin: 0 20rpx;}
+.tips-box{display: flex;padding: 20rpx;align-items: center;}
+.house-tips{font-size: 24rpx;flex: 1;color: #FF7B7B;}
+.db-btn{width: 180rpx;text-align: center;color: #fff;background-color: red;line-height: 50rpx;margin: 0 5rpx;}
+.line{background-color: rgba(242, 242, 242, 1);height: 5px;width: 95%;margin: 0 20rpx;}
