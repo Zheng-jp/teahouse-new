@@ -306,10 +306,10 @@ function dbOption(onList, outList, maxL, type) {
   return option;
 }
 
-function zxOption(params) {
-  var x_data = ['2时', '4时', '6时', '8时', '10时', '12时', '14时', '16时', '18时', '20时', '22时', '24时'],
-    bar_data = ["3", "4", "6", "0", "-5", "-4", "3", "3", "-3", "-8", "-3", "-12"],
-    line_data = ["-8", "-5", "-9", "0", "7", "4", "5", "3", "-8", "-5", "-12", "-11"]
+function zxOption(x_data, bar_data, line_data, type) {
+  var x_data = x_data,
+    bar_data = bar_data,
+    line_data = line_data
 
   let option = {
     backgroundColor: "#fff",
@@ -326,9 +326,9 @@ function zxOption(params) {
       }
     },
     legend: {
-      data: ['湿度', '温度'],
+      data: ['设备', '室外'],
       orient: "vertical",
-      right: "right",
+      bottom: "bottom",
       textStyle: {
         fontSize: 14
       }
@@ -344,15 +344,19 @@ function zxOption(params) {
         show: false,
         alignWithLabel: true
       },
+      axisLabel: {
+        interval: 0,
+        rotate: 40
+      },
       data: x_data
     }],
     yAxis: [{
       type: 'value',
-      name: '温度',
+      name: '',
       min: "dataMin",
       nameTextStyle: {
         color: "#666",
-        fontSize: 14
+        fontSize: 12
       },
       axisTick: {
         show: false
@@ -363,8 +367,8 @@ function zxOption(params) {
         }
       },
       axisLabel: {
-        fontSize: 14,
-        formatter: '{value} ℃',
+        fontSize: 12,
+        formatter: '{value}' + (type == 1 ? '℃' : '%'),
         color: "#666"
       },
       splitLine: {
@@ -372,15 +376,15 @@ function zxOption(params) {
           type: "dotted"
         }
       },
-      position: 'left'
+      position: 'right'
     },
     {
       type: 'value',
-      name: '温度',
+      name: (type == 1 ? '温度' : '湿度'),
       min: "dataMin",
       nameTextStyle: {
         color: "#666",
-        fontSize: 14
+        fontSize: 12
       },
       axisTick: {
         show: false
@@ -391,8 +395,8 @@ function zxOption(params) {
         }
       },
       axisLabel: {
-        fontSize: 14,
-        formatter: '{value} ℃',
+        fontSize: 12,
+        formatter: '{value}' + (type == 1 ? '℃' : '%'),
         color: "#666"
       },
       splitLine: {
@@ -400,27 +404,27 @@ function zxOption(params) {
           type: "dotted"
         }
       },
-      position: 'left'
+      position: 'right'
     }
     ],
     series: [{
-      name: '室外温度',
+      name: '设备',
       type: 'line',
       smooth: false,
       symbol: 'circle',
-      symbolSize: 15,
+      symbolSize: 6,
       yAxisIndex: 1,
-      color: 'rgb(245,154,35)',
+      color: 'rgb(149,242,4)',
       data: bar_data
     },
     {
-      name: '温度',
+      name: '室外',
       type: 'line',
       smooth: false,
       symbol: 'circle',
-      symbolSize: 15,
+      symbolSize: 6,
       yAxisIndex: 1,
-      color: 'rgb(149,242,4)',
+      color: 'rgb(245,154,35)',
       data: line_data
     }
     ]
@@ -534,84 +538,13 @@ function setOption6(chart, _this, yArr) {
 }
 
 // 历史数据温度  第二个swiper-item
-function setOption3(chart, _this, date, yArr) {
-  const option = {
-    title: {
-      left: 'center',
-      text: '历史温度℃',
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: date
-    },
-    yAxis: {
-      type: 'value',
-      position: 'right',
-      boundaryGap: [0, '100%']
-    },
-    dataZoom: [{
-      start: 0,
-      end: 10,
-    }],
-    series: [{
-      type: 'line',
-      smooth: true,
-      symbol: 'none',
-      sampling: 'average',
-      areaStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-          offset: 0,
-          color: 'rgb(255, 158, 68)'
-        }, {
-          offset: 1,
-          color: 'rgb(255, 70, 131)'
-        }])
-      },
-      data: yArr
-    }]
-  };
+function setOption3(chart, _this, date, yArr, temArr) {
+  let option = zxOption(date, yArr, temArr, 1);
   chart.setOption(option);
 }
 // 历史数据湿度
-function setOption4(chart, _this, date, yArr) {
-  console.log('setOption4')
-  const option = {
-    title: {
-      left: 'center',
-      text: '历史湿度%',
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: date
-    },
-    yAxis: {
-      type: 'value',
-      position: 'right',
-      boundaryGap: [0, '100%']
-    },
-    dataZoom: [{
-      start: 0,
-      end: 10,
-    }],
-    series: [{
-      type: 'line',
-      smooth: true,
-      symbol: 'none',
-      sampling: 'average',
-      areaStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-          offset: 0,
-          color: 'rgb(255, 158, 68)'
-        }, {
-          offset: 1,
-          color: 'rgb(255, 70, 131)'
-        }])
-      },
-      data: yArr
-    }]
-  };
+function setOption4(chart, _this, date, yArr, humArr) {
+  let option = zxOption(date, yArr, humArr, 2);
   chart.setOption(option);
 }
 
@@ -816,17 +749,17 @@ Page({
     if (curr == 0) {
       // 七天数据
       const end = app.formatDate(new Date() / 1000);
-      const start = app.formatDate(new Date() / 1000 - 604800);
+      const start = app.formatDate(new Date() / 1000 - 604800  + 86400);
       this.getHistoryData(start, end);
     } else if (curr == 1) {
       // 十四天数据
       const end = app.formatDate(new Date() / 1000);
-      const start = app.formatDate(new Date() / 1000 - 1209600);
+      const start = app.formatDate(new Date() / 1000 - 1209600  + 86400);
       this.getHistoryData(start, end);
     } else {
       // 三十天数据
       const end = app.formatDate(new Date() / 1000);
-      const start = app.formatDate(new Date() / 1000 - 2592000);
+      const start = app.formatDate(new Date() / 1000 - 2592000  + 86400);
       this.getHistoryData(start, end);
     }
   },
@@ -857,14 +790,16 @@ Page({
   // 获取设备历史数据
   getHistoryData: function (stime, etime) {
     console.log(stime, etime)
-    let _this = this;
+    let _this = this, temArr = new Array(), humArr = new Array();
+
     wx.request({
       url: app.globalData.tiltes + 'get_humiture_list',
       method: 'POST',
       data: {
         "stime": stime,
         "etime": etime,
-        "uniacid": app.globalData.uniacid
+        "uniacid": app.globalData.uniacid,
+        "house_name": _this.data.house_name
       },
       success(res) {
         let data = res.data;
@@ -876,13 +811,43 @@ Page({
           })
           return false;
         } else {
-          _this.data.yArr3 = data.data[1];
-          _this.data.yArr4 = data.data[2];
-          _this.initThree(data.data[0], data.data[1]);
-          _this.initFour(data.data[0], data.data[2]);
+          // _this.data.yArr3 = data.data[1];
+          // _this.data.yArr4 = data.data[2];
+          data.data[0] = _this.unique(data.data[0]);
+          for (let e = 0; e < data.data[0].length; e++) {
+            data.data[0][e] = (data.data[0][e]).split('2020/')[1];
+          }
+          data.data[1] = _this.selArr(data.data[1], data.data[0].length);
+          data.data[2] = _this.selArr(data.data[2], data.data[0].length);
+          for (let i = 0; i < data.data[3].length; i++) {
+            temArr.push(data.data[3][i].tem);
+            humArr.push(data.data[3][i].humidity.split('%')[0]);
+          }
+          _this.initThree(data.data[0], data.data[1], temArr);
+          _this.initFour(data.data[0], data.data[2], humArr);
         }
       }
     })
+  },
+  //数组去重
+  unique: function (arr) {
+    for (var i = 0; i < arr.length; i++) {
+      for (var j = i + 1; j < arr.length; j++) {
+        if (arr[i] == arr[j]) {         //第一个等同于第二个，splice方法删除第二个
+          arr.splice(j, 1);
+          j--;
+        }
+      }
+    }
+    return arr;
+  },
+  //随机挑选日期
+  selArr: function (arr, length) {
+    let newArr = new Array();
+    for (let index = 0; index < length; index++) {
+      newArr.push(arr[index * 12])
+    }
+    return newArr;
   },
 
   clickTab: function (e) {
@@ -900,7 +865,7 @@ Page({
       _this.initTwo();
     } else if (current == 1) {
       const end = app.formatDate(new Date() / 1000);
-      const start = app.formatDate(new Date() / 1000 - 604800);
+      const start = app.formatDate(new Date() / 1000 - 604800 + 86400);
       this.getHistoryData(start, end);
     } else {
       _this.initFive();
@@ -1139,20 +1104,20 @@ Page({
     });
   },
   // 查看历史数据  温度
-  initThree: function (date, data) { //初始化第3个图表
+  initThree: function (date, data, temArr) { //初始化第3个图表
     var _this = this;
     this.threeComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
         width: width,
         height: height
       });
-      setOption3(chart, _this, date, data);
+      setOption3(chart, _this, date, data, temArr);
       this.chart = chart;
       return chart;
     });
   },
 
-  initFour: function (date, data) { //初始化第4个图表
+  initFour: function (date, data, humArr) { //初始化第4个图表
     var _this = this;
     this.fourComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
@@ -1160,7 +1125,7 @@ Page({
         height: height
       });
 
-      setOption4(chart, _this, date, data);
+      setOption4(chart, _this, date, data, humArr);
       this.chart = chart;
       return chart;
     });
