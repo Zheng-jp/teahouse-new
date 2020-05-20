@@ -30,7 +30,7 @@ function wdOption(realValue, type) {
         lineStyle: {
           width: 2,
           color: [
-            [1, 'rgb(184,187,199)']
+            [1, 'rgb(110,112,119)']
           ]
         }
       },
@@ -77,9 +77,10 @@ function wdOption(realValue, type) {
       }, //刻度样式
       splitLine: {
         show: true,
-        length: 15,
+        length: 13,
         lineStyle: {
           color: 'rgb(184,187,199)', //用颜色渐变函数不起作用
+          width: 1
         }
       }, //分隔线样式
       itemStyle: {
@@ -816,7 +817,11 @@ Page({
     isLive: false,
     isTips: false,
     videoUrl: '',
-    houseList:[]
+    houseList: [],
+    yearArr: [],
+    dbHouse: null,
+    dbYear: null,
+    dbType: 3
   },
 
   // 查询用户选定日期的历史数据
@@ -1099,6 +1104,125 @@ Page({
       }
     });
   },
+  selHouse: function (e) {
+    let instrument = (e.currentTarget.dataset.id).toString(),
+      index = e.currentTarget.dataset.index,
+      type = e.currentTarget.dataset.type,
+      houseList = this.data.houseList,
+      dbHouse = this.data.dbHouse,
+      yearArr = this.data.yearArr,
+      dbYear = this.data.dbYear;
+    if (type == '1') {
+      dbHouse = this.disposeArr(houseList, dbHouse, index, instrument, type);
+    } else {
+      dbYear = this.disposeArr(yearArr, dbYear, index, instrument, type);
+    }
+
+    this.setData({
+      dbHouse: dbHouse,
+      dbYear: dbYear
+    })
+  },
+  disposeArr: function (arr, dbObj, index, selYs, type) {
+    let _this = this, selThisHouse = new Array(), dbType = 3;
+    if (!arr[index].isSel) {
+      if (type == "1" && _this.data.dbYear instanceof Array) {
+        if (_this.data.dbYear.length > 1 && dbObj != null) {
+          wx.showToast({
+            title: "年份已选多个，不能再增加仓库",
+            icon: 'none',
+            duration: 3000
+          })
+          return false;
+        }
+      }
+      if (type == "2" && _this.data.dbHouse instanceof Array) {
+        if (_this.data.dbHouse.length > 1 && dbObj != null) {
+          wx.showToast({
+            title: "仓库已选多个，不能再增加年份",
+            icon: 'none',
+            duration: 3000
+          })
+          return false;
+        }
+      }
+      if (dbObj != null) {
+        if (dbObj instanceof Array) dbObj.push(selYs);
+        else {
+          selThisHouse.push(dbObj);
+          selThisHouse.push(selYs);
+          dbObj = selThisHouse;
+          if (type == "1") dbType = 1;
+          else dbType = 2;
+        }
+      } else {
+        dbObj = selYs
+      }
+    } else {
+      if (dbObj instanceof Array) {
+        if (dbObj.length > 1) dbObj.splice(_this.contains(dbObj, selYs), 1);
+        else dbObj = null;
+      }
+      else dbObj = null;
+    }
+    if (type == "1") {
+      arr[index].isSel = !arr[index].isSel;
+      this.setData({
+        houseList: arr,
+        dbType: dbType
+      })
+    } else {
+      arr[index].isSel = !arr[index].isSel;
+      this.setData({
+        yearArr: arr,
+        dbType: dbType
+      })
+    }
+    return dbObj;
+  },
+  //获取元素在数组中的位置
+  contains: function (a, obj) {
+    var i = a.length;
+    while (i--) {
+      if (a[i] === obj) {
+        return i;
+      }
+    }
+    return false;
+  },
+
+  //开始对比
+  startDb: function () {
+    let t = this;
+    if(t.data.dbHouse == null) {
+      wx.showToast({
+        title: "请选择仓库",
+        icon: 'none',
+        duration: 3000
+      })
+      return false;
+    } else if(t.data.dbYear == null) {
+      wx.showToast({
+        title: "请选择年份",
+        icon: 'none',
+        duration: 3000
+      })
+      return false;
+    }
+    app.postData(app.globalData.tiltes + "humi_comparison", {
+      uniacid: app.globalData.uniacid,
+      instrument: t.data.dbHouse,
+      type: t.data.dbType,
+      year: t.data.dbYear
+    }).then(t => {
+      console.log(t)
+      if (t.status == "1") {
+        // console.log(t.data.data)
+
+      }
+
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -1119,26 +1243,22 @@ Page({
     }).then(t => {
       console.log(t)
       if (t.status == "1") {
+        for (let u = 0; u < t.data.length; u++) {
+          t.data[u].isSel = false;
+        }
         _this.setData({
           houseList: t.data
         })
       }
 
     })
-    // app.postData(app.globalData.tiltes + "humi_comparison", {
-    //   uniacid: app.globalData.uniacid,
-    //   instrument:'8606S86YL8295C5Y',
-    //   type:2,
-    //   year:['2020','2019']
-    // }).then(t => {
-    //   console.log(t)
-    //   if (t.status == "1") {
-    //     // console.log(t.data.data)
 
-    //   }
-
-    // })
     const date = new Date();
+    let tYear = date.getFullYear(), yearArr = new Array();
+    for (let i = 2019; i <= tYear; i++) {
+      if (i == tYear) yearArr.push({ year: i.toString(), isSel: true });
+      else yearArr.push({ year: i.toString(), isSel: false });
+    }
     //设置默认的年份
     // 选择picker 初始化日期为当前 年月日时分秒
     _this.setData({
@@ -1146,6 +1266,8 @@ Page({
       edate: app.formatDate(new Date() / 1000),
       house_name: options.store_name.slice(0, 2),
       choose_year: this.data.multiArray[0][0],
+      yearArr: yearArr,
+      dbYear: tYear.toString(),
       multiIndex: [app.indexValue(years, date.getFullYear()),
       app.indexValue(months, date.getMonth() + 1),
       app.indexValue(days, date.getDate()),

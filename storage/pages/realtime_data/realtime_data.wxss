@@ -16,7 +16,7 @@ swiper.swiper-container{min-height: 1020rpx; flex: 1;}
 .humidity{display: flex; align-items: center; justify-content: space-between; margin-top: 20rpx;}
 .humiture-data .humiture-title{color: #333;}
 .temp-echarts{position: relative; width: 700rpx; flex: 1; overflow-y: auto;}
-.temp-echarts .text{position: absolute; left: 10px; top: 500rpx;  z-index: 9999; font-size: 12px; text-align: center; word-break: break-word;}
+.temp-echarts .text{position: absolute; left: 10px; top: 530rpx;  z-index: 9999; font-size: 12px; text-align: center; word-break: break-word;}
 .history-nav{display: flex; align-items: center; font-size: 28rpx; padding: 20rpx 10rpx; color: #93291f;}
 .history-nav .history-date{display: flex; height: 35px; box-sizing: border-box; border: 1px solid #93291f; border-radius: 6rpx; padding: 12rpx 6rpx; margin-left: 14rpx; width: 380rpx;}
 .history-nav .history-date .section{display: flex;}
@@ -42,3 +42,4 @@ swiper.swiper-container{min-height: 1020rpx; flex: 1;}
 .house-tips{font-size: 24rpx;flex: 1;color: #FF7B7B;}
 .db-btn{width: 180rpx;text-align: center;color: #fff;background-color: red;line-height: 50rpx;margin: 0 5rpx;}
 .line{background-color: rgba(242, 242, 242, 1);height: 5px;width: 95%;margin: 0 20rpx;}
+.isSel {color: #669900;}
