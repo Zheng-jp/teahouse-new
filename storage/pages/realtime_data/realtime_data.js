@@ -850,29 +850,30 @@ Page({
       this.getHistoryData(start, end);
     }
   },
-  getHumitureNew: function () {
+  getHumitureNew: function (house_name) {
     var a = this;
     wx.request({
       url: app.globalData.tiltes + "get_humiture_new",
       method: "POST",
       data: {
         store_id: app.globalData.uniacid,
-        house_name: a.data.house_name
+        house_name: house_name
       },
       success: function (t) {
         "1" == t.data.status && a.setData({
           inTemp: t.data.data.data.temperature.toFixed(2),
           inHumi: t.data.data.data.humidity.toFixed(2),
-
+          outTemp: t.data.data.data2.tem,
+          outHumi: t.data.data.data2.humidity,
         });
       }
     });
-    app.postData('https://tianqiapi.com/api?version=v61&appid=13333759&appsecret=1lXSQXaF&city=' + a.data.house_name, {}).then(res => {
-      a.setData({
-        outTemp: res.tem,
-        outHumi: res.humidity,
-      })
-    })
+    // app.postData('https://tianqiapi.com/api?version=v61&appid=13333759&appsecret=1lXSQXaF&city=' + a.data.house_name, {}).then(res => {
+    //   a.setData({
+    //     outTemp: res.tem,
+    //     outHumi: res.humidity,
+    //   })
+    // })
   },
   // 获取设备历史数据
   getHistoryData: function (stime, etime) {
@@ -1304,11 +1305,11 @@ Page({
       getCurrentTime(_this);
     }, 1000);
     // 初始化 查看历史日期时间
-    _this.getHumitureNew();
+    _this.getHumitureNew(options.store_name.slice(0, 2));
     app.postData(app.globalData.tiltes + "get_instrument", {
       uniacid: app.globalData.uniacid,
     }).then(t => {
-      console.log(t)
+      // console.log(t)
       if (t.status == "1") {
         for (let u = 0; u < t.data.length; u++) {
           t.data[u].isSel = false;
