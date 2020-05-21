@@ -429,7 +429,7 @@ function zxOption(x_data, bar_data, line_data, type) {
   return option;
 }
 //对比折线图
-function dbOption(x_data, bar_data, line_data, type) {
+function dbOption( dataArr, type) {
   let option = {
     backgroundColor: "#fff",
     color: "#FF9F7F",
@@ -467,9 +467,37 @@ function dbOption(x_data, bar_data, line_data, type) {
         interval: 0,
         rotate: 40
       },
-      data: x_data
+      data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
     }],
     yAxis: [{
+      type: 'value',
+      name: '',
+      min: "dataMin",
+      nameTextStyle: {
+        color: "#666",
+        fontSize: 12
+      },
+      axisTick: {
+        show: false
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#EDEDED'
+        }
+      },
+      axisLabel: {
+        fontSize: 12,
+        formatter: '{value}' + (type == 1 ? '℃' : '%'),
+        color: "#666"
+      },
+      splitLine: {
+        lineStyle: {
+          type: "dotted"
+        }
+      },
+      position: 'right'
+    },
+    {
       type: 'value',
       name: '',
       min: "dataMin",
@@ -526,28 +554,22 @@ function dbOption(x_data, bar_data, line_data, type) {
       position: 'right'
     }
     ],
-    series: [{
-      name: '设备',
-      type: 'line',
-      smooth: false,
-      symbol: 'circle',
-      symbolSize: 6,
-      yAxisIndex: 1,
-      color: 'rgb(149,242,4)',
-      data: bar_data
-    },
-    {
-      name: '室外',
-      type: 'line',
-      smooth: false,
-      symbol: 'circle',
-      symbolSize: 6,
-      yAxisIndex: 1,
-      color: 'rgb(245,154,35)',
-      data: line_data
-    }
-    ]
+    series: []
   };
+  let colors = ['rgb(149,242,4)', 'rgb(245,154,35)', 'rgb(125,34,41)', 'rgb(30,30,30)']
+  for (let i = 0; i < dataArr[0].temArr.length; i++) {
+    option.series.push({
+      name: dataArr[0].name[i],
+      type: 'line',
+      smooth: false,
+      symbol: 'circle',
+      symbolSize: 6,
+      yAxisIndex: 1,
+      color: colors[i],
+      data: dataArr[0].temArr[i]
+    })
+  }
+  option.legend.data = dataArr[0].name;
   return option;
 }
 // 温度  第一个swiper-item
@@ -596,56 +618,16 @@ function setOption4(chart, _this, date, yArr, humArr) {
   let option = zxOption(date, yArr, humArr, 2);
   chart.setOption(option);
 }
-function setOption5(chart, _this, yArr) {
+function setOption5(chart, _this, dataArr) {
   let option;
-  let dates = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-    yArrs = [24, 26, 25.2, 23.3, 24.5, 24, 26, 25.2, 23.3, 24.5, 27.1, 24.2],
-    humArr = [26, 23, 22.2, 24.3, 22.5, 22, 25, 27.2, 29.3, 25.5, 24.1, 22.2]
-
-  option = dbOption(dates, yArrs, humArr, 1);
+  option = dbOption(dataArr, 1);
   chart.setOption(option);
 }
-function setOption6(chart, _this, yArr) {
-  let startTime = app.formatDate(new Date(new Date(new Date().toLocaleDateString()).getTime() / 1000)); // 当天0点
-  let endTime = app.formatDate((new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000) / 1000));
+function setOption6(chart, _this, dataArr) {
   let option;
-  let dates = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-    yArrs = [24, 26, 25.2, 23.3, 24.5, 24, 26, 25.2, 23.3, 24.5, 27.1, 24.2],
-    humArr = [26, 23, 22.2, 24.3, 22.5, 22, 25, 27.2, 29.3, 25.5, 24.1, 22.2]
-
-  option = dbOption(dates, yArrs, humArr, 2);
+  option = dbOption( dataArr, 2);
   chart.setOption(option);
-  // wx.request({
-  //   url: app.globalData.tiltes + 'get_humiture_list',
-  //   method: 'POST',
-  //   data: {
-  //     "stime": startTime,
-  //     "etime": endTime,
-  //     "uniacid": app.globalData.uniacid
-  //   },
-  //   success(res) {
-  //     let data = res.data;
-  //     console.log(111, data)
-  //     if (data.status != '1') {
-  //       wx.showToast({
-  //         icon: 'none',
-  //         title: data.info
-  //       })
-  //       return false;
-  //     } else {
-  //       let onList = new Array(), outList = new Array(), wdList = data.data[2], h = (new Date().getHours() / 2).toFixed(0);
-  //       for (let i = 0; i < wdList.length; i++) {
-  //         i = i + 12;
-  //         if (onList.length < h) {
-  //           onList.push(wdList[i] || 52.5);
-  //           outList.push(0)
-  //         }
-  //       }
-  //       option = dbOption(onList, outList, 60, 2);
-  //       chart.setOption(option);
-  //     }
-  //   }
-  // })
+  
 }
 // 获取当前时间
 function getCurrentTime(_this) {
@@ -821,7 +803,8 @@ Page({
     yearArr: [],
     dbHouse: null,
     dbYear: null,
-    dbType: 3
+    dbType: 3,
+    monthsList: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
   },
 
   // 查询用户选定日期的历史数据
@@ -972,9 +955,9 @@ Page({
       const start = app.formatDate(new Date() / 1000 - 604800 + 86400);
       this.getHistoryData(start, end);
     } else {
-      _this.initFive();
+      // _this.initFive();
 
-      _this.initSix();
+      // _this.initSix();
     }
   },
 
@@ -1104,6 +1087,7 @@ Page({
       }
     });
   },
+  //选择对比元素
   selHouse: function (e) {
     let instrument = (e.currentTarget.dataset.id).toString(),
       index = e.currentTarget.dataset.index,
@@ -1123,8 +1107,11 @@ Page({
       dbYear: dbYear
     })
   },
+  //处理对比元素
   disposeArr: function (arr, dbObj, index, selYs, type) {
     let _this = this, selThisHouse = new Array(), dbType = 3;
+    if (_this.data.dbHouse instanceof Array) dbType = 1;
+    if (_this.data.dbYear instanceof Array) dbType = 2;
     if (!arr[index].isSel) {
       if (type == "1" && _this.data.dbYear instanceof Array) {
         if (_this.data.dbYear.length > 1 && dbObj != null) {
@@ -1160,7 +1147,10 @@ Page({
       }
     } else {
       if (dbObj instanceof Array) {
-        if (dbObj.length > 1) dbObj.splice(_this.contains(dbObj, selYs), 1);
+        if (dbObj.length > 1) {
+          dbObj.splice(_this.contains(dbObj, selYs), 1);
+          if (dbObj.length == 1) dbObj = dbObj.toString();
+        }
         else dbObj = null;
       }
       else dbObj = null;
@@ -1194,14 +1184,14 @@ Page({
   //开始对比
   startDb: function () {
     let t = this;
-    if(t.data.dbHouse == null) {
+    if (t.data.dbHouse == null) {
       wx.showToast({
         title: "请选择仓库",
         icon: 'none',
         duration: 3000
       })
       return false;
-    } else if(t.data.dbYear == null) {
+    } else if (t.data.dbYear == null) {
       wx.showToast({
         title: "请选择年份",
         icon: 'none',
@@ -1214,11 +1204,88 @@ Page({
       instrument: t.data.dbHouse,
       type: t.data.dbType,
       year: t.data.dbYear
-    }).then(t => {
-      console.log(t)
-      if (t.status == "1") {
-        // console.log(t.data.data)
+    }).then(res => {
+      // console.log(res)
+      let temArr = new Array(),
+        totalArr = new Array(),
+        humArr = new Array(),
+        totalArr1 = new Array(),
+        zongArr = new Array(),
+        humsArr = new Array(),
+        nameArr = new Array();
+      if (res.status == "1") {
+        if (t.data.dbHouse instanceof Array) { //多仓库对比
 
+          for (let u = 0; u < res.data.length; u++) {
+            let unis = false;
+            if (res.data[u].length > 0) {
+              nameArr.push(res.data[u][0].house_name)
+              for (let e = 0; e < t.data.monthsList.length; e++) {
+                unis = true;
+                for (let i = 0; i < res.data[u].length; i++) {
+                  if (res.data[u][i].month == t.data.monthsList[e]) {
+                    temArr.push(res.data[u][i].temperature);
+                    humArr.push(res.data[u][i].humidity);
+                    unis = false;
+                  }
+                }
+                if (unis) temArr.push(""), humArr.push("");
+                if (temArr.length == t.data.monthsList.length && humArr.length == t.data.monthsList.length) {
+                  zongArr.push(temArr),
+                    humsArr.push(humArr),
+                    temArr = new Array();
+                  humArr = new Array();
+                }
+              }
+            }
+          }
+          totalArr.push({ temArr: zongArr, name: nameArr })
+          totalArr1.push({ temArr: humsArr, name: nameArr })
+        } else if (t.data.dbYear instanceof Array) { //多年份对比
+          for (let u = 0; u < res.data.length; u++) {
+            let unis = false;
+            if (res.data[u].length > 0) {
+              console.log(res.data[u])
+              nameArr.push(res.data[u][0].year)
+              for (let e = 0; e < t.data.monthsList.length; e++) {
+                unis = true;
+                for (let i = 0; i < res.data[u].length; i++) {
+                  if (res.data[u][i].month == t.data.monthsList[e]) {
+                    temArr.push(res.data[u][i].temperature);
+                    humArr.push(res.data[u][i].humidity);
+                    unis = false;
+                  }
+                }
+                if (unis) temArr.push(""), humArr.push("");
+                if (temArr.length == t.data.monthsList.length && humArr.length == t.data.monthsList.length) {
+                  zongArr.push(temArr),
+                    humsArr.push(humArr),
+                    temArr = new Array();
+                  humArr = new Array();
+                }
+              }
+            }
+          }
+          totalArr.push({ temArr: zongArr, name: nameArr })
+          totalArr1.push({ temArr: humsArr, name: nameArr })
+
+        } else {
+          for (let e = 0; e < t.data.monthsList.length; e++) {
+            let unis = true;
+            for (let u = 0; u < res.data.length; u++) {
+              if (res.data[u].month == t.data.monthsList[e]) {
+                temArr.push(res.data[u].temperature);
+                humArr.push(res.data[u].humidity);
+                unis = false;
+              }
+            }
+            if (unis) temArr.push(""), humArr.push("");
+          }
+          totalArr.push({ temArr: [temArr], name: [res.data[0].house_name] })
+          totalArr1.push({ temArr: [humArr], name: [res.data[0].house_name] })
+        }
+        t.initFive(totalArr);
+        t.initSix(totalArr1);
       }
 
     })
@@ -1370,7 +1437,7 @@ Page({
       return chart;
     });
   },
-  initFive: function (date, data) { //初始化第4个图表
+  initFive: function (dataArr) { //初始化第4个图表
     var _this = this;
     this.fiveComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
@@ -1378,12 +1445,12 @@ Page({
         height: height
       });
 
-      setOption5(chart, _this, date, data);
+      setOption5(chart, _this, dataArr);
       this.chart = chart;
       return chart;
     });
   },
-  initSix: function (date, data) { //初始化第4个图表
+  initSix: function ( dataArr) { //初始化第4个图表
     var _this = this;
     this.sixComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
@@ -1391,7 +1458,7 @@ Page({
         height: height
       });
 
-      setOption6(chart, _this, date, data);
+      setOption6(chart, _this, dataArr);
       this.chart = chart;
       return chart;
     });
