@@ -651,8 +651,18 @@ Page({
       success: function (res) {
         console.log('选择显示仓库', res)
         res.data.data[0].getArr[0].end_time = app.formatDate(res.data.data[0].getArr[0].end_time);
-        _this.setData({
-          storageDataArr: res.data.data
+        app.postData(app.globalData.tiltes + "get_humiture_new", {
+          store_id: app.globalData.uniacid,
+          house_name: (res.data.data[0].getArr[0].store_name).slice(0, 2)
+        }).then(t => {
+          // console.log(t)
+          if (t.status == "1") {
+            res.data.data[0].inTemp = t.data.data.temperature,
+              res.data.data[0].inHumi = t.data.data.humidity
+          }
+          _this.setData({
+            storageDataArr: res.data.data
+          })
         })
       },
       fail: function () { }
@@ -684,12 +694,11 @@ Page({
             v.inTemp = t.data.data.temperature,
               v.inHumi = t.data.data.humidity
           }
-          console.log(res.data)
           _this.setData({
             storageDataArr: res.data
           })
         })
-
+100
       });
     })
   },

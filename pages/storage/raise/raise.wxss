@@ -27,7 +27,7 @@
 .zc-item .right-project-info{flex: 1;}
 .wxzx-progress{display: inline-block; margin-right: 16rpx;}
 .percent-num{font-size: 30rpx; color: #aeaeae; vertical-align: middle;}
-.right-project-info .project-name{font-size: 30rpx; color: #333; line-height: 38rpx;}
+.right-project-info .project-name{font-size: 30rpx; color: #333; line-height: 38rpx;width:480rpx;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .right-project-info .project-people{font-size: 26rpx; color: #aeaeae; margin: 20rpx 0 40rpx;}
 .right-project-info .project-price text{font-size: 36rpx; color: #b50000;}
 .right-project-info .project-price button{width: 150rpx; height: 50rpx; text-align: center; box-sizing: border-box; font-size: 26rpx; float: right; line-height: 50rpx; padding: 0; border-radius: 0;}

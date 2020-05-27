@@ -863,17 +863,17 @@ Page({
         "1" == t.data.status && a.setData({
           inTemp: t.data.data.data.temperature.toFixed(2),
           inHumi: t.data.data.data.humidity.toFixed(2),
-          outTemp: t.data.data.data2.tem,
-          outHumi: t.data.data.data2.humidity,
+          // outTemp: t.data.data.data2.tem,
+          // outHumi: t.data.data.data2.humidity,
         });
       }
     });
-    // app.postData('https://tianqiapi.com/api?version=v61&appid=13333759&appsecret=1lXSQXaF&city=' + a.data.house_name, {}).then(res => {
-    //   a.setData({
-    //     outTemp: res.tem,
-    //     outHumi: res.humidity,
-    //   })
-    // })
+    app.postData(app.globalData.tiltes + 'get_outside_humiture', {house_name: house_name}).then(res => {
+      a.setData({
+        outTemp: res.data.tem,
+        outHumi: res.data.humidity,
+      })
+    })
   },
   // 获取设备历史数据
   getHistoryData: function (stime, etime) {

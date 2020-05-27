@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "wxzx-progress": "/component/wxzx-progress/wxzx-progress"
+  },
   "navigationBarTitleText": "预售商品"
 }
