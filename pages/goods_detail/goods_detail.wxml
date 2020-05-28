@@ -1,3 +1,4 @@
+<navBar back home navigationBarTitle="{{navigationBarTitle}}"></navBar>
 <import src="../../wxParse/wxParse.wxml" />
 <view class='all'>
   <view class='mask' wx:if="{{mask_show}}">

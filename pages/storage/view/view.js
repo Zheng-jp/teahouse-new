@@ -698,7 +698,6 @@ Page({
             storageDataArr: res.data
           })
         })
-100
       });
     })
   },

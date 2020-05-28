@@ -189,9 +189,12 @@ Page({
         })
       }
     } else if (_this.data.share_id) {
-      wx.navigateTo({
-        url: "../mingpcha/index"
+      wx.switchTab({
+        url: "../storage/view/view"
       })
+      // wx.navigateTo({
+      //   url: "../mingpcha/index"
+      // })
     } else if (_this.data.shareGoods) {
       wx.navigateTo({
         url: "../goods_detail/goods_detail?title=" + _this.data.shareGoods
@@ -257,7 +260,7 @@ Page({
       code_id = decodeURIComponent(options.code_id);
       app.globalData.code_id = code_id;
     }
-    console.log(app.globalData.code_id)
+    // console.log(app.globalData.code_id)
 
     if (options.status) {
       status = decodeURIComponent(options.status);

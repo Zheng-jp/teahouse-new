@@ -41,6 +41,7 @@ Page({
     address: 0,
     limitations_show: null, //是否有限时限购
     limitations_shows: [],
+    navigationBarTitle: '商品详情'
   },
   labelItemTap: function (e) {
     // console.log(e)

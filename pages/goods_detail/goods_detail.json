@@ -1,6 +1,10 @@
 {
-    "navigationBarTitleText": "商品详情",
-    "navigationBarBackgroundColor": "#303030",
-    "backgroundTextStyle": "light",
-    "navigationBarTextStyle": "white"
-  }
+  "usingComponents": {
+    "navBar": "../../component/navbar/navbar"
+  },
+  "navigationBarTitleText": "商品详情",
+  "navigationBarBackgroundColor": "#303030",
+  "backgroundTextStyle": "light",
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom"
+}

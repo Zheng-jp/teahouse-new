@@ -429,7 +429,7 @@ function zxOption(x_data, bar_data, line_data, type) {
   return option;
 }
 //对比折线图
-function dbOption( dataArr, type) {
+function dbOption(dataArr, type) {
   let option = {
     backgroundColor: "#fff",
     color: "#FF9F7F",
@@ -625,9 +625,9 @@ function setOption5(chart, _this, dataArr) {
 }
 function setOption6(chart, _this, dataArr) {
   let option;
-  option = dbOption( dataArr, 2);
+  option = dbOption(dataArr, 2);
   chart.setOption(option);
-  
+
 }
 // 获取当前时间
 function getCurrentTime(_this) {
@@ -868,7 +868,7 @@ Page({
         });
       }
     });
-    app.postData(app.globalData.tiltes + 'get_outside_humiture', {house_name: house_name}).then(res => {
+    app.postData(app.globalData.tiltes + 'get_outside_humiture', { house_name: house_name }).then(res => {
       a.setData({
         outTemp: res.data.tem,
         outHumi: res.data.humidity,
@@ -956,6 +956,7 @@ Page({
       const start = app.formatDate(new Date() / 1000 - 604800 + 86400);
       this.getHistoryData(start, end);
     } else {
+      _this.startDb();
       // _this.initFive();
 
       // _this.initSix();
@@ -1246,7 +1247,7 @@ Page({
           for (let u = 0; u < res.data.length; u++) {
             let unis = false;
             if (res.data[u].length > 0) {
-              console.log(res.data[u])
+              // console.log(res.data[u])
               nameArr.push(res.data[u][0].year)
               for (let e = 0; e < t.data.monthsList.length; e++) {
                 unis = true;
@@ -1295,8 +1296,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var _this = this;
+    var _this = this, dbStore;
     _this.getVideo(options.store_name);
+
     // 获取设备信息 （用户登录接口）
     // userLogin(this);
 
@@ -1312,10 +1314,12 @@ Page({
       // console.log(t)
       if (t.status == "1") {
         for (let u = 0; u < t.data.length; u++) {
-          t.data[u].isSel = false;
+          if(t.data[u].store_name == options.store_name) t.data[u].isSel = true, dbStore = t.data[u].instrument_number;
+          else t.data[u].isSel = false;
         }
         _this.setData({
-          houseList: t.data
+          houseList: t.data,
+          dbHouse: dbStore,
         })
       }
 
@@ -1451,7 +1455,7 @@ Page({
       return chart;
     });
   },
-  initSix: function ( dataArr) { //初始化第4个图表
+  initSix: function (dataArr) { //初始化第4个图表
     var _this = this;
     this.sixComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
