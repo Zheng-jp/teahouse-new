@@ -54,7 +54,7 @@
                 <view style="text-align:center;margin: 30rpx 0;">实时仓储温度（℃）</view>
                 <ec-canvas id="mychart-one" canvas-id="mychart-multi-one" ec="{{ ecOne }}"></ec-canvas>
                 <view class="text">
-                    <view style="font-size: 32rpx;color: #AAAAAA;margin-bottom: 30rpx;">
+                    <!-- <view style="font-size: 32rpx;color: #AAAAAA;margin-bottom: 30rpx;">
                         最佳温度区间
                     </view>
                     <view class="wd-line"></view>
@@ -62,14 +62,14 @@
                         <view style="font-size: 18px;color: #70B603;">20℃</view>
                         <view style="flex:1;"></view>
                         <view style="font-size: 18px;color: #70B603;">28℃</view>
-                    </view>
+                    </view> -->
                     <view class="tips" bind:tap="close">小贴士：为什么要选择专业仓储？</view>
                 </view>
             </view>
             <view class="temp-echarts">
                 <view style="text-align:center;margin: 30rpx 0;">实时仓储湿度（%）</view>
                 <ec-canvas id="mychart-two" canvas-id="mychart-multi-two" ec="{{ ecTwo }}"></ec-canvas>
-                <view class="text">
+                <!-- <view class="text">
                     <view style="font-size: 32rpx;color: #AAAAAA;margin-bottom: 30rpx;">
                         最佳湿度区间
                     </view>
@@ -79,7 +79,7 @@
                         <view style="flex:1;"></view>
                         <view style="font-size: 18px;color: #F3880C;">65%</view>
                     </view>
-                </view>
+                </view> -->
             </view>
         </view>
     </swiper-item>
