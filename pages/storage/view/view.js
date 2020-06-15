@@ -547,7 +547,7 @@ Page({
           code_id: app.globalData.code_id
         },
         success: function (res) {
-          console.log(res)
+          // console.log(res)
           switch (res.data.code) {
             case 1:
               that.showStorageData();
@@ -582,6 +582,7 @@ Page({
             default:
               break;
           }
+          app.globalData.code_id = "";
           wx.showToast({
             title: title,
             icon: 'none',
@@ -606,6 +607,7 @@ Page({
           if (res.data.code == 1) {
             that.showStorageData();
             taht.totalValue();
+            app.globalData.share_id = "";
           }
           wx.showToast({
             title: res.data.msg,

@@ -84,15 +84,6 @@
             <template is="wxParse" data="{{wxParseData:item}}" />
           </swiper-item>
         </block>
-        <!-- <swiper-item>
-                    <template is="wxParse" data="{{wxParseData:proDom.nodes}}"/>
-                </swiper-item>
-                <swiper-item>
-                    <template is="wxParse" data="{{wxParseData:teamDom.nodes}}"/>
-                </swiper-item>
-                <swiper-item>
-                    <template is="wxParse" data="{{wxParseData:textDom.nodes}}"/>
-                </swiper-item> -->
         <swiper-item>
           <view class="tk"  wx:for="{{proArr[0].evolution}}" wx:key >
             <view>

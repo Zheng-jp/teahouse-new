@@ -20,11 +20,11 @@ function wdOption(realValue, type) {
     series: [{
       type: 'gauge',
       radius: '79%',
-      min: 0, //最小刻度
-      max: 100, //最大刻度
+      min: (type == 1 ? -30 : 0), //最小刻度
+      max: (type == 1 ? 70 : 100), //最大刻度
       splitNumber: 10, //刻度数量
-      startAngle: '269.99',
-      endAngle: '-90',
+      startAngle: (type == 1 ? '379.99' : '269.99'),
+      endAngle: (type == 1 ? '20' : '-90'),
       axisLine: {
         show: true,
         lineStyle: {
@@ -40,29 +40,56 @@ function wdOption(realValue, type) {
         distance: 0,
         fontSize: 12,
         formatter: function (v) {
-          switch (v + '') {
-            case '0':
-              return '0';
-            case '10':
-              return '10';
-            case '20':
-              return '20';
-            case '30':
-              return '30';
-            case '40':
-              return '40';
-            case '50':
-              return '50';
-            case '60':
-              return '60';
-            case '70':
-              return '70';
-            case '80':
-              return '80';
-            case '90':
-              return '90';
-            case '100':
-              return '0';
+          if (type == 1) {
+            switch (v + '') {
+              case '-30':
+                return '-30';
+              case '-20':
+                return '-20';
+              case '-10':
+                return '-10';
+              case '0':
+                return '0';
+              case '10':
+                return '10';
+              case '20':
+                return '20';
+              case '30':
+                return '30';
+              case '40':
+                return '40';
+              case '50':
+                return '50';
+              case '60':
+                return '60';
+              case '70':
+                return '-30';
+            }
+          } else {
+            switch (v + '') {
+              case '0':
+                return '0';
+              case '10':
+                return '10';
+              case '20':
+                return '20';
+              case '30':
+                return '30';
+              case '40':
+                return '40';
+              case '50':
+                return '50';
+              case '60':
+                return '60';
+              case '70':
+                return '70';
+              case '80':
+                return '80';
+              case '90':
+                return '90';
+              case '100':
+                return '0';
+            }
           }
         }
       }, //刻度标签。
@@ -124,8 +151,8 @@ function wdOption(realValue, type) {
       type: "gauge",
       radius: '79%',
       splitNumber: 10,
-      startAngle: '269.99',
-      endAngle: '-90',
+      startAngle: (type == 1 ? '379.99' : '269.99'),
+      endAngle: (type == 1 ? '20' : '-90'),
       z: 11,
       "axisLine": {
         "lineStyle": {
@@ -176,10 +203,18 @@ function wdOption(realValue, type) {
     },
     ]
   };
+  if (type == 1) {
+    option.series[1].axisLine.lineStyle.color = [
+      [(data.value / 100 > 0 ? 0.3 : 0.3 - Math.abs(data.value / 100)), '#EFF0EB'],
+      [(data.value / 100 > 0 ? data.value / 100 + 0.3 : Math.abs(data.value / 100) + Math.abs(0.3 + data.value / 100)), (type == 1 ? data.color.wdColor : data.color.sdColor)],
+      [1, ("rgb(239,240,235)")]
+    ];
+  }
   return option;
 }
-function dbOption(onList, outList, maxL, type) {
-  var x_data = ['2时', '4时', '6时', '8时', '10时', '12时', '14时', '16时', '18时', '20时', '22时', '24时']
+//24小时对比
+function tfDbOption(onList, outList, type) {
+  var x_data = ['0', '', '2', '', '4', '', '6', '', '8', '', '10', '', '12', '', '14', '', '16', '', '18', '', '20', '', '22', '', '24']
 
   let option = {
     backgroundColor: "#fff",
@@ -209,14 +244,15 @@ function dbOption(onList, outList, maxL, type) {
           color: '#666'
         }
       },
+      boundaryGap: true,
       type: 'category',
       axisTick: {
-        show: false,
+        show: true,
         alignWithLabel: true,
       },
       axisLabel: {
         interval: 0,
-        rotate: 40
+        rotate: 0
       },
       data: x_data
     }],
@@ -245,7 +281,7 @@ function dbOption(onList, outList, maxL, type) {
         formatter: '{value}' + (type == 1 ? '℃' : '%'),
         color: "#666"
       },
-      max: maxL,
+      // max: maxL,
       position: 'left',
     },
     {
@@ -275,7 +311,7 @@ function dbOption(onList, outList, maxL, type) {
           type: "dotted"
         }
       },
-      max: maxL,
+      // max: maxL,
       position: 'right'
     }
     ],
@@ -283,7 +319,7 @@ function dbOption(onList, outList, maxL, type) {
       name: (type == 1 ? '温度' : '湿度'),
       type: 'bar',
       smooth: true,
-      barWidth: 10,
+      barWidth: 8,
       yAxisIndex: 0,
       itemStyle: {
         color: "rgb(112,182,3)"
@@ -607,6 +643,10 @@ function setOption2(chart, _this) {
   });
 }
 
+//温度 24小时对比
+function tfHourOption(chart, _this) {
+
+}
 
 // 历史数据温度  第二个swiper-item
 function setOption3(chart, _this, date, yArr, temArr) {
@@ -618,6 +658,7 @@ function setOption4(chart, _this, date, yArr, humArr) {
   let option = zxOption(date, yArr, humArr, 2);
   chart.setOption(option);
 }
+//对比
 function setOption5(chart, _this, dataArr) {
   let option;
   option = dbOption(dataArr, 1);
@@ -626,6 +667,19 @@ function setOption5(chart, _this, dataArr) {
 function setOption6(chart, _this, dataArr) {
   let option;
   option = dbOption(dataArr, 2);
+  chart.setOption(option);
+
+}
+//24小时
+function setOption7(chart, _this, dataArr, temArr) {
+  let option;
+  option = tfDbOption(dataArr, temArr, 1);
+  chart.setOption(option);
+
+}
+function setOption8(chart, _this, dataArr, humArr) {
+  let option;
+  option = tfDbOption(dataArr, humArr, 2);
   chart.setOption(option);
 
 }
@@ -771,6 +825,8 @@ Page({
     ecTwo: {
       lazyLoad: true
     },
+    ecTfOne: {},
+    ecTfTwo: {},
     ecThree: {},
     ecFour: {},
     currentTab: 0,
@@ -811,6 +867,9 @@ Page({
   bindCheckHistory: function () {
     const etime = new Date(this.data.edate).getTime();
     const stime = new Date(this.data.sdate).getTime();
+    // const etime = new Date(this.data.edate).getTime() + 57599000;
+    // const stime = new Date(this.data.sdate).getTime() - 28800000;
+
     if (etime - stime > 1209600000) {
       wx.showToast({
         title: '查询区间不能超过14天',
@@ -824,7 +883,7 @@ Page({
         duration: 2000
       })
     } else {
-      this.getHistoryData(this.data.sdate, this.data.edate);
+      this.getHistoryData(app.formatDate(new Date(stime) / 1000), app.formatDate(new Date(etime) / 1000), 2);
     }
   },
   // 查询7天、14天历史数据
@@ -837,17 +896,17 @@ Page({
       // 七天数据
       const end = app.formatDate(new Date() / 1000);
       const start = app.formatDate(new Date() / 1000 - 604800 + 86400);
-      this.getHistoryData(start, end);
+      this.getHistoryData(start, end, 2);
     } else if (curr == 1) {
       // 十四天数据
       const end = app.formatDate(new Date() / 1000);
       const start = app.formatDate(new Date() / 1000 - 1209600 + 86400);
-      this.getHistoryData(start, end);
+      this.getHistoryData(start, end, 2);
     } else {
       // 三十天数据
       const end = app.formatDate(new Date() / 1000);
       const start = app.formatDate(new Date() / 1000 - 2592000 + 86400);
-      this.getHistoryData(start, end);
+      this.getHistoryData(start, end, 2);
     }
   },
   getHumitureNew: function (house_name) {
@@ -876,9 +935,9 @@ Page({
     })
   },
   // 获取设备历史数据
-  getHistoryData: function (stime, etime) {
-    console.log(stime, etime)
-    let _this = this, temArr = new Array(), humArr = new Array();
+  getHistoryData: function (stime, etime, type) {
+    // console.log(stime, etime)
+    let _this = this, obArr = new Array(), temArr = new Array(), humArr = new Array();
 
     wx.request({
       url: app.globalData.tiltes + 'get_humiture_list',
@@ -901,18 +960,32 @@ Page({
         } else {
           // _this.data.yArr3 = data.data[1];
           // _this.data.yArr4 = data.data[2];
-          data.data[0] = _this.unique(data.data[0]);
-          for (let e = 0; e < data.data[0].length; e++) {
-            data.data[0][e] = (data.data[0][e]).split('2020/')[1];
+
+          if (type == 2) { //历史记录
+
+            data.data[0] = _this.unique(data.data[0]);
+            for (let e = 0; e < data.data[0].length; e++) { //获取x轴坐标数组
+              data.data[0][e] = (data.data[0][e]).split('2020/')[1];
+            }
+            data.data[1] = _this.selArr(data.data[1], data.data[0].length, 1);
+            data.data[2] = _this.selArr(data.data[2], data.data[0].length, 1);
+            obArr = _this.selArr(data.data[3], data.data[0].length, 2);
+            for (let i = 0; i < obArr.length; i++) {
+              temArr.push(obArr[i].tem);
+              humArr.push(obArr[i].humidity.split('%')[0]);
+            }
+            _this.initThree(data.data[0], data.data[1], temArr);
+            _this.initFour(data.data[0], data.data[2], humArr);
+          } else { //24小时对比
+            for (let i = 0; i < data.data[3].length; i++) {
+              temArr.push(data.data[3][i].tem);
+              humArr.push(data.data[3][i].humidity.split('%')[0]);
+            }
+            _this.initTfOne(data.data[1], temArr);
+            _this.initTfTwo(data.data[2], humArr);
           }
-          data.data[1] = _this.selArr(data.data[1], data.data[0].length);
-          data.data[2] = _this.selArr(data.data[2], data.data[0].length);
-          for (let i = 0; i < data.data[3].length; i++) {
-            temArr.push(data.data[3][i].tem);
-            humArr.push(data.data[3][i].humidity.split('%')[0]);
-          }
-          _this.initThree(data.data[0], data.data[1], temArr);
-          _this.initFour(data.data[0], data.data[2], humArr);
+
+
         }
       }
     })
@@ -930,32 +1003,36 @@ Page({
     return arr;
   },
   //随机挑选日期
-  selArr: function (arr, length) {
-    let newArr = new Array();
+  selArr: function (arr, length, type) {
+    let newArr = new Array(), obj = { tem: "", humidity: "%" };
     for (let index = 0; index < length; index++) {
-      newArr.push(arr[index * 12])
+      if (type == 1) newArr.push((arr[(index * 2 + 1) / 2 * 24] != undefined ? arr[(index * 2 + 1) / 2 * 24 - 12] : (arr[(index * 2 + 1) / 2 * 24] == undefined ? '' : arr[(index * 2 + 1) / 2 * 24])));
+      else newArr.push((arr[(index * 2 + 1) / 2 * 24] != undefined ? arr[(index * 2 + 1) / 2 * 24 - 12] : (arr[(index * 2 + 1) / 2 * 24] == undefined ? obj : '')));
     }
     return newArr;
   },
 
   clickTab: function (e) {
     // 切换选项卡
-    var current = e.target.dataset.current,
-      _this = this;
+    let current = e.target.dataset.current,
+      _this = this, ends = app.formatDate(new Date() / 1000), starts = app.formatDate(new Date(new Date().toLocaleDateString()).getTime() / 1000);
+    // console.log(starts)
     if (_this.data.currentTab !== current) {
       _this.setData({
         currentTab: current,
         isLive: false
       })
     }
-    if (current == 0) {
+    if (current == 0) { //温湿度
       _this.initOne();
       _this.initTwo();
-    } else if (current == 1) {
-      const end = app.formatDate(new Date() / 1000);
-      const start = app.formatDate(new Date() / 1000 - 604800 + 86400);
-      this.getHistoryData(start, end);
-    } else {
+    } else if (current == 1) {// 24
+      // _this.initTfOne(starts, ends);
+      this.getHistoryData(starts, ends, 1);
+    } else if (current == 2) { //历史
+      let startnew = app.formatDate(new Date(new Date().toLocaleDateString()).getTime() / 1000 - 604800 + 86400);
+      this.getHistoryData(startnew, ends, 2);
+    } else {// 对比
       _this.startDb();
       // _this.initFive();
 
@@ -974,7 +1051,7 @@ Page({
   },
   //获取时间日期
   sbindMultiPickerChange: function (e) {
-    console.log(e)
+    // console.log(e)
     this.setData({
       multiIndex: e.detail.value
     })
@@ -1080,7 +1157,7 @@ Page({
         store_house_name: name
       },
       success: function (res) {
-        console.log(res)
+        // console.log(res)
         if (res.data.code == 1) {
           _this.setData({
             videoUrl: res.data.data.urls
@@ -1298,7 +1375,9 @@ Page({
   onLoad: function (options) {
     var _this = this, dbStore;
     _this.getVideo(options.store_name);
-
+    wx.setNavigationBarTitle({
+      title: '实时详情(' + (options.store_name.length > 5 ? options.store_name.slice(0, 5) + '...' : options.store_name) + ')'
+    })
     // 获取设备信息 （用户登录接口）
     // userLogin(this);
 
@@ -1314,7 +1393,7 @@ Page({
       // console.log(t)
       if (t.status == "1") {
         for (let u = 0; u < t.data.length; u++) {
-          if(t.data[u].store_name == options.store_name) t.data[u].isSel = true, dbStore = t.data[u].instrument_number;
+          if (t.data[u].store_name == options.store_name) t.data[u].isSel = true, dbStore = t.data[u].instrument_number;
           else t.data[u].isSel = false;
         }
         _this.setData({
@@ -1334,7 +1413,7 @@ Page({
     //设置默认的年份
     // 选择picker 初始化日期为当前 年月日时分秒
     _this.setData({
-      sdate: app.formatDate(new Date() / 1000 - 3600),
+      sdate: app.formatDate(new Date(new Date().toLocaleDateString()).getTime() / 1000),
       edate: app.formatDate(new Date() / 1000),
       house_name: options.store_name.slice(0, 2),
       choose_year: this.data.multiArray[0][0],
@@ -1363,6 +1442,8 @@ Page({
     this.fourComponent = this.selectComponent('#mychart-four');
     this.fiveComponent = this.selectComponent('#mychart-five');
     this.sixComponent = this.selectComponent('#mychart-six');
+    this.tfOneComponent = this.selectComponent('#mychart-tfOne');
+    this.tfTwoComponent = this.selectComponent('#mychart-tfTwo');
     this.initOne();
     this.initTwo();
   },
@@ -1464,6 +1545,32 @@ Page({
       });
 
       setOption6(chart, _this, dataArr);
+      this.chart = chart;
+      return chart;
+    });
+  },
+  initTfOne: function (dataArr, temArr) { //初始化24小时第一个图表
+    var _this = this;
+    this.tfOneComponent.init((canvas, width, height) => {
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+
+      setOption7(chart, _this, dataArr, temArr);
+      this.chart = chart;
+      return chart;
+    });
+  },
+  initTfTwo: function (dataArr, humArr) { //初始化24小时第二图表
+    var _this = this;
+    this.tfTwoComponent.init((canvas, width, height) => {
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+
+      setOption8(chart, _this, dataArr, humArr);
       this.chart = chart;
       return chart;
     });

@@ -74,7 +74,7 @@
 <view class="pm-content" wx:if="{{pmKey}}">
   <view class="pm-account">
     <view class="pm-inner-view" data-tapIndex="0" bindtap="selectMethod">
-      <image src="http://teahouse.siring.cn/u1272.png"></image>
+      <image src="http://zhihuichacang.com/u1272.png"></image>
       <view class="pm-o">
         <view>账户支付</view>
         <text class="pm-y">(余额：￥{{balance}})</text>
@@ -83,7 +83,7 @@
   </view>
   <view class="pm-wxpay">
     <view class="pm-inner-view" data-tapIndex="1" bindtap="selectMethod">
-      <image src="http://teahouse.siring.cn/u1273.png"></image>
+      <image src="http://zhihuichacang.com/u1273.png"></image>
       <view class="pm-o">微信支付</view>
     </view>
   </view>

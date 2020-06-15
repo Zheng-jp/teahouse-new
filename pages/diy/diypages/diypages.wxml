@@ -1061,7 +1061,7 @@
                          <image class="price_img" style='margin-bottom:-1rpx;' src="{{item.member_grade_img}}" mode="widthFix" >
                              </image>
                        ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
-                        <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text>
+                        <!-- <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text> -->
                         <!-- <text class="goodsSaleNum">销量：{{item.sale_num}}</text> -->
                     </view>
                 </view>
@@ -1071,7 +1071,7 @@
             <block wx:if="{{style.showtype==0}}">
                 <view bindtap="redirectto" class="display-block mt-20" data-link="{{item.linkurl}}" data-linktype="page" style="width:50%;box-sizing:border-box;padding:0 {{style.paddingleft}}rpx" wx:for="{{data}}" wx:key="index">
                     <image mode="{{params.imgh_is==1?'widthFix':'aspectFill'}}" src="{{item.thumb}}" style="display:block;width:100%;position:relative;overflow:hidden;height:{{params.imgh_is==2?(730-4*style.paddingleft)/2:''}}{{params.imgh_is==3?(730-4*style.paddingleft)/4:''}}{{params.imgh_is==4?(730-4*style.paddingleft)*3/8:''}}rpx">
-                        <block wx:if="{{params.showicon==1}}">
+                        <block wx:if="{{params.showicon==1}}"x>
                             <view class="product_tb1" wx:if="{{style.iconstyle=='triangle'}}">
                                 <text wx:if="{{style.goodsicon=='recommand'}}">推荐</text>
                                 <text wx:if="{{style.goodsicon=='hotsale'}}">热销</text>
@@ -1125,7 +1125,7 @@
                           <image class="price_img" style='margin-bottom:-1rpx;' src="{{item.member_grade_img}}" mode="widthFix" >
                              </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
-            <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text>
+            <!-- <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text> -->
                             <!-- <text class="goodsSaleNum">销量：{{item.sale_num}}</text> -->
                         </view>
                     </view>
@@ -1185,7 +1185,7 @@
                           <image class="price_img" style='margin-bottom:-1rpx;' src="{{item.member_grade_img}}" mode="widthFix" >
                              </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
-            <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text>
+            <!-- <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text> -->
                             <!-- <text class="goodsSaleNum">销量：{{item.sale_num}}</text> -->
                         </view>
                     </view>
@@ -1246,8 +1246,8 @@
                             <image class="price_img" style='margin-bottom:-1rpx;' src="{{item.member_grade_img}}" mode="widthFix" >
                              </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
-            <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text>
-                            <text class="goodsSaleNum">售{{item.sale_num}}</text>
+            <!-- <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text> -->
+                            <!-- <text class="goodsSaleNum">售{{item.sale_num}}</text> -->
                         </view>
                     </view>
                 </view>
@@ -1305,8 +1305,8 @@
                           <image class="price_img" style='margin-bottom:-1rpx;' src="{{item.member_grade_img}}" mode="widthFix" >
                              </image>
             ¥ <text class="goodsPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">{{item.price}}</text>
-            <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text>
-                            <text class="goodsSaleNum">售{{item.sale_num}}</text>
+            <!-- <text class="initPrice" style="{{style.liststyle!='block three'?'flex:1;':''}}">￥{{item.goods_bottom_money}}</text> -->
+                            <!-- <text class="goodsSaleNum">售{{item.sale_num}}</text> -->
                         </view>
                     </view>
                 </view>

@@ -4,9 +4,12 @@
         实时数据
     </view>
     <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">
-        历史数据
+        24小时
     </view>
     <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">
+        历史数据
+    </view>
+    <view class="swiper-tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="clickTab">
         对比数据
     </view>
 </view>
@@ -84,6 +87,18 @@
         </view>
     </swiper-item>
     <swiper-item class="overflowYauto" catchtouchmove="bindswipermove">
+        <view style="flex: 1; display: flex; flex-direction: column; overflow: auto;">
+            <view  style="height: 500rpx;flex:1;">
+                <view style="text-align:center;font-weight:700;margin-top:15rpx;">温度(°C)</view>
+                <ec-canvas id="mychart-tfOne" canvas-id="mychart-multi-tfOne" ec="{{ ecTfOne }}"></ec-canvas>
+            </view>
+            <view style="height: 500rpx;flex:1;">
+                <view style="text-align:center;font-weight:700;margin-top:15rpx;">湿度(%)</view>
+                <ec-canvas id="mychart-tfTwo" canvas-id="mychart-multi-tfTwo" ec="{{ ecTfTwo }}"></ec-canvas>
+            </view>
+        </view>
+    </swiper-item>
+    <swiper-item class="overflowYauto" catchtouchmove="bindswipermove">
         <view>
             <view class="history-nav">
                 <view class="history-date">
@@ -110,10 +125,10 @@
                 </view>
             </view>
             <view style="flex: 1; display: flex; flex-direction: column; overflow: auto;">
-                <view  style="height: 500rpx;flex:1;width:700rpx;">
+                <view style="height: 500rpx;flex:1;width:700rpx;">
                     <ec-canvas id="mychart-three" canvas-id="mychart-multi-three" ec="{{ ecThree }}"></ec-canvas>
                 </view>
-                <view  style="height: 500rpx;flex:1;width:700rpx;">
+                <view style="height: 500rpx;flex:1;width:700rpx;">
                     <ec-canvas id="mychart-four" canvas-id="mychart-multi-four" ec="{{ ecFour }}"></ec-canvas>
                 </view>
             </view>
@@ -123,13 +138,17 @@
         <view class="house-main">
             <view class="sel-title">选择仓库</view>
             <block wx:for="{{houseList}}" wx:key="index">
-                <view class="house-name {{item.isSel? 'isSel':''}}" data-id="{{item.instrument_number}}" data-index="{{index}}" data-type="1" bindtap="selHouse">{{item.store_name}}</view>
+                <view class="house-name {{item.isSel? 'isSel':''}}" data-id="{{item.instrument_number}}" data-index="{{index}}" data-type="1" bindtap="selHouse">
+                    {{item.store_name}}
+                </view>
             </block>
         </view>
         <view class="house-main">
             <view class="sel-title">选择年份</view>
-             <block wx:for="{{yearArr}}" wx:key="index">
-                <view class="house-name {{item.isSel? 'isSel':''}}" data-id="{{item.year}}" data-index="{{index}}" data-type="2" bindtap="selHouse">{{item.year}}</view>
+            <block wx:for="{{yearArr}}" wx:key="index">
+                <view class="house-name {{item.isSel? 'isSel':''}}" data-id="{{item.year}}" data-index="{{index}}" data-type="2" bindtap="selHouse">
+                    {{item.year}}
+                </view>
             </block>
         </view>
         <view class="tips-box">
@@ -141,11 +160,15 @@
         <view class="line"></view>
         <view style="flex:1; display: flex;flex-direction: column;  overflow: auto;">
             <view class="temp-echarts">
-                <view style="text-align:center;font-weight:700;margin-top:15rpx;">年份仓储月平均温度(°C)对比</view>
+                <view style="text-align:center;font-weight:700;margin-top:15rpx;">
+                    年份仓储月平均温度(°C)对比
+                </view>
                 <ec-canvas id="mychart-five" canvas-id="mychart-multi-five" ec="{{ ecOne }}"></ec-canvas>
             </view>
             <view class="temp-echarts">
-                <view style="text-align:center;font-weight:700;margin-top:15rpx;">年份仓储月平均湿度(%)对比</view>
+                <view style="text-align:center;font-weight:700;margin-top:15rpx;">
+                    年份仓储月平均湿度(%)对比
+                </view>
                 <ec-canvas id="mychart-six" canvas-id="mychart-multi-six" ec="{{ ecOne }}"></ec-canvas>
             </view>
         </view>
