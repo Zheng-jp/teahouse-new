@@ -88,12 +88,16 @@
     </swiper-item>
     <swiper-item class="overflowYauto" catchtouchmove="bindswipermove">
         <view style="flex: 1; display: flex; flex-direction: column; overflow: auto;">
-            <view  style="height: 500rpx;flex:1;">
-                <view style="text-align:center;font-weight:700;margin-top:15rpx;">温度(°C)</view>
+            <view style="flex:1;width:720rpx;position: relative;">
+                <view style="text-align:center;font-weight:700;;position: absolute;top:20rpx;left:45%;z-index:999;">
+                    温度(°C)
+                </view>
                 <ec-canvas id="mychart-tfOne" canvas-id="mychart-multi-tfOne" ec="{{ ecTfOne }}"></ec-canvas>
             </view>
-            <view style="height: 500rpx;flex:1;">
-                <view style="text-align:center;font-weight:700;margin-top:15rpx;">湿度(%)</view>
+            <view style="flex:1; width:720rpx; position: relative;">
+                <view style="text-align:center;font-weight:700; position: absolute;top:20rpx;left:45%;z-index:999;">
+                    湿度(%)
+                </view>
                 <ec-canvas id="mychart-tfTwo" canvas-id="mychart-multi-tfTwo" ec="{{ ecTfTwo }}"></ec-canvas>
             </view>
         </view>

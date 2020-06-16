@@ -343,7 +343,7 @@ function tfDbOption(onList, outList, type) {
   return option;
 }
 //折线图
-function zxOption(x_data, bar_data, line_data, type) {
+function zxOption(x_data, bar_data, line_data, type, qb) {
   let option = {
     backgroundColor: "#fff",
     color: "#FF9F7F",
@@ -374,12 +374,12 @@ function zxOption(x_data, bar_data, line_data, type) {
       },
       type: 'category',
       axisTick: {
-        show: false,
+        show: true,
         alignWithLabel: true
       },
       axisLabel: {
         interval: 0,
-        rotate: 40
+        rotate: (qb == 1 ? 40 : 0)
       },
       data: x_data
     }],
@@ -643,19 +643,15 @@ function setOption2(chart, _this) {
   });
 }
 
-//温度 24小时对比
-function tfHourOption(chart, _this) {
-
-}
 
 // 历史数据温度  第二个swiper-item
 function setOption3(chart, _this, date, yArr, temArr) {
-  let option = zxOption(date, yArr, temArr, 1);
+  let option = zxOption(date, yArr, temArr, 1, 1);
   chart.setOption(option);
 }
 // 历史数据湿度
 function setOption4(chart, _this, date, yArr, humArr) {
-  let option = zxOption(date, yArr, humArr, 2);
+  let option = zxOption(date, yArr, humArr, 2, 1);
   chart.setOption(option);
 }
 //对比
@@ -673,13 +669,15 @@ function setOption6(chart, _this, dataArr) {
 //24小时
 function setOption7(chart, _this, dataArr, temArr) {
   let option;
-  option = tfDbOption(dataArr, temArr, 1);
+  var x_data = ['0', '', '2', '', '4', '', '6', '', '8', '', '10', '', '12', '', '14', '', '16', '', '18', '', '20', '', '22', '', '24'];
+  option = zxOption(x_data, dataArr, temArr, 1, 2);
   chart.setOption(option);
 
 }
 function setOption8(chart, _this, dataArr, humArr) {
   let option;
-  option = tfDbOption(dataArr, humArr, 2);
+  var x_data = ['0', '', '2', '', '4', '', '6', '', '8', '', '10', '', '12', '', '14', '', '16', '', '18', '', '20', '', '22', '', '24'];
+  option = zxOption(x_data, dataArr, humArr, 2, 2);
   chart.setOption(option);
 
 }
