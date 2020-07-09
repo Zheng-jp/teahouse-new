@@ -35,7 +35,7 @@ view{overflow: initial !important;}
 /* tabBox section */
 .tabBox{padding-bottom:110rpx;}
 .tabBox_iphone{padding-bottom:180rpx;}
-.tab-hd{display: flex; align-items: flex-start; justify-content: space-around; height: 78rpx; line-height: 74rpx; border-bottom: 2rpx solid #e4e4e4; margin-bottom: 4rpx;}
+.tab-hd{display: flex; align-items: flex-start; justify-content: space-around; height: 78rpx; line-height: 74rpx; border-bottom: 2rpx solid #e4e4e4; margin-bottom: 8rpx;}
 .tab-hd .active{color: #f10; border-bottom: 4rpx solid #f10;}
 .tab-bd{min-height: 1000rpx;}
 .tab-bd swiper-item{padding: 0 20rpx; box-sizing: border-box;}
@@ -105,3 +105,5 @@ view{overflow: initial !important;}
 .sku-btns{position: absolute; bottom: 0; left: 0; width: 100%; z-index: 999;}
 .sku-btns .support{height: 100rpx; text-align: center; line-height: 100rpx; color: #fff; background-color: #ff6700;}
 .sku-btns .outstockbtn{background-color: rgba(0,0,0,.3);}
+
+.hidden{display: none;}

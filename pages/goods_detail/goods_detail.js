@@ -307,8 +307,8 @@ Page({
     let that = this, stock;
     stock = that.data.stock;
     var num = this.data.num;
-    if(num >= stock) {
-        
+    if (num >= stock) {
+
       num = stock;
     } else {
       // 不作过多考虑自增1  
@@ -330,9 +330,9 @@ Page({
       num: num
     });
   },
-  shift_out: function(){
+  shift_out: function () {
     var num = this.data.num, stock = this.data.stock;
-    if(Number(num) >= Number(stock)) {
+    if (Number(num) >= Number(stock)) {
       num = stock;
     }
     this.setData({
@@ -409,75 +409,75 @@ Page({
       //     }
       //   })
       // } else {
-        if (that.data.goods.goods_standard == 0) {
-          var goods_standard_id = '';
+      if (that.data.goods.goods_standard == 0) {
+        var goods_standard_id = '';
+        that.setData({
+          select: '',
+        });
+      } else {
+        var goods_standard_id = that.data.id;
+      }
+      if (that.data.select == '规格') {
+
+        this.setData({
+          mask_show: true,
+        })
+        if (that.data.id != 0) {
           that.setData({
-            select: '',
-          });
-        } else {
-          var goods_standard_id = that.data.id;
-        }
-        if (that.data.select == '规格') {
-
-          this.setData({
-            mask_show: true,
+            select: that.data.goods.goods_standard[0].name
           })
-          if (that.data.id != 0) {
-            that.setData({
-              select: that.data.goods.goods_standard[0].name
-            })
-          } else {
-            wx.showToast({
-              title: '请选择规格',
-              icon: 'none',
-            })
-          }
         } else {
-          var chars = [];
-          // var char = {};
-          var shop_ids = {}
-          var good_ids = {}
-          var ids = {}
-          var nums = {}
-          var shop_id = new Array();
-          var good_id = new Array();
-          var id = new Array();
-          var num = new Array();
-          //  添加good_id字段到传值数组
-          good_id.push(that.data.good_id);
-          if (that.data.id == 0 || that.data.id == '') {
-            id.push(0);
-          } else {
-            id.push(that.data.id);
-          }
-
-          num.push(that.data.num);
-          shop_id.push(0);
-          shop_ids['shop_id'] = shop_id;
-          good_ids['good_id'] = good_id;
-          ids['guige'] = id;
-          nums['num'] = num;
-          chars.push(shop_ids);
-          chars.push(good_ids);
-          chars.push(ids);
-          chars.push(nums);
-          let userStr = JSON.stringify(chars);
-          wx.navigateTo({
-            url: '../settlement/settlement?title=' + userStr,
-            success: function (res) {
-              // success
-              console.log("nihao////跳转成功")
-            },
-            fail: function () {
-              // fail
-              console.log("nihao////跳转失败")
-            },
-            complete: function () {
-              // complete
-              console.log("nihao////跳转行为结束，未知成功失败")
-            }
+          wx.showToast({
+            title: '请选择规格',
+            icon: 'none',
           })
         }
+      } else {
+        var chars = [];
+        // var char = {};
+        var shop_ids = {}
+        var good_ids = {}
+        var ids = {}
+        var nums = {}
+        var shop_id = new Array();
+        var good_id = new Array();
+        var id = new Array();
+        var num = new Array();
+        //  添加good_id字段到传值数组
+        good_id.push(that.data.good_id);
+        if (that.data.id == 0 || that.data.id == '') {
+          id.push(0);
+        } else {
+          id.push(that.data.id);
+        }
+
+        num.push(that.data.num);
+        shop_id.push(0);
+        shop_ids['shop_id'] = shop_id;
+        good_ids['good_id'] = good_id;
+        ids['guige'] = id;
+        nums['num'] = num;
+        chars.push(shop_ids);
+        chars.push(good_ids);
+        chars.push(ids);
+        chars.push(nums);
+        let userStr = JSON.stringify(chars);
+        wx.navigateTo({
+          url: '../settlement/settlement?title=' + userStr,
+          success: function (res) {
+            // success
+            console.log("nihao////跳转成功")
+          },
+          fail: function () {
+            // fail
+            console.log("nihao////跳转失败")
+          },
+          complete: function () {
+            // complete
+            console.log("nihao////跳转行为结束，未知成功失败")
+          }
+        })
+      }
       // }
     } else {
       wx.showToast({
@@ -563,7 +563,7 @@ Page({
       method: "post",
       success: function (res) {
         let arr = [],
-          kc, hot, cx, qc,elements;
+          kc, hot, cx, qc, elements;
         let goods_sign = res.data.data[0].goods_sign;
         for (let i in goods_sign) {
           if (goods_sign[i].text == '可存' && goods_sign[i].check == '1' && goods_sign[i].check != undefined) {
@@ -608,34 +608,34 @@ Page({
         if (goods.goods_standard[0].id == undefined || goods.goods_standard[0].id == null) {
           id = goods.goods_standard;
         } else {
-          for(let i = 0; i < goods.goods_standard.length; i ++) {
+          for (let i = 0; i < goods.goods_standard.length; i++) {
             goods.goods_standard[i].element = that.getGuige(goods.goods_standard[i].element);
           }
-          if (goods.goods_standard[0].stock == 0) {
-            for (let u = 0; u < goods.goods_standard.length; u++) {
-              if (goods.goods_standard[u].stock == 0) {
-                
-                id = goods.goods_standard[u + 1].id;
-                elements = goods.goods_standard[u + 1].element;
-                price = goods.goods_standard[u + 1].price;
-                stock = goods.goods_standard[u + 1].stock;
-                specifications = goods.goods_standard[u + 1].offer;
-                volume = goods.goods_standard[u + 1].volume;
-                images = goods.goods_standard[u + 1].images;
-                save = goods.goods_standard[u + 1].save;
-                break;
-              }
+
+          elements = goods.goods_standard[0].element;
+          id = goods.goods_standard[0].id;
+          price = goods.goods_standard[0].price;
+          stock = goods.goods_standard[0].stock;
+          specifications = goods.goods_standard[0].offer;
+          volume = goods.goods_standard[0].volume;
+          images = goods.goods_standard[0].images;
+          save = goods.goods_standard[0].save;
+
+          for (let u = 0; u < goods.goods_standard.length; u++) {
+            if (goods.goods_standard[u].stock == 0 || goods.goods_standard[u].status == 0) {
+
+              id = goods.goods_standard[u + 1].id;
+              elements = goods.goods_standard[u + 1].element;
+              price = goods.goods_standard[u + 1].price;
+              stock = goods.goods_standard[u + 1].stock;
+              specifications = goods.goods_standard[u + 1].offer;
+              volume = goods.goods_standard[u + 1].volume;
+              images = goods.goods_standard[u + 1].images;
+              save = goods.goods_standard[u + 1].save;
+              break;
             }
-          } else {
-            elements = goods.goods_standard[0].element;
-            id = goods.goods_standard[0].id;
-            price = goods.goods_standard[0].price;
-            stock = goods.goods_standard[0].stock;
-            specifications = goods.goods_standard[0].offer;
-            volume = goods.goods_standard[0].volume;
-            images = goods.goods_standard[0].images;
-            save = goods.goods_standard[0].save;
           }
+
 
         }
         that.setData({
@@ -725,7 +725,7 @@ Page({
 
       },
       complete: function () { }
- 
+
     });
     // wx.request({
     //   url: app.globalData.tiltes + 'limitations_show',
@@ -753,14 +753,14 @@ Page({
   /**
    * 提取规格
    */
-  getGuige: function(str) {
+  getGuige: function (str) {
     var strs = new Array(), element = ""; //定义一数组
-        strs = str.split(","); //字符分割
-        for (let i = 0; i < strs.length; i++) {
-          element += strs[i];
-          if (i % 2 != 0 && i < strs.length - 1) { element += '=' }
-        }
-        return element;
+    strs = str.split(","); //字符分割
+    for (let i = 0; i < strs.length; i++) {
+      element += strs[i];
+      if (i % 2 != 0 && i < strs.length - 1) { element += '=' }
+    }
+    return element;
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

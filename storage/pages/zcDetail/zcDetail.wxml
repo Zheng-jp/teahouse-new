@@ -12,7 +12,7 @@
       <view class="hd-info">
         <view class="hd-name">
           <text>{{item.project_name}}</text>
-        </view> 
+        </view>
         <view class="hdv">
           <view class="hd-bar">
             <view class="hd-bar-params">
@@ -33,7 +33,9 @@
                 <text>已预订</text>
               </view>
               <view class="fr">
-                <text class="stillTime" wx:if="{{item.state==1}}">{{isbuy? '剩余'+item.days+'天' : '已结束'}}</text>
+                <text class="stillTime" wx:if="{{item.state==1}}">
+                  {{isbuy? '剩余'+item.days+'天' : '已结束'}}
+                </text>
                 <text wx:elif="{{item.state==2}}">已完成</text>
               </view>
             </view>
@@ -51,13 +53,19 @@
       <view class="serList">
         <view class="serItem">
           <image src="./img/c.png" />
-          <view>本产品为
-            <text>{{item.company_name}}</text>特制商品</view>
+          <view>
+            本产品为
+            <text>{{item.company_name}}</text>
+            特制商品
+          </view>
         </view>
         <view class="serItem">
           <image src="./img/c.png" />
-          <view>由
-            <text>{{item.company_name1}}</text>发货并提供售后</view>
+          <view>
+            由
+            <text>{{item.company_name1}}</text>
+            发货并提供售后
+          </view>
         </view>
         <view class="serItem">
           <image src="./img/c.png" />
@@ -74,45 +82,42 @@
     </view>
     <view class="tabBox {{fixiPhone?'tabBox_iphone':''}}">
       <view class="tab-hd">
-        <block wx:for="{{tabHdArr}}" wx:key="">
-          <view class="tab-hd-item {{currTab==index?'active':''}}" data-current="{{index}}" bindtap="clickTabHd">{{item}}</view>
+        <block wx:for="{{tabHdArr}}" wx:key="{{index}}">
+          <view class="tab-hd-item {{currTab==index?'active':''}}" data-current="{{index}}" bindtap="clickTabHd">
+            {{item}}
+          </view>
         </block>
       </view>
-      <swiper class="tab-bd" current="{{currTab}}" duration="{{500}}" bindchange="swiperTabBd">
-        <block wx:for="{{richTextTemArray}}" wx:key="">
-          <swiper-item>
-            <template is="wxParse" data="{{wxParseData:item}}" />
-          </swiper-item>
-        </block>
-        <swiper-item>
-          <view class="tk"  wx:for="{{proArr[0].evolution}}" wx:key >
+      <view wx:for="{{richTextTemArray}}" wx:key="{{index}}" class="{{currTab==index ? '':'hidden'}}">
+        <template is="wxParse" data="{{wxParseData:item}}" />
+      </view>
+      <view class="tk" wx:for="{{proArr[0].evolution}}" wx:key class="{{currTab==3 ? '':'hidden'}}">
+        <view>
+          <view class="author-hd">
+            <image src="{{item.head_pic}}" />
+          </view>
+          <view class="tk-content">
             <view>
-              <view class="author-hd">
-                <image src="{{item.head_pic}}" />
+              <view class="author-name">
+                <text>{{item.user_name}}</text>
               </view>
-              <view class="tk-content">
+              <view class="author-tk">{{item.evaluate_content}}</view>
+              <view class="author-imgs" wx:for="{{item.images}}" wx:key wx:for-item="img">
                 <view>
-                  <view class="author-name">
-                    <text>{{item.user_name}}</text>
-                  </view>
-                  <view class="author-tk">{{item.evaluate_content}}</view>
-                  <view class="author-imgs" wx:for="{{item.images}}" wx:key wx:for-item="img">
-                    <view>
-                      <image src="{{img}}" />
-                    </view>
-                  </view>
-                  <view class="tk-time">{{item.create_time}}</view>
-                  <view class="reply" wx:if="{{item.business_repay != null}}">
-                    <view>
-                      <text>官方回复：</text> Im waking up to ash and dust.I wipe my brow and I sweat my rust,
-                    </view>
-                  </view>
+                  <image src="{{img}}" />
+                </view>
+              </view>
+              <view class="tk-time">{{item.create_time}}</view>
+              <view class="reply" wx:if="{{item.business_repay != null}}">
+                <view>
+                  <text>官方回复：</text>
+                  Im waking up to ash and dust.I wipe my brow and I sweat my rust,
                 </view>
               </view>
             </view>
           </view>
-        </swiper-item>
-      </swiper>
+        </view>
+      </view>
     </view>
     <view class="ft {{fixiPhone?'fix-iphonex':''}}">
       <view class="ftList">
@@ -150,15 +155,21 @@
                     <image src="{{item.standard[specActive].images}}" />
                   </view>
                   <view class="sku-pro-info">
-                    <view> 
+                    <view>
                       <view class="h">￥{{item.standard[specActive].cost}}</view>
                       <view class="sku-txt">
-                        <image style="width:60rpx;height:30rpx;margin-right:-60rpx;" src="http://zhihuichacang.com/kecun.png" ></image>
+                        <image style="width:60rpx;height:30rpx;margin-right:-60rpx;" src="http://zhihuichacang.com/kecun.png"></image>
                         <view wx:if="{{item.standard[specActive].limit==-1}}">不限购</view>
-                        <view wx:else>限购
-                          <text>{{item.standard[specActive].limit}}</text>份</view>
-                        <view>剩余
-                          <text>{{item.standard[specActive].stock}}</text>份</view>
+                        <view wx:else>
+                          限购
+                          <text>{{item.standard[specActive].limit}}</text>
+                          份
+                        </view>
+                        <view>
+                          剩余
+                          <text>{{item.standard[specActive].stock}}</text>
+                          份
+                        </view>
                       </view>
                     </view>
                   </view>
@@ -175,7 +186,9 @@
                     </view>
                     <view class="sku-specs">
                       <block wx:for="{{item.standard}}" wx:key="">
-                        <text class="{{specActive==index?'active':''}}" data-index="{{index}}" bindtap="clickSpec">{{item.name}}</text>
+                        <text class="{{specActive==index?'active':''}}" data-index="{{index}}" bindtap="clickSpec">
+                          {{item.name}}
+                        </text>
                       </block>
                     </view>
                   </view>
@@ -223,7 +236,9 @@
               </scroll-view>
               <view>
                 <view class="sku-btns">
-                  <view class="sku-btn support {{item.standard[specActive].stock==0?'outstockbtn':''}}" bind:tap="supProj" data-stock="{{item.standard[specActive].stock}}">支持项目</view>
+                  <view class="sku-btn support {{item.standard[specActive].stock==0?'outstockbtn':''}}" bind:tap="supProj" data-stock="{{item.standard[specActive].stock}}">
+                    支持项目
+                  </view>
                 </view>
               </view>
             </view>

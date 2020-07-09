@@ -31,7 +31,7 @@
           <view class='spec_title'>选择规格</view>
           <view class='spec_content_all'>
             <view class='spec_content' wx:for="{{goods.goods_standard}}" wx:key="index">
-              <view class="spec_content_text {{item.id==id? 'on' : ''}}" bindtap="labelItemTap" data-gui="{{item.element}}" data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}" data-value="{{item.offer}}" data-save="{{item.save}}" wx:if="{{item.stock != 0}}">
+              <view class="spec_content_text {{item.id==id? 'on' : ''}} {{item.status == 1? '':'no-click'}}" bindtap="labelItemTap" data-gui="{{item.element}}" data-current="{{item.id}}" data-price="{{item.price}}" data-stock="{{item.stock}}" data-images="{{item.images}}" data-value="{{item.offer}}" data-save="{{item.save}}" wx:if="{{item.stock != 0}}">
                 {{item.name}}
               </view>
             </view>
@@ -50,7 +50,7 @@
       </view>
     </view>
   </view>
-  <view class='home_banner'>
+  <view class='home_banner' style="margin-top:90rpx;">
     <!-- interval="{{interval}}" -->
     <swiper duration="{{duration}}" indicator-dots="{{indicatorDots}}" circular="{{circular}}" autoplay="{{autoplay}}" interval='{{interval}}'>
       <swiper-item wx:if="{{isvideo}}">

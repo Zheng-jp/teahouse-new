@@ -972,6 +972,7 @@ Page({
               temArr.push(obArr[i].tem);
               humArr.push(obArr[i].humidity.split('%')[0]);
             }
+
             _this.initThree(data.data[0], data.data[1], temArr);
             _this.initFour(data.data[0], data.data[2], humArr);
           } else { //24小时对比
@@ -1000,7 +1001,7 @@ Page({
     }
     return arr;
   },
-  //随机挑选日期
+  //随机挑选日期(隔12个取一次，如果当天不到12个就取提前12个)
   selArr: function (arr, length, type) {
     let newArr = new Array(), obj = { tem: "", humidity: "%" };
     for (let index = 0; index < length; index++) {

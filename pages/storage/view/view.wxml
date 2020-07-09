@@ -59,8 +59,9 @@
           <text class="humidity" style='color:#669900'>{{item.inHumi}}%</text>
         </view>
         <view>
-          <view class="more" bindtap="checkRealTimeData" data-name="{{item.name}}">
-            <image src="http://zhihuichacang.com/icon5.png" />
+          <view class="more" bindtap="checkRealTimeData" data-name="{{item.name}}" style="color:#0099FF;font-size: 24rpx;">
+            <!-- <image src="http://zhihuichacang.com/icon5.png" /> -->
+            查询>
           </view>
         </view>
       </view>

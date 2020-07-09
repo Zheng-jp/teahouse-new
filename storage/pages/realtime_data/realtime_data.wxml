@@ -22,8 +22,9 @@
                         <text class="humiture-title">北京时间：</text>
                         {{beijingTime}}
                         <view style="flex:1;"></view>
-                        <view bindtap="showLive">
+                        <view bindtap="showLive" style="display:flex;align-items:center;">
                             <image src="http://zhihuichacang.com/gif1.gif" class="icon-video" style="width:40rpx;height:40rpx;" />
+                            <view style="color:#00BBFF;margin-left:10rpx;">实时观看></view>
                         </view>
                     </view>
                     <view class="temperature">

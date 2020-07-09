@@ -529,7 +529,7 @@ Page({
       // 此处可以修改 shareObj 中的内容
       shareObj.imageUrl = that.data.goods_image
     }
-    console.log(shareObj)
+    // console.log(shareObj)
     return shareObj;
   },
   /**
