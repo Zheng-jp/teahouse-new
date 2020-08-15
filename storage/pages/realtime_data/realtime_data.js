@@ -926,9 +926,10 @@ Page({
       }
     });
     app.postData(app.globalData.tiltes + 'get_outside_humiture', { house_name: house_name }).then(res => {
+      let humidity = res.data.humidity.split("%")[0];
       a.setData({
-        outTemp: res.data.tem,
-        outHumi: res.data.humidity,
+        outTemp: Number(res.data.tem).toFixed(2),
+        outHumi: Number(humidity).toFixed(2),
       })
     })
   },

@@ -30,21 +30,21 @@
                     <view class="temperature">
                         <view class="temp-in">
                             <text class="humiture-title">仓储温度：</text>
-                            {{inTemp}}℃
+                            <text>{{inTemp}}℃</text>
                         </view>
-                        <view class="temp-out">
+                        <view class="temp-out" style="width:245rpx;">
                             <text class="humiture-title">室外温度：</text>
-                            {{outTemp}}℃
+                            <text>{{outTemp}}℃</text>
                         </view>
                     </view>
                     <view class="humidity">
                         <view class="humi-in">
                             <text class="humiture-title">仓储湿度：</text>
-                            {{inHumi}}%
+                            <text>{{inHumi}}%</text>
                         </view>
-                        <view class="humi-out">
+                        <view class="humi-out" style="width:245rpx;">
                             <text class="humiture-title">室外湿度：</text>
-                            {{outHumi}}
+                            <text>{{outHumi}}%</text>
                         </view>
                     </view>
                 </view>
@@ -89,13 +89,13 @@
     </swiper-item>
     <swiper-item class="overflowYauto" catchtouchmove="bindswipermove">
         <view style="flex: 1; display: flex; flex-direction: column; overflow: auto;">
-            <view style="flex:1;width:720rpx;position: relative;">
+            <view style="height:500rpx;width:720rpx;position: relative;margin-top:50rpx;">
                 <view style="text-align:center;font-weight:700;;position: absolute;top:20rpx;left:45%;z-index:999;">
                     温度(°C)
                 </view>
                 <ec-canvas id="mychart-tfOne" canvas-id="mychart-multi-tfOne" ec="{{ ecTfOne }}"></ec-canvas>
             </view>
-            <view style="flex:1; width:720rpx; position: relative;">
+            <view style="height:500rpx; width:720rpx; position: relative;margin-top:50rpx;">
                 <view style="text-align:center;font-weight:700; position: absolute;top:20rpx;left:45%;z-index:999;">
                     湿度(%)
                 </view>
