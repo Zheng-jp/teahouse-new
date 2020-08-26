@@ -78,10 +78,12 @@ Component({
     ],
     checked: 0,
     editionId: null,
+    uniacid: null
   },
   attached() {
     this.setData({
-      editionId: wx.getStorageSync('editionId')
+      editionId: wx.getStorageSync('editionId'),
+      uniacid: wx.getStorageSync('uniacid')
     })
   },
   methods: {

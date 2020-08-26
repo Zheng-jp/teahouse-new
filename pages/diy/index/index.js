@@ -158,6 +158,7 @@ catchTouchMove:function(res){
                               app.globalData.member_grade_name = res.data.data.member_grade_info.member_grade_name;
                               app.globalData.member_id = res.data.data.member_id;
                               app.globalData.uniacid = res.data.data.uniacid;
+                              wx.setStorageSync('uniacid', res.data.data.uniacid);
                               // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                               //是否推荐扫码进来的
 
@@ -667,9 +668,9 @@ catchTouchMove:function(res){
           url: n
         });
         break;
-      case "webs":
+      case "web":
         wx.navigateTo({
-          url: n
+          url: '../../ldm/index?url=' + n
         });
         break;
       case "tel":
@@ -711,8 +712,8 @@ catchTouchMove:function(res){
     if (app.globalData.gmemberid) {
       var a = t.currentTarget.dataset.link,
         e = t.currentTarget.dataset.linktype;
-      console.log(a)
-      console.log(e)
+      // console.log(a)
+      // console.log(e)
       this.newRedirectto(a, e);
     }else{
       // wx.login({

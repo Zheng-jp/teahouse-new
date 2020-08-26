@@ -121,7 +121,7 @@
               <button class="song" bindtap="giving" data-img="{{item.goods_image}}" data-id="{{item.id}}" data-num="{{item.store_number}}"  data-restatus="{{item.restatus}}" data-remind="{{item.remind}}">
                 送好友
               </button>
-              <button class="out-storage" bindtap="outOfStock" data-id="{{item.id}}" data-restatus="{{item.restatus}}" data-remind="{{item.remind}}">出仓</button>
+              <button class="out-storage" bindtap="outOfStock" data-friend="{{item.friend_status}}" data-id="{{item.id}}" data-restatus="{{item.restatus}}" data-remind="{{item.remind}}">出仓</button>
               <button type="warn" class="renew" data-inTime="{{item.pay_time}}" data-outTime="{{item.end_time}}" data-price="{{item.unit_price}}" data-id="{{item.id}}" bind:tap="showRenewPop" wx:if="{{item.limit_time == 2}}">
                 续费
               </button>

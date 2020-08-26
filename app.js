@@ -128,6 +128,7 @@ App({
                     app.globalData.member_grade_name = res.data.data.member_grade_info.member_grade_name;
                     app.globalData.member_id = res.data.data.member_id;
                     app.globalData.uniacid = res.data.data.uniacid;
+                    wx.setStorageSync('uniacid', res.data.data.uniacid);
                     if (scene != undefined && res.data.status == 1) {
                       _this.pointReward(scene, res.data.data.member_id, res.data.data.uniacid);
                     }

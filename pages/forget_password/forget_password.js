@@ -31,6 +31,11 @@ Page({
         title: "两次密码不一致",
         icon: 'none',
       });
+    } else if (e.detail.value.harvester_password.length > 6 || e.detail.value.harvester_password.length < 6) {
+      wx.showToast({
+        title: "密码长度必须为6位",
+        icon: 'none',
+      });
     } else if (e.detail.value.harvester_phone_num1 == '') {
       wx.showToast({
         title: "验证码不能为空",

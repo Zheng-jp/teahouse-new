@@ -896,7 +896,7 @@ Page({
     });
   },
   outOfStock: function (e) {
-    var id = e.currentTarget.dataset.id, restatus = e.currentTarget.dataset.restatus, remind = e.currentTarget.dataset.remind;
+    var id = e.currentTarget.dataset.id, restatus = e.currentTarget.dataset.restatus, remind = e.currentTarget.dataset.remind, friend_status = e.currentTarget.dataset.friend;
     null != app.globalData.judge_phone && app.globalData.judge_phone || this.isPhone();
     // 出仓
     if (restatus == 1) {
@@ -907,7 +907,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '/storage/pages/out_of_warehouse/out_of_warehouse?id=' + id
+        url: '/storage/pages/out_of_warehouse/out_of_warehouse?id=' + id + '&isFriend=' + friend_status
       })
     }
   },

@@ -81,6 +81,7 @@ Page({
                       key: "globalData",
                       data: JSON.stringify(app.globalData)
                     })
+                    wx.setStorageSync('uniacid', res.data.data.uniacid);
                     if (newMember != undefined && res.data.status == 1) {
                       _this.pointReward(newMember, res.data.data.member_id, res.data.data.uniacid);
                     }
@@ -370,6 +371,7 @@ Page({
                             app.globalData.member_id = res.data.data.member_id;
                             app.globalData.uniacid = res.data.data.uniacid;
                             app.globalData.session_key = res.data.data.session_key;
+                            wx.setStorageSync('uniacid', res.data.data.uniacid);
                             // app.globalData.member_grade_img=res.data.data.member_grade_info.member_grade_img;
                             //是否推荐扫码进来的
 

@@ -18,7 +18,7 @@
   
   .capsule {
     margin-left: 10px;
-    height: 32px;
+    height: 30px;
     /* border: 1px solid #fff; */
     border: 1px solid rgb(212,212,212);
     border-radius: 16px;
@@ -38,7 +38,7 @@
   }
   
   .capsule image {
-    width: 60%;
+    width: 50%;
     height: 100%;
     position: absolute;
     left: 50%;

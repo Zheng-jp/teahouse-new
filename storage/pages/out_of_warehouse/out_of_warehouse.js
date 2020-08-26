@@ -21,7 +21,8 @@ Page({
     pmKey: false, // switch支付弹窗
     balance: 0.00, //余额
     isFu: true, //钱为零时无需弹支付
-    cangList: []
+    cangList: [],
+    friend_status:0 //是否为好友赠送
   },
 
   myRequest: function (url, params, callback) {
@@ -67,7 +68,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options) this.setData({ id: options.id });
+    if (options) this.setData({ id: options.id, friend_status: options.isFriend });
   },
 
   /**

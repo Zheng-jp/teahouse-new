@@ -56,7 +56,9 @@
     <view class="list-key">初始购入价
       <text class="explain">?</text>
     </view>
-    <view class="list-value">￥{{orderInfo.goods_money}}/{{orderInfo.store_unit}}×{{orderInfo.order_quantity}}</view>
+    <view class="list-value"  wx:if="{{friend_status == 0}}">￥{{orderInfo.goods_money}}/{{orderInfo.store_unit}}×{{orderInfo.order_quantity}}</view>
+    <view wx:elif="{{friend_status == 1}}">免费获赠</view>
+    <view wx:else>好友赠送</view>
   </view>
   <!-- <view class="list-item">
         <view class="list-key">
