@@ -9,7 +9,7 @@
   </cover-view> -->
   
   <block wx:if="{{uniacid == 391}}">
-    <cover-view wx:for="{{editionId==1?tabBarArr2:tabBarArr}}" wx:key="{{index}}" class="tab-bar-item" data-index="{{index}}" data-path="{{item.path}}" bindtap="switchTab" wx:if="{{index == 0 || index == 2}}">
+    <cover-view wx:for="{{tabBarArr3}}" wx:key="{{index}}" class="tab-bar-item" bindtap="switchTab" data-index="{{index}}" data-path="{{item.path}}" >
       <cover-image src="{{index == checked ? item.img2 : item.img}}"></cover-image>
       <cover-view style="color: {{index == checked ? item.colorOn : item.color}}">
         {{item.text}}

@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
@@ -25,7 +25,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.4",
-	"appid": "wxc265cd4269f01dce",
+	"appid": "wx301c1368929fdba8",
 	"projectname": "Zjp",
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {

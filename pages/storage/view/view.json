@@ -1,7 +1,4 @@
 {
-  "usingComponents": {
-    "wxzx-progress": "/component/wxzx-progress/wxzx-progress"
-  },
   "navigationBarTitleText": "茶仓",
   "navigationBarBackgroundColor": "#f9f9f9",
   "backgroundTextStyle": "dark",

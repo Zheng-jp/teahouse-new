@@ -748,9 +748,15 @@ Page({
 
   onShow: function () {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        checked: 2
-      })
+      if (app.globalData.uniacid != 391) {
+        this.getTabBar().setData({
+          checked: 2
+        })
+      } else {
+        this.getTabBar().setData({
+          checked: 1
+        })
+      }
     }
     this.reset();
     // 总价值

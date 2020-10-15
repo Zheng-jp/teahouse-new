@@ -208,6 +208,7 @@ catchTouchMove:function(res){
                 app.globalData.uniacid = data.uniacid;
                 app.globalData.member_grade_name = data.member_grade_name;
                 app.globalData.member_openid = data.member_openid;
+                wx.setStorageSync('uniacid', data.uniacid);
                 resolve(1);
               }
             })
